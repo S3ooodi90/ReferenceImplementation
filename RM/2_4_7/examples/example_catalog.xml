@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD XML Catalogs V1.1//EN" "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+
+<!-- 
+  This example shows how to redirect for your local reference model and CCD schemas. IT assumes you have you files under a user named MLHIM.
+  So there root path would be '/home/MLHIM'. The RM schemas are in this directory and a subdirectory named 'CCD_Library' is where all of your CCD
+  schemas are located.  You should edit the 'uri=' and the 'rewritePrefix=' values to match you implementation. If you have CCDs from multiple locations
+  then you will need a rewriteSystem element for each one. 
+-->
+
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+   <!-- MLHIM 2.4.4 RM XML Schema -->
+  <uri name="http://www.mlhim.org/xmlns/mlhim2/2_4_4/mlhim244.xsd" uri="/home/MLHIM/mlhim244.xsd"/>
+
+  <!-- MLHIM 2.4.5 RM XML Schema -->
+  <uri name="http://www.mlhim.org/xmlns/mlhim2/2_4_5/mlhim245.xsd" uri="/home/MLHIM/mlhim245.xsd"/>
+
+ <!-- MLHIM 2.4.6 RM XML Schema -->
+  <uri name="http://www.mlhim.org/xmlns/mlhim2/mlhim246.xsd" uri="/home/MLHIM/mlhim246.xsd"/>
+ 
+  <!-- MLHIM CCDs -->
+  <rewriteSystem systemIdStartString="http://www.ccdgen.com/ccdlib/" rewritePrefix="/home/MLHIM/CCD_Library/"/>
+</catalog>

@@ -1,0 +1,89 @@
+#Changes from 2.4.5 to 2.4.6  (see the git commit msgs. for details)                     
+    Established a single namespace for all artifacts. The prefix and namespace are:
+    mlhim2='http://www.mlhim.org/xmlns/mlhim2'
+
+    Changed the RDF Subject, 'rdf:about=' value, to a full URI  http://www.mlhim.org/xmlns/mlhim2/ct- with the UUID appended.
+    
+    Added an OWL ontology for RM 2.4.6 Visualize the ontology here: http://vowl.visualdataweb.org/webvowl/index.html?#iri=http://www.mlhim.org/xmlns/mlhim2/mlhim246.owl
+
+    Moved the ontology and RM physical locations to the namespace location on mlhim.org.
+
+    Updated the CCD and instance examples. Added the XSLT to render the CCD in a browser.  Works with Firefox on local files but not in Chrome.
+    Both browsers work when using the CCD-Gen. 
+
+    
+#Changes from 2.4.4 to 2.4.5  (see the git commit msgs. for details)                     
+    Modified DvBooleanType to use valid-true or valid-false in a xs:choice and deleted DvBoolean-dv. 
+    Modified DvIntervalType to improve validation of the upper and lower data type selections. 
+    Added AuditType to simplify and improve the audit trail functionality.
+    Removed FeederAuditType and FeederAuditDetailsType.
+    Modified entry-audit to use the new AuditType. Set maxOccurs to unbounded so each step in processing gets a new audit element. 
+    Modified DvRatio numerator and denominator minOccurs to 0 (zero) to support modeling of adimensional ratios without these    being explicit. Also modified their related units requirement to zero. Examples of this are odds ratios. 
+
+#Changes from 2.4.3 to 2.4.4                       
+       moving from master to 2_4_4                
+       Added new 2.4.4 schema from 2.4.3               
+       moving from 2_4_4 to master                
+       Fast-forward                    
+       moving from master to 2_4_4                
+       moving from 2_4_4 to master                
+       Renamed manual.                   
+       Created docs directory for 2.4.4.                
+       moving from master to 2_4_4                
+       moving from 2_4_4 to master                
+       moving from master to 2_4_4                
+       moving from 2_4_4 to master                
+       moving from master to master                
+       Added HTML docs for the reference model.              
+       Added HTML docs for the example CCD.              
+       Updated the repository to match what was actually shipped in release 2.4.3. Removed some outdated diagrams and added the UMLish diagrams.
+       Added Cavalini-Cook Theory PNG.                 
+       moving from master to 2_4_3                
+       Added Cavalini-Cook Theory PNG.                 
+       moving from 2_4_3 to master                
+       Removed PDF specs from gitignore.                
+       Started work on NIEM conformance in 244              
+       Added new 2.4.4 RM schema.                
+       Now have a valid CCD example with current RM and all PcTs. see: testccd244.xsd       
+       Fast-forward                    
+       moving from master to MLHIM-NIEM                
+       moving from MLHIM-NIEM to 2_4_4                
+       origin/master: Fast-forward                   
+       moving from 2_4_4 to MLHIM-NIEM                
+       moving from MLHIM-NIEM to 2_4_4                
+       moving from 2_4_4 to master                
+       moving from master to 2_4_4                
+       Moved to consisttent folder naming with previous versions.             
+       Moved to consisttent folder naming with previous versions.             
+       Removed old instances. Update namespace defintions.               
+       Update README.                   
+       Defined Party to replace PartyProxy, PartyIdentified and PartySelf.             
+       Updated test CCD. Defined Party to replace PartyProxy, PartyIdentified and PartySelf.          
+       moving from 2_4_4 to master                
+       Fast-forward                    
+       moving from master to 2_4_4                
+       Beginning work on Freemind to CCD builder.              
+       Adding mm files.                  
+       Completed creating mm files.                 
+       Reorganized directory structure.                  
+       Updated README.                   
+       Updated README.                   
+       Updated README.                   
+       Updated README. Added gDay, gMonth and gYEar to interval types allowed.          
+       Documentation work.                   
+       Adding UML for RM. Updating docs in RM             
+       Updating UML for RM. Updating docs in RM             
+       moving from 2_4_4 to master                
+       moving from master to 2_4_4                
+       Updating UML and schema docs.                
+       moving from 2_4_4 to master                
+       Fast-forward                    
+       moving from master to 2_4_4                
+       Updating UML and schema docs.                
+       Updated docs and UML.                 
+       Modified DvAdapter so that instances can have zero to unbounded copies of the 'Dv*'       
+       Relaxed Entry.subject to minimum of zero.               
+       Relaxed Cluster.items to minimum of zero.               
+       Changed DvAdapter-dv back to required and maximum of one.            
+       (amend): Changed DvAdapter-dv to minimum of one and maximum unbounded.           
+       Fast-forward                    
