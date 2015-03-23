@@ -1,1 +1,4 @@
-The reference model.
+The published versions of the reference model are in subdirectories labeled with their version number, e.g. 1_0_0 for the first RM release.
+
+The schema filename is 's3model_' with the version number appended, e.g. s3model_1_0_0.xsd for the first RM release.
+
