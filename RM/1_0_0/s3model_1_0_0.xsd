@@ -1300,13 +1300,6 @@
             a family member, shipper, etc. </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Provider">
-        <xs:annotation>
-          <xs:documentation>Optional identification of the source of the information in this Entry,
-            which might be: • the patient• a patient agent, e.g. parent, guardian • the clinician •
-            a device or software</xs:documentation>
-        </xs:annotation>
-      </xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Participations">
         <xs:annotation>
           <xs:documentation>List of other participations at Entry level.</xs:documentation>
@@ -1341,7 +1334,6 @@
   </xs:complexType>
   <xs:element name="Link" type="s3m:DvURIType"/>
   <xs:element name="Subject" type="s3m:PartyType"/>
-  <xs:element name="Provider" type="s3m:PartyType"/>
   <xs:element name="Participations" type="s3m:ParticipationType"/>
   <xs:element name="Protocol" type="s3m:DvIdentifierType"/>
   <xs:element name="Workflow" type="s3m:DvURIType"/>

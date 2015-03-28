@@ -82,7 +82,7 @@ xml:lang='en-US'>
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f'/> <!-- entry-links -->
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066'/> <!-- entry-links -->
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-76d5279d-8557-4eb7-9722-1ad858c00e3c'/> <!-- entry-subject -->
-          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0'/> <!-- entry-provider -->
+
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750'/> <!-- other-participations -->
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-39a03554-7f19-4e08-a608-b36e42f1fc15'/> <!--  -->
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-5327bf3f-5ecb-47b5-b358-63bb5f277ddf'/> <!-- workflow-id -->
@@ -1166,30 +1166,6 @@ Examples:
 
 
 
-  <xs:complexType name='ct-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0' xml:lang='en-US'> <!-- Entry Provider (US) -->
-    <xs:annotation>
-    <xs:documentation>
-      A generic Entry provider.
-    </xs:documentation>
-    <xs:appinfo>
-    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0'>
-    <rdfs:subClassOf rdf:resource='s3m:PartyType'/>
-    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
-    </rdf:Description>
-    </xs:appinfo>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:restriction base='s3m:PartyType'>
-        <xs:sequence>
-          <xs:element maxOccurs='1' minOccurs='1' name='party-name' type='xs:string'/>
-          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962'/> <!-- external-ref -->
-          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'/> <!-- details -->
-          </xs:sequence>
-        </xs:restriction>
-      </xs:complexContent>
-    </xs:complexType>
-
-
 
   <xs:complexType name='ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750' xml:lang='en-US'> <!-- Entry Participation -->
     <xs:annotation>
@@ -1850,7 +1826,6 @@ Examples:
   <xs:element name='el-96ec0cec-0e47-4892-9acb-697be7d51a33' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33'/>
   <xs:element name='el-c265bd07-d470-49b5-99c1-4559f7e9408d' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d'/>
   <xs:element name='el-76d5279d-8557-4eb7-9722-1ad858c00e3c' substitutionGroup='s3m:Subject' type='s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c'/>
-  <xs:element name='el-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0' substitutionGroup='s3m:Provider' type='s3m:ct-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0'/>
   <xs:element name='el-c37d801a-9f1b-4ef9-97e4-561bbffb8750' substitutionGroup='s3m:Participations' type='s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750'/>
   <xs:element name='el-07d2e2e8-0415-4aa9-8115-a3a818801719' substitutionGroup='s3m:Performer' type='s3m:ct-07d2e2e8-0415-4aa9-8115-a3a818801719'/>
   <xs:element name='el-d79c6f0e-10b5-432c-91ef-489ee94d64a7' substitutionGroup='s3m:Function' type='s3m:ct-d79c6f0e-10b5-432c-91ef-489ee94d64a7'/>
