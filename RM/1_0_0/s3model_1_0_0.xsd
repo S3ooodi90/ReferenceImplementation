@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" 
-  xmlns:s3m='http://www.s3model.com/rm'
-  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-  targetNamespace='http://www.s3model.com/rm'
-  vc:minVersion="1.1">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/rm"
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://www.s3model.com/rm" vc:minVersion="1.1">
   <xs:annotation>
     <xs:documentation> 
       This work is Copyright 2015 Timothy W. Cook, All Rights Reserved.
       
-      This is the Shareable-Semantic-Syntactic Model (S3Model) reference model implementation in XML Schema 1.1. 
-      The S3Model consists of the core datatypes and structures for S3Model models, called Concept Models (CMs).
+      This is the Shareable-Semantic-Syntactic Model (S3Model) reference model (RM) implementation in XML Schema 1.1. 
+      The S3Model RM consists of the core datatypes and structures for S3Model domain concept models, called Concept Models (CMs).
       
       Further documentation and implementation instructions can be found on or via links from http://www.S3Model.com
     </xs:documentation>
@@ -25,11 +19,11 @@
 
   <xs:complexType abstract="true" name="DvAnyType">
     <xs:annotation>
-      <xs:documentation>Serves as a common ancestor of all complex data-types in S3Model models.
+      <xs:documentation>Serves as the common ancestor of all complex data-types in S3Model models.
       </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about='http://s3model.com/rm/1_0_0/DvAnyType'>
-          <rdfs:isDefinedBy rdf:resource='http://s3model.com/docs/html//s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType'/>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvAnyType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -41,37 +35,41 @@
           natural language used by the modeller. It replaces what would commonly be used as an XML element name or a database column name.
           </xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about='http://s3model.com/rm/1_0_0/DvAnyType/data-name'>
-              <rdfs:isDefinedBy rdf:resource='http://s3model.com/docs/html//s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name'/>
+            <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvAnyType/data-name">
+              <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name"/>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue">
+        <xs:annotation>
+          <xs:documentation>In an invalid instance, the application can indicate here why data is missing or invalid. 
+            The sub-types are based on ISO 21090 NULL Flavors entries, with additions noted from real-world usage.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime">
         <xs:annotation>
           <xs:documentation>Valid Time Begin. If present this must be a valid datetime including timezone. It is used
             to indicate the beginning time that information is considered valid or when the
             information was collected.</xs:documentation>
-          
+
           <xs:appinfo>
-            <rdf:Description rdf:about='http://s3model.com/rm/1_0_0/DvAnyType/vtb'>
-              <rdfs:isDefinedBy rdf:resource='http://s3model.com/docs/html//s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb'/>
+            <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvAnyType/vtb">
+              <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb"/>
             </rdf:Description>
           </xs:appinfo>
-          
+
         </xs:annotation>
       </xs:element>
 
-      <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"
-        nillable="true">
+      <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime" nillable="true">
         <xs:annotation>
           <xs:documentation>Valid Time End. If present this must be a valid date-time including timezone. It is used
             to indicate the ending time that information is considered valid or is to have
             expired.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about='http://s3model.com/rm/1_0_0/DvAnyType/vte'>
-              <rdfs:isDefinedBy rdf:resource='http://s3model.com/docs/html//s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte'/>
+            <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvAnyType/vte">
+              <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte"/>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -89,29 +87,38 @@
         subjective data) carefully, so that the only allowed results are in fact true or false.
         
         Potential Misuse: The DvBooleanType should not be used as a replacement for naively modelled
-        enumerated types such as male/female etc. Such values should be coded, and in any case the
-        enumeration often has more than two values.</xs:documentation>
+        enumerated types such as male/female etc. Such values should be enumerated or extracted from a vocabulary and coded. 
+        In most cases the enumeration often has more than two possible values.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about='http://s3model.com/rm/1_0_0/DvBooleanType'>
-          <rdfs:isDefinedBy rdf:resource='http://s3model.com/docs/html//s3model_1_0_0_xsd_Complex_Type_s3m_DvBooleanType.html#DvBooleanType'/>
-          <rdfs:subClassOf rdf:resource='http://s3model.com/rm/1_0_0/DvAnyType'/>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvBooleanType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvBooleanType.html#DvBooleanType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvAnyType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
         <xs:choice>
-          <xs:element maxOccurs="1" minOccurs="0" name="valid-true" type="xs:string">
+          <xs:element maxOccurs="1" minOccurs="0" name="true-value" type="xs:string">
             <xs:annotation>
               <xs:documentation>A string that represents a boolean True in the implementation. These
-                are generally constrained by a set of enumerations in the PcT.</xs:documentation>
+                are generally constrained by a set of enumerations in the CM complexType restriction.</xs:documentation>
+              <xs:appinfo>
+                <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvBooleanType/true-value">
+                  <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvBooleanType.html#DvBooleanType_true-value"/>
+                </rdf:Description>
+              </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="valid-false" type="xs:string">
+          <xs:element maxOccurs="1" minOccurs="0" name="false-value" type="xs:string">
             <xs:annotation>
               <xs:documentation>A string that represents a boolean False in the implementation.
-                These are generally constrained by a set of enumerations in the
-                PcT.</xs:documentation>
+                These are generally constrained by a set of enumerations in the CM complexType restriction .</xs:documentation>
+              <xs:appinfo>
+                <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvBooleanType/false-value">
+                  <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvBooleanType.html#DvBooleanType_false-value"/>
+                </rdf:Description>
+              </xs:appinfo>
             </xs:annotation>
           </xs:element>
         </xs:choice>
@@ -122,8 +129,7 @@
 
   <xs:complexType name="DvURIType">
     <xs:annotation>
-      <xs:documentation>Used to specify a Universal Resource Identifier. Set the pattern to
-        accommodate your needs in a CM.</xs:documentation>
+      <xs:documentation>Used to specify a Universal Resource Identifier. Set the pattern to accommodate your needs in a CM.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
@@ -135,8 +141,7 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="1" name="relation" type="xs:string">
             <xs:annotation>
-              <xs:documentation>Normally constrained by on ontology such as the OBO RO
-                http://purl.obolibrary.org/obo/ro.owl</xs:documentation>
+              <xs:documentation>Normally constrained by on ontology such as the OBO RO http://purl.obolibrary.org/obo/ro.owl</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -209,7 +214,7 @@
       <xs:appinfo>
         <DerivedAssert test="count(.//xs:element[@name='issuer']//xs:enumeration) = count(.//xs:element[@name='assignor']//xs:enumeration)" message="Number of enumerations needs to be the same for elements issuer assignor."/>
       </xs:appinfo>
-      
+
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvStringType">
@@ -488,7 +493,7 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element abstract="true" name="DvQuantified" substitutionGroup="s3m:DvOrdered s3m:DvAny" type="s3m:DvQuantifiedType"/>
-  
+
   <xs:element name="magnitude-status">
     <xs:simpleType>
       <xs:restriction base="xs:string">
@@ -507,7 +512,7 @@
       <xs:documentation> Countable quantities. Used for countable types such as pregnancies and
         steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc.
         Misuse:Not used for amounts of physical entities (which all have standardized units). Note
-        that PcTs derived from DvCountType should make magnitude, error and accuracy attributes
+        that CM complexType restriction s derived from DvCountType should make magnitude, error and accuracy attributes
         minOccurs = '1'. The magnitude element is restricted to integers via an xs:assert.
       </xs:documentation>
     </xs:annotation>
@@ -533,7 +538,7 @@
       <xs:documentation> Quantified type representing “scientific” quantities, i.e. quantities
         expressed as a magnitude and units. Can also be used for time durations, where it is more
         convenient to treat these as simply a number of individual seconds, minutes, hours, days,
-        months, years, etc. when no temporal calculation is to be performed. Note that PcTs derived
+        months, years, etc. when no temporal calculation is to be performed. Note that CM complexType restriction s derived
         from DvQuantityType should make magnitude, error and accuracy attributes minOccurs = '1'.
       </xs:documentation>
     </xs:annotation>
@@ -570,7 +575,7 @@
           <xs:element maxOccurs="1" minOccurs="1" ref="s3m:ratio-type">
             <xs:annotation>
               <xs:documentation> Indicates semantic type of ratio must be set as fixed to one of the
-                below strings in PcTs. ratio = a relationship between two numbers. proportion = a
+                below strings in CM complexType restriction s. ratio = a relationship between two numbers. proportion = a
                 relationship between two numbers where there is a bi-univocal relationship between
                 the numerator and the denominator (the numerator is contained in the denominator)
                 rate = a relationship between two numbers where there is not a bi-univocal
@@ -631,7 +636,7 @@
   <xs:complexType name="DvTemporalType">
     <xs:annotation>
       <xs:documentation> Type defining the concept of date and time types. Must be constrained in
-        PcTs to be one or more of the below elements. This gives the modeller the ability to
+        CM complexType restriction s to be one or more of the below elements. This gives the modeller the ability to
         optionally allow full or partial dates at run time. Setting maxOccurs and minOccurs to zero
         cause the element to be prohibited. </xs:documentation>
     </xs:annotation>
@@ -696,7 +701,7 @@
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-        <!-- The assert doesn't need the value comparison if CMs use the fixed attribute. But just in case we want to be sure the interval makes sense. upper and lower to see if the CM restricted both to the same type. -->        
+        <!-- The assert doesn't need the value comparison if CMs use the fixed attribute. But just in case we want to be sure the interval makes sense. upper and lower to see if the CM restricted both to the same type. -->
         <xs:assert test="lower/*/name() = upper/*/name()"/>
       </xs:extension>
     </xs:complexContent>
@@ -751,7 +756,7 @@
 
 
   <!--Common package types-->
-  
+
   <xs:complexType name="AuditType">
     <xs:annotation>
       <xs:documentation>
@@ -787,8 +792,8 @@
   <xs:element name="System-id" type="s3m:DvIdentifierType"/>
   <xs:element name="Location" type="s3m:ItemType"/>
   <xs:element name="Audit" type="s3m:AuditType"/>
-  
-  
+
+
   <xs:complexType name="PartyType">
     <xs:annotation>
       <xs:documentation> Description of a party, including an optional external link to data for
@@ -941,8 +946,7 @@
             value. </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="No Information" maxOccurs="1" minOccurs="1" name="ev-name"
-            type="xs:string"/>
+          <xs:element fixed="No Information" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1010,8 +1014,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Unencoded" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"
-          />
+          <xs:element fixed="Unencoded" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1041,8 +1044,7 @@
           <xs:documentation>Negative Infinity : Negative infinity of numbers</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Negative Infinity" maxOccurs="1" minOccurs="1" name="ev-name"
-            type="xs:string"/>
+          <xs:element fixed="Negative Infinity" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1057,8 +1059,7 @@
           <xs:documentation>Positive Infinity : Positive infinity of numbers</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Positive Infinity" maxOccurs="1" minOccurs="1" name="ev-name"
-            type="xs:string"/>
+          <xs:element fixed="Positive Infinity" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1087,8 +1088,7 @@
             (e.g., patient was asked but refused to answer)</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Asked and Refused" maxOccurs="1" minOccurs="1" name="ev-name"
-            type="xs:string"/>
+          <xs:element fixed="Asked and Refused" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1103,8 +1103,7 @@
             asked)</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Not Asked" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"
-          />
+          <xs:element fixed="Not Asked" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1121,8 +1120,7 @@
             100mL.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Sufficient Quantity" maxOccurs="1" minOccurs="1" name="ev-name"
-            type="xs:string"/>
+          <xs:element fixed="Sufficient Quantity" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1152,8 +1150,7 @@
             was asked but did not know)</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Asked but Unknown" maxOccurs="1" minOccurs="1" name="ev-name"
-            type="xs:string"/>
+          <xs:element fixed="Asked but Unknown" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1168,8 +1165,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Not Available" maxOccurs="1" minOccurs="1" name="ev-name"
-            type="xs:string"/>
+          <xs:element fixed="Not Available" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1184,8 +1180,7 @@
             number of cigarettes smoked per day by a non-smoker subject.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-          <xs:element fixed="Not Applicable" maxOccurs="1" minOccurs="1" name="ev-name"
-            type="xs:string"/>
+          <xs:element fixed="Not Applicable" maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1265,8 +1260,8 @@
             written. The value space of language is the set of all strings that are valid language identifiers as defined in BCP 47.
           </xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about='http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_EntryType.html#EntryType_language'>
-              <rdfs:isDefinedBy rdf:resource='https://tools.ietf.org/html/bcp47'/>
+            <rdf:Description rdf:about="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_EntryType.html#EntryType_language">
+              <rdfs:isDefinedBy rdf:resource="https://tools.ietf.org/html/bcp47"/>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1287,7 +1282,7 @@
         <xs:annotation>
           <xs:documentation>The content data structure of the Entry.</xs:documentation>
         </xs:annotation>
-      </xs:element>      
+      </xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Link">
         <xs:annotation>
           <xs:documentation>Optional link(s) to other locatable structures or external
@@ -1329,7 +1324,7 @@
             node.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      
+
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Link" type="s3m:DvURIType"/>

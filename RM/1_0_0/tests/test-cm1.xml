@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<s3m:cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10 
+<s3m:cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
  xmlns:s3m="http://www.s3model.com/rm"
+ xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
+ xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.s3model.com/rm file:/home/tim/S3Model/S3Model/RM/1_0_0/tests/test-cm.xsd">
   <s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3>
@@ -12,68 +19,96 @@
       <s3m:el-697e8df2-7890-4f44-8442-e7f2beab4425>
         <s3m:el-eeaddd88-4a85-4e27-9ece-337f910ef81b>
           <data-name>Fever duration: 3 weeks or less</data-name>
-          <s3m:NI>
-            <ev-name>No Information</ev-name>
-          </s3m:NI>
-          <valid-time-begin>2015-09-19T13:17:16Z</valid-time-begin>
-          <valid-time-end>2016-10-15T13:17:16Z</valid-time-end>
-          <valid-true>YES</valid-true>
+          <s3m:UNC>
+            <ev-name>Unencoded</ev-name>
+          </s3m:UNC>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <true-value>YES</true-value>
+        </s3m:el-eeaddd88-4a85-4e27-9ece-337f910ef81b>
+        <s3m:el-eeaddd88-4a85-4e27-9ece-337f910ef81b>
+          <data-name>Fever duration: 3 weeks or less</data-name>
+          <s3m:NINF>
+            <ev-name>Negative Infinity</ev-name>
+          </s3m:NINF>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <false-value>NO</false-value>
         </s3m:el-eeaddd88-4a85-4e27-9ece-337f910ef81b>
       </s3m:el-697e8df2-7890-4f44-8442-e7f2beab4425>
       <s3m:el-d05d35e1-4452-47a4-a7c5-58d1aac8bf64>
         <s3m:el-a68202e8-f161-4c80-931c-b97d9eb2b22b>
           <data-name>Test DvBoolean</data-name>
-          <s3m:NI>
-            <ev-name>No Information</ev-name>
-          </s3m:NI>
-          <valid-time-begin>2015-09-30T13:17:16</valid-time-begin>
-          <valid-time-end>2015-04-19T13:17:16</valid-time-end>
-          <valid-true>Sim</valid-true>
+          <s3m:UNC>
+            <ev-name>Unencoded</ev-name>
+          </s3m:UNC>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <true-value>Yes</true-value>
+        </s3m:el-a68202e8-f161-4c80-931c-b97d9eb2b22b>
+        <s3m:el-a68202e8-f161-4c80-931c-b97d9eb2b22b>
+          <data-name>Test DvBoolean</data-name>
+          <s3m:PINF>
+            <ev-name>Positive Infinity</ev-name>
+          </s3m:PINF>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <true-value>Yes</true-value>
         </s3m:el-a68202e8-f161-4c80-931c-b97d9eb2b22b>
       </s3m:el-d05d35e1-4452-47a4-a7c5-58d1aac8bf64>
       <s3m:el-e9cbb207-9e89-416c-8b71-7cdb859b3097>
         <s3m:el-8ae6d78b-394b-455e-a5e4-f55897f92a77>
           <data-name>Blood Pressure Device</data-name>
-          <s3m:NI>
-            <ev-name>No Information</ev-name>
-          </s3m:NI>
-          <valid-time-begin>2016-09-23T13:17:16</valid-time-begin>
-          <valid-time-end>2016-08-19T13:17:16Z</valid-time-end>
-          <dvstring-value>Aneroid sphygmomanometer</dvstring-value>
-          <language>el-GR</language>
+          <s3m:TRC>
+            <ev-name>Trace</ev-name>
+          </s3m:TRC>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <dvstring-value>Mercury sphygmomanometer</dvstring-value>
+          <language>en-US</language>
+        </s3m:el-8ae6d78b-394b-455e-a5e4-f55897f92a77>
+        <s3m:el-8ae6d78b-394b-455e-a5e4-f55897f92a77>
+          <data-name>Blood Pressure Device</data-name>
+          <s3m:UNC>
+            <ev-name>Unencoded</ev-name>
+          </s3m:UNC>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <dvstring-value>Mercury sphygmomanometer</dvstring-value>
+          <language>en-US</language>
         </s3m:el-8ae6d78b-394b-455e-a5e4-f55897f92a77>
       </s3m:el-e9cbb207-9e89-416c-8b71-7cdb859b3097>
     </s3m:el-96f910e1-8f1e-4a54-a19f-47722ddd91d3>
     <s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f>
       <data-name>attached to</data-name>
-      <s3m:NI>
-        <ev-name>No Information</ev-name>
-      </s3m:NI>
-      <valid-time-begin>2017-03-15T13:17:16Z</valid-time-begin>
-      <valid-time-end>2015-05-19T13:17:16Z</valid-time-end>
-      <dvuri-value>http://KvlZiPgP/</dvuri-value>
+      <s3m:MSK>
+        <ev-name>Masked</ev-name>
+      </s3m:MSK>
+      <vtb>2006-05-04T18:13:51.0</vtb>
+      <vte>2006-05-04T18:13:51.0</vte>
+      <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
       <relation>http://purl.obolibrary.org/obo/RO_0002371</relation>
     </s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f>
     <s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066>
       <data-name>Connected To</data-name>
-      <s3m:NI>
-        <ev-name>No Information</ev-name>
-      </s3m:NI>
-      <valid-time-begin>2015-10-16T13:17:16Z</valid-time-begin>
-      <valid-time-end>2016-10-21T13:17:16Z</valid-time-end>
-      <dvuri-value>http://EurWETIm/</dvuri-value>
+      <s3m:MSK>
+        <ev-name>Masked</ev-name>
+      </s3m:MSK>
+      <vtb>2006-05-04T18:13:51.0</vtb>
+      <vte>2006-05-04T18:13:51.0</vte>
+      <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
       <relation>connected to</relation>
     </s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066>
     <s3m:el-76d5279d-8557-4eb7-9722-1ad858c00e3c>
-      <party-name>ffjVU</party-name>
+      <party-name>party-name0</party-name>
       <s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
         <data-name>External Reference for Party</data-name>
-        <s3m:NI>
-          <ev-name>No Information</ev-name>
-        </s3m:NI>
-        <valid-time-begin>2016-09-26T13:17:16Z</valid-time-begin>
-        <valid-time-end>2015-10-07T13:17:16Z</valid-time-end>
-        <dvuri-value>http://ZLYNzZvc/</dvuri-value>
+        <s3m:MSK>
+          <ev-name>Masked</ev-name>
+        </s3m:MSK>
+        <vtb>2006-05-04T18:13:51.0</vtb>
+        <vte>2006-05-04T18:13:51.0</vte>
+        <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
         <relation>Party Associated with the record</relation>
       </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
       <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
@@ -81,598 +116,274 @@
         <s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
           <s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
             <data-name>Additional Address Line(s) (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2017-02-08T13:17:16</valid-time-begin>
-            <valid-time-end>2017-03-14T13:17:16Z</valid-time-end>
-            <dvstring-value>NYHl09_</dvstring-value>
-            <language>de-DE</language>
+            <dvstring-value>dvstring-value2</dvstring-value>
+          </s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
+          <s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
+            <data-name>Additional Address Line(s) (US)</data-name>
+            <dvstring-value>dvstring-value3</dvstring-value>
           </s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
         </s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
         <s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
           <s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
             <data-name>City Name (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-03-05T13:17:16Z</valid-time-begin>
-            <valid-time-end>2015-11-12T13:17:16</valid-time-end>
-            <dvstring-value>UeGjMh</dvstring-value>
-            <language>es-ES</language>
+            <dvstring-value>dvstring-value4</dvstring-value>
+          </s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
+          <s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
+            <data-name>City Name (US)</data-name>
+            <dvstring-value>dvstring-value5</dvstring-value>
           </s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
         </s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
         <s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
           <s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
             <data-name>Common Name / Nickname</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-04-12T13:17:16Z</valid-time-begin>
-            <valid-time-end>2015-11-30T13:17:16Z</valid-time-end>
-            <dvstring-value>JONsNBMDpT</dvstring-value>
-            <language>en-AU</language>
+            <dvstring-value>dvstring-value6</dvstring-value>
+          </s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
+          <s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
+            <data-name>Common Name / Nickname</data-name>
+            <dvstring-value>dvstring-value7</dvstring-value>
           </s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
         </s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
         <s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
           <s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
             <data-name>State Abbreviation (USPS)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-01-12T13:17:16</valid-time-begin>
-            <valid-time-end>2015-10-21T13:17:16Z</valid-time-end>
-            <dvstring-value>WI</dvstring-value>
-            <language>nl-NL</language>
+            <dvstring-value>AL</dvstring-value>
+          </s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
+          <s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
+            <data-name>State Abbreviation (USPS)</data-name>
+            <dvstring-value>AL</dvstring-value>
           </s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
         </s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
         <s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
           <s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
             <data-name>Street Number and Name (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-10-27T13:17:16</valid-time-begin>
-            <valid-time-end>2016-12-11T13:17:16</valid-time-end>
-            <dvstring-value>aAxRy</dvstring-value>
-            <language>fr-FR</language>
+            <dvstring-value>dvstring-value10</dvstring-value>
+          </s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
+          <s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
+            <data-name>Street Number and Name (US)</data-name>
+            <dvstring-value>dvstring-value11</dvstring-value>
           </s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
         </s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
         <s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
           <s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
             <data-name>Telephone Number (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2015-10-04T13:17:16</valid-time-begin>
-            <valid-time-end>2016-03-31T13:17:16</valid-time-end>
             <dvstring-value>111-111-1111</dvstring-value>
-            <language>ru-RU</language>
+          </s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
+          <s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
+            <data-name>Telephone Number (US)</data-name>
+            <dvstring-value>111-111-1111</dvstring-value>
           </s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
         </s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
         <s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
           <s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
             <data-name>Zip Code (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-10-10T13:17:16</valid-time-begin>
-            <valid-time-end>2016-08-01T13:17:16Z</valid-time-end>
             <dvstring-value>99999</dvstring-value>
-            <language>he-IL</language>
+          </s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
+          <s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
+            <data-name>Zip Code (US)</data-name>
+            <dvstring-value>99999</dvstring-value>
           </s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
         </s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
       </s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
     </s3m:el-76d5279d-8557-4eb7-9722-1ad858c00e3c>
-    <s3m:el-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0>
-      <party-name>CO.CSfuTs</party-name>
-      <s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
-        <data-name>External Reference for Party</data-name>
-        <s3m:NI>
-          <ev-name>No Information</ev-name>
-        </s3m:NI>
-        <valid-time-begin>2016-02-23T13:17:16</valid-time-begin>
-        <valid-time-end>2016-07-19T13:17:16</valid-time-end>
-        <dvuri-value>http://DtkcKUDM/</dvuri-value>
-        <relation>Party Associated with the record</relation>
-      </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
-      <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
-        <cluster-subject>Address Details (US)</cluster-subject>
-        <s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
-          <s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
-            <data-name>Additional Address Line(s) (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2015-05-15T13:17:16</valid-time-begin>
-            <valid-time-end>2016-12-17T13:17:16</valid-time-end>
-            <dvstring-value>uT5A3QcNH</dvstring-value>
-            <language>en-US</language>
-          </s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
-        </s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
-        <s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
-          <s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
-            <data-name>City Name (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2017-01-02T13:17:16</valid-time-begin>
-            <valid-time-end>2015-11-06T13:17:16</valid-time-end>
-            <dvstring-value>N7X</dvstring-value>
-            <language>da-DK</language>
-          </s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
-        </s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
-        <s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
-          <s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
-            <data-name>Common Name / Nickname</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2015-08-02T13:17:16</valid-time-begin>
-            <valid-time-end>2016-08-29T13:17:16Z</valid-time-end>
-            <dvstring-value>D</dvstring-value>
-            <language>en-GB</language>
-          </s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
-        </s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
-        <s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
-          <s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
-            <data-name>State Abbreviation (USPS)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-02-09T13:17:16</valid-time-begin>
-            <valid-time-end>2015-05-16T13:17:16</valid-time-end>
-            <dvstring-value>CT</dvstring-value>
-            <language>it-IT</language>
-          </s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
-        </s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
-        <s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
-          <s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
-            <data-name>Street Number and Name (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-01-14T13:17:16Z</valid-time-begin>
-            <valid-time-end>2015-11-25T13:17:16Z</valid-time-end>
-            <dvstring-value>WeNXc</dvstring-value>
-            <language>ru-RU</language>
-          </s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
-        </s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
-        <s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
-          <s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
-            <data-name>Telephone Number (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-04-12T13:17:16Z</valid-time-begin>
-            <valid-time-end>2016-09-05T13:17:16</valid-time-end>
-            <dvstring-value>111-111-1111</dvstring-value>
-            <language>sv-SE</language>
-          </s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
-        </s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
-        <s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
-          <s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
-            <data-name>Zip Code (US)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2017-03-22T13:17:16Z</valid-time-begin>
-            <valid-time-end>2015-05-08T13:17:16Z</valid-time-end>
-            <dvstring-value>99999</dvstring-value>
-            <language>de-DE</language>
-          </s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
-        </s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
-      </s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
-    </s3m:el-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0>
     <s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750>
       <s3m:el-07d2e2e8-0415-4aa9-8115-a3a818801719>
-        <party-name>Ss_VHvy9Ux</party-name>
+        <party-name>party-name1</party-name>
         <s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
           <data-name>External Reference for Party</data-name>
-          <s3m:NI>
-            <ev-name>No Information</ev-name>
-          </s3m:NI>
-          <valid-time-begin>2016-07-23T13:17:16</valid-time-begin>
-          <valid-time-end>2016-05-03T13:17:16Z</valid-time-end>
-          <dvuri-value>http://bRxIVYXW/</dvuri-value>
+          <s3m:INV>
+            <ev-name>Invalid</ev-name>
+          </s3m:INV>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
           <relation>Party Associated with the record</relation>
         </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
         <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
           <cluster-subject>Address Details (US)</cluster-subject>
           <s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
-            <s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
-              <data-name>Additional Address Line(s) (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-08-08T13:17:16Z</valid-time-begin>
-              <valid-time-end>2016-08-22T13:17:16</valid-time-end>
-              <dvstring-value>mErcGp</dvstring-value>
-              <language>it-IT</language>
-            </s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
           </s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
           <s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
-            <s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
-              <data-name>City Name (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-06-12T13:17:16Z</valid-time-begin>
-              <valid-time-end>2015-08-19T13:17:16</valid-time-end>
-              <dvstring-value>j7VOpZ6f8</dvstring-value>
-              <language>zh-CN</language>
-            </s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
           </s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
           <s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
-            <s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
-              <data-name>Common Name / Nickname</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2016-02-06T13:17:16</valid-time-begin>
-              <valid-time-end>2015-09-05T13:17:16Z</valid-time-end>
-              <dvstring-value>P</dvstring-value>
-              <language>en-AU</language>
-            </s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
           </s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
           <s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
-            <s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
-              <data-name>State Abbreviation (USPS)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2016-10-08T13:17:16</valid-time-begin>
-              <valid-time-end>2016-12-18T13:17:16Z</valid-time-end>
-              <dvstring-value>OR</dvstring-value>
-              <language>es-ES</language>
-            </s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
           </s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
           <s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
-            <s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
-              <data-name>Street Number and Name (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2016-05-02T13:17:16Z</valid-time-begin>
-              <valid-time-end>2015-11-25T13:17:16Z</valid-time-end>
-              <dvstring-value>g0JhefC4v</dvstring-value>
-              <language>tr-TR</language>
-            </s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
           </s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
           <s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
-            <s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
-              <data-name>Telephone Number (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-08-31T13:17:16Z</valid-time-begin>
-              <valid-time-end>2015-12-04T13:17:16</valid-time-end>
-              <dvstring-value>111-111-1111</dvstring-value>
-              <language>en-AU</language>
-            </s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
           </s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
           <s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
-            <s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
-              <data-name>Zip Code (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-11-11T13:17:16Z</valid-time-begin>
-              <valid-time-end>2015-06-19T13:17:16</valid-time-end>
-              <dvstring-value>99999</dvstring-value>
-              <language>da-DK</language>
-            </s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
           </s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
         </s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
       </s3m:el-07d2e2e8-0415-4aa9-8115-a3a818801719>
       <s3m:el-d79c6f0e-10b5-432c-91ef-489ee94d64a7>
         <data-name>Participation Function</data-name>
-        <s3m:NI>
-          <ev-name>No Information</ev-name>
-        </s3m:NI>
-        <valid-time-begin>2016-07-16T13:17:16</valid-time-begin>
-        <valid-time-end>2016-08-20T13:17:16</valid-time-end>
-        <dvstring-value>Group</dvstring-value>
-        <language>zh-CN</language>
+        <s3m:DER>
+          <ev-name>Derived</ev-name>
+        </s3m:DER>
+        <vtb>2006-05-04T18:13:51.0</vtb>
+        <vte>2006-05-04T18:13:51.0</vte>
+        <dvstring-value>Agent</dvstring-value>
+        <language>en-US</language>
         <vocab-uri>FOAF</vocab-uri>
         <vocab-code>Agent</vocab-code>
       </s3m:el-d79c6f0e-10b5-432c-91ef-489ee94d64a7>
       <s3m:el-f34c17e3-c64d-47e9-983c-d88fb8836dba>
         <data-name>Participation Mode</data-name>
-        <s3m:NI>
-          <ev-name>No Information</ev-name>
-        </s3m:NI>
-        <valid-time-begin>2016-09-18T13:17:16Z</valid-time-begin>
-        <valid-time-end>2017-02-18T13:17:16</valid-time-end>
+        <s3m:TRC>
+          <ev-name>Trace</ev-name>
+        </s3m:TRC>
+        <vtb>2006-05-04T18:13:51.0</vtb>
+        <vte>2006-05-04T18:13:51.0</vte>
         <dvstring-value>Agent</dvstring-value>
         <language>en-US</language>
         <vocab-uri>FOAF</vocab-uri>
         <vocab-code>Agent</vocab-code>
       </s3m:el-f34c17e3-c64d-47e9-983c-d88fb8836dba>
-      <start-time>2017-02-19T13:17:16</start-time>
-      <end-time>2016-07-07T13:17:16</end-time>
+      <start-time>2006-05-04T18:13:51.0</start-time>
+      <end-time>2006-05-04T18:13:51.0</end-time>
     </s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750>
     <s3m:el-39a03554-7f19-4e08-a608-b36e42f1fc15>
       <data-name>Generic Protocol ID</data-name>
-      <s3m:NI>
-        <ev-name>No Information</ev-name>
-      </s3m:NI>
-      <valid-time-begin>2016-03-13T13:17:16</valid-time-begin>
-      <valid-time-end>2016-02-12T13:17:16</valid-time-end>
-      <dvstring-value>YO</dvstring-value>
-      <language>ja-JP</language>
+      <s3m:ASKU>
+        <ev-name>Asked but Unknown</ev-name>
+      </s3m:ASKU>
+      <vtb>2006-05-04T18:13:51.0</vtb>
+      <vte>2006-05-04T18:13:51.0</vte>
+      <dvstring-value>dvstring-value16</dvstring-value>
+      <language>en-US</language>
       <id-name>Protocal ID</id-name>
       <issuer>Owner</issuer>
       <assignor>Owner</assignor>
     </s3m:el-39a03554-7f19-4e08-a608-b36e42f1fc15>
     <s3m:el-5327bf3f-5ecb-47b5-b358-63bb5f277ddf>
       <data-name>Workflow ID</data-name>
-      <s3m:NI>
-        <ev-name>No Information</ev-name>
-      </s3m:NI>
-      <valid-time-begin>2016-07-19T13:17:16Z</valid-time-begin>
-      <valid-time-end>2016-12-19T13:17:16Z</valid-time-end>
-      <dvuri-value>http://SQdePaTG/</dvuri-value>
+      <s3m:NA>
+        <ev-name>Not Applicable</ev-name>
+      </s3m:NA>
+      <vtb>2006-05-04T18:13:51.0</vtb>
+      <vte>2006-05-04T18:13:51.0</vte>
+      <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
       <relation>material information bearer</relation>
     </s3m:el-5327bf3f-5ecb-47b5-b358-63bb5f277ddf>
     <s3m:el-43c7bf17-94e6-46da-ba44-f98d269fcd32>
       <s3m:el-568c4b1f-9b48-472b-a70e-dbd673584ea2>
         <data-name>Attestation View</data-name>
-        <s3m:NI>
-          <ev-name>No Information</ev-name>
-        </s3m:NI>
-        <valid-time-begin>2016-04-25T13:17:16Z</valid-time-begin>
-        <valid-time-end>2016-12-23T13:17:16Z</valid-time-end>
-        <size>-1666966279</size>
+        <s3m:NA>
+          <ev-name>Not Applicable</ev-name>
+        </s3m:NA>
+        <vtb>2006-05-04T18:13:51.0</vtb>
+        <vte>2006-05-04T18:13:51.0</vte>
+        <size>0</size>
         <encoding>utf-8</encoding>
         <language>en-US</language>
-        <mime-type>tMK7K8kOX</mime-type>
-        <compression-type>lN2VqbMGj</compression-type>
-        <hash-result>kz-tR</hash-result>
+        <mime-type>mime-type0</mime-type>
+        <compression-type>compression-type0</compression-type>
+        <hash-result>hash-result0</hash-result>
         <hash-function></hash-function>
         <alt-txt></alt-txt>
-        <uri>http://OVLEGxJW/</uri>
-        <media-content>747982708873656887808073657587887383808870778185768479676973687087856979</media-content>
+        <uri>http://www.oxygenxml.com/</uri>
+        <media-content>ZGVmYXVsdA==</media-content>
       </s3m:el-568c4b1f-9b48-472b-a70e-dbd673584ea2>
       <s3m:el-0808d268-7b42-4733-97af-4df7642328ab>
         <data-name>Proof</data-name>
-        <s3m:NI>
-          <ev-name>No Information</ev-name>
-        </s3m:NI>
-        <valid-time-begin>2015-05-27T13:17:16Z</valid-time-begin>
-        <valid-time-end>2017-01-10T13:17:16</valid-time-end>
-        <size>-226357614</size>
+        <s3m:ASKU>
+          <ev-name>Asked but Unknown</ev-name>
+        </s3m:ASKU>
+        <vtb>2006-05-04T18:13:51.0</vtb>
+        <vte>2006-05-04T18:13:51.0</vte>
+        <size>0</size>
         <encoding>utf-8</encoding>
         <language>en-US</language>
-        <dvparsable-value>T</dvparsable-value>
-        <formalism>sQjSKuT2</formalism>
+        <dvparsable-value>dvparsable-value0</dvparsable-value>
+        <formalism>formalism0</formalism>
       </s3m:el-0808d268-7b42-4733-97af-4df7642328ab>
       <s3m:el-df50a9c7-5071-4ece-934a-e43aeabc704a>
         <data-name>Attestation Reason</data-name>
-        <s3m:NI>
-          <ev-name>No Information</ev-name>
-        </s3m:NI>
-        <valid-time-begin>2016-08-19T13:17:16Z</valid-time-begin>
-        <valid-time-end>2016-08-18T13:17:16Z</valid-time-end>
+        <s3m:NA>
+          <ev-name>Not Applicable</ev-name>
+        </s3m:NA>
+        <vtb>2006-05-04T18:13:51.0</vtb>
+        <vte>2006-05-04T18:13:51.0</vte>
         <dvstring-value>release</dvstring-value>
-        <language>en-GB</language>
+        <language>en-US</language>
         <vocab-uri>DOAP</vocab-uri>
         <vocab-code>release</vocab-code>
       </s3m:el-df50a9c7-5071-4ece-934a-e43aeabc704a>
       <s3m:el-705083b3-ee1e-4713-8685-65198083266a>
-        <party-name>MERsQ16g</party-name>
+        <party-name>party-name2</party-name>
         <s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
           <data-name>External Reference for Party</data-name>
-          <s3m:NI>
-            <ev-name>No Information</ev-name>
-          </s3m:NI>
-          <valid-time-begin>2016-06-26T13:17:16Z</valid-time-begin>
-          <valid-time-end>2016-11-21T13:17:16Z</valid-time-end>
-          <dvuri-value>http://ERTzIXUV/</dvuri-value>
+          <s3m:UNK>
+            <ev-name>Unknown</ev-name>
+          </s3m:UNK>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
           <relation>Party Associated with the record</relation>
         </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
         <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
           <cluster-subject>Address Details (US)</cluster-subject>
           <s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
-            <s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
-              <data-name>Additional Address Line(s) (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-07-09T13:17:16Z</valid-time-begin>
-              <valid-time-end>2016-11-16T13:17:16</valid-time-end>
-              <dvstring-value>EMZ</dvstring-value>
-              <language>el-GR</language>
-            </s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
           </s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
           <s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
-            <s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
-              <data-name>City Name (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2016-05-30T13:17:16Z</valid-time-begin>
-              <valid-time-end>2017-01-02T13:17:16</valid-time-end>
-              <dvstring-value>PVZkECmA</dvstring-value>
-              <language>en-AU</language>
-            </s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
           </s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
           <s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
-            <s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
-              <data-name>Common Name / Nickname</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2016-01-31T13:17:16</valid-time-begin>
-              <valid-time-end>2017-03-05T13:17:16</valid-time-end>
-              <dvstring-value>CJ3S0Q</dvstring-value>
-              <language>fr-BE</language>
-            </s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
           </s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
           <s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
-            <s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
-              <data-name>State Abbreviation (USPS)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-09-10T13:17:16Z</valid-time-begin>
-              <valid-time-end>2016-02-08T13:17:16Z</valid-time-end>
-              <dvstring-value>WV</dvstring-value>
-              <language>el-GR</language>
-            </s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
           </s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
           <s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
-            <s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
-              <data-name>Street Number and Name (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-08-04T13:17:16Z</valid-time-begin>
-              <valid-time-end>2016-05-11T13:17:16</valid-time-end>
-              <dvstring-value>kUOU5EuP</dvstring-value>
-              <language>it-IT</language>
-            </s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
           </s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
           <s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
-            <s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
-              <data-name>Telephone Number (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-08-15T13:17:16</valid-time-begin>
-              <valid-time-end>2017-02-02T13:17:16Z</valid-time-end>
-              <dvstring-value>111-111-1111</dvstring-value>
-              <language>en-IE</language>
-            </s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
           </s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
           <s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
-            <s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
-              <data-name>Zip Code (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-09-28T13:17:16Z</valid-time-begin>
-              <valid-time-end>2016-10-10T13:17:16Z</valid-time-end>
-              <dvstring-value>99999</dvstring-value>
-              <language>zh-TW</language>
-            </s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
           </s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
         </s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
       </s3m:el-705083b3-ee1e-4713-8685-65198083266a>
-      <time-committed>2016-07-11T13:17:16</time-committed>
+      <time-committed>2006-05-04T18:13:51.0</time-committed>
       <is-pending>true</is-pending>
     </s3m:el-43c7bf17-94e6-46da-ba44-f98d269fcd32>
     <s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16>
       <s3m:el-53e08f93-1549-4303-9212-74ed11ed7d3a>
         <data-name>Originating System ID</data-name>
-        <s3m:NI>
-          <ev-name>No Information</ev-name>
-        </s3m:NI>
-        <valid-time-begin>2015-11-30T13:17:16Z</valid-time-begin>
-        <valid-time-end>2016-05-10T13:17:16Z</valid-time-end>
-        <dvstring-value>B.r7</dvstring-value>
-        <language>de-DE</language>
+        <s3m:NINF>
+          <ev-name>Negative Infinity</ev-name>
+        </s3m:NINF>
+        <vtb>2006-05-04T18:13:51.0</vtb>
+        <vte>2006-05-04T18:13:51.0</vte>
+        <dvstring-value>dvstring-value18</dvstring-value>
+        <language>en-US</language>
         <id-name>URI</id-name>
         <issuer>Owner</issuer>
         <assignor>Owner</assignor>
       </s3m:el-53e08f93-1549-4303-9212-74ed11ed7d3a>
       <s3m:el-1386c587-b06f-4de5-ab67-30ecd036902e>
-        <party-name>deRxj3V5.K</party-name>
+        <party-name>party-name3</party-name>
         <s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
           <data-name>External Reference for Party</data-name>
-          <s3m:NI>
-            <ev-name>No Information</ev-name>
-          </s3m:NI>
-          <valid-time-begin>2015-08-28T13:17:16Z</valid-time-begin>
-          <valid-time-end>2016-11-07T13:17:16</valid-time-end>
-          <dvuri-value>http://zkLEYTwQ/</dvuri-value>
+          <s3m:TRC>
+            <ev-name>Trace</ev-name>
+          </s3m:TRC>
+          <vtb>2006-05-04T18:13:51.0</vtb>
+          <vte>2006-05-04T18:13:51.0</vte>
+          <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
           <relation>Party Associated with the record</relation>
         </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
         <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
           <cluster-subject>Address Details (US)</cluster-subject>
           <s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
-            <s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
-              <data-name>Additional Address Line(s) (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2017-02-13T13:17:16Z</valid-time-begin>
-              <valid-time-end>2015-12-31T13:17:16</valid-time-end>
-              <dvstring-value>e_RvYr</dvstring-value>
-              <language>de-DE</language>
-            </s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d>
           </s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e>
           <s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
-            <s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
-              <data-name>City Name (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2017-03-05T13:17:16</valid-time-begin>
-              <valid-time-end>2016-12-29T13:17:16</valid-time-end>
-              <dvstring-value>K8AEbi</dvstring-value>
-              <language>el-GR</language>
-            </s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93>
           </s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89>
           <s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
-            <s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
-              <data-name>Common Name / Nickname</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-09-01T13:17:16Z</valid-time-begin>
-              <valid-time-end>2017-01-14T13:17:16Z</valid-time-end>
-              <dvstring-value>l</dvstring-value>
-              <language>it-IT</language>
-            </s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414>
           </s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a>
           <s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
-            <s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
-              <data-name>State Abbreviation (USPS)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-09-10T13:17:16</valid-time-begin>
-              <valid-time-end>2017-02-19T13:17:16</valid-time-end>
-              <dvstring-value>WV</dvstring-value>
-              <language>zh-TW</language>
-            </s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1>
           </s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e>
           <s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
-            <s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
-              <data-name>Street Number and Name (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2016-04-20T13:17:16</valid-time-begin>
-              <valid-time-end>2015-05-09T13:17:16</valid-time-end>
-              <dvstring-value>nB</dvstring-value>
-              <language>el-GR</language>
-            </s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509>
           </s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f>
           <s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
-            <s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
-              <data-name>Telephone Number (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2016-12-13T13:17:16Z</valid-time-begin>
-              <valid-time-end>2017-03-09T13:17:16Z</valid-time-end>
-              <dvstring-value>111-111-1111</dvstring-value>
-              <language>fr-BE</language>
-            </s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0>
           </s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88>
           <s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
-            <s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
-              <data-name>Zip Code (US)</data-name>
-              <s3m:NI>
-                <ev-name>No Information</ev-name>
-              </s3m:NI>
-              <valid-time-begin>2015-07-18T13:17:16</valid-time-begin>
-              <valid-time-end>2016-04-14T13:17:16Z</valid-time-end>
-              <dvstring-value>99999</dvstring-value>
-              <language>de-DE</language>
-            </s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305>
           </s3m:el-c64b7604-6189-412d-bb70-48baba85f366>
         </s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
       </s3m:el-1386c587-b06f-4de5-ab67-30ecd036902e>
@@ -681,29 +392,25 @@
         <s3m:el-84a78cf3-028b-4aff-a17c-fb485a582fbd>
           <s3m:el-96ec0cec-0e47-4892-9acb-697be7d51a33>
             <data-name>FAD Latitude (Decimal Format)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2015-11-19T13:17:16</valid-time-begin>
-            <valid-time-end>2016-12-16T13:17:16Z</valid-time-end>
-            <dvstring-value>22.6</dvstring-value>
-            <language>da-DK</language>
+            <dvstring-value>22.2</dvstring-value>
+          </s3m:el-96ec0cec-0e47-4892-9acb-697be7d51a33>
+          <s3m:el-96ec0cec-0e47-4892-9acb-697be7d51a33>
+            <data-name>FAD Latitude (Decimal Format)</data-name>
+            <dvstring-value>22.1</dvstring-value>
           </s3m:el-96ec0cec-0e47-4892-9acb-697be7d51a33>
         </s3m:el-84a78cf3-028b-4aff-a17c-fb485a582fbd>
         <s3m:el-5e002578-74dd-4112-be3e-5754454cbf9a>
           <s3m:el-c265bd07-d470-49b5-99c1-4559f7e9408d>
             <data-name>FAD Longitude (Decimal Format)</data-name>
-            <s3m:NI>
-              <ev-name>No Information</ev-name>
-            </s3m:NI>
-            <valid-time-begin>2016-11-11T13:17:16Z</valid-time-begin>
-            <valid-time-end>2015-05-25T13:17:16</valid-time-end>
-            <dvstring-value>121.2</dvstring-value>
-            <language>zh-CHT</language>
+            <dvstring-value>121.1</dvstring-value>
+          </s3m:el-c265bd07-d470-49b5-99c1-4559f7e9408d>
+          <s3m:el-c265bd07-d470-49b5-99c1-4559f7e9408d>
+            <data-name>FAD Longitude (Decimal Format)</data-name>
+            <dvstring-value>121.3</dvstring-value>
           </s3m:el-c265bd07-d470-49b5-99c1-4559f7e9408d>
         </s3m:el-5e002578-74dd-4112-be3e-5754454cbf9a>
       </s3m:el-5e21cf59-9c13-4f67-918a-e0aee1f64edf>
-      <timestamp>2015-03-28T13:17:16</timestamp>
+      <timestamp>2006-05-04T18:13:51.0</timestamp>
     </s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16>
   </s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3>
 </s3m:cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10>
