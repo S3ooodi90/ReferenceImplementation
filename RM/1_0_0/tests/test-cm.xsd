@@ -102,20 +102,20 @@ xml:lang='en-US'>
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f'>
-    <rdfs:subClassOf rdf:resource='s3m:DvURIType'/>
+    <rdfs:subClassOf rdf:resource='s3m:DvLinkType'/>
     <rdfs:label>attached to</rdfs:label>
     <rdfs:isDefinedBy rdf:resource='http%3A//purl.obolibrary.org/obo/RO_0002371'/>
     </rdf:Description>
     </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
-      <xs:restriction base='s3m:DvURIType'>
+      <xs:restriction base='s3m:DvLinkType'>
         <xs:sequence>
           <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="attached to"/>
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
           <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
           <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
-          <xs:element maxOccurs='1' minOccurs='1' name='dvuri-value' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='link-value' type='xs:anyURI'/>
           <xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='http://purl.obolibrary.org/obo/RO_0002371'/>
           </xs:sequence>
         </xs:restriction>
@@ -131,20 +131,20 @@ xml:lang='en-US'>
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066'>
-    <rdfs:subClassOf rdf:resource='s3m:DvURIType'/>
+    <rdfs:subClassOf rdf:resource='s3m:DvLinkType'/>
     <rdfs:label>Connected To</rdfs:label>
     <rdfs:isDefinedBy rdf:resource='http%3A//purl.obolibrary.org/obo/RO_0002150'/>
     </rdf:Description>
     </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
-      <xs:restriction base='s3m:DvURIType'>
+      <xs:restriction base='s3m:DvLinkType'>
         <xs:sequence>
           <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Connected To"/>
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
           <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
           <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
-          <xs:element maxOccurs='1' minOccurs='1' name='dvuri-value' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='link-value' type='xs:anyURI'/>
           <xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='connected to'/>
           </xs:sequence>
         </xs:restriction>
@@ -274,20 +274,20 @@ xml:lang='en-US'>
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-c35f232c-cbe0-4cd9-a809-bbd34157b962'>
-    <rdfs:subClassOf rdf:resource='s3m:DvURIType'/>
+    <rdfs:subClassOf rdf:resource='s3m:DvLinkType'/>
     <rdfs:label>External Reference for Party</rdfs:label>
     <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
     </rdf:Description>
     </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
-      <xs:restriction base='s3m:DvURIType'>
+      <xs:restriction base='s3m:DvLinkType'>
         <xs:sequence>
           <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="External Reference for Party"/>
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
           <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
           <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
-          <xs:element maxOccurs='1' minOccurs='1' name='dvuri-value' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='link-value' type='xs:anyURI'/>
           <xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='Party Associated with the record'/>
           </xs:sequence>
         </xs:restriction>
@@ -1417,20 +1417,20 @@ Examples:
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf'>
-    <rdfs:subClassOf rdf:resource='s3m:DvURIType'/>
+    <rdfs:subClassOf rdf:resource='s3m:DvLinkType'/>
     <rdfs:label>Workflow ID</rdfs:label>
     <rdfs:isDefinedBy rdf:resource='http%3A//purl.obolibrary.org/obo/IAO_0000178'/>
     </rdf:Description>
     </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
-      <xs:restriction base='s3m:DvURIType'>
+      <xs:restriction base='s3m:DvLinkType'>
         <xs:sequence>
           <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Workflow ID"/>
           <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
           <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
           <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
-          <xs:element maxOccurs='1' minOccurs='1' name='dvuri-value' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='link-value' type='xs:anyURI'/>
           <xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='material information bearer'/>
           </xs:sequence>
         </xs:restriction>

@@ -127,28 +127,37 @@
   </xs:complexType>
   <xs:element name="DvBoolean" substitutionGroup="s3m:DvAny" type="s3m:DvBooleanType"/>
 
-  <xs:complexType name="DvURIType">
+  <xs:complexType name="DvLinkType">
     <xs:annotation>
-      <xs:documentation>Used to specify a Universal Resource Identifier. Set the pattern to accommodate your needs in a CM.</xs:documentation>
+      <xs:documentation>Used to specify a Universal Resource Identifier. 
+        Set the pattern facet to accommodate your needs in a CM.
+        Intended use is to provide a mechanism that can be used to link together Concept Models. 
+        The relation element allows for the use of a descriptive term for the  
+      </xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="1" name="dvuri-value" type="xs:anyURI">
+          <xs:element maxOccurs="1" minOccurs="1" name="link-value" type="xs:anyURI">
             <xs:annotation>
               <xs:documentation>anyURI as a pointer.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="1" name="relation" type="xs:string">
             <xs:annotation>
-              <xs:documentation>Normally constrained by on ontology such as the OBO RO http://purl.obolibrary.org/obo/ro.owl</xs:documentation>
+              <xs:documentation>Normally drawn from an ontology such as the OBO RO</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="relation-uri" type="xs:anyURI">
+            <xs:annotation>
+              <xs:documentation>Normally points to an ontology such as the OBO RO http://purl.obolibrary.org/obo/ro.owl</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="DvURI" substitutionGroup="s3m:DvAny" type="s3m:DvURIType"/>
+  <xs:element name="DvLink" substitutionGroup="s3m:DvAny" type="s3m:DvLinkType"/>
 
   <xs:complexType name="DvStringType">
     <xs:annotation>
@@ -821,7 +830,7 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Party-ref" type="s3m:DvURIType"/>
+  <xs:element name="Party-ref" type="s3m:DvLinkType"/>
   <xs:element name="Party-details" type="s3m:ItemType"/>
   <xs:element name="Party" type="s3m:PartyType"/>
 
@@ -1327,11 +1336,11 @@
 
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Link" type="s3m:DvURIType"/>
+  <xs:element name="Link" type="s3m:DvLinkType"/>
   <xs:element name="Subject" type="s3m:PartyType"/>
   <xs:element name="Participations" type="s3m:ParticipationType"/>
   <xs:element name="Protocol" type="s3m:DvIdentifierType"/>
-  <xs:element name="Workflow" type="s3m:DvURIType"/>
+  <xs:element name="Workflow" type="s3m:DvLinkType"/>
   <xs:element name="Data" type="s3m:ItemType"/>
   <xs:element abstract="true" name="Entry" type="s3m:EntryType"/>
 

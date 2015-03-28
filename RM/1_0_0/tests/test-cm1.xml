@@ -86,7 +86,7 @@
       </s3m:MSK>
       <vtb>2006-05-04T18:13:51.0</vtb>
       <vte>2006-05-04T18:13:51.0</vte>
-      <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
+      <link-value>http://www.oxygenxml.com/</link-value>
       <relation>http://purl.obolibrary.org/obo/RO_0002371</relation>
     </s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f>
     <s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066>
@@ -96,7 +96,7 @@
       </s3m:MSK>
       <vtb>2006-05-04T18:13:51.0</vtb>
       <vte>2006-05-04T18:13:51.0</vte>
-      <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
+      <link-value>http://www.oxygenxml.com/</link-value>
       <relation>connected to</relation>
     </s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066>
     <s3m:el-76d5279d-8557-4eb7-9722-1ad858c00e3c>
@@ -108,7 +108,7 @@
         </s3m:MSK>
         <vtb>2006-05-04T18:13:51.0</vtb>
         <vte>2006-05-04T18:13:51.0</vte>
-        <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
+        <link-value>http://www.oxygenxml.com/</link-value>
         <relation>Party Associated with the record</relation>
       </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
       <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
@@ -195,7 +195,7 @@
           </s3m:INV>
           <vtb>2006-05-04T18:13:51.0</vtb>
           <vte>2006-05-04T18:13:51.0</vte>
-          <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
+          <link-value>http://www.oxygenxml.com/</link-value>
           <relation>Party Associated with the record</relation>
         </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
         <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
@@ -263,7 +263,7 @@
       </s3m:NA>
       <vtb>2006-05-04T18:13:51.0</vtb>
       <vte>2006-05-04T18:13:51.0</vte>
-      <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
+      <link-value>http://www.oxygenxml.com/</link-value>
       <relation>material information bearer</relation>
     </s3m:el-5327bf3f-5ecb-47b5-b358-63bb5f277ddf>
     <s3m:el-43c7bf17-94e6-46da-ba44-f98d269fcd32>
@@ -319,7 +319,7 @@
           </s3m:UNK>
           <vtb>2006-05-04T18:13:51.0</vtb>
           <vte>2006-05-04T18:13:51.0</vte>
-          <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
+          <link-value>http://www.oxygenxml.com/</link-value>
           <relation>Party Associated with the record</relation>
         </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
         <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
@@ -366,7 +366,7 @@
           </s3m:TRC>
           <vtb>2006-05-04T18:13:51.0</vtb>
           <vte>2006-05-04T18:13:51.0</vte>
-          <dvuri-value>http://www.oxygenxml.com/</dvuri-value>
+          <link-value>http://www.oxygenxml.com/</link-value>
           <relation>Party Associated with the record</relation>
         </s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962>
         <s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2>
