@@ -1,0 +1,1870 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='cm-description.xsl'?>
+<xs:schema  xmlns:xs='http://www.w3.org/2001/XMLSchema'
+  xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+  xmlns:owl='http://www.w3.org/2002/07/owl#'
+  xmlns:dc='http://purl.org/dc/elements/1.1/'
+  xmlns:sawsdl='http://www.w3.org/ns/sawsdl'
+  xmlns:sawsdlrdf='http://www.w3.org/ns/sawsdl#'
+  xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'
+  xmlns:vc='http://www.w3.org/2007/XMLSchema-versioning'
+  xmlns:s3m='http://www.s3model.com/rm'
+  targetNamespace='http://www.s3model.com/rm'
+  vc:minVersion='1.1'
+xml:lang='en-US'>
+
+  <!-- Include the Reference Model -->
+  <xs:include schemaLocation='../s3model_1_0_0.xsd'/>
+
+  <!-- METADATA Section -->
+  <xs:annotation>
+    <xs:appinfo>
+    <rdf:RDF>
+    <rdf:Description rdf:about='http://cmgen.s3model.com/cmlib/cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10.xsd'>
+      <dc:title>Testing 1.0.0 Implementation</dc:title>
+      <dc:creator>Tim Cook tim@mlhim.org</dc:creator>
+      <dc:contributor>None</dc:contributor>
+      <dc:subject>Test</dc:subject>
+      <dc:source>http://www.s3model.com</dc:source>
+      <dc:rights>CC-BY http://creativecommons.org/licenses/by/3.0/</dc:rights>
+      <dc:relation>None</dc:relation>
+      <dc:coverage>Universal</dc:coverage>
+      <dc:type>Concept Model (CM)</dc:type>
+      <dc:identifier>cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10</dc:identifier>
+      <dc:description>
+        Testing CCD-Gen Implementation of the S3Model 1.0.0 RM functionality.
+      </dc:description>
+      <dc:publisher>TW Cook</dc:publisher>
+      <dc:date>2015-03-24</dc:date>
+      <dc:format>text/xml</dc:format>
+      <dc:language>en-US</dc:language>
+    </rdf:Description>
+  <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-87bc2bfb-1a34-4e21-9e99-3990d82c8c10'>
+  <rdfs:subClassOf rdf:resource='s3m:ConceptType'/>
+  <rdfs:label>Testing 1.0.0 Implementation</rdfs:label>
+  </rdf:Description>
+    </rdf:RDF>
+    </xs:appinfo>
+  </xs:annotation>
+
+  <!-- Concept Root Element -->
+  <xs:element name='cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10' type='s3m:ct-87bc2bfb-1a34-4e21-9e99-3990d82c8c10'/>
+  <xs:complexType name='ct-87bc2bfb-1a34-4e21-9e99-3990d82c8c10'> 
+    <xs:complexContent>
+      <xs:restriction base='s3m:ConceptType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3'/> <!-- definition -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+    <!-- Concept Components -->
+
+  <xs:complexType name='ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3'>
+    <xs:annotation>
+    <xs:documentation>
+      Entry for testing 1.0.0
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3'>
+    <rdfs:subClassOf rdf:resource='s3m:EntryType'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:EntryType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='language' type='xs:language' fixed='en-US'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='encoding' type='xs:string' fixed='utf-8'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='current-state' type='xs:string' default='testing me'/>
+          <xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-96f910e1-8f1e-4a54-a19f-47722ddd91d3'/> <!-- entry-data -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f'/> <!-- entry-links -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066'/> <!-- entry-links -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-76d5279d-8557-4eb7-9722-1ad858c00e3c'/> <!-- entry-subject -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0'/> <!-- entry-provider -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750'/> <!-- other-participations -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-39a03554-7f19-4e08-a608-b36e42f1fc15'/> <!--  -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-5327bf3f-5ecb-47b5-b358-63bb5f277ddf'/> <!-- workflow-id -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-43c7bf17-94e6-46da-ba44-f98d269fcd32'/> <!-- attestation -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16'/> <!-- entry-audit -->
+        </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f' xml:lang='en-US'>
+    <xs:annotation>
+    <xs:documentation>
+      attached to
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f'>
+    <rdfs:subClassOf rdf:resource='s3m:DvURIType'/>
+    <rdfs:label>attached to</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='http%3A//purl.obolibrary.org/obo/RO_0002371'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvURIType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="attached to"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvuri-value' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='http://purl.obolibrary.org/obo/RO_0002371'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066' xml:lang='en-US'>
+    <xs:annotation>
+    <xs:documentation>
+       X connected_to Y if and only if X and Y share a fiat boundary.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066'>
+    <rdfs:subClassOf rdf:resource='s3m:DvURIType'/>
+    <rdfs:label>Connected To</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='http%3A//purl.obolibrary.org/obo/RO_0002150'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvURIType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Connected To"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvuri-value' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='connected to'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:complexType name='ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16' xml:lang='en-US'>
+    <xs:annotation>
+    <xs:documentation>
+      Test audit
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16'>
+    <rdfs:subClassOf rdf:resource='s3m:AuditType'/>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:AuditType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-53e08f93-1549-4303-9212-74ed11ed7d3a'/> <!-- system-id -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-1386c587-b06f-4de5-ab67-30ecd036902e'/> <!-- system-user -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-5e21cf59-9c13-4f67-918a-e0aee1f64edf'/> <!-- location -->
+          <xs:element maxOccurs='1' minOccurs='1' name='timestamp' type='xs:dateTime'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-53e08f93-1549-4303-9212-74ed11ed7d3a' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      A reusable system ID 
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-53e08f93-1549-4303-9212-74ed11ed7d3a'>
+    <rdfs:subClassOf rdf:resource='s3m:DvIdentifierType'/>
+    <rdfs:label>Originating System ID</rdfs:label>
+      <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvIdentifierType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Originating System ID"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+            <xs:element maxOccurs='1' minOccurs='1' name='id-name'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='URI'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      URI
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='ID Number'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      ID Number
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs='1' minOccurs='1' name='issuer'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Owner'/>
+                  <xs:enumeration value='Owner'/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs='1' minOccurs='1' name='assignor'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Owner'/>
+                  <xs:enumeration value='Owner'/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-1386c587-b06f-4de5-ab67-30ecd036902e' xml:lang='en-US'> <!-- Audit Details Provider (US) -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic Entry provider.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e'>
+    <rdfs:subClassOf rdf:resource='s3m:PartyType'/>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:PartyType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='party-name' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962'/> <!-- external-ref -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'/> <!-- details -->
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-c35f232c-cbe0-4cd9-a809-bbd34157b962' xml:lang='en-US'> <!-- External Reference for Party -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic URI for use with Party to be used as a pointer to a demographic service record.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-c35f232c-cbe0-4cd9-a809-bbd34157b962'>
+    <rdfs:subClassOf rdf:resource='s3m:DvURIType'/>
+    <rdfs:label>External Reference for Party</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvURIType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="External Reference for Party"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvuri-value' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='Party Associated with the record'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'> <!-- Address Details (US) -->
+    <xs:annotation>
+    <xs:documentation>
+      Generic Details cluster with address elements.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'>
+    <rdfs:subClassOf rdf:resource='s3m:ClusterType'/>
+    <rdfs:label>Address Details (US)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:ClusterType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='cluster-subject' type='xs:string' fixed="Address Details (US)"/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e'/><!-- DvString Additional Address Line(s) (US)  -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89'/><!-- DvString City Name (US) -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a'/><!-- DvString Common Name / Nickname -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e'/><!-- DvString State Abbreviation (USPS) -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f'/><!-- DvString Street Number and Name (US) -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88'/><!-- DvString Telephone Number (US) -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c64b7604-6189-412d-bb70-48baba85f366'/><!-- DvString Zip Code (US) -->
+        </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:complexType name='ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d' xml:lang='en-US'> <!-- Additional Address Line(s) (US)  -->
+    <xs:annotation>
+    <xs:documentation>
+      Used for additional address lines in the US such as building name or apartment number.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>Additional Address Line(s) (US)</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Additional Address Line(s) (US)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-d24affc1-a9ff-487a-9029-204f3b4d8e7e' substitutionGroup='s3m:Items' type='s3m:ct-d24affc1-a9ff-487a-9029-204f3b4d8e7e'/>
+  <xs:complexType name='ct-d24affc1-a9ff-487a-9029-204f3b4d8e7e'> <!-- Adapter for: Additional Address Line(s) (US)  -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d'/> <!-- Reference to: Additional Address Line(s) (US)  -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name='ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93' xml:lang='en-US'> <!-- City Name (US) -->
+    <xs:annotation>
+    <xs:documentation>
+      Used in US address cluster for the City name.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>City Name (US)</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="City Name (US)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-b65ea20c-3768-45cd-a059-004ece61bc89' substitutionGroup='s3m:Items' type='s3m:ct-b65ea20c-3768-45cd-a059-004ece61bc89'/>
+  <xs:complexType name='ct-b65ea20c-3768-45cd-a059-004ece61bc89'> <!-- Adapter for: City Name (US) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93'/> <!-- Reference to: City Name (US) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name='ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414' xml:lang='en-US'> <!-- Common Name / Nickname -->
+    <xs:annotation>
+    <xs:documentation>
+      A name that is commonly used for a person.  Such as Jim for James or Peggy for Margaret. 
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>Common Name / Nickname</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Common Name / Nickname"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-77848a52-5adb-41b2-89d6-f8fec018c05a' substitutionGroup='s3m:Items' type='s3m:ct-77848a52-5adb-41b2-89d6-f8fec018c05a'/>
+  <xs:complexType name='ct-77848a52-5adb-41b2-89d6-f8fec018c05a'> <!-- Adapter for: Common Name / Nickname -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414'/> <!-- Reference to: Common Name / Nickname -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name='ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1' xml:lang='en-US'> <!-- State Abbreviation (USPS) -->
+    <xs:annotation>
+    <xs:documentation>
+      Used in US address cluster for two character US state abbreviation.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>State Abbreviation (USPS)</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="State Abbreviation (USPS)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='AL'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Alabama
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='AK'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Alaska
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='AS'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      American Samoa
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='AZ'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Arizona
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='AR'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Arkansas
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='CA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      California
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='CO'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Colorado
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='CT'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Connecticut
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='DE'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Delaware
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='DC'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      District of Columbia
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='FM'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Federated States of Micronesia
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='FL'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Florida
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='GA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Georgia
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='GU'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Guam
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='HI'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Hawaii
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='ID'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Idaho
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='IL'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Illinois
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='IN'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Indiana
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='IA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Iowa
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='KS'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Kansas
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='KY'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Kentucky
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='LA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Louisiana
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='ME'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Maine
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MH'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Marshall Islands
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MD'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Maryland
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Massachusetts
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MI'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Michigan
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MN'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Minnesota
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MS'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Mississippi
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MO'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Missouri
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MT'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Montana
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='NE'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Nebraska
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='NV'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Nevada
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='NH'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      New Hampshire
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='NJ'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      New Jersey
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='NM'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      New Mexico
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='NY'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      New York
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='NC'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      North Carolina
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='ND'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      North Dakota
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='MP'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Northern Mariana Islands
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='CM'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Northern Mariana Islands
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='OH'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Ohio
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='OK'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Oklahoma
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='OR'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Oregon
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='PA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Pennsylvania
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='PR'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Puerto Rico
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='RI'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Rhode Island
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='SC'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      South Carolina
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='SD'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      South Dakota
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='TN'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Tennessee
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='TX'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Texas
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='TT'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Trust Territory of the Pacific Islands
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='AA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      U.S. Armed Forces – Americas
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='AE'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      U.S. Armed Forces – Europe
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='AP'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      U.S. Armed Forces – Pacific
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='UT'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Utah
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='VT'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Vermont
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='VI'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Virgin Islands
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='VA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Virginia
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='WA'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Washington
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='WV'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      West Virginia
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='WI'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Wisconsin
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='WY'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Wyoming
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e' substitutionGroup='s3m:Items' type='s3m:ct-2bb59f5a-223e-4b8e-b63f-ed8beb62849e'/>
+  <xs:complexType name='ct-2bb59f5a-223e-4b8e-b63f-ed8beb62849e'> <!-- Adapter for: State Abbreviation (USPS) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1'/> <!-- Reference to: State Abbreviation (USPS) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name='ct-68526dd8-c03e-4779-a951-c5e6f85ff509' xml:lang='en-US'> <!-- Street Number and Name (US) -->
+    <xs:annotation>
+    <xs:documentation>
+      A single line US Street number and name. The typical format is:
+123 Main St. 
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>Street Number and Name (US)</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Street Number and Name (US)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f' substitutionGroup='s3m:Items' type='s3m:ct-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f'/>
+  <xs:complexType name='ct-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f'> <!-- Adapter for: Street Number and Name (US) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509'/> <!-- Reference to: Street Number and Name (US) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name='ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0' xml:lang='en-US'> <!-- Telephone Number (US) -->
+    <xs:annotation>
+    <xs:documentation>
+      A US telephone number. Exactly 12 characters; 111-111-1111 with a pattern match of "[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>Telephone Number (US)</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Telephone Number (US)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string' default='111-111-1111'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+          <xs:assert test="matches(dvstring-value, '[0-9]{3}-[0-9]{3}-[0-9]{4}')"/>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-13354334-0250-4041-8b6c-ac7eefa93c88' substitutionGroup='s3m:Items' type='s3m:ct-13354334-0250-4041-8b6c-ac7eefa93c88'/>
+  <xs:complexType name='ct-13354334-0250-4041-8b6c-ac7eefa93c88'> <!-- Adapter for: Telephone Number (US) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0'/> <!-- Reference to: Telephone Number (US) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name='ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305' xml:lang='en-US'> <!-- Zip Code (US) -->
+    <xs:annotation>
+    <xs:documentation>
+      Used in address cluster for US Zip (postal) Codes. Minimum of 5 characters with a maximum of 10 characters. Accommodates the older 5 character codes or the Zip+4 with the additional 4 characters following a dash. 
+
+Examples:
+12345
+12345-0987 
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>Zip Code (US)</rdfs:label>
+      <rdfs:isDefinedBy rdf:resource='https%3A//www.usps.com/'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Zip Code (US)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+          <xs:assert test="matches(dvstring-value, '^\d{5}([\-]?\d{4})?$')"/>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-c64b7604-6189-412d-bb70-48baba85f366' substitutionGroup='s3m:Items' type='s3m:ct-c64b7604-6189-412d-bb70-48baba85f366'/>
+  <xs:complexType name='ct-c64b7604-6189-412d-bb70-48baba85f366'> <!-- Adapter for: Zip Code (US) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305'/> <!-- Reference to: Zip Code (US) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+
+  <xs:complexType name='ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf'> <!-- FAD System Location (WGS84) -->
+    <xs:annotation>
+    <xs:documentation>
+      System Location for feeder audit details. Uses decimal format WGS84 lat/lon coordinates.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf'>
+    <rdfs:subClassOf rdf:resource='s3m:ClusterType'/>
+    <rdfs:label>FAD System Location (WGS84)</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:ClusterType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='cluster-subject' type='xs:string' fixed="FAD System Location (WGS84)"/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-84a78cf3-028b-4aff-a17c-fb485a582fbd'/><!-- DvString FAD Latitude (Decimal Format) -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-5e002578-74dd-4112-be3e-5754454cbf9a'/><!-- DvString FAD Longitude (Decimal Format) -->
+        </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:complexType name='ct-96ec0cec-0e47-4892-9acb-697be7d51a33' xml:lang='en-US'> <!-- FAD Latitude (Decimal Format) -->
+    <xs:annotation>
+    <xs:documentation>
+      Matches a latitude in the range of -90 to 90 degrees, with between 1 and 6 trailing decimal places.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>FAD Latitude (Decimal Format)</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="FAD Latitude (Decimal Format)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+          <xs:assert test="matches(dvstring-value, '^-?([1-8]?[0-9]\.{1}\d{1,6}$|90\.{1}0{1,6}$)')"/>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-84a78cf3-028b-4aff-a17c-fb485a582fbd' substitutionGroup='s3m:Items' type='s3m:ct-84a78cf3-028b-4aff-a17c-fb485a582fbd'/>
+  <xs:complexType name='ct-84a78cf3-028b-4aff-a17c-fb485a582fbd'> <!-- Adapter for: FAD Latitude (Decimal Format) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-96ec0cec-0e47-4892-9acb-697be7d51a33'/> <!-- Reference to: FAD Latitude (Decimal Format) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name='ct-c265bd07-d470-49b5-99c1-4559f7e9408d' xml:lang='en-US'> <!-- FAD Longitude (Decimal Format) -->
+    <xs:annotation>
+    <xs:documentation>
+      Matches a longitude in the range of -180 to 180 degrees, with between 1 and 6 trailing decimal places.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>FAD Longitude (Decimal Format)</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="FAD Longitude (Decimal Format)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+          <xs:assert test="matches(dvstring-value, '^-?((([1]?[0-7][0-9]|[1-9]?[0-9])\.{1}\d{1,6}$)|[1]?[1-8][0]\.{1}0{1,6}$)')"/>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-5e002578-74dd-4112-be3e-5754454cbf9a' substitutionGroup='s3m:Items' type='s3m:ct-5e002578-74dd-4112-be3e-5754454cbf9a'/>
+  <xs:complexType name='ct-5e002578-74dd-4112-be3e-5754454cbf9a'> <!-- Adapter for: FAD Longitude (Decimal Format) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-c265bd07-d470-49b5-99c1-4559f7e9408d'/> <!-- Reference to: FAD Longitude (Decimal Format) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+
+  <xs:complexType name='ct-76d5279d-8557-4eb7-9722-1ad858c00e3c' xml:lang='en-US'> <!-- Subject of the Entry (US) -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic Entry provider.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c'>
+    <rdfs:subClassOf rdf:resource='s3m:PartyType'/>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:PartyType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='party-name' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962'/> <!-- external-ref -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'/> <!-- details -->
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0' xml:lang='en-US'> <!-- Entry Provider (US) -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic Entry provider.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0'>
+    <rdfs:subClassOf rdf:resource='s3m:PartyType'/>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:PartyType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='party-name' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962'/> <!-- external-ref -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'/> <!-- details -->
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750' xml:lang='en-US'> <!-- Entry Participation -->
+    <xs:annotation>
+    <xs:documentation>
+      Entry Participation
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750'>
+    <rdfs:subClassOf rdf:resource='s3m:ParticipationType'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:ParticipationType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-07d2e2e8-0415-4aa9-8115-a3a818801719'/> <!-- performer -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-d79c6f0e-10b5-432c-91ef-489ee94d64a7'/> <!-- function -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-f34c17e3-c64d-47e9-983c-d88fb8836dba'/> <!-- mode -->
+          <xs:element maxOccurs='1' minOccurs='0' name='start-time' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='end-time' type='xs:dateTime'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-07d2e2e8-0415-4aa9-8115-a3a818801719' xml:lang='en-US'> <!-- Participation Performer -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic Entry provider.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-07d2e2e8-0415-4aa9-8115-a3a818801719'>
+    <rdfs:subClassOf rdf:resource='s3m:PartyType'/>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:PartyType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='party-name' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962'/> <!-- external-ref -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'/> <!-- details -->
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-d79c6f0e-10b5-432c-91ef-489ee94d64a7' xml:lang='en-US'> <!-- Participation Function -->
+    <xs:annotation>
+    <xs:documentation>
+      Participation Function
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-d79c6f0e-10b5-432c-91ef-489ee94d64a7'>
+    <rdfs:subClassOf rdf:resource='s3m:DvCodedStringType'/>
+    <rdfs:label>Participation Function</rdfs:label>
+      <rdfs:isDefinedBy rdf:resource='http%3A//xmlns.com/foaf/spec/%23glance'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvCodedStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Participation Function"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                <xs:enumeration value='Agent'/>
+                <xs:enumeration value='Group'/>
+                <xs:enumeration value='Organization'/>
+                <xs:enumeration value='Person'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='vocab-uri'>
+            <xs:simpleType>
+              <xs:restriction base='xs:anyURI'>
+                <xs:enumeration value='FOAF'/>
+                <xs:enumeration value='FOAF'/>
+                <xs:enumeration value='FOAF'/>
+                <xs:enumeration value='FOAF'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='1' name='vocab-code'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                <xs:enumeration value='Agent'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Agent
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Group'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Group
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Organization'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Organization
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Person'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Person
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-f34c17e3-c64d-47e9-983c-d88fb8836dba' xml:lang='en-US'> <!-- Participation Mode -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic definition that the participation mode is some type of agent. 
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-f34c17e3-c64d-47e9-983c-d88fb8836dba'>
+    <rdfs:subClassOf rdf:resource='s3m:DvCodedStringType'/>
+    <rdfs:label>Participation Mode</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvCodedStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Participation Mode"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                <xs:enumeration value='Agent'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='vocab-uri'>
+            <xs:simpleType>
+              <xs:restriction base='xs:anyURI'>
+                <xs:enumeration value='FOAF'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='1' name='vocab-code'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                <xs:enumeration value='Agent'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Agent
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-39a03554-7f19-4e08-a608-b36e42f1fc15' xml:lang='en-US'> <!-- Generic Protocol ID -->
+    <xs:annotation>
+    <xs:documentation>
+      A reusable system ID for Entry Protocol ID.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-39a03554-7f19-4e08-a608-b36e42f1fc15'>
+    <rdfs:subClassOf rdf:resource='s3m:DvIdentifierType'/>
+    <rdfs:label>Generic Protocol ID</rdfs:label>
+      <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvIdentifierType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Generic Protocol ID"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='dvstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+            <xs:element maxOccurs='1' minOccurs='1' name='id-name'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Protocal ID'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Protocal ID
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs='1' minOccurs='1' name='issuer'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Owner'/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs='1' minOccurs='1' name='assignor'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Owner'/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf' xml:lang='en-US'> <!-- Workflow ID-->
+    <xs:annotation>
+    <xs:documentation>
+      The link points to the workflow definition
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf'>
+    <rdfs:subClassOf rdf:resource='s3m:DvURIType'/>
+    <rdfs:label>Workflow ID</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='http%3A//purl.obolibrary.org/obo/IAO_0000178'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvURIType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Workflow ID"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvuri-value' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='material information bearer'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-43c7bf17-94e6-46da-ba44-f98d269fcd32' xml:lang='en-US'> <!-- Attestation -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic attestation. 
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32'>
+    <rdfs:subClassOf rdf:resource='s3m:AttestationType'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:AttestationType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-568c4b1f-9b48-472b-a70e-dbd673584ea2'/> <!-- attested-view -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-0808d268-7b42-4733-97af-4df7642328ab'/> <!-- proof -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-df50a9c7-5071-4ece-934a-e43aeabc704a'/> <!-- reason -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-705083b3-ee1e-4713-8685-65198083266a'/> <!-- committer -->
+          <xs:element maxOccurs='1' minOccurs='0' name='time-committed' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' default='true' name='is-pending' type='xs:boolean'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-568c4b1f-9b48-472b-a70e-dbd673584ea2' xml:lang='en-US'> <!-- Attestation View -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic container for an attestation view.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-568c4b1f-9b48-472b-a70e-dbd673584ea2'>
+    <rdfs:subClassOf rdf:resource='s3m:DvMediaType'/>
+    <rdfs:label>Attestation View</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvMediaType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Attestation View"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='size' type='xs:int'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='encoding' type='xs:string' default='utf-8'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language' default='en-US'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='mime-type' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='compression-type' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='hash-result' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='hash-function' type='xs:string' default=''/>
+          <xs:element maxOccurs='1' minOccurs='0' name='alt-txt' type='xs:string' default=''/>
+          <xs:element maxOccurs='1' minOccurs='0' name='uri' type='xs:anyURI'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='media-content' type='xs:base64Binary'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-0808d268-7b42-4733-97af-4df7642328ab' xml:lang='en-US'> <!-- Proof -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic container for an attestation proof document.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-0808d268-7b42-4733-97af-4df7642328ab'>
+    <rdfs:subClassOf rdf:resource='s3m:DvParsableType'/>
+    <rdfs:label>Proof</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvParsableType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Proof"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='size' type='xs:int'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='encoding' type='xs:string' default='utf-8'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language' default='en-US'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='dvparsable-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='formalism' type='xs:string'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:complexType name='ct-df50a9c7-5071-4ece-934a-e43aeabc704a' xml:lang='en-US'> <!-- Attestation Reason -->
+    <xs:annotation>
+    <xs:documentation>
+      A finalized release of some information entity.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-df50a9c7-5071-4ece-934a-e43aeabc704a'>
+    <rdfs:subClassOf rdf:resource='s3m:DvCodedStringType'/>
+    <rdfs:label>Attestation Reason</rdfs:label>
+      <rdfs:isDefinedBy rdf:resource='http%3A//usefulinc.com/ns/doap%2523release'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvCodedStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Attestation Reason"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                <xs:enumeration value='release'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='vocab-uri'>
+            <xs:simpleType>
+              <xs:restriction base='xs:anyURI'>
+                <xs:enumeration value='DOAP'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='1' name='vocab-code'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                <xs:enumeration value='release'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      release
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:complexType name='ct-705083b3-ee1e-4713-8685-65198083266a' xml:lang='en-US'> <!-- Attestation Committer -->
+    <xs:annotation>
+    <xs:documentation>
+      A generic Entry provider.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-705083b3-ee1e-4713-8685-65198083266a'>
+    <rdfs:subClassOf rdf:resource='s3m:PartyType'/>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/generic_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:PartyType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='party-name' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962'/> <!-- external-ref -->
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'/> <!-- details -->
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3'> <!--Entry entry-data -->
+    <xs:annotation>
+    <xs:documentation>
+      Test Entry entry-data
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3'>
+    <rdfs:subClassOf rdf:resource='s3m:ClusterType'/>
+    <rdfs:label>Entry entry-data</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/test_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:ClusterType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='cluster-subject' type='xs:string' fixed="Test Entry entry-data"/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-697e8df2-7890-4f44-8442-e7f2beab4425'/><!-- DvBoolean Fever duration: 3 weeks or less-->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-d05d35e1-4452-47a4-a7c5-58d1aac8bf64'/><!-- DvBoolean Test DvBoolean-->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-e9cbb207-9e89-416c-8b71-7cdb859b3097'/><!-- DvString Blood Pressure Device -->
+        </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='ct-eeaddd88-4a85-4e27-9ece-337f910ef81b' xml:lang='en-US'> <!-- Fever duration: 3 weeks or less - Test 2.4.6 -->
+    <xs:annotation>
+    <xs:documentation>
+      Yes/No field for the duration of the fever. It should be filled when the date of onset of the fever is not known.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b'>
+    <rdfs:subClassOf rdf:resource='s3m:DvBooleanType'/>
+    <rdfs:label>Fever duration: 3 weeks or less</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='http%3A//bvsms.saude.gov.br/bvs/periodicos/boletim_eletronico_epi_ano04_n04.pdf'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvBooleanType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Fever duration: 3 weeks or less"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:choice>
+          <xs:element maxOccurs='1' minOccurs='0' name='valid-true'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                  <xs:enumeration value='YES'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name='valid-false'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                  <xs:enumeration value='NO'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          </xs:choice>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-697e8df2-7890-4f44-8442-e7f2beab4425' substitutionGroup='s3m:Items' type='s3m:ct-697e8df2-7890-4f44-8442-e7f2beab4425'/>
+  <xs:complexType name='ct-697e8df2-7890-4f44-8442-e7f2beab4425'> <!-- Adapter for: Fever duration: 3 weeks or less-->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-eeaddd88-4a85-4e27-9ece-337f910ef81b'/> <!-- Reference to: Fever duration: 3 weeks or less-->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+
+  <xs:complexType name='ct-a68202e8-f161-4c80-931c-b97d9eb2b22b' xml:lang='en-US'> <!-- Test DvBoolean-->
+    <xs:annotation>
+    <xs:documentation>
+      A test DvBoolean
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b'>
+    <rdfs:subClassOf rdf:resource='s3m:DvBooleanType'/>
+    <rdfs:label>Test DvBoolean</rdfs:label>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvBooleanType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Test DvBoolean"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:choice>
+          <xs:element maxOccurs='1' minOccurs='0' name='valid-true'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Yes'/>
+                  <xs:enumeration value='Sim'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name='valid-false'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                  <xs:enumeration value='No'/>
+                  <xs:enumeration value='Não'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          </xs:choice>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-d05d35e1-4452-47a4-a7c5-58d1aac8bf64' substitutionGroup='s3m:Items' type='s3m:ct-d05d35e1-4452-47a4-a7c5-58d1aac8bf64'/>
+  <xs:complexType name='ct-d05d35e1-4452-47a4-a7c5-58d1aac8bf64'> <!-- Adapter for: Test DvBoolean-->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-a68202e8-f161-4c80-931c-b97d9eb2b22b'/> <!-- Reference to: Test DvBoolean -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name='ct-8ae6d78b-394b-455e-a5e4-f55897f92a77' xml:lang='en-US'> <!-- Blood Pressure Device (Test 2.4.6) -->
+    <xs:annotation>
+    <xs:documentation>
+      The device use in taking a blood pressure measurement.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77'>
+    <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+    <rdfs:label>Blood Pressure Device </rdfs:label>
+      <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/test_pcts'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Blood Pressure Device"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Mercury sphygmomanometer'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Mercury sphygmomanometer
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='Aneroid sphygmomanometer'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Aneroid sphygmomanometer
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='Digital'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      Digital
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='el-e9cbb207-9e89-416c-8b71-7cdb859b3097' substitutionGroup='s3m:Items' type='s3m:ct-e9cbb207-9e89-416c-8b71-7cdb859b3097'/>
+  <xs:complexType name='ct-e9cbb207-9e89-416c-8b71-7cdb859b3097'> <!-- Adapter for: Blood Pressure Device -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-8ae6d78b-394b-455e-a5e4-f55897f92a77'/> <!-- Reference to: Blood Pressure Device -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name='el-15ca606c-303a-4862-8f5e-df8f39e8bfc3' substitutionGroup='s3m:Definition' type='s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3'/>
+  <xs:element name='el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f' substitutionGroup='s3m:Link' type='s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f'/>
+  <xs:element name='el-7b1c4fad-90f9-4d28-af58-3e59ecb00066' substitutionGroup='s3m:Link' type='s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066'/>
+  <xs:element name='el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16' substitutionGroup='s3m:Audit' type='s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16'/>
+  <xs:element name='el-53e08f93-1549-4303-9212-74ed11ed7d3a' substitutionGroup='s3m:System-id' type='s3m:ct-53e08f93-1549-4303-9212-74ed11ed7d3a'/>
+  <xs:element name='el-1386c587-b06f-4de5-ab67-30ecd036902e' substitutionGroup='s3m:System-user' type='s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e'/>
+  <xs:element name='el-c35f232c-cbe0-4cd9-a809-bbd34157b962' substitutionGroup='s3m:Party-ref' type='s3m:ct-c35f232c-cbe0-4cd9-a809-bbd34157b962'/>
+  <xs:element name='el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2' substitutionGroup='s3m:Party-details' type='s3m:ct-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'/>
+  <xs:element name='el-74cb0edc-76c3-45d2-bd36-13b10cdc289d' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d'/>
+  <xs:element name='el-4bce07e8-9bae-45e8-bf80-4db86b57bc93' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93'/>
+  <xs:element name='el-d1a90620-0c72-4aa2-ac6a-53c2b839b414' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414'/>
+  <xs:element name='el-785c0d1d-fb0c-4424-b967-99ab869c3ab1' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1'/>
+  <xs:element name='el-68526dd8-c03e-4779-a951-c5e6f85ff509' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509'/>
+  <xs:element name='el-571006b1-b76f-45b5-8a6e-b65d1a0444e0' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0'/>
+  <xs:element name='el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305'/>
+  <xs:element name='el-5e21cf59-9c13-4f67-918a-e0aee1f64edf' substitutionGroup='s3m:Location' type='s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf'/>
+  <xs:element name='el-96ec0cec-0e47-4892-9acb-697be7d51a33' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33'/>
+  <xs:element name='el-c265bd07-d470-49b5-99c1-4559f7e9408d' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d'/>
+  <xs:element name='el-76d5279d-8557-4eb7-9722-1ad858c00e3c' substitutionGroup='s3m:Subject' type='s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c'/>
+  <xs:element name='el-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0' substitutionGroup='s3m:Provider' type='s3m:ct-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0'/>
+  <xs:element name='el-c37d801a-9f1b-4ef9-97e4-561bbffb8750' substitutionGroup='s3m:Participations' type='s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750'/>
+  <xs:element name='el-07d2e2e8-0415-4aa9-8115-a3a818801719' substitutionGroup='s3m:Performer' type='s3m:ct-07d2e2e8-0415-4aa9-8115-a3a818801719'/>
+  <xs:element name='el-d79c6f0e-10b5-432c-91ef-489ee94d64a7' substitutionGroup='s3m:Function' type='s3m:ct-d79c6f0e-10b5-432c-91ef-489ee94d64a7'/>
+  <xs:element name='el-f34c17e3-c64d-47e9-983c-d88fb8836dba' substitutionGroup='s3m:Mode' type='s3m:ct-f34c17e3-c64d-47e9-983c-d88fb8836dba'/>
+  <xs:element name='el-39a03554-7f19-4e08-a608-b36e42f1fc15' substitutionGroup='s3m:Protocol' type='s3m:ct-39a03554-7f19-4e08-a608-b36e42f1fc15'/>
+  <xs:element name='el-5327bf3f-5ecb-47b5-b358-63bb5f277ddf' substitutionGroup='s3m:Workflow' type='s3m:ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf'/>
+  <xs:element name='el-43c7bf17-94e6-46da-ba44-f98d269fcd32' substitutionGroup='s3m:Attestation' type='s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32'/>
+  <xs:element name='el-568c4b1f-9b48-472b-a70e-dbd673584ea2' substitutionGroup='s3m:Attested-view' type='s3m:ct-568c4b1f-9b48-472b-a70e-dbd673584ea2'/>
+  <xs:element name='el-0808d268-7b42-4733-97af-4df7642328ab' substitutionGroup='s3m:Proof' type='s3m:ct-0808d268-7b42-4733-97af-4df7642328ab'/>
+  <xs:element name='el-df50a9c7-5071-4ece-934a-e43aeabc704a' substitutionGroup='s3m:Reason' type='s3m:ct-df50a9c7-5071-4ece-934a-e43aeabc704a'/>
+  <xs:element name='el-705083b3-ee1e-4713-8685-65198083266a' substitutionGroup='s3m:Committer' type='s3m:ct-705083b3-ee1e-4713-8685-65198083266a'/>
+  <xs:element name='el-96f910e1-8f1e-4a54-a19f-47722ddd91d3' substitutionGroup='s3m:Data' type='s3m:ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3'/>
+  <xs:element name='el-eeaddd88-4a85-4e27-9ece-337f910ef81b' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b'/>
+  <xs:element name='el-a68202e8-f161-4c80-931c-b97d9eb2b22b' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b'/>
+  <xs:element name='el-8ae6d78b-394b-455e-a5e4-f55897f92a77' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77'/>
+
+</xs:schema>

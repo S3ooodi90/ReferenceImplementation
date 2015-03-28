@@ -1,0 +1,526 @@
+{"s3m:cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10": {
+  "xmlns:rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+  "xmlns:rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+  "xmlns:vc": "http://www.w3.org/2007/XMLSchema-versioning",
+  "xmlns:s3m": "http://www.s3model.com/rm",
+  "xmlns:sch": "http://purl.oclc.org/dsdl/schematron",
+  "xmlns:owl": "http://www.w3.org/2002/07/owl#",
+  "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+  "xmlns:sawsdl": "http://www.w3.org/ns/sawsdl",
+  "xmlns:sawsdlrdf": "http://www.w3.org/ns/sawsdl#",
+  "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+  "xsi:schemaLocation": "http://www.s3model.com/rm file:/home/tim/S3Model/S3Model/RM/1_0_0/tests/test-cm.xsd",
+  "s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3": {
+    "language": "en-US",
+    "encoding": "utf-8",
+    "current-state": "testing me",
+    "s3m:el-96f910e1-8f1e-4a54-a19f-47722ddd91d3": {
+      "cluster-subject": "Test Entry entry-data",
+      "s3m:el-697e8df2-7890-4f44-8442-e7f2beab4425": {"s3m:el-eeaddd88-4a85-4e27-9ece-337f910ef81b": {
+        "data-name": "Fever duration: 3 weeks or less",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2015-09-19T13:17:16Z",
+        "valid-time-end": "2016-10-15T13:17:16Z",
+        "valid-true": "YES"
+      }},
+      "s3m:el-d05d35e1-4452-47a4-a7c5-58d1aac8bf64": {"s3m:el-a68202e8-f161-4c80-931c-b97d9eb2b22b": {
+        "data-name": "Test DvBoolean",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2015-09-30T13:17:16",
+        "valid-time-end": "2015-04-19T13:17:16",
+        "valid-true": "Sim"
+      }},
+      "s3m:el-e9cbb207-9e89-416c-8b71-7cdb859b3097": {"s3m:el-8ae6d78b-394b-455e-a5e4-f55897f92a77": {
+        "data-name": "Blood Pressure Device",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2016-09-23T13:17:16",
+        "valid-time-end": "2016-08-19T13:17:16Z",
+        "dvstring-value": "Aneroid sphygmomanometer",
+        "language": "el-GR"
+      }}
+    },
+    "s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f": {
+      "data-name": "attached to",
+      "s3m:NI": {"ev-name": "No Information"},
+      "valid-time-begin": "2017-03-15T13:17:16Z",
+      "valid-time-end": "2015-05-19T13:17:16Z",
+      "dvuri-value": "http://KvlZiPgP/",
+      "relation": "http://purl.obolibrary.org/obo/RO_0002371"
+    },
+    "s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066": {
+      "data-name": "Connected To",
+      "s3m:NI": {"ev-name": "No Information"},
+      "valid-time-begin": "2015-10-16T13:17:16Z",
+      "valid-time-end": "2016-10-21T13:17:16Z",
+      "dvuri-value": "http://EurWETIm/",
+      "relation": "connected to"
+    },
+    "s3m:el-76d5279d-8557-4eb7-9722-1ad858c00e3c": {
+      "party-name": "ffjVU",
+      "s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962": {
+        "data-name": "External Reference for Party",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2016-09-26T13:17:16Z",
+        "valid-time-end": "2015-10-07T13:17:16Z",
+        "dvuri-value": "http://ZLYNzZvc/",
+        "relation": "Party Associated with the record"
+      },
+      "s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2": {
+        "cluster-subject": "Address Details (US)",
+        "s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e": {"s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d": {
+          "data-name": "Additional Address Line(s) (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2017-02-08T13:17:16",
+          "valid-time-end": "2017-03-14T13:17:16Z",
+          "dvstring-value": "NYHl09_",
+          "language": "de-DE"
+        }},
+        "s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89": {"s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93": {
+          "data-name": "City Name (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-03-05T13:17:16Z",
+          "valid-time-end": "2015-11-12T13:17:16",
+          "dvstring-value": "UeGjMh",
+          "language": "es-ES"
+        }},
+        "s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a": {"s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414": {
+          "data-name": "Common Name / Nickname",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-04-12T13:17:16Z",
+          "valid-time-end": "2015-11-30T13:17:16Z",
+          "dvstring-value": "JONsNBMDpT",
+          "language": "en-AU"
+        }},
+        "s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e": {"s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1": {
+          "data-name": "State Abbreviation (USPS)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-01-12T13:17:16",
+          "valid-time-end": "2015-10-21T13:17:16Z",
+          "dvstring-value": "WI",
+          "language": "nl-NL"
+        }},
+        "s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f": {"s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509": {
+          "data-name": "Street Number and Name (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-10-27T13:17:16",
+          "valid-time-end": "2016-12-11T13:17:16",
+          "dvstring-value": "aAxRy",
+          "language": "fr-FR"
+        }},
+        "s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88": {"s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0": {
+          "data-name": "Telephone Number (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2015-10-04T13:17:16",
+          "valid-time-end": "2016-03-31T13:17:16",
+          "dvstring-value": "111-111-1111",
+          "language": "ru-RU"
+        }},
+        "s3m:el-c64b7604-6189-412d-bb70-48baba85f366": {"s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305": {
+          "data-name": "Zip Code (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-10-10T13:17:16",
+          "valid-time-end": "2016-08-01T13:17:16Z",
+          "dvstring-value": 99999,
+          "language": "he-IL"
+        }}
+      }
+    },
+    "s3m:el-2efe0ddd-eb3f-41a6-a3b4-e17e9e0b7fc0": {
+      "party-name": "CO.CSfuTs",
+      "s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962": {
+        "data-name": "External Reference for Party",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2016-02-23T13:17:16",
+        "valid-time-end": "2016-07-19T13:17:16",
+        "dvuri-value": "http://DtkcKUDM/",
+        "relation": "Party Associated with the record"
+      },
+      "s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2": {
+        "cluster-subject": "Address Details (US)",
+        "s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e": {"s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d": {
+          "data-name": "Additional Address Line(s) (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2015-05-15T13:17:16",
+          "valid-time-end": "2016-12-17T13:17:16",
+          "dvstring-value": "uT5A3QcNH",
+          "language": "en-US"
+        }},
+        "s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89": {"s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93": {
+          "data-name": "City Name (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2017-01-02T13:17:16",
+          "valid-time-end": "2015-11-06T13:17:16",
+          "dvstring-value": "N7X",
+          "language": "da-DK"
+        }},
+        "s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a": {"s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414": {
+          "data-name": "Common Name / Nickname",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2015-08-02T13:17:16",
+          "valid-time-end": "2016-08-29T13:17:16Z",
+          "dvstring-value": "D",
+          "language": "en-GB"
+        }},
+        "s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e": {"s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1": {
+          "data-name": "State Abbreviation (USPS)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-02-09T13:17:16",
+          "valid-time-end": "2015-05-16T13:17:16",
+          "dvstring-value": "CT",
+          "language": "it-IT"
+        }},
+        "s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f": {"s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509": {
+          "data-name": "Street Number and Name (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-01-14T13:17:16Z",
+          "valid-time-end": "2015-11-25T13:17:16Z",
+          "dvstring-value": "WeNXc",
+          "language": "ru-RU"
+        }},
+        "s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88": {"s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0": {
+          "data-name": "Telephone Number (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-04-12T13:17:16Z",
+          "valid-time-end": "2016-09-05T13:17:16",
+          "dvstring-value": "111-111-1111",
+          "language": "sv-SE"
+        }},
+        "s3m:el-c64b7604-6189-412d-bb70-48baba85f366": {"s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305": {
+          "data-name": "Zip Code (US)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2017-03-22T13:17:16Z",
+          "valid-time-end": "2015-05-08T13:17:16Z",
+          "dvstring-value": 99999,
+          "language": "de-DE"
+        }}
+      }
+    },
+    "s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750": {
+      "s3m:el-07d2e2e8-0415-4aa9-8115-a3a818801719": {
+        "party-name": "Ss_VHvy9Ux",
+        "s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962": {
+          "data-name": "External Reference for Party",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-07-23T13:17:16",
+          "valid-time-end": "2016-05-03T13:17:16Z",
+          "dvuri-value": "http://bRxIVYXW/",
+          "relation": "Party Associated with the record"
+        },
+        "s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2": {
+          "cluster-subject": "Address Details (US)",
+          "s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e": {"s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d": {
+            "data-name": "Additional Address Line(s) (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-08-08T13:17:16Z",
+            "valid-time-end": "2016-08-22T13:17:16",
+            "dvstring-value": "mErcGp",
+            "language": "it-IT"
+          }},
+          "s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89": {"s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93": {
+            "data-name": "City Name (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-06-12T13:17:16Z",
+            "valid-time-end": "2015-08-19T13:17:16",
+            "dvstring-value": "j7VOpZ6f8",
+            "language": "zh-CN"
+          }},
+          "s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a": {"s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414": {
+            "data-name": "Common Name / Nickname",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2016-02-06T13:17:16",
+            "valid-time-end": "2015-09-05T13:17:16Z",
+            "dvstring-value": "P",
+            "language": "en-AU"
+          }},
+          "s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e": {"s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1": {
+            "data-name": "State Abbreviation (USPS)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2016-10-08T13:17:16",
+            "valid-time-end": "2016-12-18T13:17:16Z",
+            "dvstring-value": "OR",
+            "language": "es-ES"
+          }},
+          "s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f": {"s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509": {
+            "data-name": "Street Number and Name (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2016-05-02T13:17:16Z",
+            "valid-time-end": "2015-11-25T13:17:16Z",
+            "dvstring-value": "g0JhefC4v",
+            "language": "tr-TR"
+          }},
+          "s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88": {"s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0": {
+            "data-name": "Telephone Number (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-08-31T13:17:16Z",
+            "valid-time-end": "2015-12-04T13:17:16",
+            "dvstring-value": "111-111-1111",
+            "language": "en-AU"
+          }},
+          "s3m:el-c64b7604-6189-412d-bb70-48baba85f366": {"s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305": {
+            "data-name": "Zip Code (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-11-11T13:17:16Z",
+            "valid-time-end": "2015-06-19T13:17:16",
+            "dvstring-value": 99999,
+            "language": "da-DK"
+          }}
+        }
+      },
+      "s3m:el-d79c6f0e-10b5-432c-91ef-489ee94d64a7": {
+        "data-name": "Participation Function",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2016-07-16T13:17:16",
+        "valid-time-end": "2016-08-20T13:17:16",
+        "dvstring-value": "Group",
+        "language": "zh-CN",
+        "vocab-uri": "FOAF",
+        "vocab-code": "Agent"
+      },
+      "s3m:el-f34c17e3-c64d-47e9-983c-d88fb8836dba": {
+        "data-name": "Participation Mode",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2016-09-18T13:17:16Z",
+        "valid-time-end": "2017-02-18T13:17:16",
+        "dvstring-value": "Agent",
+        "language": "en-US",
+        "vocab-uri": "FOAF",
+        "vocab-code": "Agent"
+      },
+      "start-time": "2017-02-19T13:17:16",
+      "end-time": "2016-07-07T13:17:16"
+    },
+    "s3m:el-39a03554-7f19-4e08-a608-b36e42f1fc15": {
+      "data-name": "Generic Protocol ID",
+      "s3m:NI": {"ev-name": "No Information"},
+      "valid-time-begin": "2016-03-13T13:17:16",
+      "valid-time-end": "2016-02-12T13:17:16",
+      "dvstring-value": "YO",
+      "language": "ja-JP",
+      "id-name": "Protocal ID",
+      "issuer": "Owner",
+      "assignor": "Owner"
+    },
+    "s3m:el-5327bf3f-5ecb-47b5-b358-63bb5f277ddf": {
+      "data-name": "Workflow ID",
+      "s3m:NI": {"ev-name": "No Information"},
+      "valid-time-begin": "2016-07-19T13:17:16Z",
+      "valid-time-end": "2016-12-19T13:17:16Z",
+      "dvuri-value": "http://SQdePaTG/",
+      "relation": "material information bearer"
+    },
+    "s3m:el-43c7bf17-94e6-46da-ba44-f98d269fcd32": {
+      "s3m:el-568c4b1f-9b48-472b-a70e-dbd673584ea2": {
+        "data-name": "Attestation View",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2016-04-25T13:17:16Z",
+        "valid-time-end": "2016-12-23T13:17:16Z",
+        "size": -1666966279,
+        "encoding": "utf-8",
+        "language": "en-US",
+        "mime-type": "tMK7K8kOX",
+        "compression-type": "lN2VqbMGj",
+        "hash-result": "kz-tR",
+        "hash-function": "",
+        "alt-txt": "",
+        "uri": "http://OVLEGxJW/",
+        "media-content": "747982708873656887808073657587887383808870778185768479676973687087856979"
+      },
+      "s3m:el-0808d268-7b42-4733-97af-4df7642328ab": {
+        "data-name": "Proof",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2015-05-27T13:17:16Z",
+        "valid-time-end": "2017-01-10T13:17:16",
+        "size": -226357614,
+        "encoding": "utf-8",
+        "language": "en-US",
+        "dvparsable-value": "T",
+        "formalism": "sQjSKuT2"
+      },
+      "s3m:el-df50a9c7-5071-4ece-934a-e43aeabc704a": {
+        "data-name": "Attestation Reason",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2016-08-19T13:17:16Z",
+        "valid-time-end": "2016-08-18T13:17:16Z",
+        "dvstring-value": "release",
+        "language": "en-GB",
+        "vocab-uri": "DOAP",
+        "vocab-code": "release"
+      },
+      "s3m:el-705083b3-ee1e-4713-8685-65198083266a": {
+        "party-name": "MERsQ16g",
+        "s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962": {
+          "data-name": "External Reference for Party",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-06-26T13:17:16Z",
+          "valid-time-end": "2016-11-21T13:17:16Z",
+          "dvuri-value": "http://ERTzIXUV/",
+          "relation": "Party Associated with the record"
+        },
+        "s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2": {
+          "cluster-subject": "Address Details (US)",
+          "s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e": {"s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d": {
+            "data-name": "Additional Address Line(s) (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-07-09T13:17:16Z",
+            "valid-time-end": "2016-11-16T13:17:16",
+            "dvstring-value": "EMZ",
+            "language": "el-GR"
+          }},
+          "s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89": {"s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93": {
+            "data-name": "City Name (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2016-05-30T13:17:16Z",
+            "valid-time-end": "2017-01-02T13:17:16",
+            "dvstring-value": "PVZkECmA",
+            "language": "en-AU"
+          }},
+          "s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a": {"s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414": {
+            "data-name": "Common Name / Nickname",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2016-01-31T13:17:16",
+            "valid-time-end": "2017-03-05T13:17:16",
+            "dvstring-value": "CJ3S0Q",
+            "language": "fr-BE"
+          }},
+          "s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e": {"s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1": {
+            "data-name": "State Abbreviation (USPS)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-09-10T13:17:16Z",
+            "valid-time-end": "2016-02-08T13:17:16Z",
+            "dvstring-value": "WV",
+            "language": "el-GR"
+          }},
+          "s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f": {"s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509": {
+            "data-name": "Street Number and Name (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-08-04T13:17:16Z",
+            "valid-time-end": "2016-05-11T13:17:16",
+            "dvstring-value": "kUOU5EuP",
+            "language": "it-IT"
+          }},
+          "s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88": {"s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0": {
+            "data-name": "Telephone Number (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-08-15T13:17:16",
+            "valid-time-end": "2017-02-02T13:17:16Z",
+            "dvstring-value": "111-111-1111",
+            "language": "en-IE"
+          }},
+          "s3m:el-c64b7604-6189-412d-bb70-48baba85f366": {"s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305": {
+            "data-name": "Zip Code (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-09-28T13:17:16Z",
+            "valid-time-end": "2016-10-10T13:17:16Z",
+            "dvstring-value": 99999,
+            "language": "zh-TW"
+          }}
+        }
+      },
+      "time-committed": "2016-07-11T13:17:16",
+      "is-pending": true
+    },
+    "s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16": {
+      "s3m:el-53e08f93-1549-4303-9212-74ed11ed7d3a": {
+        "data-name": "Originating System ID",
+        "s3m:NI": {"ev-name": "No Information"},
+        "valid-time-begin": "2015-11-30T13:17:16Z",
+        "valid-time-end": "2016-05-10T13:17:16Z",
+        "dvstring-value": "B.r7",
+        "language": "de-DE",
+        "id-name": "URI",
+        "issuer": "Owner",
+        "assignor": "Owner"
+      },
+      "s3m:el-1386c587-b06f-4de5-ab67-30ecd036902e": {
+        "party-name": "deRxj3V5.K",
+        "s3m:el-c35f232c-cbe0-4cd9-a809-bbd34157b962": {
+          "data-name": "External Reference for Party",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2015-08-28T13:17:16Z",
+          "valid-time-end": "2016-11-07T13:17:16",
+          "dvuri-value": "http://zkLEYTwQ/",
+          "relation": "Party Associated with the record"
+        },
+        "s3m:el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2": {
+          "cluster-subject": "Address Details (US)",
+          "s3m:el-d24affc1-a9ff-487a-9029-204f3b4d8e7e": {"s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d": {
+            "data-name": "Additional Address Line(s) (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2017-02-13T13:17:16Z",
+            "valid-time-end": "2015-12-31T13:17:16",
+            "dvstring-value": "e_RvYr",
+            "language": "de-DE"
+          }},
+          "s3m:el-b65ea20c-3768-45cd-a059-004ece61bc89": {"s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93": {
+            "data-name": "City Name (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2017-03-05T13:17:16",
+            "valid-time-end": "2016-12-29T13:17:16",
+            "dvstring-value": "K8AEbi",
+            "language": "el-GR"
+          }},
+          "s3m:el-77848a52-5adb-41b2-89d6-f8fec018c05a": {"s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414": {
+            "data-name": "Common Name / Nickname",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-09-01T13:17:16Z",
+            "valid-time-end": "2017-01-14T13:17:16Z",
+            "dvstring-value": "l",
+            "language": "it-IT"
+          }},
+          "s3m:el-2bb59f5a-223e-4b8e-b63f-ed8beb62849e": {"s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1": {
+            "data-name": "State Abbreviation (USPS)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-09-10T13:17:16",
+            "valid-time-end": "2017-02-19T13:17:16",
+            "dvstring-value": "WV",
+            "language": "zh-TW"
+          }},
+          "s3m:el-caa2be1d-3e6c-4cea-b44c-9829d7b23b3f": {"s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509": {
+            "data-name": "Street Number and Name (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2016-04-20T13:17:16",
+            "valid-time-end": "2015-05-09T13:17:16",
+            "dvstring-value": "nB",
+            "language": "el-GR"
+          }},
+          "s3m:el-13354334-0250-4041-8b6c-ac7eefa93c88": {"s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0": {
+            "data-name": "Telephone Number (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2016-12-13T13:17:16Z",
+            "valid-time-end": "2017-03-09T13:17:16Z",
+            "dvstring-value": "111-111-1111",
+            "language": "fr-BE"
+          }},
+          "s3m:el-c64b7604-6189-412d-bb70-48baba85f366": {"s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305": {
+            "data-name": "Zip Code (US)",
+            "s3m:NI": {"ev-name": "No Information"},
+            "valid-time-begin": "2015-07-18T13:17:16",
+            "valid-time-end": "2016-04-14T13:17:16Z",
+            "dvstring-value": 99999,
+            "language": "de-DE"
+          }}
+        }
+      },
+      "s3m:el-5e21cf59-9c13-4f67-918a-e0aee1f64edf": {
+        "cluster-subject": "FAD System Location (WGS84)",
+        "s3m:el-84a78cf3-028b-4aff-a17c-fb485a582fbd": {"s3m:el-96ec0cec-0e47-4892-9acb-697be7d51a33": {
+          "data-name": "FAD Latitude (Decimal Format)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2015-11-19T13:17:16",
+          "valid-time-end": "2016-12-16T13:17:16Z",
+          "dvstring-value": 22.6,
+          "language": "da-DK"
+        }},
+        "s3m:el-5e002578-74dd-4112-be3e-5754454cbf9a": {"s3m:el-c265bd07-d470-49b5-99c1-4559f7e9408d": {
+          "data-name": "FAD Longitude (Decimal Format)",
+          "s3m:NI": {"ev-name": "No Information"},
+          "valid-time-begin": "2016-11-11T13:17:16Z",
+          "valid-time-end": "2015-05-25T13:17:16",
+          "dvstring-value": 121.2,
+          "language": "zh-CHT"
+        }}
+      },
+      "timestamp": "2015-03-28T13:17:16"
+    }
+  }
+}}
