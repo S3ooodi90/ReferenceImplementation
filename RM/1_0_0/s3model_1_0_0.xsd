@@ -13,7 +13,7 @@
       This work is Copyright 2015 Timothy W. Cook, All Rights Reserved.
       
       This is the Shareable-Semantic-Syntactic Model (S3Model) reference model (RM) implementation in XML Schema 1.1. 
-      The S3Model RM consists of the core datatypes and structures for S3Model domain concept models, called Concept Models (CMs).
+      The S3Model RM consists of the core datatypes and structures for S3Model domain concept models, called Entry Models (EMs).
       
       Further documentation and implementation instructions can be found on or via links from http://www.S3Model.com
     </xs:documentation>
@@ -121,7 +121,7 @@
           <xs:element maxOccurs="1" minOccurs="0" name="true-value" type="xs:string">
             <xs:annotation>
               <xs:documentation>A string that represents a boolean True in the implementation. These
-                are generally constrained by a set of enumerations in the CM complexType restriction.</xs:documentation>
+                are generally constrained by a set of enumerations in the EM complexType restriction.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvBooleanType/true-value">
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvBooleanType.html#DvBooleanType_true-value"/>
@@ -133,7 +133,7 @@
           <xs:element maxOccurs="1" minOccurs="0" name="false-value" type="xs:string">
             <xs:annotation>
               <xs:documentation>A string that represents a boolean False in the implementation.
-                These are generally constrained by a set of enumerations in the CM complexType restriction .</xs:documentation>
+                These are generally constrained by a set of enumerations in the EM complexType restriction .</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvBooleanType/false-value">
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvBooleanType.html#DvBooleanType_false-value"/>
@@ -160,7 +160,7 @@
   <xs:complexType name="DvLinkType">
     <xs:annotation>
       <xs:documentation>Used to specify a Universal Resource Identifier. 
-        Set the pattern facet to accommodate your needs in a CM.
+        Set the pattern facet to accommodate your needs in a EM.
         Intended use is to provide a mechanism that can be used to link together Concept Models. 
         The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary.
         In most usecases the modeller will define all three of these using the 'fixed' attribute. Other usecases will have the
@@ -178,7 +178,7 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="1" name="link-value" type="xs:anyURI">
             <xs:annotation>
-              <xs:documentation>A required URI. A dereferenceable (or not) URL to another CM or just the cm-{uuid}.</xs:documentation>
+              <xs:documentation>A required URI. A dereferenceable (or not) URL to another EM or just the cm-{uuid}.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvLinkType/link-value">
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value"/>
@@ -288,7 +288,7 @@
         or the class name from an ontology. In some cases, dvstring-value and vocab-code may have the same
         content. Other times the user facing options for dvstring-value will be a more domain specific name.
         
-        In CM implementations the options are always restricted via enumerations and each of the elements; 
+        In EM implementations the options are always restricted via enumerations and each of the elements; 
         dvstring-value, vocab-uri and vocab-code MUST have the same number of enumerations.        
       </xs:documentation>
       <xs:appinfo>
@@ -345,7 +345,7 @@
         identifiers include: drivers licence number, social security number, veterans affairs
         number, prescription id, order id, system id and so on. The actual identifier value is entered into the dvstring-value.
         
-        The elements id-name, issuer and assignor SHOULD be constrained in the CM with enumerations and each of these elements 
+        The elements id-name, issuer and assignor SHOULD be constrained in the EM with enumerations and each of these elements 
         MUST have the same numer of enumerations. 
       </xs:documentation>
       <!-- ASSERT DEVELOPMENT TEST -->
@@ -443,7 +443,7 @@
                 written. Coded IAW IETF RFC 5646. http://tools.ietf.org/html/rfc5646 language tag
                 information should be used from the IANA registry
                 http://www.iana.org/assignments/language-subtag-registry Only used when the text
-                object is in a different language from the enclosing CM.</xs:documentation>
+                object is in a different language from the enclosing EM.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -545,12 +545,12 @@
           <xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:anyURI">
             <xs:annotation>
               <xs:documentation>URI reference to electronic information stored outside the record as
-                a file, database entry etc, if supplied as a reference. The CM modeller choooses either a uri or a media-content element.</xs:documentation>
+                a file, database entry etc, if supplied as a reference. The EM modeller choooses either a uri or a media-content element.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="media-content" type="xs:base64Binary">
             <xs:annotation>
-              <xs:documentation>The content; if stored locally. The CM modeller choooses either a uri or a media-content element.</xs:documentation>
+              <xs:documentation>The content; if stored locally. The EM modeller choooses either a uri or a media-content element.</xs:documentation>
             </xs:annotation>
           </xs:element>
           </xs:choice>
@@ -739,7 +739,7 @@
       <xs:documentation> Countable quantities. Used for countable types such as pregnancies and
         steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc.
         Misuse:Not used for amounts of physical entities (which all have standardized units). Note
-        that CM complexType restriction s derived from DvCountType should make magnitude, error and accuracy attributes
+        that EM complexType restriction s derived from DvCountType should make magnitude, error and accuracy attributes
         minOccurs = '1'. The magnitude element is restricted to integers via an xs:assert.
       </xs:documentation>
     </xs:annotation>
@@ -775,7 +775,7 @@
       <xs:documentation> Quantified type representing “scientific” quantities, i.e. quantities
         expressed as a magnitude and units. Can also be used for time durations, where it is more
         convenient to treat these as simply a number of individual seconds, minutes, hours, days,
-        months, years, etc. when no temporal calculation is to be performed. Note that CM complexType restriction s derived
+        months, years, etc. when no temporal calculation is to be performed. Note that EM complexType restriction s derived
         from DvQuantityType should make magnitude, error and accuracy attributes minOccurs = '1'.
       </xs:documentation>
     </xs:annotation>
@@ -821,7 +821,7 @@
           <xs:element maxOccurs="1" minOccurs="1" ref="s3m:ratio-type">
             <xs:annotation>
               <xs:documentation> Indicates semantic type of ratio must be set as fixed to one of the
-                below strings in CM complexType restriction s. ratio = a relationship between two numbers. proportion = a
+                below strings in EM complexType restriction s. ratio = a relationship between two numbers. proportion = a
                 relationship between two numbers where there is a bi-univocal relationship between
                 the numerator and the denominator (the numerator is contained in the denominator)
                 rate = a relationship between two numbers where there is not a bi-univocal
@@ -892,7 +892,7 @@
   <xs:complexType name="DvTemporalType">
     <xs:annotation>
       <xs:documentation> Type defining the concept of date and time types. Must be constrained in
-        CM complexType restriction s to be one or more of the below elements. This gives the modeller the ability to
+        EM complexType restriction s to be one or more of the below elements. This gives the modeller the ability to
         optionally allow full or partial dates at run time. Setting maxOccurs and minOccurs to zero
         cause the element to be prohibited. </xs:documentation>
     </xs:annotation>
@@ -966,7 +966,7 @@
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-        <!-- The assert doesn't need the value comparison if CMs use the fixed attribute. But just in case we want to be sure the interval makes sense. upper and lower to see if the CM restricted both to the same type. -->
+        <!-- The assert doesn't need the value comparison if EMs use the fixed attribute. But just in case we want to be sure the interval makes sense. upper and lower to see if the EM restricted both to the same type. -->
         <xs:assert test="lower/*/name() = upper/*/name()"/>
       </xs:extension>
     </xs:complexContent>
@@ -1244,7 +1244,7 @@
       <xs:documentation> Subtypes are used to indicate why a value is missing (Null) or is outside a
         measurable range. The element ev-name is fixed in restricted types to a descriptive string.
         The subtypes defined in the reference model are considered sufficiently generic to be useful
-        in many instances. CMs may contain additional ExceptionalValueType restrictions.
+        in many instances. EMs may contain additional ExceptionalValueType restrictions.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
@@ -1601,7 +1601,12 @@
   <!--Content / entry types -->
   <xs:complexType name="EntryType">
     <xs:annotation>
-      <xs:documentation>An Entry is the root of a logical set of data items.</xs:documentation>
+      <xs:documentation>
+        An Entry is the root of a logical set of data items.
+        The Entry Model must contain metadata about the model. 
+        Mandatory DCTERMS; title, creator, rightsHolder, license, issued, format ('text/xml'), language and abstract.
+        Suggested but optional DCTERMS; constributors, relation 
+      </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="1" name="language" type="xs:language">

@@ -9,7 +9,7 @@
  xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
  xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.s3model.com/rm file:/home/tim/S3Model/S3Model/RM/1_0_0/tests/test-cm.xsd">
+ xsi:schemaLocation="http://www.s3model.com/rm file:/home/tim/S3Model/S3Model/RM/1_0_0/tests/test-em.xsd">
 
     <language>en-US</language>
     <encoding>utf-8</encoding>
