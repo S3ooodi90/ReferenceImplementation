@@ -1494,13 +1494,10 @@ Examples:
           <xs:element maxOccurs='1' minOccurs='0' name='hash-function' type='xs:string' default=''/>
           <xs:element maxOccurs='1' minOccurs='0' name='alt-txt' type='xs:string' default=''/>
           <xs:element maxOccurs='1' minOccurs='0' name='uri' type='xs:anyURI'/>
-          <xs:element maxOccurs='1' minOccurs='0' name='media-content' type='xs:base64Binary'/>
           </xs:sequence>
         </xs:restriction>
       </xs:complexContent>
     </xs:complexType>
-
-
 
   <xs:complexType name='ct-0808d268-7b42-4733-97af-4df7642328ab' xml:lang='en-US'> <!-- Proof -->
     <xs:annotation>

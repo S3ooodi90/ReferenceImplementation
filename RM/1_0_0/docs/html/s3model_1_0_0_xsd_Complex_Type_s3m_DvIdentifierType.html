@@ -324,7 +324,7 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
                                        <td width="100%"><pre><span class="tT">The identifier common name, such as “Driver's License” or</span><span class="tI">
-</span><span class="tT">“SSN”.</span></pre></td>
+</span><span class="tT">“SSN”. This elements enumerations are the ones that are typically user facing.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -379,7 +379,13 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"id-name"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The identifier common name, such as “Driver's License” or “SSN”.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The identifier common name, such as “Driver's License” or “SSN”. This elements enumerations are the ones that are typically user facing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType/id-name"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_id-name"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -424,7 +430,7 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
                                        <td width="100%"><pre><span class="tT">Authority which issues the kind of id used in the id field of this</span><span class="tI">
-</span><span class="tT">object.</span></pre></td>
+</span><span class="tT">object. Should be a well known name within the domain. May be a URI.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -479,7 +485,13 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"issuer"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Authority which issues the kind of id used in the id field of this object.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Authority which issues the kind of id used in the id field of this object. Should be a well known name within the domain. May be a URI.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType/issuer"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_issuer"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -524,7 +536,7 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
                                        <td width="100%"><pre><span class="tT">Organisation that assigned the id to the item being</span><span class="tI">
-</span><span class="tT">identified.</span></pre></td>
+</span><span class="tT">identified. Should be a well known name within the domain. May be a URI.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -579,7 +591,13 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"assignor"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Organisation that assigned the id to the item being identified.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Organisation that assigned the id to the item being identified. Should be a well known name within the domain. May be a URI.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType/assignor"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_assignor"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -625,8 +643,10 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                     <tr>
                                        <td width="100%"><pre><span class="tT">Type for representing identifiers of real-world entities. Typical</span><span class="tI">
 </span><span class="tT">identifiers include: drivers licence number, social security number, veterans affairs</span><span class="tI">
-</span><span class="tT">number, prescription id, order id, system id and so on. The actual identifier is in the</span><span class="tI">
-</span><span class="tT">DvString-dv.</span></pre></td>
+</span><span class="tT">number, prescription id, order id, system id and so on. The actual identifier value is entered into the dvstring-value.</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT">The elements id-name, issuer and assignor SHOULD be constrained in the CM with enumerations and each of these elements </span><span class="tI">
+</span><span class="tT">MUST have the same numer of enumerations.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -648,9 +668,9 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType_dvstring-value" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_dvstring-value" coords="336,551,452,593" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType_language" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_language" coords="336,633,471,675" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType" coords="254,3,508,43" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.tmp#DvIdentifierType_id-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.html#DvIdentifierType_id-name" coords="322,765,438,807" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.tmp#DvIdentifierType_issuer" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.html#DvIdentifierType_issuer" coords="322,860,438,902" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.tmp#DvIdentifierType_assignor" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.html#DvIdentifierType_assignor" coords="322,955,438,997" /></map></div>
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.tmp#DvIdentifierType_id-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.html#DvIdentifierType_id-name" coords="322,778,438,820" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.tmp#DvIdentifierType_issuer" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.html#DvIdentifierType_issuer" coords="322,873,438,915" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.tmp#DvIdentifierType_assignor" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentifierType.html#DvIdentifierType_assignor" coords="322,968,438,1010" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -709,9 +729,16 @@ var modelBoxes= new Array('model_DvIdentifierType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"DvIdentifierType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Type for representing identifiers of real-world entities. Typical identifiers include: drivers licence number, social security number, veterans affairs number, prescription id, order id, system id and so on. The actual identifier is in the DvString-dv.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Type for representing identifiers of real-world entities. Typical identifiers include: drivers licence number, social security number, veterans affairs number, prescription id, order id, system id and so on. The actual identifier value is entered into the dvstring-value. The elements id-name, issuer and assignor SHOULD be constrained in the CM with enumerations and each of these elements MUST have the same numer of enumerations.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tC">&lt;!-- ASSERT DEVELOPMENT TEST --&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;DerivedAssert</span><span class="tAN"> test=</span><span class="tAV">"count(.//xs:element[@name='issuer']//xs:enumeration) = count(.//xs:element[@name='assignor']//xs:enumeration)"</span><span class="tAN"> message=</span><span class="tAV">"Number of enumerations needs to be the same for elements issuer assignor."</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
@@ -719,17 +746,35 @@ var modelBoxes= new Array('model_DvIdentifierType');
       </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"id-name"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The identifier common name, such as “Driver's License” or “SSN”.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The identifier common name, such as “Driver's License” or “SSN”. This elements enumerations are the ones that are typically user facing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType/id-name"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_id-name"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType"</span><span class="tEl">/&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"issuer"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Authority which issues the kind of id used in the id field of this object.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Authority which issues the kind of id used in the id field of this object. Should be a well known name within the domain. May be a URI.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType/issuer"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_issuer"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType"</span><span class="tEl">/&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"assignor"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Organisation that assigned the id to the item being identified.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Organisation that assigned the id to the item being identified. Should be a well known name within the domain. May be a URI.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType/assignor"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_assignor"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvIdentiferType"</span><span class="tEl">/&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">

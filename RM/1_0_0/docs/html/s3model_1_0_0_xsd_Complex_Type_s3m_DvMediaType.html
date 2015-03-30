@@ -340,8 +340,7 @@ var modelBoxes= new Array('model_DvMediaType');
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
                                        <td width="100%"><pre><span class="tT">MIME type of the original media-content w/o any compression. See</span><span class="tI">
-</span><span class="tT">IANA registered types:</span><span class="tI">
-</span><span class="tT">http://www.iana.org/assignments/media-types/index.html</span></pre></td>
+</span><span class="tT">IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -396,7 +395,7 @@ var modelBoxes= new Array('model_DvMediaType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"mime-type"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">MIME type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/index.html</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">MIME type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -842,7 +841,7 @@ var modelBoxes= new Array('model_DvMediaType');
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
                                        <td width="100%"><pre><span class="tT">URI reference to electronic information stored outside the record as</span><span class="tI">
-</span><span class="tT">a file, database entry etc, if supplied as a reference.</span></pre></td>
+</span><span class="tT">a file, database entry etc, if supplied as a reference. The CM modeller choooses either a uri or a media-content element.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -897,7 +896,7 @@ var modelBoxes= new Array('model_DvMediaType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference. The CM modeller choooses either a uri or a media-content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -941,7 +940,7 @@ var modelBoxes= new Array('model_DvMediaType');
                               <div class="annotation">
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
-                                       <td width="100%"><pre><span class="tT">The content; if stored locally.</span></pre></td>
+                                       <td width="100%"><pre><span class="tT">The content; if stored locally. The CM modeller choooses either a uri or a media-content element.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -996,7 +995,7 @@ var modelBoxes= new Array('model_DvMediaType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"media-content"</span><span class="tAN"> type=</span><span class="tAV">"xs:base64Binary"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content; if stored locally.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content; if stored locally. The CM modeller choooses either a uri or a media-content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -1070,8 +1069,8 @@ var modelBoxes= new Array('model_DvMediaType');
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_hash-result" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-result" coords="364,1094,480,1136" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_hash-function" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-function" coords="364,1189,480,1231" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_alt-txt" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_alt-txt" coords="364,1271,480,1313" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_uri" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_uri" coords="364,1353,485,1395" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_media-content" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_media-content" coords="364,1448,525,1490" /></map></div>
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_uri" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_uri" coords="435,1353,556,1395" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_media-content" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_media-content" coords="435,1448,596,1490" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1112,7 +1111,8 @@ var modelBoxes= new Array('model_DvMediaType');
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_DvMediaType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_DvMediaType');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_DvMediaType" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding{0,1}')">encoding{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language{0,1}')">language{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_mime-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component mime-type{0,1}')">mime-type{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_compression-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component compression-type{0,1}')">compression-type{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-result" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-result{0,1}')">hash-result{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-function{0,1}')">hash-function{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_alt-txt" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component alt-txt{0,1}')">alt-txt{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component uri{0,1}')">uri{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_media-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-content{0,1}')">media-content{0,1}</a></b></div>
+                           <div id="model_DvMediaType" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding{0,1}')">encoding{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language{0,1}')">language{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_mime-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component mime-type{0,1}')">mime-type{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_compression-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component compression-type{0,1}')">compression-type{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-result" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-result{0,1}')">hash-result{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-function{0,1}')">hash-function{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_alt-txt" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component alt-txt{0,1}')">alt-txt{0,1}</a></b> , (<b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component uri{0,1}')">uri{0,1}</a></b> | <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_media-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-content{0,1}')">media-content{0,1}</a></b>)
+                           </div>
                         </td>
                      </tr>
                      <tr>
@@ -1137,7 +1137,7 @@ var modelBoxes= new Array('model_DvMediaType');
       </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"mime-type"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">MIME type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/index.html</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">MIME type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"compression-type"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
@@ -1160,16 +1160,18 @@ var modelBoxes= new Array('model_DvMediaType');
             </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Text to display in lieu of multimedia display or execution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"media-content"</span><span class="tAN"> type=</span><span class="tAV">"xs:base64Binary"</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content; if stored locally.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference. The CM modeller choooses either a uri or a media-content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"media-content"</span><span class="tAN"> type=</span><span class="tAV">"xs:base64Binary"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content; if stored locally. The CM modeller choooses either a uri or a media-content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">

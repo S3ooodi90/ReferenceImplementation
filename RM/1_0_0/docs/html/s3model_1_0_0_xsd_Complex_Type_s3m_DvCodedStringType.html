@@ -375,6 +375,12 @@ var modelBoxes= new Array('model_DvCodedStringType');
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"vocab-uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The full URI of the source vocabulary/ontology and item/class name to be used as rdf:isDefinedBy.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType/vocab-uri"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType_vocab-uri"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -474,6 +480,12 @@ var modelBoxes= new Array('model_DvCodedStringType');
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"vocab-code"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The uniquely identifiable code string from the vocabulary/ontology.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType/vocab-code"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType_vocab-code"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -517,10 +529,13 @@ var modelBoxes= new Array('model_DvCodedStringType');
                               <div class="annotation">
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
-                                       <td width="100%"><pre><span class="tT">A text item whose DvString-dv element must be the name or description</span><span class="tI">
+                                       <td width="100%"><pre><span class="tT">A text item whose dvstring-value element must be the name or description</span><span class="tI">
 </span><span class="tT">from a controlled vocabulary. The key (i.e. the 'code') of which is the item from a terminology</span><span class="tI">
-</span><span class="tT">or the class name from an ontology. In some cases, DvString-dv and vocab-code may have the same</span><span class="tI">
-</span><span class="tT">content. Other times the user facing options for DvString-dv will be a more domain specific name.</span></pre></td>
+</span><span class="tT">or the class name from an ontology. In some cases, dvstring-value and vocab-code may have the same</span><span class="tI">
+</span><span class="tT">content. Other times the user facing options for dvstring-value will be a more domain specific name.</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT">In CM implementations the options are always restricted via enumerations and each of the elements; </span><span class="tI">
+</span><span class="tT">dvstring-value, vocab-uri and vocab-code MUST have the same number of enumerations.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -542,8 +557,8 @@ var modelBoxes= new Array('model_DvCodedStringType');
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType_dvstring-value" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_dvstring-value" coords="336,551,452,593" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType_language" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_language" coords="336,633,471,675" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType" coords="254,3,508,43" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.tmp#DvCodedStringType_vocab-uri" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType_vocab-uri" coords="322,765,443,807" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.tmp#DvCodedStringType_vocab-code" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType_vocab-code" coords="322,860,438,902" /></map></div>
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.tmp#DvCodedStringType_vocab-uri" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType_vocab-uri" coords="322,778,443,820" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.tmp#DvCodedStringType_vocab-code" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType_vocab-code" coords="322,873,438,915" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -602,7 +617,13 @@ var modelBoxes= new Array('model_DvCodedStringType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"DvCodedStringType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A text item whose DvString-dv element must be the name or description from a controlled vocabulary. The key (i.e. the 'code') of which is the item from a terminology or the class name from an ontology. In some cases, DvString-dv and vocab-code may have the same content. Other times the user facing options for DvString-dv will be a more domain specific name.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A text item whose dvstring-value element must be the name or description from a controlled vocabulary. The key (i.e. the 'code') of which is the item from a terminology or the class name from an ontology. In some cases, dvstring-value and vocab-code may have the same content. Other times the user facing options for dvstring-value will be a more domain specific name. In CM implementations the options are always restricted via enumerations and each of the elements; dvstring-value, vocab-uri and vocab-code MUST have the same number of enumerations.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"s3m:DvStringType"</span><span class="tEl">&gt;</span><span class="tI">
@@ -610,11 +631,23 @@ var modelBoxes= new Array('model_DvCodedStringType');
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"vocab-uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The full URI of the source vocabulary/ontology and item/class name to be used as rdf:isDefinedBy.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType/vocab-uri"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType_vocab-uri"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"vocab-code"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The uniquely identifiable code string from the vocabulary/ontology.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType/vocab-code"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvCodedStringType.html#DvCodedStringType_vocab-code"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:subPropertyOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvCodedStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">

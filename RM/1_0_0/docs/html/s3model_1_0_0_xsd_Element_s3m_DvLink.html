@@ -3,15 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>Schema documentation for component s3m:Performer</title>
+      <title>Schema documentation for component s3m:DvLink</title>
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
-        var propertiesBoxes= new Array('properties_Performer');
-var usedByBoxes= new Array('usedBy_Performer');
-var sourceBoxes= new Array('source_Performer');
-var instanceBoxes= new Array('instance_Performer');
-var diagramBoxes= new Array('diagram_Performer');
-var modelBoxes= new Array('model_Performer');
+        var propertiesBoxes= new Array('properties_DvLink');
+var sourceBoxes= new Array('source_DvLink');
+var instanceBoxes= new Array('instance_DvLink');
+var diagramBoxes= new Array('diagram_DvLink');
+var modelBoxes= new Array('model_DvLink');
 
       
         var button_prefix = 'button_';
@@ -272,9 +271,6 @@ var modelBoxes= new Array('model_Performer');
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -286,7 +282,7 @@ var modelBoxes= new Array('model_Performer');
                <td class="rt_cornerBottomRight"></td>
             </tr>
          </table>
-      </div><a id="Performer"></a><div class="componentTitle">Element <span class="qname">s3m:Performer</span></div>
+      </div><a id="DvLink"></a><div class="componentTitle">Element <span class="qname">s3m:DvLink</span></div>
       <table class="rt">
          <tr>
             <td class="rt_cornerTopLeft"></td>
@@ -305,27 +301,44 @@ var modelBoxes= new Array('model_Performer');
                      <tr>
                         <td class="firstColumn">
                            <div class="floatLeft"><b>Diagram</b></div>
-                           <div class="floatRight"><input id="button_diagram_Performer" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Performer');" class="control" /></div>
+                           <div class="floatRight"><input id="button_diagram_DvLink" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DvLink');" class="control" /></div>
                         </td>
                         <td class="diagram">
-                           <div id="diagram_Performer" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_s3m_Performer.jpeg" usemap="#s3model_1_0_0_xsd_Element_s3m_Performer" /><map name="s3model_1_0_0_xsd_Element_s3m_Performer" id="s3model_1_0_0_xsd_Element_s3m_Performer">
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType_party-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" coords="264,40,380,82" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Party-ref.tmp#Party-ref" href="s3model_1_0_0_xsd_Element_s3m_Party-ref.html#Party-ref" coords="264,122,422,164" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Party-details.tmp#Party-details" href="s3model_1_0_0_xsd_Element_s3m_Party-details.html#Party-details" coords="264,217,411,259" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType" coords="182,3,318,25" /></map></div>
+                           <div id="diagram_DvLink" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_s3m_DvLink.jpeg" usemap="#s3model_1_0_0_xsd_Element_s3m_DvLink" /><map name="s3model_1_0_0_xsd_Element_s3m_DvLink" id="s3model_1_0_0_xsd_Element_s3m_DvLink">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_data-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" coords="285,116,401,158" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="285,211,522,271" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vtb" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" coords="285,324,421,366" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vte" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" coords="285,419,421,461" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" coords="203,61,443,101" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_link-value" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" coords="271,551,392,593" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_relation" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" coords="271,646,387,688" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_relation-uri" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" coords="271,741,392,783" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" coords="189,3,374,43" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_DvAny.tmp#DvAny" href="s3model_1_0_0_xsd_Element_s3m_DvAny.html#DvAny" coords="200,937,376,997" /></map></div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Type</b></td>
-                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:PartyType')">s3m:PartyType</a></b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:DvLinkType')">s3m:DvLinkType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:DvAnyType')">s3m:DvAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:DvLinkType')">s3m:DvLinkType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
                            <div class="floatLeft"><b>Properties</b></div>
-                           <div class="floatRight"><input id="button_properties_Performer" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_Performer');" class="control" /></div>
+                           <div class="floatRight"><input id="button_properties_DvLink" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DvLink');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="properties_Performer" style="display:block">
+                           <div id="properties_DvLink" style="display:block">
                               <table class="propertiesTable">
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">content</td>
@@ -336,46 +349,42 @@ var modelBoxes= new Array('model_Performer');
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_Performer" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Performer');" class="control" /></div>
-                        </td>
+                        <td class="firstColumn"><b>Substitution Group Affiliation</b></td>
                         <td>
-                           <div id="usedBy_Performer" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:ParticipationType')">s3m:ParticipationType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_1_0_0_xsd_Element_s3m_DvAny.html#DvAny" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:DvAny')">s3m:DvAny</a></b></li>
+                           </ul>
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_Performer" type="image" src="img/btM.gif" value="-" onclick="switchState('model_Performer');" class="control" /></div>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_DvLink" type="image" src="img/btM.gif" value="-" onclick="switchState('model_DvLink');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_Performer" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-name{0,1}')">party-name{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Party-ref.html#Party-ref" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Party-ref{0,1}')">s3m:Party-ref{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Party-details.html#Party-details" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Party-details{0,1}')">s3m:Party-details{0,1}</a></b></div>
+                           <div id="model_DvLink" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component link-value')">link-value</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation')">relation</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation-uri{0,1}')">relation-uri{0,1}</a></b></div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
-                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-name')">party-name</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Party-details.html#Party-details" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Party-details')">s3m:Party-details</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Party-ref.html#Party-ref" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Party-ref')">s3m:Party-ref</a></b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component link-value')">link-value</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation')">relation</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation-uri')">relation-uri</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
                            <div class="floatLeft"><b>Instance</b></div>
-                           <div class="floatRight"><input id="button_instance_Performer" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_Performer');" class="control" /></div>
+                           <div class="floatRight"><input id="button_instance_DvLink" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_DvLink');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="instance_Performer" style="display:block">
+                           <div id="instance_DvLink" style="display:block">
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;s3m:Performer</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/rm"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;party-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/party-name&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Party-ref</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Party-ref&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Party-details</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Party-details&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/s3m:Performer&gt;</span></pre></td>
+                                    <td width="100%"><pre><span class="tEl">&lt;s3m:DvLink</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/rm"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;data-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/data-name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;link-value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/link-value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;relation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/relation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;relation-uri</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/relation-uri&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/s3m:DvLink&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -384,13 +393,22 @@ var modelBoxes= new Array('model_Performer');
                      <tr>
                         <td class="firstColumn">
                            <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_Performer" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Performer');" class="control" /></div>
+                           <div class="floatRight"><input id="button_source_DvLink" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DvLink');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="source_Performer" style="display:block">
+                           <div id="source_DvLink" style="display:block">
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Performer"</span><span class="tAN"> type=</span><span class="tAV">"s3m:PartyType"</span><span class="tEl">/&gt;</span></pre></td>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DvLink"</span><span class="tAN"> substitutionGroup=</span><span class="tAV">"s3m:DvAny"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvLinkType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvLink"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_DvLink.html#DvLink"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvLinkType"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
