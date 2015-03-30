@@ -41,13 +41,13 @@ xml:lang='en-US'>
           <dct:format rdf:value='text/xml'/>
           <dct:language rdf:value='en-US'/>
           <dct:abstract>
-            This is an example Entry Model (EM) for the S3Model Reference Model release 1.0.0
+            This is an example Concept Model (CM) for the S3Model Reference Model release 1.0.0
           </dct:abstract>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
-      <xs:restriction base='s3m:EntryType'>
+      <xs:restriction base='s3m:ConceptType'>
         <xs:sequence>
           <xs:element maxOccurs='1' minOccurs='1' name='language' type='xs:language' fixed='en-US'/>
           <xs:element maxOccurs='1' minOccurs='1' name='encoding' type='xs:string' fixed='utf-8'/>
@@ -216,7 +216,7 @@ xml:lang='en-US'>
   <xs:complexType name='ct-1386c587-b06f-4de5-ab67-30ecd036902e' xml:lang='en-US'> <!-- Audit Details Provider (US) -->
     <xs:annotation>
     <xs:documentation>
-      A generic Entry provider.
+      A generic Concept provider.
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e'>
@@ -1112,10 +1112,10 @@ Examples:
 
 
 
-  <xs:complexType name='ct-76d5279d-8557-4eb7-9722-1ad858c00e3c' xml:lang='en-US'> <!-- Subject of the Entry (US) -->
+  <xs:complexType name='ct-76d5279d-8557-4eb7-9722-1ad858c00e3c' xml:lang='en-US'> <!-- Subject of the Concept (US) -->
     <xs:annotation>
     <xs:documentation>
-      A generic Entry provider.
+      A generic Concept provider.
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c'>
@@ -1138,10 +1138,10 @@ Examples:
 
 
 
-  <xs:complexType name='ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750' xml:lang='en-US'> <!-- Entry Participation -->
+  <xs:complexType name='ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750' xml:lang='en-US'> <!-- Concept Participation -->
     <xs:annotation>
     <xs:documentation>
-      Entry Participation
+      Concept Participation
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750'>
@@ -1167,7 +1167,7 @@ Examples:
   <xs:complexType name='ct-07d2e2e8-0415-4aa9-8115-a3a818801719' xml:lang='en-US'> <!-- Participation Performer -->
     <xs:annotation>
     <xs:documentation>
-      A generic Entry provider.
+      A generic Concept provider.
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-07d2e2e8-0415-4aa9-8115-a3a818801719'>
@@ -1328,7 +1328,7 @@ Examples:
   <xs:complexType name='ct-39a03554-7f19-4e08-a608-b36e42f1fc15' xml:lang='en-US'> <!-- Generic Protocol ID -->
     <xs:annotation>
     <xs:documentation>
-      A reusable system ID for Entry Protocol ID.
+      A reusable system ID for Concept Protocol ID.
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-39a03554-7f19-4e08-a608-b36e42f1fc15'>
@@ -1555,7 +1555,7 @@ Examples:
   <xs:complexType name='ct-705083b3-ee1e-4713-8685-65198083266a' xml:lang='en-US'> <!-- Attestation Committer -->
     <xs:annotation>
     <xs:documentation>
-      A generic Entry provider.
+      A generic Concept provider.
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-705083b3-ee1e-4713-8685-65198083266a'>
@@ -1577,15 +1577,15 @@ Examples:
 
 
 
-  <xs:complexType name='ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3'> <!--Entry entry-data -->
+  <xs:complexType name='ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3'> <!--Concept Data -->
     <xs:annotation>
     <xs:documentation>
-      Test Entry entry-data
+      Test Concept Data
     </xs:documentation>
     <xs:appinfo>
     <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3'>
     <rdfs:subClassOf rdf:resource='s3m:ClusterType'/>
-    <rdfs:label>Entry entry-data</rdfs:label>
+    <rdfs:label>Concept Data</rdfs:label>
     <rdfs:isDefinedBy rdf:resource='http%3Awww.s3model.com/test_pcts'/>
     </rdf:Description>
     </xs:appinfo>
@@ -1593,7 +1593,7 @@ Examples:
     <xs:complexContent>
       <xs:restriction base='s3m:ClusterType'>
         <xs:sequence>
-          <xs:element maxOccurs='1' minOccurs='1' name='cluster-subject' type='xs:string' fixed="Test Entry entry-data"/>
+          <xs:element maxOccurs='1' minOccurs='1' name='cluster-subject' type='xs:string' fixed="Test Concept Data"/>
       <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-697e8df2-7890-4f44-8442-e7f2beab4425'/><!-- DvBoolean Fever duration: 3 weeks or less-->
       <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-d05d35e1-4452-47a4-a7c5-58d1aac8bf64'/><!-- DvBoolean Test DvBoolean-->
       <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-e9cbb207-9e89-416c-8b71-7cdb859b3097'/><!-- DvString Blood Pressure Device -->
@@ -1808,5 +1808,5 @@ Examples:
   <xs:element name='el-eeaddd88-4a85-4e27-9ece-337f910ef81b' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b'/>
   <xs:element name='el-a68202e8-f161-4c80-931c-b97d9eb2b22b' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b'/>
   <xs:element name='el-8ae6d78b-394b-455e-a5e4-f55897f92a77' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77'/>
-  <xs:element name="el-15ca606c-303a-4862-8f5e-df8f39e8bfc3" substitutionGroup="s3m:Entry" type="s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3"></xs:element>
+  <xs:element name="el-15ca606c-303a-4862-8f5e-df8f39e8bfc3" substitutionGroup="s3m:Concept" type="s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3"></xs:element>
 </xs:schema>

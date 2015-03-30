@@ -3,13 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>Schema documentation for component s3m:ConceptType</title>
+      <title>Schema documentation for component language</title>
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
-        var usedByBoxes= new Array('usedBy_ConceptType');
-var sourceBoxes= new Array('source_ConceptType');
-var diagramBoxes= new Array('diagram_ConceptType');
-var annotationBoxes= new Array('annotations_ConceptType');
+        var propertiesBoxes= new Array('properties_ConceptType_language', 
+				'properties_ConceptType_encoding', 
+				'properties_ConceptType_current-state');
+var usedByBoxes= new Array('usedBy_ConceptType');
+var sourceBoxes= new Array('source_ConceptType_language', 
+				'source_ConceptType_encoding', 
+				'source_ConceptType_current-state', 
+				'source_ConceptType');
+var diagramBoxes= new Array('diagram_ConceptType_language', 
+				'diagram_ConceptType_encoding', 
+				'diagram_ConceptType_current-state', 
+				'diagram_ConceptType');
+var annotationBoxes= new Array('annotations_ConceptType_language', 
+				'annotations_ConceptType_encoding', 
+				'annotations_ConceptType_current-state', 
+				'annotations_ConceptType');
 var modelBoxes= new Array('model_ConceptType');
 
       
@@ -266,6 +278,9 @@ var modelBoxes= new Array('model_ConceptType');
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
                      </tr>
                      <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
                      </tr>
                      <tr>
@@ -282,7 +297,312 @@ var modelBoxes= new Array('model_ConceptType');
                <td class="rt_cornerBottomRight"></td>
             </tr>
          </table>
-      </div><a id="ConceptType"></a><div class="componentTitle">Complex Type <span class="qname">s3m:ConceptType</span></div>
+      </div><a id="ConceptType_language"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b> / language</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConceptType_language" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConceptType_language');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConceptType_language" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Mandatory indicator of the (predominate) localised language in which the text this Concept is</span><span class="tI">
+</span><span class="tT">written. The value space of language is the set of all strings that are valid language identifiers as defined in BCP 47.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConceptType_language" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_language');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConceptType_language" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_language.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:language</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConceptType_language" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConceptType_language');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConceptType_language" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConceptType_language" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConceptType_language');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConceptType_language" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"language"</span><span class="tAN"> type=</span><span class="tAV">"xs:language"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Mandatory indicator of the (predominate) localised language in which the text this Concept is written. The value space of language is the set of all strings that are valid language identifiers as defined in BCP 47.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://tools.ietf.org/html/bcp47"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ConceptType_encoding"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b> / encoding</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConceptType_encoding" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConceptType_encoding');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConceptType_encoding" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Name of character set encoding in which text values in this Concept are</span><span class="tI">
+</span><span class="tT">encoded. Default should be utf-8.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConceptType_encoding" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_encoding');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConceptType_encoding" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_encoding.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConceptType_encoding" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConceptType_encoding');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConceptType_encoding" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConceptType_encoding" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConceptType_encoding');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConceptType_encoding" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"encoding"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Name of character set encoding in which text values in this Concept are encoded. Default should be utf-8.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ConceptType_current-state"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b> / current-state</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConceptType_current-state" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConceptType_current-state');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConceptType_current-state" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The current state according to the state machine / workflow engine</span><span class="tI">
+</span><span class="tT">identified in the Workflow element, as a string.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConceptType_current-state" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_current-state');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConceptType_current-state" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_current-state.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConceptType_current-state" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConceptType_current-state');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConceptType_current-state" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConceptType_current-state" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConceptType_current-state');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConceptType_current-state" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"current-state"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The current state according to the state machine / workflow engine identified in the Workflow element, as a string.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ConceptType"></a><div class="componentTitle">Complex Type <span class="qname">s3m:ConceptType</span></div>
       <table class="rt">
          <tr>
             <td class="rt_cornerTopLeft"></td>
@@ -308,7 +628,10 @@ var modelBoxes= new Array('model_ConceptType');
                               <div class="annotation">
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
-                                       <td width="100%"><pre><span class="tT">This is the root node of a Concept Model.</span></pre></td>
+                                       <td width="100%"><pre><span class="tT">An Concept is the root of a logical set of data items.</span><span class="tI">
+</span><span class="tT">The Concept Model must contain metadata about the model. </span><span class="tI">
+</span><span class="tT">Mandatory DCTERMS; title, creator, rightsHolder, license, issued, format ('text/xml'), language and abstract.</span><span class="tI">
+</span><span class="tT">Suggested but optional DCTERMS; contributors, relation</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -322,7 +645,17 @@ var modelBoxes= new Array('model_ConceptType');
                         </td>
                         <td class="diagram">
                            <div id="diagram_ConceptType" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.jpeg" usemap="#s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType" /><map name="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType" id="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType">
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Definition.tmp#Definition" href="s3model_1_0_0_xsd_Element_s3m_Definition.html#Definition" coords="247,0,398,42" /></map></div>
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_language" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language" coords="269,0,404,42" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_encoding" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_encoding" coords="269,95,385,137" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_current-state" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_current-state" coords="269,190,385,232" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Data.tmp#Data" href="s3model_1_0_0_xsd_Element_s3m_Data.html#Data" coords="269,285,416,327" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Link.tmp#Link" href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" coords="269,367,427,409" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Subject.tmp#Subject" href="s3model_1_0_0_xsd_Element_s3m_Subject.html#Subject" coords="269,449,420,491" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Participations.tmp#Participations" href="s3model_1_0_0_xsd_Element_s3m_Participations.html#Participations" coords="269,544,461,586" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Protocol.tmp#Protocol" href="s3model_1_0_0_xsd_Element_s3m_Protocol.html#Protocol" coords="269,626,455,668" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Workflow.tmp#Workflow" href="s3model_1_0_0_xsd_Element_s3m_Workflow.html#Workflow" coords="269,721,427,763" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Attestation.tmp#Attestation" href="s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation" coords="269,816,452,858" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Audit.tmp#Audit" href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" coords="269,898,419,940" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -345,12 +678,12 @@ var modelBoxes= new Array('model_ConceptType');
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConceptType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConceptType');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_ConceptType" style="display:block"><b><a href="s3model_1_0_0_xsd_Element_s3m_Definition.html#Definition" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Definition')">s3m:Definition</a></b></div>
+                           <div id="model_ConceptType" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_current-state" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component current-state{0,1}')">current-state{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Data.html#Data" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Data')">s3m:Data</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Link*')">s3m:Link*</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Subject.html#Subject" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Subject{0,1}')">s3m:Subject{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Participations.html#Participations" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Participations*')">s3m:Participations*</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Protocol.html#Protocol" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Protocol{0,1}')">s3m:Protocol{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Workflow.html#Workflow" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Workflow{0,1}')">s3m:Workflow{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Attestation{0,1}')">s3m:Attestation{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Audit*')">s3m:Audit*</a></b></div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
-                        <td><b><a href="s3model_1_0_0_xsd_Element_s3m_Definition.html#Definition" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Definition')">s3m:Definition</a></b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_current-state" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component current-state')">current-state</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Attestation')">s3m:Attestation</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Audit')">s3m:Audit</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Data.html#Data" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Data')">s3m:Data</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Link')">s3m:Link</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Participations.html#Participations" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Participations')">s3m:Participations</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Protocol.html#Protocol" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Protocol')">s3m:Protocol</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Subject.html#Subject" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Subject')">s3m:Subject</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Workflow.html#Workflow" target="mainFrame" title="http://www.s3model.com/rm" onclick="updatePageTitle('Schema documentation for component s3m:Workflow')">s3m:Workflow</a></b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -363,12 +696,73 @@ var modelBoxes= new Array('model_ConceptType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ConceptType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is the root node of a Concept Model.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">An Concept is the root of a logical set of data items. The Concept Model must contain metadata about the model. Mandatory DCTERMS; title, creator, rightsHolder, license, issued, format ('text/xml'), language and abstract. Suggested but optional DCTERMS; contributors, relation</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/ConceptType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;dct:isPartOf</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://www.s3model.com/rm/s3model_1_0_0.xsd"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Definition"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"language"</span><span class="tAN"> type=</span><span class="tAV">"xs:language"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Structural definition element for this Concept.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Mandatory indicator of the (predominate) localised language in which the text this Concept is written. The value space of language is the set of all strings that are valid language identifiers as defined in BCP 47.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://tools.ietf.org/html/bcp47"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"encoding"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Name of character set encoding in which text values in this Concept are encoded. Default should be utf-8.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"current-state"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The current state according to the state machine / workflow engine identified in the Workflow element, as a string.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Data"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content data structure of the Concept.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Link"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional link(s) to other locatable structures or external entities.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Subject"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identification of a human subject, company or other entity of this Concept, e.g. patient, organ donor, a family member, shipper, etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Participations"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">List of other participations at Concept level.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Protocol"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional external identifier of protocol used to create this Concept. This could be a clinical guideline, an operations protocol,etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Workflow"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier of externally held workflow engine (state machine) data for this workflow execution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Attestation"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Attestation recorded.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Audit"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Audit trail from the system of original commit of information forming the content of this node, or from a conversion gateway which has synthesised this node.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">

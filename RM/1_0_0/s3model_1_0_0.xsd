@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+<xs:schema 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:dct='http://purl.org/dc/terms/'
+  xmlns:owl="http://www.w3.org/2002/07/owl#" 
   xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" 
   xmlns:s3m="http://www.s3model.com/rm"
   xmlns:sch="http://purl.oclc.org/dsdl/schematron" 
@@ -13,7 +15,8 @@
       This work is Copyright 2015 Timothy W. Cook, All Rights Reserved.
       
       This is the Shareable-Semantic-Syntactic Model (S3Model) reference model (RM) implementation in XML Schema 1.1. 
-      The S3Model RM consists of the core datatypes and structures for S3Model domain concept models, called Entry Models (EMs).
+      The S3Model RM consists of the core datatypes and structures for S3Model domain concept models, called 
+      Concept Models (CMs).
       
       Further documentation and implementation instructions can be found on or via links from http://www.S3Model.com
     </xs:documentation>
@@ -31,11 +34,11 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvAnyType">
           <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType"/>
+          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-
       <xs:element maxOccurs="1" minOccurs="1" name="data-name" type="xs:string">
         <xs:annotation>
           <xs:documentation>Descriptive name of this fragment. The content of this element reflects the semantics of a label in the 
@@ -60,17 +63,14 @@
           <xs:documentation>Valid Time Begin. If present this must be a valid datetime including timezone. It is used
             to indicate the beginning time that information is considered valid or when the
             information was collected.</xs:documentation>
-
           <xs:appinfo>
             <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvAnyType/vtb">
               <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb"/>
               <rdfs:subPropertyOf rdf:resource="http://s3model.com/rm/1_0_0/DvAnyType"/>
             </rdf:Description>
           </xs:appinfo>
-
         </xs:annotation>
       </xs:element>
-
       <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime" nillable="true">
         <xs:annotation>
           <xs:documentation>Valid Time End. If present this must be a valid date-time including timezone. It is used
@@ -121,7 +121,7 @@
           <xs:element maxOccurs="1" minOccurs="0" name="true-value" type="xs:string">
             <xs:annotation>
               <xs:documentation>A string that represents a boolean True in the implementation. These
-                are generally constrained by a set of enumerations in the EM complexType restriction.</xs:documentation>
+                are generally constrained by a set of enumerations in the CM complexType restriction.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvBooleanType/true-value">
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvBooleanType.html#DvBooleanType_true-value"/>
@@ -133,7 +133,7 @@
           <xs:element maxOccurs="1" minOccurs="0" name="false-value" type="xs:string">
             <xs:annotation>
               <xs:documentation>A string that represents a boolean False in the implementation.
-                These are generally constrained by a set of enumerations in the EM complexType restriction .</xs:documentation>
+                These are generally constrained by a set of enumerations in the CM complexType restriction .</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvBooleanType/false-value">
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvBooleanType.html#DvBooleanType_false-value"/>
@@ -154,13 +154,13 @@
           <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/DvBooleanType"/>
         </rdf:Description>
       </xs:appinfo>
-    </xs:annotation>    
+    </xs:annotation>
   </xs:element>
 
   <xs:complexType name="DvLinkType">
     <xs:annotation>
       <xs:documentation>Used to specify a Universal Resource Identifier. 
-        Set the pattern facet to accommodate your needs in a EM.
+        Set the pattern facet to accommodate your needs in a CM.
         Intended use is to provide a mechanism that can be used to link together Concept Models. 
         The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary.
         In most usecases the modeller will define all three of these using the 'fixed' attribute. Other usecases will have the
@@ -178,7 +178,7 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="1" name="link-value" type="xs:anyURI">
             <xs:annotation>
-              <xs:documentation>A required URI. A dereferenceable (or not) URL to another EM or just the cm-{uuid}.</xs:documentation>
+              <xs:documentation>A required URI. A dereferenceable (or not) URL to another CM or just the cm-{uuid}.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvLinkType/link-value">
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value"/>
@@ -257,7 +257,7 @@
               <xs:documentation>Optional indicator of the localised language in which this data-type
                 is written. The value space of language is the set of all strings that are valid
                 language identifiers as defined BCP 47 . Only required when the language used
-                here is different from the enclosing Entry.</xs:documentation>
+                here is different from the enclosing Concept.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DStringType/language">
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_language"/>
@@ -270,15 +270,15 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="DvString" substitutionGroup="s3m:DvAny" type="s3m:DvStringType">    
+  <xs:element name="DvString" substitutionGroup="s3m:DvAny" type="s3m:DvStringType">
     <xs:annotation>
-    <xs:appinfo>
-      <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvString">
-        <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_DvString.html#DvString"/>
-        <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/DvStringType"/>
-      </rdf:Description>
-    </xs:appinfo>
-  </xs:annotation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvString">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_DvString.html#DvString"/>
+          <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/DvStringType"/>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
   </xs:element>
 
   <xs:complexType name="DvCodedStringType">
@@ -288,7 +288,7 @@
         or the class name from an ontology. In some cases, dvstring-value and vocab-code may have the same
         content. Other times the user facing options for dvstring-value will be a more domain specific name.
         
-        In EM implementations the options are always restricted via enumerations and each of the elements; 
+        In CM implementations the options are always restricted via enumerations and each of the elements; 
         dvstring-value, vocab-uri and vocab-code MUST have the same number of enumerations.        
       </xs:documentation>
       <xs:appinfo>
@@ -337,7 +337,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
 
   <xs:complexType name="DvIdentifierType">
     <xs:annotation>
@@ -345,13 +345,14 @@
         identifiers include: drivers licence number, social security number, veterans affairs
         number, prescription id, order id, system id and so on. The actual identifier value is entered into the dvstring-value.
         
-        The elements id-name, issuer and assignor SHOULD be constrained in the EM with enumerations and each of these elements 
+        The elements id-name, issuer and assignor SHOULD be constrained in the CM with enumerations and each of these elements 
         MUST have the same numer of enumerations. 
       </xs:documentation>
-      <!-- ASSERT DEVELOPMENT TEST -->
+      <!--TODO: ASSERT DEVELOPMENT TEST -->
       <xs:appinfo>
         <DerivedAssert test="count(.//xs:element[@name='issuer']//xs:enumeration) = count(.//xs:element[@name='assignor']//xs:enumeration)" message="Number of enumerations needs to be the same for elements issuer assignor."/>
       </xs:appinfo>
+      
       <xs:appinfo>
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvIdentiferType">
           <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType"/>
@@ -371,7 +372,7 @@
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_id-name"/>
                   <rdfs:subPropertyOf rdf:resource="http://s3model.com/rm/1_0_0/DvIdentiferType"/>
                 </rdf:Description>
-              </xs:appinfo>              
+              </xs:appinfo>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="issuer" type="xs:string">
@@ -383,7 +384,7 @@
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_issuer"/>
                   <rdfs:subPropertyOf rdf:resource="http://s3model.com/rm/1_0_0/DvIdentiferType"/>
                 </rdf:Description>
-              </xs:appinfo>              
+              </xs:appinfo>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="assignor" type="xs:string">
@@ -395,28 +396,34 @@
                   <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIdentiferType.html#DvIdentiferType_assignor"/>
                   <rdfs:subPropertyOf rdf:resource="http://s3model.com/rm/1_0_0/DvIdentiferType"/>
                 </rdf:Description>
-              </xs:appinfo>              
+              </xs:appinfo>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="DvIdentifier" substitutionGroup="s3m:DvString s3m:DvAny" type="s3m:DvIdentifierType">    
+  <xs:element name="DvIdentifier" substitutionGroup="s3m:DvString s3m:DvAny" type="s3m:DvIdentifierType">
     <xs:annotation>
-    <xs:appinfo>
-      <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvIdentifier">
-        <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_DvIdentifier.html#DvIdentifier"/>
-        <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/DvIdentifierType"/>
-      </rdf:Description>
-    </xs:appinfo>
-  </xs:annotation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvIdentifier">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_DvIdentifier.html#DvIdentifier"/>
+          <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/DvIdentifierType"/>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType abstract="true" name="DvEncapsulatedType">
     <xs:annotation>
       <xs:documentation>Abstract type defining the common meta-data of all types of encapsulated
         data.</xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvEncapsulatedType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvAnyType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
@@ -443,7 +450,7 @@
                 written. Coded IAW IETF RFC 5646. http://tools.ietf.org/html/rfc5646 language tag
                 information should be used from the IANA registry
                 http://www.iana.org/assignments/language-subtag-registry Only used when the text
-                object is in a different language from the enclosing EM.</xs:documentation>
+                object is in a different language from the enclosing CM.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -460,13 +467,19 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="DvParsableType">
     <xs:annotation>
       <xs:documentation>Encapsulated data expressed as a parsable String. The internal model of the
         data item is not described in the S3Model model, but in this case, the form of the data is
         assumed to be plain-text, rather than compressed or other types of large binary data. If the
         content is to be binary data then use a DvMedia. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvParsableType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvEncapsulatedType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvEncapsulatedType">
@@ -497,12 +510,18 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="DvMediaType">
     <xs:annotation>
       <xs:documentation>A specialisation of DvEncapsulated for audiovisual and bio-signal types.
         Includes further metadata relating to media types which are not applicable to other subtypes
         of DvEncapsulatedType.</xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvMediaType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvEncapsulatedType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvEncapsulatedType">
@@ -542,17 +561,17 @@
             </xs:annotation>
           </xs:element>
           <xs:choice>
-          <xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:anyURI">
-            <xs:annotation>
-              <xs:documentation>URI reference to electronic information stored outside the record as
-                a file, database entry etc, if supplied as a reference. The EM modeller choooses either a uri or a media-content element.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="media-content" type="xs:base64Binary">
-            <xs:annotation>
-              <xs:documentation>The content; if stored locally. The EM modeller choooses either a uri or a media-content element.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:anyURI">
+              <xs:annotation>
+                <xs:documentation>URI reference to electronic information stored outside the record as
+                a file, database entry etc, if supplied as a reference. The CM modeller choooses either a uri or a media-content element.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="media-content" type="xs:base64Binary">
+              <xs:annotation>
+                <xs:documentation>The content; if stored locally. The CM modeller choooses either a uri or a media-content element.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
           </xs:choice>
         </xs:sequence>
       </xs:extension>
@@ -568,12 +587,18 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType abstract="true" name="DvOrderedType">
     <xs:annotation>
       <xs:documentation>Abstract type defining the concept of ordered values, which includes
         ordinals as well as true quantities. The implementations require the functions ‘&lt;’,
         '&gt;' and is_strictly_comparable_to ('=='). </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvOrderedType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvAnyType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
@@ -607,7 +632,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
 
   <xs:complexType name="DvOrdinalType">
     <xs:annotation>
@@ -622,6 +647,12 @@
         strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc; for
         non-haemolysed blood {neg, trace, moderate}; for haemolysed blood {neg, trace, small,
         moderate, large}. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvOrdinalType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvOrdinalType.html#DvOrdinalType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvOrderedType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvOrderedType">
@@ -656,11 +687,17 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType abstract="true" name="DvQuantifiedType">
     <xs:annotation>
       <xs:documentation>Abstract type defining the concept of true quantified values, i.e. values
         which are not only ordered, but which have a precise magnitude. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvQuantifiedType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvOrderedType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvOrderedType">
@@ -719,7 +756,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
 
   <xs:element name="magnitude-status">
     <xs:simpleType>
@@ -739,9 +776,15 @@
       <xs:documentation> Countable quantities. Used for countable types such as pregnancies and
         steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc.
         Misuse:Not used for amounts of physical entities (which all have standardized units). Note
-        that EM complexType restriction s derived from DvCountType should make magnitude, error and accuracy attributes
+        that CM complexType restriction s derived from DvCountType should make magnitude, error and accuracy attributes
         minOccurs = '1'. The magnitude element is restricted to integers via an xs:assert.
       </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvCountType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvCountType.html#DvCountType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvQuantifiedType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvQuantifiedType">
@@ -768,16 +811,21 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
 
   <xs:complexType name="DvQuantityType">
     <xs:annotation>
       <xs:documentation> Quantified type representing “scientific” quantities, i.e. quantities
         expressed as a magnitude and units. Can also be used for time durations, where it is more
         convenient to treat these as simply a number of individual seconds, minutes, hours, days,
-        months, years, etc. when no temporal calculation is to be performed. Note that EM complexType restriction s derived
+        months, years, etc. when no temporal calculation is to be performed. Note that CM complexType restriction s derived
         from DvQuantityType should make magnitude, error and accuracy attributes minOccurs = '1'.
       </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvQuantityType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantityType.html#DvQuantityType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvQuantifiedType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvQuantifiedType">
@@ -805,7 +853,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="DvRatioType">
     <xs:annotation>
       <xs:documentation> Models a ratio of values, i.e. where the numerator and denominator are both
@@ -814,6 +862,12 @@
         when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.)
         “6/24” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols
         like CF = count fingers etc). Should not be used for formulations. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvRatioType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvRatioType.html#DvRatioType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvQuantifiedType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvQuantifiedType">
@@ -821,7 +875,7 @@
           <xs:element maxOccurs="1" minOccurs="1" ref="s3m:ratio-type">
             <xs:annotation>
               <xs:documentation> Indicates semantic type of ratio must be set as fixed to one of the
-                below strings in EM complexType restriction s. ratio = a relationship between two numbers. proportion = a
+                below strings in CM complexType restriction s. ratio = a relationship between two numbers. proportion = a
                 relationship between two numbers where there is a bi-univocal relationship between
                 the numerator and the denominator (the numerator is contained in the denominator)
                 rate = a relationship between two numbers where there is not a bi-univocal
@@ -876,7 +930,6 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
 
   <xs:element name="ratio-type">
     <xs:simpleType>
@@ -888,13 +941,18 @@
     </xs:simpleType>
   </xs:element>
 
-
   <xs:complexType name="DvTemporalType">
     <xs:annotation>
       <xs:documentation> Type defining the concept of date and time types. Must be constrained in
-        EM complexType restriction s to be one or more of the below elements. This gives the modeller the ability to
+        CM complexType restriction s to be one or more of the below elements. This gives the modeller the ability to
         optionally allow full or partial dates at run time. Setting maxOccurs and minOccurs to zero
         cause the element to be prohibited. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvTemporalType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvTemporalType.html#DvTemporalType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvOrderedType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvOrderedType">
@@ -924,13 +982,19 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="DvIntervalType">
     <xs:annotation>
       <xs:documentation> Generic type defining an interval (i.e. range) of a comparable type. An
         interval is a contiguous subrange of a comparable base type. Used to define intervals of
         dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model,
         primarily used in defining reference ranges. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvIntervalType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvIntervalType.html#DvIntervalType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvAnyType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
@@ -966,7 +1030,7 @@
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-        <!-- The assert doesn't need the value comparison if EMs use the fixed attribute. But just in case we want to be sure the interval makes sense. upper and lower to see if the EM restricted both to the same type. -->
+        <!-- The assert doesn't need the value comparison if CMs use the fixed attribute. But just in case we want to be sure the interval makes sense. upper and lower to see if the CM restricted both to the same type. -->
         <xs:assert test="lower/*/name() = upper/*/name()"/>
       </xs:extension>
     </xs:complexContent>
@@ -981,7 +1045,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="invl-type">
     <xs:choice>
       <xs:element maxOccurs="1" minOccurs="0" name="invl-int" type="xs:int" nillable="true"/>
@@ -1000,6 +1064,12 @@
         range is particular to the patient and context, e.g. sex, age, and any other factor which
         affects ranges. May be used to represent normal, therapeutic, dangerous, critical etc
         ranges. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ReferenceRangeType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvAnyType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
@@ -1036,8 +1106,6 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
-
 
   <!--Common package types-->
 
@@ -1046,6 +1114,12 @@
       <xs:documentation>
         AuditType provides a mechanism to identifiy the who/where/when tracking of instances as they move from system to system.       
       </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/AuditType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
+          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="1" ref="s3m:System-id">
@@ -1085,7 +1159,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="PartyType">
     <xs:annotation>
       <xs:documentation> Description of a party, including an optional external link to data for
@@ -1093,6 +1167,12 @@
         element provides for the inclusion of information related to this party directly. If the
         party information is to be anonymous then do not include the details element. The string
         'Self' may be entered as the party-name if an external_ref is include. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/PartyType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
+          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="0" name="party-name" type="xs:string">
@@ -1130,6 +1210,12 @@
     <xs:annotation>
       <xs:documentation> Record an attestation by a party of item(s) of record content. The type of
         attestation is recorded by the reason attribute, which my be coded. </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/AttestationType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
+          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Attested-view">
@@ -1181,7 +1267,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="ParticipationType">
     <xs:annotation>
       <xs:documentation> Model of a participation of a Party (any Actor or Role) in an activity.
@@ -1189,6 +1275,12 @@
         the model, e.g. assisting nurse. Can be used to record past or future participations. Should
         not be used in place of more permanent relationships between demographic entities.
       </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ParticipationType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
+          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Performer">
@@ -1238,14 +1330,20 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType abstract="true" name="ExceptionalValueType">
     <xs:annotation>
-      <xs:documentation> Subtypes are used to indicate why a value is missing (Null) or is outside a
+      <xs:documentation>Subtypes are used to indicate why a value is missing (Null) or is outside a
         measurable range. The element ev-name is fixed in restricted types to a descriptive string.
         The subtypes defined in the reference model are considered sufficiently generic to be useful
-        in many instances. EMs may contain additional ExceptionalValueType restrictions.
+        in many instances. CMs may contain additional ExceptionalValueType restrictions.
       </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ExceptionalValueType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
+          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
@@ -1261,7 +1359,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="NIType">
     <xs:complexContent>
       <xs:restriction base="s3m:ExceptionalValueType">
@@ -1520,6 +1618,12 @@
     <xs:annotation>
       <xs:documentation>The abstract parent of ClusterType and DvAdapterType structural
         representation types.</xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ItemType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
+          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
   </xs:complexType>
   <xs:element abstract="true" name="Item" substitutionGroup="s3m:Data" type="s3m:ItemType">
@@ -1532,12 +1636,18 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <xs:complexType name="ClusterType">
     <xs:annotation>
       <xs:documentation>The grouping variant of Item, which may contain further instances of Item,
         in an ordered list. This provides the root Item for arbitrarily complex
         structures.</xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ClusterType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/ItemType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:ItemType">
@@ -1567,12 +1677,18 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
   <!-- Replacement for ElementType -->
   <xs:complexType name="DvAdapterType">
     <xs:annotation>
       <xs:documentation>The leaf variant of Item, to which any DvAnyType subtype instance is
         attached for use in a Cluster.</xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DAdapterType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAdapterType.html#DvAdapterType"/>
+          <rdfs:subClassOf rdf:resource="http://s3model.com/rm/1_0_0/DvItemType"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:ItemType">
@@ -1597,25 +1713,31 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
-  <!--Content / entry types -->
-  <xs:complexType name="EntryType">
+
+
+  <xs:complexType name="ConceptType">
     <xs:annotation>
       <xs:documentation>
-        An Entry is the root of a logical set of data items.
-        The Entry Model must contain metadata about the model. 
+        An Concept is the root of a logical set of data items.
+        The Concept Model must contain metadata about the model. 
         Mandatory DCTERMS; title, creator, rightsHolder, license, issued, format ('text/xml'), language and abstract.
-        Suggested but optional DCTERMS; constributors, relation 
+        Suggested but optional DCTERMS; contributors, relation 
       </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ConceptType">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType"/>
+          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="1" name="language" type="xs:language">
         <xs:annotation>
-          <xs:documentation>Mandatory indicator of the (predominate) localised language in which the text this Entry is
+          <xs:documentation>Mandatory indicator of the (predominate) localised language in which the text this Concept is
             written. The value space of language is the set of all strings that are valid language identifiers as defined in BCP 47.
           </xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_EntryType.html#EntryType_language">
+            <rdf:Description rdf:about="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language">
               <rdfs:isDefinedBy rdf:resource="https://tools.ietf.org/html/bcp47"/>
             </rdf:Description>
           </xs:appinfo>
@@ -1623,7 +1745,7 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="1" name="encoding" type="xs:string">
         <xs:annotation>
-          <xs:documentation>Name of character set encoding in which text values in this Entry are
+          <xs:documentation>Name of character set encoding in which text values in this Concept are
             encoded. Default should be utf-8.</xs:documentation>
         </xs:annotation>
       </xs:element>
@@ -1635,7 +1757,7 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="1" ref="s3m:Data">
         <xs:annotation>
-          <xs:documentation>The content data structure of the Entry.</xs:documentation>
+          <xs:documentation>The content data structure of the Concept.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Link">
@@ -1646,18 +1768,18 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Subject">
         <xs:annotation>
-          <xs:documentation>Identification of a human subject, company or other entity of this Entry, e.g. patient, organ donor,
+          <xs:documentation>Identification of a human subject, company or other entity of this Concept, e.g. patient, organ donor,
             a family member, shipper, etc. </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Participations">
         <xs:annotation>
-          <xs:documentation>List of other participations at Entry level.</xs:documentation>
+          <xs:documentation>List of other participations at Concept level.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Protocol">
         <xs:annotation>
-          <xs:documentation>Optional external identifier of protocol used to create this Entry. This
+          <xs:documentation>Optional external identifier of protocol used to create this Concept. This
             could be a clinical guideline, an operations protocol,etc.</xs:documentation>
         </xs:annotation>
       </xs:element>
@@ -1688,15 +1810,15 @@
   <xs:element name="Protocol" type="s3m:DvIdentifierType"/>
   <xs:element name="Workflow" type="s3m:DvLinkType"/>
   <xs:element name="Data" type="s3m:ItemType"/>
-  <xs:element name="Entry" type="s3m:EntryType">
+  <xs:element name="Concept" type="s3m:ConceptType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/Entry">
-          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_Entry.html#Entry"/>
-          <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/EntryType"/>
+        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/Concept">
+          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_Concept.html#Concept"/>
+          <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/ConceptType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
+
 </xs:schema>
