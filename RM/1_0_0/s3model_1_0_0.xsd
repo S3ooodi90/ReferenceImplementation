@@ -1601,10 +1601,7 @@
   <!--Content / entry types -->
   <xs:complexType name="EntryType">
     <xs:annotation>
-      <xs:documentation>The abstract parent of all Entry subtypes. An Entry is the root of a logical
-        set of data items. Each subtype has an identical information structure. The subtyping is
-        used to allow persistence to separate the types of Entries; primarily import in healthcare
-        for the de-identification of clinical information. </xs:documentation>
+      <xs:documentation>An Entry is the root of a logical set of data items.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="1" name="language" type="xs:language">
@@ -1692,33 +1689,6 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/Entry">
           <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_Entry.html#Entry"/>
           <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/EntryType"/>
-        </rdf:Description>
-      </xs:appinfo>
-    </xs:annotation>
-  </xs:element>
-  
-
-
-  <!--CM / concept model -->
-  <xs:complexType name="ConceptType">
-    <xs:annotation>
-      <xs:documentation>This is the root node of a Concept Model.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element maxOccurs="1" minOccurs="1" ref="s3m:Definition">
-        <xs:annotation>
-          <xs:documentation>Structural definition element for this Concept.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Definition" type="s3m:EntryType"/>
-  <xs:element name="Concept" type="s3m:ConceptType">
-    <xs:annotation>
-      <xs:appinfo>
-        <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/Concept">
-          <rdfs:isDefinedBy rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_Concept.html#Concept"/>
-          <rdf:type rdf:resource="http://s3model.com/rm/1_0_0/ConceptType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>

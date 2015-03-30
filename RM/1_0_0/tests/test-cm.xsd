@@ -16,61 +16,30 @@ xml:lang='en-US'>
   <!-- Include the Reference Model -->
   <xs:include schemaLocation='../s3model_1_0_0.xsd'/>
 
-  <!-- METADATA Section -->
-  <xs:annotation>
-    <xs:appinfo>
-    <rdf:RDF>
-    <rdf:Description rdf:about='http://cmgen.s3model.com/cmlib/cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10.xsd'>
-      <dc:title>Testing 1.0.0 Implementation</dc:title>
-      <dc:creator>Tim Cook tim@mlhim.org</dc:creator>
-      <dc:contributor>None</dc:contributor>
-      <dc:subject>Test</dc:subject>
-      <dc:source>http://www.s3model.com</dc:source>
-      <dc:rights>CC-BY http://creativecommons.org/licenses/by/3.0/</dc:rights>
-      <dc:relation>None</dc:relation>
-      <dc:coverage>Universal</dc:coverage>
-      <dc:type>Concept Model (CM)</dc:type>
-      <dc:identifier>cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10</dc:identifier>
-      <dc:description>
-        Testing CCD-Gen Implementation of the S3Model 1.0.0 RM functionality.
-      </dc:description>
-      <dc:publisher>TW Cook</dc:publisher>
-      <dc:date>2015-03-24</dc:date>
-      <dc:format>text/xml</dc:format>
-      <dc:language>en-US</dc:language>
-    </rdf:Description>
-  <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-87bc2bfb-1a34-4e21-9e99-3990d82c8c10'>
-  <rdfs:subClassOf rdf:resource='s3m:ConceptType'/>
-  <rdfs:label>Testing 1.0.0 Implementation</rdfs:label>
-  </rdf:Description>
-    </rdf:RDF>
-    </xs:appinfo>
-  </xs:annotation>
-
-  <!-- Concept Root Element -->
-  <xs:element name='cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10' type='s3m:ct-87bc2bfb-1a34-4e21-9e99-3990d82c8c10'/>
-  <xs:complexType name='ct-87bc2bfb-1a34-4e21-9e99-3990d82c8c10'> 
-    <xs:complexContent>
-      <xs:restriction base='s3m:ConceptType'>
-        <xs:sequence>
-          <xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3'/> <!-- definition -->
-        </xs:sequence>
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-
-    <!-- Concept Components -->
 
   <xs:complexType name='ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3'>
     <xs:annotation>
-    <xs:documentation>
-      Entry for testing 1.0.0
-    </xs:documentation>
-    <xs:appinfo>
-    <rdf:Description rdf:about='http://www.s3model.com/rm/s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3'>
-    <rdfs:subClassOf rdf:resource='s3m:EntryType'/>
-    </rdf:Description>
-    </xs:appinfo>
+      <xs:appinfo>
+        <rdf:Description rdf:about='http://cmgen.s3model.com/cmlib/cm-15ca606c-303a-4862-8f5e-df8f39e8bfc3.xsd'>
+          <dc:title>Testing 1.0.0 Implementation</dc:title>
+          <dc:creator>Tim Cook tim@mlhim.org</dc:creator>
+          <dc:contributor>None</dc:contributor>
+          <dc:subject>Test</dc:subject>
+          <dc:source>http://www.s3model.com</dc:source>
+          <dc:rights>CC-BY http://creativecommons.org/licenses/by/3.0/</dc:rights>
+          <dc:relation>None</dc:relation>
+          <dc:coverage>Universal</dc:coverage>
+          <dc:type>Concept Model (CM)</dc:type>
+          <dc:identifier>cm-15ca606c-303a-4862-8f5e-df8f39e8bfc3</dc:identifier>
+          <dc:description>
+            Testing Implementation of the S3Model 1.0.0 RM functionality.
+          </dc:description>
+          <dc:publisher>TW Cook</dc:publisher>
+          <dc:date>2015-03-24</dc:date>
+          <dc:format>text/xml</dc:format>
+          <dc:language>en-US</dc:language>
+        </rdf:Description>
+      </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:restriction base='s3m:EntryType'>
@@ -1804,7 +1773,6 @@ Examples:
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:element name='el-15ca606c-303a-4862-8f5e-df8f39e8bfc3' substitutionGroup='s3m:Definition' type='s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3'/>
   <xs:element name='el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f' substitutionGroup='s3m:Link' type='s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f'/>
   <xs:element name='el-7b1c4fad-90f9-4d28-af58-3e59ecb00066' substitutionGroup='s3m:Link' type='s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066'/>
   <xs:element name='el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16' substitutionGroup='s3m:Audit' type='s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16'/>
@@ -1838,5 +1806,5 @@ Examples:
   <xs:element name='el-eeaddd88-4a85-4e27-9ece-337f910ef81b' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b'/>
   <xs:element name='el-a68202e8-f161-4c80-931c-b97d9eb2b22b' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b'/>
   <xs:element name='el-8ae6d78b-394b-455e-a5e4-f55897f92a77' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77'/>
-
+  <xs:element name="el-15ca606c-303a-4862-8f5e-df8f39e8bfc3" substitutionGroup="s3m:Entry" type="s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3"></xs:element>
 </xs:schema>

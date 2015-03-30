@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<s3m:cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+<s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
  xmlns:s3m="http://www.s3model.com/rm"
@@ -10,7 +10,7 @@
  xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.s3model.com/rm file:/home/tim/S3Model/S3Model/RM/1_0_0/tests/test-cm.xsd">
-  <s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3>
+
     <language>en-US</language>
     <encoding>utf-8</encoding>
     <current-state>testing me</current-state>
@@ -412,4 +412,3 @@
       <timestamp>2006-05-04T18:13:51.0</timestamp>
     </s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16>
   </s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3>
-</s3m:cm-87bc2bfb-1a34-4e21-9e99-3990d82c8c10>
