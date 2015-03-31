@@ -15,6 +15,8 @@ The default config.ini file looks like this:
     RDF_PATH = rdf_data/
 
 
+This is what option means:
+
     RM_PATH - this is where your reference model schema(s) is/are located.
     CM_PATH - this is where your concept model schema(s) is/are located.
     XML_PATH - this is the location of your XML data instances.
