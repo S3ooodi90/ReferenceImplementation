@@ -9,13 +9,13 @@ Edit the config.ini file with a text editor to set the proper paths for your ins
 The default config.ini file looks like this:
 
     [PATHS]
-    RM_PATH = RM_LIB/
-    CM_PATH = CM_LIB/ 
+    RM_PATH = rm_lib/
+    CM_PATH = cm_lib/ 
     XML_PATH = xml_data/ 
     RDF_PATH = rdf_data/
 
 
-This is what option means:
+This is what each option means:
 
     RM_PATH - this is where your reference model schema(s) is/are located.
     CM_PATH - this is where your concept model schema(s) is/are located.
@@ -23,4 +23,13 @@ This is what option means:
     RDF_PATH - this is the output directory to write your RDF files into. 
 
 
-    
+
+The generator examines your data to determine the required concept model schema(s). Then it looks at those schemas to determine the required reference model schema(s).    
+
+If required schemas are missing the generator exits with an error message explaining what is missing. 
+
+Once all schemas have been located the generator will create an RDF/XML file for each reference model, each concept model and each XML data file, in the RDF_PATH root directory.  
+
+These files are now ready to be imported to your Triple Store. 
+
+
