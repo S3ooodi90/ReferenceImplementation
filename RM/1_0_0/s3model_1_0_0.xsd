@@ -4,6 +4,8 @@
   xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
   xmlns:s3m="http://www.s3model.com/rm" xmlns:sch="http://purl.oclc.org/dsdl/schematron"
   targetNamespace="http://www.s3model.com/rm" vc:minVersion="1.1">
+  
+  <!-- Reference Model class definition as part of the S3Model system. -->
   <xs:annotation>
     <xs:documentation> 
       This work is Copyright 2015 Timothy W. Cook, All Rights Reserved.
@@ -15,6 +17,11 @@
       Further documentation and implementation instructions can be found on or via links from http://www.S3Model.com
     </xs:documentation>
     <xs:appinfo>
+      <owl:Class rdf:about="http://www.s3model.com/">
+        <rdfs:label xml:lang="en">S3Model</rdfs:label>
+        <rdfs:comment>Shareable-Semantic-Syntactic Model (S3Model) is a system designed to provide computable, semantic and
+        syntactic interoperability between applications and across domains.</rdfs:comment>
+      </owl:Class>
       <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd">
         <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/rm/1_0_0/docs/html/rm_1_0_0.html"/>
       </rdf:Description>
@@ -29,7 +36,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvAnyType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType"/>
-          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+          <dct:subClassOf rdf:resource="S3Model"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1184,7 +1191,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/AuditType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
-          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+          <dct:subClassOf rdf:resource="S3Model"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1241,7 +1248,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/PartyType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
-          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+          <dct:subClassOf rdf:resource="S3Model"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1286,7 +1293,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/AttestationType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
-          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+          <dct:subClassOf rdf:resource="S3Model"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1353,7 +1360,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ParticipationType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
-          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+          <dct:subClassOf rdf:resource="S3Model"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1418,7 +1425,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ExceptionalValueType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
-          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+          <dct:subClassOf rdf:resource="S3Model"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1700,7 +1707,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ItemType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
-          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+          <dct:subClassOf rdf:resource="S3Model"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1811,7 +1818,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ConceptType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType"/>
-          <dct:isPartOf rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
+          <dct:subClassOf rdf:resource="S3Model"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>

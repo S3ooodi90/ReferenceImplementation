@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdf:RDF 
+  xmlns:s3m="http://www.s3model.com/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <owl:Ontology rdf:about="http://www.s3model.com/">
+    <rdfs:label>S3Model Ontology</rdfs:label>
+    <rdfs:comment>This is the Shareable-Semantic-Syntactic Model (S3Model) base ontology. 
+      It must be imported by all reference model ontologies.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource='http://www.s3model.com/'/>
+  </owl:Ontology>
+  
+  <owl:Class rdf:about="http://www.s3model.com/">
+    <rdfs:label xml:lang="en">S3Model</rdfs:label>
+    <rdfs:comment>Shareable-Semantic-Syntactic Model (S3Model) is a system designed to provide computable, semantic and
+      syntactic interoperability between applications and across domains.</rdfs:comment>
+  
+  </owl:Class>
+  
+</rdf:RDF>  
