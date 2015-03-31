@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD XML Catalogs V1.1//EN" "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+
+<!-- 
+  This example shows how to redirect for your local ontology, reference model and CM schemas. 
+  So there root path would be '/home/MLHIM'. The RM schemas are in this directory and a subdirectory named 'CCD_Library' is where all of your CCD
+  schemas are located.  You should edit the 'uri=' and the 'rewritePrefix=' values to match you implementation. 
+-->
+
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+  <!-- S3Model Base Ontology -->
+  <uri name="http://www.s3model.com/s3model.owl" uri="/home/tim/S3Model/S3Model/s3model.owl"/>
+  
+  <!-- S3Model 1.0.0 RM XML Schema -->
+  <uri name="http://www.s3model.com/rm/s3model_1_0_0.xsd" uri="/home/tim/S3Model/S3Model/RM/1_0_0/s3model_1_0_0.xsd"/>
+ 
+  <!-- Concept Models -->
+  <rewriteSystem systemIdStartString="http://www.s3model.com/lib/" rewritePrefix="/home/S3Model/S3Model/lib/"/>
+</catalog>

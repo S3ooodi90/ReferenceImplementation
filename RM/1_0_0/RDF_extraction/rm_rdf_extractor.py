@@ -25,6 +25,7 @@ def main():
             's3m':'http://www.s3model.com/rm'}
 
     parser = etree.XMLParser(ns_clean=True, recover=True)
+    owl_info = etree.XPath("//xs:annotation/xs:appinfo/owl:Ontology", namespaces=nsDict)
     rdf_info = etree.XPath("//xs:annotation/xs:appinfo/rdf:Description", namespaces=nsDict)
     dest = open('rdf/rm_semantics.rdf', 'w')
 
@@ -35,7 +36,11 @@ def main():
     tree = etree.parse(src, parser)
     root = tree.getroot()
 
+    owl = owl_info(root)
     rdf = rdf_info(root)
+
+    for r in owl:
+        dest.write('  '+etree.tostring(r).decode('utf-8').strip()+'\n')
 
     for r in rdf:
         dest.write('  '+etree.tostring(r).decode('utf-8').strip()+'\n')

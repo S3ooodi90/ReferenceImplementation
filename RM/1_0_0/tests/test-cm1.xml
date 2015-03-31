@@ -2,14 +2,14 @@
 <s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
- xmlns:s3m="http://www.s3model.com/rm"
+ xmlns:s3m="http://www.s3model.com/"
  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
  xmlns:owl="http://www.w3.org/2002/07/owl#"
  xmlns:dc="http://purl.org/dc/elements/1.1/"
  xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
  xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.s3model.com/rm file:/home/tim/S3Model/S3Model/RM/1_0_0/tests/test-cm.xsd">
+ xsi:schemaLocation="http://www.s3model.com/ file:/home/tim/S3Model/S3Model/RM/1_0_0/tests/test-cm.xsd">
 
     <language>en-US</language>
     <encoding>utf-8</encoding>

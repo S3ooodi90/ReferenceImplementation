@@ -2,8 +2,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dct="http://purl.org/dc/terms/"
   xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
-  xmlns:s3m="http://www.s3model.com/rm" xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-  targetNamespace="http://www.s3model.com/rm" vc:minVersion="1.1">
+  xmlns:s3m="http://www.s3model.com/" xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  targetNamespace="http://www.s3model.com/" vc:minVersion="1.1">
   
   <!-- Reference Model class definition as part of the S3Model system. -->
   <xs:annotation>
@@ -14,17 +14,14 @@
       The S3Model RM consists of the core datatypes and structures for S3Model domain concept models, called 
       Concept Models (CMs).
       
-      Further documentation and implementation instructions can be found on or via links from http://www.S3Model.com
+      Further documentation and implementation instructions can be found at (or via links from) http://www.S3Model.com
     </xs:documentation>
     <xs:appinfo>
-      <owl:Class rdf:about="http://www.s3model.com/">
-        <rdfs:label xml:lang="en">S3Model</rdfs:label>
-        <rdfs:comment>Shareable-Semantic-Syntactic Model (S3Model) is a system designed to provide computable, semantic and
-        syntactic interoperability between applications and across domains.</rdfs:comment>
-      </owl:Class>
-      <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd">
-        <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/rm/1_0_0/docs/html/rm_1_0_0.html"/>
-      </rdf:Description>
+      <owl:Ontology rdf:about="http://www.s3model.com/rm/s3model_1_0_0.xsd">
+        <rdfs:label>S3Model RM 1.0.0</rdfs:label>
+        <rdfs:comment>This is the Shareable-Semantic-Syntactic Model (S3Model) Reference Model 1.0.0.</rdfs:comment>
+        <owl:imports rdf:resource="http://www.s3model.com/s3model.owl"/>
+      </owl:Ontology>
     </xs:appinfo>
   </xs:annotation>
 
@@ -36,7 +33,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvAnyType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType"/>
-          <dct:subClassOf rdf:resource="S3Model"/>
+          <dct:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -466,8 +463,7 @@
           <xs:element maxOccurs="1" minOccurs="1" name="size" type="xs:int">
             <xs:annotation>
               <xs:documentation>Original size in bytes of unencoded encapsulated data. I.e.
-                encodings such as base64, hexadecimal, etc do not change the value of this
-                attribute.</xs:documentation>
+                encodings such as base64, hexadecimal, etc. do not change the value of this element.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="encoding" type="xs:string">
@@ -481,11 +477,9 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="language" type="xs:language">
             <xs:annotation>
-              <xs:documentation>Optional indicator of the localised language in which the value is
-                written. Coded IAW IETF RFC 5646. http://tools.ietf.org/html/rfc5646 language tag
-                information should be used from the IANA registry
-                http://www.iana.org/assignments/language-subtag-registry Only used when the text
-                object is in a different language from the enclosing CM.</xs:documentation>
+              <xs:documentation>Optional indicator of the localised language of the content. 
+                Typically reamins optional in the CM and used at runtime when the content is in a different 
+                language from the enclosing CM.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -507,10 +501,10 @@
 
   <xs:complexType name="DvParsableType">
     <xs:annotation>
-      <xs:documentation>Encapsulated data expressed as a parsable String. The internal model of the
+      <xs:documentation>Encapsulated data expressed as a parsable string. The internal model of the
         data item is not described in the S3Model model, but in this case, the form of the data is
         assumed to be plain-text, rather than compressed or other types of large binary data. If the
-        content is to be binary data then use a DvMedia. </xs:documentation>
+        content is to be binary data or a format with a defined MIME type, then use a DvMediaType.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvParsableType">
           <rdfs:isDefinedBy
@@ -524,14 +518,15 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="0" name="dvparsable-value" type="xs:string">
             <xs:annotation>
-              <xs:documentation>The string, which may validly be empty in some
-                syntaxes.</xs:documentation>
+              <xs:documentation>The parsable string, which may validly be empty in some syntaxes.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="formalism" type="xs:string">
             <xs:annotation>
-              <xs:documentation>Name of the formalism, e.g. 'GLIF 1.0', 'ADL 1.4',
-                etc.</xs:documentation>
+              <xs:documentation>Name of the formalism or syntax used to inform an application regarding 
+                a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.
+                Parsable text-based formats that have a MIME type assigned, such as XML, XHTML, etc. should use DvMediaType. 
+              </xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -552,9 +547,8 @@
 
   <xs:complexType name="DvMediaType">
     <xs:annotation>
-      <xs:documentation>A specialisation of DvEncapsulated for audiovisual and bio-signal types.
-        Includes further metadata relating to media types which are not applicable to other subtypes
-        of DvEncapsulatedType.</xs:documentation>
+      <xs:documentation>A specialisation of DvEncapsulated for image, audio and other media types with a defined MIME type.
+        Includes further metadata relating to media types which are not applicable to other subtypes of DvEncapsulatedType.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/DvMediaType">
           <rdfs:isDefinedBy
@@ -1191,7 +1185,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/AuditType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
-          <dct:subClassOf rdf:resource="S3Model"/>
+          <dct:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1248,7 +1242,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/PartyType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
-          <dct:subClassOf rdf:resource="S3Model"/>
+          <dct:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1293,7 +1287,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/AttestationType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
-          <dct:subClassOf rdf:resource="S3Model"/>
+          <dct:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1360,7 +1354,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ParticipationType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
-          <dct:subClassOf rdf:resource="S3Model"/>
+          <dct:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1425,7 +1419,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ExceptionalValueType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
-          <dct:subClassOf rdf:resource="S3Model"/>
+          <dct:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1707,7 +1701,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ItemType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
-          <dct:subClassOf rdf:resource="S3Model"/>
+          <dct:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1818,7 +1812,7 @@
         <rdf:Description rdf:about="http://s3model.com/rm/1_0_0/ConceptType">
           <rdfs:isDefinedBy
             rdf:resource="http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType"/>
-          <dct:subClassOf rdf:resource="S3Model"/>
+          <dct:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
