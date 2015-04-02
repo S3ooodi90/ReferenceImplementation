@@ -20,26 +20,8 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#">
     <owl:Ontology rdf:about="http://www.s3model.com/rm/s3model_1_0_0">
-        <dc:description rdf:datatype="&xsd;string">This is the Multi-Level Healthcare Information Modelling (MLHIM) project
-      reference model implementation in RDF/XML MLHIM Release 2.4.6 It consists of the core structures for MLHIM models, called Concept Constraint Definitions (CCDs).
-      Further documentation and implementation instructions can be found on or via links from
-      http://www.mlhim.org The abbreviations &apos;Dv&apos; and &apos;dv&apos; in the complexType and element names
-      refer to the words; Data Value. Dvs are the leaf datatypes in MLHIM along 
-     
-      This work is Copyright 2009-2014 Timothy W. Cook
-      
-      Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-      you may not use this file except in compliance with the License.
-      You may obtain a copy of the License at
-      
-      http://www.apache.org/licenses/LICENSE-2.0
-      
-      Unless required by applicable law or agreed to in writing, software
-      distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-      See the License for the specific language governing permissions and
-      limitations under the License.</dc:description>
-        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI">http://www.mlhim.org/xmlns/mlhim2/mlhim246.xsd</rdfs:isDefinedBy>
+        <dc:description rdf:datatype="&xsd;string">This is the S3Model reference model implementation in RDF/XML.</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI">http://www.s3model.com/rm/s3model_1_0_0.xsd</rdfs:isDefinedBy>
         <owl:imports rdf:resource="http://purl.org/dc/elements/1.1/"/>
         <owl:imports rdf:resource="http://www.s3model.com/s3model.owl"/>
         <owl:versionIRI rdf:resource="http://www.s3model.com/rm/s3model_1_0_0"/>
@@ -178,6 +160,25 @@
                 SNOMEDCT.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvQuantityType"/>
         <rdfs:range rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvString"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#RatioTypeRef -->
+
+    <owl:ObjectProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#RatioTypeRef">
+        <rdfs:comment rdf:datatype="&xsd;string">Indicates semantic type of ratio must be set as fixed to one of the
+                below strings in CM complexType restrictions. 
+                
+                ratio = a relationship between two numbers. 
+                
+                proportion = a relationship between two numbers where there is a bi-univocal relationship between
+                   the numerator and the denominator (the numerator is contained in the denominator)
+                
+                rate = a relationship between two numbers where there is not a bi-univocal
+                relationship between the numerator and the denominator (the numerator is not
+                contained in the denominator)</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvRatioType"/>
     </owl:ObjectProperty>
     
 
@@ -1286,12 +1287,12 @@ Elements dvordinal-value and symbol MUST have exactly the same number of enumera
 
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvRatioType">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvQuantifiedType"/>
-        <dc:description rdf:datatype="&xsd;string">Models a ratio of values, i.e. where the numerator and denominator are both
+        <rdfs:comment rdf:datatype="&xsd;string">Models a ratio of values, i.e. where the numerator and denominator are both
         pure numbers. Should not be used to represent things like blood pressure which are often
         written using a ‘/’ character, giving the misleading impression that the item is a ratio,
         when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.)
-        “6/24” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols
-        like CF = count fingers etc). Should not be used for formulations.</dc:description>
+        “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols
+        like CF = count fingers etc). Should not be used for formulations.</rdfs:comment>
     </owl:Class>
     
 
@@ -1854,9 +1855,7 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvRatioElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvRatioElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvRatioType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvRatioElement"/>
     
 
 
@@ -2107,14 +2106,6 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointProperties"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#data-name"/>
-            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#vtb"/>
-            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#vte"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointProperties"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-date"/>
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-dateTime"/>
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-decimal"/>
@@ -2122,6 +2113,14 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-float"/>
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-int"/>
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-time"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointProperties"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#data-name"/>
+            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#vtb"/>
+            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#vte"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

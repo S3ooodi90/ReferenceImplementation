@@ -131,7 +131,7 @@
     <xs:annotation>
       <xs:documentation>The string data type can contain characters, line feeds, carriage returns,
         and tab characters. The usecases are for any free form text entry or for any enumerated lists.
-        Additionally the minimum and maximum lenghts may be set and regular expression patterns may be specified.
+        Additionally the minimum and maximum lengths may be set and regular expression patterns may be specified.
       </xs:documentation>
     </xs:annotation>
     <xs:complexContent>
@@ -146,7 +146,7 @@
             <xs:annotation>
               <xs:documentation>Optional indicator of the localised language in which this data-type
                 is written. The value space of language is the set of all strings that are valid
-                language identifiers as defined BCP 47 . Only required when the language used
+                language identifiers as defined BCP 47. Only required when the language used
                 here is different from the enclosing Concept.</xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -155,81 +155,6 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="DvString" substitutionGroup="s3m:DvAny" type="s3m:DvStringType"/>
-
-  <xs:complexType name="DvCodedStringType">
-    <xs:annotation>
-      <xs:documentation>A text item whose dvstring-value element must be the name or description
-        from a controlled vocabulary. The key (i.e. the 'code') of which is the item from a terminology
-        or the class name from an ontology. In some cases, dvstring-value and vocab-code may have the same
-        content. Other times the user facing options for dvstring-value will be a more domain specific name.
-        
-        In CM implementations the options are always restricted via enumerations and each of the elements; 
-        dvstring-value, vocab-uri and vocab-code MUST have the same number of enumerations.        
-      </xs:documentation>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="s3m:DvStringType">
-        <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="0" name="vocab-uri" type="xs:anyURI">
-            <xs:annotation>
-              <xs:documentation>The full URI of the source vocabulary/ontology and item/class name.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="vocab-code" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>The uniquely identifiable code string from the vocabulary/ontology.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="DvCodedString" substitutionGroup="s3m:DvString s3m:DvAny" type="s3m:DvCodedStringType"/>
-
-
-  <xs:complexType name="DvIdentifierType">
-    <xs:annotation>
-      <xs:documentation>Type for representing identifiers of real-world entities. Typical
-        identifiers include: drivers licence number, social security number, veterans affairs
-        number, prescription id, order id, system id and so on. 
-        The actual identifier value is entered into the dvstring-value.
-        
-        The elements id-name, issuer and assignor SHOULD be constrained in the CM with enumerations and each of 
-        these elements MUST have the same numer of enumerations. 
-      </xs:documentation>
-      <!--TODO: ASSERT DEVELOPMENT TEST -->
-      <xs:appinfo>
-        <DerivedAssert
-          test="count(.//xs:element[@name='issuer']//xs:enumeration) = count(.//xs:element[@name='assignor']//xs:enumeration)"
-          message="Number of enumerations needs to be the same for elements issuer assignor."/>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="s3m:DvStringType">
-        <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="0" name="id-name" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>The identifier common name, such as “Driver's License” or
-                “SSN”. This elements enumerations are the ones that are typically user facing.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="issuer" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>Authority which issues the kind of id used in the id field of this
-                object. Should be a well known name within the domain. May be a URI.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="assignor" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>Organisation that assigned the id to the item being
-                identified. Should be a well known name within the domain. May be a URI.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="DvIdentifier" substitutionGroup="s3m:DvString s3m:DvAny" type="s3m:DvIdentifierType"/>
 
   <xs:complexType abstract="true" name="DvEncapsulatedType">
     <xs:annotation>
@@ -367,7 +292,7 @@
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
         <xs:sequence>
-          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ReferenceRange">
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="reference-range" type="s3m:ReferenceRangeType">
             <xs:annotation>
               <xs:documentation>Optional list of ReferenceRanges for this value in its particular
                 measurement context</xs:documentation>
@@ -668,12 +593,12 @@
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="0" name="lower" type="s3m:InvlType">
+          <xs:element maxOccurs="1" minOccurs="1" name="lower" type="s3m:InvlType">
             <xs:annotation>
               <xs:documentation> Defines the lower value of the interval. </xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="upper" type="s3m:InvlType">
+          <xs:element maxOccurs="1" minOccurs="1" name="upper" type="s3m:InvlType">
             <xs:annotation>
               <xs:documentation> Defines the upper value of the interval. </xs:documentation>
             </xs:annotation>
@@ -745,7 +670,7 @@
                 “critical”, “therapeutic” etc.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="1" ref="s3m:DvInterval">
+          <xs:element maxOccurs="1" minOccurs="1" name='data-range' type="s3m:DvIntervalType">
             <xs:annotation>
               <xs:documentation>The data range for this meaning.</xs:documentation>
             </xs:annotation>
@@ -797,7 +722,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="System-user" type="s3m:PartyType"/>
-  <xs:element name="System-id" type="s3m:DvIdentifierType"/>
+  <xs:element name="System-id" type="s3m:DvStringType"/>
   <xs:element name="Location" type="s3m:ItemType"/>
   <xs:element name="Audit" type="s3m:AuditType"/>
 
@@ -815,21 +740,19 @@
           <xs:documentation>Optional human-readable name (in String form).</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Party-ref">
+      <xs:element maxOccurs="1" minOccurs="0" name='party-ref' type="s3m:DvLinkType">
         <xs:annotation>
           <xs:documentation>Optional reference to more detailed demographic or identification
             information for this party, in an external system.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Party-details">
+      <xs:element maxOccurs="1" minOccurs="0" name="party-details" type="s3m:ClusterType">
         <xs:annotation>
           <xs:documentation>Embedded details about the party.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Party-ref" type="s3m:DvLinkType"/>
-  <xs:element name="Party-details" type="s3m:ItemType"/>
   <xs:element name="Party" type="s3m:PartyType"/>
 
   <xs:complexType name="AttestationType">
@@ -838,24 +761,23 @@
         attestation is recorded by the reason attribute, which my be coded. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Attested-view">
+      <xs:element maxOccurs="1" minOccurs="0" name="attested-view" type="s3m:DvMediaType">
         <xs:annotation>
           <xs:documentation>Optional visual representation of content attested e.g. screen image.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Proof">
+      <xs:element maxOccurs="1" minOccurs="0" name="proof" type="s3m:DvParsableType">
         <xs:annotation>
           <xs:documentation>Proof of attestation such as an GPG signature. </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Reason">
+      <xs:element maxOccurs="1" minOccurs="0" name="reason" type="s3m:DvStringType">
         <xs:annotation>
-          <xs:documentation>Reason of this attestation. Coded from a standardized
-            vocabulary.</xs:documentation>
+          <xs:documentation>Reason of this attestation. Coded from a standardized vocabulary.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Committer">
+      <xs:element maxOccurs="1" minOccurs="0" name="committer" type="s3m:PartyType">
         <xs:annotation>
           <xs:documentation>Identity of person who committed the item. </xs:documentation>
         </xs:annotation>
@@ -873,10 +795,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Attested-view" type="s3m:DvMediaType"/>
-  <xs:element name="Proof" type="s3m:DvParsableType"/>
-  <xs:element name="Reason" type="s3m:DvStringType"/>
-  <xs:element name="Committer" type="s3m:PartyType"/>
   <xs:element name="Attestation" type="s3m:AttestationType"/>
 
   <xs:complexType name="ParticipationType">
@@ -888,24 +806,24 @@
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Performer">
+      <xs:element maxOccurs="1" minOccurs="0" name="performer" type="s3m:PartyType">
         <xs:annotation>
           <xs:documentation>The id and possibly demographic system link of the party participating
             in the activity. </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Function">
+      <xs:element maxOccurs="1" minOccurs="0" name="function" type="s3m:DvStringType">
         <xs:annotation>
           <xs:documentation>The function of the Party in this participation (note that a given party
             might participate in more than one way in a particular activity). In some applications
-            this might be called a Role.</xs:documentation>
+            this might be called a Role. A local vocabulary may be defined for use here.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Mode">
+      <xs:element maxOccurs="1" minOccurs="0" name="mode" type="s3m:DvStringType">
         <xs:annotation>
           <xs:documentation>The mode of the performer / activity interaction, e.g. present, by
             telephone, by email etc. If the participation is by device or software it may contain a
-            protocol standard or interface definition. </xs:documentation>
+            protocol standard or interface definition. A local vocabulary may be defined for use here.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="start-time" type="xs:dateTime">
@@ -922,9 +840,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Performer" type="s3m:PartyType"/>
-  <xs:element name="Function" type="s3m:DvStringType"/>
-  <xs:element name="Mode" type="s3m:DvStringType"/>
   <xs:element name="Participation" type="s3m:ParticipationType"/>
 
   <xs:complexType abstract="true" name="ExceptionalValueType">
@@ -1198,7 +1113,7 @@
       <xs:documentation>The abstract parent of ClusterType and DvAdapterType structural representation types.</xs:documentation>
     </xs:annotation>
   </xs:complexType>
-  <xs:element abstract="true" name="Item" substitutionGroup="s3m:Data" type="s3m:ItemType"/>
+  <xs:element abstract="true" name="Item" type="s3m:ItemType"/>
 
   <xs:complexType name="ClusterType">
     <xs:annotation>
@@ -1276,43 +1191,37 @@
             identified in the Workflow element, as a string.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="1" ref="s3m:Data">
+      <xs:element maxOccurs="1" minOccurs="1" name="data" type="s3m:ClusterType">
         <xs:annotation>
           <xs:documentation>The content data structure of the Concept.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Link">
-        <xs:annotation>
-          <xs:documentation>Optional link(s) to other locatable structures or external
-            entities.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Subject">
+      <xs:element maxOccurs="1" minOccurs="0" name='subject' type="s3m:PartyType">
         <xs:annotation>
           <xs:documentation>Identification of a human subject, company or other entity of this Concept, 
             e.g. patient, organ donor,  a family member, shipper, etc. </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Participations">
+      <xs:element maxOccurs="1" minOccurs="0" name="protocol" type="s3m:DvLinkType">
         <xs:annotation>
-          <xs:documentation>List of other participations at Concept level.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Protocol">
-        <xs:annotation>
-          <xs:documentation>Optional external identifier of protocol used to create this Concept. This
+          <xs:documentation>Optional external link to the protocol used to create this Concept. This
             could be a clinical guideline, an operations protocol,etc.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Workflow">
+      <xs:element maxOccurs="1" minOccurs="0" name="workflow" type="s3m:DvLinkType">
         <xs:annotation>
-          <xs:documentation>Identifier of externally held workflow engine (state machine) data for
+          <xs:documentation>Optional link to externally held workflow engine (state machine) data for
             this workflow execution.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Attestation">
+      <xs:element maxOccurs="1" minOccurs="0" name="attested" type="s3m:AttestationType">
         <xs:annotation>
           <xs:documentation>Attestation recorded.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Participation">
+        <xs:annotation>
+          <xs:documentation>List of other participations at Concept level.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Audit">
@@ -1322,14 +1231,15 @@
             node.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Link">
+        <xs:annotation>
+          <xs:documentation>Optional link(s) to other locatable structures or external
+            entities.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Link" type="s3m:DvLinkType"/>
-  <xs:element name="Subject" type="s3m:PartyType"/>
-  <xs:element name="Participations" type="s3m:ParticipationType"/>
-  <xs:element name="Protocol" type="s3m:DvIdentifierType"/>
-  <xs:element name="Workflow" type="s3m:DvLinkType"/>
-  <xs:element name="Data" type="s3m:ItemType"/>
   <xs:element name="Concept" type="s3m:ConceptType"/>
 
 </xs:schema>
