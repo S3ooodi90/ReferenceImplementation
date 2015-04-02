@@ -201,8 +201,8 @@ xml:lang='en-US'>
             <xs:element maxOccurs='1' minOccurs='1' name='assignor'>
               <xs:simpleType>
                 <xs:restriction base='xs:string'>
-                  <xs:enumeration value='Owner'/>
-                  <xs:enumeration value='Owner'/>
+                  <xs:enumeration value='http://www.mlhim.org'/>
+                  <xs:enumeration value='http://www.mlhim.org'/>
                 </xs:restriction>
               </xs:simpleType>
             </xs:element>
@@ -1597,12 +1597,221 @@ Examples:
       <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-697e8df2-7890-4f44-8442-e7f2beab4425'/><!-- DvBoolean Fever duration: 3 weeks or less-->
       <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-d05d35e1-4452-47a4-a7c5-58d1aac8bf64'/><!-- DvBoolean Test DvBoolean-->
       <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-e9cbb207-9e89-416c-8b71-7cdb859b3097'/><!-- DvString Blood Pressure Device -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-78f38614-fce7-463c-a332-f4846d00818a'/><!-- DvQuantity Body Temperature -->
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-d4fd6e5a-875e-4512-8bdd-492498237341'/><!-- DvCount Heart Rate -->
+       <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-90d5df6f-b3ef-4d53-93d2-de4a5afdb18f'/><!-- DvRatio Test Ratio -->
         </xs:sequence>
         </xs:restriction>
       </xs:complexContent>
     </xs:complexType>
 
+  <xs:element name='el-d4fd6e5a-875e-4512-8bdd-492498237341' substitutionGroup='s3m:Items' type='s3m:ct-d4fd6e5a-875e-4512-8bdd-492498237341'/>
+  <xs:complexType name='ct-d4fd6e5a-875e-4512-8bdd-492498237341'> <!-- Adapter for: Heart Rate -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-7146bea3-49d6-4d6b-be66-cf1a16ebac4d'/> <!-- Reference to: Heart Rate for Testing 2.4.6 -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  <xs:complexType name='ct-7146bea3-49d6-4d6b-be66-cf1a16ebac4d' xml:lang='en-US'> <!-- Heart Rate for Testing 2.4.6 -->
+    <xs:annotation>
+      <xs:documentation>
+        Test PcT of Heart Rate.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about='http://www.mlhim.org/xmlns/s3m:ct-7146bea3-49d6-4d6b-be66-cf1a16ebac4d'>
+          <rdfs:subClassOf rdf:resource='s3m:DvCountType'/>
+          <rdfs:label>Heart Rate for Testing 2.4.6</rdfs:label>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvCountType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Heart Rate for Testing 2.4.6"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ReferenceRange'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' default='Normal heart rate'/> 
+          <xs:element maxOccurs='1' minOccurs='1'  name='magnitude' type='xs:decimal'/>
+          <xs:element maxOccurs='1' minOccurs='0' name="magnitude-status" type="s3m:MagnitudeStatus"/>
+          <xs:element maxOccurs='1' minOccurs='1' name='error'  type='xs:int' default='0'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='accuracy' type='xs:int' default='0'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='units' type='s3m:ct-8e63854d-e78a-43e0-944f-3c14767edb39'/> <!-- DvCount-units -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  <xs:complexType name='ct-5f5d5ee5-71d1-4d23-befc-77b69b208321' xml:lang='en-US'> <!-- Test Ratio -->
+    <xs:annotation>
+      <xs:documentation>
+        A DvRatio for testing.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about='http://www.mlhim.org/xmlns/s3m:ct-5f5d5ee5-71d1-4d23-befc-77b69b208321'>
+          <rdfs:subClassOf rdf:resource='s3m:DvRatioType'/>
+          <rdfs:label>Test Ratio</rdfs:label>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvRatioType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Test Ratio"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-76417a55-6ebd-49ce-8db7-8253a9e02e1f'/> <!-- reference-ranges -->
+          <xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' default=''/> 
+          <xs:element maxOccurs='1' minOccurs='0' name='magnitude' type='xs:decimal'/>
+          <xs:element maxOccurs='1' minOccurs='0' name="magnitude-status" type="s3m:MagnitudeStatus"/>
+          <xs:element maxOccurs='1' minOccurs='1' name='error'  type='xs:int' default='0'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='accuracy' type='xs:int' default='0'/>
+          <xs:element maxOccurs='1' minOccurs='1' name="ratio-type" type="s3m:RatioType" fixed='ratio'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='numerator' type='xs:decimal'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='denominator'  type='xs:decimal'/>          
+          <xs:element maxOccurs='1' minOccurs='0' name="numerator-units" type='s3m:ct-8e63854d-e78a-43e0-944f-3c14767edb39'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='denominator-units' type='s3m:ct-8e63854d-e78a-43e0-944f-3c14767edb39'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='ratio-units' type='s3m:ct-8e63854d-e78a-43e0-944f-3c14767edb39'/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name='el-90d5df6f-b3ef-4d53-93d2-de4a5afdb18f' substitutionGroup='s3m:Items' type='s3m:ct-90d5df6f-b3ef-4d53-93d2-de4a5afdb18f'/>
+  <xs:complexType name='ct-90d5df6f-b3ef-4d53-93d2-de4a5afdb18f'> <!-- Adapter for: Test Ratio -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-5f5d5ee5-71d1-4d23-befc-77b69b208321'/> <!-- Reference to: Test Ratio -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  <xs:complexType name='ct-50a5e871-27b9-41a4-a97a-dd35555015cd' xml:lang='en-US'> <!-- Body Temperature - Test 2.4.6 -->
+    <xs:annotation>
+      <xs:documentation>
+        The numeric value of a person's body temperature.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about='http://www.mlhim.org/xmlns/s3m:ct-50a5e871-27b9-41a4-a97a-dd35555015cd'>
+          <rdfs:subClassOf rdf:resource='s3m:DvQuantityType'/>
+          <rdfs:label>Body Temperature - Test 2.4.6</rdfs:label>
+          <rdfs:isDefinedBy rdf:resource='https%3A//cdebrowser.nci.nih.gov/CDEBrowser/search%3FelementDetails%3D9%26FirstTimer%3D0%26PageId%3DElementDetailsGroup%26publicId%3D2644401%26version%3D1.0'/>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvQuantityType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Body Temperature"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-76417a55-6ebd-49ce-8db7-8253a9e02e1f'/> <!-- Ranges -->
+          <xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' default=''/> 
+          <xs:element maxOccurs='1' minOccurs='1'  name='magnitude'>
+            <xs:simpleType>
+              <xs:restriction base='xs:decimal'>
+                <xs:totalDigits value='3'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name="magnitude-status" type="s3m:MagnitudeStatus"/>
+          <xs:element maxOccurs='1' minOccurs='1' name='error'  type='xs:int' default='0'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='accuracy' type='xs:int' default='0'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='units' type='s3m:ct-8e63854d-e78a-43e0-944f-3c14767edb39'/> <!-- DvQuantity-units -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name='el-78f38614-fce7-463c-a332-f4846d00818a' substitutionGroup='s3m:Items' type='s3m:ct-78f38614-fce7-463c-a332-f4846d00818a'/>
+  <xs:complexType name='ct-78f38614-fce7-463c-a332-f4846d00818a'> <!-- Adapter for: Body Temperature -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-50a5e871-27b9-41a4-a97a-dd35555015cd'/> <!-- Reference to: Body Temperature -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
 
+  <xs:complexType name='ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f' xml:lang='en-US'> <!-- Test ReferenceRange -->
+    <xs:annotation>
+      <xs:documentation>
+        ReferenceRange for testing only.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about='http://www.mlhim.org/xmlns/s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f'>
+          <rdfs:subClassOf rdf:resource='s3m:ReferenceRangeType'/>
+          <rdfs:label>Test ReferenceRange</rdfs:label>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:ReferenceRangeType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Test ReferenceRange"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' fixed='ReferenceRange for testing only.'/>
+          <xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-c3441ee3-baf4-4fb3-80c3-87b511ebd970'/> <!-- data-range -->
+          <xs:element maxOccurs='1' minOccurs='1' name='is-normal' type='xs:boolean' fixed='false'/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name='ct-8e63854d-e78a-43e0-944f-3c14767edb39' xml:lang='en-US'> <!-- bpm Test -->
+    <xs:annotation>
+      <xs:documentation>
+        Beats per minute (for heart rate)
+      </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about='http://www.mlhim.org/xmlns/s3m:ct-8e63854d-e78a-43e0-944f-3c14767edb39'>
+          <rdfs:subClassOf rdf:resource='s3m:DvStringType'/>
+          <rdfs:label>bpm Test 2.4.6</rdfs:label>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="bpm Test 2.4.6"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='dvstring-value'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                <xs:enumeration value='bpm'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      bpm
+                    </xs:appinfo>
+                  </xs:annotation>
+                </xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='0' name='language' type='xs:language'/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
 
   <xs:complexType name='ct-eeaddd88-4a85-4e27-9ece-337f910ef81b' xml:lang='en-US'> <!-- Fever duration: 3 weeks or less - Test 2.4.6 -->
     <xs:annotation>
@@ -1774,7 +1983,57 @@ Examples:
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-
+  <xs:complexType name='ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970' xml:lang='en-US'> <!-- Gestational Age -->
+    <xs:annotation>
+      <xs:documentation>
+        The final result of a determination of the value for the period of fetal development in the uterus from the start of conception until its birth.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about='http://www.mlhim.org/xmlns/s3m:ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970'>
+          <rdfs:subClassOf rdf:resource='s3m:DvIntervalType'/>
+          <rdfs:label>Gestational Age - Test 2.4.6</rdfs:label>
+          <rdfs:isDefinedBy rdf:resource='https%3A//cdebrowser.nci.nih.gov/CDEBrowser/search%3FelementDetails%3D9%26FirstTimer%3D0%26PageId%3DElementDetailsGroup%26publicId%3D3192017%26version%3D1.0'/>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvIntervalType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Gestational Age - Test 2.4.6"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='lower' type='s3m:ct-93154c67-5331-4753-a191-c99bdd313040'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='upper' type='s3m:ct-e37c6d66-6ab8-4b23-b616-68c21bc2fe3d'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='lower-included' type='xs:boolean' fixed='true'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='upper-included' type='xs:boolean' fixed='true'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='lower-bounded' type='xs:boolean' fixed='true'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='upper-bounded' type='xs:boolean' fixed='true'/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name='ct-93154c67-5331-4753-a191-c99bdd313040'> <!-- interval lower -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:InvlType'>
+        <xs:choice>
+          <xs:element maxOccurs='1' minOccurs='1' name='invl-int' type='xs:int' fixed='0'/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name='ct-e37c6d66-6ab8-4b23-b616-68c21bc2fe3d'> <!-- interval upper -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:InvlType'>
+        <xs:choice>
+          <xs:element maxOccurs='1' minOccurs='1' name='invl-int' type='xs:int' fixed='2'/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
   <xs:element name='el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f' substitutionGroup='s3m:Link' type='s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f'/>
   <xs:element name='el-7b1c4fad-90f9-4d28-af58-3e59ecb00066' substitutionGroup='s3m:Link' type='s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066'/>
   <xs:element name='el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16' substitutionGroup='s3m:Audit' type='s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16'/>
@@ -1782,16 +2041,17 @@ Examples:
   <xs:element name='el-1386c587-b06f-4de5-ab67-30ecd036902e' substitutionGroup='s3m:System-user' type='s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e'/>
   <xs:element name='el-c35f232c-cbe0-4cd9-a809-bbd34157b962' substitutionGroup='s3m:Party-ref' type='s3m:ct-c35f232c-cbe0-4cd9-a809-bbd34157b962'/>
   <xs:element name='el-38afb8ac-985e-48bc-ab05-45cdecb5f5c2' substitutionGroup='s3m:Party-details' type='s3m:ct-38afb8ac-985e-48bc-ab05-45cdecb5f5c2'/>
-  <xs:element name='el-74cb0edc-76c3-45d2-bd36-13b10cdc289d' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d'/>
-  <xs:element name='el-4bce07e8-9bae-45e8-bf80-4db86b57bc93' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93'/>
-  <xs:element name='el-d1a90620-0c72-4aa2-ac6a-53c2b839b414' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414'/>
-  <xs:element name='el-785c0d1d-fb0c-4424-b967-99ab869c3ab1' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1'/>
-  <xs:element name='el-68526dd8-c03e-4779-a951-c5e6f85ff509' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509'/>
-  <xs:element name='el-571006b1-b76f-45b5-8a6e-b65d1a0444e0' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0'/>
-  <xs:element name='el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305'/>
+  <xs:element name='el-5f5d5ee5-71d1-4d23-befc-77b69b208321' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-5f5d5ee5-71d1-4d23-befc-77b69b208321'/>
+  <xs:element name='el-74cb0edc-76c3-45d2-bd36-13b10cdc289d' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d'/>
+  <xs:element name='el-4bce07e8-9bae-45e8-bf80-4db86b57bc93' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93'/>
+  <xs:element name='el-d1a90620-0c72-4aa2-ac6a-53c2b839b414' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414'/>
+  <xs:element name='el-785c0d1d-fb0c-4424-b967-99ab869c3ab1' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1'/>
+  <xs:element name='el-68526dd8-c03e-4779-a951-c5e6f85ff509' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509'/>
+  <xs:element name='el-571006b1-b76f-45b5-8a6e-b65d1a0444e0' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0'/>
+  <xs:element name='el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305'/>
   <xs:element name='el-5e21cf59-9c13-4f67-918a-e0aee1f64edf' substitutionGroup='s3m:Location' type='s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf'/>
-  <xs:element name='el-96ec0cec-0e47-4892-9acb-697be7d51a33' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33'/>
-  <xs:element name='el-c265bd07-d470-49b5-99c1-4559f7e9408d' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d'/>
+  <xs:element name='el-96ec0cec-0e47-4892-9acb-697be7d51a33' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33'/>
+  <xs:element name='el-c265bd07-d470-49b5-99c1-4559f7e9408d' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d'/>
   <xs:element name='el-76d5279d-8557-4eb7-9722-1ad858c00e3c' substitutionGroup='s3m:Subject' type='s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c'/>
   <xs:element name='el-c37d801a-9f1b-4ef9-97e4-561bbffb8750' substitutionGroup='s3m:Participations' type='s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750'/>
   <xs:element name='el-07d2e2e8-0415-4aa9-8115-a3a818801719' substitutionGroup='s3m:Performer' type='s3m:ct-07d2e2e8-0415-4aa9-8115-a3a818801719'/>
@@ -1805,8 +2065,13 @@ Examples:
   <xs:element name='el-df50a9c7-5071-4ece-934a-e43aeabc704a' substitutionGroup='s3m:Reason' type='s3m:ct-df50a9c7-5071-4ece-934a-e43aeabc704a'/>
   <xs:element name='el-705083b3-ee1e-4713-8685-65198083266a' substitutionGroup='s3m:Committer' type='s3m:ct-705083b3-ee1e-4713-8685-65198083266a'/>
   <xs:element name='el-96f910e1-8f1e-4a54-a19f-47722ddd91d3' substitutionGroup='s3m:Data' type='s3m:ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3'/>
-  <xs:element name='el-eeaddd88-4a85-4e27-9ece-337f910ef81b' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b'/>
-  <xs:element name='el-a68202e8-f161-4c80-931c-b97d9eb2b22b' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b'/>
-  <xs:element name='el-8ae6d78b-394b-455e-a5e4-f55897f92a77' substitutionGroup='s3m:DvAdapter-dv' type='s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77'/>
+  <xs:element name='el-eeaddd88-4a85-4e27-9ece-337f910ef81b' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b'/>
+  <xs:element name='el-a68202e8-f161-4c80-931c-b97d9eb2b22b' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b'/>
+  <xs:element name='el-8ae6d78b-394b-455e-a5e4-f55897f92a77' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77'/>
+  <xs:element name='el-50a5e871-27b9-41a4-a97a-dd35555015cd' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-50a5e871-27b9-41a4-a97a-dd35555015cd'/>
+  <xs:element name='el-c3441ee3-baf4-4fb3-80c3-87b511ebd970' substitutionGroup='s3m:DvInterval' type='s3m:ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970'/>
+  <xs:element name='el-76417a55-6ebd-49ce-8db7-8253a9e02e1f' substitutionGroup='s3m:ReferenceRange' type='s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f'/>
+  <xs:element name='el-7146bea3-49d6-4d6b-be66-cf1a16ebac4d' substitutionGroup='s3m:DvAdapter-value' type='s3m:ct-7146bea3-49d6-4d6b-be66-cf1a16ebac4d'/>
+  
   <xs:element name="el-15ca606c-303a-4862-8f5e-df8f39e8bfc3" substitutionGroup="s3m:Concept" type="s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3"></xs:element>
 </xs:schema>

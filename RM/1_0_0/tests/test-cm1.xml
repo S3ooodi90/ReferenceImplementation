@@ -354,7 +354,7 @@
         <language>en-US</language>
         <id-name>URI</id-name>
         <issuer>Owner</issuer>
-        <assignor>Owner</assignor>
+        <assignor>http://www.mlhim.org</assignor>
       </s3m:el-53e08f93-1549-4303-9212-74ed11ed7d3a>
       <s3m:el-1386c587-b06f-4de5-ab67-30ecd036902e>
         <party-name>party-name3</party-name>
