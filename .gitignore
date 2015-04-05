@@ -5,5 +5,5 @@
 *.zip
 *.sh
 
-
+S3ModelTester.log
 .Rproj.user

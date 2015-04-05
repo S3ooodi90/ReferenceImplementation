@@ -10,7 +10,7 @@
   <!-- Include the Reference Model -->
   <xs:include schemaLocation="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
 
-  <xs:complexType name="ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3">
+  <xs:complexType name="ct-15ca606c-303a-4862-8f5e-df8f39e8bfc2">
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/lib/el-15ca606c-303a-4862-8f5e-df8f39e8bfc3.xsd">
@@ -175,7 +175,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
-      <xs:restriction base="s3m:DvStringType">
+      <xs:extension base="s3m:DvStringType">
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="1" name="data-name" type="xs:string"
             fixed="Originating System ID"/>
