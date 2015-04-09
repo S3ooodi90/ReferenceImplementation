@@ -8,21 +8,51 @@
          <!--
         var propertiesBoxes= new Array('properties_ConceptType_language', 
 				'properties_ConceptType_encoding', 
-				'properties_ConceptType_current-state');
+				'properties_ConceptType_current-state', 
+				'properties_ConceptType_data', 
+				'properties_ConceptType_subject', 
+				'properties_ConceptType_protocol', 
+				'properties_ConceptType_workflow', 
+				'properties_ConceptType_attested');
 var usedByBoxes= new Array('usedBy_ConceptType');
 var sourceBoxes= new Array('source_ConceptType_language', 
 				'source_ConceptType_encoding', 
 				'source_ConceptType_current-state', 
+				'source_ConceptType_data', 
+				'source_ConceptType_subject', 
+				'source_ConceptType_protocol', 
+				'source_ConceptType_workflow', 
+				'source_ConceptType_attested', 
 				'source_ConceptType');
+var instanceBoxes= new Array('instance_ConceptType_data', 
+				'instance_ConceptType_subject', 
+				'instance_ConceptType_protocol', 
+				'instance_ConceptType_workflow', 
+				'instance_ConceptType_attested');
 var diagramBoxes= new Array('diagram_ConceptType_language', 
 				'diagram_ConceptType_encoding', 
 				'diagram_ConceptType_current-state', 
+				'diagram_ConceptType_data', 
+				'diagram_ConceptType_subject', 
+				'diagram_ConceptType_protocol', 
+				'diagram_ConceptType_workflow', 
+				'diagram_ConceptType_attested', 
 				'diagram_ConceptType');
 var annotationBoxes= new Array('annotations_ConceptType_language', 
 				'annotations_ConceptType_encoding', 
 				'annotations_ConceptType_current-state', 
+				'annotations_ConceptType_data', 
+				'annotations_ConceptType_subject', 
+				'annotations_ConceptType_protocol', 
+				'annotations_ConceptType_workflow', 
+				'annotations_ConceptType_attested', 
 				'annotations_ConceptType');
-var modelBoxes= new Array('model_ConceptType');
+var modelBoxes= new Array('model_ConceptType_data', 
+				'model_ConceptType_subject', 
+				'model_ConceptType_protocol', 
+				'model_ConceptType_workflow', 
+				'model_ConceptType_attested', 
+				'model_ConceptType');
 
       
         var button_prefix = 'button_';
@@ -275,6 +305,9 @@ var modelBoxes= new Array('model_ConceptType');
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
                      </tr>
                      <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
                      </tr>
                      <tr>
@@ -338,7 +371,7 @@ var modelBoxes= new Array('model_ConceptType');
                            <div class="floatRight"><input id="button_diagram_ConceptType_language" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_language');" class="control" /></div>
                         </td>
                         <td class="diagram">
-                           <div id="diagram_ConceptType_language" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_language.jpeg" /></div>
+                           <div id="diagram_ConceptType_language" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_language_2.jpeg" /></div>
                         </td>
                      </tr>
                      <tr>
@@ -381,11 +414,6 @@ var modelBoxes= new Array('model_ConceptType');
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"language"</span><span class="tAN"> type=</span><span class="tAV">"xs:language"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Mandatory indicator of the (predominate) localised language in which the text this Concept is written. The value space of language is the set of all strings that are valid language identifiers as defined in BCP 47.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://tools.ietf.org/html/bcp47"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -443,7 +471,7 @@ var modelBoxes= new Array('model_ConceptType');
                            <div class="floatRight"><input id="button_diagram_ConceptType_encoding" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_encoding');" class="control" /></div>
                         </td>
                         <td class="diagram">
-                           <div id="diagram_ConceptType_encoding" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_encoding.jpeg" /></div>
+                           <div id="diagram_ConceptType_encoding" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_encoding_1.jpeg" /></div>
                         </td>
                      </tr>
                      <tr>
@@ -603,6 +631,730 @@ var modelBoxes= new Array('model_ConceptType');
             <td class="rt_lineBottom"></td>
             <td class="rt_cornerBottomRight"></td>
          </tr>
+      </table><a id="ConceptType_data"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b> / data</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConceptType_data" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConceptType_data');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConceptType_data" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The content data structure of the Concept.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConceptType_data" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_data');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConceptType_data" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_data.jpeg" usemap="#s3model_1_0_0_xsd_Element_data" /><map name="s3model_1_0_0_xsd_Element_data" id="s3model_1_0_0_xsd_Element_data">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ItemType.tmp#ItemType" href="s3model_1_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType" coords="228,61,448,101" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.tmp#ClusterType_cluster-subject" href="s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType_cluster-subject" coords="318,159,434,201" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Items.tmp#Items" href="s3model_1_0_0_xsd_Element_s3m_Items.html#Items" coords="318,241,465,283" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.tmp#ClusterType" href="s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType" coords="214,3,390,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ClusterType')">s3m:ClusterType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ItemType')">s3m:ItemType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ClusterType')">s3m:ClusterType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConceptType_data" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConceptType_data');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConceptType_data" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConceptType_data" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConceptType_data');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_ConceptType_data" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType_cluster-subject" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component cluster-subject')">cluster-subject</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Items.html#Items" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Items*')">s3m:Items*</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType_cluster-subject" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component cluster-subject')">cluster-subject</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Items.html#Items" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Items')">s3m:Items</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ConceptType_data" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ConceptType_data');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ConceptType_data" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;data</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cluster-subject</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/cluster-subject&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:Items</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/s3m:Items&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/data&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConceptType_data" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConceptType_data');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConceptType_data" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"data"</span><span class="tAN"> type=</span><span class="tAV">"s3m:ClusterType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content data structure of the Concept.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ConceptType_subject"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b> / subject</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConceptType_subject" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConceptType_subject');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConceptType_subject" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Identification of a human subject, company or other entity of this Concept, </span><span class="tI">
+</span><span class="tT">e.g. patient, organ donor,  a family member, shipper, etc.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConceptType_subject" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_subject');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConceptType_subject" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_subject.jpeg" usemap="#s3model_1_0_0_xsd_Element_subject" /><map name="s3model_1_0_0_xsd_Element_subject" id="s3model_1_0_0_xsd_Element_subject">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType_party-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" coords="284,40,400,82" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType_party-ref" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-ref" coords="284,122,442,164" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType_party-details" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-details" coords="284,217,447,259" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType" coords="202,3,338,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:PartyType')">s3m:PartyType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConceptType_subject" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConceptType_subject');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConceptType_subject" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConceptType_subject" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConceptType_subject');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_ConceptType_subject" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-name{0,1}')">party-name{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-ref" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-ref{0,1}')">party-ref{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-details" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-details{0,1}')">party-details{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-details" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-details')">party-details</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-name')">party-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-ref" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-ref')">party-ref</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ConceptType_subject" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ConceptType_subject');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ConceptType_subject" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;subject</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;party-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/party-name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;party-ref</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/party-ref&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;party-details</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/party-details&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/subject&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConceptType_subject" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConceptType_subject');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConceptType_subject" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"subject"</span><span class="tAN"> type=</span><span class="tAV">"s3m:PartyType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identification of a human subject, company or other entity of this Concept, e.g. patient, organ donor, a family member, shipper, etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ConceptType_protocol"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b> / protocol</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConceptType_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConceptType_protocol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConceptType_protocol" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Optional external link to the protocol used to create this Concept. This</span><span class="tI">
+</span><span class="tT">could be a clinical guideline, an operations protocol,etc.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConceptType_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_protocol');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConceptType_protocol" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_protocol.jpeg" usemap="#s3model_1_0_0_xsd_Element_protocol" /><map name="s3model_1_0_0_xsd_Element_protocol" id="s3model_1_0_0_xsd_Element_protocol">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_data-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" coords="305,116,421,158" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="305,211,542,271" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vtb" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" coords="305,324,441,366" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vte" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" coords="305,419,441,461" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" coords="223,61,463,101" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_link-value" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" coords="291,551,412,593" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_relation" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" coords="291,646,407,688" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_relation-uri" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" coords="291,741,412,783" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" coords="209,3,394,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvLinkType')">s3m:DvLinkType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvAnyType')">s3m:DvAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvLinkType')">s3m:DvLinkType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConceptType_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConceptType_protocol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConceptType_protocol" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConceptType_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConceptType_protocol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_ConceptType_protocol" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component link-value')">link-value</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation')">relation</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation-uri{0,1}')">relation-uri{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component link-value')">link-value</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation')">relation</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation-uri')">relation-uri</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ConceptType_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ConceptType_protocol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ConceptType_protocol" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;protocol</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;data-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/data-name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;link-value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/link-value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;relation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/relation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;relation-uri</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/relation-uri&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/protocol&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConceptType_protocol" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConceptType_protocol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConceptType_protocol" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvLinkType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional external link to the protocol used to create this Concept. This could be a clinical guideline, an operations protocol,etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ConceptType_workflow"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b> / workflow</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConceptType_workflow" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConceptType_workflow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConceptType_workflow" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Optional link to externally held workflow engine (state machine) data for</span><span class="tI">
+</span><span class="tT">this workflow execution.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConceptType_workflow" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_workflow');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConceptType_workflow" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_workflow.jpeg" usemap="#s3model_1_0_0_xsd_Element_workflow" /><map name="s3model_1_0_0_xsd_Element_workflow" id="s3model_1_0_0_xsd_Element_workflow">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_data-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" coords="305,116,421,158" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="305,211,542,271" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vtb" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" coords="305,324,441,366" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vte" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" coords="305,419,441,461" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" coords="223,61,463,101" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_link-value" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" coords="291,551,412,593" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_relation" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" coords="291,646,407,688" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType_relation-uri" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" coords="291,741,412,783" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.tmp#DvLinkType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" coords="209,3,394,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvLinkType')">s3m:DvLinkType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvAnyType')">s3m:DvAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvLinkType')">s3m:DvLinkType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConceptType_workflow" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConceptType_workflow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConceptType_workflow" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConceptType_workflow" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConceptType_workflow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_ConceptType_workflow" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component link-value')">link-value</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation')">relation</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation-uri{0,1}')">relation-uri{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_link-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component link-value')">link-value</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation')">relation</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvLinkType.html#DvLinkType_relation-uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component relation-uri')">relation-uri</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ConceptType_workflow" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ConceptType_workflow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ConceptType_workflow" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;workflow</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;data-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/data-name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;link-value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/link-value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;relation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/relation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;relation-uri</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/relation-uri&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/workflow&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConceptType_workflow" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConceptType_workflow');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConceptType_workflow" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"workflow"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvLinkType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional link to externally held workflow engine (state machine) data for this workflow execution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ConceptType_attested"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b> / attested</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConceptType_attested" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConceptType_attested');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConceptType_attested" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Attestation recorded.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConceptType_attested" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConceptType_attested');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConceptType_attested" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_attested.jpeg" usemap="#s3model_1_0_0_xsd_Element_attested" /><map name="s3model_1_0_0_xsd_Element_attested" id="s3model_1_0_0_xsd_Element_attested">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_attested-view" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" coords="316,40,485,82" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_proof" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" coords="316,122,502,164" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_reason" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" coords="316,204,486,246" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_committer" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" coords="316,286,467,328" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_time-committed" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" coords="316,368,452,410" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_is-pending" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" coords="316,450,444,492" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" coords="234,3,402,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:AttestationType')">s3m:AttestationType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConceptType_attested" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConceptType_attested');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConceptType_attested" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConceptType_attested" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConceptType_attested');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_ConceptType_attested" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component attested-view{0,1}')">attested-view{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component proof{0,1}')">proof{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component reason{0,1}')">reason{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component committer{0,1}')">committer{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed{0,1}')">time-committed{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component attested-view')">attested-view</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component committer')">committer</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component proof')">proof</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component reason')">reason</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed')">time-committed</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ConceptType_attested" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ConceptType_attested');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ConceptType_attested" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;attested</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;attested-view</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/attested-view&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;proof</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/proof&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;reason</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/reason&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;committer</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/committer&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;time-committed</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/time-committed&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;is-pending</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/is-pending&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/attested&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConceptType_attested" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConceptType_attested');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConceptType_attested" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"attested"</span><span class="tAN"> type=</span><span class="tAV">"s3m:AttestationType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Attestation recorded.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
       </table><a id="ConceptType"></a><div class="componentTitle">Complex Type <span class="qname">s3m:ConceptType</span></div>
       <table class="rt">
          <tr>
@@ -649,14 +1401,14 @@ var modelBoxes= new Array('model_ConceptType');
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_language" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language" coords="269,0,404,42" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_encoding" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_encoding" coords="269,95,385,137" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_current-state" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_current-state" coords="269,190,385,232" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Data.tmp#Data" href="s3model_1_0_0_xsd_Element_s3m_Data.html#Data" coords="269,285,416,327" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Link.tmp#Link" href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" coords="269,367,427,409" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Subject.tmp#Subject" href="s3model_1_0_0_xsd_Element_s3m_Subject.html#Subject" coords="269,449,420,491" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Participations.tmp#Participations" href="s3model_1_0_0_xsd_Element_s3m_Participations.html#Participations" coords="269,544,461,586" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Protocol.tmp#Protocol" href="s3model_1_0_0_xsd_Element_s3m_Protocol.html#Protocol" coords="269,626,455,668" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Workflow.tmp#Workflow" href="s3model_1_0_0_xsd_Element_s3m_Workflow.html#Workflow" coords="269,721,427,763" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Attestation.tmp#Attestation" href="s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation" coords="269,816,452,858" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Audit.tmp#Audit" href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" coords="269,898,419,940" /></map></div>
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_data" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_data" coords="269,285,432,327" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_subject" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_subject" coords="269,367,420,409" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_protocol" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_protocol" coords="269,462,427,504" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_workflow" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_workflow" coords="269,557,427,599" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.tmp#ConceptType_attested" href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_attested" coords="269,652,452,694" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Participation.tmp#Participation" href="s3model_1_0_0_xsd_Element_s3m_Participation.html#Participation" coords="269,734,461,776" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Audit.tmp#Audit" href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" coords="269,816,419,858" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Link.tmp#Link" href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" coords="269,911,427,953" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -679,12 +1431,12 @@ var modelBoxes= new Array('model_ConceptType');
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ConceptType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ConceptType');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_ConceptType" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_current-state" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component current-state{0,1}')">current-state{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Data.html#Data" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Data')">s3m:Data</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Link*')">s3m:Link*</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Subject.html#Subject" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Subject{0,1}')">s3m:Subject{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Participations.html#Participations" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Participations*')">s3m:Participations*</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Protocol.html#Protocol" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Protocol{0,1}')">s3m:Protocol{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Workflow.html#Workflow" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Workflow{0,1}')">s3m:Workflow{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Attestation{0,1}')">s3m:Attestation{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Audit*')">s3m:Audit*</a></b></div>
+                           <div id="model_ConceptType" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_current-state" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component current-state{0,1}')">current-state{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_data" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data')">data</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_subject" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component subject{0,1}')">subject{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_protocol" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component protocol{0,1}')">protocol{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_workflow" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component workflow{0,1}')">workflow{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_attested" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component attested{0,1}')">attested{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Participation.html#Participation" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Participation*')">s3m:Participation*</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Audit*')">s3m:Audit*</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Link*')">s3m:Link*</a></b></div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
-                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_current-state" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component current-state')">current-state</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Attestation')">s3m:Attestation</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Audit')">s3m:Audit</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Data.html#Data" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Data')">s3m:Data</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Link')">s3m:Link</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Participations.html#Participations" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Participations')">s3m:Participations</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Protocol.html#Protocol" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Protocol')">s3m:Protocol</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Subject.html#Subject" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Subject')">s3m:Subject</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Workflow.html#Workflow" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Workflow')">s3m:Workflow</a></b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_attested" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component attested')">attested</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_current-state" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component current-state')">current-state</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_data" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data')">data</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_protocol" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component protocol')">protocol</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Audit.html#Audit" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Audit')">s3m:Audit</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Link.html#Link" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Link')">s3m:Link</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Participation.html#Participation" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Participation')">s3m:Participation</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_subject" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component subject')">subject</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_workflow" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component workflow')">workflow</a></b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -698,22 +1450,11 @@ var modelBoxes= new Array('model_ConceptType');
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ConceptType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">An Concept is the root of a logical set of data items. The Concept Model must contain metadata about the model. Mandatory DCTERMS; title, creator, rightsHolder, license, issued, format ('text/xml'), language and abstract. Suggested but optional DCTERMS; contributors, relation</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/ConceptType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;dct:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.s3model.com/rm/s3model_1_0_0.xsd"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"language"</span><span class="tAN"> type=</span><span class="tAV">"xs:language"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Mandatory indicator of the (predominate) localised language in which the text this Concept is written. The value space of language is the set of all strings that are valid language identifiers as defined in BCP 47.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_language"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://tools.ietf.org/html/bcp47"</span><span class="tEl">/&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"encoding"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
@@ -726,44 +1467,44 @@ var modelBoxes= new Array('model_ConceptType');
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The current state according to the state machine / workflow engine identified in the Workflow element, as a string.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Data"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"data"</span><span class="tAN"> type=</span><span class="tAV">"s3m:ClusterType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content data structure of the Concept.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Link"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional link(s) to other locatable structures or external entities.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Subject"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"subject"</span><span class="tAN"> type=</span><span class="tAV">"s3m:PartyType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identification of a human subject, company or other entity of this Concept, e.g. patient, organ donor, a family member, shipper, etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Participations"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"protocol"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvLinkType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">List of other participations at Concept level.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional external link to the protocol used to create this Concept. This could be a clinical guideline, an operations protocol,etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Protocol"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"workflow"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvLinkType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional external identifier of protocol used to create this Concept. This could be a clinical guideline, an operations protocol,etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional link to externally held workflow engine (state machine) data for this workflow execution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Workflow"</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier of externally held workflow engine (state machine) data for this workflow execution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Attestation"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"attested"</span><span class="tAN"> type=</span><span class="tAV">"s3m:AttestationType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Attestation recorded.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Participation"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">List of other participations at Concept level.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Audit"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Audit trail from the system of original commit of information forming the content of this node, or from a conversion gateway which has synthesised this node.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Link"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional link(s) to other locatable structures or external entities.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
@@ -786,7 +1527,8 @@ var modelBoxes= new Array('model_ConceptType');
       </table>
       <div class="footer">
          <hr />
-         S3Model RM docs
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
       </div><script type="text/javascript">
          <!--
                      // The namespace is the selected option in the TOC combo.

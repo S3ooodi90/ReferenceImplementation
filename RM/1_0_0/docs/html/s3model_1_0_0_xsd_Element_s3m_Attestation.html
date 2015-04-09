@@ -7,7 +7,6 @@
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
         var propertiesBoxes= new Array('properties_Attestation');
-var usedByBoxes= new Array('usedBy_Attestation');
 var sourceBoxes= new Array('source_Attestation');
 var instanceBoxes= new Array('instance_Attestation');
 var diagramBoxes= new Array('diagram_Attestation');
@@ -272,9 +271,6 @@ var modelBoxes= new Array('model_Attestation');
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -309,10 +305,10 @@ var modelBoxes= new Array('model_Attestation');
                         </td>
                         <td class="diagram">
                            <div id="diagram_Attestation" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_s3m_Attestation.jpeg" usemap="#s3model_1_0_0_xsd_Element_s3m_Attestation" /><map name="s3model_1_0_0_xsd_Element_s3m_Attestation" id="s3model_1_0_0_xsd_Element_s3m_Attestation">
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Attested-view.tmp#Attested-view" href="s3model_1_0_0_xsd_Element_s3m_Attested-view.html#Attested-view" coords="296,40,465,82" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Proof.tmp#Proof" href="s3model_1_0_0_xsd_Element_s3m_Proof.html#Proof" coords="296,122,482,164" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Reason.tmp#Reason" href="s3model_1_0_0_xsd_Element_s3m_Reason.html#Reason" coords="296,204,466,246" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Committer.tmp#Committer" href="s3model_1_0_0_xsd_Element_s3m_Committer.html#Committer" coords="296,286,447,328" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_attested-view" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" coords="296,40,465,82" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_proof" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" coords="296,122,482,164" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_reason" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" coords="296,204,466,246" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_committer" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" coords="296,286,447,328" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_time-committed" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" coords="296,368,432,410" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_is-pending" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" coords="296,450,424,492" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" coords="214,3,382,25" /></map></div>
@@ -339,31 +335,15 @@ var modelBoxes= new Array('model_Attestation');
                         </td>
                      </tr>
                      <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_Attestation" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Attestation');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_Attestation" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Complex Type </td>
-                                    <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_Attestation" type="image" src="img/btM.gif" value="-" onclick="switchState('model_Attestation');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_Attestation" style="display:block"><b><a href="s3model_1_0_0_xsd_Element_s3m_Attested-view.html#Attested-view" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Attested-view{0,1}')">s3m:Attested-view{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Proof.html#Proof" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Proof{0,1}')">s3m:Proof{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Reason.html#Reason" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Reason{0,1}')">s3m:Reason{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Committer.html#Committer" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Committer{0,1}')">s3m:Committer{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed{0,1}')">time-committed{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b></div>
+                           <div id="model_Attestation" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component attested-view{0,1}')">attested-view{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component proof{0,1}')">proof{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component reason{0,1}')">reason{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component committer{0,1}')">committer{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed{0,1}')">time-committed{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b></div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
-                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Attested-view.html#Attested-view" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Attested-view')">s3m:Attested-view</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Committer.html#Committer" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Committer')">s3m:Committer</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Proof.html#Proof" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Proof')">s3m:Proof</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Reason.html#Reason" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Reason')">s3m:Reason</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed')">time-committed</a></b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component attested-view')">attested-view</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component committer')">committer</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component proof')">proof</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component reason')">reason</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed')">time-committed</a></b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -375,10 +355,10 @@ var modelBoxes= new Array('model_Attestation');
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;s3m:Attestation</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Attested-view</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Attested-view&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Proof</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Proof&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Reason</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Reason&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Committer</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Committer&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;attested-view</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/attested-view&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;proof</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/proof&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;reason</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/reason&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;committer</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/committer&gt;</span><span class="tI">
   </span><span class="tEl">&lt;time-committed</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/time-committed&gt;</span><span class="tI">
   </span><span class="tEl">&lt;is-pending</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/is-pending&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/s3m:Attestation&gt;</span></pre></td>
@@ -396,16 +376,7 @@ var modelBoxes= new Array('model_Attestation');
                            <div id="source_Attestation" style="display:block">
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Attestation"</span><span class="tAN"> type=</span><span class="tAV">"s3m:AttestationType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/Attestation"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/AttestationType"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Attestation"</span><span class="tAN"> type=</span><span class="tAV">"s3m:AttestationType"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -424,7 +395,8 @@ var modelBoxes= new Array('model_Attestation');
       </table>
       <div class="footer">
          <hr />
-         S3Model RM docs
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
       </div><script type="text/javascript">
          <!--
                      // The namespace is the selected option in the TOC combo.

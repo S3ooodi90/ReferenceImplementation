@@ -5,7 +5,7 @@
   xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
   xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/"
-  targetNamespace="http://www.s3model.com/" vc:minVersion="1.1" xml:lang="en-US">
+  targetNamespace="http://www.s3model.com/" vc:minVersion="1.2" xml:lang="en-US">
 
   <!-- Include the Reference Model -->
   <xs:include schemaLocation="http://www.s3model.com/rm/s3model_1_0_0.xsd"/>
@@ -13,7 +13,7 @@
   <xs:complexType name="ct-15ca606c-303a-4862-8f5e-df8f39e8bfc2">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/lib/el-15ca606c-303a-4862-8f5e-df8f39e8bfc3.xsd">
+        <rdf:Description rdf:about="http://www.s3model.com/lib/el-15ca606c-303a-4862-8f5e-df8f39e8bfc2.xsd">
           <dct:title xml:lang="en">Testing 1.0.0 Implementation</dct:title>
           <dct:creator>
             <foaf:Person>

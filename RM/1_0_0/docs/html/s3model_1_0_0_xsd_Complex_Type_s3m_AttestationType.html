@@ -3,22 +3,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>Schema documentation for component time-committed</title>
+      <title>Schema documentation for component attested-view</title>
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
-        var propertiesBoxes= new Array('properties_AttestationType_time-committed', 
+        var propertiesBoxes= new Array('properties_AttestationType_attested-view', 
+				'properties_AttestationType_proof', 
+				'properties_AttestationType_reason', 
+				'properties_AttestationType_committer', 
+				'properties_AttestationType_time-committed', 
 				'properties_AttestationType_is-pending');
 var usedByBoxes= new Array('usedBy_AttestationType');
-var sourceBoxes= new Array('source_AttestationType_time-committed', 
+var sourceBoxes= new Array('source_AttestationType_attested-view', 
+				'source_AttestationType_proof', 
+				'source_AttestationType_reason', 
+				'source_AttestationType_committer', 
+				'source_AttestationType_time-committed', 
 				'source_AttestationType_is-pending', 
 				'source_AttestationType');
-var diagramBoxes= new Array('diagram_AttestationType_time-committed', 
+var instanceBoxes= new Array('instance_AttestationType_attested-view', 
+				'instance_AttestationType_proof', 
+				'instance_AttestationType_reason', 
+				'instance_AttestationType_committer');
+var diagramBoxes= new Array('diagram_AttestationType_attested-view', 
+				'diagram_AttestationType_proof', 
+				'diagram_AttestationType_reason', 
+				'diagram_AttestationType_committer', 
+				'diagram_AttestationType_time-committed', 
 				'diagram_AttestationType_is-pending', 
 				'diagram_AttestationType');
-var annotationBoxes= new Array('annotations_AttestationType_time-committed', 
+var annotationBoxes= new Array('annotations_AttestationType_attested-view', 
+				'annotations_AttestationType_proof', 
+				'annotations_AttestationType_reason', 
+				'annotations_AttestationType_committer', 
+				'annotations_AttestationType_time-committed', 
 				'annotations_AttestationType_is-pending', 
 				'annotations_AttestationType');
-var modelBoxes= new Array('model_AttestationType');
+var modelBoxes= new Array('model_AttestationType_attested-view', 
+				'model_AttestationType_proof', 
+				'model_AttestationType_reason', 
+				'model_AttestationType_committer', 
+				'model_AttestationType');
 
       
         var button_prefix = 'button_';
@@ -271,6 +295,9 @@ var modelBoxes= new Array('model_AttestationType');
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
                      </tr>
                      <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
                      </tr>
                      <tr>
@@ -293,7 +320,624 @@ var modelBoxes= new Array('model_AttestationType');
                <td class="rt_cornerBottomRight"></td>
             </tr>
          </table>
-      </div><a id="AttestationType_time-committed"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:AttestationType')">s3m:AttestationType</a></b> / time-committed</span></div>
+      </div><a id="AttestationType_attested-view"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:AttestationType')">s3m:AttestationType</a></b> / attested-view</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AttestationType_attested-view" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AttestationType_attested-view');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AttestationType_attested-view" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Optional visual representation of content attested e.g. screen image.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AttestationType_attested-view" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AttestationType_attested-view');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AttestationType_attested-view" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_attested-view.jpeg" usemap="#s3model_1_0_0_xsd_Element_attested-view" /><map name="s3model_1_0_0_xsd_Element_attested-view" id="s3model_1_0_0_xsd_Element_attested-view">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_data-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" coords="330,192,446,234" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="330,287,567,347" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vtb" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" coords="330,400,466,442" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vte" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" coords="330,495,466,537" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" coords="248,137,488,177" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.tmp#DvEncapsulatedType_size" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_size" coords="316,627,413,669" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.tmp#DvEncapsulatedType_encoding" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_encoding" coords="316,735,432,777" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.tmp#DvEncapsulatedType_language" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_language" coords="316,830,451,872" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.tmp#DvEncapsulatedType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType" coords="234,61,530,119" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_mime-type" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_mime-type" coords="302,962,418,1004" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_compression-type" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_compression-type" coords="302,1057,435,1099" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_hash-result" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-result" coords="302,1152,418,1194" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_hash-function" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-function" coords="302,1247,418,1289" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_alt-txt" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_alt-txt" coords="302,1329,418,1371" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_uri" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_uri" coords="373,1411,494,1453" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType_media-content" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_media-content" coords="373,1506,534,1548" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.tmp#DvMediaType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType" coords="220,3,461,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvMediaType')">s3m:DvMediaType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvAnyType')">s3m:DvAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvEncapsulatedType')">s3m:DvEncapsulatedType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvMediaType')">s3m:DvMediaType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AttestationType_attested-view" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AttestationType_attested-view');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AttestationType_attested-view" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AttestationType_attested-view" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AttestationType_attested-view');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_AttestationType_attested-view" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding{0,1}')">encoding{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language{0,1}')">language{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_mime-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component mime-type{0,1}')">mime-type{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_compression-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component compression-type{0,1}')">compression-type{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-result" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-result{0,1}')">hash-result{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-function{0,1}')">hash-function{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_alt-txt" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component alt-txt{0,1}')">alt-txt{0,1}</a></b> , (<b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component uri{0,1}')">uri{0,1}</a></b> | <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_media-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-content{0,1}')">media-content{0,1}</a></b>)
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_alt-txt" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component alt-txt')">alt-txt</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_compression-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component compression-type')">compression-type</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-function')">hash-function</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_hash-result" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-result')">hash-result</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_media-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-content')">media-content</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_mime-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component mime-type')">mime-type</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvMediaType.html#DvMediaType_uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component uri')">uri</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_AttestationType_attested-view" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_AttestationType_attested-view');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_AttestationType_attested-view" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;attested-view</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;data-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/data-name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;size</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/size&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;encoding</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/encoding&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;language</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/language&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;mime-type</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/mime-type&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;compression-type</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/compression-type&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;hash-result</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/hash-result&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;hash-function</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/hash-function&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;alt-txt</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/alt-txt&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;uri</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/uri&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;media-content</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/media-content&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/attested-view&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AttestationType_attested-view" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AttestationType_attested-view');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AttestationType_attested-view" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"attested-view"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvMediaType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional visual representation of content attested e.g. screen image.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AttestationType_proof"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:AttestationType')">s3m:AttestationType</a></b> / proof</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AttestationType_proof" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AttestationType_proof');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AttestationType_proof" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Proof of attestation such as an GPG signature.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AttestationType_proof" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AttestationType_proof');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AttestationType_proof" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_proof.jpeg" usemap="#s3model_1_0_0_xsd_Element_proof" /><map name="s3model_1_0_0_xsd_Element_proof" id="s3model_1_0_0_xsd_Element_proof">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_data-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" coords="347,192,463,234" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="347,287,584,347" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vtb" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" coords="347,400,483,442" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vte" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" coords="347,495,483,537" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" coords="265,137,505,177" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.tmp#DvEncapsulatedType_size" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_size" coords="333,627,430,669" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.tmp#DvEncapsulatedType_encoding" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_encoding" coords="333,735,449,777" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.tmp#DvEncapsulatedType_language" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_language" coords="333,830,468,872" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.tmp#DvEncapsulatedType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType" coords="251,61,547,119" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.tmp#DvParsableType_dvparsable-value" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType_dvparsable-value" coords="319,962,447,1004" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.tmp#DvParsableType_formalism" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType_formalism" coords="319,1057,435,1099" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.tmp#DvParsableType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType" coords="237,3,478,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvParsableType')">s3m:DvParsableType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvAnyType')">s3m:DvAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvEncapsulatedType')">s3m:DvEncapsulatedType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvParsableType')">s3m:DvParsableType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AttestationType_proof" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AttestationType_proof');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AttestationType_proof" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AttestationType_proof" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AttestationType_proof');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_AttestationType_proof" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding{0,1}')">encoding{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language{0,1}')">language{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType_dvparsable-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component dvparsable-value{0,1}')">dvparsable-value{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType_formalism" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component formalism{0,1}')">formalism{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType_dvparsable-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component dvparsable-value')">dvparsable-value</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvParsableType.html#DvParsableType_formalism" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component formalism')">formalism</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvEncapsulatedType.html#DvEncapsulatedType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_AttestationType_proof" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_AttestationType_proof');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_AttestationType_proof" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;proof</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;data-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/data-name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;size</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/size&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;encoding</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/encoding&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;language</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/language&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;dvparsable-value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/dvparsable-value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;formalism</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/formalism&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/proof&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AttestationType_proof" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AttestationType_proof');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AttestationType_proof" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"proof"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvParsableType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Proof of attestation such as an GPG signature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AttestationType_reason"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:AttestationType')">s3m:AttestationType</a></b> / reason</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AttestationType_reason" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AttestationType_reason');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AttestationType_reason" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Reason of this attestation. Coded from a standardized vocabulary.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AttestationType_reason" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AttestationType_reason');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AttestationType_reason" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_reason.jpeg" usemap="#s3model_1_0_0_xsd_Element_reason" /><map name="s3model_1_0_0_xsd_Element_reason" id="s3model_1_0_0_xsd_Element_reason">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_data-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" coords="317,116,433,158" />
+                                 <area alt="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="317,211,554,271" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vtb" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" coords="317,324,453,366" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vte" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" coords="317,419,453,461" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" coords="235,61,475,101" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType_dvstring-value" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_dvstring-value" coords="303,551,419,593" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType_language" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_language" coords="303,633,438,675" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.tmp#DvStringType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType" coords="221,3,406,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvStringType')">s3m:DvStringType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvAnyType')">s3m:DvAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvStringType')">s3m:DvStringType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AttestationType_reason" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AttestationType_reason');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AttestationType_reason" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AttestationType_reason" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AttestationType_reason');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_AttestationType_reason" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_dvstring-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component dvstring-value{0,1}')">dvstring-value{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language{0,1}')">language{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_dvstring-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component dvstring-value')">dvstring-value</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvStringType.html#DvStringType_language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component language')">language</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_AttestationType_reason" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_AttestationType_reason');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_AttestationType_reason" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;reason</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;data-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/data-name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;dvstring-value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/dvstring-value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;language</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/language&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/reason&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AttestationType_reason" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AttestationType_reason');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AttestationType_reason" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"reason"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvStringType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Reason of this attestation. Coded from a standardized vocabulary.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AttestationType_committer"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:AttestationType')">s3m:AttestationType</a></b> / committer</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_AttestationType_committer" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_AttestationType_committer');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_AttestationType_committer" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Identity of person who committed the item.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_AttestationType_committer" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_AttestationType_committer');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_AttestationType_committer" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_committer.jpeg" usemap="#s3model_1_0_0_xsd_Element_committer" /><map name="s3model_1_0_0_xsd_Element_committer" id="s3model_1_0_0_xsd_Element_committer">
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType_party-name" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" coords="284,40,400,82" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType_party-ref" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-ref" coords="284,122,442,164" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType_party-details" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-details" coords="284,217,447,259" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.tmp#PartyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType" coords="202,3,338,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:PartyType')">s3m:PartyType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_AttestationType_committer" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_AttestationType_committer');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_AttestationType_committer" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AttestationType_committer" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AttestationType_committer');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_AttestationType_committer" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-name{0,1}')">party-name{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-ref" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-ref{0,1}')">party-ref{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-details" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-details{0,1}')">party-details{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-details" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-details')">party-details</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-name')">party-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType_party-ref" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component party-ref')">party-ref</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_AttestationType_committer" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_AttestationType_committer');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_AttestationType_committer" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;committer</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;party-name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/party-name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;party-ref</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/party-ref&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;party-details</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/party-details&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/committer&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_AttestationType_committer" type="image" src="img/btM.gif" value="-" onclick="switchState('source_AttestationType_committer');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_AttestationType_committer" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"committer"</span><span class="tAN"> type=</span><span class="tAV">"s3m:PartyType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identity of person who committed the item.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="AttestationType_time-committed"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:AttestationType')">s3m:AttestationType</a></b> / time-committed</span></div>
       <table class="rt">
          <tr>
             <td class="rt_cornerTopLeft"></td>
@@ -533,10 +1177,10 @@ var modelBoxes= new Array('model_AttestationType');
                         </td>
                         <td class="diagram">
                            <div id="diagram_AttestationType" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.jpeg" usemap="#s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType" /><map name="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType" id="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType">
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Attested-view.tmp#Attested-view" href="s3model_1_0_0_xsd_Element_s3m_Attested-view.html#Attested-view" coords="262,0,431,42" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Proof.tmp#Proof" href="s3model_1_0_0_xsd_Element_s3m_Proof.html#Proof" coords="262,82,448,124" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Reason.tmp#Reason" href="s3model_1_0_0_xsd_Element_s3m_Reason.html#Reason" coords="262,164,432,206" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Committer.tmp#Committer" href="s3model_1_0_0_xsd_Element_s3m_Committer.html#Committer" coords="262,246,413,288" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_attested-view" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" coords="262,0,431,42" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_proof" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" coords="262,82,448,124" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_reason" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" coords="262,164,432,206" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_committer" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" coords="262,246,413,288" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_time-committed" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" coords="262,328,398,370" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.tmp#AttestationType_is-pending" href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" coords="262,410,390,452" /></map></div>
                         </td>
@@ -550,8 +1194,8 @@ var modelBoxes= new Array('model_AttestationType');
                            <div id="usedBy_AttestationType" style="display:block">
                               <table class="usedByTable">
                                  <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Attestation')">s3m:Attestation</a></b></td>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="s3model_1_0_0_xsd_Element_s3m_Attestation.html#Attestation" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Attestation')">s3m:Attestation</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType_attested" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType/attested')">s3m:ConceptType/attested</a></b></td>
                                  </tr>
                               </table>
                            </div>
@@ -561,12 +1205,12 @@ var modelBoxes= new Array('model_AttestationType');
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_AttestationType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_AttestationType');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_AttestationType" style="display:block"><b><a href="s3model_1_0_0_xsd_Element_s3m_Attested-view.html#Attested-view" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Attested-view{0,1}')">s3m:Attested-view{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Proof.html#Proof" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Proof{0,1}')">s3m:Proof{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Reason.html#Reason" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Reason{0,1}')">s3m:Reason{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Committer.html#Committer" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Committer{0,1}')">s3m:Committer{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed{0,1}')">time-committed{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b></div>
+                           <div id="model_AttestationType" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component attested-view{0,1}')">attested-view{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component proof{0,1}')">proof{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component reason{0,1}')">reason{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component committer{0,1}')">committer{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed{0,1}')">time-committed{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b></div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
-                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Attested-view.html#Attested-view" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Attested-view')">s3m:Attested-view</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Committer.html#Committer" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Committer')">s3m:Committer</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Proof.html#Proof" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Proof')">s3m:Proof</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Reason.html#Reason" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Reason')">s3m:Reason</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed')">time-committed</a></b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_attested-view" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component attested-view')">attested-view</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_committer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component committer')">committer</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_is-pending" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-pending')">is-pending</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_proof" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component proof')">proof</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_reason" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component reason')">reason</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType_time-committed" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component time-committed')">time-committed</a></b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -580,30 +1224,24 @@ var modelBoxes= new Array('model_AttestationType');
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"AttestationType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which my be coded.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/AttestationType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;dct:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.s3model.com/rm/s3model_1_0_0.xsd"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Attested-view"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"attested-view"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvMediaType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional visual representation of content attested e.g. screen image.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Proof"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"proof"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvParsableType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Proof of attestation such as an GPG signature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Reason"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"reason"</span><span class="tAN"> type=</span><span class="tAV">"s3m:DvStringType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Reason of this attestation. Coded from a standardized vocabulary.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:Committer"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"committer"</span><span class="tAN"> type=</span><span class="tAV">"s3m:PartyType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identity of person who committed the item.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
@@ -638,7 +1276,8 @@ var modelBoxes= new Array('model_AttestationType');
       </table>
       <div class="footer">
          <hr />
-         S3Model RM docs
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
       </div><script type="text/javascript">
          <!--
                      // The namespace is the selected option in the TOC combo.

@@ -29,7 +29,8 @@ def main():
               'dct':'http://purl.org/dc/terms/',
               'rdfs':'http://www.w3.org/2000/01/rdf-schema#',
               's3m':'http://www.s3model.com/',
-              'sch':'http://purl.oclc.org/dsdl/schematron'}
+              'sch':'http://purl.oclc.org/dsdl/schematron',
+              'vc':'http://www.w3.org/2007/XMLSchema-versioning'}
 
     rmTypes = {'s3m:DvParsableType', 's3m:DvBooleanType', 's3m:AttestationType', 's3m:ClusterType',
                's3m:DvIntervalType', 's3m:AuditType', 's3m:DvQuantityType', 's3m:DvCountType',
@@ -57,6 +58,15 @@ def main():
 
         #ERRORS:
 
+        # check for vc:minVersion = '1.1'
+        try:
+            if not root.xpath('@vc:minVersion', namespaces=nsDict)[0] == '1.1':
+                lf.write('ERROR: Incorrect minVersion attribute value. \n')
+                print('ERROR: Incorrect minVersion attribute value.')
+        except IndexError:
+            lf.write('ERROR: Missing minVersion attribute. \n')
+            print('ERROR: Missing minVersion attribute.')
+
         # check for RM include
         try:
             rm = root.xpath('./xs:include/@schemaLocation', namespaces=nsDict)[0]
@@ -69,12 +79,29 @@ def main():
 
 
         # check for metadata on the first ct which should also be the s3m:ConceptType restriction.
-        print(cxt[0].attrib['name'])
         if not cxt[0].xpath('./xs:complexContent/xs:restriction/@base', namespaces=nsDict)[0] == 's3m:ConceptType':
-            lf.write('ERROR: The first complexType should be a ConceptType restriction. Cannot test metadata. \n')
-            print('ERROR: The first complexType should be a ConceptType restriction. Cannot test metadata.')
+            lf.write('ERROR: The first complexType should be a s3m:ConceptType restriction. Cannot test metadata. \n')
+            print('ERROR: The first complexType should be a s3m:ConceptType restriction. Cannot test metadata.')
         else:
             md_okay = True # set this to False if there are any issues in the metadata
+            md = cxt[0].xpath('./xs:annotation/xs:appinfo/rdf:Description', namespaces=nsDict)
+            if not len(md) > 0: # missing metadata
+                md_okay = False
+            else:
+                if not len(md[0].xpath('//dct:title', namespaces=nsDict)) > 0: #missing
+                    md_okay = False
+                if not len(md[0].xpath('//dct:creator', namespaces=nsDict)) > 0: #missing
+                    md_okay = False
+                if not len(md[0].xpath('//dct:rightsHolder', namespaces=nsDict)) > 0: #missing
+                    md_okay = False
+                if not len(md[0].xpath('//dct:issued', namespaces=nsDict)) > 0: #missing
+                    md_okay = False
+                if not len(md[0].xpath('//dct:format', namespaces=nsDict)) > 0: #missing
+                    md_okay = False
+                if not len(md[0].xpath('//dct:language', namespaces=nsDict)) > 0: #missing
+                    md_okay = False
+                if not len(md[0].xpath('//dct:abstract', namespaces=nsDict)) > 0: #missing
+                    md_okay = False
 
 
             if not md_okay:
@@ -85,7 +112,6 @@ def main():
 
         for c in cxt:
             #ERRORS:
-
             # check for 'ct-' followed by a UUID4 name.
             name = c.attrib['name']
             if name[0:3] != 'ct-':

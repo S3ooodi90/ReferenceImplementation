@@ -7,19 +7,24 @@
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
         var propertiesBoxes= new Array('properties_DvQuantifiedType_magnitude', 
+				'properties_DvQuantifiedType_magnitude-status', 
 				'properties_DvQuantifiedType_error', 
 				'properties_DvQuantifiedType_accuracy', 
 				'properties_DvQuantifiedType');
+var facetsBoxes= new Array('facets_DvQuantifiedType_magnitude-status');
 var usedByBoxes= new Array('usedBy_DvQuantifiedType');
 var sourceBoxes= new Array('source_DvQuantifiedType_magnitude', 
+				'source_DvQuantifiedType_magnitude-status', 
 				'source_DvQuantifiedType_error', 
 				'source_DvQuantifiedType_accuracy', 
 				'source_DvQuantifiedType');
 var diagramBoxes= new Array('diagram_DvQuantifiedType_magnitude', 
+				'diagram_DvQuantifiedType_magnitude-status', 
 				'diagram_DvQuantifiedType_error', 
 				'diagram_DvQuantifiedType_accuracy', 
 				'diagram_DvQuantifiedType');
 var annotationBoxes= new Array('annotations_DvQuantifiedType_magnitude', 
+				'annotations_DvQuantifiedType_magnitude-status', 
 				'annotations_DvQuantifiedType_error', 
 				'annotations_DvQuantifiedType_accuracy', 
 				'annotations_DvQuantifiedType');
@@ -276,6 +281,9 @@ var modelBoxes= new Array('model_DvQuantifiedType');
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
                      </tr>
                      <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
                      </tr>
                      <tr>
@@ -324,8 +332,7 @@ var modelBoxes= new Array('model_DvQuantifiedType');
                               <div class="annotation">
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
-                                       <td width="100%"><pre><span class="tT">Numeric value of the quantity in canonical (i.e. single value)</span><span class="tI">
-</span><span class="tT">form.</span></pre></td>
+                                       <td width="100%"><pre><span class="tT">Numeric value of the quantity in canonical (i.e. single value) form.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -398,6 +405,160 @@ var modelBoxes= new Array('model_DvQuantifiedType');
             <td class="rt_lineBottom"></td>
             <td class="rt_cornerBottomRight"></td>
          </tr>
+      </table><a id="DvQuantifiedType_magnitude-status"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvQuantifiedType')">s3m:DvQuantifiedType</a></b> / magnitude-status</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DvQuantifiedType_magnitude-status" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DvQuantifiedType_magnitude-status');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DvQuantifiedType_magnitude-status" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Optional status of magnitude.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DvQuantifiedType_magnitude-status" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DvQuantifiedType_magnitude-status');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DvQuantifiedType_magnitude-status" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_magnitude-status.jpeg" usemap="#s3model_1_0_0_xsd_Element_magnitude-status" /><map name="s3model_1_0_0_xsd_Element_magnitude-status" id="s3model_1_0_0_xsd_Element_magnitude-status">
+                                 <area alt="s3model_1_0_0_xsd_Simple_Type_s3m_MagnitudeStatus.tmp#MagnitudeStatus" href="s3model_1_0_0_xsd_Simple_Type_s3m_MagnitudeStatus.html#MagnitudeStatus" coords="238,8,417,34" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Simple_Type_s3m_MagnitudeStatus.html#MagnitudeStatus" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:MagnitudeStatus')">s3m:MagnitudeStatus</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DvQuantifiedType_magnitude-status" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DvQuantifiedType_magnitude-status');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DvQuantifiedType_magnitude-status" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_DvQuantifiedType_magnitude-status" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_DvQuantifiedType_magnitude-status');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_DvQuantifiedType_magnitude-status" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>=</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>&lt;</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>&gt;</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>&lt;=</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>&gt;=</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>~</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DvQuantifiedType_magnitude-status" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DvQuantifiedType_magnitude-status');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DvQuantifiedType_magnitude-status" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"magnitude-status"</span><span class="tAN"> type=</span><span class="tAV">"s3m:MagnitudeStatus"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional status of magnitude.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
       </table><a id="DvQuantifiedType_error"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:DvQuantifiedType')">s3m:DvQuantifiedType</a></b> / error</span></div>
       <table class="rt">
          <tr>
@@ -425,8 +586,7 @@ var modelBoxes= new Array('model_DvQuantifiedType');
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
                                        <td width="100%"><pre><span class="tT">Error margin of measurement, indicating error in the recording</span><span class="tI">
-</span><span class="tT">method or instrument (+/- %). Implemented in subtypes. A logical value of 0</span><span class="tI">
-</span><span class="tT">indicates 100% accuracy, i.e. no error.</span></pre></td>
+</span><span class="tT">method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e. no error.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -481,7 +641,7 @@ var modelBoxes= new Array('model_DvQuantifiedType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"error"</span><span class="tAN"> type=</span><span class="tAV">"xs:int"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Error margin of measurement, indicating error in the recording method or instrument (+/- %). Implemented in subtypes. A logical value of 0 indicates 100% accuracy, i.e. no error.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Error margin of measurement, indicating error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e. no error.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
@@ -525,8 +685,8 @@ var modelBoxes= new Array('model_DvQuantifiedType');
                               <div class="annotation">
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
-                                       <td width="100%"><pre><span class="tT">Accuracy of the value in the magnitude attribute. 0% to +/- 100% A</span><span class="tI">
-</span><span class="tT">value of 0 means that the accuracy is unknown.</span></pre></td>
+                                       <td width="100%"><pre><span class="tT">Accuracy of the value in the magnitude attribute. 0% to +/- 100% </span><span class="tI">
+</span><span class="tT">A value of 0 means that the accuracy is unknown.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -645,13 +805,13 @@ var modelBoxes= new Array('model_DvQuantifiedType');
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vtb" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" coords="363,342,499,384" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType_vte" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" coords="363,437,499,479" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.tmp#DvAnyType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType" coords="281,79,521,119" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_reference-ranges.tmp#reference-ranges" href="s3model_1_0_0_xsd_Element_s3m_reference-ranges.html#reference-ranges" coords="371,569,585,611" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.tmp#DvOrderedType_reference-range" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType_reference-range" coords="371,569,585,611" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.tmp#DvOrderedType_normal-status" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType_normal-status" coords="371,664,487,706" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.tmp#DvOrderedType" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType" coords="267,3,534,61" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.tmp#DvQuantifiedType_magnitude" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_magnitude" coords="335,809,462,851" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_magnitude-status.tmp#magnitude-status" href="s3model_1_0_0_xsd_Element_s3m_magnitude-status.html#magnitude-status" coords="335,904,536,946" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.tmp#DvQuantifiedType_error" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_error" coords="335,956,432,998" />
-                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.tmp#DvQuantifiedType_accuracy" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_accuracy" coords="335,1064,462,1106" /></map></div>
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.tmp#DvQuantifiedType_magnitude-status" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_magnitude-status" coords="335,904,525,946" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.tmp#DvQuantifiedType_error" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_error" coords="335,986,432,1028" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.tmp#DvQuantifiedType_accuracy" href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_accuracy" coords="335,1094,462,1136" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -712,12 +872,12 @@ var modelBoxes= new Array('model_DvQuantifiedType');
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_DvQuantifiedType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_DvQuantifiedType');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_DvQuantifiedType" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_reference-ranges.html#reference-ranges" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:reference-ranges*')">s3m:reference-ranges*</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType_normal-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component normal-status{0,1}')">normal-status{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_magnitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component magnitude{0,1}')">magnitude{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_magnitude-status.html#magnitude-status" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:magnitude-status{0,1}')">s3m:magnitude-status{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_error" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component error{0,1}')">error{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_accuracy" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component accuracy{0,1}')">accuracy{0,1}</a></b></div>
+                           <div id="model_DvQuantifiedType" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue{0,1}')">s3m:ExceptionalValue{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType_reference-range" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component reference-range*')">reference-range*</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType_normal-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component normal-status{0,1}')">normal-status{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_magnitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component magnitude{0,1}')">magnitude{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_magnitude-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component magnitude-status{0,1}')">magnitude-status{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_error" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component error{0,1}')">error{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_accuracy" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component accuracy{0,1}')">accuracy{0,1}</a></b></div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
-                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_accuracy" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component accuracy')">accuracy</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_error" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component error')">error</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_magnitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component magnitude')">magnitude</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType_normal-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component normal-status')">normal-status</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_magnitude-status.html#magnitude-status" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:magnitude-status')">s3m:magnitude-status</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_reference-ranges.html#reference-ranges" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:reference-ranges')">s3m:reference-ranges</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_accuracy" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component accuracy')">accuracy</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_data-name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component data-name')">data-name</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_error" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component error')">error</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_magnitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component magnitude')">magnitude</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType_magnitude-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component magnitude-status')">magnitude-status</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType_normal-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component normal-status')">normal-status</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvOrderedType.html#DvOrderedType_reference-range" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component reference-range')">reference-range</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_DvAnyType.html#DvAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -731,12 +891,6 @@ var modelBoxes= new Array('model_DvQuantifiedType');
                                     <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> abstract=</span><span class="tAV">"true"</span><span class="tAN"> name=</span><span class="tAV">"DvQuantifiedType"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvQuantifiedType"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Complex_Type_s3m_DvQuantifiedType.html#DvQuantifiedType"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/DvOrderedType"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"s3m:DvOrderedType"</span><span class="tEl">&gt;</span><span class="tI">
@@ -746,30 +900,14 @@ var modelBoxes= new Array('model_DvQuantifiedType');
             </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numeric value of the quantity in canonical (i.e. single value) form.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> ref=</span><span class="tAV">"s3m:magnitude-status"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"magnitude-status"</span><span class="tAN"> type=</span><span class="tAV">"s3m:MagnitudeStatus"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tC">&lt;!-- Optional status of magnitude with values:
-                
-                “=” : magnitude is a point value
-                
-                “&lt;“ : value is &lt; magnitude
-                
-                “&gt;” : value is &gt; magnitude
-                
-                “&lt;=” : value is &lt;= magnitude
-                
-                “&gt;=” : value is &gt;= magnitude
-                
-                “~” : value is the approximate magnitude
-                           
-             --&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional status of magnitude.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"error"</span><span class="tAN"> type=</span><span class="tAV">"xs:int"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Error margin of measurement, indicating error in the recording method or instrument (+/- %). Implemented in subtypes. A logical value of 0 indicates 100% accuracy, i.e. no error.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Error margin of measurement, indicating error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e. no error.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
           </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
         </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
         </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"accuracy"</span><span class="tAN"> type=</span><span class="tAV">"xs:decimal"</span><span class="tEl">&gt;</span><span class="tI">
@@ -799,7 +937,8 @@ var modelBoxes= new Array('model_DvQuantifiedType');
       </table>
       <div class="footer">
          <hr />
-         S3Model RM docs
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
       </div><script type="text/javascript">
          <!--
                      // The namespace is the selected option in the TOC combo.

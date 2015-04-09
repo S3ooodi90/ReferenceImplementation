@@ -7,6 +7,7 @@
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
         var propertiesBoxes= new Array('properties_Participation');
+var usedByBoxes= new Array('usedBy_Participation');
 var sourceBoxes= new Array('source_Participation');
 var instanceBoxes= new Array('instance_Participation');
 var diagramBoxes= new Array('diagram_Participation');
@@ -271,6 +272,9 @@ var modelBoxes= new Array('model_Participation');
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
                      </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -305,9 +309,9 @@ var modelBoxes= new Array('model_Participation');
                         </td>
                         <td class="diagram">
                            <div id="diagram_Participation" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_s3m_Participation.jpeg" usemap="#s3model_1_0_0_xsd_Element_s3m_Participation" /><map name="s3model_1_0_0_xsd_Element_s3m_Participation" id="s3model_1_0_0_xsd_Element_s3m_Participation">
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Performer.tmp#Performer" href="s3model_1_0_0_xsd_Element_s3m_Performer.html#Performer" coords="305,40,456,82" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Function.tmp#Function" href="s3model_1_0_0_xsd_Element_s3m_Function.html#Function" coords="305,135,475,177" />
-                                 <area alt="s3model_1_0_0_xsd_Element_s3m_Mode.tmp#Mode" href="s3model_1_0_0_xsd_Element_s3m_Mode.html#Mode" coords="305,230,475,272" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.tmp#ParticipationType_performer" href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_performer" coords="305,40,456,82" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.tmp#ParticipationType_function" href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_function" coords="305,135,475,177" />
+                                 <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.tmp#ParticipationType_mode" href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_mode" coords="305,230,475,272" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.tmp#ParticipationType_start-time" href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_start-time" coords="305,325,441,367" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.tmp#ParticipationType_end-time" href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_end-time" coords="305,407,441,449" />
                                  <area alt="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.tmp#ParticipationType" href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType" coords="223,3,400,25" /></map></div>
@@ -334,15 +338,31 @@ var modelBoxes= new Array('model_Participation');
                         </td>
                      </tr>
                      <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_Participation" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Participation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_Participation" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ConceptType.html#ConceptType" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ConceptType')">s3m:ConceptType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_Participation" type="image" src="img/btM.gif" value="-" onclick="switchState('model_Participation');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_Participation" style="display:block"><b><a href="s3model_1_0_0_xsd_Element_s3m_Performer.html#Performer" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Performer{0,1}')">s3m:Performer{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Function.html#Function" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Function{0,1}')">s3m:Function{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Element_s3m_Mode.html#Mode" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Mode{0,1}')">s3m:Mode{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_start-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component start-time{0,1}')">start-time{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_end-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component end-time{0,1}')">end-time{0,1}</a></b></div>
+                           <div id="model_Participation" style="display:block"><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_performer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component performer{0,1}')">performer{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component function{0,1}')">function{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_mode" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component mode{0,1}')">mode{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_start-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component start-time{0,1}')">start-time{0,1}</a></b> , <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_end-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component end-time{0,1}')">end-time{0,1}</a></b></div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
-                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_end-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component end-time')">end-time</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Function.html#Function" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Function')">s3m:Function</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Mode.html#Mode" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Mode')">s3m:Mode</a></b>, <b><a href="s3model_1_0_0_xsd_Element_s3m_Performer.html#Performer" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:Performer')">s3m:Performer</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_start-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component start-time')">start-time</a></b></td>
+                        <td><b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_end-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component end-time')">end-time</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component function')">function</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_mode" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component mode')">mode</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_performer" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component performer')">performer</a></b>, <b><a href="s3model_1_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType_start-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component start-time')">start-time</a></b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -354,9 +374,9 @@ var modelBoxes= new Array('model_Participation');
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;s3m:Participation</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"http://www.s3model.com/"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Performer</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Performer&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Function</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Function&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;s3m:Mode</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/s3m:Mode&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;performer</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/performer&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;function</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/function&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;mode</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/mode&gt;</span><span class="tI">
   </span><span class="tEl">&lt;start-time</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/start-time&gt;</span><span class="tI">
   </span><span class="tEl">&lt;end-time</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/end-time&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/s3m:Participation&gt;</span></pre></td>
@@ -374,16 +394,7 @@ var modelBoxes= new Array('model_Participation');
                            <div id="source_Participation" style="display:block">
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Participation"</span><span class="tAN"> type=</span><span class="tAV">"s3m:ParticipationType"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"http://s3model.com/rm/1_0_0/Participation"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/docs/html/s3model_1_0_0_xsd_Element_s3m_Participation.html#Participation"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://s3model.com/rm/1_0_0/ParticipationType"</span><span class="tEl">/&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Participation"</span><span class="tAN"> type=</span><span class="tAV">"s3m:ParticipationType"</span><span class="tEl">/&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -402,7 +413,8 @@ var modelBoxes= new Array('model_Participation');
       </table>
       <div class="footer">
          <hr />
-         S3Model RM docs
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
       </div><script type="text/javascript">
          <!--
                      // The namespace is the selected option in the TOC combo.
