@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1428673959550" name="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl" uri="protege-dc.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1428673959550" name="http://www.mlhim.org/xmlns/mlhim2" uri="RM/1_0_0/s3model_1_0_0.owl"/>
+    </group>
+</catalog>
