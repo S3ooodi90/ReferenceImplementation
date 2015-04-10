@@ -1698,7 +1698,6 @@ Examples:
     </xs:complexContent>
   </xs:complexType>
 
-
   <xs:complexType name="ct-5f5d5ee5-71d1-4d23-befc-77b69b208321" xml:lang="en-US">
     <!-- Test Ratio -->
     <xs:annotation>

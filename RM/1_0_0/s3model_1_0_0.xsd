@@ -49,7 +49,7 @@
             information was collected.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime" nillable="true">
+      <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime">
         <xs:annotation>
           <xs:documentation>Valid Time End. If present this must be a valid date-time including timezone. It is used
             to indicate the ending time that information is considered valid or is to have
@@ -405,30 +405,29 @@
   <xs:simpleType name="MagnitudeStatus">
     <xs:annotation>
       <xs:documentation>
-        <!-- Optional status of magnitude with values:
+        Optional status of magnitude with values:
                 
-                “=” : magnitude is a point value
+                equal : magnitude is a point value
                 
-                “<“ : value is < magnitude
+                less_than : value is less than the magnitude
                 
-                “>” : value is > magnitude
+                greater_than : value is greater than the magnitude
                 
-                “<=” : value is <= magnitude
+                less_than_or_equal : value is less_than_or_equal to the magnitude
                 
-                “>=” : value is >= magnitude
+                greater_than_or_equal : value is greater_than_or_equal to the magnitude
                 
-                “~” : value is the approximate magnitude
+                approximate : value is the approximately the magnitude
                            
-             -->
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="="/>
-      <xs:enumeration value="&lt;"/>
-      <xs:enumeration value="&gt;"/>
-      <xs:enumeration value="&lt;="/>
-      <xs:enumeration value="&gt;="/>
-      <xs:enumeration value="~"/>
+      <xs:enumeration value="equal"/>
+      <xs:enumeration value="less_than"/>
+      <xs:enumeration value="greater_than"/>
+      <xs:enumeration value="less_than_or_equal"/>
+      <xs:enumeration value="greater_than_or_equal"/>
+      <xs:enumeration value="approximate"/>
     </xs:restriction>
   </xs:simpleType>
 

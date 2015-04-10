@@ -115,7 +115,7 @@
     <owl:ObjectProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvCountUnitsRef">
         <rdfs:comment rdf:datatype="&xsd;string">The name or type of the countable quantity. Examples: cigarettes, widgets, cans, drinks, pregnancies, episodes, etc.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvCountType"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvString"/>
+        <rdfs:range rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvStringType"/>
     </owl:ObjectProperty>
     
 
@@ -159,7 +159,7 @@
                 found: http://www.obofoundry.org Also available in other terminologies such as
                 SNOMEDCT.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvQuantityType"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvString"/>
+        <rdfs:range rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvStringType"/>
     </owl:ObjectProperty>
     
 
@@ -269,7 +269,6 @@ http://en.wikipedia.org/wiki/List_of_archive_formats.</rdfs:comment>
     <!-- http://www.s3model.com/rm/s3model_1_0_0#definition -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#definition">
-        <rdfs:comment rdf:datatype="&xsd;string">Term whose value indicates the meaning of this range, e.g. “normal”,   “critical”, “therapeutic” etc.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ReferenceRangeType"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
@@ -429,7 +428,6 @@ Unicode is the default assumption in S3Model, with UTF-8 being the assumed encod
     <!-- http://www.s3model.com/rm/s3model_1_0_0#end-time -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#end-time">
-        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ParticipationType"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
@@ -448,7 +446,6 @@ Unicode is the default assumption in S3Model, with UTF-8 being the assumed encod
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ev-name -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ev-name">
-        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -574,7 +571,6 @@ Parsable text-based formats that have a MIME type assigned, such as XML, XHTML, 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#is-pending -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#is-pending">
-        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AttestationType"/>
         <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
     
@@ -636,21 +632,6 @@ Parsable text-based formats that have a MIME type assigned, such as XML, XHTML, 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#magnitude-status -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#magnitude-status">
-        <rdfs:comment rdf:datatype="&xsd;string">&lt;!-- Optional status of magnitude with values:
-                
-                “=” : magnitude is a point value
-                
-                “&lt;“ : value is &lt; magnitude
-                
-                “&gt;” : value is &gt; magnitude
-                
-                “&lt;=” : value is &lt;= magnitude
-                
-                “&gt;=” : value is &gt;= magnitude
-                
-                “~” : value is the approximate magnitude
-                           
-             --&gt;</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvQuantifiedType"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
@@ -704,7 +685,6 @@ http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
     <!-- http://www.s3model.com/rm/s3model_1_0_0#party-name -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#party-name">
-        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#PartyType"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -745,7 +725,6 @@ http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
     <!-- http://www.s3model.com/rm/s3model_1_0_0#start-time -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#start-time">
-        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ParticipationType"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
@@ -774,7 +753,6 @@ http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
     <!-- http://www.s3model.com/rm/s3model_1_0_0#time-committed -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#time-committed">
-        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AttestationType"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
@@ -783,7 +761,6 @@ http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
     <!-- http://www.s3model.com/rm/s3model_1_0_0#timestamp -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#timestamp">
-        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AuditType"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
@@ -863,54 +840,25 @@ are generally constrained by a set of enumerations in the CM complexType restric
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ASKRType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKRType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKRType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ASKUType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKUType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#AttestationType -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#AttestationType">
-        <dc:description rdf:datatype="&xsd;string">Record an attestation by a party of item(s) of record content. The type of
-        attestation is recorded by the reason attribute, which my be coded.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#AuditType -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#AuditType"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#CCDType -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#CCDType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKUType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ClusterType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ClusterType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ItemType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ClusterType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DERType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DERType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DERType"/>
     
 
 
@@ -924,9 +872,7 @@ are generally constrained by a set of enumerations in the CM complexType restric
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvAdapterType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvAdapterType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ItemType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvAdapterType"/>
     
 
 
@@ -974,14 +920,6 @@ are generally constrained by a set of enumerations in the CM complexType restric
     
 
 
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvCodedString -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvCodedString">
-        <rdfs:comment rdf:datatype="&xsd;string">Global element.</rdfs:comment>
-    </owl:Class>
-    
-
-
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvCount -->
 
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvCount">
@@ -1018,14 +956,6 @@ are generally constrained by a set of enumerations in the CM complexType restric
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvEncapsulatedType">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvAnyType"/>
         <rdfs:comment rdf:datatype="&xsd;string">Abstract type defining the common meta-data of all types of encapsulated data.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvIdentifier -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvIdentifier">
-        <rdfs:comment rdf:datatype="&xsd;string">Global element.</rdfs:comment>
     </owl:Class>
     
 
@@ -1258,17 +1188,17 @@ Elements dvordinal-value and symbol MUST have exactly the same number of enumera
     
 
 
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType -->
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#EnumeratedValue -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#EnumeratedValue">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/"/>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#INVType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#INVType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#INVType"/>
     
 
 
@@ -1286,95 +1216,68 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     
 
 
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#ItemType -->
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#MSKType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ItemType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#MSKType"/>
     
 
 
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#MSKType -->
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#MSKType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#EnumeratedValue"/>
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#S3Model_RM_1.0.0"/>
     </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NASKType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NASKType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NASKType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NAType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NAVType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAVType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAVType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NINFType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NINFType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NINFType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#OTHType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#OTHType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#OTHType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#PINFType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PINFType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#ParticipationType -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ParticipationType">
-        <dc:description rdf:datatype="&xsd;string">Model of a participation of a Party (any Actor or Role) in an activity.
-        Used to represent any participation of a Party in some activity, which is not explicitly in
-        the model, e.g. assisting nurse. Can be used to record past or future participations. Should
-        not be used in place of more permanent relationships between demographic entities.</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#PartyType -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PartyType">
-        <dc:description rdf:datatype="&xsd;string">Description of a party, including an optional external link to data for
-        this party in a demographic or other identity management system. An additional details
-        element provides for the inclusion of information related to this party directly. If the
-        party information is to be anonymous then do not include the details element. The string
-        &apos;Self&apos; may be entered as the party-name if an external_ref is include.</dc:description>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PINFType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#QSType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#QSType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#QSType"/>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#RatioType -->
+
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#RatioType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#EnumeratedValue"/>
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#S3Model_RM_1.0.0"/>
     </owl:Class>
     
 
@@ -1411,74 +1314,19 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#TRCType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#TRCType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#TRCType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#UNCType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNCType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNCType"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#UNKType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNKType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#attested-view -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#attested-view">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AttestationType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#committer -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#committer">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AttestationType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#definition -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#definition">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#CCDType"/>
-        <rdfs:comment rdf:datatype="&xsd;string">Term whose value indicates the meaning of this range, e.g. “normal”,   “critical”, “therapeutic” etc.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#details -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#details">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#PartyType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#external-ref -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#external-ref">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#PartyType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#function -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#function">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ParticipationType"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNKType"/>
     
 
 
@@ -1487,102 +1335,6 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#items">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ClusterType"/>
     </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#location -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#location">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AuditType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#magnitude-status -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#magnitude-status">
-        <rdfs:comment rdf:datatype="&xsd;string">&lt;!-- Optional status of magnitude with values:
-                
-                “=” : magnitude is a point value
-                
-                “&lt;“ : value is &lt; magnitude
-                
-                “&gt;” : value is &gt; magnitude
-                
-                “&lt;=” : value is &lt;= magnitude
-                
-                “&gt;=” : value is &gt;= magnitude
-                
-                “~” : value is the approximate magnitude
-                           
-             --&gt;</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#mode -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#mode">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ParticipationType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#performer -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#performer">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ParticipationType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#proof -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#proof">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AttestationType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#ratio-type -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ratio-type"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#reason -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#reason">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AttestationType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#system-id -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#system-id">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AuditType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#system-user -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#system-user">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AuditType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/2001/XMLSchema#dayTimeDuration -->
-
-    <owl:Class rdf:about="&xsd;dayTimeDuration"/>
-    
-
-
-    <!-- http://www.w3.org/2001/XMLSchema#gMonthDay -->
-
-    <owl:Class rdf:about="&xsd;gMonthDay"/>
     
 
 
@@ -1605,184 +1357,45 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ASKRElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKRElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ASKRType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKRElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ASKUElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKUElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ASKUType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#AdminEntryElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#AdminEntryElement">
-        <dc:description rdf:datatype="&xsd;string">An XML element of type AdminEntryType.</dc:description>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#Attestation -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#Attestation"/>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKUElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#AttestationElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#AttestationElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#AttestationType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#AuditElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#AuditElement"/>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#AttestationElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#CCDElement -->
 
     <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#CCDElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#CCDType"/>
         <dc:description rdf:datatype="&xsd;string">An XML element of type CCDType</dc:description>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#CareEntryElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#CareEntryElement">
-        <dc:description rdf:datatype="&xsd;string">An XML element of CareEntryType</dc:description>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ClusterElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ClusterElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ClusterType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ClusterElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DERElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DERElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DERType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DemographicEntryElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DemographicEntryElement">
-        <dc:description rdf:datatype="&xsd;string">An XML element of DemographicEntryType</dc:description>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DERElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvAdapterElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvAdapterElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvAdapterType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvAnyElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvAnyElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvBooleanElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvBooleanElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvCodedStringElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvCodedStringElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvCountElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvCountElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvEncapsulatedElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvEncapsulatedElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvIdentifierElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvIdentifierElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvIntervalElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvIntervalElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvMediaElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvMediaElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvOrderedElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvOrderedElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvOrdinalElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvOrdinalElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvParsableElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvParsableElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvQuantifiedElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvQuantifiedElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvQuantityElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvQuantityElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvRatioElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvRatioElement"/>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvStringElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvStringElement"/>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvAdapterElement"/>
     
 
 
@@ -1802,144 +1415,152 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     
 
 
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#EntryElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#EntryElement">
-        <dc:description rdf:datatype="&xsd;string">An abstract element of EntryType</dc:description>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#INVElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#INVElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#INVType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#INVElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ItemElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ItemElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ItemType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ItemElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#MSKElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#MSKElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#MSKType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#MSKElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NAElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#NAType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NASKElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NASKElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#NASKType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NASKElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NAVElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAVElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#NAVType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAVElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NINFElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NINFElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#NINFType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NINFElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#OTHElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#OTHElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#OTHType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#OTHElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#PINFElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PINFElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#PINFType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PINFElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ParticipationElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ParticipationElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ParticipationType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ParticipationElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#PartyElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PartyElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#PartyType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PartyElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#QSElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#QSElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#QSType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#ReferenceRangeElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ReferenceRangeElement"/>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#QSElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#TRCElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#TRCElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#TRCType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#TRCElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#UNCElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNCElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#UNCType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNCElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#UNKElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNKElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#UNKType"/>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNKElement"/>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#approximate -->
+
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#approximate">
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus"/>
+        <rdfs:comment>value is the approximately the magnitude</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#equal">
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus"/>
+        <rdfs:comment>magnitude is a point value</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#greater_than -->
+
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#greater_than">
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus"/>
+        <rdfs:comment>value is greater than the magnitude</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#greater_than_or_equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#greater_than_or_equal">
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus"/>
+        <rdfs:comment>value is greater than or equal to the magnitude</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#less_than -->
+
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#less_than">
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus"/>
+        <rdfs:comment>value is less than the magnitude</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#less_than_or_equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#less_than_or_equal">
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus"/>
+        <rdfs:comment>value is less than or equal to the magnitude</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -1947,7 +1568,8 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     <!-- http://www.s3model.com/rm/s3model_1_0_0#proportion -->
 
     <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#proportion">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ratio-type"/>
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#RatioType"/>
+        <rdfs:comment>proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -1955,7 +1577,8 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     <!-- http://www.s3model.com/rm/s3model_1_0_0#rate -->
 
     <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#rate">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ratio-type"/>
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#RatioType"/>
+        <rdfs:comment>rate = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -1963,55 +1586,8 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ratio -->
 
     <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ratio">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ratio-type"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#&amp;gt; -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#&amp;gt;">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#magnitude-status"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#&amp;gt;= -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#&amp;gt;=">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#magnitude-status"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#&amp;lt; -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#&amp;lt;">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#magnitude-status"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#&amp;lt;= -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#&amp;lt;=">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#magnitude-status"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#= -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#=">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#magnitude-status"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#~ -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#~">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#magnitude-status"/>
+        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#RatioType"/>
+        <rdfs:comment>ratio = a relationship between two numbers.</rdfs:comment>
     </owl:NamedIndividual>
     
 

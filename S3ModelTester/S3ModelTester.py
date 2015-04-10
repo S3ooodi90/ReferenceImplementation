@@ -138,6 +138,9 @@ def main():
                     lf.write('ERROR: complexType: ' + name + ' uses xs:extension. This is not allowed in S3Model. \n')
                     print('ERROR: complexType: ' + name + ' uses xs:extension. This is not allowed in S3Model.')
 
+            # TODO: an exception is to allow the extension of an ExceptionalValue
+
+
             #WARNINGS:
 
             # check for ct docs.
@@ -153,11 +156,12 @@ def main():
                 print('WARNING: complexType: ' + name + ' is missing a semantics definition.')
 
 
-            # check for element docs
+            # TODO: check for element docs
 
 
 
-            # check that enumerations should have semantics
+            # TODO: check that enumerations should have semantics
+            # TODO: check Interval types for validity
 
 
     lf.write('\nAll tests completed. Errors and/or warnings appear above this line.\n')
