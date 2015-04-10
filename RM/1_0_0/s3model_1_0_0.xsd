@@ -855,7 +855,7 @@
       <xs:element maxOccurs="1" minOccurs="1" name="ev-name" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element abstract="true" name="ExceptionalValue" type="s3m:ExceptionalValueType"/>
+  <xs:element name="ExceptionalValue" type="s3m:ExceptionalValueType"/>
 
   <xs:complexType name="NIType">
     <xs:complexContent>
@@ -872,7 +872,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="NI" substitutionGroup="s3m:ExceptionalValue" type="s3m:NIType"/>
 
   <xs:complexType name="MSKType">
     <xs:complexContent>
@@ -892,7 +891,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="MSK" substitutionGroup="s3m:ExceptionalValue" type="s3m:MSKType"/>
 
   <xs:complexType name="INVType">
     <xs:complexContent>
@@ -908,8 +906,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="INV" substitutionGroup="s3m:ExceptionalValue" type="s3m:INVType"/>
-
 
   <xs:complexType name="DERType">
     <xs:complexContent>
@@ -924,7 +920,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="DER" substitutionGroup="s3m:ExceptionalValue" type="s3m:DERType"/>
 
   <xs:complexType name="UNCType">
     <xs:complexContent>
@@ -940,7 +935,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="UNC" substitutionGroup="s3m:ExceptionalValue" type="s3m:UNCType"/>
 
   <xs:complexType name="OTHType">
     <xs:complexContent>
@@ -956,7 +950,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="OTH" substitutionGroup="s3m:ExceptionalValue" type="s3m:OTHType"/>
 
   <xs:complexType name="NINFType">
     <xs:complexContent>
@@ -970,8 +963,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="NINF" substitutionGroup="s3m:ExceptionalValue" type="s3m:NINFType"/>
-
 
   <xs:complexType name="PINFType">
     <xs:complexContent>
@@ -985,7 +976,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="PINF" substitutionGroup="s3m:ExceptionalValue" type="s3m:PINFType"/>
 
   <xs:complexType name="UNKType">
     <xs:complexContent>
@@ -999,7 +989,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="UNK" substitutionGroup="s3m:ExceptionalValue" type="s3m:UNKType"/>
 
   <xs:complexType name="ASKRType">
     <xs:complexContent>
@@ -1014,7 +1003,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ASKR" substitutionGroup="s3m:ExceptionalValue" type="s3m:ASKRType"/>
 
   <xs:complexType name="NASKType">
     <xs:complexContent>
@@ -1029,7 +1017,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="NASK" substitutionGroup="s3m:ExceptionalValue" type="s3m:NASKType"/>
 
   <xs:complexType name="QSType">
     <xs:complexContent>
@@ -1047,7 +1034,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="QS" substitutionGroup="s3m:ExceptionalValue" type="s3m:QSType"/>
 
   <xs:complexType name="TRCType">
     <xs:complexContent>
@@ -1062,7 +1048,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="TRC" substitutionGroup="s3m:ExceptionalValue" type="s3m:TRCType"/>
 
   <xs:complexType name="ASKUType">
     <xs:complexContent>
@@ -1077,7 +1062,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ASKU" substitutionGroup="s3m:ExceptionalValue" type="s3m:ASKUType"/>
 
   <xs:complexType name="NAVType">
     <xs:complexContent>
@@ -1092,7 +1076,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="NAV" substitutionGroup="s3m:ExceptionalValue" type="s3m:NAVType"/>
 
   <xs:complexType name="NAType">
     <xs:complexContent>
@@ -1107,7 +1090,6 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="NA" substitutionGroup="s3m:ExceptionalValue" type="s3m:NAType"/>
 
   <xs:complexType abstract="true" name="ItemType">
     <xs:annotation>
