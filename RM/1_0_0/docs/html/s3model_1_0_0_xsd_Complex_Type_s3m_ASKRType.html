@@ -7,7 +7,6 @@
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
         var propertiesBoxes= new Array('properties_ASKRType_ev-name');
-var usedByBoxes= new Array('usedBy_ASKRType');
 var sourceBoxes= new Array('source_ASKRType_ev-name', 
 				'source_ASKRType');
 var diagramBoxes= new Array('diagram_ASKRType_ev-name', 
@@ -274,9 +273,6 @@ var modelBoxes= new Array('model_ASKRType');
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -429,22 +425,6 @@ var modelBoxes= new Array('model_ASKRType');
                                  </ul>
                               </li>
                            </ul>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_ASKRType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ASKRType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_ASKRType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="s3model_1_0_0_xsd_Element_s3m_ASKR.html#ASKR" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:ASKR')">s3m:ASKR</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
                         </td>
                      </tr>
                      <tr>

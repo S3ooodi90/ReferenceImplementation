@@ -7,7 +7,6 @@
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
         var propertiesBoxes= new Array('properties_QSType_ev-name');
-var usedByBoxes= new Array('usedBy_QSType');
 var sourceBoxes= new Array('source_QSType_ev-name', 
 				'source_QSType');
 var diagramBoxes= new Array('diagram_QSType_ev-name', 
@@ -274,9 +273,6 @@ var modelBoxes= new Array('model_QSType');
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
                      </tr>
-                     <tr>
-                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
-                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -310,7 +306,7 @@ var modelBoxes= new Array('model_QSType');
                            <div class="floatRight"><input id="button_diagram_QSType_ev-name" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_QSType_ev-name');" class="control" /></div>
                         </td>
                         <td class="diagram">
-                           <div id="diagram_QSType_ev-name" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_ev-name_5.jpeg" /></div>
+                           <div id="diagram_QSType_ev-name" style="display:block"><img alt="Diagram" border="0" src="img/s3model_1_0_0_xsd_Element_ev-name_10.jpeg" /></div>
                         </td>
                      </tr>
                      <tr>
@@ -431,22 +427,6 @@ var modelBoxes= new Array('model_QSType');
                                  </ul>
                               </li>
                            </ul>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Used by</b></div>
-                           <div class="floatRight"><input id="button_usedBy_QSType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_QSType');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="usedBy_QSType" style="display:block">
-                              <table class="usedByTable">
-                                 <tr>
-                                    <td class="firstColumn">Element </td>
-                                    <td><b><a href="s3model_1_0_0_xsd_Element_s3m_QS.html#QS" target="mainFrame" title="http://www.s3model.com/" onclick="updatePageTitle('Schema documentation for component s3m:QS')">s3m:QS</a></b></td>
-                                 </tr>
-                              </table>
-                           </div>
                         </td>
                      </tr>
                      <tr>

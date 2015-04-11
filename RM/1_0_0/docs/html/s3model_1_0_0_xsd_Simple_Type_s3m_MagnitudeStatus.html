@@ -308,8 +308,21 @@ var annotationBoxes= new Array('annotations_MagnitudeStatus');
                               <div class="annotation">
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
-                                       <td width="100%"><pre><span class="tI">
-</span></pre></td>
+                                       <td width="100%"><pre><span class="tT">Optional status of magnitude with values:</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT">        equal : magnitude is a point value</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT">        less_than : value is less than the magnitude</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT">        greater_than : value is greater than the magnitude</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT">        less_than_or_equal : value is less_than_or_equal to the magnitude</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT">        greater_than_or_equal : value is greater_than_or_equal to the magnitude</span><span class="tI">
+</span><span class="tT">        </span><span class="tI">
+</span><span class="tT">        approximate : value is the approximately the magnitude</span><span class="tI">
+</span><span class="tT">                </span><span class="tI">
+</span><span class="tT">A simpleType is declared in the RM so there is no need to repeat the enumerations in the CMs.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -339,42 +352,42 @@ var annotationBoxes= new Array('annotations_MagnitudeStatus');
                               <table class="facetsTable">
                                  <tr>
                                     <td class="firstColumn">enumeration</td>
-                                    <td width="30%"><b>=</b></td>
+                                    <td width="30%"><b>equal</b></td>
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
                                  </tr>
                                  <tr>
                                     <td class="firstColumn">enumeration</td>
-                                    <td width="30%"><b>&lt;</b></td>
+                                    <td width="30%"><b>less_than</b></td>
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
                                  </tr>
                                  <tr>
                                     <td class="firstColumn">enumeration</td>
-                                    <td width="30%"><b>&gt;</b></td>
+                                    <td width="30%"><b>greater_than</b></td>
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
                                  </tr>
                                  <tr>
                                     <td class="firstColumn">enumeration</td>
-                                    <td width="30%"><b>&lt;=</b></td>
+                                    <td width="30%"><b>less_than_or_equal</b></td>
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
                                  </tr>
                                  <tr>
                                     <td class="firstColumn">enumeration</td>
-                                    <td width="30%"><b>&gt;=</b></td>
+                                    <td width="30%"><b>greater_than_or_equal</b></td>
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
                                  </tr>
                                  <tr>
                                     <td class="firstColumn">enumeration</td>
-                                    <td width="30%"><b>~</b></td>
+                                    <td width="30%"><b>approximate</b></td>
                                     <td>
                                        <div class="annotation"></div>
                                     </td>
@@ -410,31 +423,15 @@ var annotationBoxes= new Array('annotations_MagnitudeStatus');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"MagnitudeStatus"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tC">&lt;!-- Optional status of magnitude with values:
-                
-                “=” : magnitude is a point value
-                
-                “&lt;“ : value is &lt; magnitude
-                
-                “&gt;” : value is &gt; magnitude
-                
-                “&lt;=” : value is &lt;= magnitude
-                
-                “&gt;=” : value is &gt;= magnitude
-                
-                “~” : value is the approximate magnitude
-                           
-             --&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional status of magnitude with values: equal : magnitude is a point value less_than : value is less than the magnitude greater_than : value is greater than the magnitude less_than_or_equal : value is less_than_or_equal to the magnitude greater_than_or_equal : value is greater_than_or_equal to the magnitude approximate : value is the approximately the magnitude A simpleType is declared in the RM so there is no need to repeat the enumerations in the CMs.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"="</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"&lt;"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"&gt;"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"&lt;="</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"&gt;="</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"~"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"equal"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"less_than"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"greater_than"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"less_than_or_equal"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"greater_than_or_equal"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"approximate"</span><span class="tEl">/&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
                                  </tr>
