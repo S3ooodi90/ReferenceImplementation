@@ -139,7 +139,8 @@ def main():
                     print('ERROR: complexType: ' + name + ' uses xs:extension. This is not allowed in S3Model.')
 
             # TODO: an exception is to allow the extension of an ExceptionalValue
-
+            # TODO: test Interval types for correctness.
+            
 
             #WARNINGS:
 

@@ -123,7 +123,7 @@
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvIntervalLowerRef -->
 
     <owl:ObjectProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvIntervalLowerRef">
-        <rdfs:comment rdf:datatype="&xsd;string">Defines the lower value of the interval.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">Defines the type of the lower value of the interval.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvIntervalType"/>
         <owl:propertyDisjointWith rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvIntervalUpperRef"/>
         <rdfs:range rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#InvlType"/>
@@ -134,7 +134,7 @@
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvIntervalUpperRef -->
 
     <owl:ObjectProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvIntervalUpperRef">
-        <rdfs:comment rdf:datatype="&xsd;string">Defines the upper value of the interval.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">Defines the type of the upper value of the interval.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvIntervalType"/>
         <rdfs:range rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#InvlType"/>
     </owl:ObjectProperty>
@@ -179,6 +179,7 @@
                 relationship between the numerator and the denominator (the numerator is not
                 contained in the denominator)</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvRatioType"/>
+        <rdfs:range rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#RatioType"/>
     </owl:ObjectProperty>
     
 
@@ -446,6 +447,8 @@ Unicode is the default assumption in S3Model, with UTF-8 being the assumed encod
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ev-name -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ev-name">
+        <rdfs:comment>The string value is fixed in each subtype.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -621,8 +624,8 @@ Parsable text-based formats that have a MIME type assigned, such as XML, XHTML, 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#magnitude -->
 
     <owl:DatatypeProperty rdf:about="http://www.s3model.com/rm/s3model_1_0_0#magnitude">
-        <dc:description rdf:datatype="&xsd;string">Numeric value of the quantity in canonical (i.e. single value)
-                form.</dc:description>
+        <dc:description rdf:datatype="&xsd;string">Numeric value of the quantity in canonical (i.e. single value) form.
+Note that in DvCount the decimal should be constrained to an integer.</dc:description>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvQuantifiedType"/>
         <rdfs:range rdf:resource="&xsd;decimal"/>
     </owl:DatatypeProperty>
@@ -668,7 +671,6 @@ http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
                 included. Coded by ordinals in series HHH, HH, H, (nothing), L, LL, LLL, etc.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvOrderedType"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -840,25 +842,39 @@ are generally constrained by a set of enumerations in the CM complexType restric
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ASKRType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKRType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKRType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Asked and Refused : Information was sought but refused to be provided
+            (e.g., patient was asked but refused to answer)</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ASKUType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKUType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ASKUType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Asked but Unknown : Information was sought but not found (e.g., patient
+            was asked but did not know</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#ClusterType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ClusterType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ClusterType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ItemType"/>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DERType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DERType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DERType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Derived : An actual value may exist, but it must be derived from the
+            provided information; usually an expression is provided directly.</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -872,7 +888,9 @@ are generally constrained by a set of enumerations in the CM complexType restric
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvAdapterType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvAdapterType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvAdapterType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ItemType"/>
+    </owl:Class>
     
 
 
@@ -1134,6 +1152,15 @@ Elements dvordinal-value and symbol MUST have exactly the same number of enumera
     
 
 
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvRatio -->
+
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvRatio">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvRatioType"/>
+        <rdfs:comment>Global element.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvRatioType -->
 
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvRatioType">
@@ -1168,6 +1195,15 @@ Elements dvordinal-value and symbol MUST have exactly the same number of enumera
     
 
 
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvTemporal -->
+
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvTemporal">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvTemporalType"/>
+        <rdfs:comment>Global element.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvTemporalType -->
 
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvTemporalType">
@@ -1180,14 +1216,6 @@ Elements dvordinal-value and symbol MUST have exactly the same number of enumera
     
 
 
-    <!-- http://www.s3model.com/rm/s3model_1_0_0#DvURIType -->
-
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvURIType">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvAnyType"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.s3model.com/rm/s3model_1_0_0#EnumeratedValue -->
 
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#EnumeratedValue">
@@ -1196,9 +1224,32 @@ Elements dvordinal-value and symbol MUST have exactly the same number of enumera
     
 
 
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValue -->
+
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValue">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Global element for all exceptional value types. The specific type is defined using xsi:type in the instance data.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType -->
+
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#S3Model_RM_1.0.0"/>
+        <rdfs:comment>Abstract.
+Subtypes are used to indicate why a value is missing (Null) or is outside a    measurable range. The element ev-name is fixed in restricted types to a descriptive string.The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances. CMs may contain additional ExceptionalValueType restrictions.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.s3model.com/rm/s3model_1_0_0#INVType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#INVType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#INVType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Invalid : The value as represented in the instance is not a member of
+            the set of permitted data values in the constrained value domain of a variable.</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -1216,9 +1267,26 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     
 
 
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#ItemType -->
+
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#ItemType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#S3Model_RM_1.0.0"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.s3model.com/rm/s3model_1_0_0#MSKType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#MSKType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#MSKType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Masked : There is information on this item available but it has not
+            been provided by the sender due to security, privacy or other reasons. There may be an
+            alternate mechanism for gaining access to this information. Warning: Using this
+            exceptional value does provide information that may be a breach of confidentiality, even
+            though no detail data is provided. Its primary purpose is for those circumstances where
+            it is necessary to inform the receiver that the information does exist without providing
+            any detail.</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -1227,49 +1295,104 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#MagnitudeStatus">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#EnumeratedValue"/>
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#S3Model_RM_1.0.0"/>
+        <rdfs:comment>Optional status of magnitude with values:
+                
+                equal : magnitude is a point value
+                
+                less_than : value is less than the magnitude
+                
+                greater_than : value is greater than the magnitude
+                
+                less_than_or_equal : value is less_than_or_equal to the magnitude
+                
+                greater_than_or_equal : value is greater_than_or_equal to the magnitude
+                
+                approximate : value is the approximately the magnitude
+                           
+
+TODO: The individual enumerations should have a owl:oneOf union declared.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NASKType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NASKType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NASKType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Not Asked : This information has not been sought (e.g., patient was not
+            asked)</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NAType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Not Applicable : No proper value is applicable in this context e.g.,the
+            number of cigarettes smoked per day by a non-smoker subject.</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NAVType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAVType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NAVType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Not Available: This information is not available and the specific reason is not known.</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#NINFType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NINFType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NINFType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Negative Infinity : Negative infinity of numbers</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.s3model.com/rm/s3model_1_0_0#NIType -->
+
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#NIType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>No Information : The value is exceptional (missing, omitted,
+            incomplete, improper). No information as to the reason for being an exceptional value is
+            provided. This is the most general exceptional value. It is also the default exceptional
+            value.</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#OTHType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#OTHType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#OTHType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Other: The actual value is not a member of the permitted data values in
+            the variable. (e.g., when the value of the variable is not by the coding system)</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#PINFType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PINFType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#PINFType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Positive Infinity : Positive infinity of numbers</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#QSType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#QSType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#QSType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Sufficient Quantity : The specific quantity is not known, but is known
+            to non-zero and it is not specified because it makes up the bulk of the material; Add
+            10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to
+            100mL.</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -1278,6 +1401,16 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#RatioType">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#EnumeratedValue"/>
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#S3Model_RM_1.0.0"/>
+        <rdfs:comment>ratio = a relationship between two numbers. 
+                
+                proportion = a relationship between two numbers where there is a bi-univocal relationship between
+                   the numerator and the denominator (the numerator is contained in the denominator)
+                
+                rate = a relationship between two numbers where there is not a bi-univocal
+                relationship between the numerator and the denominator (the numerator is not
+                contained in the denominator) 
+   
+TODO: The individual enumerations should have an owl:oneOf union declared.</rdfs:comment>
     </owl:Class>
     
 
@@ -1314,19 +1447,30 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#TRCType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#TRCType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#TRCType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Trace : The content is greater or less than zero but too small to be
+            quantified.</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#UNCType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNCType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNCType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Unencoded : No attempt has been made to encode the information
+            correctly but the raw source information is represented, usually in free text.</rdfs:comment>
+    </owl:Class>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#UNKType -->
 
-    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNKType"/>
+    <owl:Class rdf:about="http://www.s3model.com/rm/s3model_1_0_0#UNKType">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#ExceptionalValueType"/>
+        <rdfs:comment>Unknown : A proper value is applicable, but not known</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -1401,17 +1545,13 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvTemporalElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvTemporalElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvTemporalType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvTemporalElement"/>
     
 
 
     <!-- http://www.s3model.com/rm/s3model_1_0_0#DvURIElement -->
 
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvURIElement">
-        <rdf:type rdf:resource="http://www.s3model.com/rm/s3model_1_0_0#DvURIType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.s3model.com/rm/s3model_1_0_0#DvURIElement"/>
     
 
 
@@ -1603,6 +1743,14 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointProperties"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#data-name"/>
+            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#vtb"/>
+            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#vte"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointProperties"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-date"/>
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-dateTime"/>
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-decimal"/>
@@ -1610,14 +1758,6 @@ http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rd
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-float"/>
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-int"/>
             <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#invl-time"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointProperties"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#data-name"/>
-            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#vtb"/>
-            <rdf:Description rdf:about="http://www.s3model.com/rm/s3model_1_0_0#vte"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

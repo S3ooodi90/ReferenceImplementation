@@ -418,7 +418,8 @@
                 greater_than_or_equal : value is greater_than_or_equal to the magnitude
                 
                 approximate : value is the approximately the magnitude
-                           
+                        
+        A simpleType is declared in the RM so there is no need to repeat the enumerations in the CMs. 
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">

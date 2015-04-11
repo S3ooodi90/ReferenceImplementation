@@ -3,6 +3,6 @@
     <uri id="User Entered Import Resolution" name="http://www.s3model.com/s3model.owl" uri="file:/home/tim/S3Model/S3Model/s3model.owl"/>
     <uri id="Imports Wizard Entry" name="http://purl.org/dc/elements/1.1/" uri="file:/home/tim/S3Model/S3Model/protege-dc.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1428673990146" name="http://www.mlhim.org/xmlns/mlhim2" uri="s3model_1_0_0.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1428675549087" name="http://www.mlhim.org/xmlns/mlhim2" uri="s3model_1_0_0.owl"/>
     </group>
 </catalog>
