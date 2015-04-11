@@ -674,7 +674,7 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="1" name='data-range' type="s3m:DvIntervalType">
             <xs:annotation>
-              <xs:documentation>The data range for this meaning.</xs:documentation>
+              <xs:documentation>The interval data range for this reference range.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="1" name="is-normal" type="xs:boolean">
@@ -707,7 +707,7 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" ref="s3m:System-user">
         <xs:annotation>
-          <xs:documentation>User(s) who created, committed, forwarded or otherwise handled the item. </xs:documentation>
+          <xs:documentation>User(s) who created, committed, forwarded or otherwise handled the item.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" ref="s3m:Location">
@@ -718,7 +718,7 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="1" name="timestamp" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation>Timestamp of handling the item.</xs:documentation>
+          <xs:documentation>The audit timestamp of handling the item.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -776,7 +776,7 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="reason" type="s3m:DvStringType">
         <xs:annotation>
-          <xs:documentation>Reason of this attestation. Coded from a standardized vocabulary.</xs:documentation>
+          <xs:documentation>Reason of this attestation. Usually coded from a standardized vocabulary.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="committer" type="s3m:PartyType">
@@ -786,7 +786,7 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="time-committed" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation>Datetime of committal of the item. </xs:documentation>
+          <xs:documentation>Datetime of committal of the item being attested. </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="1" name="is-pending" type="xs:boolean">
@@ -830,14 +830,12 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="start-time" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation>The beginning datetime when the participation took
-            place.</xs:documentation>
+          <xs:documentation>The beginning datetime when the participation took place.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="end-time" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation>The ending datetime when the participation took
-            place.</xs:documentation>
+          <xs:documentation>The ending datetime when the participation took place.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -1135,7 +1133,8 @@
         <xs:sequence>
           <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:DvAdapter-value">
             <xs:annotation>
-              <xs:documentation>Data value type of this leaf.</xs:documentation>
+              <xs:documentation>Data value type of this leaf. By rule, there must only be one DvAnyType subtype defined here.
+              The unbounded occurrences is allowed so that the CM can specify how many repetitions may occur in the instance.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -1217,8 +1216,7 @@
       </xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Link">
         <xs:annotation>
-          <xs:documentation>Optional link(s) to other locatable structures or external
-            entities.</xs:documentation>
+          <xs:documentation>Optional link(s) to other S3Model structures or external entities.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
