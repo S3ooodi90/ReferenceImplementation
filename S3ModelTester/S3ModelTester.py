@@ -54,7 +54,8 @@ def main():
         src = open(os.path.join('schemas', filename), 'r')
         tree = etree.parse(src, parser)
         root = tree.getroot()
-        cxt = ct(root) # get the complexTypes
+        cxt = ct(root) # get all of the complexTypes
+        ctDict = {} # create an empty dict to store all of the complexTypes and their restrictions
 
         #ERRORS:
 
@@ -62,26 +63,26 @@ def main():
         try:
             if not root.xpath('@vc:minVersion', namespaces=nsDict)[0] == '1.1':
                 lf.write('ERROR: Incorrect minVersion attribute value. \n')
-                print('ERROR: Incorrect minVersion attribute value.')
+                #print('ERROR: Incorrect minVersion attribute value.')
         except IndexError:
             lf.write('ERROR: Missing minVersion attribute. \n')
-            print('ERROR: Missing minVersion attribute.')
+            #print('ERROR: Missing minVersion attribute.')
 
         # check for RM include
         try:
             rm = root.xpath('./xs:include/@schemaLocation', namespaces=nsDict)[0]
             if not rm.startswith('http://www.s3model.com/rm/s3model'):
                 lf.write('ERROR: ' + rm + ' is an invalid xs:include. \n')
-                print('ERROR: ' + rm + ' is an invalid xs:include.')
+                #print('ERROR: ' + rm + ' is an invalid xs:include.')
         except IndexError:
             lf.write('ERROR: file ' + filename + ' is missing a RM xs:include. \n')
-            print('ERROR: file ' + filename + ' is missing a RM xs:include.')
+            #print('ERROR: file ' + filename + ' is missing a RM xs:include.')
 
 
         # check for metadata on the first ct which should also be the s3m:ConceptType restriction.
         if not cxt[0].xpath('./xs:complexContent/xs:restriction/@base', namespaces=nsDict)[0] == 's3m:ConceptType':
             lf.write('ERROR: The first complexType should be a s3m:ConceptType restriction. Cannot test metadata. \n')
-            print('ERROR: The first complexType should be a s3m:ConceptType restriction. Cannot test metadata.')
+            #print('ERROR: The first complexType should be a s3m:ConceptType restriction. Cannot test metadata.')
         else:
             md_okay = True # set this to False if there are any issues in the metadata
             md = cxt[0].xpath('./xs:annotation/xs:appinfo/rdf:Description', namespaces=nsDict)
@@ -106,7 +107,7 @@ def main():
 
             if not md_okay:
                 lf.write('ERROR: There are errors in your metadata. \n')
-                print('ERROR: There are errors in your metadata.')
+                #print('ERROR: There are errors in your metadata.')
 
 
 
@@ -116,13 +117,13 @@ def main():
             name = c.attrib['name']
             if name[0:3] != 'ct-':
                 lf.write('ERROR: complexType: ' + name + ' has an invalid prefix. \n')
-                print('ERROR: complexType: ' + name + ' has an invalid prefix.')
+                #print('ERROR: complexType: ' + name + ' has an invalid prefix.')
 
             try:
                 uuid.UUID(name[3:])
             except ValueError:
                 lf.write('ERROR: complexType: ' + name + ' has an invalid UUID. \n')
-                print('ERROR: complexType: ' + name + ' has an invalid UUID.')
+                #print('ERROR: complexType: ' + name + ' has an invalid UUID.')
 
 
             # check for a restriction of a RM type
@@ -130,31 +131,32 @@ def main():
             for r in restriction:
                 if r not in rmTypes:
                     lf.write('ERROR: ' + r + ' is not a valid S3Model RM type. \n')
-                    print('ERROR: ' + r + ' is not a valid S3Model RM type.')
+                    #print('ERROR: ' + r + ' is not a valid S3Model RM type.')
+                else:
+                    ctDict[c.attrib['name']] = r
 
             # check for an extension of a RM type
             extension = c.xpath('./xs:complexContent/xs:extension', namespaces=nsDict)
             if len(extension) > 0:
                     lf.write('ERROR: complexType: ' + name + ' uses xs:extension. This is not allowed in S3Model. \n')
-                    print('ERROR: complexType: ' + name + ' uses xs:extension. This is not allowed in S3Model.')
+                    #print('ERROR: complexType: ' + name + ' uses xs:extension. This is not allowed in S3Model.')
 
             # TODO: an exception is to allow the extension of an ExceptionalValue
-            # TODO: test Interval types for correctness.
-            
+
 
             #WARNINGS:
 
             # check for ct docs.
             docs = c.xpath('./xs:annotation/xs:documentation/text()', namespaces=nsDict)
             if not len(docs) > 0:
-                lf.write('WARNING: complexType: ' + name + ' is missing documentation. \n')
-                print('WARNING: complexType: ' + name + ' is missing documentation.')
+                lf.write('Warning: complexType: ' + name + ' is missing documentation. \n')
+                #print('Warning: complexType: ' + name + ' is missing documentation.')
 
             # check for ct semantics
             sem = c.xpath('./xs:annotation/xs:appinfo/rdf:Description', namespaces=nsDict)
             if not len(sem) > 0:
-                lf.write('WARNING: complexType: ' + name + ' is missing a semantics definition. \n')
-                print('WARNING: complexType: ' + name + ' is missing a semantics definition.')
+                lf.write('Warning: complexType: ' + name + ' is missing a semantics definition. \n')
+                #print('Warning: complexType: ' + name + ' is missing a semantics definition.')
 
 
             # TODO: check for element docs
@@ -162,7 +164,13 @@ def main():
 
 
             # TODO: check that enumerations should have semantics
-            # TODO: check Interval types for validity
+
+            #TODO: check for proper IntervalTypes
+            expr = "//xs:complexType/@name = $name"
+            for ct_name, ct_type in ctDict.items():
+                if ct_type == 's3m:DvIntervalType':
+                    if c.xpath(expr, name=ct_name, namespaces=nsDict):
+                        print(c.attrib['name'])
 
 
     lf.write('\nAll tests completed. Errors and/or warnings appear above this line.\n')

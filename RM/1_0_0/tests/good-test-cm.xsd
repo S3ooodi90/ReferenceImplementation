@@ -15,7 +15,7 @@
   <xs:complexType name="ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/lib/el-15ca606c-303a-4862-8f5e-df8f39e8bfc3.xsd">
+        <rdf:Description rdf:about="http://www.s3model.com/concepts/cm-15ca606c-303a-4862-8f5e-df8f39e8bfc3.xsd">
           <dct:title xml:lang="en">Testing 1.0.0 Implementation</dct:title>
           <dct:creator>
             <foaf:Person>
@@ -47,31 +47,16 @@
           <xs:element maxOccurs="1" minOccurs="1" name="language" type="xs:language" fixed="en-US"/>
           <xs:element maxOccurs="1" minOccurs="1" name="encoding" type="xs:string" fixed="utf-8"/>
           <xs:element maxOccurs="1" minOccurs="0" name="current-state" type="xs:string" default="testing me"/>
-          <xs:element maxOccurs="1" minOccurs="1" name="data"
-            type="s3m:ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3"/>
-          <!-- Data -->
-          <xs:element maxOccurs="1" minOccurs="0" name="subject"
-            type="s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c"/>
-          <!-- Subject -->
-          <xs:element maxOccurs="1" minOccurs="0" name="protocol"
-            type="s3m:ct-39a03554-7f19-4e08-a608-b36e42f1fc15"/>
-          <!-- Protocol -->
-          <xs:element maxOccurs="1" minOccurs="0" name="workflow"
-            type="s3m:ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf"/>
-          <!-- Workflow -->
-          <xs:element maxOccurs="1" minOccurs="0" name="attested"
-            type="s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32"/>
-          <!-- Attestation -->
-          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750"/>
-          <!-- Participations -->
-          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8751"/>
-          <!-- Participations 2 -->
-          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16"/>
-          <!-- Audit -->
-          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f"/>
-          <!-- Link -->
-          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066"/>
-          <!-- Link -->
+          <xs:element maxOccurs="1" minOccurs="1" name="data" type="s3m:ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3"/>          <!-- Data -->
+          <xs:element maxOccurs="1" minOccurs="0" name="subject" type="s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c"/>          <!-- Subject -->
+          <xs:element maxOccurs="1" minOccurs="0" name="protocol" type="s3m:ct-39a03554-7f19-4e08-a608-b36e42f1fc15"/>          <!-- Protocol -->
+          <xs:element maxOccurs="1" minOccurs="0" name="workflow" type="s3m:ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf"/>          <!-- Workflow -->
+          <xs:element maxOccurs="1" minOccurs="0" name="attested" type="s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32"/>          <!-- Attestation -->
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750"/>     <!-- Participations -->
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8751"/>    <!-- Participations 2 -->
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16"/>   <!-- Audit -->
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f"/>  <!-- Link -->
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066"/>  <!-- Link -->
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -86,7 +71,7 @@
         <rdf:Description rdf:about="http://www.s3model.com/rm/s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
           <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
           <rdfs:label>attached to</rdfs:label>
-          <rdfs:isDefinedBy rdf:resource="http%3A//purl.obolibrary.org/obo/RO_0002371"/>
+          <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/RO_0002371"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -116,7 +101,7 @@
         <rdf:Description rdf:about="http://www.s3model.com/rm/s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066">
           <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
           <rdfs:label>Connected To</rdfs:label>
-          <rdfs:isDefinedBy rdf:resource="http%3A//purl.obolibrary.org/obo/RO_0002150"/>
+          <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/RO_0002150"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1318,7 +1303,7 @@ Examples:
         <rdf:Description rdf:about="http://www.s3model.com/rm/s3m:ct-d79c6f0e-10b5-432c-91ef-489ee94d64a7">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Participation Function</rdfs:label>
-          <rdfs:isDefinedBy rdf:resource="http%3A//xmlns.com/foaf/spec/%23glance"/>
+          <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/spec/%23glance"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1424,7 +1409,7 @@ Examples:
         <rdf:Description rdf:about="http://www.s3model.com/rm/s3m:ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf">
           <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
           <rdfs:label>Workflow ID</rdfs:label>
-          <rdfs:isDefinedBy rdf:resource="http%3A//purl.obolibrary.org/obo/IAO_0000178"/>
+          <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/IAO_0000178"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1555,7 +1540,7 @@ Examples:
         <rdf:Description rdf:about="http://www.s3model.com/rm/s3m:ct-df50a9c7-5071-4ece-934a-e43aeabc704a">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Attestation Reason</rdfs:label>
-          <rdfs:isDefinedBy rdf:resource="http%3A//usefulinc.com/ns/doap%2523release"/>
+          <rdfs:isDefinedBy rdf:resource="http://usefulinc.com/ns/doap%2523release"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1898,7 +1883,7 @@ Examples:
           <rdfs:subClassOf rdf:resource="s3m:DvBooleanType"/>
           <rdfs:label>Fever duration: 3 weeks or less</rdfs:label>
           <rdfs:isDefinedBy
-            rdf:resource="http%3A//bvsms.saude.gov.br/bvs/periodicos/boletim_eletronico_epi_ano04_n04.pdf"/>
+            rdf:resource="http://bvsms.saude.gov.br/bvs/periodicos/boletim_eletronico_epi_ano04_n04.pdf"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
