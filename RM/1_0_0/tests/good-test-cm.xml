@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
- xmlns:dct="http://purl.org/dc/terms/"
+ xmlns:dcterms="http://purl.org/dc/terms/"
  xmlns:owl="http://www.w3.org/2002/07/owl#"
  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
  xmlns:s3m="http://www.s3model.com/"

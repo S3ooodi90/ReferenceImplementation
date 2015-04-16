@@ -23,7 +23,7 @@ class Predicate(models.Model):
     S3Model standard abbreviations are used for namespaces.
     rdfs="http://www.w3.org/2000/01/rdf-schema#"
     rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    dct="http://purl.org/dc/terms/"
+    dcterms="http://purl.org/dc/terms/"
     owl="http://www.w3.org/2002/07/owl#"
     s3m="http://www.s3model.com/"
     xs="http://www.w3.org/2001/XMLSchema"
@@ -55,6 +55,8 @@ class PredObj(models.Model):
      The Predicate and Object for the triple(s).
     """
     pred = models.ForeignKey(Predicate, verbose_name=_("Predicate"), help_text=_('Choose a predicate.'))
+    obj = models.CharField(_("Object"), max_length=5000, help_text=_('Enter a resource link.'))
+
 
 class Common(models.Model):
     """
@@ -66,7 +68,7 @@ class Common(models.Model):
     last_updated = models.DateTimeField(_('last updated'),auto_now=True, help_text=_("Last update."))
     published = models.BooleanField(_("published"),default=False, help_text=_("Published must be a green check icon in order to use this in a CCD. This is not a user editable. It is managed by the publication process."))
     description = models.TextField(_('description'),help_text=_("Enter a free text description for this complexType. Include a usage statement and any possible misuses. This is used as the annotation for the PCT."), null=True)
-    resource_uri = models.TextField(_("resource URIs"), help_text="URIs to be used as the object for semantic context. One per line.", blank=True, null=True, default='')
+    resource = models.ManyToManyField(_("resource URIs"), help_text="URIs to be used as the object for semantic context. One per line.", blank=True, null=True, default='')
     schema_code = models.TextField(_("Schema Code"), help_text="This is only writable from the CCDGEN, not via user input. It contains the code required for each component to create an entry in a CCD.", blank=True, null=True, default='')
     asserts = models.TextField(_("asserts"), help_text="Valid XPath 2.0 assert statements. See the documentation for details. One per line.", blank=True, null=True, default='')
     lang = models.CharField(_("language"), max_length=40, choices=LANGUAGES, default='en-US', help_text=_('Choose the language of this PCT.'))

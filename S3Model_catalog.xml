@@ -13,8 +13,8 @@
   <uri name="http://www.s3model.com/s3model.owl" uri="/home/tim/S3Model/S3Model/s3model.owl"/>
   
   <!-- S3Model 1.0.0 RM XML Schema -->
-  <uri name="http://www.s3model.com/rm/s3model_1_0_0.xsd" uri="/home/tim/S3Model/S3Model/RM/1_0_0/s3model_1_0_0.xsd"/>
+  <uri name="http://www.s3model.com/schemas/s3model_1_0_0.xsd" uri="/home/tim/S3Model/S3Model/RM/1_0_0/s3model_1_0_0.xsd"/>
  
   <!-- Concept Models -->
-  <rewriteSystem systemIdStartString="http://www.s3model.com/lib/" rewritePrefix="/home/S3Model/S3Model/lib/"/>
+  <rewriteSystem systemIdStartString="http://www.s3model.com/schemas/" rewritePrefix="/home/S3Model/S3Model/schemas/"/>
 </catalog>
