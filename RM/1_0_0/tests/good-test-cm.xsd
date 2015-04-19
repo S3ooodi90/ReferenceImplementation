@@ -69,7 +69,7 @@
       attached to
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
+        <rdf:Description rdf:about="s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
           <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
           <rdfs:label>attached to</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/RO_0002371"/>
@@ -99,7 +99,7 @@
        X connected_to Y if and only if X and Y share a fiat boundary.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066">
+        <rdf:Description rdf:about="s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066">
           <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
           <rdfs:label>Connected To</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/RO_0002150"/>
@@ -126,7 +126,7 @@
       Test audit
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16">
+        <rdf:Description rdf:about="s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16">
           <rdfs:subClassOf rdf:resource="s3m:AuditType"/>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com"/>
         </rdf:Description>
@@ -155,7 +155,7 @@
       A reusable system ID 
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-53e08f93-1549-4303-9212-74ed11ed7d3a">
+        <rdf:Description rdf:about="s3m:ct-53e08f93-1549-4303-9212-74ed11ed7d3a">
           <rdfs:subClassOf rdf:resource="s3m:DvIdentifierType"/>
           <rdfs:label>Originating System ID</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com"/>
@@ -205,7 +205,7 @@
       A generic Concept provider.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-1386c587-b06f-4de5-ab67-30ecd036902e">
+        <rdf:Description rdf:about="s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e">
           <rdfs:subClassOf rdf:resource="s3m:PartyType"/>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/generic_pcts"/>
         </rdf:Description>
@@ -235,7 +235,7 @@
       A generic URI for use with Party to be used as a pointer to a demographic service record.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-c35f232c-cbe0-4cd9-a809-bbd34157b962">
+        <rdf:Description rdf:about="s3m:ct-c35f232c-cbe0-4cd9-a809-bbd34157b962">
           <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
           <rdfs:label>External Reference for Party</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/generic_pcts"/>
@@ -265,7 +265,7 @@
       Generic Details cluster with address elements.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-38afb8ac-985e-48bc-ab05-45cdecb5f5c2">
+        <rdf:Description rdf:about="s3m:ct-38afb8ac-985e-48bc-ab05-45cdecb5f5c2">
           <rdfs:subClassOf rdf:resource="s3m:ClusterType"/>
           <rdfs:label>Address Details (US)</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/generic_pcts"/>
@@ -303,7 +303,7 @@
       Used for additional address lines in the US such as building name or apartment number.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d">
+        <rdf:Description rdf:about="s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Additional Address Line(s) (US)</rdfs:label>
         </rdf:Description>
@@ -345,7 +345,7 @@
       Used in US address cluster for the City name.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93">
+        <rdf:Description rdf:about="s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>City Name (US)</rdfs:label>
         </rdf:Description>
@@ -386,7 +386,7 @@
       A name that is commonly used for a person.  Such as Jim for James or Peggy for Margaret. 
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414">
+        <rdf:Description rdf:about="s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Common Name / Nickname</rdfs:label>
         </rdf:Description>
@@ -428,7 +428,7 @@
       Used in US address cluster for two character US state abbreviation.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1">
+        <rdf:Description rdf:about="s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>State Abbreviation (USPS)</rdfs:label>
         </rdf:Description>
@@ -922,7 +922,7 @@
 123 Main St. 
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-68526dd8-c03e-4779-a951-c5e6f85ff509">
+        <rdf:Description rdf:about="s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Street Number and Name (US)</rdfs:label>
         </rdf:Description>
@@ -964,7 +964,7 @@
       A US telephone number. Exactly 12 characters; 111-111-1111 with a pattern match of "[0-9]{3}-[0-9]{3}-[0-9]{4}" 
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0">
+        <rdf:Description rdf:about="s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Telephone Number (US)</rdfs:label>
         </rdf:Description>
@@ -1017,7 +1017,7 @@ Examples:
 12345-0987 
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305">
+        <rdf:Description rdf:about="s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Zip Code (US)</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="https://www.usps.com/"/>
@@ -1067,7 +1067,7 @@ Examples:
       System Location for feeder audit details. Uses decimal format WGS84 lat/lon coordinates.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf">
+        <rdf:Description rdf:about="s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf">
           <rdfs:subClassOf rdf:resource="s3m:ClusterType"/>
           <rdfs:label>FAD System Location (WGS84)</rdfs:label>
         </rdf:Description>
@@ -1094,7 +1094,7 @@ Examples:
       Matches a latitude in the range of -90 to 90 degrees, with between 1 and 6 trailing decimal places.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-96ec0cec-0e47-4892-9acb-697be7d51a33">
+        <rdf:Description rdf:about="s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>FAD Latitude (Decimal Format)</rdfs:label>
         </rdf:Description>
@@ -1136,7 +1136,7 @@ Examples:
       Matches a longitude in the range of -180 to 180 degrees, with between 1 and 6 trailing decimal places.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-c265bd07-d470-49b5-99c1-4559f7e9408d">
+        <rdf:Description rdf:about="s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>FAD Longitude (Decimal Format)</rdfs:label>
         </rdf:Description>
@@ -1180,7 +1180,7 @@ Examples:
       A generic Concept provider.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-76d5279d-8557-4eb7-9722-1ad858c00e3c">
+        <rdf:Description rdf:about="s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c">
           <rdfs:subClassOf rdf:resource="s3m:PartyType"/>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/generic_pcts"/>
         </rdf:Description>
@@ -1211,7 +1211,7 @@ Examples:
       Concept Participation
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
+        <rdf:Description rdf:about="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
           <rdfs:subClassOf rdf:resource="s3m:ParticipationType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1242,7 +1242,7 @@ Examples:
         Concept Participation 2
       </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
+        <rdf:Description rdf:about="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
           <rdfs:subClassOf rdf:resource="s3m:ParticipationType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1273,7 +1273,7 @@ Examples:
       A generic Concept provider.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-07d2e2e8-0415-4aa9-8115-a3a818801719">
+        <rdf:Description rdf:about="s3m:ct-07d2e2e8-0415-4aa9-8115-a3a818801719">
           <rdfs:subClassOf rdf:resource="s3m:PartyType"/>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/generic_pcts"/>
         </rdf:Description>
@@ -1301,7 +1301,7 @@ Examples:
       Participation Function
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-d79c6f0e-10b5-432c-91ef-489ee94d64a7">
+        <rdf:Description rdf:about="s3m:ct-d79c6f0e-10b5-432c-91ef-489ee94d64a7">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Participation Function</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/spec/%23glance"/>
@@ -1342,7 +1342,7 @@ Examples:
       A generic definition that the participation mode is some type of agent. 
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-f34c17e3-c64d-47e9-983c-d88fb8836dba">
+        <rdf:Description rdf:about="s3m:ct-f34c17e3-c64d-47e9-983c-d88fb8836dba">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Participation Mode</rdfs:label>
         </rdf:Description>
@@ -1376,7 +1376,7 @@ Examples:
       A reusable system ID for Concept Protocol
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-39a03554-7f19-4e08-a608-b36e42f1fc15">
+        <rdf:Description rdf:about="s3m:ct-39a03554-7f19-4e08-a608-b36e42f1fc15">
           <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
           <rdfs:label>Generic Protocol</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com"/>
@@ -1407,7 +1407,7 @@ Examples:
       The link points to the workflow definition
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf">
+        <rdf:Description rdf:about="s3m:ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf">
           <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
           <rdfs:label>Workflow ID</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/IAO_0000178"/>
@@ -1438,7 +1438,7 @@ Examples:
       A generic attestation. 
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-43c7bf17-94e6-46da-ba44-f98d269fcd32">
+        <rdf:Description rdf:about="s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32">
           <rdfs:subClassOf rdf:resource="s3m:AttestationType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1474,7 +1474,7 @@ Examples:
       A generic container for an attestation view.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-568c4b1f-9b48-472b-a70e-dbd673584ea2">
+        <rdf:Description rdf:about="s3m:ct-568c4b1f-9b48-472b-a70e-dbd673584ea2">
           <rdfs:subClassOf rdf:resource="s3m:DvMediaType"/>
           <rdfs:label>Attestation View</rdfs:label>
         </rdf:Description>
@@ -1508,7 +1508,7 @@ Examples:
       A generic container for an attestation proof document.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-0808d268-7b42-4733-97af-4df7642328ab">
+        <rdf:Description rdf:about="s3m:ct-0808d268-7b42-4733-97af-4df7642328ab">
           <rdfs:subClassOf rdf:resource="s3m:DvParsableType"/>
           <rdfs:label>Proof</rdfs:label>
         </rdf:Description>
@@ -1538,7 +1538,7 @@ Examples:
       A finalized release of some information entity.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-df50a9c7-5071-4ece-934a-e43aeabc704a">
+        <rdf:Description rdf:about="s3m:ct-df50a9c7-5071-4ece-934a-e43aeabc704a">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Attestation Reason</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://usefulinc.com/ns/doap%2523release"/>
@@ -1573,7 +1573,7 @@ Examples:
       A generic Concept provider.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-705083b3-ee1e-4713-8685-65198083266a">
+        <rdf:Description rdf:about="s3m:ct-705083b3-ee1e-4713-8685-65198083266a">
           <rdfs:subClassOf rdf:resource="s3m:PartyType"/>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/generic_pcts"/>
         </rdf:Description>
@@ -1603,7 +1603,7 @@ Examples:
       Test Concept Data
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3">
+        <rdf:Description rdf:about="s3m:ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3">
           <rdfs:subClassOf rdf:resource="s3m:ClusterType"/>
           <rdfs:label>Concept Data</rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/test_pcts"/>
@@ -1880,7 +1880,7 @@ Examples:
       Yes/No field for the duration of the fever. It should be filled when the date of onset of the fever is not known.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-eeaddd88-4a85-4e27-9ece-337f910ef81b">
+        <rdf:Description rdf:about="s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b">
           <rdfs:subClassOf rdf:resource="s3m:DvBooleanType"/>
           <rdfs:label>Fever duration: 3 weeks or less</rdfs:label>
           <rdfs:isDefinedBy
@@ -1940,7 +1940,7 @@ Examples:
       A test DvBoolean
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-a68202e8-f161-4c80-931c-b97d9eb2b22b">
+        <rdf:Description rdf:about="s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b">
           <rdfs:subClassOf rdf:resource="s3m:DvBooleanType"/>
           <rdfs:label>Test DvBoolean</rdfs:label>
         </rdf:Description>
@@ -1997,7 +1997,7 @@ Examples:
       The device use in taking a blood pressure measurement.
     </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-8ae6d78b-394b-455e-a5e4-f55897f92a77">
+        <rdf:Description rdf:about="s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77">
           <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
           <rdfs:label>Blood Pressure Device </rdfs:label>
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/test_pcts"/>
@@ -2066,7 +2066,7 @@ Examples:
         The final result of a determination of the value for the period of fetal development in the uterus from the start of conception until its birth.
       </xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970">
+        <rdf:Description rdf:about="s3m:ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970">
           <rdfs:subClassOf rdf:resource="s3m:DvIntervalType"/>
           <rdfs:label>Gestational Age - Test 2.4.6</rdfs:label>
           <rdfs:isDefinedBy
@@ -2122,8 +2122,8 @@ Examples:
     type="s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f"/>
+        <rdf:Description rdf:about="s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
+          <rdf:type rdf:resource="s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2132,8 +2132,8 @@ Examples:
     type="s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-7b1c4fad-90f9-4d28-af58-3e59ecb00066">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066"/>
+        <rdf:Description rdf:about="s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066">
+          <rdf:type rdf:resource="s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2143,8 +2143,8 @@ Examples:
     type="s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16"/>
+        <rdf:Description rdf:about="s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16">
+          <rdf:type rdf:resource="s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2154,8 +2154,8 @@ Examples:
     type="s3m:ct-53e08f93-1549-4303-9212-74ed11ed7d3a">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-53e08f93-1549-4303-9212-74ed11ed7d3a">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-53e08f93-1549-4303-9212-74ed11ed7d3a"/>
+        <rdf:Description rdf:about="s3m:el-53e08f93-1549-4303-9212-74ed11ed7d3a">
+          <rdf:type rdf:resource="s3m:ct-53e08f93-1549-4303-9212-74ed11ed7d3a"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2165,8 +2165,8 @@ Examples:
     type="s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-1386c587-b06f-4de5-ab67-30ecd036902e">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-1386c587-b06f-4de5-ab67-30ecd036902e"/>
+        <rdf:Description rdf:about="s3m:el-1386c587-b06f-4de5-ab67-30ecd036902e">
+          <rdf:type rdf:resource="s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2176,8 +2176,8 @@ Examples:
     type="s3m:ct-5f5d5ee5-71d1-4d23-befc-77b69b208321">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-5f5d5ee5-71d1-4d23-befc-77b69b208321">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-5f5d5ee5-71d1-4d23-befc-77b69b208321"/>
+        <rdf:Description rdf:about="s3m:el-5f5d5ee5-71d1-4d23-befc-77b69b208321">
+          <rdf:type rdf:resource="s3m:ct-5f5d5ee5-71d1-4d23-befc-77b69b208321"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2187,8 +2187,8 @@ Examples:
     type="s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-74cb0edc-76c3-45d2-bd36-13b10cdc289d">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d"/>
+        <rdf:Description rdf:about="s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d">
+          <rdf:type rdf:resource="s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2198,8 +2198,8 @@ Examples:
     type="s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-4bce07e8-9bae-45e8-bf80-4db86b57bc93">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93"/>
+        <rdf:Description rdf:about="s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93">
+          <rdf:type rdf:resource="s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2209,8 +2209,8 @@ Examples:
     type="s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-d1a90620-0c72-4aa2-ac6a-53c2b839b414">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414"/>
+        <rdf:Description rdf:about="s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414">
+          <rdf:type rdf:resource="s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2220,8 +2220,8 @@ Examples:
     type="s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-785c0d1d-fb0c-4424-b967-99ab869c3ab1">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1"/>
+        <rdf:Description rdf:about="s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1">
+          <rdf:type rdf:resource="s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2231,8 +2231,8 @@ Examples:
     type="s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-68526dd8-c03e-4779-a951-c5e6f85ff509">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-68526dd8-c03e-4779-a951-c5e6f85ff509"/>
+        <rdf:Description rdf:about="s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509">
+          <rdf:type rdf:resource="s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2242,8 +2242,8 @@ Examples:
     type="s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-571006b1-b76f-45b5-8a6e-b65d1a0444e0">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0"/>
+        <rdf:Description rdf:about="s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0">
+          <rdf:type rdf:resource="s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2253,8 +2253,8 @@ Examples:
     type="s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305"/>
+        <rdf:Description rdf:about="s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305">
+          <rdf:type rdf:resource="s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2264,8 +2264,8 @@ Examples:
     type="s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-5e21cf59-9c13-4f67-918a-e0aee1f64edf">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf"/>
+        <rdf:Description rdf:about="s3m:el-5e21cf59-9c13-4f67-918a-e0aee1f64edf">
+          <rdf:type rdf:resource="s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2275,8 +2275,8 @@ Examples:
     type="s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-96ec0cec-0e47-4892-9acb-697be7d51a33">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-96ec0cec-0e47-4892-9acb-697be7d51a33"/>
+        <rdf:Description rdf:about="s3m:el-96ec0cec-0e47-4892-9acb-697be7d51a33">
+          <rdf:type rdf:resource="s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2286,8 +2286,8 @@ Examples:
     type="s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-c265bd07-d470-49b5-99c1-4559f7e9408d">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-c265bd07-d470-49b5-99c1-4559f7e9408d"/>
+        <rdf:Description rdf:about="s3m:el-c265bd07-d470-49b5-99c1-4559f7e9408d">
+          <rdf:type rdf:resource="s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2297,8 +2297,8 @@ Examples:
     type="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750"/>
+        <rdf:Description rdf:about="s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
+          <rdf:type rdf:resource="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2308,8 +2308,8 @@ Examples:
     type="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8751">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-c37d801a-9f1b-4ef9-97e4-561bbffb8751">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-c37d801a-9f1b-4ef9-97e4-561bbffb8751"/>
+        <rdf:Description rdf:about="s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8751">
+          <rdf:type rdf:resource="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8751"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2319,8 +2319,8 @@ Examples:
     type="s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-43c7bf17-94e6-46da-ba44-f98d269fcd32">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-43c7bf17-94e6-46da-ba44-f98d269fcd32"/>
+        <rdf:Description rdf:about="s3m:el-43c7bf17-94e6-46da-ba44-f98d269fcd32">
+          <rdf:type rdf:resource="s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2330,8 +2330,8 @@ Examples:
     type="s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-eeaddd88-4a85-4e27-9ece-337f910ef81b">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-eeaddd88-4a85-4e27-9ece-337f910ef81b"/>
+        <rdf:Description rdf:about="s3m:el-eeaddd88-4a85-4e27-9ece-337f910ef81b">
+          <rdf:type rdf:resource="s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>  
@@ -2341,8 +2341,8 @@ Examples:
     type="s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-a68202e8-f161-4c80-931c-b97d9eb2b22b">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-a68202e8-f161-4c80-931c-b97d9eb2b22b"/>
+        <rdf:Description rdf:about="s3m:el-a68202e8-f161-4c80-931c-b97d9eb2b22b">
+          <rdf:type rdf:resource="s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>  
@@ -2352,8 +2352,8 @@ Examples:
     type="s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-8ae6d78b-394b-455e-a5e4-f55897f92a77">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-8ae6d78b-394b-455e-a5e4-f55897f92a77"/>
+        <rdf:Description rdf:about="s3m:el-8ae6d78b-394b-455e-a5e4-f55897f92a77">
+          <rdf:type rdf:resource="s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>  
@@ -2363,8 +2363,8 @@ Examples:
     type="s3m:ct-50a5e871-27b9-41a4-a97a-dd35555015cd">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-50a5e871-27b9-41a4-a97a-dd35555015cd">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-50a5e871-27b9-41a4-a97a-dd35555015cd"/>
+        <rdf:Description rdf:about="s3m:el-50a5e871-27b9-41a4-a97a-dd35555015cd">
+          <rdf:type rdf:resource="s3m:ct-50a5e871-27b9-41a4-a97a-dd35555015cd"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2374,8 +2374,8 @@ Examples:
     type="s3m:ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-c3441ee3-baf4-4fb3-80c3-87b511ebd970">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970"/>
+        <rdf:Description rdf:about="s3m:el-c3441ee3-baf4-4fb3-80c3-87b511ebd970">
+          <rdf:type rdf:resource="s3m:ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>  
@@ -2385,8 +2385,8 @@ Examples:
     type="s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-76417a55-6ebd-49ce-8db7-8253a9e02e1f">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f"/>
+        <rdf:Description rdf:about="s3m:el-76417a55-6ebd-49ce-8db7-8253a9e02e1f">
+          <rdf:type rdf:resource="s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2396,8 +2396,8 @@ Examples:
     type="s3m:ct-7146bea3-49d6-4d6b-be66-cf1a16ebac4d">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-7146bea3-49d6-4d6b-be66-cf1a16ebac4d">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-7146bea3-49d6-4d6b-be66-cf1a16ebac4d"/>
+        <rdf:Description rdf:about="s3m:el-7146bea3-49d6-4d6b-be66-cf1a16ebac4d">
+          <rdf:type rdf:resource="s3m:ct-7146bea3-49d6-4d6b-be66-cf1a16ebac4d"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2407,8 +2407,8 @@ Examples:
     type="s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/el-15ca606c-303a-4862-8f5e-df8f39e8bfc3">
-          <rdf:type rdf:resource="http://www.s3model.com/ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3"/>
+        <rdf:Description rdf:about="s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3">
+          <rdf:type rdf:resource="s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
