@@ -86,5 +86,21 @@ Find all of the triples where the subject is a data-name and the text contains '
           } 
 
 
+Find the magnitude(s) that are actual values (Literals) and not parts of the semantics:
+
+    PREFIX s3m: <http://www.s3model.com/>
+    PREFIX sem: <http://marklogic.com/semantics>
+    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX cts: <http://marklogic.com/cts#>
+    PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+
+    SELECT *
+
+    WHERE { ?s ?p ?o .
+           FILTER(fn:ends-with(?s, "magnitude") )
+           FILTER(?p = rdfs:Literal)
+          } 
+
 
 
