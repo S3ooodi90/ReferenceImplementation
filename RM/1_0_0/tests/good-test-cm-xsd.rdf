@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
+  xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:s3m="http://www.s3model.com/">
+  
+  
+  <rdf:Description rdf:about="s3m:schemas/cm-15ca606c-303a-4862-8f5e-df8f39e8bfc3.xsd">
+    <dcterms:title xml:lang="en">Testing 1.0.0 Implementation</dcterms:title>
+    <dcterms:creator>
+      <foaf:Person>
+        <foaf:name>Tim Cook</foaf:name>
+        <foaf:mbox rdf:resource="mailto:tim@mlhim.org"/>
+      </foaf:Person>
+    </dcterms:creator>
+    <!-- If contributors exist they should be included here using dcterms:contributor terms, formatted like the dcterms:creator. -->
+    <dcterms:rightsHolder>
+      <foaf:Person>
+        <foaf:name>Tim Cook</foaf:name>
+        <foaf:mbox rdf:resource="mailto:tim@mlhim.org"/>
+      </foaf:Person>
+    </dcterms:rightsHolder>
+    <dcterms:license rdf:value="http://creativecommons.org/licenses/by/3.0/"/>
+    <!-- If this model is related to other models they should be included here using dcterms:relation with the value set to the value of their rdf:about URI -->
+    <dcterms:issued>2015-03-24</dcterms:issued>
+    <dcterms:format rdf:value="text/xml"/>
+    <dcterms:language rdf:value="en-US"/>
+    <dcterms:abstract>
+            This is an example Concept Model (CM) for the S3Model Reference Model release 1.0.0
+          </dcterms:abstract>
+    <rdfs:subClassOf rdf:resource="s3m:ConceptType"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
+    <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
+    <rdfs:label>attached to</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/RO_0002371"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066">
+    <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
+    <rdfs:label>Connected To</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/RO_0002150"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16">
+    <rdfs:subClassOf rdf:resource="s3m:AuditType"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.s3model.com"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-53e08f93-1549-4303-9212-74ed11ed7d3a">
+    <rdfs:subClassOf rdf:resource="s3m:DvIdentifierType"/>
+    <rdfs:label>Originating System ID</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://www.s3model.com"/>
+  </rdf:Description>
+
+
+  <rdf:Description rdf:about="s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e">
+    <rdfs:subClassOf rdf:resource="s3m:PartyType"/>
+    <rdfs:isDefinedBy rdf:resource="s3m:generic_pcts"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-c35f232c-cbe0-4cd9-a809-bbd34157b962">
+    <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
+    <rdfs:label>External Reference for Party</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="s3m:generic_pcts"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-38afb8ac-985e-48bc-ab05-45cdecb5f5c2">
+    <rdfs:subClassOf rdf:resource="s3m:ClusterType"/>
+    <rdfs:label>Address Details (US)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="s3m:generic_pcts"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Additional Address Line(s) (US)</rdfs:label>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>City Name (US)</rdfs:label>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Common Name / Nickname</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>State Abbreviation (USPS)</rdfs:label>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1/dvstring-value#AL">
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/mads/rdf/v1#"/>
+    <owl:sameAs rdf:resource="http://id.loc.gov/vocabulary/countries/alu"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Street Number and Name (US)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Telephone Number (US)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Zip Code (US)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https://www.usps.com/"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf">
+    <rdfs:subClassOf rdf:resource="s3m:ClusterType"/>
+    <rdfs:label>FAD System Location (WGS84)</rdfs:label>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>FAD Latitude (Decimal Format)</rdfs:label>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>FAD Longitude (Decimal Format)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-76d5279d-8557-4eb7-9722-1ad858c00e3c">
+    <rdfs:subClassOf rdf:resource="s3m:PartyType"/>
+    <rdfs:isDefinedBy rdf:resource="s3m:generic_pcts"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
+    <rdfs:subClassOf rdf:resource="s3m:ParticipationType"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
+    <rdfs:subClassOf rdf:resource="s3m:ParticipationType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-07d2e2e8-0415-4aa9-8115-a3a818801719">
+    <rdfs:subClassOf rdf:resource="s3m:PartyType"/>
+    <rdfs:isDefinedBy rdf:resource="s3m:generic_pcts"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-d79c6f0e-10b5-432c-91ef-489ee94d64a7">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Participation Function</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/spec/%23glance"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-f34c17e3-c64d-47e9-983c-d88fb8836dba">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Participation Mode</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-39a03554-7f19-4e08-a608-b36e42f1fc15">
+    <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
+    <rdfs:label>Generic Protocol</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://www.s3model.com"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-5327bf3f-5ecb-47b5-b358-63bb5f277ddf">
+    <rdfs:subClassOf rdf:resource="s3m:DvLinkType"/>
+    <rdfs:label>Workflow ID</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/IAO_0000178"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32">
+    <rdfs:subClassOf rdf:resource="s3m:AttestationType"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-568c4b1f-9b48-472b-a70e-dbd673584ea2">
+    <rdfs:subClassOf rdf:resource="s3m:DvMediaType"/>
+    <rdfs:label>Attestation View</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-0808d268-7b42-4733-97af-4df7642328ab">
+    <rdfs:subClassOf rdf:resource="s3m:DvParsableType"/>
+    <rdfs:label>Proof</rdfs:label>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="s3m:ct-df50a9c7-5071-4ece-934a-e43aeabc704a">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Attestation Reason</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://usefulinc.com/ns/doap%2523release"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-705083b3-ee1e-4713-8685-65198083266a">
+    <rdfs:subClassOf rdf:resource="s3m:PartyType"/>
+    <rdfs:isDefinedBy rdf:resource="s3m:generic_pcts"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-96f910e1-8f1e-4a54-a19f-47722ddd91d3">
+    <rdfs:subClassOf rdf:resource="s3m:ClusterType"/>
+    <rdfs:label>Concept Data</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="s3m:test_pcts"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.mlhim.org/xmlns/s3m:ct-7146bea3-49d6-4d6b-be66-cf1a16ebac4d">
+    <rdfs:subClassOf rdf:resource="s3m:DvCountType"/>
+    <rdfs:label>Heart Rate for Testing 2.4.6</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.mlhim.org/xmlns/s3m:ct-5f5d5ee5-71d1-4d23-befc-77b69b208321">
+    <rdfs:subClassOf rdf:resource="s3m:DvRatioType"/>
+    <rdfs:label>Test Ratio</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.mlhim.org/xmlns/s3m:ct-50a5e871-27b9-41a4-a97a-dd35555015cd">
+    <rdfs:subClassOf rdf:resource="s3m:DvQuantityType"/>
+    <rdfs:label>Body Temperature - Test 2.4.6</rdfs:label>
+    <rdfs:isDefinedBy
+      rdf:resource="https://cdebrowser.nci.nih.gov/CDEBrowser/search%3FelementDetails%3D9%26FirstTimer%3D0%26PageId%3DElementDetailsGroup%26publicId%3D2644401%26version%3D1.0"
+    />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.mlhim.org/xmlns/s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f">
+    <rdfs:subClassOf rdf:resource="s3m:ReferenceRangeType"/>
+    <rdfs:label>Test ReferenceRange</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.mlhim.org/xmlns/s3m:ct-8e63854d-e78a-43e0-944f-3c14767edb39">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>bpm Test 2.4.6</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b">
+    <rdfs:subClassOf rdf:resource="s3m:DvBooleanType"/>
+    <rdfs:label>Fever duration: 3 weeks or less</rdfs:label>
+    <rdfs:isDefinedBy
+      rdf:resource="http://bvsms.saude.gov.br/bvs/periodicos/boletim_eletronico_epi_ano04_n04.pdf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b">
+    <rdfs:subClassOf rdf:resource="s3m:DvBooleanType"/>
+    <rdfs:label>Test DvBoolean</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77">
+    <rdfs:subClassOf rdf:resource="s3m:DvStringType"/>
+    <rdfs:label>Blood Pressure Device </rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="s3m:test_pcts"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970">
+    <rdfs:subClassOf rdf:resource="s3m:DvIntervalType"/>
+    <rdfs:label>Gestational Age - Test 2.4.6</rdfs:label>
+    <rdfs:isDefinedBy
+      rdf:resource="https://cdebrowser.nci.nih.gov/CDEBrowser/search%3FelementDetails%3D9%26FirstTimer%3D0%26PageId%3DElementDetailsGroup%26publicId%3D3192017%26version%3D1.0"
+    />
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
+    <rdf:type rdf:resource="s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-7b1c4fad-90f9-4d28-af58-3e59ecb00066">
+    <rdf:type rdf:resource="s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16">
+    <rdf:type rdf:resource="s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-53e08f93-1549-4303-9212-74ed11ed7d3a">
+    <rdf:type rdf:resource="s3m:ct-53e08f93-1549-4303-9212-74ed11ed7d3a"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-1386c587-b06f-4de5-ab67-30ecd036902e">
+    <rdf:type rdf:resource="s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-5f5d5ee5-71d1-4d23-befc-77b69b208321">
+    <rdf:type rdf:resource="s3m:ct-5f5d5ee5-71d1-4d23-befc-77b69b208321"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-74cb0edc-76c3-45d2-bd36-13b10cdc289d">
+    <rdf:type rdf:resource="s3m:ct-74cb0edc-76c3-45d2-bd36-13b10cdc289d"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-4bce07e8-9bae-45e8-bf80-4db86b57bc93">
+    <rdf:type rdf:resource="s3m:ct-4bce07e8-9bae-45e8-bf80-4db86b57bc93"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-d1a90620-0c72-4aa2-ac6a-53c2b839b414">
+    <rdf:type rdf:resource="s3m:ct-d1a90620-0c72-4aa2-ac6a-53c2b839b414"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-785c0d1d-fb0c-4424-b967-99ab869c3ab1">
+    <rdf:type rdf:resource="s3m:ct-785c0d1d-fb0c-4424-b967-99ab869c3ab1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-68526dd8-c03e-4779-a951-c5e6f85ff509">
+    <rdf:type rdf:resource="s3m:ct-68526dd8-c03e-4779-a951-c5e6f85ff509"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-571006b1-b76f-45b5-8a6e-b65d1a0444e0">
+    <rdf:type rdf:resource="s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305">
+    <rdf:type rdf:resource="s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-5e21cf59-9c13-4f67-918a-e0aee1f64edf">
+    <rdf:type rdf:resource="s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-96ec0cec-0e47-4892-9acb-697be7d51a33">
+    <rdf:type rdf:resource="s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-c265bd07-d470-49b5-99c1-4559f7e9408d">
+    <rdf:type rdf:resource="s3m:ct-c265bd07-d470-49b5-99c1-4559f7e9408d"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8750">
+    <rdf:type rdf:resource="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8750"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-c37d801a-9f1b-4ef9-97e4-561bbffb8751">
+    <rdf:type rdf:resource="s3m:ct-c37d801a-9f1b-4ef9-97e4-561bbffb8751"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-43c7bf17-94e6-46da-ba44-f98d269fcd32">
+    <rdf:type rdf:resource="s3m:ct-43c7bf17-94e6-46da-ba44-f98d269fcd32"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-eeaddd88-4a85-4e27-9ece-337f910ef81b">
+    <rdf:type rdf:resource="s3m:ct-eeaddd88-4a85-4e27-9ece-337f910ef81b"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-a68202e8-f161-4c80-931c-b97d9eb2b22b">
+    <rdf:type rdf:resource="s3m:ct-a68202e8-f161-4c80-931c-b97d9eb2b22b"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-8ae6d78b-394b-455e-a5e4-f55897f92a77">
+    <rdf:type rdf:resource="s3m:ct-8ae6d78b-394b-455e-a5e4-f55897f92a77"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-50a5e871-27b9-41a4-a97a-dd35555015cd">
+    <rdf:type rdf:resource="s3m:ct-50a5e871-27b9-41a4-a97a-dd35555015cd"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-c3441ee3-baf4-4fb3-80c3-87b511ebd970">
+    <rdf:type rdf:resource="s3m:ct-c3441ee3-baf4-4fb3-80c3-87b511ebd970"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-76417a55-6ebd-49ce-8db7-8253a9e02e1f">
+    <rdf:type rdf:resource="s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-7146bea3-49d6-4d6b-be66-cf1a16ebac4d">
+    <rdf:type rdf:resource="s3m:ct-7146bea3-49d6-4d6b-be66-cf1a16ebac4d"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="s3m:el-15ca606c-303a-4862-8f5e-df8f39e8bfc3">
+    <rdf:type rdf:resource="s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3"/>
+  </rdf:Description>
+
+</rdf:RDF>
