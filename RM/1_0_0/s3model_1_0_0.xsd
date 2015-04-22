@@ -74,14 +74,14 @@
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
-        <xs:choice>
-          <xs:element maxOccurs="1" minOccurs="0" name="true-value" type="xs:string">
+        <xs:choice maxOccurs="1" minOccurs="1">
+          <xs:element name="true-value" type="xs:string">
             <xs:annotation>
               <xs:documentation>A string that represents a boolean True in the implementation. These
                 are generally constrained by a set of enumerations in the CM complexType restriction.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="false-value" type="xs:string">
+          <xs:element name="false-value" type="xs:string">
             <xs:annotation>
               <xs:documentation>A string that represents a boolean False in the implementation.
                 These are generally constrained by a set of enumerations in the CM complexType restriction.</xs:documentation>
@@ -187,6 +187,14 @@
                 language from the enclosing CM.</xs:documentation>
             </xs:annotation>
           </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="formalism" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Name of the formalism or syntax used to inform an application regarding 
+                a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.  for DvParsables.
+                Text-based formats that have a MIME type assigned, such as XML, XHTML, etc. should use DvMediaType. 
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -209,14 +217,6 @@
               <xs:documentation>The parsable string, which may validly be empty in some syntaxes.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="formalism" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>Name of the formalism or syntax used to inform an application regarding 
-                a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.
-                Parsable text-based formats that have a MIME type assigned, such as XML, XHTML, etc. should use DvMediaType. 
-              </xs:documentation>
-            </xs:annotation>
-          </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -231,7 +231,7 @@
     <xs:complexContent>
       <xs:extension base="s3m:DvEncapsulatedType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="0" name="mime-type" type="xs:string">
+          <xs:element maxOccurs="1" minOccurs="0" name="media-type" type="xs:string">
             <xs:annotation>
               <xs:documentation>MIME type of the original media-content w/o any compression. See
                 IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</xs:documentation>
@@ -265,15 +265,15 @@
               </xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:choice>
-            <xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:anyURI">
+          <xs:choice maxOccurs="1" minOccurs="1">
+            <xs:element name="uri" type="xs:anyURI">
               <xs:annotation>
                 <xs:documentation>URI reference to electronic information stored outside the record as a file, 
                   database entry etc, if supplied as a reference. 
                   The CM modeller chooses either a uri or a media-content element.</xs:documentation>
               </xs:annotation>
             </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="media-content" type="xs:base64Binary">
+            <xs:element name="media-content" type="xs:base64Binary">
               <xs:annotation>
                 <xs:documentation>The content, if stored locally. The CM modeller choooses either a uri or a media-content element.</xs:documentation>
               </xs:annotation>
@@ -561,7 +561,7 @@
   <xs:complexType name="DvTemporalType">
     <xs:annotation>
       <xs:documentation> Type defining the concept of date and time types. Must be constrained in
-        CM complexType restriction s to be one or more of the below elements. This gives the modeller the ability to
+        CM complexType restrictions to be one or more of the below elements. This gives the modeller the ability to
         optionally allow full or partial dates at run time. Setting maxOccurs and minOccurs to zero
         cause the element to be prohibited. </xs:documentation>
     </xs:annotation>
@@ -645,14 +645,14 @@
         See: http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html 
       </xs:documentation>
     </xs:annotation>
-    <xs:choice>
-      <xs:element maxOccurs="1" minOccurs="0" name="invl-int" type="xs:int" nillable="true"/>
-      <xs:element maxOccurs="1" minOccurs="0" name="invl-decimal" type="xs:decimal" nillable="true"/>
-      <xs:element maxOccurs="1" minOccurs="0" name="invl-float" type="xs:float" nillable="true"/>
-      <xs:element maxOccurs="1" minOccurs="0" name="invl-date" type="xs:date" nillable="true"/>
-      <xs:element maxOccurs="1" minOccurs="0" name="invl-time" type="xs:time" nillable="true"/>
-      <xs:element maxOccurs="1" minOccurs="0" name="invl-dateTime" type="xs:dateTime" nillable="true"/>
-      <xs:element maxOccurs="1" minOccurs="0" name="invl-duration" type="xs:duration" nillable="true"/>
+    <xs:choice  maxOccurs="1" minOccurs="1">
+      <xs:element name="invl-int" type="xs:int" nillable="true"/>
+      <xs:element name="invl-decimal" type="xs:decimal" nillable="true"/>
+      <xs:element name="invl-float" type="xs:float" nillable="true"/>
+      <xs:element name="invl-date" type="xs:date" nillable="true"/>
+      <xs:element name="invl-time" type="xs:time" nillable="true"/>
+      <xs:element name="invl-dateTime" type="xs:dateTime" nillable="true"/>
+      <xs:element name="invl-duration" type="xs:duration" nillable="true"/>
     </xs:choice>
   </xs:complexType>
 
@@ -733,8 +733,7 @@
       <xs:documentation> Description of a party, including an optional external link to data for
         this party in a demographic or other identity management system. An additional details
         element provides for the inclusion of information related to this party directly. If the
-        party information is to be anonymous then do not include the details element. The string
-        'Self' may be entered as the party-name if an external_ref is include. </xs:documentation>
+        party information is to be anonymous then do not include the details element.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="0" name="party-name" type="xs:string">
@@ -1149,7 +1148,7 @@
       <xs:documentation>
         An Concept is the root of a logical set of data items.
         The Concept Model must contain metadata about the model. 
-        Mandatory DCTERMS; title, creator, rightsHolder, license, issued, format ('text/xml'), language and abstract.
+        Mandatory DCTERMS; identifier, title, creator, rightsHolder, license, issued, format ('text/xml'), language and abstract.
         Suggested but optional DCTERMS; contributors, relation 
       </xs:documentation>
     </xs:annotation>

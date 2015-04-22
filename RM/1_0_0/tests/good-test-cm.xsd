@@ -6,6 +6,7 @@
   xmlns:dcterms="http://purl.org/dc/terms/"
   xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
   xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/"
   targetNamespace="http://www.s3model.com/" vc:minVersion="1.1" xml:lang="en-US">
 
@@ -15,7 +16,8 @@
   <xs:complexType name="ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="http://www.s3model.com/schemas/cm-15ca606c-303a-4862-8f5e-df8f39e8bfc3.xsd">
+        <rdf:Description rdf:about="s3m:ct-15ca606c-303a-4862-8f5e-df8f39e8bfc3">
+          <dcterms:identifier xsi:type="dcterms:URI">http://www.s3model.com/schemas/cm-15ca606c-303a-4862-8f5e-df8f39e8bfc3.xsd</dcterms:identifier>
           <dcterms:title xml:lang="en">Testing 1.0.0 Implementation</dcterms:title>
           <dcterms:creator>
             <foaf:Person>
@@ -31,7 +33,7 @@
             </foaf:Person>
           </dcterms:rightsHolder>
           <dcterms:license rdf:value="http://creativecommons.org/licenses/by/3.0/"/>
-          <!-- If this model is related to other models they should be included here using dcterms:relation with the value set to the value of their rdf:about URI -->
+          <!-- If this model is related to other models they should be included here using dcterms:relation with the value set to the value of their dcterms:identifier URI -->
           <dcterms:issued>2015-03-24</dcterms:issued>
           <dcterms:format rdf:value="text/xml"/>
           <dcterms:language rdf:value="en-US"/>
@@ -1490,12 +1492,15 @@ Examples:
           <xs:element maxOccurs="1" minOccurs="1" name="size" type="xs:int"/>
           <xs:element maxOccurs="1" minOccurs="1" name="encoding" type="xs:string" default="utf-8"/>
           <xs:element maxOccurs="1" minOccurs="0" name="language" type="xs:language" default="en-US"/>
-          <xs:element maxOccurs="1" minOccurs="0" name="mime-type" type="xs:string"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="media-type" type="xs:string"/>
           <xs:element maxOccurs="1" minOccurs="0" name="compression-type" type="xs:string"/>
           <xs:element maxOccurs="1" minOccurs="0" name="hash-result" type="xs:string"/>
           <xs:element maxOccurs="1" minOccurs="0" name="hash-function" type="xs:string" default=""/>
           <xs:element maxOccurs="1" minOccurs="0" name="alt-txt" type="xs:string" default=""/>
-          <xs:element maxOccurs="1" minOccurs="0" name="uri" type="xs:anyURI"/>
+          <xs:choice maxOccurs="1" minOccurs="1">
+            <xs:element name="uri" type="xs:anyURI"/>
+            <xs:element name="media-content" type="xs:base64Binary"/>
+          </xs:choice>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1524,8 +1529,8 @@ Examples:
           <xs:element maxOccurs="1" minOccurs="1" name="size" type="xs:int"/>
           <xs:element maxOccurs="1" minOccurs="1" name="encoding" type="xs:string" default="utf-8"/>
           <xs:element maxOccurs="1" minOccurs="0" name="language" type="xs:language" default="en-US"/>
-          <xs:element maxOccurs="1" minOccurs="0" name="dvparsable-value" type="xs:string"/>
           <xs:element maxOccurs="1" minOccurs="1" name="formalism" type="xs:string"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="dvparsable-value" type="xs:string"/>
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
@@ -1672,7 +1677,13 @@ Examples:
             type="s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f"/>
           <xs:element maxOccurs="1" minOccurs="0" name="normal-status" type="xs:string"
             default="Normal heart rate"/>
-          <xs:element maxOccurs="1" minOccurs="1" name="magnitude" type="xs:decimal"/>
+          <xs:element maxOccurs="1" minOccurs="1" name="magnitude">
+            <xs:simpleType>
+              <xs:restriction base="xs:decimal">
+                <xs:fractionDigits value="0"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="magnitude-status" type="s3m:MagnitudeStatus"/>
           <xs:element maxOccurs="1" minOccurs="1" name="error" type="xs:int" default="0"/>
           <xs:element maxOccurs="1" minOccurs="1" name="accuracy" type="xs:int" default="0"/>
@@ -1764,7 +1775,7 @@ Examples:
           <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
           <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
           <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
-          <xs:element maxOccurs="1" minOccurs="0" name="reference-range"
+          <xs:element maxOccurs="1" minOccurs="1" name="reference-range"
             type="s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f"/>
           <!-- Ranges -->
           <xs:element maxOccurs="1" minOccurs="0" name="normal-status" type="xs:string" default=""/>
@@ -1896,15 +1907,15 @@ Examples:
           <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
           <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
           <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
-          <xs:choice>
-            <xs:element maxOccurs="1" minOccurs="0" name="true-value">
+          <xs:choice maxOccurs="1" minOccurs="1">
+            <xs:element name="true-value">
               <xs:simpleType>
                 <xs:restriction base="xs:string">
                   <xs:enumeration value="YES"/>
                 </xs:restriction>
               </xs:simpleType>
             </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="false-value">
+            <xs:element name="false-value">
               <xs:simpleType>
                 <xs:restriction base="xs:string">
                   <xs:enumeration value="NO"/>
@@ -1953,8 +1964,8 @@ Examples:
           <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
           <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
           <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
-          <xs:choice>
-            <xs:element maxOccurs="1" minOccurs="0" name="true-value">
+          <xs:choice maxOccurs="1" minOccurs="1">
+            <xs:element name="true-value">
               <xs:simpleType>
                 <xs:restriction base="xs:string">
                   <xs:enumeration value="Yes"/>
@@ -1962,7 +1973,7 @@ Examples:
                 </xs:restriction>
               </xs:simpleType>
             </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="false-value">
+            <xs:element name="false-value">
               <xs:simpleType>
                 <xs:restriction base="xs:string">
                   <xs:enumeration value="No"/>
@@ -2118,6 +2129,185 @@ Examples:
     </xs:complexContent>
   </xs:complexType>
 
+
+<!-- these need to be added to a cluster -->
+  
+  <xs:complexType name='ct-7adcc1e5-2cc9-4132-8ceb-b086372864b5' xml:lang='en-US'> <!-- Karnofsky Performance Status Score - Test 2.4.6 -->
+    <xs:annotation>
+      <xs:documentation>
+        Score from the Karnofsky Performance status scale, representing the functional capabilities of a person. 
+      </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about='s3m:ct-7adcc1e5-2cc9-4132-8ceb-b086372864b5'>
+          <rdfs:subClassOf rdf:resource='s3m:DvOrdinalType'/>
+          <rdfs:label>Karnofsky Performance Status Score - Test 2.4.6</rdfs:label>
+          <rdfs:isDefinedBy rdf:resource='https%3A//cdebrowser.nci.nih.gov/CDEBrowser/search%3FelementDetails%3D9%26FirstTimer%3D0%26PageId%3DElementDetailsGroup%26publicId%3D2003853%26version%3D4.2'/>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvOrdinalType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Karnofsky Performance Status Score - Test 2.4.6"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='reference-range' type='s3m:ct-76417a55-6ebd-49ce-8db7-8253a9e02e1f'/> <!-- reference-ranges -->
+          <xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' default='Normal, no complaints, no evidence of disease'/> 
+          <xs:element maxOccurs='1' minOccurs='1' name='dvordinal-value'>
+            <xs:simpleType>
+              <xs:restriction base='xs:decimal'>
+                <xs:enumeration value='0'/>
+                <xs:enumeration value='10'/>
+                <xs:enumeration value='20'/>
+                <xs:enumeration value='30'/>
+                <xs:enumeration value='40'/>
+                <xs:enumeration value='50'/>
+                <xs:enumeration value='60'/>
+                <xs:enumeration value='70'/>
+                <xs:enumeration value='80'/>
+                <xs:enumeration value='90'/>
+                <xs:enumeration value='100'/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='1' name='symbol'>
+            <xs:simpleType>
+              <xs:restriction base='xs:string'>
+                <xs:enumeration value='Dead'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Dead
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Moribund, fatal processes progressing rapidly'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Moribund, fatal processes progressing rapidly
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Very sick, hospitalization indicated. Death not imminent'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Very sick, hospitalization indicated. Death not imminent
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Severely disabled, hospitalization indicated. Death not imminent'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Severely disabled, hospitalization indicated. Death not imminent
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Disabled, requires special care and assistance'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Disabled, requires special care and assistance
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Requires considerable assistance and frequent medical care'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Requires considerable assistance and frequent medical care
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Requires occasional assistance, but is able to care for most of his/her needs'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Requires occasional assistance, but is able to care for most of his/her needs
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Cares for self, unable to carry on normal activity or to do active work'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Cares for self, unable to carry on normal activity or to do active work
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Normal activity with effort; some signs or symptoms of disease'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Normal activity with effort; some signs or symptoms of disease
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Able to carry on normal activity; minor signs or symptoms of disease'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Able to carry on normal activity; minor signs or symptoms of disease
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value='Normal, no complaints, no evidence of disease'>
+                  <xs:annotation>
+                    <xs:documentation>
+                      Normal, no complaints, no evidence of disease
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+ 
+  <xs:complexType name='ct-e133545c-a54a-42a4-964c-c4cae70edb35' xml:lang='en-US'> <!-- Minutes post injection start time - Test 2.4.6 -->
+    <xs:annotation>
+      <xs:documentation>
+        Clock time in minutes when the emission scan started following the injection of radiotracer.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about='s3m:ct-e133545c-a54a-42a4-964c-c4cae70edb35'>
+          <rdfs:subClassOf rdf:resource='s3m:DvTemporalType'/>
+          <rdfs:label>Minutes post injection start time - Test 2.4.6</rdfs:label>
+          <rdfs:isDefinedBy rdf:resource='https%3A//cdebrowser.nci.nih.gov/CDEBrowser/search%3FelementDetails%3D9%26FirstTimer%3D0%26PageId%3DElementDetailsGroup%26publicId%3D3916051%26version%3D1.0'/>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:DvTemporalType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='data-name' type='xs:string' fixed="Minutes post injection start time - Test 2.4.6"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='reference-range' type='s3m:ReferenceRangeType'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' default=''/> 
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-date' type='xs:date'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-time' type='xs:time'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-datetime' type='xs:dateTime'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-day' type='xs:gDay'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-month' type='xs:gMonth'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-year' type='xs:gYear'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-year-month' type='xs:gYearMonth'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-month-day' type='xs:gMonthDay'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-duration' type='xs:duration'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-ymduration' type='xs:yearMonthDuration'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-dtduration' type='xs:dayTimeDuration'/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+
+
+
+
+
+
+
+
+
+<!-- Elements -->
   <xs:element name="el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f" substitutionGroup="s3m:Link"
     type="s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f">
     <xs:annotation>

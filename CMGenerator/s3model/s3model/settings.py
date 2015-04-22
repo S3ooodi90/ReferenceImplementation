@@ -7,6 +7,8 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
+# Each version of the CM Generator supports one reference model version.
+RM_SCHEMA = "http://www.s3model.com/schemas/s3model_1_0_0.xsd"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os

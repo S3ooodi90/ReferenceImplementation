@@ -1152,6 +1152,12 @@ are generally constrained by a set of enumerations in the CM complexType restric
     
 
 
+    <!-- http://www.s3model.com/ -->
+
+    <owl:Class rdf:about="http://www.s3model.com/"/>
+    
+
+
     <!-- http://www.s3model.com/schemas/s3model_1_0_0#ASKRType -->
 
     <owl:Class rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#ASKRType">
@@ -1931,158 +1937,6 @@ TODO: The individual enumerations should have an owl:oneOf union declared.</rdfs
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#ASKRElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#ASKRElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#ASKUElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#ASKUElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#AttestationElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#AttestationElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#CCDElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#CCDElement">
-        <dc:description rdf:datatype="&xsd;string">An XML element of type CCDType</dc:description>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#ClusterElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#ClusterElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#DERElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#DERElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#DvAdapterElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#DvAdapterElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#DvTemporalElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#DvTemporalElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#DvURIElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#DvURIElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#ExceptionalValueElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#ExceptionalValueElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#INVElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#INVElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#ItemElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#ItemElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#MSKElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#MSKElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#NAElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#NAElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#NASKElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#NASKElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#NAVElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#NAVElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#NINFElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#NINFElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#OTHElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#OTHElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#PINFElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#PINFElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#ParticipationElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#ParticipationElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#PartyElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#PartyElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#QSElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#QSElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#TRCElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#TRCElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#UNCElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#UNCElement"/>
-    
-
-
-    <!-- http://www.s3model.com/schemas/s3model_1_0_0#UNKElement -->
-
-    <owl:NamedIndividual rdf:about="http://www.s3model.com/schemas/s3model_1_0_0#UNKElement"/>
     
 
 
