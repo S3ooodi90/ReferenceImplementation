@@ -311,7 +311,7 @@ class DvOrdered(DvAny):
     Abstract class defining the concept of ordered values, which includes ordinals as well as true
     quantities. The implementations require the functions ‘&lt;’, '&gt;' and is_strictly_comparable_to ('==').
     """
-    reference_ranges = models.ManyToManyField(ReferenceRange, verbose_name=_('reference ranges'), blank=True, null=True, help_text=_('Select the appropriate ReferenceRange(s) that defines each ordered value. The listing is by Project: Reference Range Name.'))
+    reference_ranges = models.ManyToManyField(ReferenceRange, verbose_name=_('reference ranges'), blank=True, help_text=_('Select the appropriate ReferenceRange(s) that defines each ordered value. The listing is by Project: Reference Range Name.'))
     normal_status = models.CharField(_('normal status'),max_length=110, help_text=_("Enter text that indicates a normal status."), blank=True, null=True)
 
     def publish(self):
@@ -364,10 +364,10 @@ class DvQuantified(DvOrdered):
     Abstract class defining the concept of true quantified values, i.e. values which are not only ordered,
     but which have a precise magnitude.
     """
-    min_inclusive = models.DecimalField(_('minimum inclusive'),help_text=_("Enter the minimum (inclusive) value for the magnitude."), null=True, blank=True)
-    max_inclusive = models.DecimalField(_('maximum inclusive'),help_text=_("Enter the maximum (inclusive) value for the magnitude."), null=True, blank=True)
-    min_exclusive = models.DecimalField(_('minimum exclusive'),help_text=_("Enter the minimum (exclusive) value for the magnitude."), null=True, blank=True)
-    max_exclusive = models.DecimalField(_('maximum exclusive'),help_text=_("Enter the maximum (exclusive) value for the magnitude."), null=True, blank=True)
+    min_inclusive = models.DecimalField(_('minimum inclusive'), max_digits=19, decimal_places=10, help_text=_("Enter the minimum (inclusive) value for the magnitude."), null=True, blank=True)
+    max_inclusive = models.DecimalField(_('maximum inclusive'), max_digits=19, decimal_places=10, help_text=_("Enter the maximum (inclusive) value for the magnitude."), null=True, blank=True)
+    min_exclusive = models.DecimalField(_('minimum exclusive'), max_digits=19, decimal_places=10, help_text=_("Enter the minimum (exclusive) value for the magnitude."), null=True, blank=True)
+    max_exclusive = models.DecimalField(_('maximum exclusive'), max_digits=19, decimal_places=10, help_text=_("Enter the maximum (exclusive) value for the magnitude."), null=True, blank=True)
     fraction_digits = models.IntegerField(_('fraction digits'), blank=True,null=True, help_text=_('Specifies the maximum number of decimal places allowed. Must be equal to or greater than zero for DvQuantity. For DvCount it is zero.'))
     total_digits = models.IntegerField(_('total digits'),help_text=_("Enter the maximum number of digits for the magnitude."), null=True, blank=True)
 
@@ -448,9 +448,9 @@ class DvRatio(DvQuantified):
     den_fraction_digits = models.IntegerField(_('fraction digits'), blank=True,null=True, help_text=_('Specifies the maximum number of decimal places allowed in the denominator. Must be equal to or greater than zero.'))
     den_total_digits = models.IntegerField(_('total digits'),help_text=_("Enter the maximum number of digits for the denominator."), null=True, blank=True)
 
-    num_units = models.ForeignKey(DvString, verbose_name=_('numerator units'), null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the numerator."))
-    den_units = models.ForeignKey(DvString, verbose_name=_('denominator units'), null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the denominator."))
-    ratio_units = models.ForeignKey(DvString, verbose_name=_('ratio units'), null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the ratio (magnitude)."))
+    num_units = models.ForeignKey(DvString, verbose_name=_('numerator units'), related_name='num_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the numerator."))
+    den_units = models.ForeignKey(DvString, verbose_name=_('denominator units'), related_name='den_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the denominator."))
+    ratio_units = models.ForeignKey(DvString, verbose_name=_('ratio units'), related_name='ratio_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the ratio (magnitude)."))
 
     def publish(self):
         if self.schema_code == '':
@@ -520,7 +520,7 @@ class Party(Common):
     label = models.CharField(_('label'),max_length=110, help_text=_("A label used to identify this model in CM Generator."))
     require_name = models.BooleanField(_('require name'),default=False, help_text=_('Check this box if a party-name element is required.'))
     party_details = models.ForeignKey('Cluster', verbose_name=_('details'), related_name='%(class)s_related', null=True, blank=True, help_text=_('A Cluster structure that defines the details of this Party.'))
-    party_ref = models.ManyToManyField(DvLink, verbose_name=_('external reference'), help_text=_("An optional DvLink that points to a description of this Party in another service."), null=True, blank=True)
+    party_ref = models.ManyToManyField(DvLink, verbose_name=_('external reference'), help_text=_("An optional DvLink that points to a description of this Party in another service."), blank=True)
 
     class Meta:
         verbose_name = "Party"
@@ -604,8 +604,8 @@ class Participation(Common):
     """
     label = models.CharField(_('label'),max_length=110, help_text=_("A label used to identify this model in CM Generator."))
     performer = models.ForeignKey(Party, null=True, help_text=_('The Party instance and possibly demographic system link of the party participating in the activity.'))
-    function = models.ForeignKey(DvString, null=True, help_text=_('The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.'))
-    mode = models.ForeignKey(DvString, null=True, help_text=_('The mode of the performer / activity interaction, e.g. present, by telephone, by email etc. If the participation is by device or software it may contain a protocol standard or interface definition.'))
+    function = models.ForeignKey(DvString, null=True, related_name='function', help_text=_('The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.'))
+    mode = models.ForeignKey(DvString, null=True, related_name='mode', help_text=_('The mode of the performer / activity interaction, e.g. present, by telephone, by email etc. If the participation is by device or software it may contain a protocol standard or interface definition.'))
 
     def publish(self):
         if self.schema_code == '':
@@ -624,23 +624,23 @@ class Participation(Common):
         verbose_name = "Participation"
         ordering=['prj_name','label']
 
-class Cluster(Item):
+class Cluster(Common):
     """
     The grouping variant of Item, which may contain further instances of Item, in an ordered list. This
     provides the root Item for potentially very complex structures.
     """
     cluster_subject = models.CharField(_('cluster subject'),max_length=110, help_text="Enter a text name for this subject of this cluster.")
-    clusters = models.ManyToManyField('Cluster',help_text="Select zero or more Clusters to include in this Cluster. You cannot put a Cluster inside itself, it will be ignored if you select itself.", null=True, blank=True)
-    dvboolean = models.ManyToManyField(DvBoolean,  help_text="Select zero or more booleans to include in this Cluster.", null=True, blank=True)
-    dvlink = models.ManyToManyField(DvLink,  help_text="Select zero or more links to include in this Cluster.", null=True, blank=True)
-    dvstring = models.ManyToManyField(DvString,  help_text="Select zero or more strings to include in this Cluster.", null=True, blank=True)
-    dvparsable = models.ManyToManyField(DvParsable,  help_text="Select zero or more parsables to include in this Cluster.", null=True, blank=True)
-    dvmedia = models.ManyToManyField(DvMedia,  help_text="Select zero or more media items to include in this Cluster.", null=True, blank=True)
-    dvordinal = models.ManyToManyField(DvOrdinal,  help_text="Select zero or more ordinals to include in this Cluster.", null=True, blank=True)
-    dvcount = models.ManyToManyField(DvCount,  help_text="Select zero or more counts to include in this Cluster.", null=True, blank=True)
-    dvquantity = models.ManyToManyField(DvQuantity,  help_text="Select zero or more quantity items to include in this Cluster.", null=True, blank=True)
-    dvratio = models.ManyToManyField(DvRatio,  help_text="Select zero or more ratios to include in this Cluster.", null=True, blank=True)
-    dvtemporal = models.ManyToManyField(DvTemporal,  help_text="Select zero or more temporal items to include in this Cluster.", null=True, blank=True)
+    clusters = models.ManyToManyField('Cluster',help_text="Select zero or more Clusters to include in this Cluster. You cannot put a Cluster inside itself, it will be ignored if you select itself.", blank=True)
+    dvboolean = models.ManyToManyField(DvBoolean,  help_text="Select zero or more booleans to include in this Cluster.", blank=True)
+    dvlink = models.ManyToManyField(DvLink,  help_text="Select zero or more links to include in this Cluster.", blank=True)
+    dvstring = models.ManyToManyField(DvString,  help_text="Select zero or more strings to include in this Cluster.", blank=True)
+    dvparsable = models.ManyToManyField(DvParsable,  help_text="Select zero or more parsables to include in this Cluster.", blank=True)
+    dvmedia = models.ManyToManyField(DvMedia,  help_text="Select zero or more media items to include in this Cluster.", blank=True)
+    dvordinal = models.ManyToManyField(DvOrdinal,  help_text="Select zero or more ordinals to include in this Cluster.", blank=True)
+    dvcount = models.ManyToManyField(DvCount,  help_text="Select zero or more counts to include in this Cluster.", blank=True)
+    dvquantity = models.ManyToManyField(DvQuantity,  help_text="Select zero or more quantity items to include in this Cluster.", blank=True)
+    dvratio = models.ManyToManyField(DvRatio,  help_text="Select zero or more ratios to include in this Cluster.", blank=True)
+    dvtemporal = models.ManyToManyField(DvTemporal,  help_text="Select zero or more temporal items to include in this Cluster.", blank=True)
 
     def __str__(self):
         return self.prj_name.prj_name + ' : '+self.cluster_subject
@@ -667,12 +667,10 @@ class Concept(Common):
         Suggested but optional DCTERMS; contributors, relation
 
     """
-    published = models.BooleanField(_("published"),default=False, help_text=_("This <em>Published</em> box must be checked in order to enable CM generation as an XSD. Once it has been checked, no further edits are allowed."))
-    prj_name = models.ForeignKey(Project, verbose_name=_("project name"), help_text=_('Choose a Project for this Concept Model (CM)'))
 
     #metadata
     title = models.CharField(_('title'),unique=True, max_length=255, help_text=_("Enter the name of this  Model (CM)"))
-    author = models.ForeignKey(User, verbose_name=_("author"), help_text=_('Choose Author of this Concept Model (CM)'))
+    author = models.ForeignKey(User, verbose_name=_("author"), related_name='creator', help_text=_('Choose Author of this Concept Model (CM)'))
     contributors = models.ManyToManyField(User, verbose_name=_("contributors"), help_text=_('Select contributors to this Concept Model (CM)'))
     license = models.CharField(_('rights'),max_length=255, help_text=_("Enter the rights or license statement."), default="All Rights Reserved.")
     rights_holder_name = models.CharField(_('Rights Holder Name'),max_length=255, help_text=_("Enter the name of the publisher/copyright holder."))
@@ -684,12 +682,12 @@ class Concept(Common):
     encoding = models.CharField(_("encoding"), max_length=20, default='utf-8', help_text=_("Normally leave as utf-8 default. Otherwise see: <a href='http://www.iana.org/assignments/character-sets/character-sets.txt'>List of encoding types at IANA.</a>"))
     data = models.ForeignKey(Cluster, verbose_name=_("Data Cluster"), help_text=_('Choose the data element cluster of this Concept Model (CM)'))
     subject = models.ForeignKey(Party, verbose_name=_("Subject"), help_text=_('Choose the subject element Party model of this Concept Model (CM)'))
-    protocol = models.ForeignKey(DvLink, verbose_name=_("Protocol"), help_text=_('Choose the protocol element model of this Concept Model (CM)'))
-    workflow = models.ForeignKey(DvLink, verbose_name=_("Workflow"), help_text=_('Choose the workflow element model of this Concept Model (CM)'))
+    protocol = models.ForeignKey(DvLink, verbose_name=_("Protocol"), related_name='protocol', help_text=_('Choose the protocol element model of this Concept Model (CM)'))
+    workflow = models.ForeignKey(DvLink, verbose_name=_("Workflow"), related_name='workflow', help_text=_('Choose the workflow element model of this Concept Model (CM)'))
     attested = models.ForeignKey(Attestation, verbose_name=_("Attestation"), help_text=_('Choose the attested element model of this Concept Model (CM)'))
     participations = models.ManyToManyField(Participation, verbose_name=_("Participations"), help_text=_('Choose the participation models element model of this Concept Model (CM)'))
     audits = models.ManyToManyField(Audit, verbose_name=_("Audits"), help_text=_('Choose the audit element models of this Concept Model (CM)'))
-    links = models.ManyToManyField(DvLink, verbose_name=_("Links"), help_text=_('Select links models to/from this Concept Model (CM)'))
+    links = models.ManyToManyField(DvLink, verbose_name=_("Links"), related_name='links', help_text=_('Select links models to/from this Concept Model (CM)'))
 
     def generate(self):
         """

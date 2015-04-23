@@ -1,6 +1,7 @@
 from django.contrib import admin
+from django.utils.translation import ugettext_lazy as _
 
-from models import *
+from cmgen.models import *
 
 def make_published(modeladmin, request, queryset):
     for obj in queryset:

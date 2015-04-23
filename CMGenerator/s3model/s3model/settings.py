@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
     'debug_toolbar',
+    'cmgen',
 )
 
 MIDDLEWARE_CLASSES = (

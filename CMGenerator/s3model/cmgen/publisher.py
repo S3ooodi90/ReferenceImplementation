@@ -10,8 +10,8 @@ from collections import OrderedDict
 from xml.sax.saxutils import escape
 
 from .exceptions import PublishingError, ModellingError
-from .r_code_gen import pct_rcode
-from .xqr_code_gen import pct_xqrcode
+#from .r_code_gen import pct_rcode
+#from .xqr_code_gen import pct_xqrcode
 
 """
 publisher.py
