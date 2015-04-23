@@ -31,6 +31,17 @@ class DvBooleanAdmin(admin.ModelAdmin):
     ordering = ['prj_name','data_name']
     search_fields = ['data_name','ct_id']
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
+
+    fieldsets = (
+        (None, {
+        'fields':('published',('prj_name','lang','data_name'),'true_values','false_values',)}),
+        ("Require dates in instances?", {'fields':(('vtb_required', 'vte_required'),)}),
+        ("Additional Information", {'classes':('wide',),
+                       'fields':('description','semantics','asserts',)}),
+        ("Published Code (read-only)", {'classes':('collapse',),
+                           'fields':('schema_code','r_code','xqr_code','xqw_code',)}),
+    )
+
 admin.site.register(DvBoolean,DvBooleanAdmin)
 
 class DvLinkAdmin(admin.ModelAdmin):

@@ -33,6 +33,12 @@ class Predicate(models.Model):
 
     pred_def = models.CharField(_("predicate definition"), max_length=2048, unique=True, db_index=True, help_text=_('Enter the predicate including the namespace abbreviation followed by a colon.'))
 
+    def __str__(self):
+        return self.pred_def
+    class Meta:
+        verbose_name = _("Predicate")
+        verbose_name_plural = _("Predicates")
+        ordering = ['pred_def']
 
 
 class Project(models.Model):
@@ -54,9 +60,18 @@ class PredObj(models.Model):
     """
      The Predicate and Object for the triple(s).
     """
+    prj_name = models.ForeignKey(Project, verbose_name=_("Project Name"), default=1, help_text=_('Choose the name of your Project.'))
     name = models.CharField(_("name"), max_length=255, unique=True, db_index=True, help_text=_('Enter a unique, descriptive name for this entry.'))
     pred = models.ForeignKey(Predicate, verbose_name=_("Predicate"), help_text=_('Choose a predicate.'))
     obj = models.CharField(_("Object"), max_length=5000, help_text=_('Enter a resource link. Should be a resolvable URI.'))
+
+    def __str__(self):
+        return self.prj_name.prj_name + ' : ' + self.name
+
+    class Meta:
+        verbose_name = _("Predicate/Object")
+        verbose_name_plural = _("Predicate/Object")
+        ordering = ['name','pred']
 
 
 class Common(models.Model):
@@ -67,7 +82,7 @@ class Common(models.Model):
     ct_id = UUIDField(_("UUID"), version=4, help_text=_('A unique identifier for this PCT.'))
     created = models.DateTimeField(_('created'),auto_now_add=True, help_text=_('The dateTime that the PCT was created.'))
     last_updated = models.DateTimeField(_('last updated'),auto_now=True, help_text=_("Last update."))
-    published = models.BooleanField(_("published"),default=False, help_text=_("Published must be a green check icon in order to use this in a CM. This is not a user editable. It is managed by the publication process."))
+    published = models.BooleanField(_("published"),default=False, help_text=_("Published must be a green check icon in order to use this in a CM. This is not user editable. It is managed by the publication process."))
     description = models.TextField(_('description'),help_text=_("Enter a free text description for this complexType. Include a usage statement and any possible misuses. This is used as the annotation for the PcT."), null=True)
     semantics = models.ManyToManyField(PredObj, verbose_name=_("semantics"), help_text="Select one or more Predicate/Object combinations for the semantics. You must select at least one.")
     schema_code = models.TextField(_("Schema Code"), help_text="This is only writable from the CMGEN, not via user input. It contains the code required for each component to create an entry in a CM.", blank=True, null=True, default='')
@@ -105,8 +120,8 @@ class DvBoolean(DvAny):
     has more than two values.
     """
 
-    true_values = models.TextField(_('true options'),help_text=_("Enter the set of values that are Boolean TRUEs. For instance, if this is a 'Yes/No' type of concept, usually the 'Yes' is a Boolean TRUE. Enter one per line."))
-    false_values = models.TextField(_('false options'),help_text=_("Enter the set of values that are Boolean FALSEs. For instance, if this is a 'Yes/No' type of concept, usually the 'No' is a Boolean FALSE. Enter one per line."))
+    true_values = models.TextField(_('true options'),help_text=_("Enter the set of values that are Boolean TRUEs. For instance, if this is a 'Yes/No' type of concept, usually the 'Yes' is a Boolean TRUE. Enter one per line without blank lines."))
+    false_values = models.TextField(_('false options'),help_text=_("Enter the set of values that are Boolean FALSEs. For instance, if this is a 'Yes/No' type of concept, usually the 'No' is a Boolean FALSE. Enter one per line without blank lines."))
 
     def publish(self):
         if self.schema_code == '':
