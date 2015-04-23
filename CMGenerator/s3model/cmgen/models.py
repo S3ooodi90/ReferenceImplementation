@@ -85,7 +85,7 @@ class DvAny(Common):
     Abstract root of all datatypes.
     """
     data_name = models.CharField(_('data name'),max_length=110, db_index=True, help_text=_("Type a name for this ComplexType."))
-    element_ctid = UUIDField(_("Element UUID"), version=4, help_text=_('This UUID is generated for datatype that can be included in a Cluster. It is used to create a specific DvAdapter complexType.'))
+    adapter_id = UUIDField(_("Element UUID"), version=4, help_text=_('This UUID is generated for datatype that can be included in a Cluster. It is used to create a specific DvAdapter complexType.'))
     vtb_required = models.BooleanField(_("VTB Required?"),default=False, help_text=_("Require a Valid begin time?"))
     vte_required = models.BooleanField(_("VTE Required?"),default=False, help_text=_("Require a Valid end time?"))
 
@@ -690,6 +690,12 @@ class Concept(Common):
     participations = models.ManyToManyField(Participation, verbose_name=_("Participations"), help_text=_('Choose the participation models element model of this Concept Model (CM)'))
     audits = models.ManyToManyField(Audit, verbose_name=_("Audits"), help_text=_('Choose the audit element models of this Concept Model (CM)'))
     links = models.ManyToManyField(DvLink, verbose_name=_("Links"), help_text=_('Select links models to/from this Concept Model (CM)'))
+
+    def generate(self):
+        """
+        Create an XML Schema for the CM.
+        """
+        generateCM(self)
 
     def publish(self):
         if self.schema_code == '':

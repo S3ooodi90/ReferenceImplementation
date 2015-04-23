@@ -22,29 +22,29 @@ from django.core.files.base import ContentFile, File
 
 from .exceptions import PublishingError, GenerationError
 
-import ccdgen.models
+import models
 
-from .ig import ccdinstance, dv_uri, dv_boolean, dv_codedstring, dv_count, dv_identifier, dv_interval, \
-    dv_media, dv_ordinal, dv_parsable, dv_quantity, dv_ratio, dv_string, dv_temporal, \
-    party, participation, attestation, cluster, audit
-
-from .fg import fdv_uri, fdv_boolean, fdv_codedstring, fdv_count, fdv_identifier, fdv_interval, \
-    fdv_media, fdv_ordinal, fdv_parsable, fdv_quantity, fdv_ratio, fdv_string, fdv_temporal, \
-    fparticipation, fparty, fattestation, fcluster, faudit
+##from .ig import ccdinstance, dv_uri, dv_boolean, dv_codedstring, dv_count, dv_identifier, dv_interval, \
+##    dv_media, dv_ordinal, dv_parsable, dv_quantity, dv_ratio, dv_string, dv_temporal, \
+##    party, participation, attestation, cluster, audit
+##
+##from .fg import fdv_uri, fdv_boolean, fdv_codedstring, fdv_count, fdv_identifier, fdv_interval, \
+##    fdv_media, fdv_ordinal, fdv_parsable, fdv_quantity, fdv_ratio, fdv_string, fdv_temporal, \
+##    fparticipation, fparty, fattestation, fcluster, faudit
 
 
 """
 generator.py
 
-The MLHIM2 Reference Model code to write CCD schemas.
-Copyright 2014-2015, Timothy W. Cook, All Rights Reserved.
+The S3Model Reference Model code to write CM schemas.
+Copyright 2015, Timothy W. Cook, All Rights Reserved.
 
-This code is accessed from CCD model class in model.py
+This code is accessed from CCD model class in models.py
 
 """
 USED_CLUSTERS = []
 USED_UUIDS = []
-USED_ELEMENTS = []
+USED_ADAPTERS = []
 REF_DICT = OrderedDict()
 INSTR = """<?xml version="1.0" encoding="UTF-8"?>""" # Instance header string
 FRMSTR = """<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n<html xmlns="http://www.w3.org/1999/xhtml">\n<head>\n"""
@@ -77,8 +77,8 @@ def use_uuid(ctid, elname, reset=False):
 
 def getDvAdapter(ct_id, elem_id, dvname):
     """
-    Create an Element adapter for a complexType when used in a Cluster.
-    Requires the ct_id of the complexType and the pre-generated Element ID for that datatype.
+    Create an adapter for a complexType when used in a Cluster.
+    Requires the ct_id of the complexType and the pre-generated adapter_id for that datatype.
     Returns the string.
     """
     elem_str = ''
@@ -87,12 +87,12 @@ def getDvAdapter(ct_id, elem_id, dvname):
 
 
     #Create the Element
-    elem_str += padding.rjust(indent) + ("<xs:element name='el-"+elem_id+"' substitutionGroup='mlhim2:items' type='mlhim2:ct-"+elem_id+"'/>\n")
+    elem_str += padding.rjust(indent) + ("<xs:element name='el-"+elem_id+"' substitutionGroup='s3m:Items' type='s3m:ct-"+elem_id+"'/>\n")
     elem_str += padding.rjust(indent) + ("<xs:complexType name='ct-"+elem_id+"'> <!-- Adapter for: "+escape(dvname)+" -->\n")
     elem_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    elem_str += padding.rjust(indent+4) + ("<xs:restriction base='mlhim2:DvAdapterType'>\n")
+    elem_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvAdapterType'>\n")
     elem_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    elem_str += padding.rjust(indent+8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='mlhim2:el-"+ct_id+"'/> <!-- Reference to: "+escape(dvname)+" -->\n")
+    elem_str += padding.rjust(indent+8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:el-"+ct_id+"'/> <!-- Reference to: "+escape(dvname)+" -->\n")
     elem_str += padding.rjust(indent+6) + ("</xs:sequence>\n")
     elem_str += padding.rjust(indent+4) + ("</xs:restriction>\n")
     elem_str += padding.rjust(indent+2) + ("</xs:complexContent>\n")
@@ -212,7 +212,7 @@ def getAttestation(att):
 def getCluster(cluster, reset=False):
     clu_str = cluster.schema_code
     global USED_CLUSTERS
-    global USED_ELEMENTS
+    global USED_ADAPTERS
 
     #if reset:
         #USED_CLUSTERS = []
@@ -231,63 +231,63 @@ def getCluster(cluster, reset=False):
             if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                 raise GenerationError("Something happened to your PCT code. Check that DvBoolean: "+dv.data_name+" is published.")
             clu_str += dv.schema_code #get the Dv code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvuri.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
             if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                 raise GenerationError("Something happened to your PCT code. Check that DvURI: "+dv.data_name+" is published.")
             clu_str += dv.schema_code #get the Dv code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvstring.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
             if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                 raise GenerationError("Something happened to your PCT code. Check that DvString: "+dv.data_name+" is published.")
             clu_str += dv.schema_code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvcodedstring.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
             if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                 raise GenerationError("Something happened to your PCT code. Check that DvCodedString: "+dv.data_name+" is published.")
             clu_str += dv.schema_code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvidentifier.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
             if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                 raise GenerationError("Something happened to your PCT code. Check that DvIndentifer: "+dv.data_name+" is published.")
             clu_str += dv.schema_code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvparsable.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
             if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                 raise GenerationError("Something happened to your PCT code. Check that DvParsable: "+dv.data_name+" is published.")
             clu_str += dv.schema_code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvmedia.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
             if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                 raise GenerationError("Something happened to your PCT code. Check that DvMedia: "+dv.data_name+" is published.")
             clu_str += dv.schema_code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvordinal.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
@@ -304,9 +304,9 @@ def getCluster(cluster, reset=False):
                             if len(rr.data_range.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                                 raise GenerationError("Something happened to your PCT code. Check that DvInterval: "+rr.data_range.data_name+" is published.")
                             clu_str += rr.data_range.schema_code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvcount.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
@@ -335,9 +335,9 @@ def getCluster(cluster, reset=False):
                     clu_str += dv.coded_units.schema_code
             else:
                 raise GenerationError("Your DvCount is missing a DvCount-units value. This should have been a publishing error; <b>Contact the CCDGEN authors</b>.")
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
 
     for dv in cluster.dvquantity.all():
@@ -367,9 +367,9 @@ def getCluster(cluster, reset=False):
                     clu_str += dv.coded_units.schema_code
             else:
                 raise GenerationError("Your DvQuanity is missing a DvQuantity-units value. This should have been a publishing error; <b>Contact the CCDGEN authors</b>.")
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
 
     for dv in cluster.dvratio.all():
@@ -387,8 +387,6 @@ def getCluster(cluster, reset=False):
                     if len(dv.num_coded_units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                         raise GenerationError("Something happened to your PCT code. Check that DvCodedString: "+dv.num_coded_units.data_name+" is published.")
                     clu_str += dv.num_coded_units.schema_code
-##            else:
-##                raise GenerationError("Your DvRatio is missing a numerator-units value. This should have been a publishing error; <b>Contact the CCDGEN authors</b>.")
 
             if dv.den_simple_units is not None:
                 if use_uuid(dv.den_simple_units.ct_id, 'denominator-units'):
@@ -400,8 +398,6 @@ def getCluster(cluster, reset=False):
                     if len(dv.den_coded_units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                         raise GenerationError("Something happened to your PCT code. Check that DvCodedString: "+dv.den_coded_units.data_name+" is published.")
                     clu_str += dv.den_coded_units.schema_code
-##            else:
-##                raise GenerationError("Your DvRatio is missing a denominator-units value. This should have been a publishing error; <b>Contact the CCDGEN authors</b>.")
 
             if dv.ratio_simple_units is not None:
                 if use_uuid(dv.ratio_simple_units.ct_id, 'ratio-units'):
@@ -427,9 +423,9 @@ def getCluster(cluster, reset=False):
                             if len(rr.data_range.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                                 raise GenerationError("Something happened to your PCT code. Check that DvInterval: "+rr.data_range.data_name+" is published.")
                             clu_str += rr.data_range.schema_code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     for dv in cluster.dvtemporal.all():
         if use_uuid(dv.ct_id, 'DvAdapter-dv'):
@@ -446,9 +442,9 @@ def getCluster(cluster, reset=False):
                             if len(rr.data_range.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                                 raise GenerationError("Something happened to your PCT code. Check that DvInterval: "+rr.data_range.data_name+" is published.")
                             clu_str += rr.data_range.schema_code
-        if not (dv.element_ctid in USED_ELEMENTS):
-            clu_str += getDvAdapter(dv.ct_id,dv.element_ctid, dv.data_name) #create the DvAdapterType code
-            USED_ELEMENTS.append(dv.element_ctid)
+        if not (dv.adapter_id in USED_ADAPTERS):
+            clu_str += getDvAdapter(dv.ct_id,dv.adapter_id, dv.data_name) #create the DvAdapterType code
+            USED_ADAPTERS.append(dv.adapter_id)
 
     return clu_str
 
@@ -464,7 +460,7 @@ def getEntry(entry):
     entry_str = entry.schema_code
     FRMSTR += indent + """<div class='entry collapsed'><br /> <span style="text-align: center; font-weight: bold;"> Entry: """+entry.entry_name+"""</span><br />\n\n<em>The Entry meta-data is not normally user facing. It is shown here for developers. <a href='#entry-data'>Entry data begins here</a>.</em>\n"""
     FRMSTR += indent + "<form action='' method='' name='"+entry.entry_name+"' target='' >\n"
-    INSTR += indent + """<mlhim2:el-"""+entry.ct_id+"""> <!-- Entry -->\n"""
+    INSTR += indent + """<s3m:el-"""+entry.ct_id+"""> <!-- Entry -->\n"""
     FRMSTR += indent + " <div class='devonly collapsed'>\n"
     #FRMSTR += indent + " <div class='content'>\n"
     #entry-links
@@ -587,32 +583,32 @@ def getEntry(entry):
     FRMSTR += indent + "<div><span class='ccdtitle' style='background-color: lightgreen;'>Created using the CCD-Gen!</span><span style='float: right; font-size: 8px;'>form design contributions by <a href='https://www.google.com/+MichalZubkowiczMZ'>Michal Zubkowicz</a></span><br />\n"
     FRMSTR += indent + "<span class='ccdid'>"+datetime.strftime(datetime.today(),'%Y-%m-%d %H:%M')+"</span><br /></div>\n"
 
-    INSTR += indent + """</mlhim2:el-"""+entry.ct_id+""">\n"""
+    INSTR += indent + """</s3m:el-"""+entry.ct_id+""">\n"""
 
     return entry_str
 
-def generateCCD(self):
+def generateCM(self):
     """
-    Called from the CCD model
+    Called from the CM model
     This is where the string is built to write the schema file and the instance example.
     """
     global INSTR
     global FRMSTR
-    global USED_ELEMENTS
-    USED_ELEMENTS = []
+    global USED_ADAPTERS
+    USED_ADAPTERS = []
 
-    INSTR = """<?xml version="1.0" encoding="UTF-8"?>""" #reset the global between executions
-    FRMSTR = """<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n<html xmlns="http://www.w3.org/1999/xhtml">\n<head>\n"""
+##    INSTR = """<?xml version="1.0" encoding="UTF-8"?>""" #reset the global between executions
+##    FRMSTR = """<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n<html xmlns="http://www.w3.org/1999/xhtml">\n<head>\n"""
 
     if not self.published:
-        raise GenerationError("You must first Publish the CCD before generating the code.")
+        raise GenerationError("You must first Publish the Concept before generating the code.")
     elif self.xsd_file:
-        raise GenerationError("CCD: "+self.title+" was previously generated. You must unpublish it and publish a new CCD.")
+        raise GenerationError("Concept: "+self.title+" was previously generated. You must unpublish it and publish a new CM.")
 
-    ccd_str = self.schema_code
+    cm_str = self.schema_code
 
-    if len(ccd_str) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-        raise GenerationError("Something happened to your PCT code. Check that CCD: "+self.title+" is published.")
+    if len(cm_str) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+        raise GenerationError("Something happened to your PcT code. Check that CM: "+self.title+" is published.")
 
     #get the entry information and start the tree.
     if self.admin_definition:
@@ -624,72 +620,72 @@ def generateCCD(self):
     else:
         raise GenerationError("You do not have any definition for your CCD.")
 
-    INSTR += ccdinstance('ccd-'+self.ct_id)
-
-    FRMSTR += "<title>"+self.title.strip()+"</title>\n"
-    FRMSTR += """<meta name="description" content="HTML Form Template for ccd-"""+self.ct_id+""""/>\n"""
-    FRMSTR += """<meta name="keywords" content="HTML,CSS,XML, MLHIM, CCD, PcT"/>\n"""
-    FRMSTR += """<meta name="author" content="CCD-Gen http://www.ccdgen.com"/>\n"""
-    FRMSTR += """<meta charset="UTF-8"/>\n"""
-    FRMSTR += """<meta id='ccd-"""+self.ct_id+"""'/>\n"""
-    FRMSTR += """<meta lang='"""+self.dc_language+"""'/>\n"""
-    FRMSTR += """<link href="http://www.mlhim.org/css/mlhim246.css" title="MLHIM 2.4.6 " type="text/css" rel="stylesheet" />\n"""
-    FRMSTR += """<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">\n"""
-    FRMSTR += """<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">\n"""
-
-    FRMSTR += """<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>\n"""
-    FRMSTR += """<script type="text/javascript">"""
-    FRMSTR += """  if (typeof jQuery == 'undefined') {"""
-    FRMSTR += """  document.write(unescape("%3Cscript src='/js/jquery-1.10.2.min.js' type='text/javascript'%3E%3C/script%3E"));"""
-    FRMSTR += """}"""
-    FRMSTR += """</script>"""
-
-    # dev On/Off scripts
-    FRMSTR += """<script type="text/javascript" >\n"""
-    FRMSTR += """  $(document).ready(function() {\n"""
-    FRMSTR += """  $('#devon').click(function() {\n"""
-    FRMSTR += """  $('.devonly').css('display','inline');\n"""
-    FRMSTR += """});\n"""
-    FRMSTR += """});\n"""
-    FRMSTR += """</script>\n"""
-    FRMSTR += """<script type="text/javascript" >\n"""
-    FRMSTR += """  $(document).ready(function() {\n"""
-    FRMSTR += """  $('#devoff').click(function() {\n"""
-    FRMSTR += """  $('.devonly').css('display', 'none');\n"""
-    FRMSTR += """});\n"""
-    FRMSTR += """});\n"""
-    FRMSTR += """</script>\n"""
-    # collapse/uncollapse script
-    FRMSTR += """<script type="text/javascript">\n"""
-    FRMSTR += """$(document).ready(function () {\n"""
-    FRMSTR += """    $('.collapsed').on('click', function (e) {\n"""
-    FRMSTR += """        $(this).removeClass('collapsed');\n"""
-    FRMSTR += """        $(this).addClass('uncollapsed');\n"""
-    FRMSTR += """        $(this).children('.content').show();\n"""
-    FRMSTR += """        e.preventDefault();\n"""
-    FRMSTR += """    });\n"""
-    FRMSTR += """    $('.hidebutton').on('click', function (e) {\n"""
-    FRMSTR += """        $(this).parent().hide();\n"""
-    FRMSTR += """        $(this).parent().parent().removeClass('uncollapsed');\n"""
-    FRMSTR += """        $(this).parent().parent().addClass('collapsed');\n"""
-    FRMSTR += """        e.stopPropagation();\n"""
-    FRMSTR += """        e.preventDefault();\n"""
-    FRMSTR += """        });\n"""
-    FRMSTR += """    });\n"""
-    FRMSTR += """</script>\n"""
-    FRMSTR += "</head>\n<body>\n"
-    FRMSTR += "<span class='ccdtitle'>"+self.title+"</span><br />\n"
-    FRMSTR += "<span class='ccdid'>ccd-"+self.ct_id+"</span><br />\n"
-
-    FRMSTR += """<div style="text-align: center; font-weight: bold; font-size: 14px;">Developer View: <a href="#" id='devon' class="devon">On</a>   \n"""
-    FRMSTR += """<a href="#" id='devoff' class="devoff">Off</a> &nbsp; &nbsp; &nbsp;<a href='http://mlhim.org/rm246_html' target='RM_246'>(Reference model details index)</a><br /><span style='color: red;  font-size: 12px;'>(click on the section titles below to expand the content)</span></div> <br />\n"""
-
-    FRMSTR += "<div class='ccd collapsed'>\n<div class='devonly collapsed'>\n"
-    FRMSTR += self.doc_code # previously saved meta-data documentation
-
+##    INSTR += ccdinstance('ccd-'+self.ct_id)
+##
+##    FRMSTR += "<title>"+self.title.strip()+"</title>\n"
+##    FRMSTR += """<meta name="description" content="HTML Form Template for ccd-"""+self.ct_id+""""/>\n"""
+##    FRMSTR += """<meta name="keywords" content="HTML,CSS,XML, MLHIM, CCD, PcT"/>\n"""
+##    FRMSTR += """<meta name="author" content="CCD-Gen http://www.ccdgen.com"/>\n"""
+##    FRMSTR += """<meta charset="UTF-8"/>\n"""
+##    FRMSTR += """<meta id='ccd-"""+self.ct_id+"""'/>\n"""
+##    FRMSTR += """<meta lang='"""+self.dc_language+"""'/>\n"""
+##    FRMSTR += """<link href="http://www.mlhim.org/css/mlhim246.css" title="MLHIM 2.4.6 " type="text/css" rel="stylesheet" />\n"""
+##    FRMSTR += """<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">\n"""
+##    FRMSTR += """<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">\n"""
+##
+##    FRMSTR += """<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>\n"""
+##    FRMSTR += """<script type="text/javascript">"""
+##    FRMSTR += """  if (typeof jQuery == 'undefined') {"""
+##    FRMSTR += """  document.write(unescape("%3Cscript src='/js/jquery-1.10.2.min.js' type='text/javascript'%3E%3C/script%3E"));"""
+##    FRMSTR += """}"""
+##    FRMSTR += """</script>"""
+##
+##    # dev On/Off scripts
+##    FRMSTR += """<script type="text/javascript" >\n"""
+##    FRMSTR += """  $(document).ready(function() {\n"""
+##    FRMSTR += """  $('#devon').click(function() {\n"""
+##    FRMSTR += """  $('.devonly').css('display','inline');\n"""
+##    FRMSTR += """});\n"""
+##    FRMSTR += """});\n"""
+##    FRMSTR += """</script>\n"""
+##    FRMSTR += """<script type="text/javascript" >\n"""
+##    FRMSTR += """  $(document).ready(function() {\n"""
+##    FRMSTR += """  $('#devoff').click(function() {\n"""
+##    FRMSTR += """  $('.devonly').css('display', 'none');\n"""
+##    FRMSTR += """});\n"""
+##    FRMSTR += """});\n"""
+##    FRMSTR += """</script>\n"""
+##    # collapse/uncollapse script
+##    FRMSTR += """<script type="text/javascript">\n"""
+##    FRMSTR += """$(document).ready(function () {\n"""
+##    FRMSTR += """    $('.collapsed').on('click', function (e) {\n"""
+##    FRMSTR += """        $(this).removeClass('collapsed');\n"""
+##    FRMSTR += """        $(this).addClass('uncollapsed');\n"""
+##    FRMSTR += """        $(this).children('.content').show();\n"""
+##    FRMSTR += """        e.preventDefault();\n"""
+##    FRMSTR += """    });\n"""
+##    FRMSTR += """    $('.hidebutton').on('click', function (e) {\n"""
+##    FRMSTR += """        $(this).parent().hide();\n"""
+##    FRMSTR += """        $(this).parent().parent().removeClass('uncollapsed');\n"""
+##    FRMSTR += """        $(this).parent().parent().addClass('collapsed');\n"""
+##    FRMSTR += """        e.stopPropagation();\n"""
+##    FRMSTR += """        e.preventDefault();\n"""
+##    FRMSTR += """        });\n"""
+##    FRMSTR += """    });\n"""
+##    FRMSTR += """</script>\n"""
+##    FRMSTR += "</head>\n<body>\n"
+##    FRMSTR += "<span class='ccdtitle'>"+self.title+"</span><br />\n"
+##    FRMSTR += "<span class='ccdid'>ccd-"+self.ct_id+"</span><br />\n"
+##
+##    FRMSTR += """<div style="text-align: center; font-weight: bold; font-size: 14px;">Developer View: <a href="#" id='devon' class="devon">On</a>   \n"""
+##    FRMSTR += """<a href="#" id='devoff' class="devoff">Off</a> &nbsp; &nbsp; &nbsp;<a href='http://mlhim.org/rm246_html' target='RM_246'>(Reference model details index)</a><br /><span style='color: red;  font-size: 12px;'>(click on the section titles below to expand the content)</span></div> <br />\n"""
+##
+##    FRMSTR += "<div class='ccd collapsed'>\n<div class='devonly collapsed'>\n"
+##    FRMSTR += self.doc_code # previously saved meta-data documentation
+##
     # reset - used uuid and ref_dict
     if use_uuid(entry.ct_id, 'definition', True):
-        ccd_str += getEntry(entry)                            #This is the 'dive' into the CCD creation
+        cm_str += getEntry(entry)                            #This is the 'dive' into the CM creation
 
 
     # create reference elements with substitution groups at the bottom of the CCD
@@ -698,15 +694,15 @@ def generateCCD(self):
             sg_str = "substitutionGroup='"
             if REF_DICT[r][0] != None:
                 for sg in REF_DICT[r]:
-                    sg_str += 'mlhim2:' + sg + " "
-                ccd_str += ("  <xs:element name='el-"+r+"' "+sg_str.strip()+"' type='mlhim2:ct-"+r+"'/>\n")
+                    sg_str += 's3m:' + sg + " "
+                cm_str += ("  <xs:element name='el-"+r+"' "+sg_str.strip()+"' type='s3m:ct-"+r+"'/>\n")
 
 
     #close the schema
-    ccd_str += "\n</xs:schema>\n"
+    cm_str += "\n</xs:schema>\n"
 
     # close the instance
-    INSTR += "</mlhim2:ccd-"+self.ct_id+">\n"
+    INSTR += "</s3m:ccd-"+self.ct_id+">\n"
 
     # close the form
     FRMSTR += "</div>\n</body>\n</html>"
@@ -768,14 +764,14 @@ def generateCCD(self):
 
     #open a schema file ccd-(uuid).xsd
 
-    f = ContentFile(ccd_str.encode("utf-8"))
+    f = ContentFile(cm_str.encode("utf-8"))
     xsd = self.xsd_file
     xsd.save('ccd-'+self.ct_id+'.xsd', f, save=True)
     xsd.flush()
     self.xsd_file.close()
     f.close()
     lf = os.open(ccd_dir+'/ccd-'+ self.ct_id+'.xsd', os.O_RDWR|os.O_CREAT )
-    os.write(lf,ccd_str.encode("utf-8"))
+    os.write(lf,cm_str.encode("utf-8"))
     os.close(lf)
 
     #generate and write the SHA1 file
