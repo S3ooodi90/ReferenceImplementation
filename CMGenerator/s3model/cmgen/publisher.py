@@ -9,6 +9,8 @@ from uuid import uuid4
 from collections import OrderedDict
 from xml.sax.saxutils import escape
 
+from django.contrib import messages
+
 from .exceptions import PublishingError, ModellingError
 #from .r_code_gen import pct_rcode
 #from .xqr_code_gen import pct_xqrcode
@@ -75,7 +77,7 @@ def publish_DvBoolean(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -86,7 +88,7 @@ def publish_DvBoolean(self):
     for t in self.true_values.splitlines():
         trues.append(escape(t))
 
-    for f in self.true_values.splitlines():
+    for f in self.false_values.splitlines():
         falses.append(escape(f))
 
 
@@ -144,7 +146,9 @@ def publish_DvBoolean(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode("utf-8")
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 def publish_DvLink(self):
@@ -172,7 +176,7 @@ def publish_DvLink(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -220,7 +224,9 @@ def publish_DvLink(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode("utf-8")
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 def publish_DvString(self):
@@ -248,7 +254,7 @@ def publish_DvString(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -263,12 +269,6 @@ def publish_DvString(self):
 
     for d in self.enums_def.splitlines():
         eDefs.append(escape(d))
-
-    # if there is only one enum definition and there are more than 1 enumerations then use the same definition for each enum
-    if len(eDefs) == 1 and len(enumList) > 1:
-        s = eDefs[0]
-        for x in range(2,len(enumList)):
-            eDefs.append(s)
 
     if self.default_value:
         default = escape(self.default_value.strip())
@@ -325,9 +325,6 @@ def publish_DvString(self):
 
     # Enumerations
     if enumList:
-        if len(eDefs) != len(enumList):
-            reset_publication(self)
-            raise PublishingError("Cannot publish: "+self.data_name+" The number of Enumerations and Definitions must be same. Check for empty lines.")
         for n in range(len(enumList)):
             dt_str += padding.rjust(indent+16) + ("<xs:enumeration value='"+escape(enumList[n].strip())+"'>\n")
             dt_str += padding.rjust(indent+16) + ("<xs:annotation>\n")
@@ -335,7 +332,7 @@ def publish_DvString(self):
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:ct-"+self.ct_id+"#"+enumList[n].strip()+"'>\n")
             dt_str += padding.rjust(indent+2) + ("  <rdfs:subPropertyOf rdf:resource='s3m:ct-"+self.ct_id+"'/>\n")
             dt_str += padding.rjust(indent+2) + ("  <rdfs:label>"+enumList[n].strip()+"</rdfs:label>\n")
-            dt_str += padding.rjust(indent+2) + ("  <rdfs:isDefinedBy rdf:resource='"+eDefs[n]+"'")
+            dt_str += padding.rjust(indent+2) + ("  <rdfs:isDefinedBy rdf:resource='"+eDefs[n]+"'/>")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
             dt_str += padding.rjust(indent+18) + ("</xs:appinfo>\n")
             dt_str += padding.rjust(indent+16) + ("</xs:annotation>\n")
@@ -358,7 +355,9 @@ def publish_DvString(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode("utf-8")
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 def publish_DvParsable(self):
     """
@@ -387,7 +386,7 @@ def publish_DvParsable(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -473,7 +472,9 @@ def publish_DvParsable(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode("utf-8")
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 def publish_DvMedia(self):
@@ -503,7 +504,7 @@ def publish_DvMedia(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -671,7 +672,9 @@ def publish_DvMedia(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode("utf-8")
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 def publish_DvInterval(self):
@@ -695,7 +698,7 @@ def publish_DvInterval(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -825,7 +828,9 @@ def publish_DvInterval(self):
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
 
-    return dt_str.encode('utf-8')
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 def publish_ReferenceRange(self):
     """
@@ -851,7 +856,7 @@ def publish_ReferenceRange(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -906,7 +911,9 @@ def publish_ReferenceRange(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode('utf-8')
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 def publish_DvOrdinal(self):
@@ -936,7 +943,7 @@ def publish_DvOrdinal(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -1051,7 +1058,9 @@ def publish_DvOrdinal(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode('utf-8')
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 def publish_DvCount(self):
@@ -1080,7 +1089,7 @@ def publish_DvCount(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -1179,7 +1188,9 @@ def publish_DvCount(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode('utf-8')
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 def publish_DvQuantity(self):
@@ -1207,7 +1218,7 @@ def publish_DvQuantity(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -1308,7 +1319,9 @@ def publish_DvQuantity(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode('utf-8')
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 
@@ -1337,7 +1350,7 @@ def publish_DvRatio(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -1516,7 +1529,9 @@ def publish_DvRatio(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode('utf-8')
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 
 def publish_DvTemporal(self):
@@ -1547,7 +1562,7 @@ def publish_DvTemporal(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     vtbMin = ('1' if self.vtb_required else '0')
     vteMin = ('1' if self.vte_required else '0')
@@ -1737,7 +1752,9 @@ def publish_DvTemporal(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return dt_str.encode('utf-8')
+    self.schema_code = dt_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
 def publish_Party(self):
     """
@@ -1753,7 +1770,7 @@ def publish_Party(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     nameMin = ('1' if self.require_name else '0')
 
@@ -1807,7 +1824,9 @@ def publish_Party(self):
     party_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     party_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return party_str.encode("utf-8")
+    self.schema_code = party_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.label.strip(), messages.SUCCESS)
 
 
 def publish_Audit(self):
@@ -1822,7 +1841,7 @@ def publish_Audit(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     indent = 2
     padding = ('').rjust(indent)
@@ -1884,7 +1903,9 @@ def publish_Audit(self):
     aud_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     aud_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return aud_str.encode("utf-8")
+    self.schema_code = aud_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.label.strip(), messages.SUCCESS)
 
 
 def publish_Attestation(self):
@@ -1900,7 +1921,7 @@ def publish_Attestation(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     indent = 2
     padding = ('').rjust(indent)
@@ -1958,7 +1979,9 @@ def publish_Attestation(self):
     att_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     att_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return att_str.encode("utf-8")
+    self.schema_code = att_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.label.strip(), messages.SUCCESS)
 
 
 def publish_Participation(self):
@@ -1973,7 +1996,7 @@ def publish_Participation(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     indent = 2
     padding = ('').rjust(indent)
@@ -2029,7 +2052,9 @@ def publish_Participation(self):
     ptn_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     ptn_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return ptn_str.encode("utf-8")
+    self.schema_code = ptn_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.label.strip(), messages.SUCCESS)
 
 
 def publish_Cluster(self):
@@ -2053,7 +2078,7 @@ def publish_Cluster(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     indent = 2
     padding = ('').rjust(indent)
@@ -2191,7 +2216,9 @@ def publish_Cluster(self):
         reset_publication(self)
         raise PublishingError("Cluster: "+self.cluster_subject+" appears to be empty. You cannot publish an empty Cluster.")
 
-    return cl_str.encode("utf-8")
+    self.schema_code = cl_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.cluster_subject.strip(), messages.SUCCESS)
 
 
 def publish_Concept(self):
@@ -2206,7 +2233,7 @@ def publish_Concept(self):
     sems = []
     # get the selected semantics
     for t in self.semantics.all():
-        sems.append('  <' + t.pred + " rdf:resource='" + t.obj + "'/>\n")
+        sems.append('  <' + t.pred.pred_def + " rdf:resource='" + t.obj + "'/>\n")
 
     indent = 2
     padding = ('').rjust(indent)
@@ -2324,4 +2351,6 @@ def publish_Concept(self):
     con_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     con_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    return con_str.encode("utf-8")
+    self.schema_code = con_str.encode("utf-8")
+    self.save()
+    return ('Published: ' + self.title.strip(), messages.SUCCESS)

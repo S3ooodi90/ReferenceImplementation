@@ -6,6 +6,7 @@ from django.contrib.auth.models import Group
 from django.conf.global_settings import LANGUAGES as DJANGO_LANG
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from .exceptions import *
 from django_extensions.db.fields import UUIDField, ModificationDateTimeField
@@ -69,8 +70,8 @@ class PredObj(models.Model):
         return self.prj_name.prj_name + ' : ' + self.name
 
     class Meta:
-        verbose_name = _("Predicate/Object")
-        verbose_name_plural = _("Predicate/Object")
+        verbose_name = _("Predicate+Object")
+        verbose_name_plural = _("Predicates+Objects")
         ordering = ['name','pred']
 
 
@@ -123,15 +124,19 @@ class DvBoolean(DvAny):
     true_values = models.TextField(_('true options'),help_text=_("Enter the set of values that are Boolean TRUEs. For instance, if this is a 'Yes/No' type of concept, usually the 'Yes' is a Boolean TRUE. Enter one per line without blank lines."))
     false_values = models.TextField(_('false options'),help_text=_("Enter the set of values that are Boolean FALSEs. For instance, if this is a 'Yes/No' type of concept, usually the 'No' is a Boolean FALSE. Enter one per line without blank lines."))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvBoolean(self)
+            result = publish_DvBoolean(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvBoolean"
@@ -147,15 +152,19 @@ class DvLink(DvAny):
     relation_uri = models.URLField(_('relation URL'),max_length=1024, blank=True, default='', help_text=_("A URL where the definition of the relation element term can be found. Normally points to an ontology such as the <a href='http://www.obofoundry.org/cgi-bin/detail.cgi?id=ro'>OBO RO</a>."))
     link_value = models.URLField(_('link'),max_length=1024, blank=True, default='', help_text=_("A URI specifying the linked item. Optional in the generator but required in instance data. If specified here, this value will be enforced in instance data."))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvLink(self)
+            result = publish_DvLink(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvLink"
@@ -180,15 +189,19 @@ class DvString(DvAny):
     lang_required =  models.BooleanField(_("Language Required?"), default=False, help_text=_("Require a language element?"))
 
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvString(self)
+            result = publish_DvString(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvString"
@@ -199,7 +212,6 @@ class DvEncapsulated(DvAny):
     """
     Abstract class defining the common meta-data of all types of encapsulated data.
     """
-    size = models.IntegerField(_('size'),help_text=_("The size of the content."), blank=True, null=True)
     encoding = models.CharField(_("encoding"), max_length=20, default='utf-8', help_text=_("<a href='http://www.iana.org/assignments/character-sets/character-sets.txt'>List of encoding types at IANA.</a>"))
     language = models.CharField(_("default language"), max_length=40, choices=LANGUAGES, default='en-US', help_text=_('Optional: Choose the DEFAULT language of the content.'))
     lang_required =  models.BooleanField(_("Language Required?"), default=False, help_text=_("Require a language element?"))
@@ -221,15 +233,19 @@ class DvParsable(DvEncapsulated):
     """
     dvparsable_value = models.TextField(_('Default value'), help_text=_("You may enter a default value for the parsable content."), blank=True)
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvParsable(self)
+            result = publish_DvParsable(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvParsable"
@@ -251,15 +267,19 @@ class DvMedia(DvEncapsulated):
     hash_required =  models.BooleanField(_("HASH Required?"), default=False, help_text=_("Require hash-function and hash-result elements?"))
     content = models.CharField(_("Media Content"), max_length=20, blank=False, choices=CONTENT, default='user', help_text=_("Select the location of the data. Via a URL or embedded in the data instance."))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvMedia(self)
+            result = publish_DvMedia(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvMedia"
@@ -283,15 +303,19 @@ class DvInterval(DvAny):
     lower_bounded = models.BooleanField(_('Lower Bounded?'),default=True, help_text=_("Uncheck this box if the lower value is unbounded. If unchecked, instances must be set to xsi:nil='true'"))
     upper_bounded = models.BooleanField(_('Upper Bounded?'),default=True, help_text=_("Uncheck this box if the lower value is unbounded. If unchecked, instances must be set to xsi:nil='true'"))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvInterval(self)
+            result = publish_DvInterval(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvInterval"
@@ -307,15 +331,19 @@ class ReferenceRange(DvAny):
     data_range = models.ForeignKey(DvInterval, verbose_name=_('data range'),help_text=_("The data range for this meaning. Select the appropriate DvInterval."))
     is_normal = models.BooleanField(_('Is Normal?'),default=False, help_text=_("Is this considered the normal range?"))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_ReferenceRange(self)
+            result = publish_ReferenceRange(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "ReferenceRange"
@@ -360,15 +388,19 @@ class DvOrdinal(DvOrdered):
     symbols = models.TextField(_('symbols'),help_text=_("Enter the symbols or the text that represent the ordinal values, which may be strings made from '+' symbols, or other enumerations of terms such as 'mild', 'moderate', 'severe', or even the same number series used for the ordinal values, e.g. '1', '2', '3'.. One per line."))
     symbols_def = models.TextField(_('symbols definition'), blank=True, help_text=_("Enter a URI for each symbol. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all symbols then enter it on the first line only."))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvOrdinal(self)
+            result = publish_DvOrdinal(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvOrdinal"
@@ -400,15 +432,19 @@ class DvCount(DvQuantified):
     """
     units = models.ForeignKey(DvString, verbose_name=_('units'), null=True, blank=True,help_text=_("Choose a DvString for the allowed units of measurement of this concept."))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvCount(self)
+            result = publish_DvCount(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvCount"
@@ -423,15 +459,19 @@ class DvQuantity(DvQuantified):
     """
     units = models.ForeignKey(DvString, verbose_name=_('units'), null=True, blank=True,help_text=_("Choose a DvString for the allowed units of measurement of this concept."))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvQuantity(self)
+            result = publish_DvQuantity(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvQuantity"
@@ -467,15 +507,19 @@ class DvRatio(DvQuantified):
     den_units = models.ForeignKey(DvString, verbose_name=_('denominator units'), related_name='den_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the denominator."))
     ratio_units = models.ForeignKey(DvString, verbose_name=_('ratio units'), related_name='ratio_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the ratio (magnitude)."))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvRatio(self)
+            result = publish_DvRatio(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvRatio"
@@ -513,15 +557,19 @@ class DvTemporal(DvOrdered):
     require_year_month = models.BooleanField(_('require year month'),default=False, help_text=_('Check this box if combination of years and months are required.'))
     require_month_day = models.BooleanField(_('require month day'),default=False, help_text=_('Check this box if combination of months and days are required.'))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_DvTemporal(self)
+            result = publish_DvTemporal(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "DvTemporal"
@@ -537,22 +585,26 @@ class Party(Common):
     party_details = models.ForeignKey('Cluster', verbose_name=_('details'), related_name='%(class)s_related', null=True, blank=True, help_text=_('A Cluster structure that defines the details of this Party.'))
     party_ref = models.ManyToManyField(DvLink, verbose_name=_('external reference'), help_text=_("An optional DvLink that points to a description of this Party in another service."), blank=True)
 
-    class Meta:
-        verbose_name = "Party"
-        ordering=['prj_name','label']
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_Party(self)
+            result = publish_Party(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     def __str__(self):
             return self.prj_name.prj_name + ' : '+ self.label
+    class Meta:
+        verbose_name = "Party"
+        ordering=['prj_name','label']
 
 class Audit(Common):
     """
@@ -566,15 +618,19 @@ class Audit(Common):
     def __str__(self):
             return self.prj_name.prj_name + ' : '+self.label
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_Audit(self)
+            result = publish_Audit(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.label.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "Audit"
@@ -593,15 +649,19 @@ class Attestation(Common):
     reason = models.ForeignKey(DvString, verbose_name=_('reason'), null=True, help_text=_('Select a DvString type as a model for the reason.'))
     committer = models.ForeignKey(Party, verbose_name=_('committer'), null=True, help_text=_('A Party model for someone that commited the Attestation.'))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_Attestation(self)
+            result = publish_Attestation(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.label.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     def __str__(self):
             return self.prj_name.prj_name + ' : '+self.label
@@ -622,15 +682,19 @@ class Participation(Common):
     function = models.ForeignKey(DvString, null=True, related_name='function', help_text=_('The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.'))
     mode = models.ForeignKey(DvString, null=True, related_name='mode', help_text=_('The mode of the performer / activity interaction, e.g. present, by telephone, by email etc. If the participation is by device or software it may contain a protocol standard or interface definition.'))
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_Participation(self)
+            result = publish_Participation(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.label.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     def __str__(self):
             return self.prj_name.prj_name + ' : '+self.label
@@ -660,15 +724,19 @@ class Cluster(Common):
     def __str__(self):
         return self.prj_name.prj_name + ' : '+self.cluster_subject
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_Cluster(self)
+            result = publish_Cluster(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.cluster_subject.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     class Meta:
         verbose_name = "Cluster"
@@ -710,15 +778,19 @@ class Concept(Common):
         """
         generateCM(self)
 
-    def publish(self):
+    def publish(self, request):
         if self.schema_code == '':
-            self.schema_code = publish_Concept(self)
+            result = publish_Concept(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
             else:
                 self.published = False
                 self.save()
+        else:
+            result = (self.title.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
 
     def __str__(self):
             return self.prj_name.prj_name + ' : '+self.title
