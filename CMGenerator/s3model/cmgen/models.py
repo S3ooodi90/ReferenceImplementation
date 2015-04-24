@@ -208,6 +208,41 @@ class DvString(DvAny):
         verbose_name_plural = "DvStrings"
         ordering=['prj_name','data_name']
 
+class Units(DvAny):
+    """
+    DvString clone.
+    """
+    WHITESPACE = [(None, 'Default is to preserve whitespace.'),('preserve','Preserve'),('replace','Replace'),('collapse','Collapse'),]
+    min_length = models.IntegerField(_('minimum length'),help_text=_("Enter the minimum number of characters that are required for this concept. If the character is optional, leave it blank."), null=True, blank=True)
+    max_length = models.IntegerField(_('maximum length'),help_text=_("Enter the maximum number of characters that are required for this concept. If the character is optional, leave it blank."), null=True, blank=True)
+    exact_length = models.IntegerField(_('exact length'),help_text=_("Enter the exact length of the concept. It should be defined only when the number of characters is always fixed (e.g. codes and identifiers)."), null=True, blank=True)
+    default_value = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value for the string if desired."))
+    enums = models.TextField(_('enumerations'),blank=True, help_text=_("Enter the categories values of the concept (e.g.Male,Female). One per line."))
+    enums_def = models.TextField(_('enumerations definition'),blank=True, help_text=_("Enter a URI for each enumeration. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all enumeration then enter it on the first line only."))
+    pattern = models.CharField(_('Pattern'),max_length=255, blank=True, help_text=_("Enter a REGEX pattern to constrain string if desired. See <a href='http://www.regular-expressions.info/xml.html'>options</a>"))
+    whitespace = models.CharField("Whitespace", max_length=8, default='preserve', blank=False, help_text=_("Whitespace handling. See <a href=''>here</a>."), choices=WHITESPACE)
+    lang_required =  models.BooleanField(_("Language Required?"), default=False, help_text=_("Require a language element in instance data?"))
+
+
+    def publish(self, request):
+        if self.schema_code == '':
+            result = publish_DvString(self)
+            if len(self.schema_code) > 100:
+                self.published = True
+                self.save()
+            else:
+                self.published = False
+                self.save()
+        else:
+            result = (self.data_name.strip()+' was not published because code already exists.', messages.ERROR)
+
+        return result
+
+    class Meta:
+        verbose_name = "Units"
+        verbose_name_plural = "Units"
+        ordering=['prj_name','data_name']
+
 class DvEncapsulated(DvAny):
     """
     Abstract class defining the common meta-data of all types of encapsulated data.
@@ -430,7 +465,7 @@ class DvCount(DvQuantified):
     patient), number of cigarettes smoked in a day, etc. Misuse:Not used for amounts of physical entities (which all have
     standardized units)
     """
-    units = models.ForeignKey(DvString, verbose_name=_('units'), null=True, blank=True,help_text=_("Choose a DvString for the allowed units of measurement of this concept."))
+    units = models.ForeignKey(Units, verbose_name=_('units'), null=True, blank=True,help_text=_("Choose a DvString for the allowed units of measurement of this concept."))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -457,7 +492,7 @@ class DvQuantity(DvQuantified):
     McDonald of The Regenstrief Institute. http://unitsofmeasure.org/ Can also be used for time durations, where it is more
     convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.
     """
-    units = models.ForeignKey(DvString, verbose_name=_('units'), null=True, blank=True,help_text=_("Choose a DvString for the allowed units of measurement of this concept."))
+    units = models.ForeignKey(Units, verbose_name=_('units'), null=True, blank=True,help_text=_("Choose a DvString for the allowed units of measurement of this concept."))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -503,9 +538,9 @@ class DvRatio(DvQuantified):
     den_fraction_digits = models.IntegerField(_('fraction digits'), blank=True,null=True, help_text=_('Specifies the maximum number of decimal places allowed in the denominator. Must be equal to or greater than zero.'))
     den_total_digits = models.IntegerField(_('total digits'),help_text=_("Enter the maximum number of digits for the denominator."), null=True, blank=True)
 
-    num_units = models.ForeignKey(DvString, verbose_name=_('numerator units'), related_name='num_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the numerator."))
-    den_units = models.ForeignKey(DvString, verbose_name=_('denominator units'), related_name='den_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the denominator."))
-    ratio_units = models.ForeignKey(DvString, verbose_name=_('ratio units'), related_name='ratio_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the ratio (magnitude)."))
+    num_units = models.ForeignKey(Units, verbose_name=_('numerator units'), related_name='num_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the numerator."))
+    den_units = models.ForeignKey(Units, verbose_name=_('denominator units'), related_name='den_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the denominator."))
+    ratio_units = models.ForeignKey(Units, verbose_name=_('ratio units'), related_name='ratio_units', null=True, blank=True,help_text=_("Choose a DvString for the units of measurement of the ratio (magnitude)."))
 
     def publish(self, request):
         if self.schema_code == '':

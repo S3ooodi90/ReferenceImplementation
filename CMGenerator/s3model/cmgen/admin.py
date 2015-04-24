@@ -99,6 +99,7 @@ class DvBooleanAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = DvBooleanAdminForm
 
@@ -122,6 +123,7 @@ class DvLinkAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = DvLinkAdminForm
 
@@ -145,6 +147,7 @@ class DvStringAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = DvStringAdminForm
 
@@ -153,7 +156,7 @@ class DvStringAdmin(admin.ModelAdmin):
         'fields':(('data_name','prj_name','lang'),)}),
         ("Require dates in instances?", {'classes':('collapse',),'fields':(('vtb_required', 'vte_required'),)}),
         ("Additional Information", {'classes':('wide',),
-                       'fields':('lang_required','description','semantics',)}),
+                       'fields':(('lang_required',),'description','semantics',)}),
         ("Other Constraints", {'classes':('collapse',),
                          'fields':(('exact_length','min_length','max_length'),
                                     ('default_value','whitespace','pattern'),'enums','enums_def',)}),
@@ -164,6 +167,33 @@ class DvStringAdmin(admin.ModelAdmin):
 
 admin.site.register(DvString,DvStringAdmin)
 
+class UnitsAdmin(admin.ModelAdmin):
+    actions = [make_published, unpublish,copy_dt,republish]
+    ordering = ['prj_name','data_name']
+    search_fields = ['data_name','ct_id']
+    readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
+    list_display = ('data_name','prj_name','published',)
+    filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
+
+    form = DvStringAdminForm
+
+    fieldsets = (
+        (None, {
+        'fields':(('data_name','prj_name','lang'),)}),
+        ("Require dates in instances?", {'classes':('collapse',),'fields':(('vtb_required', 'vte_required'),)}),
+        ("Additional Information", {'classes':('wide',),
+                       'fields':(('lang_required',),'description','semantics',)}),
+        ("Other Constraints", {'classes':('collapse',),
+                         'fields':(('exact_length','min_length','max_length'),
+                                    ('default_value','whitespace','pattern'),'enums','enums_def',)}),
+        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("Published Code (read-only)", {'classes':('collapse',),
+                           'fields':('schema_code','r_code','xqr_code','xqw_code',)}),
+    )
+
+admin.site.register(Units,UnitsAdmin)
+
 class DvParsableAdmin(admin.ModelAdmin):
     actions = [make_published, unpublish,copy_dt,republish]
     ordering = ['prj_name','data_name']
@@ -171,6 +201,7 @@ class DvParsableAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = DvParsableAdminForm
     fieldsets = (
@@ -195,6 +226,7 @@ class DvMediaAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = DvMediaAdminForm
     fieldsets = (
@@ -220,6 +252,7 @@ class DvIntervalAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = DvIntervalAdminForm
     fieldsets = (
@@ -243,6 +276,7 @@ class ReferenceRangeAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = ReferenceRangeAdminForm
     fieldsets = (
@@ -265,6 +299,7 @@ class DvOrdinalAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics','reference_ranges']
+    list_filter = ['last_updated','prj_name',]
 
     form = DvOrdinalAdminForm
 
@@ -289,6 +324,7 @@ class DvCountAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics','reference_ranges']
+    list_filter = ['last_updated','prj_name',]
 
     form = DvCountAdminForm
     fieldsets = (
@@ -315,6 +351,7 @@ class DvQuantityAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics','reference_ranges']
+    list_filter = ['last_updated','prj_name',]
 
     form = DvQuantityAdminForm
     fieldsets = (
@@ -341,6 +378,7 @@ class DvRatioAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics','reference_ranges']
+    list_filter = ['last_updated','prj_name',]
 
     form = DvRatioAdminForm
 
@@ -374,6 +412,7 @@ class DvTemporalAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics','reference_ranges']
+    list_filter = ['last_updated','prj_name',]
 
     form = DvTemporalAdminForm
     require_text = """Selecting one required element means only that element is allowed.
@@ -409,6 +448,7 @@ class PartyAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('label','prj_name','published',)
     filter_horizontal = ['semantics','party_ref']
+    list_filter = ['last_updated','prj_name',]
 
     form = PartyAdminForm
     fieldsets = (
@@ -430,6 +470,7 @@ class AuditAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('label','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = AuditAdminForm
     fieldsets = (
@@ -451,6 +492,7 @@ class AttestationAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('label','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = AttestationAdminForm
     fieldsets = (
@@ -473,6 +515,7 @@ class ParticipationAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('label','prj_name','published',)
     filter_horizontal = ['semantics',]
+    list_filter = ['last_updated','prj_name',]
 
     form = ParticipationAdminForm
     fieldsets = (
@@ -495,6 +538,7 @@ class ClusterAdmin(admin.ModelAdmin):
     list_display = ('cluster_subject','prj_name','published',)
     filter_horizontal = ['semantics','clusters','dvboolean','dvlink','dvstring','dvparsable','dvmedia',
                                  'dvordinal','dvcount','dvquantity','dvratio','dvtemporal',]
+    list_filter = ['last_updated','prj_name',]
 
     form = ClusterAdminForm
     fieldsets = (
@@ -517,6 +561,7 @@ class ConceptAdmin(admin.ModelAdmin):
     readonly_fields = ['published','schema_code','r_code','xqr_code','xqw_code']
     list_display = ('title','prj_name','published',)
     filter_horizontal = ['semantics','contributors','participations','audits','links',]
+    list_filter = ['last_updated','prj_name',]
 
     form = ConceptAdminForm
 
