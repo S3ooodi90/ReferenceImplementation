@@ -184,9 +184,9 @@ class DvString(DvAny):
     default_value = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value for the string if desired."))
     enums = models.TextField(_('enumerations'),blank=True, help_text=_("Enter the categories values of the concept (e.g.Male,Female). One per line."))
     enums_def = models.TextField(_('enumerations definition'),blank=True, help_text=_("Enter a URI for each enumeration. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all enumeration then enter it on the first line only."))
-    pattern = models.CharField(_('Pattern'),max_length=255, blank=True, help_text=_("Enter a pattern to constrain string if desired. See <a href='http://www.regular-expressions.info/xml.html'>options</a>"))
+    pattern = models.CharField(_('Pattern'),max_length=255, blank=True, help_text=_("Enter a REGEX pattern to constrain string if desired. See <a href='http://www.regular-expressions.info/xml.html'>options</a>"))
     whitespace = models.CharField("Whitespace", max_length=8, default='preserve', blank=False, help_text=_("Whitespace handling. See <a href=''>here</a>."), choices=WHITESPACE)
-    lang_required =  models.BooleanField(_("Language Required?"), default=False, help_text=_("Require a language element?"))
+    lang_required =  models.BooleanField(_("Language Required?"), default=False, help_text=_("Require a language element in instance data?"))
 
 
     def publish(self, request):
@@ -258,14 +258,14 @@ class DvMedia(DvEncapsulated):
     """
     CONTENT = [(None, 'Default is allow user choice'),('user','User Choice'),('url','Via URL'),('embed','Embedded in data')]
 
-    media_type = models.TextField(_("Media Type"), help_text=_("The allowed Media Types of the included data, one per line; i.e. application/rdf+xml, image/jpeg, video/mp4. See < a href='http://www.iana.org/assignments/media-types/media-types.xhtml'>IANA</a>."), blank=True)
+    media_type = models.TextField(_("Media Type"), help_text=_("The allowed Media Types of the included data, one per line; i.e. application/rdf+xml, image/jpeg, video/mp4. See <a href='http://www.iana.org/assignments/media-types/media-types.xhtml'>IANA Listing</a>."), blank=True)
     compression_type = models.TextField(_("compression Type"), help_text=_("The allowed Compression Types of the included data, one per line. See <a href='http://en.wikipedia.org/wiki/List_of_archive_formats'>Listing</a>."), blank=True)
     hash_function = models.TextField(_("HASH Function"), blank=True, help_text=_("List of allowed HASH functions. See <a href='http://en.wikipedia.org/wiki/Hash_function'>HASH Functions</a>"))
     alt_required =  models.BooleanField(_("Alt Text Required?"), default=False, help_text=_("Require an alt-txt element?"))
     media_required =  models.BooleanField(_("Media Type Required?"), default=False, help_text=_("Require a media-type element?"))
     comp_required =  models.BooleanField(_("Compression Type Required?"), default=False, help_text=_("Require a compression-type element?"))
     hash_required =  models.BooleanField(_("HASH Required?"), default=False, help_text=_("Require hash-function and hash-result elements?"))
-    content = models.CharField(_("Media Content"), max_length=20, blank=False, choices=CONTENT, default='user', help_text=_("Select the location of the data. Via a URL or embedded in the data instance."))
+    content = models.CharField(_("Media Content"), max_length=20, blank=False, choices=CONTENT, default='user', help_text=_("Select the location of the data. Allow the end user to choose or restrict to 'via a URL' or 'embedded' in the data instance."))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -295,13 +295,13 @@ class DvInterval(DvAny):
     INTERVAL_TYPES = (('None','Select Type:'),('int','Count data (xs:int)'),('decimal','Real set numbers (xs:decimal)'),('float','Floating Point (xs:float)'),
                       ('dateTime','Date/Time (YYYY-MM-DDTHH:mm:ss)'),('date','Date (YYYY-MM-DD)'),
                       ('time','Time (HH:mm:ss)'),('duration','Duration (xs:duration)'))
-    lower = models.CharField(_("Lower Value"), max_length=110, blank=True, null=True, help_text=_('Enter the lower value of the interval. This will be used to set the minInclusive facet.'))
-    upper = models.CharField(_("Upper Value"), max_length=110, blank=True, null=True, help_text=_('Enter the upper value of the interval. This will be used to set the maxInclusive facet.'))
+    lower = models.CharField(_("Lower Value"), max_length=110, blank=True, null=True, default='', help_text=_('Enter the lower value of the interval. This will be used to set the minInclusive facet.'))
+    upper = models.CharField(_("Upper Value"), max_length=110, blank=True, null=True, default='', help_text=_('Enter the upper value of the interval. This will be used to set the maxInclusive facet.'))
     interval_type = models.CharField(_("Interval Type"), default='Select Type:', help_text=_("The XML Schema datatype of the upper and lower values."), choices=INTERVAL_TYPES, max_length=20)
     lower_included = models.BooleanField(_('Lower Included?'),default=True, help_text=_('Uncheck this box if the lower value is excluded in the interval'))
     upper_included = models.BooleanField(_('Upper Included?'),default=True, help_text=_('Uncheck this box if the upper value is excluded in the interval'))
-    lower_bounded = models.BooleanField(_('Lower Bounded?'),default=True, help_text=_("Uncheck this box if the lower value is unbounded. If unchecked, instances must be set to xsi:nil='true'"))
-    upper_bounded = models.BooleanField(_('Upper Bounded?'),default=True, help_text=_("Uncheck this box if the lower value is unbounded. If unchecked, instances must be set to xsi:nil='true'"))
+    lower_bounded = models.BooleanField(_('Lower Bounded?'),default=True, help_text=_("Uncheck this box if the lower value is unbounded."))
+    upper_bounded = models.BooleanField(_('Upper Bounded?'),default=True, help_text=_("Uncheck this box if the lower value is unbounded."))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -386,7 +386,7 @@ class DvOrdinal(DvOrdered):
     """
     ordinals = models.TextField(_('ordinals'),help_text=_("Enter the ordered sequence of integer values. The base integer is zero with any number of integer values used to order the symbols. Example A: 0 = Trace, 1 = +, 2 = ++, 3 = +++, etc. Example B: 0 = Mild, 1 = Moderate, 2 = Severe. One per line."))
     symbols = models.TextField(_('symbols'),help_text=_("Enter the symbols or the text that represent the ordinal values, which may be strings made from '+' symbols, or other enumerations of terms such as 'mild', 'moderate', 'severe', or even the same number series used for the ordinal values, e.g. '1', '2', '3'.. One per line."))
-    symbols_def = models.TextField(_('symbols definition'), blank=True, help_text=_("Enter a URI for each symbol. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all symbols then enter it on the first line only."))
+    symbols_def = models.TextField(_('symbols definition'), help_text=_("Enter a URI for each symbol. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all symbols then enter it on the first line only."))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -611,7 +611,7 @@ class Audit(Common):
     Audit provides a mechanism to identifiy the who/where/when tracking of instances as they move from system to system.
     """
     label = models.CharField(_('label'),max_length=110, help_text=_("A label used to identify this model in CM Generator."))
-    system_id = models.ForeignKey(DvString, verbose_name=_('system id'), null=True, blank=True, help_text=_('A model for an Identifier of the system which handled the information item.'))
+    system_id = models.ForeignKey(DvString, verbose_name=_('system id'), null=True, help_text=_('A model for an Identifier of the system which handled the information item.'))
     system_user = models.ForeignKey(Party, verbose_name=_('system user'), null=True, blank=True, help_text=_('A model for user(s) who created, committed, forwarded or otherwise handled the item.'))
     location = models.ForeignKey('Cluster', verbose_name=_('location'), related_name='%(class)s_related', null=True, blank=True, help_text=_('A Cluster for location information.'))
 

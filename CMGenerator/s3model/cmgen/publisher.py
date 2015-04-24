@@ -57,6 +57,7 @@ def publish_DvBoolean(self):
     """
 
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
 
     # generate and save the code for a R function.
@@ -70,7 +71,8 @@ def publish_DvBoolean(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
-
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
     dt_str = ''
     indent = 2
     padding = ('').rjust(indent)
@@ -146,9 +148,15 @@ def publish_DvBoolean(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_DvLink(self):
@@ -157,6 +165,7 @@ def publish_DvLink(self):
      attribute. Once written it sets the 'published' flag to True. This flag can never be reset to False.
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
     # generate and save the code for a R function.
 ##    self.r_code = pct_rcode(self, 'DvLink')
@@ -169,6 +178,8 @@ def publish_DvLink(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -224,9 +235,14 @@ def publish_DvLink(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_DvString(self):
@@ -236,6 +252,7 @@ def publish_DvString(self):
     This flag can never be reset to False.
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
     # generate and save the code for a R function.
 ##    self.r_code = pct_rcode(self, 'DvString')
@@ -247,6 +264,8 @@ def publish_DvString(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -355,9 +374,14 @@ def publish_DvString(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 def publish_DvParsable(self):
     """
@@ -366,6 +390,7 @@ def publish_DvParsable(self):
     This flag can never be reset to False.
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
 
     # generate and save the code for a R function.
@@ -379,6 +404,8 @@ def publish_DvParsable(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -392,6 +419,7 @@ def publish_DvParsable(self):
     vteMin = ('1' if self.vte_required else '0')
 
     langReq = ('1' if self.lang_required else '0')
+
     fenumList = []
     for e in self.fenums.splitlines():
         fenumList.append(escape(e))
@@ -438,10 +466,6 @@ def publish_DvParsable(self):
         dt_str += padding.rjust(indent+10) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent+12) + ("<xs:restriction base='xs:string'>\n")
 
-        if len(feDefs) != len(fenumList):
-            reset_publication(self)
-            raise PublishingError("Cannot publish: "+self.data_name+" The number of Enumerations and Definitions must be same. Check for empty lines.")
-
         for n in range(len(fenumList)):
             dt_str += padding.rjust(indent+16) + ("<xs:enumeration value='"+escape(fenumList[n].strip())+"'>\n")
             dt_str += padding.rjust(indent+16) + ("<xs:annotation>\n")
@@ -472,9 +496,14 @@ def publish_DvParsable(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_DvMedia(self):
@@ -484,6 +513,7 @@ def publish_DvMedia(self):
     This flag can never be reset to False.
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
 
     # generate and save the code for a R function.
@@ -497,6 +527,8 @@ def publish_DvMedia(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -576,10 +608,6 @@ def publish_DvMedia(self):
         dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='formalism'>\n")
         dt_str += padding.rjust(indent+10) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent+12) + ("<xs:restriction base='xs:string'>\n")
-
-        if len(feDefs) != len(fenumList):
-            reset_publication(self)
-            raise PublishingError("Cannot publish: "+self.data_name+" The number of Enumerations and Definitions must be same. Check for empty lines.")
 
         for n in range(len(fenumList)):
             dt_str += padding.rjust(indent+16) + ("<xs:enumeration value='"+escape(fenumList[n].strip())+"'>\n")
@@ -672,16 +700,21 @@ def publish_DvMedia(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
 
+    return msg
 
 def publish_DvInterval(self):
     """
     Writes the complete CM complexType code for the DvInterval itself.
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
 
     # generate and save the code for a XQuery function.
@@ -691,6 +724,8 @@ def publish_DvInterval(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -704,48 +739,10 @@ def publish_DvInterval(self):
     vteMin = ('1' if self.vte_required else '0')
 
     #Convert the bools to XSD strings
-    li,ui,lb,ub = 'false','false','false','false'
-    if self.lower_included:
-        li = 'true'
-    if self.upper_included:
-        ui = 'true'
-    if self.lower_bounded:
-        lb = 'true'
-    if self.upper_bounded:
-        ub = 'true'
-
-    # Interval type must be set and be an ordered type
-    if self.interval_type == 'None':
-        reset_publication(self)
-        raise PublishingError("Missing Interval Type. "+self.data_name)
-
-    if self.interval_type not in ['int', 'decimal','date','time','dateTime','float','duration']:
-        reset_publication(self)
-        raise TypeError("Invalid Type for DvInterval. "+repr(self.interval_type)+" in "+self.data_name+" is not an allowed, ordered type.")
-
-    # check for modelling errors
-    if self.lower_bounded and not self.lower:
-        reset_publication(self)
-        raise ModellingError("Enter lower value or uncheck the lower bounded box in "+self.data_name+". ")
-    if self.upper_bounded and not self.upper:
-        reset_publication(self)
-        raise ModellingError("Enter upper value or uncheck the upper bounded box in "+self.data_name+". ")
-
-    if not self.lower_bounded and self.lower:
-        reset_publication(self)
-        raise ModellingError("Remove lower value or check the lower bounded box in "+self.data_name+". ")
-    if not self.upper_bounded and self.upper:
-        reset_publication(self)
-        raise ModellingError("Remove upper value or check the upper bounded box in "+self.data_name+". ")
-
-    # if the user used a comma as a decimal separator then replace it with a period.
-    if self.interval_type == 'decimal':
-        if "," in self.lower:
-            self.lower = self.lower.replace(",",".")
-            self.save()
-        if "," in self.upper:
-            self.upper = self.upper.replace(",",".")
-            self.save()
+    li = str(self.lower_included).lower()
+    ui = str(self.upper_included).lower()
+    lb = str(self.lower_bounded).lower()
+    ub = str(self.upper_bounded).lower()
 
 
     #Create the datatype
@@ -771,7 +768,6 @@ def publish_DvInterval(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+vtbMin+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+vteMin+"' name='vte' type='xs:dateTime'/>\n")
-
 
     #DvInterval
     # create an UUIDs for the invl-type restrictions
@@ -828,15 +824,21 @@ def publish_DvInterval(self):
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 def publish_ReferenceRange(self):
     """
 
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
 
 ##    # generate and save the code for a XQuery function.
@@ -849,6 +851,8 @@ def publish_ReferenceRange(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -863,14 +867,11 @@ def publish_ReferenceRange(self):
 
     rr_def = escape(self.definition)
     dvi_id = self.data_range.ct_id
-    if self.is_normal:
-        normal="true"
-    else:
-        normal = "false"
-    if not self.data_range.published:
-        reset_publication(self)
-        raise PublishingError("DvInterval: "+self.data_range.data_name+" hasn't been published. Please publish the interval and retry.")
+    normal = str(self.is_normal).lower()
 
+    if not self.data_range.published:
+        msg = ("DvInterval: "+self.data_range.data_name+" hasn't been published. Please publish the interval and retry.", messages.ERROR)
+        reset_publication(self)
 
     #Create the datatype
     dt_str += '\n\n'+padding.rjust(indent) + ("<xs:complexType name='ct-"+self.ct_id+"' xml:lang='"+self.lang+"'> <!-- "+escape(self.data_name)+" -->\n")
@@ -911,9 +912,14 @@ def publish_ReferenceRange(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_DvOrdinal(self):
@@ -923,6 +929,7 @@ def publish_DvOrdinal(self):
     This flag can never be reset to False.
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
 
 ##    # generate and save the code for a R function.
@@ -936,6 +943,8 @@ def publish_DvOrdinal(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -955,13 +964,6 @@ def publish_DvOrdinal(self):
     for a in self.ordinals.splitlines():
         o.append(escape(a))
 
-    # test that these are really ints
-    for n in o:
-        try:
-            x = int(n)
-        except:
-            raise ModellingError(escape(self.data_name.strip())+": You MUST use numbers for the Ordinal indicators. It seems one or more of yours is not.")
-
     s = []
     for a in self.symbols.splitlines():
         s.append(escape(a))
@@ -969,13 +971,6 @@ def publish_DvOrdinal(self):
     symDefs = []
     for sd in self.symbols_def.splitlines():
         symDefs.append(escape(sd))
-
-    # if there is only one symbol definition and there are more than 1 symbols then use the same definition for each symbol
-    if len(symDefs) == 1 and len(s) > 1:
-        sd = symDefs[0]
-        for x in range(2,len(s)):
-            symDefs.append(sd)
-
 
     #Create the datatype
     dt_str += '\n\n'+padding.rjust(indent) + ("<xs:complexType name='ct-"+self.ct_id+"' xml:lang='"+self.lang+"'> <!-- "+escape(self.data_name)+" -->\n")
@@ -1005,15 +1000,13 @@ def publish_DvOrdinal(self):
     if len(self.reference_ranges.all()) > 0:
         for rr in self.reference_ranges.all():
             if not rr.published:
-                reset_publication(self)
-                raise PublishingError("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.")
+                msg = ("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.", messages.ERROR)
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='1' name-'reference-range' type='s3m:el-"+rr.ct_id+"'/> <!-- reference-ranges -->\n"
                 if rr.data_range.ct_id not in used_ctid_list:
                     used_ctid_list.append(rr.data_range.ct_id) # track the used DvInterval IDs
                 else:
-                    reset_publication(self)
-                    raise ModellingError("You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.")
+                    msg = (self.data_name + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
     if not self.normal_status:
         self.normal_status = ''
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' fixed='"+escape(self.normal_status.strip())+"'/> \n")
@@ -1058,9 +1051,14 @@ def publish_DvOrdinal(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_DvCount(self):
@@ -1069,6 +1067,7 @@ def publish_DvCount(self):
     """
 
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
 
 ##    # generate and save the code for a R function.
@@ -1082,6 +1081,8 @@ def publish_DvCount(self):
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -1131,15 +1132,13 @@ def publish_DvCount(self):
     if len(self.reference_ranges.all()) > 0:
         for rr in self.reference_ranges.all():
             if not rr.published:
-                reset_publication(self)
-                raise PublishingError("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.")
+                msg = ("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.", messages.ERROR)
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='1' name-'reference-range' type='s3m:el-"+rr.ct_id+"'/> <!-- reference-ranges -->\n"
                 if rr.data_range.ct_id not in used_ctid_list:
                     used_ctid_list.append(rr.data_range.ct_id) # track the used DvInterval IDs
                 else:
-                    reset_publication(self)
-                    raise ModellingError("You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.")
+                    msg = (self.data_name + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
     if not self.normal_status:
         self.normal_status = ''
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' fixed='"+escape(self.normal_status.strip())+"'/> \n")
@@ -1173,8 +1172,7 @@ def publish_DvCount(self):
 
     #DvCount
     if not self.units.published:
-        reset_publication(self)
-        raise PublishingError( "DvString: "+self.units.data_name+" hasn't been published. Please publish the object and retry.")
+        msg = ( "DvString: "+self.units.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
 
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-"+self.units.ct_id+"'/> <!-- DvCount-units -->\n")
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
@@ -1188,9 +1186,14 @@ def publish_DvCount(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_DvQuantity(self):
@@ -1210,7 +1213,10 @@ def publish_DvQuantity(self):
 
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -1260,15 +1266,13 @@ def publish_DvQuantity(self):
     if len(self.reference_ranges.all()) > 0:
         for rr in self.reference_ranges.all():
             if not rr.published:
-                reset_publication(self)
-                raise PublishingError("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.")
+                msg = ("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.", messages.ERROR)
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='1' name-'reference-range' type='s3m:el-"+rr.ct_id+"'/> <!-- reference-ranges -->\n"
                 if rr.data_range.ct_id not in used_ctid_list:
                     used_ctid_list.append(rr.data_range.ct_id) # track the used DvInterval IDs
                 else:
-                    reset_publication(self)
-                    raise ModellingError("You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.")
+                    msg = (self.data_name + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
     if not self.normal_status:
         self.normal_status = ''
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' fixed='"+escape(self.normal_status.strip())+"'/> \n")
@@ -1304,8 +1308,7 @@ def publish_DvQuantity(self):
 
     #DvQuantity
     if not self.units.published:
-        reset_publication(self)
-        raise PublishingError( "DvString: "+self.units.data_name+" hasn't been published. Please publish the object and retry.")
+        msg = ( "DvString: "+self.units.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
 
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-"+self.units.ct_id+"'/> <!-- DvCount-units -->\n")
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
@@ -1319,9 +1322,14 @@ def publish_DvQuantity(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 
@@ -1342,7 +1350,10 @@ def publish_DvRatio(self):
 
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -1392,15 +1403,13 @@ def publish_DvRatio(self):
     if len(self.reference_ranges.all()) > 0:
         for rr in self.reference_ranges.all():
             if not rr.published:
-                reset_publication(self)
-                raise PublishingError("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.")
+                msg = ("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.", messages.ERROR)
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='1' name-'reference-range' type='s3m:el-"+rr.ct_id+"'/> <!-- reference-ranges -->\n"
                 if rr.data_range.ct_id not in used_ctid_list:
                     used_ctid_list.append(rr.data_range.ct_id) # track the used DvInterval IDs
                 else:
-                    reset_publication(self)
-                    raise ModellingError("You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.")
+                    msg = (self.data_name + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
     if not self.normal_status:
         self.normal_status = ''
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' fixed='"+escape(self.normal_status.strip())+"'/> \n")
@@ -1436,29 +1445,19 @@ def publish_DvRatio(self):
 
 
     #DvRatio
-    # tests for proper modelling
-    if (self.num_min_inclusive and self.num_min_exclusive) or (self.num_max_inclusive and self.num_max_exclusive):
-        reset_publication(self)
-        raise ModellingError("There is ambiguity in your numerator constraints for min/max.")
-    if (self.den_min_inclusive and self.den_min_exclusive) or (self.den_max_inclusive and self.den_max_exclusive):
-        reset_publication(self)
-        raise ModellingError("There is ambiguity in your denominator constraints for min/max.")
 
-    # tests for not reusing units PcT
+    # tests for not reusing units PcT  TODO: move this to ModelForm
     if self.num_units is not None and self.den_units is not None:
         if self.num_units.ct_id == self.den_units.ct_id:
-            reset_publication(self)
-            raise ModellingError("Numerator and denominator units must use different PcTs.")
+            msg = (self.data_name + ": DvRatio Numerator and denominator units must use different PcTs.", messages.ERROR)
 
     if self.num_units is not None and self.ratio_units is not None:
         if self.num_units.ct_id == self.ratio_units.ct_id:
-            reset_publication(self)
-            raise ModellingError("Numerator and ratio units must use different PcTs.")
+            msg = (self.data_name + ": DvRatio Numerator and ratio units must use different PcTs.", messages.ERROR)
 
     if self.den_units is not None and self.ratio_units is not None:
         if self.den_units.ct_id == self.ratio_units.ct_id:
-            reset_publication(self)
-            raise ModellingError("Denominator and ratio units must use different PcTs.")
+            msg = (self.data_name + ": DvRatio Denominator and ratio units must use different PcTs.", messages.ERROR)
 
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='ratio-type' type='s3m:RatioType' fixed='"+self.ratio_type+"'/>\n")
 
@@ -1502,20 +1501,17 @@ def publish_DvRatio(self):
 
     if self.num_units:
         if not self.num_units.published:
-            reset_publication(self)
-            raise PublishingError( "DvString: "+num_units.data_name+" hasn't been published. Please publish the object and retry.")
+            msg = ( "DvString: "+self.units.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
         dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='numerator-units' type='s3m:ct-"+self.num_units.ct_id+"'/> <!-- numerator-units -->\n")
 
     if self.den_units:
         if not self.den_units.published:
-            reset_publication(self)
-            raise PublishingError( "DvString: "+self.den_units.data_name+" hasn't been published. Please publish the object and retry.")
+            msg = ( "DvString: "+self.units.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
         dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='denominator-units' type='s3m:ct-"+self.den_units.ct_id+"'/> <!-- denominator-units -->\n")
 
     if self.ratio_units:
         if not self.ratio_units.published:
-            reset_publication(self)
-            raise PublishingError( "DvString: "+self.ratio_units.data_name+" hasn't been published. Please publish the object and retry.")
+            msg = ( "DvString: "+self.units.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
         dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='ratio-units' type='s3m:ct-"+self.ratio__units.ct_id+"'/> <!-- ratio-units -->\n")
 
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
@@ -1529,9 +1525,14 @@ def publish_DvRatio(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_DvTemporal(self):
@@ -1554,7 +1555,10 @@ def publish_DvTemporal(self):
 
     # fix double quotes in data-name
     self.data_name.replace('"','&quot;')
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.data_name.strip(), messages.SUCCESS)
 
     dt_str = ''
     indent = 2
@@ -1597,15 +1601,13 @@ def publish_DvTemporal(self):
     if len(self.reference_ranges.all()) > 0:
         for rr in self.reference_ranges.all():
             if not rr.published:
-                reset_publication(self)
-                raise PublishingError("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.")
+                msg = ("Reference Range: "+rr.data_name+" hasn't been published. Please publish the reference range and retry.", messages.ERROR)
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='1' name-'reference-range' type='s3m:el-"+rr.ct_id+"'/> <!-- reference-ranges -->\n"
                 if rr.data_range.ct_id not in used_ctid_list:
                     used_ctid_list.append(rr.data_range.ct_id) # track the used DvInterval IDs
                 else:
-                    reset_publication(self)
-                    raise ModellingError("You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.")
+                    msg = (self.data_name + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
     if not self.normal_status:
         self.normal_status = ''
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='normal-status' type='xs:string' fixed='"+escape(self.normal_status.strip())+"'/> \n")
@@ -1638,94 +1640,6 @@ def publish_DvTemporal(self):
     ymdurationMax = ('1' if self.allow_ymduration else '0')
     dtdurationMax = ('1' if self.allow_dtduration else '0')
 
-    #ony one element can be required and if one is required no others are allowed
-    required_set = False
-    if self.require_date:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_time:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_datetime:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_day:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_month:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_year:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_year_month:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_month_day:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_duration:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_ymduration:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    if self.require_dtduration:
-        if not required_set:
-            required_set = True
-        else:
-            reset_publication(self)
-            raise ModellingError("You cannot require more than one temporal element in one DvTemporal. Check your selections.")
-
-    #only one duration is allowed
-    if (self.allow_duration and self.allow_ymduration) or (self.allow_duration and self.allow_dtduration) or (self.allow_ymduration and self.allow_dtduration):
-        reset_publication(self)
-        raise ModellingError("Only one of the duration types are allowed to be selected.")
-
-    # if there is a duration, you cannot have any other temporal elements.
-    if (self.allow_duration or self.allow_ymduration or self.allow_dtduration) and (self.allow_date or self.allow_time or self.allow_datetime or self.allow_day or self.allow_month or self.allow_year or self.allow_year_month or self.allow_month_day):
-        reset_publication(self)
-        raise ModellingError("You cannot have a duration mixed with other temporal types.")
 
     #every element must be included as either allowed or not allowed (maxOccurs = 1 or 0).
 
@@ -1752,9 +1666,14 @@ def publish_DvTemporal(self):
     dt_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = dt_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.data_name.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = dt_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 def publish_Party(self):
     """
@@ -1762,7 +1681,10 @@ def publish_Party(self):
 
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.label.strip(), messages.SUCCESS)
 
     party_str = ''
     indent = 2
@@ -1801,8 +1723,7 @@ def publish_Party(self):
     else:
         for xref in self.party_ref.all():
             if not xref.published:
-                reset_publication(self)
-                raise PublishingError("External Reference: "+xref.data_name+" hasn't been published. Please publish the DvLink and retry.")
+                msg = ("External Reference: "+xref.data_name+" hasn't been published. Please publish the DvLink and retry.", messages.ERROR)
             else:
                 party_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ct-"+xref.ct_id+"'/> <!-- external-ref -->\n"
 
@@ -1810,8 +1731,7 @@ def publish_Party(self):
         party_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='party-details' type='s3m:ClusterType'/>\n")
     else:
         if not self.party_details.published:
-            reset_publication(self)
-            raise PublishingError("Cluster: "+self.party_details.cluster_subject+" hasn't been published. Please publish the item and retry.")
+            msg = ("Cluster: "+self.party_details.cluster_subject+" hasn't been published. Please publish the item and retry.", messages.ERROR)
         party_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='party-details' type='s3m:ct-"+self.party_details.ct_id+"'/> <!-- details -->\n")
     party_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -1824,9 +1744,14 @@ def publish_Party(self):
     party_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     party_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = party_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.label.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = party_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_Audit(self):
@@ -1835,7 +1760,10 @@ def publish_Audit(self):
 
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.label.strip(), messages.SUCCESS)
 
     aud_str = ''
     sems = []
@@ -1845,7 +1773,6 @@ def publish_Audit(self):
 
     indent = 2
     padding = ('').rjust(indent)
-
 
     #Create the datatype
     aud_str += '\n\n'+padding.rjust(indent) + ("<xs:complexType name='ct-"+self.ct_id+"' xml:lang='"+self.lang+"'> <!-- "+escape(self.label)+" -->\n")
@@ -1866,28 +1793,22 @@ def publish_Audit(self):
     aud_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:AuditType'>\n")
     aud_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
 
-    if not self.system_id:
-        raise PublishingError("System ID: (DvString) has not been selected.")
-    else:
-        if not self.system_id.published:
-            reset_publication(self)
-            raise PublishingError("System ID: (DvString) "+self.system_id.data_name+" has not been published.")
-        aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-"+self.system_id.ct_id+"'/> <!-- system-id -->\n")
+    if not self.system_id.published:
+        msg = ("System ID: (DvString) "+self.system_id.data_name+" has not been published.", messages.ERROR)
+    aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-"+self.system_id.ct_id+"'/> <!-- system-id -->\n")
 
     if not self.system_user:
         aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:System-user'/>\n")
     else:
         if not self.system_user.published:
-            reset_publication(self)
-            raise PublishingError("System User: (Party) "+self.system_user.label+" has not been published.")
+            msg = ("System User: (Party) "+self.system_user.label+" has not been published.", messages.ERROR)
         aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-"+self.system_user.ct_id+"'/> <!-- system-user -->\n")
 
     if not self.location:
         aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:Location'/>\n")
     else:
         if not self.location.published:
-            reset_publication(self)
-            raise PublishingError("Location: (Cluster) "+self.location.cluster_subject+" has not been published.")
+            msg = ("Location: (Cluster) "+self.location.cluster_subject+" has not been published.", messages.ERROR)
         aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-"+self.location.ct_id+"'/> <!-- location -->\n")
 
     aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='timestamp' type='xs:dateTime'/>\n")
@@ -1903,10 +1824,14 @@ def publish_Audit(self):
     aud_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     aud_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = aud_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.label.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = aud_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
 
+    return msg
 
 def publish_Attestation(self):
     """
@@ -1914,7 +1839,10 @@ def publish_Attestation(self):
 
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.label.strip(), messages.SUCCESS)
 
     att_str = ''
 
@@ -1947,23 +1875,19 @@ def publish_Attestation(self):
     att_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
 
     if not self.attested_view.published:
-        reset_publication(self)
-        raise PublishingError("AttestedView: (DvMedia) "+self.attested_view.data_name+" has not been published.")
+        msg = ("AttestedView: (DvMedia) "+self.attested_view.data_name+" has not been published.", messages.ERROR)
     att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='attested-view' type='s3m:ct-"+self.attested_view.ct_id+"'/> <!-- attested-view -->\n")
 
     if not self.proof.published:
-        reset_publication(self)
-        raise PublishingError("Proof: (DvParsable) "+self.proof.data_name+" has not been published.")
+        msg = ("Proof: (DvParsable) "+self.proof.data_name+" has not been published.", messages.ERROR)
     att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='s3m:proof' ref='s3m:ct-"+self.proof.ct_id+"'/> <!-- proof -->\n")
 
     if not self.reason.published:
-        reset_publication(self)
-        raise PublishingError("Reason: (DvString) "+self.reason.data_name+" has not been published.")
+        msg = ("Reason: (DvString) "+self.reason.data_name+" has not been published.", messages.ERROR)
     att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='reason' type='s3m:ct-"+self.reason.ct_id+"'/> <!-- reason -->\n")
 
     if not self.committer.published:
-        reset_publication(self)
-        raise PublishingError("Committer: (Party) "+self.committer.label+" has not been published.")
+        msg = ("Committer: (Party) "+self.committer.label+" has not been published.", messages.ERROR)
     att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='committer' type='s3m:ct-"+self.committer.ct_id+"'/> <!-- committer -->\n")
 
     att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='time-committed' type='xs:dateTime'/>\n")
@@ -1979,9 +1903,14 @@ def publish_Attestation(self):
     att_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     att_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = att_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.label.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = att_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_Participation(self):
@@ -1989,7 +1918,10 @@ def publish_Participation(self):
     Writes the complete CM complexType code for the Participation.
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.label.strip(), messages.SUCCESS)
 
     ptn_str = ''
 
@@ -2024,18 +1956,15 @@ def publish_Participation(self):
 
     #Participation
     if not self.performer.published:
-        reset_publication(self)
-        raise PublishingError("Performer: "+self.performer.label+" hasn't been published. Please publish the Party and retry.")
+        msg = ("Performer: "+self.performer.label+" hasn't been published. Please publish the Party and retry.", messages.ERROR)
     ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' type='s3m:ct-"+self.performer.ct_id+"'/> <!-- performer -->\n")
 
     if not self.function.published:
-        reset_publication(self)
-        raise PublishingError("Function: (DvString) "+self.function.data_name+" has not been published.")
+        msg = ("Function: (DvString) "+self.function.data_name+" has not been published.", messages.ERROR)
     ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='function' type='s3m:ct-"+self.function.ct_id+"'/> <!-- function -->\n")
 
     if not self.mode.published:
-        reset_publication(self)
-        raise PublishingError("Mode: (DvString) "+self.mode.data_name+" has not been published.")
+        msg = ("Mode: (DvString) "+self.mode.data_name+" has not been published.", messages.ERROR)
     ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='mode' type='s3m:ct-"+self.mode.ct_id+"'/> <!-- mode -->\n")
 
     ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='start-time' type='xs:dateTime'/>\n")
@@ -2052,9 +1981,14 @@ def publish_Participation(self):
     ptn_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     ptn_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = ptn_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.label.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = ptn_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
 
 
 def publish_Cluster(self):
@@ -2063,7 +1997,10 @@ def publish_Cluster(self):
 
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.cluster_subject.strip(), messages.SUCCESS)
 
     cl_str = ''
     links_id = None
@@ -2112,75 +2049,65 @@ def publish_Cluster(self):
         for item in self.clusters.all():
             if item.ct_id != self.ct_id: # cannot put a Cluster inside itself
                 if not item.published:
-                    reset_publication(self)
-                    raise PublishingError( "(Cluster) "+item.cluster_subject+" hasn't been published.")
+                    msg = ("(Cluster) "+item.cluster_subject+" hasn't been published.", messages.ERROR)
                 cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.ct_id+"'/><!-- Cluster "+item.cluster_subject+" -->\n")
             else:
-                reset_publication(self)
-                raise PublishingError( "(Cluster) "+item.cluster_subject+" NOTICE: You cannot nest a Cluster inside of itself at any level.")
+                msg = ("(Cluster) "+item.cluster_subject+" NOTICE: You cannot nest a Cluster inside of itself at any level.", messages.ERROR)
 
     if self.dvboolean.all():
         has_content = True
         for item in self.dvboolean.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvBoolean) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ("(DvBoolean) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvBoolean "+item.data_name+" -->\n")
 
     if self.dvlink.all():
         has_content = True
         for item in self.dvlink.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvLink) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvLink) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvURI "+item.data_name+" -->\n")
 
     if self.dvstring.all():
         has_content = True
         for item in self.dvstring.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvString) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvString) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvString "+item.data_name+" -->\n")
 
     if self.dvparsable.all():
         has_content = True
         for item in self.dvparsable.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvParsable) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvParsable) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvParsable "+item.data_name+" -->\n")
 
     if self.dvmedia.all():
         has_content = True
         for item in self.dvmedia.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvMedia) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvMedia) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvMedia "+item.data_name+" -->\n")
 
     if self.dvordinal.all():
         has_content = True
         for item in self.dvordinal.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvOrdinal) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvOrdinal) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvOrdinal "+item.data_name+" -->\n")
 
     if self.dvcount.all():
         has_content = True
         for item in self.dvcount.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvCount) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvCount) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvCount "+item.data_name+" -->\n")
 
     if self.dvquantity.all():
         has_content = True
         for item in self.dvquantity.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvQuantity) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvQuantity) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvQuantity "+item.data_name+" -->\n")
 
 
@@ -2188,16 +2115,14 @@ def publish_Cluster(self):
         has_content = True
         for item in self.dvratio.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvRatio) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvRatio) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvRatio "+item.data_name+" -->\n")
 
     if self.dvtemporal.all():
         has_content = True
         for item in self.dvtemporal.all():
             if not item.published:
-                reset_publication(self)
-                raise PublishingError( "(DvTemporal) "+item.data_name+" hasn't been published. Please publish the object and retry.")
+                msg = ( "(DvTemporal) "+item.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='mlhim2:el-"+item.element_ctid+"'/><!-- DvTemporal "+item.data_name+" -->\n")
 
 
@@ -2213,20 +2138,26 @@ def publish_Cluster(self):
     cl_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
     if not has_content:
+        msg = ("Cluster: "+self.cluster_subject+" appears to be empty. You cannot publish an empty Cluster.", messages.ERROR)
+
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = cl_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
         reset_publication(self)
-        raise PublishingError("Cluster: "+self.cluster_subject+" appears to be empty. You cannot publish an empty Cluster.")
 
-    self.schema_code = cl_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.cluster_subject.strip(), messages.SUCCESS)
-
+    return msg
 
 def publish_Concept(self):
     """
     Writes the complete CM complexType code for the Concept.
     """
     self.ct_id = str(uuid4())
+    self.published = False
     self.save()
+    #default return message
+    msg = ('Published: ' + self.title.strip(), messages.SUCCESS)
 
     con_str = ''
 
@@ -2295,49 +2226,41 @@ def publish_Concept(self):
     con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='current-state' type='xs:string'/>\n")
 
     if not self.data.published:
-        reset_publication(self)
-        raise PublishingError("Data Cluster: "+self.data.cluster_subject+" hasn't been published. Please publish the Cluster and retry.")
+        msg = ("Data Cluster: "+self.data.cluster_subject+" hasn't been published. Please publish the Cluster and retry.", messages.ERROR)
     con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='data' type='s3m:ct-"+self.data.ct_id+"'/>\n")
 
     if not self.subject.published:
-        reset_publication(self)
-        raise PublishingError("Subject: (Party) "+self.subject.label+" has not been published.")
+        msg = ("Subject: (Party) "+self.subject.label+" has not been published.", messages.ERROR)
     con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='subject' type='s3m:ct-"+self.subject.ct_id+"'/>\n")
 
     if not self.protocol.published:
-        reset_publication(self)
-        raise PublishingError("Protocol: (DvLink) "+self.protocol.data_name+" has not been published.")
+        msg = ("Protocol: (DvLink) "+self.protocol.data_name+" has not been published.", messages.ERROR)
     con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='protocol' type='s3m:ct-"+self.protocol.ct_id+"'/>\n")
 
     if not self.workflow.published:
-        reset_publication(self)
-        raise PublishingError("Workflow: (DvLink) "+self.workflow.data_name+" has not been published.")
+        msg = ("Workflow: (DvLink) "+self.workflow.data_name+" has not been published.", messages.ERROR)
     con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='workflow' type='s3m:ct-"+self.workflow.ct_id+"'/>\n")
 
     if not self.attested.published:
-        reset_publication(self)
-        raise PublishingError("Attested: (Attestation) "+self.attested.data_name+" has not been published.")
+        msg = ("Attested: (Attestation) "+self.attested.data_name+" has not been published.", messages.ERROR)
     con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='attested' type='s3m:ct-"+self.attested.ct_id+"'/>\n")
 
     if len(self.participations.all()) > 0:
         for p in self.participations.all():
             if not self.p.published:
-                reset_publication(self)
-                raise PublishingError("Participation: "+p.label+" has not been published.")
+                msg = ("Participation: "+p.label+" has not been published.", messages.ERROR)
             con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-"+p.ct_id+"'/><!-- Participation -->\n")
 
     if len(self.audits.all()) > 0:
         for a in self.audits.all():
             if not self.a.published:
-                reset_publication(self)
-                raise PublishingError("Audit: "+a.label+" has not been published.")
+                msg = ("Audit: "+a.label+" has not been published.", messages.ERROR)
             con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-"+a.ct_id+"'/><!-- Audit -->\n")
 
     if len(self.links.all()) > 0:
         for k in self.links.all():
             if not self.k.published:
-                reset_publication(self)
-                raise PublishingError("DvLink: "+k.data_name+" has not been published.")
+                msg = ("DvLink: "+k.data_name+" has not been published.", messages.ERROR)
             con_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:el-"+k.ct_id+"'/><!-- Audit -->\n")
 
     con_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
@@ -2351,6 +2274,11 @@ def publish_Concept(self):
     con_str += padding.rjust(indent+4) + ("</xs:complexContent>\n")
     con_str += padding.rjust(indent+2) + ("</xs:complexType>\n\n")
 
-    self.schema_code = con_str.encode("utf-8")
-    self.save()
-    return ('Published: ' + self.title.strip(), messages.SUCCESS)
+    if msg[1] == messages.SUCCESS:
+        self.schema_code = con_str.encode("utf-8")
+        self.published = True
+        self.save()
+    else:
+        reset_publication(self)
+
+    return msg
