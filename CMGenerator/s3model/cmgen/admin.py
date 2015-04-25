@@ -114,6 +114,13 @@ class DvBooleanAdmin(admin.ModelAdmin):
                            'fields':('schema_code','r_code','xqr_code','xqw_code',)}),
     )
 
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "semantics":
+            kwargs["queryset"] = PredObj.objects.filter(prj_name = 1)
+            print(kwargs["queryset"])
+        return super(DvBooleanAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+
 admin.site.register(DvBoolean,DvBooleanAdmin)
 
 class DvLinkAdmin(admin.ModelAdmin):
@@ -178,16 +185,17 @@ class UnitsAdmin(admin.ModelAdmin):
 
     form = DvStringAdminForm
 
+    uom_text = """Create a units model by defining a set of allowable units of measure.
+    Use the abbreviations and the links to a vocabulary such as the Ontology of Units of Measurement (OUM)
+    at 'http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure'"""
+
     fieldsets = (
         (None, {
         'fields':(('data_name','prj_name','lang'),)}),
-        ("Require dates in instances?", {'classes':('collapse',),'fields':(('vtb_required', 'vte_required'),)}),
+        ("Units Definition", {'description':uom_text,'classes':('wide',),
+                         'fields':('enums','enums_def',)}),
         ("Additional Information", {'classes':('wide',),
-                       'fields':(('lang_required',),'description','semantics',)}),
-        ("Other Constraints", {'classes':('collapse',),
-                         'fields':(('exact_length','min_length','max_length'),
-                                    ('default_value','whitespace','pattern'),'enums','enums_def',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+                                    'fields':('description','semantics',)}),
         ("Published Code (read-only)", {'classes':('collapse',),
                            'fields':('schema_code','r_code','xqr_code','xqw_code',)}),
     )
@@ -573,10 +581,10 @@ class ConceptAdmin(admin.ModelAdmin):
                                  'relation',)}),
         (None, {'classes':('wide',),
                       'fields':('description','semantics',)}),
-        ("Structure", {'classes':('collapse',),
+        ("Structure", {'classes':('wide',),
                                'fields':('encoding','data','subject','protocol','workflow','attested',
                                          'participations','audits','links',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("Advanced", {'classes':('collapse',),'fields':('asserts','ns_defs')}),
         ("Published Code (read-only)", {'classes':('collapse',),
                            'fields':('schema_code','r_code','xqr_code','xqw_code',)}),
     )

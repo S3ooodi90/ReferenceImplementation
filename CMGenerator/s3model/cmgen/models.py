@@ -210,15 +210,15 @@ class DvString(DvAny):
 
 class Units(DvAny):
     """
-    DvString clone.
+    DvString clone specifically setup for units of measure.
     """
     WHITESPACE = [(None, 'Default is to preserve whitespace.'),('preserve','Preserve'),('replace','Replace'),('collapse','Collapse'),]
     min_length = models.IntegerField(_('minimum length'),help_text=_("Enter the minimum number of characters that are required for this concept. If the character is optional, leave it blank."), null=True, blank=True)
     max_length = models.IntegerField(_('maximum length'),help_text=_("Enter the maximum number of characters that are required for this concept. If the character is optional, leave it blank."), null=True, blank=True)
     exact_length = models.IntegerField(_('exact length'),help_text=_("Enter the exact length of the concept. It should be defined only when the number of characters is always fixed (e.g. codes and identifiers)."), null=True, blank=True)
     default_value = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value for the string if desired."))
-    enums = models.TextField(_('enumerations'),blank=True, help_text=_("Enter the categories values of the concept (e.g.Male,Female). One per line."))
-    enums_def = models.TextField(_('enumerations definition'),blank=True, help_text=_("Enter a URI for each enumeration. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all enumeration then enter it on the first line only."))
+    enums = models.TextField(_('Unit names'), help_text=_("Enter the names for the units, one per line."))
+    enums_def = models.TextField(_('Unit links'), help_text=_("Enter a URI for each unit. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all names then enter it on the first line only."))
     pattern = models.CharField(_('Pattern'),max_length=255, blank=True, help_text=_("Enter a REGEX pattern to constrain string if desired. See <a href='http://www.regular-expressions.info/xml.html'>options</a>"))
     whitespace = models.CharField("Whitespace", max_length=8, default='preserve', blank=False, help_text=_("Whitespace handling. See <a href=''>here</a>."), choices=WHITESPACE)
     lang_required =  models.BooleanField(_("Language Required?"), default=False, help_text=_("Require a language element in instance data?"))
@@ -785,7 +785,18 @@ class Concept(Common):
         Suggested but optional DCTERMS; contributors, relation
 
     """
-
+    ns_text = """  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
+  xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+  xmlns:s3m="http://www.s3model.com/"
+  targetNamespace="http://www.s3model.com/" vc:minVersion="1.1"
+  """
     #metadata
     title = models.CharField(_('title'),unique=True, max_length=255, help_text=_("Enter the name of this  Model (CM)"))
     author = models.ForeignKey(User, verbose_name=_("author"), related_name='creator', help_text=_('Choose Author of this Concept Model (CM)'))
@@ -806,6 +817,7 @@ class Concept(Common):
     participations = models.ManyToManyField(Participation, verbose_name=_("Participations"), help_text=_('Choose the participation models element model of this Concept Model (CM)'))
     audits = models.ManyToManyField(Audit, verbose_name=_("Audits"), help_text=_('Choose the audit element models of this Concept Model (CM)'))
     links = models.ManyToManyField(DvLink, verbose_name=_("Links"), related_name='links', help_text=_('Select links models to/from this Concept Model (CM)'))
+    ns_defs = models.TextField(_("Namespace definitions"), default=ns_text, help_text=_("Define additional namespace abbreviations here, one per line. Do not edit or remove the existing definitions" ))
 
     def generate(self):
         """
