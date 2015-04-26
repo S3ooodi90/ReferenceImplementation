@@ -1,6 +1,6 @@
 #application specific exceptions
 
-class MLHIMDatatypeError(Exception):
+class S3MDatatypeError(Exception):
       pass
 
 class PublishingError(Exception):

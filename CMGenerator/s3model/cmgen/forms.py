@@ -1,5 +1,5 @@
 # Model forms for the admin
-from django.forms import ModelForm, CharField, ValidationError
+from django.forms import ModelForm, CharField, ValidationError, ModelMultipleChoiceField
 from cmgen.models import *
 
 
@@ -21,6 +21,8 @@ def is_number(s):
     return(False)
 
 class DvBooleanAdminForm(ModelForm):
+##    semantics = ModelMultipleChoiceField(queryset=None)
+
     def __init__(self, *args, **kwargs):
         super(DvBooleanAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
@@ -28,6 +30,9 @@ class DvBooleanAdminForm(ModelForm):
             for fld in self.fields:
                 self.fields[fld].widget.attrs['readonly'] = True
                 self.fields[fld].widget.attrs['disabled'] = True
+##        else:
+##            self.fields['semantics'].queryset = PredObj.objects.filter(prj_name=self.fields['prj_name'])
+
 
     def clean(self):
         cleaned_data = super(DvBooleanAdminForm, self).clean()

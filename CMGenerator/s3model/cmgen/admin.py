@@ -277,6 +277,7 @@ class DvIntervalAdmin(admin.ModelAdmin):
 
 admin.site.register(DvInterval,DvIntervalAdmin)
 
+
 class ReferenceRangeAdmin(admin.ModelAdmin):
     actions = [make_published, unpublish,copy_dt,republish]
     ordering = ['prj_name','data_name']
@@ -285,7 +286,6 @@ class ReferenceRangeAdmin(admin.ModelAdmin):
     list_display = ('data_name','prj_name','published',)
     filter_horizontal = ['semantics',]
     list_filter = ['last_updated','prj_name',]
-
     form = ReferenceRangeAdminForm
     fieldsets = (
         (None, {

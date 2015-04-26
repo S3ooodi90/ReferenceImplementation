@@ -139,8 +139,8 @@ class DvBoolean(DvAny):
         return result
 
     class Meta:
-        verbose_name = "DvBoolean"
-        verbose_name_plural = "DvBooleans"
+        verbose_name = "Boolean"
+        verbose_name_plural = "Booleans"
         ordering=['prj_name','data_name']
 
 class DvLink(DvAny):
@@ -167,8 +167,8 @@ class DvLink(DvAny):
         return result
 
     class Meta:
-        verbose_name = "DvLink"
-        verbose_name_plural = "DvLinks"
+        verbose_name = "Link"
+        verbose_name_plural = "Links"
         ordering=['prj_name','data_name']
 
 class DvString(DvAny):
@@ -204,8 +204,8 @@ class DvString(DvAny):
         return result
 
     class Meta:
-        verbose_name = "DvString"
-        verbose_name_plural = "DvStrings"
+        verbose_name = "Text"
+        verbose_name_plural = "Text"
         ordering=['prj_name','data_name']
 
 class Units(DvAny):
@@ -283,7 +283,7 @@ class DvParsable(DvEncapsulated):
         return result
 
     class Meta:
-        verbose_name = "DvParsable"
+        verbose_name = "Parsable"
         ordering=['prj_name','data_name']
 
 class DvMedia(DvEncapsulated):
@@ -317,8 +317,8 @@ class DvMedia(DvEncapsulated):
         return result
 
     class Meta:
-        verbose_name = "DvMedia"
-        verbose_name_plural = "DvMedia"
+        verbose_name = "Media"
+        verbose_name_plural = "Media"
         ordering=['prj_name','data_name']
 
 class DvInterval(DvAny):
@@ -353,7 +353,7 @@ class DvInterval(DvAny):
         return result
 
     class Meta:
-        verbose_name = "DvInterval"
+        verbose_name = "Interval"
         ordering=['prj_name','data_name']
 
 class ReferenceRange(DvAny):
@@ -363,7 +363,7 @@ class ReferenceRange(DvAny):
     therapeutic, dangerous, critical etc ranges.
     """
     definition = models.CharField(_("Definition"), max_length=110, help_text=_("Enter the term that indicates the status of this range, e.g. 'normal', 'critical', 'therapeutic' etc."))
-    data_range = models.ForeignKey(DvInterval, verbose_name=_('data range'),help_text=_("The data range for this meaning. Select the appropriate DvInterval."))
+    data_range = models.ManyToManyField(DvInterval, verbose_name=_('data range'),help_text=_("The data range for this meaning. Select the appropriate DvInterval."))
     is_normal = models.BooleanField(_('Is Normal?'),default=False, help_text=_("Is this considered the normal range?"))
 
     def publish(self, request):
@@ -438,7 +438,7 @@ class DvOrdinal(DvOrdered):
         return result
 
     class Meta:
-        verbose_name = "DvOrdinal"
+        verbose_name = "Ordinal"
         ordering=['prj_name','data_name']
 
 class DvQuantified(DvOrdered):
@@ -482,7 +482,7 @@ class DvCount(DvQuantified):
         return result
 
     class Meta:
-        verbose_name = "DvCount"
+        verbose_name = "Count"
         ordering=['prj_name','data_name']
 
 class DvQuantity(DvQuantified):
@@ -509,8 +509,8 @@ class DvQuantity(DvQuantified):
         return result
 
     class Meta:
-        verbose_name = "DvQuantity"
-        verbose_name_plural = "DvQuantities"
+        verbose_name = "Quantity"
+        verbose_name_plural = "Quantities"
         ordering=['prj_name','data_name']
 
 class DvRatio(DvQuantified):
@@ -557,7 +557,7 @@ class DvRatio(DvQuantified):
         return result
 
     class Meta:
-        verbose_name = "DvRatio"
+        verbose_name = "Ratio"
         ordering=['prj_name','data_name']
 
 class DvTemporal(DvOrdered):
@@ -607,7 +607,7 @@ class DvTemporal(DvOrdered):
         return result
 
     class Meta:
-        verbose_name = "DvTemporal"
+        verbose_name = "Temporal"
         ordering=['prj_name','data_name']
 
 class Party(Common):
