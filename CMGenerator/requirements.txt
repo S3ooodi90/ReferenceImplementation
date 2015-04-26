@@ -10,7 +10,6 @@ docutils==0.12
 exrex==0.9.3
 isodate==0.5.1
 lxml==3.4.2
-marklogic==0.0.1
 networkx==1.9.1
 psycopg2==2.6
 pyparsing==2.0.3
