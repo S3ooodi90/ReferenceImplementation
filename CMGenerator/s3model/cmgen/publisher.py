@@ -1172,7 +1172,7 @@ def publish_DvCount(self):
 
     #DvCount
     if not self.units.published:
-        msg = ( "DvString: "+self.units.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+        msg = ( "Units: "+self.units.data_name+" hasn't been published. Please publish the object and retry.", messages.ERROR)
 
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' ref='s3m:el-"+self.units.ct_id+"'/> <!-- DvCount-units -->\n")
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
