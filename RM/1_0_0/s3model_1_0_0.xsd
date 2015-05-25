@@ -161,8 +161,7 @@
 
   <xs:complexType name="DvFileType">
     <xs:annotation>
-      <xs:documentation>A specialisation of DvEncapsulated for image, audio and other media types with a defined MIME type.
-        Includes further metadata relating to media types which are not applicable to other subtypes of DvEncapsulatedType.</xs:documentation>
+      <xs:documentation>A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
