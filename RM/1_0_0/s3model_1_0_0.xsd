@@ -158,9 +158,11 @@
   </xs:complexType>
   <xs:element name="DvString" substitutionGroup="s3m:DvAny" type="s3m:DvStringType"/>
 
-  <xs:complexType abstract="true" name="DvEncapsulatedType">
+
+  <xs:complexType name="DvFileType">
     <xs:annotation>
-      <xs:documentation>Abstract type defining the common meta-data of all types of encapsulated data.</xs:documentation>
+      <xs:documentation>A specialisation of DvEncapsulated for image, audio and other media types with a defined MIME type.
+        Includes further metadata relating to media types which are not applicable to other subtypes of DvEncapsulatedType.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:DvAnyType">
@@ -195,42 +197,6 @@
               </xs:documentation>
             </xs:annotation>
           </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element abstract="true" name="DvEncapsulated" substitutionGroup="s3m:DvAny"
-    type="s3m:DvEncapsulatedType"/>
-
-  <xs:complexType name="DvParsableType">
-    <xs:annotation>
-      <xs:documentation>Encapsulated data expressed as a parsable string. The internal model of the
-        data item is not described in the S3Model model, but in this case, the form of the data is
-        assumed to be plain-text, rather than compressed or other types of large binary data. If the
-        content is to be binary data or a format with a defined MIME type, then use a DvMediaType.</xs:documentation>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="s3m:DvEncapsulatedType">
-        <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="0" name="dvparsable-value" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>The parsable string, which may validly be empty in some syntaxes.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="DvParsable" substitutionGroup="s3m:DvEncapsulated s3m:DvAny" type="s3m:DvParsableType"/>
-
-  <xs:complexType name="DvMediaType">
-    <xs:annotation>
-      <xs:documentation>A specialisation of DvEncapsulated for image, audio and other media types with a defined MIME type.
-        Includes further metadata relating to media types which are not applicable to other subtypes of DvEncapsulatedType.</xs:documentation>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="s3m:DvEncapsulatedType">
-        <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="0" name="media-type" type="xs:string">
             <xs:annotation>
               <xs:documentation>MIME type of the original media-content w/o any compression. See
@@ -270,12 +236,19 @@
               <xs:annotation>
                 <xs:documentation>URI reference to electronic information stored outside the record as a file, 
                   database entry etc, if supplied as a reference. 
-                  The CM modeller chooses either a uri or a media-content element.</xs:documentation>
+                  The CM modeller choooses either a uri, a binary-content element or a text-content element.</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="media-content" type="xs:base64Binary">
               <xs:annotation>
-                <xs:documentation>The content, if stored locally. The CM modeller choooses either a uri or a media-content element.</xs:documentation>
+                <xs:documentation>The content, if stored locally as binary content. 
+                  The CM modeller choooses either a uri, a binary-content element or a text-content element.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="text-content" type="xs:base64Binary">
+              <xs:annotation>
+                <xs:documentation>The content, if stored locally as binary content. 
+                  The CM modeller choooses either a uri, a binary-content element or a text-content element.</xs:documentation>
               </xs:annotation>
             </xs:element>
           </xs:choice>
@@ -283,7 +256,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="DvMedia" substitutionGroup="s3m:DvEncapsulated s3m:DvAny" type="s3m:DvMediaType"/>
+  <xs:element name="DvFile" substitutionGroup="s3m:DvAny" type="s3m:DvFileType"/>
 
   <xs:complexType abstract="true" name="DvOrderedType">
     <xs:annotation>
@@ -762,13 +735,13 @@
         attestation is recorded by the reason attribute, which my be coded. </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element maxOccurs="1" minOccurs="0" name="attested-view" type="s3m:DvMediaType">
+      <xs:element maxOccurs="1" minOccurs="0" name="attested-view" type="s3m:DvFileType">
         <xs:annotation>
           <xs:documentation>Optional visual representation of content attested e.g. screen image.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" name="proof" type="s3m:DvParsableType">
+      <xs:element maxOccurs="1" minOccurs="0" name="proof" type="s3m:DvFileType">
         <xs:annotation>
           <xs:documentation>Proof of attestation such as an GPG signature. </xs:documentation>
         </xs:annotation>
