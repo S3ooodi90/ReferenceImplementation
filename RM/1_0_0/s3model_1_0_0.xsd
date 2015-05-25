@@ -244,9 +244,9 @@
                   The CM modeller choooses either a uri, a binary-content element or a text-content element.</xs:documentation>
               </xs:annotation>
             </xs:element>
-            <xs:element name="text-content" type="xs:base64Binary">
+            <xs:element name="text-content" type="xs:string">
               <xs:annotation>
-                <xs:documentation>The content, if stored locally as binary content. 
+                <xs:documentation>The content, if stored locally as text content. 
                   The CM modeller choooses either a uri, a binary-content element or a text-content element.</xs:documentation>
               </xs:annotation>
             </xs:element>
