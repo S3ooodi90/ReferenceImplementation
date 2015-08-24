@@ -1,1 +1,0 @@
-The Content Model Generator tool.
