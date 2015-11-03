@@ -3,11 +3,11 @@
 """
 ccd_semantics_extractor.py
 
-Extracts the semantics from MLHIM 2.4.6 (and later) CCDs and creates RDF triples in RDF/XML
+Extracts the semantics from S3Model 2.4.6 (and later) CCDs and creates RDF triples in RDF/XML
 This script must be executed before the data_semantics_extractor.py script.
 
 
-    Copyright (C) 2014 Timothy W. Cook tim@mlhim.org
+    Copyright (C) 2014 Timothy W. Cook tim@S3Model.org
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,8 +51,8 @@ def main():
 <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
 xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'
 xmlns:dc='http://purl.org/dc/elements/1.1/'
-xmlns:tdv='http://www.mlhim.org/xmlns/tdv'
-xmlns:mlhim2='http://www.mlhim.org/xmlns/mlhim2'>
+xmlns:tdv='http://www.S3Model.org/xmlns/tdv'
+xmlns:S3Model2='http://www.S3Model.org/xmlns/S3Model2'>
 
 \n""")
 

@@ -4,11 +4,11 @@
   xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:dct="http://purl.org/dc/terms/"
   xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
   xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/"
-  targetNamespace="http://www.s3model.com/" vc:minVersion="1.1" xml:lang="en-US">
+  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/"
+  targetNamespace="http://www.s3model.com/ns/s3m/" vc:minVersion="1.1" xml:lang="en-US">
 
   <!-- Include the Reference Model -->
-  <xs:include schemaLocation="http://www.mlhim.com/rm/s3model_1_0_0.xsd"/>
+  <xs:include schemaLocation="http://www.s3model.com/ns/s3m/s3model_1_0_0.xsd"/>
 
   <xs:complexType name="ct-BAD-UUID-303a-4862-8f5e-df8f39e8bfc1">
     <xs:annotation>
@@ -2130,16 +2130,12 @@ Examples:
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:element name="el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f" substitutionGroup="s3m:Link"
+  <xs:element name="el-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f" substitutionGroup="s3m:DvLink"
     type="s3m:ct-5f69d093-dfbc-4c07-be7f-ed96c9db5f1f"/>
-  <xs:element name="el-7b1c4fad-90f9-4d28-af58-3e59ecb00066" substitutionGroup="s3m:Link"
+  <xs:element name="el-7b1c4fad-90f9-4d28-af58-3e59ecb00066" substitutionGroup="s3m:DvLink"
     type="s3m:ct-7b1c4fad-90f9-4d28-af58-3e59ecb00066"/>
   <xs:element name="el-66977c1c-2da0-4cd9-ba0b-aa90a2943a16" substitutionGroup="s3m:Audit"
     type="s3m:ct-66977c1c-2da0-4cd9-ba0b-aa90a2943a16"/>
-  <xs:element name="el-53e08f93-1549-4303-9212-74ed11ed7d3a" substitutionGroup="s3m:System-id"
-    type="s3m:ct-53e08f93-1549-4303-9212-74ed11ed7d3a"/>
-  <xs:element name="el-1386c587-b06f-4de5-ab67-30ecd036902e" substitutionGroup="s3m:System-user"
-    type="s3m:ct-1386c587-b06f-4de5-ab67-30ecd036902e"/>
   <xs:element name="el-5f5d5ee5-71d1-4d23-befc-77b69b208321" substitutionGroup="s3m:DvAdapter-value"
     type="s3m:ct-5f5d5ee5-71d1-4d23-befc-77b69b208321"/>
   <xs:element name="el-74cb0edc-76c3-45d2-bd36-13b10cdc289d" substitutionGroup="s3m:DvAdapter-value"
@@ -2156,8 +2152,6 @@ Examples:
     type="s3m:ct-571006b1-b76f-45b5-8a6e-b65d1a0444e0"/>
   <xs:element name="el-4dce9cfe-a0b2-4d52-8739-1e07f92ca305" substitutionGroup="s3m:DvAdapter-value"
     type="s3m:ct-4dce9cfe-a0b2-4d52-8739-1e07f92ca305"/>
-  <xs:element name="el-5e21cf59-9c13-4f67-918a-e0aee1f64edf" substitutionGroup="s3m:Location"
-    type="s3m:ct-5e21cf59-9c13-4f67-918a-e0aee1f64edf"/>
   <xs:element name="el-96ec0cec-0e47-4892-9acb-697be7d51a33" substitutionGroup="s3m:DvAdapter-value"
     type="s3m:ct-96ec0cec-0e47-4892-9acb-697be7d51a33"/>
   <xs:element name="el-c265bd07-d470-49b5-99c1-4559f7e9408d" substitutionGroup="s3m:DvAdapter-value"

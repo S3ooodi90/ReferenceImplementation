@@ -3,11 +3,11 @@
 """
 data_semantics_extractor.py
 
-Extracts MLHIM 2.4.6 (and later) data and creates RDF triples in RDF/XML
+Extracts S3Model 2.4.6 (and later) data and creates RDF triples in RDF/XML
 This script must be executed after the ccd_semantics_extractor.py script.
 
 
-    Copyright (C) 2014 Timothy W. Cook tim@mlhim.org
+    Copyright (C) 2014 Timothy W. Cook tim@S3Model.org
 
 """
 import os
@@ -38,14 +38,14 @@ def parse_el(element):
     for child in element.getchildren():
         if child.tag is not etree.Comment:
             if 'el-' not in child.tag:
-                c_name = child.tag.replace('{http://www.mlhim.org/xmlns/mlhim2}','mlhim2:')
+                c_name = child.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
                 dest.write("<rdf:Description rdf:about='data/"+filename+tree.getpath(child)+"'>\n")
                 dest.write("  <rdfs:domain rdf:resource='data/"+filename+"'/>\n")
                 dest.write("  <rdf:subPropertyOf rdf:resource='"+tree.getpath(element)+"'/>\n")
                 dest.write("  <rdf:value>"+escape(child.text)+"</rdf:value>\n")
                 dest.write("</rdf:Description>\n\n")
             else:
-                c_name = child.tag.replace('{http://www.mlhim.org/xmlns/mlhim2}','mlhim2:')
+                c_name = child.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
                 dest.write("<rdf:Description rdf:about='data/"+filename+tree.getpath(child)+"'>\n")
                 dest.write("  <rdfs:domain rdf:resource='data/"+filename+"'/>\n")
                 dest.write("  <rdf:type rdf:resource='"+c_name.replace('el-','ct-')+"'/>\n")
@@ -64,8 +64,8 @@ def main():
   xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'
   xmlns:owl="http://www.w3.org/2002/07/owl#"
   xmlns:dc='http://purl.org/dc/elements/1.1/'
-  xmlns:ehr='http://www.mlhim.org/xmlns/ehr'
-  xmlns:mlhim2='http://www.mlhim.org/xmlns/mlhim2'>
+  xmlns:ehr='http://www.S3Model.org/xmlns/ehr'
+  xmlns:S3Model2='http://www.S3Model.org/xmlns/S3Model2'>
 \n"""
     nsDict={'xs':'http://www.w3.org/2001/XMLSchema',
             'rdf':'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
@@ -85,7 +85,7 @@ def main():
             tree = etree.parse(src, parser)
             root = tree.getroot()
 
-            ccdid = root.tag.replace('{http://www.mlhim.org/xmlns/mlhim2}','')
+            ccdid = root.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','')
 
             # create triple for the file link to CCD
             dest.write("\n<rdf:Description rdf:about='data/"+filename+"'> <!-- The document unique path/filename -->\n")
@@ -96,7 +96,7 @@ def main():
             entry = root.getchildren()[0]
 
             # create triple for Entry
-            entry_el = entry.tag.replace('{http://www.mlhim.org/xmlns/mlhim2}','mlhim2:')
+            entry_el = entry.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
             dest.write("<rdf:Description rdf:about='data/"+filename+"/"+ccdid+"/"+entry_el+"'>\n")
             dest.write("  <rdfs:domain rdf:resource='data/"+filename+"'/>\n")
             dest.write("  <rdf:type rdf:resource='"+entry_el.replace('el-','ct-')+"'/>\n")
@@ -108,14 +108,14 @@ def main():
 
 
 def genEntry(tree, entry, filename, ccdid, dest):
-    entry_el = entry.tag.replace('{http://www.mlhim.org/xmlns/mlhim2}','mlhim2:')
+    entry_el = entry.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
     dest.write("<rdf:Description rdf:about='data/"+filename+"/"+ccdid+"/"+entry_el+"'>\n")
     children = entry.getchildren()
     for child in children:
         if child.tag is etree.Comment:
             pass
         else:
-            el_name = child.tag.replace('{http://www.mlhim.org/xmlns/mlhim2}','mlhim2:')
+            el_name = child.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
             print("<rdf:Description rdf:about='data/"+filename+tree.getpath(child)+"'>\n")
             print("<rdf:type rdf:resource='"+el_name.replace('el-','ct-')+"'/>\n")
     dest.write("</rdf:Description>\n")

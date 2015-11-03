@@ -8,4 +8,6 @@
 S3ModelTester.log
 .Rproj.user
 settings.py
-CMGenerator/static
+DMGenerator/static
+#Sphinx
+build/

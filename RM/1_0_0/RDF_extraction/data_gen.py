@@ -3,9 +3,9 @@
 """
     data_gen.py
 
-    MLHIM 2.4.6 (and later) data instance generator for the semantics demo.
+    S3Model 2.4.6 (and later) data instance generator for the semantics demo.
 
-    Copyright (C) 2014 Timothy W. Cook tim@mlhim.org
+    Copyright (C) 2014 Timothy W. Cook tim@S3Model.org
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ from datetime import datetime
 
 def main(count):
    print("""
-    MLHIM data generator for the semantics demo.
+    S3Model data generator for the semantics demo.
 
     Copyright (C) 2014, Timothy W. Cook
     See the file README.md for usage.
