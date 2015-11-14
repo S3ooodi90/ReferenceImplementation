@@ -5,9 +5,11 @@
 *.zip
 *.sh
 
+#ModelTester
 S3ModelTester.log
-.Rproj.user
+
+#Django
 settings.py
-DMGenerator/static
+
 #Sphinx
 build/

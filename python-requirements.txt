@@ -1,0 +1,14 @@
+Django
+django-admin-tools
+django-allauth
+django-debug-toolbar
+docutils
+exrex
+isodate
+lxml
+psycopg2
+rdflib
+shortuuid
+six
+Unipath
+xmltodict
