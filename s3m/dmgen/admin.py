@@ -386,9 +386,9 @@ def copy_dm(modeladmin, request, queryset):
 
         modeladmin.message_user(request, msg[0], msg[1])
 
-copy_dm.short_description = _("Copy CCD")
+copy_dm.short_description = _("Copy DM")
 
-def generate_ccd(modeladmin, request, queryset):
+def generate_dm(modeladmin, request, queryset):
 
     if len(queryset) > 1:
         msg = (_("You may only generate one DM at a time. " + str(len(queryset)) + " were selected." ), messages.ERROR)
@@ -407,7 +407,7 @@ def generate_ccd(modeladmin, request, queryset):
 
     modeladmin.message_user(request, msg[0], msg[1])
 
-generate_ccd.short_description = _("Generate DM")
+generate_dm.short_description = _("Generate DM")
 
 def copy_prj(modeladmin, request, queryset):
     for obj in queryset:
@@ -424,7 +424,7 @@ class DMAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     ordering = ['project','title']
     search_fields = ['title','ct_id']
-    actions = [copy_dm, generate_ccd, republishAll,delete_mcs,]
+    actions = [copy_dm, generate_dm, republishAll,delete_mcs,]
     readonly_fields = ['published','schema_code','creator','edited_by',]
     filter_horizontal = ['contrib','pred_obj',]
 

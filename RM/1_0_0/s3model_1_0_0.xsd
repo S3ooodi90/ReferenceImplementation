@@ -2618,29 +2618,29 @@
     </xs:annotation>
   </xs:element>
 
-  <!--CCM / constraint model -->
-  <xs:complexType name="CCMType">
+  <!--DM / constraint model -->
+  <xs:complexType name="DMType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us"> This is the root node of a Concept Constraint Model. </xs:documentation>
+      <xs:documentation xml:lang="en-us"> This is the root node of a Data Model (DM). </xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="CCMType">
-          <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/rm100_html/Complex_Type_CCMType.html#CCMType"/>
+          <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/rm100_html/Complex_Type_DMType.html#DMType"/>
           <rdfs:subClassOf rdf:resource="CoreMC"/>
           <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_1_0_0.xsd"/>
           <rdfs:label>CCMType</rdfs:label>
-          <rdfs:comment xml:lang="en-us"> This is the root node of a Concept Constraint Definition. </rdfs:comment>
+          <rdfs:comment xml:lang="en-us"> This is the root node of a Data Model. </rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="1" ref="s3m:Definition">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us"> Structural definition element for this CCM. </xs:documentation>
+          <xs:documentation xml:lang="en-us"> Structural definition element for this DM. </xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="definition">
-              <rdfs:domain rdf:resource="CCMType"/>
+              <rdfs:domain rdf:resource="DMType"/>
               <rdfs:range rdf:resource="Definition"/>
-              <rdfs:comment xml:lang="en-us"> Structural definition element for this CCM. </rdfs:comment>
+              <rdfs:comment xml:lang="en-us"> Structural definition element for this DM. </rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2656,12 +2656,12 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  <xs:element name="CCM" type="s3m:CCMType">
+  <xs:element name="DM" type="s3m:DMType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="CCM">
+        <rdf:Description rdf:about="DM">
           <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="CCMType"/>
+          <s3m:isCoreSymbolOf rdf:resource="DMType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>

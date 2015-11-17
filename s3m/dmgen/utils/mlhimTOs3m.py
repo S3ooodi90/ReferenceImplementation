@@ -214,7 +214,9 @@ for line in rowsMLHIM:
     exact_len = line[19]
     enums = line[20]
     eanno  = line[21]
-    def_val = line[22][0:1999]
+    def_val = line[22]
+    if len(def_val) > 250:
+        def_val = ''
 
     data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
                            min_len,max_len,exact_len,enums,eanno,def_val,''))
@@ -267,7 +269,9 @@ for line in rowsMLHIM:
     exact_len = line[19]
     enums = line[20]
     eanno  = line[21]
-    def_val = line[22][0:1999]
+    def_val = line[22]
+    if len(def_val) > 250:
+        def_val = ''
 
     data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
                            min_len,max_len,exact_len,enums,eanno,def_val,''))

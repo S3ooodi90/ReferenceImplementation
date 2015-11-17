@@ -20,242 +20,236 @@ def random_dtstr(start=None,end=None):
     rand_dts = datetime.strftime(start + timedelta(seconds=randint(0, int((end - start).total_seconds()))), '%Y-%m-%d %H:%M:%S')
     return rand_dts
 
-def buildHTML(ccdPkg):
+def buildHTML(dmPkg):
     """
     The CCD Package is sent from the generator, then returned after filling in the ccdPkg.html string.
     """
 
-    #check for an Entry
-    if ccdPkg.ccd.admin_definition:
-        entry = ccdPkg.ccd.admin_definition
-    elif ccdPkg.ccd.care_definition:
-        entry = ccdPkg.ccd.care_definition
-    elif ccdPkg.ccd.demog_definition:
-        entry = ccdPkg.ccd.demog_definition
+    entry = dmPkg.dm.entry
 
-    ccdPkg.html = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n<html>\n  <head>'
-    ccdPkg.html += '    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">\n'
-    ccdPkg.html += '    <title>'+ccdPkg.ccd.title+'</title>\n'
-    ccdPkg.html += ' <style type="text/css">\n'
-    ccdPkg.html += ' legend {\n'
-    ccdPkg.html += '   font-size: 16px;\n'
-    ccdPkg.html += '   font-weight: bold;\n'
-    ccdPkg.html += ' }\n'
-    ccdPkg.html += ' .label {\n'
-    ccdPkg.html += '   font-size: 12px;\n'
-    ccdPkg.html += '   font-weight: bold;\n'
-    ccdPkg.html += ' }\n'
-    ccdPkg.html += ' .pcm {\n'
-    ccdPkg.html += '  margin-top: 10px; \n'
-    ccdPkg.html += '  margin-bottom: 10px; \n'
-    ccdPkg.html += '  margin-left: 10px; \n'
-    ccdPkg.html += '  margin-right: 10px; \n'
-    ccdPkg.html += '  padding: 5px; \n'
-    ccdPkg.html += '  border-style: dotted; \n'
-    ccdPkg.html += '  border-size: 6px; \n'
-    ccdPkg.html += '  border-color: #009999; \n'
-    ccdPkg.html += '}\n'
-    ccdPkg.html += '.button_bar {\n'
-    ccdPkg.html += '  text-align: center;\n'
-    ccdPkg.html += '  border-radius: 15px;\n'
-    ccdPkg.html += '  background-color: #005566;\n'
-    ccdPkg.html += '  margin: 10px;\n'
-    ccdPkg.html += '  padding: 10px;\n'
-    ccdPkg.html += '}\n'
-    ccdPkg.html += '.button_row {\n'
-    ccdPkg.html += '  margin: auto;\n'
-    ccdPkg.html += '  width: 60%;\n'
-    ccdPkg.html += '  padding: 5px;\n'
-    ccdPkg.html += '}\n'
-    ccdPkg.html += '.button {\n'
-    ccdPkg.html += '   border-top: 1px solid #96d1f8;\n'
-    ccdPkg.html += '   background: #65a9d7;\n'
-    ccdPkg.html += '   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));\n'
-    ccdPkg.html += '   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);\n'
-    ccdPkg.html += '   background: -moz-linear-gradient(top, #3e779d, #65a9d7);\n'
-    ccdPkg.html += '   background: -ms-linear-gradient(top, #3e779d, #65a9d7);\n'
-    ccdPkg.html += '   background: -o-linear-gradient(top, #3e779d, #65a9d7);\n'
-    ccdPkg.html += '   padding: 5px 10px;\n'
-    ccdPkg.html += '   margin-left 10px;\n'
-    ccdPkg.html += '   -webkit-border-radius: 8px;\n'
-    ccdPkg.html += '   -moz-border-radius: 8px;\n'
-    ccdPkg.html += '   border-radius: 8px;\n'
-    ccdPkg.html += '   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
-    ccdPkg.html += '   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
-    ccdPkg.html += '   box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
-    ccdPkg.html += '   text-shadow: rgba(0,0,0,.4) 0 1px 0;\n'
-    ccdPkg.html += '   color: white;\n'
-    ccdPkg.html += '   font-size: 14px;\n'
-    ccdPkg.html += '   font-family: Georgia, serif;\n'
-    ccdPkg.html += '   text-decoration: none;\n'
-    ccdPkg.html += '   vertical-align: middle;\n'
-    ccdPkg.html += '   }\n'
-    ccdPkg.html += '.button:hover {\n'
-    ccdPkg.html += '   border-top-color: #28597a;\n'
-    ccdPkg.html += '   background: #28597a;\n'
-    ccdPkg.html += '   color: #ccc;\n'
-    ccdPkg.html += '   }\n'
-    ccdPkg.html += '.button:active {\n'
-    ccdPkg.html += '   border-top-color: #1b435e;\n'
-    ccdPkg.html += '   background: #1b435e;\n'
-    ccdPkg.html += '   }\n'
-    ccdPkg.html += '.subpage {\n'
-    ccdPkg.html += '  text-align: left;\n'
-    ccdPkg.html += '}\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += ' </style>\n'
-    ccdPkg.html += ' </head>\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '<body style="color: rgb(0, 0, 0); background-color: rgb(238, 239, 255);" alink="#349923" link="#000099" vlink="#990099">\n'
-    ccdPkg.html += '<div class="" style="text-align: center;">\n'
-    ccdPkg.html += '<h1 id="topOfPage">'+ccdPkg.ccd.title+'</h1>\n'
-    ccdPkg.html += '<div style="text-align: left;">\n'
-    ccdPkg.html += '<form  id="'+entry.ct_id+'" action="" method="post" name="'+entry.label+'" target="" >\n'
-    ccdPkg.html += '<div class="button_bar">\n'
-    ccdPkg.html += '<span class="button_row">\n'
-    ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#subject'"> """+entry.subject.label+""" </button>\n"""
-    ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#provider'"> """+entry.provider.label+""" </button>\n"""
+    dmPkg.html = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n<html>\n  <head>'
+    dmPkg.html += '    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">\n'
+    dmPkg.html += '    <title>'+dmPkg.dm.title+'</title>\n'
+    dmPkg.html += ' <style type="text/css">\n'
+    dmPkg.html += ' legend {\n'
+    dmPkg.html += '   font-size: 16px;\n'
+    dmPkg.html += '   font-weight: bold;\n'
+    dmPkg.html += ' }\n'
+    dmPkg.html += ' .label {\n'
+    dmPkg.html += '   font-size: 12px;\n'
+    dmPkg.html += '   font-weight: bold;\n'
+    dmPkg.html += ' }\n'
+    dmPkg.html += ' .mc {\n'
+    dmPkg.html += '  margin-top: 10px; \n'
+    dmPkg.html += '  margin-bottom: 10px; \n'
+    dmPkg.html += '  margin-left: 10px; \n'
+    dmPkg.html += '  margin-right: 10px; \n'
+    dmPkg.html += '  padding: 5px; \n'
+    dmPkg.html += '  border-style: dotted; \n'
+    dmPkg.html += '  border-size: 6px; \n'
+    dmPkg.html += '  border-color: #009999; \n'
+    dmPkg.html += '}\n'
+    dmPkg.html += '.button_bar {\n'
+    dmPkg.html += '  text-align: center;\n'
+    dmPkg.html += '  border-radius: 15px;\n'
+    dmPkg.html += '  background-color: #005566;\n'
+    dmPkg.html += '  margin: 10px;\n'
+    dmPkg.html += '  padding: 10px;\n'
+    dmPkg.html += '}\n'
+    dmPkg.html += '.button_row {\n'
+    dmPkg.html += '  margin: auto;\n'
+    dmPkg.html += '  width: 60%;\n'
+    dmPkg.html += '  padding: 5px;\n'
+    dmPkg.html += '}\n'
+    dmPkg.html += '.button {\n'
+    dmPkg.html += '   border-top: 1px solid #96d1f8;\n'
+    dmPkg.html += '   background: #65a9d7;\n'
+    dmPkg.html += '   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));\n'
+    dmPkg.html += '   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);\n'
+    dmPkg.html += '   background: -moz-linear-gradient(top, #3e779d, #65a9d7);\n'
+    dmPkg.html += '   background: -ms-linear-gradient(top, #3e779d, #65a9d7);\n'
+    dmPkg.html += '   background: -o-linear-gradient(top, #3e779d, #65a9d7);\n'
+    dmPkg.html += '   padding: 5px 10px;\n'
+    dmPkg.html += '   margin-left 10px;\n'
+    dmPkg.html += '   -webkit-border-radius: 8px;\n'
+    dmPkg.html += '   -moz-border-radius: 8px;\n'
+    dmPkg.html += '   border-radius: 8px;\n'
+    dmPkg.html += '   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
+    dmPkg.html += '   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
+    dmPkg.html += '   box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
+    dmPkg.html += '   text-shadow: rgba(0,0,0,.4) 0 1px 0;\n'
+    dmPkg.html += '   color: white;\n'
+    dmPkg.html += '   font-size: 14px;\n'
+    dmPkg.html += '   font-family: Georgia, serif;\n'
+    dmPkg.html += '   text-decoration: none;\n'
+    dmPkg.html += '   vertical-align: middle;\n'
+    dmPkg.html += '   }\n'
+    dmPkg.html += '.button:hover {\n'
+    dmPkg.html += '   border-top-color: #28597a;\n'
+    dmPkg.html += '   background: #28597a;\n'
+    dmPkg.html += '   color: #ccc;\n'
+    dmPkg.html += '   }\n'
+    dmPkg.html += '.button:active {\n'
+    dmPkg.html += '   border-top-color: #1b435e;\n'
+    dmPkg.html += '   background: #1b435e;\n'
+    dmPkg.html += '   }\n'
+    dmPkg.html += '.subpage {\n'
+    dmPkg.html += '  text-align: left;\n'
+    dmPkg.html += '}\n'
+    dmPkg.html += '\n'
+    dmPkg.html += ' </style>\n'
+    dmPkg.html += ' </head>\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '<body style="color: rgb(0, 0, 0); background-color: rgb(238, 239, 255);" alink="#349923" link="#000099" vlink="#990099">\n'
+    dmPkg.html += '<div class="" style="text-align: center;">\n'
+    dmPkg.html += '<h1 id="topOfPage">'+dmPkg.dm.title+'</h1>\n'
+    dmPkg.html += '<div style="text-align: left;">\n'
+    dmPkg.html += '<form  id="'+str(entry.ct_id)+'" action="" method="post" name="'+entry.label+'" target="" >\n'
+    dmPkg.html += '<div class="button_bar">\n'
+    dmPkg.html += '<span class="button_row">\n'
+    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#subject'"> """+entry.subject.label+""" </button>\n"""
+    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#provider'"> """+entry.provider.label+""" </button>\n"""
     if entry.participations.all():
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#participants'"> """+'Other Participants'+""" </button>\n"""
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#participants'"> """+'Other Participants'+""" </button>\n"""
     if entry.attestation:
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#attestation'"> """+entry.attestation.label+""" </button>\n"""
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#attestation'"> """+entry.attestation.label+""" </button>\n"""
     if entry.audit:
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#audit'"> """+entry.audit.label+""" </button>\n"""
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#audit'"> """+entry.audit.label+""" </button>\n"""
     if entry.links.all():
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#references'"> """+'References'+""" </button>\n"""
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#references'"> """+'References'+""" </button>\n"""
     if entry.workflow:
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#workflow'">Workflow - """+entry.workflow.label+""" </button>\n"""
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#workflow'">Workflow - """+entry.workflow.label+""" </button>\n"""
     if entry.protocol:
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#protocol'">Protocol - """+entry.protocol.label+""" </button>\n"""
-    ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#other'"> """+'Other Info'+""" </button>\n"""
-    ccdPkg.html += '</span>\n'
-    ccdPkg.html += '</div>\n'
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#protocol'">Protocol - """+entry.protocol.label+""" </button>\n"""
+    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#other'"> """+'Other Info'+""" </button>\n"""
+    dmPkg.html += '</span>\n'
+    dmPkg.html += '</div>\n'
     # process the PCMs in a cluster then iterate through the cluster levels one at a time, coming back to the top until completed.
-    ccdPkg.html += fcluster(entry.data, '  ')
-    ccdPkg.html += '\n'
-    ccdPkg.html += '<div style="font-size: 10px; text-align: center;">\n'
-    ccdPkg.html += '<button class="button" type="submit" form="'+entry.ct_id+'" > Submit </button> \n'
-    ccdPkg.html += '<button class="button" type="cancel" form="'+entry.ct_id+'" > Cancel </button>\n'
-    ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '</form>\n'
-    ccdPkg.html += '</div>\n'
-    ccdPkg.html += '<div>\n'
-    ccdPkg.html += '</div>\n'
-    ccdPkg.html += '<div id="subject" class="subpage">\n'
-    ccdPkg.html += '<hr/>\n'
-    ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-    ccdPkg.html += '<form  id="'+entry.subject.ct_id+'" action="" method="post" name="'+entry.subject.label+'" target="" >\n'
-    ccdPkg.html += fparty(entry.subject, '  ')
-    ccdPkg.html += '</form>\n'
-    ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '<div id="provider" class="subpage">\n'
-    ccdPkg.html += '<hr/>\n'
-    ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-    ccdPkg.html += '<form  id="'+entry.provider.ct_id+'" action="" method="post" name="'+entry.provider.label+'" target="" >\n'
-    ccdPkg.html += fparty(entry.provider, '  ')
-    ccdPkg.html += '</form>\n'
-    ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
+    dmPkg.html += fcluster(entry.data, '  ')
+    dmPkg.html += '\n'
+    dmPkg.html += '<div style="font-size: 10px; text-align: center;">\n'
+    dmPkg.html += '<button class="button" type="submit" form="'+str(entry.ct_id)+'" > Submit </button> \n'
+    dmPkg.html += '<button class="button" type="cancel" form="'+str(entry.ct_id)+'" > Cancel </button>\n'
+    dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '</form>\n'
+    dmPkg.html += '</div>\n'
+    dmPkg.html += '<div>\n'
+    dmPkg.html += '</div>\n'
+    dmPkg.html += '<div id="subject" class="subpage">\n'
+    dmPkg.html += '<hr/>\n'
+    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+    dmPkg.html += '<form  id="'+str(entry.subject.ct_id)+'" action="" method="post" name="'+entry.subject.label+'" target="" >\n'
+    dmPkg.html += fparty(entry.subject, '  ')
+    dmPkg.html += '</form>\n'
+    dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '<div id="provider" class="subpage">\n'
+    dmPkg.html += '<hr/>\n'
+    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+    dmPkg.html += '<form  id="'+str(entry.provider.ct_id)+'" action="" method="post" name="'+entry.provider.label+'" target="" >\n'
+    dmPkg.html += fparty(entry.provider, '  ')
+    dmPkg.html += '</form>\n'
+    dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
     if entry.participations.all():
-        ccdPkg.html += '<div id="participants" class="subpage">\n'
-        ccdPkg.html += '<hr/>\n'
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dmPkg.html += '<div id="participants" class="subpage">\n'
+        dmPkg.html += '<hr/>\n'
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
         for p in entry.participations.all():
-            ccdPkg.html += fparticipation(p, '  ')
-        ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
+            dmPkg.html += fparticipation(p, '  ')
+        dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
     if entry.attestation:
-        ccdPkg.html += '<div id="attestation" class="subpage">\n'
-        ccdPkg.html += '<hr/>\n'
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        ccdPkg.html += fattestation(entry.attestation,'  ')
-        ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
+        dmPkg.html += '<div id="attestation" class="subpage">\n'
+        dmPkg.html += '<hr/>\n'
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dmPkg.html += fattestation(entry.attestation,'  ')
+        dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
     if entry.audit:
-        ccdPkg.html += '<div id="audit" class="subpage">\n'
-        ccdPkg.html += '<hr/>\n'
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        ccdPkg.html += faudit(entry.audit, '  ')
-        ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
+        dmPkg.html += '<div id="audit" class="subpage">\n'
+        dmPkg.html += '<hr/>\n'
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dmPkg.html += faudit(entry.audit, '  ')
+        dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
     if entry.links.all():
-        ccdPkg.html += '<div id="references" class="subpage">\n'
-        ccdPkg.html += '<hr/>\n'
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        ccdPkg.html += 'Reference Links:\n'
+        dmPkg.html += '<div id="references" class="subpage">\n'
+        dmPkg.html += '<hr/>\n'
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dmPkg.html += 'Reference Links:\n'
         for e in entry.links.all():
-            ccdPkg.html += fdv_link(e, '  ')
-        ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
+            dmPkg.html += fdv_link(e, '  ')
+        dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
     if entry.workflow:
-        ccdPkg.html += '<div id="workflow" class="subpage">\n'
-        ccdPkg.html += '<hr/>\n'
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        ccdPkg.html += '<br/>Link to workflow engine:\n'
-        ccdPkg.html += fdv_link(entry.workflow,'  ')
-        ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
+        dmPkg.html += '<div id="workflow" class="subpage">\n'
+        dmPkg.html += '<hr/>\n'
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dmPkg.html += '<br/>Link to workflow engine:\n'
+        dmPkg.html += fdv_link(entry.workflow,'  ')
+        dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
     if entry.protocol:
-        ccdPkg.html += '<div id="protocol" class="subpage">\n'
-        ccdPkg.html += '<hr/>\n'
-        ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        ccdPkg.html += '<br/>Protocol definition:\n'
-        ccdPkg.html += fdv_string(entry.protocol, '  ')
-        ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '<div id="other" class="subpage">\n'
-    ccdPkg.html += '<hr/>\n'
-    ccdPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-    ccdPkg.html += '<h3>Other Information</h3>\n'
-    ccdPkg.html += 'Language: '+entry.language+'<br/>\n'
-    ccdPkg.html += 'Current State: '+entry.state+'<br/>\n'
-    ccdPkg.html += 'Encoding: '+entry.encoding+'<br/>\n'
-    ccdPkg.html += '<h3>Model Information</h3>\n'
-    ccdPkg.html += '<p>Description: <br/> '+ccdPkg.ccd.description+'</p>\n'
-    ccdPkg.html += '<p>Author: '+ccdPkg.ccd.author.__str__()+'</p>\n'
-    if ccdPkg.ccd.contrib.all():
-        ccdPkg.html += '<p>Contributors: <br/>\n'
-        for c in ccdPkg.ccd.contrib.all():
-            ccdPkg.html += c.__str__()+'<br/>\n'
-        ccdPkg.html += '</p>\n'
-    ccdPkg.html += '<p>Keywords: '+ccdPkg.ccd.subject+'</p>\n'
-    ccdPkg.html += '<p>Source Reference: '+ccdPkg.ccd.source+'</p>\n'
-    ccdPkg.html += '<p>Relation to another model: '+ccdPkg.ccd.relation+'</p>\n'
-    ccdPkg.html += '<p>Coverage: '+ccdPkg.ccd.coverage+'</p>\n'
-    ccdPkg.html += '<p>Publisher: '+ccdPkg.ccd.publisher+'</p>\n'
-    ccdPkg.html += '<p>License: '+ccdPkg.ccd.rights+'</p>\n'
-    ccdPkg.html += '<p>Publication Date: '+str(ccdPkg.ccd.pub_date)+'</p>\n'
-    ccdPkg.html += '<p>Language: '+ccdPkg.ccd.dc_language+'</p>\n'
-    ccdPkg.html += '<p>Top level RDF: <br/><code> <pre>&lt;rdf:Description rdf:about="http://www.mlhim.org/ns/mlhim2:pcm-'+ccdPkg.ccd.ct_id+'"/&gt;<br/>\n'
-    ccdPkg.html += '  &lt;rdfs:subClassOf rdf:resource="mlhim2:CCDType"/&gt;<br/>\n'
-    ccdPkg.html += '  &lt;rdfs:label&gt;'+ccdPkg.ccd.title+'&lt;/rdfs:label&gt;<br/>\n'
-    if len(ccdPkg.ccd.pred_obj.all()) != 0:
-        for po in ccdPkg.ccd.pred_obj.all():
-                ccdPkg.html += "&lt;"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ po.object_uri +"'/&gt;<br/>\n"
-    ccdPkg.html += '&lt;/rdf:Description&gt;</pre></code><br/>\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '</p>\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '</div>\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '\n'
-    ccdPkg.html += '<span style="font-size: 10px; text-align: center;">\n'
-    ccdPkg.html += 'Generated by the <a href="http:www.ccdgen.com" target="_blank">CCD-Gen</a> \n'
-    ccdPkg.html += '</span>\n'
+        dmPkg.html += '<div id="protocol" class="subpage">\n'
+        dmPkg.html += '<hr/>\n'
+        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dmPkg.html += '<br/>Protocol definition:\n'
+        dmPkg.html += fdv_string(entry.protocol, '  ')
+        dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '<div id="other" class="subpage">\n'
+    dmPkg.html += '<hr/>\n'
+    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+    dmPkg.html += '<h3>Other Information</h3>\n'
+    dmPkg.html += 'Language: '+entry.language+'<br/>\n'
+    dmPkg.html += 'Current State: '+entry.state+'<br/>\n'
+    dmPkg.html += 'Encoding: '+entry.encoding+'<br/>\n'
+    dmPkg.html += '<h3>Model Information</h3>\n'
+    dmPkg.html += '<p>Description: <br/> '+dmPkg.dm.description+'</p>\n'
+    dmPkg.html += '<p>Author: '+dmPkg.dm.author.__str__()+'</p>\n'
+    if dmPkg.dm.contrib.all():
+        dmPkg.html += '<p>Contributors: <br/>\n'
+        for c in dmPkg.dm.contrib.all():
+            dmPkg.html += c.__str__()+'<br/>\n'
+        dmPkg.html += '</p>\n'
+    dmPkg.html += '<p>Keywords: '+dmPkg.dm.subject+'</p>\n'
+    dmPkg.html += '<p>Source Reference: '+dmPkg.dm.source+'</p>\n'
+    dmPkg.html += '<p>Relation to another model: '+dmPkg.dm.relation+'</p>\n'
+    dmPkg.html += '<p>Coverage: '+dmPkg.dm.coverage+'</p>\n'
+    dmPkg.html += '<p>Publisher: '+dmPkg.dm.publisher+'</p>\n'
+    dmPkg.html += '<p>License: '+dmPkg.dm.rights+'</p>\n'
+    dmPkg.html += '<p>Publication Date: '+str(dmPkg.dm.pub_date)+'</p>\n'
+    dmPkg.html += '<p>Language: '+dmPkg.dm.dc_language+'</p>\n'
+    dmPkg.html += '<p>Top level RDF: <br/><code> <pre>&lt;rdf:Description rdf:about="http://www.mlhim.org/ns/s3m:mc-'+str(dmPkg.dm.ct_id)+'"/&gt;<br/>\n'
+    dmPkg.html += '  &lt;rdfs:subClassOf rdf:resource="s3m:CCDType"/&gt;<br/>\n'
+    dmPkg.html += '  &lt;rdfs:label&gt;'+dmPkg.dm.title+'&lt;/rdfs:label&gt;<br/>\n'
+    if len(dmPkg.dm.pred_obj.all()) != 0:
+        for po in dmPkg.dm.pred_obj.all():
+                dmPkg.html += "&lt;"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ po.object_uri +"'/&gt;<br/>\n"
+    dmPkg.html += '&lt;/rdf:Description&gt;</pre></code><br/>\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '</p>\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '</div>\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '\n'
+    dmPkg.html += '<span style="font-size: 10px; text-align: center;">\n'
+    dmPkg.html += 'Generated by the <a href="http://dmgen.s3model.com" target="_blank">DMGen</a> \n'
+    dmPkg.html += '</span>\n'
 
-    ccdPkg.html += '    </div>\n  </body>\n</html>'
+    dmPkg.html += '    </div>\n  </body>\n</html>'
 
-    return(ccdPkg)
+    return(dmPkg)
 
 def fcluster(clu, indent):
     indent += '  '
@@ -324,7 +318,7 @@ def fdv_boolean(dv, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     choices = ['-------']
     for c in dv.trues.splitlines():
@@ -335,12 +329,12 @@ def fdv_boolean(dv, indent):
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
 
-    frmstr += indent + " Choose  a value: <select name='pcm-"+dv.ct_id+"'>\n"
+    frmstr += indent + " Choose  a value: <select name='mc-"+str(dv.ct_id)+"'>\n"
     for c in choices:
         frmstr += indent + "  <option value='"+c+"' label='"+c+"'>"+c+"</option><br />\n"
     frmstr += indent + "</select><br />\n"
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -355,15 +349,15 @@ def fdv_link(dv, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
 
-    frmstr += indent + " Enter a URI: <input name='pcm-"+dv.ct_id+":DvURI' type='text' size='30' value=''/>\n"
+    frmstr += indent + " Enter a URI: <input name='mc-"+str(dv.ct_id)+":DvURI' type='text' size='30' value=''/>\n"
     frmstr += indent + " Relationship: <em>"+dv.relation.strip()+"</em><br />\n"
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -378,7 +372,7 @@ def fdv_string(dv, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     a = None
     enumList = []
@@ -409,17 +403,17 @@ def fdv_string(dv, indent):
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
 
     if enumList:
-        frmstr += indent + " Choose a value: <select name='pcm-"+dv.ct_id+":dvstring-value'>\n"
+        frmstr += indent + " Choose a value: <select name='mc-"+str(dv.ct_id)+":dvstring-value'>\n"
         for c in enumList:
             frmstr += indent + "  <option value='"+c+"' label='"+c+"'>"+c+"</option>\n"
         frmstr += indent + "</select><br />\n"
     else:
-        frmstr += indent + " Enter a string: <input name='pcm-"+dv.ct_id+":DvString' type='text' size='30' value='"+s+"'/>"
+        frmstr += indent + " Enter a string: <input name='mc-"+str(dv.ct_id)+":DvString' type='text' size='30' value='"+s+"'/>"
     if x:
         frmstr += indent + " Match (regex): "+x+"<br />\n"
-    frmstr += indent + " Language: <input name='pcm-"+dv.ct_id+":language' type='text' size='6' value='"+dv.lang+"'/><br />\n"
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + " Language: <input name='mc-"+str(dv.ct_id)+":language' type='text' size='6' value='"+dv.lang+"'/><br />\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -434,7 +428,7 @@ def fdv_count(dv, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     if dv.normal_status:
         ns = dv.normal_status
@@ -469,8 +463,8 @@ def fdv_count(dv, indent):
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
 
-    frmstr += indent + " Enter Count:  <input name='pcm-"+dv.ct_id+":dvcount-value' type='number' />\n"
-    frmstr += indent + " Magnitude Status:  <select name='pcm-"+dv.ct_id+":magnitude-status'>\n"
+    frmstr += indent + " Enter Count:  <input name='mc-"+str(dv.ct_id)+":dvcount-value' type='number' />\n"
+    frmstr += indent + " Magnitude Status:  <select name='mc-"+str(dv.ct_id)+":magnitude-status'>\n"
     frmstr += indent + "  <option value='='  label='Magnitude is exactly.'>=</option>\n"
     frmstr += indent + "  <option value='<=' label='Magnitude is less than or equal to'><=</option>\n"
     frmstr += indent + "  <option value='=>' label='Magnitude is greater than or equal to'>=></option>\n"
@@ -478,8 +472,8 @@ def fdv_count(dv, indent):
     frmstr += indent + "  <option value='>'  label='Magnitude is greater than.'>></option>\n"
     frmstr += indent + "  <option value='~'  label='Magnitude is approximately.'>~</option>\n"
     frmstr += indent + " </select><br />\n"
-    frmstr += indent + " Error:  <input name='pcm-"+dv.ct_id+":error' type='number' value='0'/>\n"
-    frmstr += indent + " Accuracy:  <input name='pcm-"+dv.ct_id+":accuracy' type='number' value='0'/><br />\n"
+    frmstr += indent + " Error:  <input name='mc-"+str(dv.ct_id)+":error' type='number' value='0'/>\n"
+    frmstr += indent + " Accuracy:  <input name='mc-"+str(dv.ct_id)+":accuracy' type='number' value='0'/><br />\n"
     frmstr += indent + " Normal:  "+ns.strip()+"<br />\n"
     frmstr += rrstr
 
@@ -487,8 +481,8 @@ def fdv_count(dv, indent):
     if dv.units:
         frmstr += fdv_string(dv.units, indent)+'<br />'
 
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -503,15 +497,15 @@ def fdv_interval(dv, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
     frmstr += indent + "Lower Value: "+str(dv.lower)+" Upper Value: "+str(dv.upper)+"<br />\n"
     frmstr += indent + "Lower Included: "+str(dv.lower_included)+" Upper Included: "+str(dv.upper_included)+"<br />\n"
     frmstr += indent + "Lower Bounded: "+str(dv.lower_bounded)+" Upper Bounded: "+str(dv.upper_bounded)+"<br />\n"
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -526,31 +520,31 @@ def fdv_file(dv, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
-    frmstr += indent + " Size (bytes):  <input name='pcm-"+dv.ct_id+":size' type='number' value='0'/>\n"
-    frmstr += indent + " Encoding: <input name='pcm-"+dv.ct_id+":encoding' type='text' value='utf-8'/>\n"
-    frmstr += indent + " Language:  <input name='pcm-"+dv.ct_id+":language' type='text' value='"+dv.lang+"'/><br />\n"
-    frmstr += indent + " MIME Type: <input name='pcm-"+dv.ct_id+":mime-type' type='text' value=''/>\n"
-    frmstr += indent + " Compression Type: <input name='pcm-"+dv.ct_id+":compression-type' type='text' value=''/><br />\n"
-    frmstr += indent + " HASH Result: <input name='pcm-"+dv.ct_id+":hash-result' type='text' value=''/>\n"
-    frmstr += indent + " HASH Function: <input name='pcm-"+dv.ct_id+":hash-function' type='text' value=''/><br />\n"
-    frmstr += indent + " Alt. Text: <input name='pcm-"+dv.ct_id+":alt-txt' type='text' value=''/><br />\n"
+    frmstr += indent + " Size (bytes):  <input name='mc-"+str(dv.ct_id)+":size' type='number' value='0'/>\n"
+    frmstr += indent + " Encoding: <input name='mc-"+str(dv.ct_id)+":encoding' type='text' value='utf-8'/>\n"
+    frmstr += indent + " Language:  <input name='mc-"+str(dv.ct_id)+":language' type='text' value='"+dv.lang+"'/><br />\n"
+    frmstr += indent + " MIME Type: <input name='mc-"+str(dv.ct_id)+":mime-type' type='text' value=''/>\n"
+    frmstr += indent + " Compression Type: <input name='mc-"+str(dv.ct_id)+":compression-type' type='text' value=''/><br />\n"
+    frmstr += indent + " HASH Result: <input name='mc-"+str(dv.ct_id)+":hash-result' type='text' value=''/>\n"
+    frmstr += indent + " HASH Function: <input name='mc-"+str(dv.ct_id)+":hash-function' type='text' value=''/><br />\n"
+    frmstr += indent + " Alt. Text: <input name='mc-"+str(dv.ct_id)+":alt-txt' type='text' value=''/><br />\n"
     if dv.content_mode == 'url':
-        frmstr += indent + " URL: <input name='pcm-"+dv.ct_id+":uri' type='url' value=''/> (to content location)<br />\n"
+        frmstr += indent + " URL: <input name='mc-"+str(dv.ct_id)+":uri' type='url' value=''/> (to content location)<br />\n"
     elif dv.content_mode == 'binary':
-        frmstr += indent + " Media Content: <br /><textarea name='pcm-"+dv.ct_id+":media-content' type='text' value=''/> (paste base64Binary encoded content here)</textarea>\n"
-        frmstr += "<b>OR</b> Select a file to upload: <input type='file' name='pcm-"+dv.ct_id+":media-content' size='40' /><br /><br />\n"
+        frmstr += indent + " Media Content: <br /><textarea name='mc-"+str(dv.ct_id)+":media-content' type='text' value=''/> (paste base64Binary encoded content here)</textarea>\n"
+        frmstr += "<b>OR</b> Select a file to upload: <input type='file' name='mc-"+str(dv.ct_id)+":media-content' size='40' /><br /><br />\n"
     elif dv.content_mode == 'text':
-        frmstr += indent + " Text Content: <br /><textarea name='pcm-"+dv.ct_id+":text-content' type='text' value=''/> (paste text content here)</textarea>\n"
-        frmstr += "<b>OR</b> Select a file to upload: <input type='file' name='pcm-"+dv.ct_id+":text-content'  size='40' /><br /><br />\n"
+        frmstr += indent + " Text Content: <br /><textarea name='mc-"+str(dv.ct_id)+":text-content' type='text' value=''/> (paste text content here)</textarea>\n"
+        frmstr += "<b>OR</b> Select a file to upload: <input type='file' name='mc-"+str(dv.ct_id)+":text-content'  size='40' /><br /><br />\n"
     else:
         frmstr += "<br /><b>An error in the model was detected and it doesn't allow a content mode.</b><br /><br />\n"
 
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -565,7 +559,7 @@ def fdv_ordinal(dv, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     if dv.normal_status:
         ns = dv.normal_status
@@ -595,7 +589,7 @@ def fdv_ordinal(dv, indent):
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
     if s:
-        frmstr += indent + " Choose a value: <select name='pcm-"+dv.ct_id+":symbol'>\n"
+        frmstr += indent + " Choose a value: <select name='mc-"+str(dv.ct_id)+":symbol'>\n"
         for c in s:
             frmstr += indent + "  <option value='"+c+"' label='"+c+"'>"+c+"</option>\n"
         frmstr += indent + "</select><br />\n"
@@ -603,8 +597,8 @@ def fdv_ordinal(dv, indent):
     frmstr += indent + " Normal:  "+ns.strip()+"<br />\n"
     frmstr += rrstr
 
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -619,7 +613,7 @@ def fdv_quantity(dv, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     if dv.normal_status:
         ns = dv.normal_status
@@ -665,8 +659,8 @@ def fdv_quantity(dv, indent):
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
 
-    frmstr += indent + " Enter Quantity:  <input name='pcm-"+dv.ct_id+":magnitude' type='number' />\n"
-    frmstr += indent + " Magnitude Status:  <select name='pcm-"+dv.ct_id+":magnitude-status'>\n"
+    frmstr += indent + " Enter Quantity:  <input name='mc-"+str(dv.ct_id)+":magnitude' type='number' />\n"
+    frmstr += indent + " Magnitude Status:  <select name='mc-"+str(dv.ct_id)+":magnitude-status'>\n"
     frmstr += indent + "  <option value='='  label='Magnitude is exactly.'>=</option>\n"
     frmstr += indent + "  <option value='<=' label='Magnitude is less than or equal to'><=</option>\n"
     frmstr += indent + "  <option value='=>' label='Magnitude is greater than or equal to'>=></option>\n"
@@ -674,8 +668,8 @@ def fdv_quantity(dv, indent):
     frmstr += indent + "  <option value='>'  label='Magnitude is greater than.'>></option>\n"
     frmstr += indent + "  <option value='~'  label='Magnitude is approximately.'>~</option>\n"
     frmstr += indent + " </select><br />\n"
-    frmstr += indent + " Error:  <input name='pcm-"+dv.ct_id+":error' type='number' value='0'/>\n"
-    frmstr += indent + " Accuracy:  <input name='pcm-"+dv.ct_id+":accuracy' type='number' value='0'/><br />\n"
+    frmstr += indent + " Error:  <input name='mc-"+str(dv.ct_id)+":error' type='number' value='0'/>\n"
+    frmstr += indent + " Accuracy:  <input name='mc-"+str(dv.ct_id)+":accuracy' type='number' value='0'/><br />\n"
 
     frmstr += indent + " Units:<br />\n"
     if dv.units:
@@ -684,8 +678,8 @@ def fdv_quantity(dv, indent):
     frmstr += indent + " Normal:  "+ns.strip()+"<br />\n"
     frmstr += rrstr
 
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -701,7 +695,7 @@ def fdv_ratio(dv, indent):
         link = "#"
 
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     if dv.normal_status:
         ns = dv.normal_status
@@ -757,8 +751,8 @@ def fdv_ratio(dv, indent):
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
 
-    frmstr += indent + " Enter Ratio (magnitude):  <input name='pcm-"+dv.ct_id+":magnitude' type='number' />\n"
-    frmstr += indent + " Magnitude Status:  <select name='pcm-"+dv.ct_id+":magnitude-status'>\n"
+    frmstr += indent + " Enter Ratio (magnitude):  <input name='mc-"+str(dv.ct_id)+":magnitude' type='number' />\n"
+    frmstr += indent + " Magnitude Status:  <select name='mc-"+str(dv.ct_id)+":magnitude-status'>\n"
     frmstr += indent + "  <option value='='  label='Magnitude is exactly.'>=</option>\n"
     frmstr += indent + "  <option value='<=' label='Magnitude is less than or equal to'><=</option>\n"
     frmstr += indent + "  <option value='=>' label='Magnitude is greater than or equal to'>=></option>\n"
@@ -766,15 +760,15 @@ def fdv_ratio(dv, indent):
     frmstr += indent + "  <option value='>'  label='Magnitude is greater than.'>></option>\n"
     frmstr += indent + "  <option value='~'  label='Magnitude is approximately.'>~</option>\n"
     frmstr += indent + " </select><br />\n"
-    frmstr += indent + " Error:  <input name='pcm-"+dv.ct_id+":error' type='number' value='0'/>\n"
-    frmstr += indent + " Accuracy:  <input name='pcm-"+dv.ct_id+":accuracy' type='number' value='0'/><br />\n"
-    frmstr += indent + " Ratio Type:  <select name='pcm-"+dv.ct_id+":ratio-type'>\n"
+    frmstr += indent + " Error:  <input name='mc-"+str(dv.ct_id)+":error' type='number' value='0'/>\n"
+    frmstr += indent + " Accuracy:  <input name='mc-"+str(dv.ct_id)+":accuracy' type='number' value='0'/><br />\n"
+    frmstr += indent + " Ratio Type:  <select name='mc-"+str(dv.ct_id)+":ratio-type'>\n"
     frmstr += indent + "  <option value='ratio'  label='Ratio'>Ratio</option>\n"
     frmstr += indent + "  <option value='proportion' label='Proportion'>Proportion</option>\n"
     frmstr += indent + "  <option value='rate' label='Rate'>Rate</option>\n"
     frmstr += indent + " </select><br />\n"
-    frmstr += indent + " Numerator:  <input name='pcm-"+dv.ct_id+":numerator' type='number' value='0'/>\n"
-    frmstr += indent + " Denominator:  <input name='pcm-"+dv.ct_id+":denominator' type='number' value='0'/><br />\n"
+    frmstr += indent + " Numerator:  <input name='mc-"+str(dv.ct_id)+":numerator' type='number' value='0'/>\n"
+    frmstr += indent + " Denominator:  <input name='mc-"+str(dv.ct_id)+":denominator' type='number' value='0'/><br />\n"
 
     frmstr += indent + "  Numerator Units:<br />\n"
     if dv.num_units:
@@ -791,8 +785,8 @@ def fdv_ratio(dv, indent):
     frmstr += indent + " Normal:  "+ns.strip()+"<br />\n"
     frmstr += rrstr
 
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -808,7 +802,7 @@ def fdv_temporal(dv, indent):
         link = "#"
 
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     if dv.normal_status:
         ns = dv.normal_status
@@ -831,35 +825,35 @@ def fdv_temporal(dv, indent):
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+dv.label.strip()+"</a><br /></span>\n"
 
     if dv.allow_date:
-        frmstr += indent + " Date:  <input name='pcm-"+dv.ct_id+":dvtemporal-date' type='date' value=''/> (YYYY-MM-DD)<br />\n"
+        frmstr += indent + " Date:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-date' type='date' value=''/> (YYYY-MM-DD)<br />\n"
     if dv.allow_time:
-        frmstr += indent + " Time:  <input name='pcm-"+dv.ct_id+":dvtemporal-time' type='time' value=''/> (HH:MM:SS)<br />\n"
+        frmstr += indent + " Time:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-time' type='time' value=''/> (HH:MM:SS)<br />\n"
     if dv.allow_datetime:
-        frmstr += indent + " Datetime:  <input name='pcm-"+dv.ct_id+":dvtemporal-datetime' type='datetime-local' value=''/> (YYYY-MM-DDTHH:MM:SS)<br />\n"
+        frmstr += indent + " Datetime:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-datetime' type='datetime-local' value=''/> (YYYY-MM-DDTHH:MM:SS)<br />\n"
     if dv.allow_datetimestamp:
-        frmstr += indent + " DatetimeStamp:  <input name='pcm-"+dv.ct_id+":dvtemporal-datetime-stamp' type='datetimestamp' value=''/> (YYYY-MM-DDTHH:MM:SS)<br />\n"
+        frmstr += indent + " DatetimeStamp:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-datetime-stamp' type='datetimestamp' value=''/> (YYYY-MM-DDTHH:MM:SS)<br />\n"
     if dv.allow_day:
-        frmstr += indent + " Day:  <input name='pcm-"+dv.ct_id+":dvtemporal-day' type='day' value=''/> (--DD)<br />\n"
+        frmstr += indent + " Day:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-day' type='day' value=''/> (--DD)<br />\n"
     if dv.allow_month:
-        frmstr += indent + " Month:  <input name='pcm-"+dv.ct_id+":dvtemporal-month' type='month' value=''/> (-MM)<br />\n"
+        frmstr += indent + " Month:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-month' type='month' value=''/> (-MM)<br />\n"
     if dv.allow_year:
-        frmstr += indent + " Year:  <input name='pcm-"+dv.ct_id+":dvtemporal-year' type='year' value=''/> (YYYY)<br />\n"
+        frmstr += indent + " Year:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-year' type='year' value=''/> (YYYY)<br />\n"
     if dv.allow_year_month:
-        frmstr += indent + " Year-Month:  <input name='pcm-"+dv.ct_id+":dvtemporal-year-month' type='text' value=''/> (YYYY-MM)<br />\n"
+        frmstr += indent + " Year-Month:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-year-month' type='text' value=''/> (YYYY-MM)<br />\n"
     if dv.allow_month_day:
-        frmstr += indent + " Month-Day:  <input name='pcm-"+dv.ct_id+":dvtemporal-month-day' type='text' value=''/> (-MM-DD)<br />\n"
+        frmstr += indent + " Month-Day:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-month-day' type='text' value=''/> (-MM-DD)<br />\n"
     if dv.allow_duration:
-        frmstr += indent + " Duration:  <input name='pcm-"+dv.ct_id+":dvtemporal-duration' type='text' value='P'/> (PxxYxxMxxDTxxHxxMxxS)<br />\n"
+        frmstr += indent + " Duration:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-duration' type='text' value='P'/> (PxxYxxMxxDTxxHxxMxxS)<br />\n"
     if dv.allow_ymduration:
-        frmstr += indent + " Year-Month Duration:  <input name='pcm-"+dv.ct_id+":dvtemporal-ymduration' type='text' value='P'/> (PxxYxxM)<br />\n"
+        frmstr += indent + " Year-Month Duration:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-ymduration' type='text' value='P'/> (PxxYxxM)<br />\n"
     if dv.allow_dtduration:
-        frmstr += indent + " Day Time Duration:  <input name='pcm-"+dv.ct_id+":dvtemporal-dtduration' type='text' value='P'/> (PxDTxxHxxMxxS)<br />\n"
+        frmstr += indent + " Day Time Duration:  <input name='mc-"+str(dv.ct_id)+":dvtemporal-dtduration' type='text' value='P'/> (PxDTxxHxxMxxS)<br />\n"
 
     frmstr += indent + " Normal:  "+ns.strip()+"<br />\n"
     frmstr += rrstr
 
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+dv.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+dv.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(dv.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(dv.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
@@ -873,11 +867,11 @@ def fparty(pi, indent):
         link = "#"
 
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+pi.label+"</a><br /></span>\n"
-    frmstr += indent + "Name: <input name='pcm-"+pi.ct_id+":Party' type='text' size='80'/><br/>\n"
+    frmstr += indent + "Name: <input name='mc-"+str(pi.ct_id)+":Party' type='text' size='80'/><br/>\n"
     if pi.external_ref:
         for ref in pi.external_ref.all():
             frmstr += fdv_link(ref, indent)
@@ -900,7 +894,7 @@ def fparticipation(p, indent):
         link = "#"
 
     indent += '  '
-    frmstr = indent + "<div id='"+p.ct_id+"' class='pcm'> \n"
+    frmstr = indent + "<div id='"+str(p.ct_id)+"' class='mc'> \n"
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+p.label+"</a><br /></span>\n"
     if p.performer:
         frmstr += fparty(p.performer, indent)
@@ -911,8 +905,8 @@ def fparticipation(p, indent):
     if p.mode:
         frmstr += fdv_string(p.mode, indent)
 
-    frmstr += indent + "  Start Time: <input name='pct-"+p.ct_id+":start-time' type='datetime-local' value='"+vtb+"'/><br />\n"
-    frmstr += indent + "  End Time: <input name='pct-"+p.ct_id+":end-time' type='datetime-local' value='"+vte+"'/><br />\n"
+    frmstr += indent + "  Start Time: <input name='mc-"+str(p.ct_id)+":start-time' type='datetime-local' value='"+vtb+"'/><br />\n"
+    frmstr += indent + "  End Time: <input name='mc-"+str(p.ct_id)+":end-time' type='datetime-local' value='"+vte+"'/><br />\n"
 
     frmstr += indent + " </div>\n"
 
@@ -926,7 +920,7 @@ def fattestation(a, indent):
         link = "#"
 
     indent += '  '
-    frmstr = indent + "<div id='"+a.ct_id+"' class='pcm'> \n"
+    frmstr = indent + "<div id='"+str(a.ct_id)+"' class='mc'> \n"
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+a.label+"</a><br /></span>\n"
 
     if a.view:
@@ -941,7 +935,7 @@ def fattestation(a, indent):
     if a.committer:
         frmstr += fparty(a.committer, indent)
 
-    frmstr += indent + "  Time Committed: <input name='pct-"+a.ct_id+":time-committed' type='datetime-local' value='"+datetime.strftime(datetime.today(),'%Y-%m-%d %H:%M')+"'/><br />\n"
+    frmstr += indent + "  Time Committed: <input name='mc-"+str(a.ct_id)+":time-committed' type='datetime-local' value='"+datetime.strftime(datetime.today(),'%Y-%m-%d %H:%M')+"'/><br />\n"
     frmstr += indent + "  Is Pending: <select>"
     frmstr += indent + "<option>Yes</option>"
     frmstr += indent + "<option>No</option>"
@@ -959,7 +953,7 @@ def faudit(aud, indent):
         link = "#"
 
     indent += '  '
-    frmstr = indent + "<div id='"+aud.ct_id+"' class='pcm'> \n"
+    frmstr = indent + "<div id='"+str(aud.ct_id)+"' class='mc'> \n"
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+aud.label+"</a><br /></span>\n"
 
     if aud.system_id:
@@ -971,7 +965,7 @@ def faudit(aud, indent):
     if aud.location:
         frmstr += fcluster(aud.location, indent)
 
-    frmstr += indent + "  Timestamp: <input name='pct-"+aud.ct_id+":timestamp' type='datetime-local' value='"+datetime.strftime(datetime.today(),'%Y-%m-%d %H:%M')+"'/><br />\n"
+    frmstr += indent + "  Timestamp: <input name='mc-"+str(aud.ct_id)+":timestamp' type='datetime-local' value='"+datetime.strftime(datetime.today(),'%Y-%m-%d %H:%M')+"'/><br />\n"
 
     frmstr += indent + " </div>\n"
 
@@ -987,7 +981,7 @@ def freferencerange(rr, indent):
     else:
         link = "#"
     frmstr = ""
-    frmstr += '<div class="pcm">\n'
+    frmstr += '<div class="mc">\n'
     indent += '  '
     frmstr += indent + "<span class='label'><a href='"+link+"' title='"+tt+"' target='_blank'>"+rr.label.strip()+"</a><br /></span>\n"
     frmstr += indent + "ReferenceRange Definition: <b>"+rr.definition+"</b><br />\n"
@@ -998,8 +992,8 @@ def freferencerange(rr, indent):
         n = 'No'
 
     frmstr += indent + "Normal range: "+n+"<br />\n"
-    frmstr += indent + "<span> Begin Valid Time:  <input name='pcm-"+rr.ct_id+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
-    frmstr += indent + " End Valid Time: <input name='pcm-"+rr.ct_id+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
+    frmstr += indent + "<span> Begin Valid Time:  <input name='mc-"+str(rr.ct_id)+":vtb' type='datetime-local' value='"+vtb+"'/>\n"
+    frmstr += indent + " End Valid Time: <input name='mc-"+str(rr.ct_id)+":vte' type='datetime-local' value='"+vte+"'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr

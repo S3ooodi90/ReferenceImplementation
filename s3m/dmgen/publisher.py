@@ -110,7 +110,7 @@ def publish_DvBoolean(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvBoolean
     dt_str += padding.rjust(indent+8) + ("<xs:choice maxOccurs='1' minOccurs='1'>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element name='true-value'>\n")
@@ -207,7 +207,7 @@ def publish_DvLink(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvLink
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='link' type='xs:anyURI'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='"+escape(self.relation.strip())+"'/>\n")
@@ -265,10 +265,18 @@ def publish_DvString(self):
     tips = []
     for t in self.definitions.splitlines():
         tips.append(escape(t))
+
     if self.def_val:
         default = escape(self.def_val.strip())
+        # imports from CCD-Gen seem to be broken for default so we'll fix them here.
+        if len(default) > 250 or 'https://' in default or 'http://' in default:
+            default = None
+            self.def_val = ''
+            self.save()
     else:
         default = None
+
+
 
     padding = ('').rjust(indent)
 
@@ -302,7 +310,7 @@ def publish_DvString(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvString
     if enumList:
         if default:
@@ -346,10 +354,6 @@ def publish_DvString(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvstring-language' type='xs:language' default='"+self.lang+"'/>\n")
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
-        if 'DvString-dv' in self.asserts: # 2.4.7 to 2.5.0 update
-            self.asserts = self.asserts.replace('DvString-dv', 'dvstring-value',1)
-            self.save()
-
         str1 = "<xs:assert test="
         str2 ="/>\n"
         for a in self.asserts.splitlines():
@@ -382,7 +386,7 @@ def publish_DvFile(self):
     self.r_code = pct_rcode(self, 'DvFile')
     self.save()
 
-    # fix double quotes in label
+    # encode double quotes in label
     self.label.replace('"','&quot;')
     self.save()
 
@@ -430,7 +434,7 @@ def publish_DvFile(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
 
     #DvFile
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='size' type='xs:int'/>\n")
@@ -579,7 +583,7 @@ def publish_DvInterval(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvInterval
     # create an UUIDs for the invl-type restrictions
     lower_id = str(uuid4())
@@ -667,7 +671,7 @@ def publish_ReferenceRange(self):
 
     #TODO - change interval to interval
 
-    dvi_id = self.interval.ct_id
+    dvi_id = str(self.interval.ct_id)
     if self.is_normal:
         normal="true"
     else:
@@ -707,7 +711,7 @@ def publish_ReferenceRange(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #ReferenceRange
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' fixed='"+rr_def.strip()+"'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-"+dvi_id+"'/> \n")
@@ -815,7 +819,7 @@ def publish_DvOrdinal(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -952,7 +956,7 @@ def publish_DvCount(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1013,7 +1017,7 @@ def publish_DvCount(self):
             msg = ( "Units: "+self.units.label+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             return msg
 
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvcount-units' type='s3m:mc-"+self.units.ct_id+"'/> \n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvcount-units' type='s3m:mc-"+str(self.units.ct_id)+"'/> \n")
 
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -1100,7 +1104,7 @@ def publish_DvQuantity(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1158,7 +1162,7 @@ def publish_DvQuantity(self):
         if not self.units.published:
             reset_publication(self)
             msg = ( "Units: "+self.units.label+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvquantity-units' type='s3m:mc-"+self.units.ct_id+"'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvquantity-units' type='s3m:mc-"+str(self.units.ct_id)+"'/>\n")
 
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -1244,7 +1248,7 @@ def publish_DvRatio(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1446,7 +1450,7 @@ def publish_DvTemporal(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTime'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1611,14 +1615,14 @@ def publish_Party(self):
                 msg = ("External Reference: "+xref.__str__().strip()+" hasn't been published. Please publish the DvLink and retry.", messages.ERROR)
                 return msg
             else:
-                party_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' name='party-ref' type='s3m:mc-"+xref.ct_id+"'/>\n"
+                party_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' name='party-ref' type='s3m:mc-"+str(xref.ct_id)+"'/>\n"
 
     if self.details:
         if not self.details.published:
             reset_publication(self)
             msg = ("Cluster: "+self.details.__str__().strip()+" hasn't been published. Please publish the item and retry.", messages.ERROR)
             return msg
-        party_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='party-details' type='s3m:mc-"+self.details.ct_id+"'/>\n")
+        party_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='party-details' type='s3m:mc-"+str(self.details.ct_id)+"'/>\n")
 
     party_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -1692,21 +1696,21 @@ def publish_Audit(self):
             reset_publication(self)
             msg = ("System ID: (DvString) "+self.system_id.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='system-id' type='s3m:mc-"+self.system_id.ct_id+"'/>\n")
+        aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='system-id' type='s3m:mc-"+str(self.system_id.ct_id)+"'/>\n")
 
     if self.system_user:
         if not self.system_user.published:
             reset_publication(self)
             msg = ("System User: (Party) "+self.system_user.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='system-user' type='s3m:mc-"+self.system_user.ct_id+"'/>\n")
+        aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='system-user' type='s3m:mc-"+str(self.system_user.ct_id)+"'/>\n")
 
     if self.location:
         if not self.location.published:
             reset_publication(self)
             msg = ("Location: (Cluster) "+self.location.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='location' type='s3m:mc-"+self.location.ct_id+"'/>\n")
+        aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='location' type='s3m:mc-"+str(self.location.ct_id)+"'/>\n")
 
     aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='timestamp' type='xs:dateTimeStamp'/>\n")
 
@@ -1778,28 +1782,28 @@ def publish_Attestation(self):
             reset_publication(self)
             msg = ("View: (DvFile) "+self.view.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='view' type='s3m:mc-"+self.view.ct_id+"'/> \n")
+        att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='view' type='s3m:mc-"+str(self.view.ct_id)+"'/> \n")
 
     if self.proof:
         if not self.proof.published:
             reset_publication(self)
             msg = ("Proof: (DvFile) "+self.proof.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='proof' type='s3m:mc-"+self.proof.ct_id+"'/> \n")
+        att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='proof' type='s3m:mc-"+str(self.proof.ct_id)+"'/> \n")
 
     if self.reason:
         if not self.reason.published:
             reset_publication(self)
             msg = ("Reason: (DvString) "+self.reason.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='reason' type='s3m:mc-"+self.reason.ct_id+"'/> \n")
+        att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='reason' type='s3m:mc-"+str(self.reason.ct_id)+"'/> \n")
 
     if self.committer:
         if not self.committer.published:
             reset_publication(self)
             msg = ("Committer: (Party) "+self.committer.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='committer' type='s3m:mc-"+self.committer.ct_id+"'/>\n")
+        att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='committer' type='s3m:mc-"+str(self.committer.ct_id)+"'/>\n")
 
     att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='committed' type='xs:dateTimeStamp'/>\n")
     att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' default='true' name='pending' type='xs:boolean'/>\n")
@@ -1871,7 +1875,7 @@ def publish_Participation(self):
             reset_publication(self)
             msg = ("Performer: "+self.performer.__str__().strip()+" hasn't been published. Please publish the DvURI and retry.", messages.ERROR)
             return msg
-        ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='performer' type='s3m:mc-"+self.performer.ct_id+"'/>\n")
+        ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='performer' type='s3m:mc-"+str(self.performer.ct_id)+"'/>\n")
     else:
         reset_publication(self)
         msg = ("You must define a performer (Party) for Participation: "+self.__str__().strip(), messages.ERROR)
@@ -1882,7 +1886,7 @@ def publish_Participation(self):
             reset_publication(self)
             msg = ("Function: (DvString) "+self.function.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='function' type='s3m:mc-"+self.function.ct_id+"'/>\n")
+        ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='function' type='s3m:mc-"+str(self.function.ct_id)+"'/>\n")
     else:
         reset_publication(self)
         msg = ("You must define a function (DvString) for Participation: "+self.__str__().strip(), messages.ERROR)
@@ -1893,7 +1897,7 @@ def publish_Participation(self):
             reset_publication(self)
             msg = ("Mode: (DvString) "+self.simple_mode.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='mode' type='s3m:mc-"+self.mode.ct_id+"'/> \n")
+        ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='mode' type='s3m:mc-"+str(self.mode.ct_id)+"'/> \n")
     else:
         reset_publication(self)
         msg = ("You must define a mode (DvString) for Participation: "+self.__str__().strip(), messages.ERROR)
@@ -1982,7 +1986,7 @@ def publish_Cluster(self):
                     reset_publication(self)
                     msg = ( "(Cluster) "+item.__str__().strip()+" hasn't been published.", messages.ERROR)
                     return msg
-                cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.ct_id+"'/>\n")
+                cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.ct_id)+"'/>\n")
 
             else:
                 reset_publication(self)
@@ -1995,7 +1999,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvBoolean) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
     if self.dvlink.all():
         has_content = True
@@ -2003,7 +2007,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvLink) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
     if self.dvstring.all():
         has_content = True
@@ -2011,7 +2015,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvString) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
     if self.dvfile.all():
         has_content = True
@@ -2019,7 +2023,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvFile) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
     if self.dvordinal.all():
         has_content = True
@@ -2027,7 +2031,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvOrdinal) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
     if self.dvcount.all():
         has_content = True
@@ -2035,7 +2039,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvCount) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
     if self.dvquantity.all():
         has_content = True
@@ -2043,7 +2047,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvQuantity) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
 
     if self.dvratio.all():
@@ -2052,7 +2056,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvRatio) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
     if self.dvtemporal.all():
         has_content = True
@@ -2060,7 +2064,7 @@ def publish_Cluster(self):
             if not item.published:
                 reset_publication(self)
                 msg = ( "(DvTemporal) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+item.adapter_ctid+"'/>\n")
+            cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
 
     cl_str += padding.rjust(indent+6) + ("</xs:sequence>\n")
@@ -2144,10 +2148,10 @@ def publish_Entry(self):
             reset_publication(self)
             msg = ("Cluster "+self.data.__str__().strip()+" must be published before publishing the entry.", messages.ERROR)
             return msg
-        entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' ref='s3m:me-"+self.data.ct_id+"'/>\n")
+        entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' ref='s3m:me-"+str(self.data.ct_id)+"'/>\n")
 
     if self.subject:
-        entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='subject' type='s3m:mc-"+self.subject.ct_id+"'/>\n")
+        entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='subject' type='s3m:mc-"+str(self.subject.ct_id)+"'/>\n")
     else:
         reset_publication(self)
         msg = ("Entry "+self.__str__().strip()+" must have a subject (PartyType) defined.", messages.ERROR)
@@ -2162,7 +2166,7 @@ def publish_Entry(self):
             reset_publication(self)
             msg = ("Entry "+self.provider.__str__().strip()+" must be published before publishing the entry.", messages.ERROR)
             return msg
-        entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='provider' type='s3m:mc-"+self.provider.ct_id+"'/> \n")
+        entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='provider' type='s3m:mc-"+str(self.provider.ct_id)+"'/> \n")
 
 
     if not self.participations.all():
@@ -2174,7 +2178,7 @@ def publish_Entry(self):
                 msg = ("Participation: "+op.__str__().strip()+" hasn't been published. Please publish the Participation and retry.", messages.ERROR)
                 return msg
             else:
-                entry_str += padding.rjust(indent+8) +"<xs:element maxOccurs='unbounded' minOccurs='0' ref='s3m:me-"+op.ct_id+"'/>\n"
+                entry_str += padding.rjust(indent+8) +"<xs:element maxOccurs='unbounded' minOccurs='0' ref='s3m:me-"+str(op.ct_id)+"'/>\n"
 
 
     if self.protocol:
@@ -2183,7 +2187,7 @@ def publish_Entry(self):
             msg = ("Protocol: "+self.protocol.__str__().strip()+" hasn't been published. Please publish the DvString and retry.", messages.ERROR)
             return msg
         else:
-            entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='protocol' type='s3m:mc-"+self.protocol.ct_id+"'/>\n")
+            entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='protocol' type='s3m:mc-"+str(self.protocol.ct_id)+"'/>\n")
     else:
         entry_str += padding.rjust(indent+8) + ("<!-- No protocol model -->\n")
 
@@ -2194,7 +2198,7 @@ def publish_Entry(self):
             msg = ("Workflow: "+self.workflow.__str__().strip()+" hasn't been published. Please publish the DvLink and retry.", messages.ERROR)
             return msg
         else:
-            entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='workflow' type='s3m:mc-"+self.workflow.ct_id+"'/>\n")
+            entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='workflow' type='s3m:mc-"+str(self.workflow.ct_id)+"'/>\n")
     else:
         entry_str += padding.rjust(indent+8) + ("<!-- No  workflow model -->\n")
 
@@ -2203,7 +2207,7 @@ def publish_Entry(self):
             reset_publication(self)
             msg = ("Audit "+self.audit.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
-        entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='audit' type='s3m:mc-"+self.audit.ct_id+"'/>\n")
+        entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='audit' type='s3m:mc-"+str(self.audit.ct_id)+"'/>\n")
     else:
         entry_str += padding.rjust(indent+8) + ("<!-- No  audit model -->\n")
 
@@ -2213,7 +2217,7 @@ def publish_Entry(self):
             msg = ("Attestation: "+self.attestation.__str__().strip()+" hasn't been published. Please publish the Attestation and retry.", messages.ERROR)
             return msg
         else:
-            entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='attestation' type='s3m:mc-"+self.attestation.ct_id+"'/>\n")
+            entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='attestation' type='s3m:mc-"+str(self.attestation.ct_id)+"'/>\n")
     else:
         entry_str += padding.rjust(indent+8) + ("<!-- No attestation model -->\n")
 
@@ -2227,7 +2231,7 @@ def publish_Entry(self):
                 msg = ("Link: "+link.__str__().strip()+" hasn't been published. Please publish the DvLink and retry.", messages.ERROR)
                 return msg
             else:
-                entry_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+link.ct_id+"'/>\n"
+                entry_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(link.ct_id)+"'/>\n"
 
     entry_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:

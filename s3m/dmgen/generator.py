@@ -61,7 +61,8 @@ class DMPkg(object):
         self.xmlHead = self.xmlHeader()
         self.xmlTail = '</s3m:'+self.dm.identifier+'>\n'
         self.xsdMetadata = self.xsdMetadata()
-        self.rm = '<!-- Include the RM Schema -->\n  <xs:include schemaLocation="http://www.s3model.com/ns/s3m/s3model_'+RMVERSION.replace('.','')+'.xsd"/>\n'
+        self.rm = '<!-- Include the RM Schema -->\n  <xs:include schemaLocation="http://www.s3model.com/ns/s3m/s3model_'+RMVERSION.replace('.','_')+'.xsd"/>\n'
+       #http://www.s3model.com/ns/s3m/s3model_1_0_0.xsd
 
     def xmlHeader(self):
         """
@@ -129,15 +130,7 @@ class DMPkg(object):
     def processDM(self):
         msg = ("The DM complexType was generated.", messages.SUCCESS)
 
-        #check for an Entry
-        if self.dm.admin_definition:
-            entry = self.dm.admin_definition
-        elif self.dm.care_definition:
-            entry = self.dm.care_definition
-        elif self.dm.demog_definition:
-            entry = self.dm.demog_definition
-        else:
-            msg = ("The DM is missing an Entry definition.", messages.ERROR)
+        entry = self.dm.entry
 
         # build the DMType restriction
         if msg[1] == messages.SUCCESS:
@@ -145,7 +138,7 @@ class DMPkg(object):
             self.xsd += '<xs:complexType name="mc-'+self.dm.ct_id+'"> \n'
             self.xsd += '  <xs:annotation>\n'
             self.xsd += '    <xs:appinfo>\n'
-            self.xsd += '      <rdf:Description rdf:about="http://www.mlhim.org/ns/s3m:mc-'+self.dm.ct_id+'">\n'
+            self.xsd += '      <rdf:Description rdf:about="http://www.s3model.com/ns/s3m:mc-'+self.dm.ct_id+'">\n'
             self.xsd += '        <rdfs:subClassOf rdf:resource="s3m:DMType"/>\n'
             self.xsd += '        <rdfs:label>'+escape(self.dm.title.strip())+'</rdfs:label>\n'
             if len(self.dm.pred_obj.all()) != 0:
@@ -158,7 +151,7 @@ class DMPkg(object):
             self.xsd += '  <xs:complexContent>\n'
             self.xsd += '    <xs:restriction base="s3m:DMType">\n'
             self.xsd += '      <xs:sequence>\n'
-            self.xsd += '        <xs:element maxOccurs="1" minOccurs="1" ref="s3m:me-'+entry.ct_id+'"/> \n'
+            self.xsd += '        <xs:element maxOccurs="1" minOccurs="1" ref="s3m:me-'+str(entry.ct_id)+'"/> \n'
             self.xsd += '      </xs:sequence>\n'
             if self.dm.asserts:
                 str1 = '      <xs:assert test='
@@ -189,7 +182,7 @@ class DMPkg(object):
         else:
             # add the published Entry code to the schema and example instance data
             self.xsd += entry.schema_code
-            self.xml +=  """<s3m:me-"""+entry.ct_id+""">\n"""
+            self.xml +=  """<s3m:me-"""+str(entry.ct_id)+""">\n"""
             self.xml +=  """<label>"""+entry.label+"""</label>\n"""
             self.xml +=  """<entry-language>"""+entry.language+"""</entry-language>\n"""
             self.xml +=  """<entry-encoding>"""+entry.encoding+"""</entry-encoding>\n"""
@@ -290,7 +283,7 @@ class DMPkg(object):
 
             # add the DvLink string to the XML instance
             self.xml += link_str
-            self.xml +=  """</s3m:me-"""+entry.ct_id+""">\n"""
+            self.xml +=  """</s3m:me-"""+str(entry.ct_id)+""">\n"""
 
         return(msg)
 
@@ -629,6 +622,8 @@ class DMPkg(object):
         adr_str = ''
         indent = 2
         padding = ('').rjust(indent)
+        adapter_id = str(adapter_id)
+        ct_id = str(ct_id)
 
         #Create the Adapter
         adr_str += padding.rjust(indent) + ("<xs:element name='me-"+adapter_id+"' substitutionGroup='s3m:Items' type='s3m:mc-"+adapter_id+"'/>\n")
@@ -657,7 +652,7 @@ class DMPkg(object):
                     if 's3m:' + self.used_uuids[uuid][n][1] not in sg_names:
                         sg_names.append('s3m:' + self.used_uuids[uuid][n][1])
                         sg_str = 'substitutionGroup="' + " ".join(sg_names)
-                        self.xsd += ('  <xs:element name="me-'+uuid+'" '+sg_str+'" type="s3m:mc-'+uuid+'"/>\n')
+                        self.xsd += ('  <xs:element name="me-'+str(uuid)+'" '+sg_str+'" type="s3m:mc-'+str(uuid)+'"/>\n')
         return(msg)
 
     def getXSD(self):
@@ -761,21 +756,21 @@ def generateDM(dm, request):
         os.close(lf)
         messages.add_message(request, messages.SUCCESS, "Wrote the XML Instance file.")
 
-        #open and write a JSON instance file dm-(uuid).json
-        namespaces = {}
-        for ns in NS.objects.all():
-            namespaces[ns.uri.strip()] = ns.abbrev.strip()
-        f = ContentFile(dmpkg.xml.encode("utf-8")) #this is the XML instance before conversion
-        xmldict = xmltodict.parse(f, process_namespaces=True, namespaces=namespaces)
-        j = json.dumps(xmldict, indent=2)
-        jfile = ContentFile(j)
-        jsonfile = dm.json_file
-        jsonfile.save('dm-'+dm.ct_id+'.json', jfile)
-        jsonfile.close()
-        lf = os.open(dm_dir+'/dm-'+ dm.ct_id+'.json', os.O_RDWR|os.O_CREAT )
-        os.write(lf,j.encode("utf-8"))
-        os.close(lf)
-        messages.add_message(request, messages.SUCCESS, "Wrote the JSON Instance file.")
+        ##open and write a JSON instance file dm-(uuid).json
+        #namespaces = {}
+        #for ns in NS.objects.all():
+            #namespaces[ns.uri.strip()] = ns.abbrev.strip()
+        #f = ContentFile(dmpkg.xml.encode("utf-8")) #this is the XML instance before conversion
+        #xmldict = xmltodict.parse(f, process_namespaces=True, namespaces=namespaces)
+        #j = json.dumps(xmldict, indent=2)
+        #jfile = ContentFile(j)
+        #jsonfile = dm.json_file
+        #jsonfile.save('dm-'+dm.ct_id+'.json', jfile)
+        #jsonfile.close()
+        #lf = os.open(dm_dir+'/dm-'+ dm.ct_id+'.json', os.O_RDWR|os.O_CREAT )
+        #os.write(lf,j.encode("utf-8"))
+        #os.close(lf)
+        #messages.add_message(request, messages.SUCCESS, "Wrote the JSON Instance file.")
 
         #generate and write the SHA1 file
         dmxsd = open(dm_dir+'/dm-'+dm.ct_id+'.xsd', encoding="utf-8")
@@ -850,8 +845,8 @@ def generateDM(dm, request):
         r_descfile.write(('Title: '+r_proj+'\n').encode("utf-8"))
         r_descfile.write('Version: 1.0\n'.encode("utf-8"))
         r_descfile.write(('Date: '+dm.pub_date.strftime("%Y-%m-%d")+'\n').encode("utf-8"))
-        r_descfile.write('Author: Timothy W. Cook <tim@mlhim.org>\n'.encode("utf-8"))
-        r_descfile.write('Maintainer: Timothy W. Cook <tim@mlhim.org>\n'.encode("utf-8"))
+        r_descfile.write('Author: Timothy W. Cook <timothywayne.cook@gmail.com>\n'.encode("utf-8"))
+        r_descfile.write('Maintainer: Timothy W. Cook <timothywayne.cook@gmail.com>\n'.encode("utf-8"))
         r_descfile.write(('Description: Creates a data frame from instances of the S3Model DM for:\n  '+dm.title +'\n  The DM ID is: dm-'+dm.ct_id+'\n  '+dm.description+'\n').encode("utf-8"))
         r_descfile.write('License: Apache License 2.0\n'.encode("utf-8"))
         r_descfile.write('Depends: \n'.encode("utf-8"))
@@ -920,7 +915,7 @@ def gen_metadataR(self):
     year = str(now.timetuple()[0])
 
     rstr = '' #The string to write
-    rstr += "# Copyright 2013-"+year+", Timothy W. Cook <tim@mlhim.org>\n"
+    rstr += "# Copyright 2013-"+year+", Timothy W. Cook <timothywayne.cook@gmail.com>\n"
     rstr += "# metadata.R for dm-"+self.ct_id+".xsd\n"
     rstr += "# Licensed under the Apache License, Version 2.0 (the 'License');\n"
     rstr += "# you may not use this file except in compliance with the License.\n"
@@ -944,7 +939,7 @@ def gen_metadataR(self):
     rstr += "  dc_source='"+self.source+"',\n"
     rstr += "  dc_relation='"+self.relation+"',\n"
     rstr += "  dc_coverage='"+self.coverage+"',\n"
-    rstr += "  dc_type='MLHIM Concept Constraint Definition (DM)',\n"
+    rstr += "  dc_type='S3Model Data Model (DM)',\n"
     rstr += "  dc_identifier='dm-"+self.ct_id+"',\n"
     rstr += "  dc_description='"+self.description+"',\n"
     rstr += "  dc_publisher='"+self.publisher+"',\n"

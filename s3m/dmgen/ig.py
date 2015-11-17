@@ -33,13 +33,13 @@ def dv_boolean(dv, indent):
     vte = random_dtstr(start=vtb)
 
     indent += '  '
-    elstr = indent + """<mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr = indent + """<s3m:me-"""+str(dv.ct_id)+""">\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
     elstr += indent + """  <!-- Use any subtype of ExceptionalValue here when a value is missing or invalid or invalid -->\n"""
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
     elstr += indent + """  <vte>"""+vte+"""</vte>\n"""
     elstr += indent + """  <true-value>"""+booldv+"""</true-value>\n"""
-    elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -50,7 +50,7 @@ def dv_link(dv, indent, pcs=True):
     elstr = ''
     indent += '  '
     if pcs:
-        elstr += indent + """<mlhim2:pcs-"""+dv.ct_id+""">\n"""
+        elstr += indent + """<s3m:me-"""+str(dv.ct_id)+""">\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
 
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
@@ -59,7 +59,7 @@ def dv_link(dv, indent, pcs=True):
     elstr += indent + """  <relation>"""+escape(dv.relation.strip())+"""</relation>\n"""
     elstr += indent + """  <relation-uri>"""+escape(dv.relation_uri.strip())+"""</relation-uri>\n"""
     if pcs:
-        elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+        elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -88,7 +88,7 @@ def dv_string(dv, indent, pcs=True):
     elstr = ''
     indent += '  '
     if pcs:
-        elstr += indent + """<mlhim2:pcs-"""+dv.ct_id+""">\n"""
+        elstr += indent + """<s3m:me-"""+str(dv.ct_id)+""">\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
 
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
@@ -96,7 +96,7 @@ def dv_string(dv, indent, pcs=True):
     elstr += indent + """  <dvstring-value>"""+s.strip()+"""</dvstring-value>\n"""
     elstr += indent + """  <dvstring-language>"""+dv.lang+"""</dvstring-language>\n"""
     if pcs:
-        elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+        elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -138,7 +138,7 @@ def dv_count(dv, indent):
             mag = tdlist[dv.total_digits]
 
     indent += '  '
-    elstr = indent + """<mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr = indent + """<s3m:me-"""+str(dv.ct_id)+""">\n"""
     elstr += indent + """    <label>"""+escape(dv.label.strip())+"""</label>\n"""
 
     elstr += indent + """    <vtb>"""+vtb+"""</vtb>\n"""
@@ -156,7 +156,7 @@ def dv_count(dv, indent):
     elstr += indent + """    <dvcount-value>"""+str(mag)+"""</dvcount-value>\n"""
     elstr += indent + """    <dvcount-units>\n<label>"""+escape(dv.units.label.strip())+"""</label>\n<dvstring-value>"""+unit+"""</dvstring-value>\n</dvcount-units>\n"""
 
-    elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -221,7 +221,7 @@ def dv_file(dv, indent, pcs=True):
     elstr = ''
     indent += '  '
     if pcs:
-        elstr += indent +"""<mlhim2:pcs-"""+dv.ct_id+""">\n"""
+        elstr += indent +"""<s3m:me-"""+str(dv.ct_id)+""">\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
     elstr += indent + """  <vte>"""+vte+"""</vte>\n"""
@@ -250,7 +250,7 @@ def dv_file(dv, indent, pcs=True):
     elif dv.content_mode == 'url':
         elstr += indent + """  <uri>http://www.mlhim.org/fake_media.png</uri>\n"""
     if pcs:
-        elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+        elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -270,7 +270,7 @@ def dv_ordinal(dv, indent):
     ri = randint(0, len(o)-1) # get a random index
 
     indent += '  '
-    elstr = indent + """<mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr = indent + """<s3m:me-"""+str(dv.ct_id)+""">\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
 
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
@@ -282,7 +282,7 @@ def dv_ordinal(dv, indent):
         elstr += indent + """  <normal-status>"""+dv.normal_status.strip()+"""</normal-status>\n"""
     elstr += indent + """  <ordinal>"""+o[ri]+"""</ordinal>\n"""
     elstr += indent + """  <symbol>"""+s[ri]+"""</symbol>\n"""
-    elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -297,7 +297,7 @@ def dv_parsable(dv, indent):
         size = 0
 
     indent += '  '
-    elstr = indent + """<mlhim2:pcs-"""+dv.ct_id+"""> <!-- DvParsable -->\n"""
+    elstr = indent + """<s3m:me-"""+str(dv.ct_id)+"""> <!-- DvParsable -->\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
 
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
@@ -307,7 +307,7 @@ def dv_parsable(dv, indent):
     elstr += indent + """  <language>"""+dv.lang+"""</language>\n"""
     elstr += indent + """  <DvParsable-dv>Some parsable information.</DvParsable-dv>\n"""
     elstr += indent + """  <formalism>Unknown</formalism>\n"""
-    elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -367,7 +367,7 @@ def dv_quantity(dv, indent):
             #mag = tdlist[dv.total_digits]
 
     indent += '  '
-    elstr = indent + """<mlhim2:pcs-"""+dv.ct_id+"""> <!-- DvQuantity -->\n"""
+    elstr = indent + """<s3m:me-"""+str(dv.ct_id)+"""> <!-- DvQuantity -->\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
 
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
@@ -382,7 +382,7 @@ def dv_quantity(dv, indent):
     elstr += indent + """  <accuracy>0</accuracy>\n"""
     elstr += indent + """    <dvquantity-value>"""+str(mag)+"""</dvquantity-value>\n"""
     elstr += indent + """    <dvquantity-units>\n<label>"""+escape(dv.units.label.strip())+"""</label>\n<dvstring-value>"""+unit+"""</dvstring-value>\n</dvquantity-units>\n"""
-    elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -442,7 +442,7 @@ def dv_ratio(dv, indent):
     mag = num/den
 
     indent += '  '
-    elstr = indent + """<mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr = indent + """<s3m:me-"""+str(dv.ct_id)+""">\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
 
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
@@ -475,7 +475,7 @@ def dv_ratio(dv, indent):
         unit = choice(enumList)
         elstr += indent + """<ratio-units>\n<label>"""+escape(dv.ratio_units.label.strip())+"""</label>\n<dvstring-value>"""+unit+"""</dvstring-value>\n</ratio-units>\n"""
 
-    elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -492,7 +492,7 @@ def dv_temporal(dv, indent):
     dur = abs((rdt-rdt2).days)
 
     indent += '  '
-    elstr = indent + """<mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr = indent + """<s3m:me-"""+str(dv.ct_id)+""">\n"""
     elstr += indent + """  <label>"""+escape(dv.label.strip())+"""</label>\n"""
 
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
@@ -526,7 +526,7 @@ def dv_temporal(dv, indent):
         elstr += indent + """  <dvtemporal-ymduration>P2Y6M</dvtemporal-ymduration>\n"""
     if dv.allow_dtduration:
         elstr += indent + """  <dvtemporal-dtduration>PT2H10M</dvtemporal-dtduration>\n"""
-    elstr += indent + """</mlhim2:pcs-"""+dv.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(dv.ct_id)+""">\n"""
 
     return elstr
 
@@ -583,7 +583,7 @@ def participation(p, indent):
     vte = random_dtstr(start=vtb)
 
     indent += '  '
-    elstr = indent + """<mlhim2:pcs-"""+p.ct_id+""">\n"""
+    elstr = indent + """<s3m:me-"""+str(p.ct_id)+""">\n"""
     elstr += indent + """<label>"""+escape(p.label.strip())+"""</label>\n"""
 
     if p.performer:
@@ -603,7 +603,7 @@ def participation(p, indent):
 
     elstr += indent + """  <start>"""+vtb+"""Z</start>\n"""
     elstr += indent + """  <end>"""+vte+"""Z</end>\n"""
-    elstr += indent + """</mlhim2:pcs-"""+p.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(p.ct_id)+""">\n"""
 
     return elstr
 
@@ -630,7 +630,7 @@ def referencerange(rr, indent):
     vte = random_dtstr(start=vtb)
 
     indent += '  '
-    elstr = """<mlhim2:pcs-"""+rr.ct_id+"""> <!-- ReferenceRange -->\n"""
+    elstr = """<s3m:me-"""+str(rr.ct_id)+"""> <!-- ReferenceRange -->\n"""
     elstr += indent + """  <label>"""+escape(rr.label.strip())+"""</label>\n"""
 
     elstr += indent + """  <vtb>"""+vtb+"""</vtb>\n"""
@@ -642,7 +642,7 @@ def referencerange(rr, indent):
     else:
         n = 'false'
     elstr += indent + """  <is-normal>"""+n+"""</is-normal>\n"""
-    elstr += indent + """</mlhim2:pcs-"""+rr.ct_id+""">\n"""
+    elstr += indent + """</s3m:me-"""+str(rr.ct_id)+""">\n"""
 
     return elstr
 
@@ -650,7 +650,7 @@ def cluster(clu, indent, pcs=True):
     indent += '  '
     elstr = ''
     if pcs:
-        elstr += indent + """<mlhim2:pcs-"""+clu.ct_id+""">\n"""
+        elstr += indent + """<s3m:me-"""+str(clu.ct_id)+""">\n"""
     elstr += indent + """  <label>"""+escape(clu.label.strip())+"""</label>\n"""
     if clu.clusters:
         for c in clu.clusters.all():
@@ -658,59 +658,59 @@ def cluster(clu, indent, pcs=True):
 
     if clu.dvboolean:
         for dv in clu.dvboolean.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_boolean(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
 
     if clu.dvlink:
         for dv in clu.dvlink.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_link(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
 
     if clu.dvstring:
         for dv in clu.dvstring.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_string(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
 
     if clu.dvfile:
         for dv in clu.dvfile.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_file(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
 
     if clu.dvordinal:
         for dv in clu.dvordinal.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_ordinal(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
 
     if clu.dvcount:
         for dv in clu.dvcount.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_count(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
 
     if clu.dvquantity:
         for dv in clu.dvquantity.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_quantity(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
 
     if clu.dvratio:
         for dv in clu.dvratio.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_ratio(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
 
     if clu.dvtemporal:
         for dv in clu.dvtemporal.all():
-            elstr += indent + """  <mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  <s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
             elstr += dv_temporal(dv, indent+'  ')
-            elstr += indent + """  </mlhim2:pcs-"""+dv.adapter_ctid+""">\n"""
+            elstr += indent + """  </s3m:me-"""+str(dv.adapter_ctid)+""">\n"""
     if pcs:
-        elstr += indent + """</mlhim2:pcs-"""+clu.ct_id+""">\n"""
+        elstr += indent + """</s3m:me-"""+str(clu.ct_id)+""">\n"""
 
     return elstr
 

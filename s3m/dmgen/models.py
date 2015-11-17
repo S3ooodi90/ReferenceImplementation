@@ -286,7 +286,7 @@ class DvString(DvAny):
     exact_length = models.IntegerField(_('exact length'),help_text=_("Enter the exact length of the string. It should be defined only when the number of characters is always fixed (e.g. codes and identifiers)."), null=True, blank=True)
     enums = models.TextField(_('enumerations'),blank=True, help_text=_("Enter the set of values of the string (e.g.Male,Female). One per line."))
     definitions = models.TextField(_('enumeration definitions'), blank=True, help_text=_("Enter a URI (prefereable a URL) defining each enumeration. One per line."))
-    def_val = models.CharField(_('default value'),max_length=2000, blank=True, help_text=_("Enter a default value (up to 2000 characters) for the string if desired."))
+    def_val = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value (up to 255 characters) for the string if desired."))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -316,7 +316,7 @@ class Units(DvAny):
     max_length = models.IntegerField(_('maximum length'),help_text=_("Enter the maximum number of characters that are required for this concept. If the character is optional, leave it blank."), null=True, blank=True)
     exact_length = models.IntegerField(_('exact length'),help_text=_("Enter the exact length of the concept. It should be defined only when the number of characters is always fixed (e.g. codes and identifiers)."), null=True, blank=True)
     enums = models.TextField(_('Symbols'), help_text=_("Enter the abbreviations or symbols for allowed units designations. One per line."))
-    def_val = models.CharField(_('default value'),max_length=2000, blank=True, help_text=_("Enter a default value (up to 2000 characters) for the string if desired."))
+    def_val = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value (up to 255 characters) for the string if desired."))
     definitions = models.TextField(_('Symbol definitions'), help_text=_("Enter a URI for each symbol. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all symbols then enter it on the first line only."))
 
     def publish(self, request):
@@ -830,7 +830,7 @@ class DM(models.Model):
     edited_by = models.ForeignKey(Modeler,verbose_name='Last Edited By', related_name='%(class)s_related_edited_by',)
     published = models.BooleanField(_("Generated"),default=False, help_text=_("Once this <em>Published</em> box has been checked, DM generation has been completed and no further edits are allowed."))
     project = models.ForeignKey(Project, verbose_name=_("project name"), to_field="prj_name", help_text=_('Choose a Project for this Data Model (DM)'))
-    about = models.CharField(_('about'),default="http://www.ccdgen.com/ccdlib/", max_length=255, help_text=_("The URL to the DM after publication. The DM ID will be added after the trailing slash in the format of 'ccd-{ccd_id}.xsd' This provides a full path and filename for the ccd as a unique identifier."))
+    about = models.CharField(_('about'),default="http://dmgen.s3model.com/dmlib/", max_length=255, help_text=_("The URL to the DM after publication. The DM ID will be added after the trailing slash in the format of 'ccd-{ccd_id}.xsd' This provides a full path and filename for the ccd as a unique identifier."))
     title = models.CharField(_('title'),unique=True, max_length=255, help_text=_("Enter the name of this Data Model (DM)."))
     author = models.ForeignKey(Modeler, verbose_name=_("Author"), help_text=_("Select the author of the DM"),related_name='%(class)s_related_author')
     contrib = models.ManyToManyField(Modeler, verbose_name=_("Contributors"), help_text=_("Select the contributors (if any) to this DM"),related_name='%(class)s_related_contrib', blank=True)
