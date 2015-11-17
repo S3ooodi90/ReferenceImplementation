@@ -59,12 +59,12 @@
 
       <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us"> Valid Time Begin. If present this must be a valid datetime including timezone. It is used to indicate the beginning time that information is considered valid or when the information was collected. </xs:documentation>
+          <xs:documentation xml:lang="en-us"> Valid Time Begin. If present this must be a valid datetime including timezone. It is used to indicate the beginning time that information is considered valid. </xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="vtb">
               <rdfs:domain rdf:resource="DvAnyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-              <rdfs:comment xml:lang="en-us"> Valid Time Begin. If present this must be a valid datetime including timezone. It is used to indicate the beginning time that information is considered valid or when the information was collected. </rdfs:comment>
+              <rdfs:comment xml:lang="en-us"> Valid Time Begin. If present this must be a valid datetime including timezone. It is used to indicate the beginning time that information is considered valid. </rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -72,7 +72,7 @@
 
       <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime" nillable="true">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us"> Valid Time End. If present this must be a valid date-time including timezone. It is used to indicate the ending time that information is considered valid or the time the information expired. </xs:documentation>
+          <xs:documentation xml:lang="en-us"> Valid Time End. If present this must be a valid date-time including timezone. It is used to indicate the ending time that information is considered valid or the time the information expired or will expire. </xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="vte">
               <rdfs:domain rdf:resource="DvAnyType"/>
