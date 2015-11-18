@@ -12,6 +12,7 @@ S3ModelTester.log
 settings.py
 dmlib/
 media/
+migrations/
 
 #Sphinx
 build/

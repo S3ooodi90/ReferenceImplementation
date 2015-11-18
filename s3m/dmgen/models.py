@@ -286,7 +286,7 @@ class DvString(DvAny):
     exact_length = models.IntegerField(_('exact length'),help_text=_("Enter the exact length of the string. It should be defined only when the number of characters is always fixed (e.g. codes and identifiers)."), null=True, blank=True)
     enums = models.TextField(_('enumerations'),blank=True, help_text=_("Enter the set of values of the string (e.g.Male,Female). One per line."))
     definitions = models.TextField(_('enumeration definitions'), blank=True, help_text=_("Enter a URI (prefereable a URL) defining each enumeration. One per line."))
-    def_val = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value (up to 255 characters) for the string if desired."))
+    def_val = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value (up to 255 characters) for the string if desired. Cannot contain 'http://' nor 'https://'"))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -316,7 +316,7 @@ class Units(DvAny):
     max_length = models.IntegerField(_('maximum length'),help_text=_("Enter the maximum number of characters that are required for this concept. If the character is optional, leave it blank."), null=True, blank=True)
     exact_length = models.IntegerField(_('exact length'),help_text=_("Enter the exact length of the concept. It should be defined only when the number of characters is always fixed (e.g. codes and identifiers)."), null=True, blank=True)
     enums = models.TextField(_('Symbols'), help_text=_("Enter the abbreviations or symbols for allowed units designations. One per line."))
-    def_val = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value (up to 255 characters) for the string if desired."))
+    def_val = models.CharField(_('default value'),max_length=255, blank=True, help_text=_("Enter a default value (up to 255 characters) for the string if desired. Cannot contain 'http://' nor 'https://'"))
     definitions = models.TextField(_('Symbol definitions'), help_text=_("Enter a URI for each symbol. One per line. These are used as rdf:isDefinedBy in the semantics. If the same URI is to be used for all symbols then enter it on the first line only."))
 
     def publish(self, request):
