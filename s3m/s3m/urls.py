@@ -17,9 +17,12 @@ from django.conf import settings
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
 
+from dmgen.api_v1 import v1_api
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^api/', include(v1_api.urls)),
 ]
 
 if settings.DEBUG:
