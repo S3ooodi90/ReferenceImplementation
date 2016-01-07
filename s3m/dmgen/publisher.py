@@ -111,6 +111,7 @@ def publish_DvBoolean(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvBoolean
     dt_str += padding.rjust(indent+8) + ("<xs:choice maxOccurs='1' minOccurs='1'>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element name='true-value'>\n")
@@ -208,6 +209,7 @@ def publish_DvLink(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvLink
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='link' type='xs:anyURI'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='"+escape(self.relation.strip())+"'/>\n")
@@ -311,6 +313,7 @@ def publish_DvString(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvString
     if enumList:
         if default:
@@ -435,7 +438,7 @@ def publish_DvFile(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
-
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvFile
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='size' type='xs:int'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='encoding' type='xs:string' default='"+self.encoding.strip()+"'/>\n")
@@ -584,6 +587,7 @@ def publish_DvInterval(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvInterval
     # create an UUIDs for the invl-type restrictions
     lower_id = str(uuid4())
@@ -712,6 +716,7 @@ def publish_ReferenceRange(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #ReferenceRange
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' fixed='"+rr_def.strip()+"'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-"+dvi_id+"'/> \n")
@@ -820,6 +825,7 @@ def publish_DvOrdinal(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -957,6 +963,7 @@ def publish_DvCount(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1105,6 +1112,7 @@ def publish_DvQuantity(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1249,6 +1257,7 @@ def publish_DvRatio(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1451,6 +1460,7 @@ def publish_DvTemporal(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #DvOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():

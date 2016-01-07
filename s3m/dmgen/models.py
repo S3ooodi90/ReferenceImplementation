@@ -184,7 +184,7 @@ class Common(models.Model):
     """
     project = models.ForeignKey(Project, verbose_name=_("Project Name"), to_field="prj_name", help_text=_('Choose the name of your Project.'))
     label = models.CharField(_('label'),max_length=110, help_text=_("A human readable label used to identify this model in DMGEN."))
-    ct_id = models.UUIDField(_("UUID"), default=uuid.uuid4, editable=False, help_text=_('A unique identifier for this MC.'))
+    ct_id = models.UUIDField(_("UUID"), default=uuid.uuid4, editable=False, unique=True, help_text=_('A unique identifier for this MC.'))
     created = models.DateTimeField(_('created'),auto_now_add=True, help_text=_('The dateTime that the MC was created.'))
     updated = models.DateTimeField(_('last updated'),auto_now=True, help_text=_("Last update."))
     published = models.BooleanField(_("published"),default=False, help_text=_("Published must be a green check icon in order to use this in a DM. This is not user editable. It is managed by the publication process."))
@@ -208,10 +208,11 @@ class DvAny(Common):
     """
     Abstract root of all datatypes.
     """
-    adapter_ctid = models.UUIDField(_("Adapter UUID"), default=uuid.uuid4, editable=False,  help_text=_('This UUID is generated for datatype that can be included in a Cluster. It is used to create a specific DvAdapter complexType.'))
+    adapter_ctid = models.UUIDField(_("Adapter UUID"), default=uuid.uuid4, editable=False, unique=True, help_text=_('This UUID is generated for datatype that can be included in a Cluster. It is used to create a specific DvAdapter complexType.'))
     require_vtb = models.BooleanField(_('Require Valid Time Begin?'), default=False, help_text=_('Check this box to require a Valid Time Begin element.'))
     require_vte = models.BooleanField(_('Require Valid Time End?'), default=False, help_text=_('Check this box to require a Valid Time End element.'))
     require_tr = models.BooleanField(_('Require Time Recorded?'), default=False, help_text=_('Check this box to require a Date & Time Recorded element.'))
+    require_mod = models.BooleanField(_('Require Time Modified?'), default=False, help_text=_('Check this box to require a Date & Time for last modified element.'))
 
     class Meta:
         abstract = True
@@ -823,7 +824,7 @@ class DM(models.Model):
     """
     This is the root node of a Data Model.
     """
-    ct_id = models.UUIDField(_("UUID"), default=uuid.uuid4, editable=False, help_text=_('The unique identifier for the DM.'))
+    ct_id = models.UUIDField(_("UUID"), default=uuid.uuid4, editable=False, unique=True, help_text=_('The unique identifier for the DM.'))
     created = models.DateTimeField(_('created'),auto_now_add=True, help_text=_('The dateTime that the MC was created.'))
     updated = models.DateTimeField(_('last updated'),auto_now=True, help_text=_("Last update."))
     creator = models.ForeignKey(Modeler, verbose_name='Creator', related_name='%(class)s_related_creator')

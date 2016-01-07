@@ -95,7 +95,20 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-
+      
+      <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTimeStamp" nillable="true">
+        <xs:annotation>
+          <xs:documentation xml:lang="en-us"> Time Modified. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was last changed.</xs:documentation>
+          <xs:appinfo>
+            <rdf:Description rdf:about="modified">
+              <rdfs:domain rdf:resource="DvAnyType"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+              <rdfs:comment xml:lang="en-us"> Time Modified. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was last changed.</rdfs:comment>
+            </rdf:Description>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      
     </xs:sequence>
   </xs:complexType>
 
