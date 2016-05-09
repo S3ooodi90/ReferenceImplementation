@@ -1,6 +1,6 @@
-===================
+=====================
 S3Model Data Analysis
-===================
+=====================
 
 The real value in data and especially in *semantically computable data* is in how you can use it after it is captured. Each implementation will have different analysis requirements from static reports to dynamic dashboards and decision support. S3Model data is designed to accommodate all of these use cases.
 
@@ -8,7 +8,7 @@ In many cases `XQuery <http://en.wikibooks.org/wiki/XQuery>`_ is a natural choic
 
 The popular `R <http://cran.r-project.org/>`_ programming language is specifically designed for data analysis and supports XML data via an `XML package <http://cran.r-project.org/web/packages/XML/index.html>`_ using the commonly used `libxml2 library <http://xmlsoft.org/>`_ used by most of the other languages. Libxml2 includes complete XPath, Xpointer and Xinclude implementations. There is also a companion library called `libxslt <http://xmlsoft.org/XSLT/>`_ based on libxml2 that is used to provide support for `XML transformations <http://www.w3.org/TR/xslt>`_
 
-The CCD-Gen provides example R code, automatically generated for each CCD as an R project for use in `R Studio <http://www.rstudio.com/>`_ or at the R command line.
+The DM-Gen provides example R code, automatically generated for each DM as an R project for use in `R Studio <http://www.rstudio.com/>`_ or at the R command line.
 
 Semantic Models vs. Semantic Markup
 -----------------------------------
@@ -30,7 +30,7 @@ The S3Model approach to the computable semantic interoperability problem does no
 
 As stated earlier, the growth in size of the data is only one issue with the direct markup approach. An additional concern is the specific file format used for distribution. In the direct markup approach there may be differences in `semantics <http://goo.gl/oSTC1g>`_ or in the ability to even markup the data at all, using various syntaxes. In S3Model this is solved, as a result of the well known and proven approaches for transforming XML to and from other syntaxes. Because we are only transforming the data and not the metadata, it cannot be corrupted, misrepresented or misinterpreted.
 
-We have provided open source examples of this transformation process, specifically to and from JSON without any loss of semantics or the ability to validate the data against the schema (CCD). See the `MXIC project <https://github.com/S3Model/mxic>`_ for further details.
+We have provided open source examples of this transformation process, specifically to and from JSON without any loss of semantics or the ability to validate the data against the schema (DM). See the `MXIC project <https://github.com/S3Model/mxic>`_ for further details.
 
 One last comment on the issues with the *direct markup approach* is that is not robust enough for mission-critical data management; certainly not for your clinical healthcare data. This issue is widely recognized and is being addressed by `W3C <http://www.w3.org/2012/12/rdf-val/report>`_. However, we know from previous experience that the W3C process is a slow one.
 
@@ -41,4 +41,4 @@ Support for Legacy Systems
 
 S3Model is designed to provide semantic interoeperability for future systems. Based on small, granular models taht can be well defined. However, it is quite capable of supporting the transition of legacy data as well.  Several examples are available from the S3Model GitHub site.
 
-A capability often over looked is the ability to create models for CSV data in order to build Linked Data graphs. An often perplexing problem is how to support validation of data when that data may have come from a printed vocabulary or a terminology server. An example of this is in the TB demo where the Brazilian Death Certificate and Hospital Discharge data are modeled from CSV files. Of particular note are the DvStringType models that constrain the ICD 10 codes via an xs:assert for validation in the XML.  For Linked Data a vocabulary root is provided via S3Model2:vocabRoot predicate and the resource is the URL to the WHO online repository. In cases where there is no online repsository (such as a published PDF) and the number of enumerations would be to large to be practical as constraints, we suggest creating a URI prefix for the link to the PDF and use a # plus the values found in the data.
+A capability often over looked is the ability to create models for CSV data in order to build Linked Data graphs. An often perplexing problem is how to support validation of data when that data may have come from a printed vocabulary or a terminology server. An example of this is in the TB demo where the Brazilian Death Certificate and Hospital Discharge data are modeled from CSV files. Of particular note are the XdStringType models that constrain the ICD 10 codes via an xs:assert for validation in the XML.  For Linked Data a vocabulary root is provided via S3Model:vocabRoot predicate and the resource is the URL to the WHO online repository. In cases where there is no online repsository (such as a published PDF) and the number of enumerations would be to large to be practical as constraints, we suggest creating a URI prefix for the link to the PDF and use a # plus the values found in the data.

@@ -4,17 +4,17 @@ S3Model Docs Overview
 
 Implementable semantic interoperability.
 
-Status - **Draft 1.0.0** Released: N/A
+Status - **Draft 3.0.0** Released: N/A
+
+**Copyright 2016 Data Insights, Inc. - All Rights Reserved.**
 
 S3Model User & Reference Manual
------------------------------
+-------------------------------
 
 Use the Table of Contents on the left for navigation.
 
 The goal of S3Model is to be Minimalistic, Sustainable, Implementable AND Interoperable.
 
-
-Distribution is permitted under the terms of the Attribution-ShareAlike 4.0 International` license <http://creativecommons.org/licenses/by-sa/4.0/>`_.
 
 Acknowledgements
 ----------------
@@ -54,12 +54,6 @@ These specifications;
 Availability
 ------------
 
-The S3Model specifications, reference implementation and tools are available from `GitHub <https://github.com/S3Model/specs>`_
-
-Previously released final versions are available, packaged as .ZIP files from `Launchpad <http://launchpad.net/S3Model-specs>`_
-
-From Release 2.4.7 on, you may download a zip file from the GitHub repository using the “Download ZIP” button. `Click here <https://github.com/S3Model/specs/archive/2_5_0.zip>`_ to download the 2.5.0 *current development* version.
-
-Official release are listed `here <https://github.com/S3Model/specs/releases>`_.
+The S3Model specifications, reference implementation and tools are available from `Data Insights, Inc. <http://www.datainsights.tech>`_
 
 *The ninety and nine are with dreams, content but the hope of the world made new, is the hundredth man who is grimly bent on making those dreams come true. - Edgar Alan Poe*

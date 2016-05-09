@@ -3,10 +3,12 @@ Shareable-Structured-Semantic Model (S3Model) Specifications
 ============================================================
 
 S3Model User & Reference Guide
-============================
+==============================
 
 
-Status - 1.0.0 Draft
+Status - 3.0.0 Draft
+
+**Copyright 2016 Data Insights, Inc. - All Rights Reserved.**
 
 Contents:
 

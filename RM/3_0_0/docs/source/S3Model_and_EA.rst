@@ -1,6 +1,6 @@
-==================================================
+====================================================
 S3Model as a Component of an Enterprise Architecture
-==================================================
+====================================================
 
 S3Model is a core foundational part of any enterprise architecture that strives to attain *computable semantic interoperability*. In this chapter we will describe how the S3Model eco-system fits into a typical healthcare IT architecture. Keeping in mind that S3Model is also applicable to any size application that needs to be semantically Interoperable, from wearable devices to enterprise EHRs.
 
@@ -18,16 +18,16 @@ The S3Model specifications and reference implementation represent a foundation m
 
 TOGAF® Common System Architectures
 ----------------------------------
-The S3Model CCDs are composed of multiple, reusable (pluggable) complexType restrictions of the reference model. These PCMs can be reused in many CCDs and can represent a common group of components. Again from the broader perspective the use of XML Schema 1.1 as an easily transported model is of primary importance as a common architecture.
+The S3Model DMs are composed of multiple, reusable (pluggable) complexType restrictions of the reference model. These PCMs can be reused in many DMs and can represent a common group of components. Again from the broader perspective the use of XML Schema 1.1 as an easily transported model is of primary importance as a common architecture.
 
 TOGAF® Industry Architectures
 ----------------------------------
-CCDs that have broad applicability in healthcare across many types of applications fit into the architecture.These CCDs may be openly licensed and shared globally. One might consider the availability of tools for XML in this category as well as tools that might be used specifically for creating S3Model knowledge artifacts (PCMs and CCDs).
+DMs that have broad applicability in healthcare across many types of applications fit into the architecture.These DMs may be openly licensed and shared globally. One might consider the availability of tools for XML in this category as well as tools that might be used specifically for creating S3Model knowledge artifacts (PCMs and DMs).
 
 TOGAF® Organization Specific Architectures
 ------------------------------------------
-CCDs that are used in applications within one organization are in this category.
+DMs that are used in applications within one organization are in this category.
 
 The reader should consult the details of the TOGAF® documentation as well as the remainder of this document, in order to understand the full implications of implementing S3Model into large organizations.
 
-In `chapter 44 <http://pubs.opengroup.org/architecture/togaf9-doc/arch/chap44.html#tag_44>`_ of the TOGAF® specifications we focus more towards information interoperability of applications, regardless of their platform and location. Here we can discover the importance of ubiquitous technology in providing interoperability. This chapter focuses on a specific enterprise whereas with S3Model we work with a global healthcare information scenario. There are multiple terminologies and ontologies to use, multiple languages, cultures and geographies to consider and the data essentially has no expiration date. Therefore, *The Boundaryless Information Flow problem space* for us is significantly larger than the TOGAF® specifications cover. However, the above descriptions should add some context to the S3Model concepts for those developers that are familiar with existing enterprise architectures. Always keep in mind that implementations are local, CCDs and data instances are global.
+In `chapter 44 <http://pubs.opengroup.org/architecture/togaf9-doc/arch/chap44.html#tag_44>`_ of the TOGAF® specifications we focus more towards information interoperability of applications, regardless of their platform and location. Here we can discover the importance of ubiquitous technology in providing interoperability. This chapter focuses on a specific enterprise whereas with S3Model we work with a global healthcare information scenario. There are multiple terminologies and ontologies to use, multiple languages, cultures and geographies to consider and the data essentially has no expiration date. Therefore, *The Boundaryless Information Flow problem space* for us is significantly larger than the TOGAF® specifications cover. However, the above descriptions should add some context to the S3Model concepts for those developers that are familiar with existing enterprise architectures. Always keep in mind that implementations are local, DMs and data instances are global.

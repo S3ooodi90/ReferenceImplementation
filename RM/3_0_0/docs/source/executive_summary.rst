@@ -4,7 +4,7 @@ Executive Summary
 
 *Keep everything as simple as possible; but no simpler. - Albert Einstein*
 
-**S3Model** is an agile and open framework for computable semantic interoperability in healthcare. This capability is required in order to advance the usage of clinical (and other) decision support services (DSS) and Big Data analysis across data coming from multiple points. These points of data creation are increasing every day as a result of more institutions bringing new digital capabilities to more functions, in addition to the plethora of new devices arriving in the personal healthcare marketplace.
+**S3Model** is an agile and open framework for computable semantic interoperability in healthcare. This capability is required in order to aXdance the usage of clinical (and other) decision support services (DSS) and Big Data analysis across data coming from multiple points. These points of data creation are increasing every day as a result of more institutions bringing new digital capabilities to more functions, in addition to the plethora of new devices arriving in the personal healthcare marketplace.
 
 S3Model is not a *standard* in the historical sense of the term. The standards development process is far from agile; healthcare is too dynamic to wait for the 20th century
 standards processes. In addition, healthcare is too broad for a top-down, one-size-fits-all solution for information interoperability. S3Model *is based on* widely used standards for *Linked Data* exchange and expression on the semantic web.

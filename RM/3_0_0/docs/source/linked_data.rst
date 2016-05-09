@@ -35,15 +35,15 @@ The Reference Model and domain concept models are authored in XML Schema and the
 The Python utilities used to perform this extraction are included as examples of working with S3Model models. There is also a utility for extracting semantics in RDF/XML and JSON-LD from domain concept models.
 
 
-S3Model2 Semantics
-================
+S3Model Semantics
+=================
 
-These are the entities defined in `S3Model2.rdf <http://www.S3Model.org/ns/S3Model2/S3Model2.rdf>`_
+These are the entities defined in `S3Model.rdf <http://www.S3Model.org/ns/S3Model/S3Model.rdf>`_
 
 Top-Level
 =========
 
-    * S3Model2
+    * S3Model
     * RM
     * ConceptModel
 
@@ -55,7 +55,7 @@ Top-Level
         * CoreCS
         * PluggableCS
 
-    * CCDInstance
+    * DMInstance
     * DataInstance
 
         * DataInstanceValid
@@ -68,7 +68,7 @@ Top-Level
 Other Properties
 =================
 
-  * isS3Model2objprop
+  * isS3Modelobjprop
 
     * isCoreModelIn
     * isPluggableModelIn
@@ -79,7 +79,7 @@ Other Properties
 
 Datatype Properties
 ===================
-Some tools (e.g. Protégé) do not support the full range of XML Schema 1.1 datatypes directly. We defined these in S3Model2.rdf as well.
+Some tools (e.g. Protégé) do not support the full range of XML Schema 1.1 datatypes directly. We defined these in S3Model.rdf as well.
 
   * duration
   * yearMonthDuration
@@ -96,7 +96,7 @@ The most widely used (at this writing) metadata definitions come from the Dublin
 
 Context processing
 ==================
-Refer to the JSON-LD-API `context processing <http://www.w3.org/TR/json-ld-api/#context-processing-algorithms>`_ specifications to understand how the S3Model2.jsonld, S3Model250.jsonld and the ccd jsonld work together.
+Refer to the JSON-LD-API `context processing <http://www.w3.org/TR/json-ld-api/#context-processing-algorithms>`_ specifications to understand how the S3Model.jsonld, S3Model50.jsonld and the DM jsonld work together.
 
 For setting your JSON-LD processor for the correct location of context files, see this `StackExchange <https://stackoverflow.com/questions/32047434/json-ld-external-context-redirect/32105641>`_ discussion. The options for compliant processors is discussed in the `JSON-LD Specs <http://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type>`_
 

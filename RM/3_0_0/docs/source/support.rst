@@ -12,9 +12,9 @@ Specifications Wiki
 -------------------
 `Read <https://github.com/S3Model/specs/wiki>`_ various pieces of content not in the documentation.
 
-CCD Library
+DM Library
 -----------
-`Examples of CCDs <https://github.com/S3Model/ccdlib>`_
+`Examples of DMs <https://github.com/S3Model/DMlib>`_
 
 Presentations
 -------------
@@ -34,4 +34,4 @@ Please report all issues `here <https://github.com/S3Model/specs/issues>`_.
 
 FaceBook
 --------
-Just announcements and a few questions answered on our `FB page <https://www.facebook.com/S3Model2>`_.
+Just announcements and a few questions answered on our `FB page <https://www.facebook.com/S3Model>`_.

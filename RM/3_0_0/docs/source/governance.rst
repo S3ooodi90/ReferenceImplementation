@@ -16,11 +16,11 @@ The complete governance guidelines and Contributor License Agreement (CLA) can b
 
 Other Artifacts
 ---------------
-Governance of knowledge models is a local user issue.  Where local user can be defined as an individual or a nation.  In other words, governance of CCDs is up to the modeler and or their governing body.  The S3Model team does not control these models.  As a modeler you may create them and share them (or not) as you wish.
+Governance of knowledge models is a local user issue.  Where local user can be defined as an individual or a nation.  In other words, governance of DMs is up to the modeler and or their governing body.  The S3Model team does not control these models.  As a modeler you may create them and share them (or not) as you wish.
 
 The point that must be re-iterated here are:
 
- * that the source CCD is expressed in an XML Schema 1.1 file and is valid against one S3Model Reference Model schema.
+ * that the source DM is expressed in an XML Schema 1.1 file and is valid against one S3Model Reference Model schema.
  * the PCMs (complexTypes) are named in accordance witht he specifications using a Type4 UUID and preceeded with the string 'pcm-'.
 
- The CCD-Gen maintained by the S3Model team does have its own governance policies.
+ The DM-Gen maintained by the S3Model team does have its own governance policies.

@@ -186,9 +186,9 @@ The integer data type is used to specify a numeric value without a fractional co
 
 The complete documentation in a graphical, clickable format is available on the S3Model website `Documents page <http://S3Model.org/documents.html>`_.
 
-An EMF Ecore project is available in the docs folder of the distribution. It can be imported into Eclipse and used as a base for modeling CCDs. However, developers need to be aware that there are slight differences due to the fact that Eclipse XML tools do not support XML Schema 1.1
+An EMF Ecore project is available in the docs folder of the distribution. It can be imported into Eclipse and used as a base for modeling DMs. However, developers need to be aware that there are slight differences due to the fact that Eclipse XML tools do not support XML Schema 1.1
 
-Further research is needed to determine if valid CCDs can be produced from Eclipse. Please let us know if you can help with `this issue <https://github.com/S3Model/specs/issues/91>`_.
+Further research is needed to determine if valid DMs can be produced from Eclipse. Please let us know if you can help with `this issue <https://github.com/S3Model/specs/issues/91>`_.
 
 ---------------
 RM complexTypes
@@ -199,10 +199,10 @@ The reference implementation complexType descriptions.
 Each complexType definition below has a `Details <http://S3Model.org/rm250_html/>`_. This link goes to a page with detailed documentation on that complexType.
 
 
-DvAnyType
+XdAnyType
 -----------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvAnyType.html#DvAnyType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdAnyType.html#XdAnyType>`_
 
 **Derived from:**  n/a
 
@@ -210,49 +210,49 @@ DvAnyType
 
 **Description:**  Serves as a common ancestor of all data-types in S3Model models.
 
-DvBooleanType
+XdBooleanType
 --------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvBooleanType.html#DvBooleanType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdBooleanType.html#XdBooleanType>`_
 
-**Derived from:** DvAnyType by extension
+**Derived from:** XdAnyType by extension
 
 **Abstract:** False
 
-**Description:**  An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the CCD. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. The DvBooleanType should not be used as a replacement for enumerated choice types such as male/female, etc. Such values should be modeled as DvStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, 'true' and 'false' are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a CCD.
+**Description:**  An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. The XdBooleanType should not be used as a replacement for enumerated choice types such as male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, 'true' and 'false' are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a DM.
 
-DvLinkType
+XdLinkType
 ----------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvLinkType.html#DvLinkType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdLinkType.html#XdLinkType>`_
 
-**Derived from:** DvAnyType by extension
+**Derived from:** XdAnyType by extension
 
 **Abstract:** False
 
 **Description:** Used to specify a Universal Resource Identifier.
 Set the pattern facet to accommodate your needs in the PCM.
-The primary use is to provide a mechanism that can be used to link together CCDs.
+The primary use is to provide a mechanism that can be used to link together DMs.
 The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary. In most use cases the modeler will define all three of these using the 'fixed' attribute. Other use cases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 'link'.
 
-DvStringType
+XdStringType
 ------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvStringType.html#DvStringType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdStringType.html#XdStringType>`_
 
-**Derived from:** DvAnyType by extension
+**Derived from:** XdAnyType by extension
 
 **Abstract:** False
 
 **Description:**  The string data type can contain characters, line feeds, carriage returns,
 and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns may be specified.
 
-DvFileType
+XdFileType
 ----------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvFileType.html#DvFileType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdFileType.html#XdFileType>`_
 
-**Derived from:** DvAnyType by extension
+**Derived from:** XdAnyType by extension
 
 **Abstract:** False
 
@@ -260,25 +260,25 @@ DvFileType
 
 *New in 2.5.0*
 
-DvEncapsulated and its children were consolidated into this one concept and implemented as one complexType to represent any type file based artifact.
+XdEncapsulated and its children were consolidated into this one concept and implemented as one complexType to represent any type file based artifact.
 
-DvOrderedType
+XdOrderedType
 -------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvOrderedType.html#DvOrderedType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdOrderedType.html#XdOrderedType>`_
 
-**Derived from:** DvAnyType by extension
+**Derived from:** XdAnyType by extension
 
 **Abstract:** True
 
 **Description:**  Abstract class defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘<’, '>' and is_strictly_comparable_to ('==').
 
-DvOrdinalType
+XdOrdinalType
 -------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvOrdinalType.html#DvOrdinalType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdOrdinalType.html#XdOrdinalType>`_
 
-**Derived from:** DvOrderedType by extension
+**Derived from:** XdOrderedType by extension
 
 **Abstract:** False
 
@@ -303,23 +303,23 @@ Also used for recording any clinical or other datum which is customarily recorde
 
 Elements ordinal and symbol MUST have exactly the same number of enumerations in the PCM.
 
-DvQuantifiedType
+XdQuantifiedType
 ----------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvQuantifiedType.html#DvQuantifiedType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdQuantifiedType.html#XdQuantifiedType>`_
 
-**Derived from:** DvOrderedType by extension
+**Derived from:** XdOrderedType by extension
 
 **Abstract:** True
 
 **Description:**  Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.
 
-DvCountType
+XdCountType
 -----------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvCountType.html#DvCountType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdCountType.html#XdCountType>`_
 
-**Derived from:** DvQuantifiedType by extension
+**Derived from:** XdQuantifiedType by extension
 
 **Abstract:** False
 
@@ -328,48 +328,48 @@ The *thing(s)* being counted must be represented in the units element.
 
 **Misuse:** Not used for amounts of physical entities (which all have standardized units).
 
-DvQuantityType
+XdQuantityType
 --------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvQuantityType.html#DvQuantityType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdQuantityType.html#XdQuantityType>`_
 
-**Derived from:** DvQuantifiedType by extension
+**Derived from:** XdQuantifiedType by extension
 
 **Abstract:** False
 
 **Description:** Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.
 
 
-DvRatioType
+XdRatioType
 -----------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvRatioType.html#DvRatioType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdRatioType.html#XdRatioType>`_
 
-**Derived from:** DvQuantifiedType by extension
+**Derived from:** XdQuantifiedType by extension
 
 **Abstract:** False
 
 **Description:** Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a forward slash ('/') character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
 
 
-DvTemporalType
+XdTemporalType
 --------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvTemporalType.html#DvTemporalType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdTemporalType.html#XdTemporalType>`_
 
-**Derived from:** DvOrderedType by extension
+**Derived from:** XdOrderedType by extension
 
 **Abstract:** False
 
 **Description:** Type defining the concept of date and time types. Must be constrained in PCMs to be one or more of the below elements.  This gives the modeler the ability to optionally allow full or partial dates at run time.  Setting both maxOccurs and minOccurs to zero causes the element to be prohibited.
 
 
-DvIntervalType
+XdIntervalType
 --------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvIntervalType.html#DvIntervalType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdIntervalType.html#XdIntervalType>`_
 
-**Derived from:** DvAnyType by extension
+**Derived from:** XdAnyType by extension
 
 **Abstract:** False
 
@@ -379,36 +379,36 @@ DvIntervalType
 InvlType
 --------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_InvlType.html#InvlType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_InvlType.html#InvlType>`_
 
 **Derived from:** n/a
 
 **Abstract:** False
 
-**Description:** In the CCD, the modeler creates two restrictions on this complexType.
+**Description:** In the DM, the modeler creates two restrictions on this complexType.
 One for the 'lower' value and one for the 'upper' value.
-Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. The maxOccurs and minOccurs attributes must be set to 1, in the CCD.
+Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. The maxOccurs and minOccurs attributes must be set to 1, in the DM.
 
 For more information on using this approach `see these tips <http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html>`_
 
 InvlUnits
 ---------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_InvlUnits.html#InvlUnits>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_InvlUnits.html#InvlUnits>`_
 
 **Derived from:** n/a
 
 **Abstract:** False
 
-**Description:** The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A DvQuantity of temperature can have a range in degrees Fahrenheit and one in degrees Celsius.
-The derived complexType in the CCD has these values fixed by the modeler.
+**Description:** The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range in degrees Fahrenheit and one in degrees Celsius.
+The derived complexType in the DM has these values fixed by the modeler.
 
 ReferenceRangeType
 ------------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_ReferenceRangeType.html#ReferenceRangeType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_ReferenceRangeType.html#ReferenceRangeType>`_
 
-**Derived from:** DvAnyType by extension
+**Derived from:** XdAnyType by extension
 
 **Abstract:** False
 
@@ -419,7 +419,7 @@ range is sensitive to the context, e.g. sex, age, location, and any other factor
 AuditType
 ---------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_AuditType.html#AuditType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_AuditType.html#AuditType>`_
 
 **Derived from:** n/a
 
@@ -430,7 +430,7 @@ AuditType
 PartyType
 ---------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_PartyType.html#PartyType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_PartyType.html#PartyType>`_
 
 **Derived from:** n/a
 
@@ -441,7 +441,7 @@ PartyType
 AttestationType
 ---------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_AttestationType.html#AttestationType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_AttestationType.html#AttestationType>`_
 
 **Derived from:** n/a
 
@@ -452,7 +452,7 @@ AttestationType
 ParticipationType
 -----------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_ParticipationType.html#ParticipationType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_ParticipationType.html#ParticipationType>`_
 
 **Derived from:** n/a
 
@@ -463,7 +463,7 @@ ParticipationType
 ExceptionalValueType
 --------------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_ExceptionalValueType.html#ExceptionalValueType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_ExceptionalValueType.html#ExceptionalValueType>`_
 
 **Derived from:** n/a
 
@@ -471,13 +471,13 @@ ExceptionalValueType
 
 **Description:** Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances.
 
-CCDs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.
+DMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.
 
 
 NIType
 ------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_NIType.html#NIType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_NIType.html#NIType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -488,7 +488,7 @@ NIType
 MSKType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_MSKType.html#MSKType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_MSKType.html#MSKType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -501,7 +501,7 @@ Using this exceptional value does provide information that may be a breach of co
 INVType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_INVType.html#INVType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_INVType.html#INVType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -512,7 +512,7 @@ INVType
 DERType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DERType.html#DERType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_DERType.html#DERType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -523,7 +523,7 @@ DERType
 UNCType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_UNCType.html#UNCType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_UNCType.html#UNCType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -534,7 +534,7 @@ UNCType
 OTHType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_OTHType.html#OTHType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_OTHType.html#OTHType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -546,7 +546,7 @@ OTHType
 NINFType
 --------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_NINFType.html#NINFType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_NINFType.html#NINFType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -558,7 +558,7 @@ NINFType
 PINFType
 --------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_PINFType.html#PINFType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_PINFType.html#PINFType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -569,7 +569,7 @@ PINFType
 UNKType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_UNKType.html#UNKType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_UNKType.html#UNKType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -580,7 +580,7 @@ UNKType
 ASKRType
 --------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_ASKRType.html#ASKRType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_ASKRType.html#ASKRType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -591,7 +591,7 @@ ASKRType
 NASKType
 --------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_NASKType.html#NASKType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_NASKType.html#NASKType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -603,7 +603,7 @@ NASKType
 QSType
 ------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_QSType.html#QSType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_QSType.html#QSType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -614,7 +614,7 @@ QSType
 TRCType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_TRCType.html#TRCType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_TRCType.html#TRCType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -625,7 +625,7 @@ TRCType
 ASKUType
 --------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_ASKUType.html#ASKUType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_ASKUType.html#ASKUType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -637,7 +637,7 @@ ASKUType
 NAVType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_NAVType.html#NAVType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_NAVType.html#NAVType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -648,7 +648,7 @@ NAVType
 NAType
 ------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_NAType.html#NAType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_NAType.html#NAType>`_
 
 **Derived from:** ExceptionalValueType by restriction
 
@@ -659,18 +659,18 @@ NAType
 ItemType
 --------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_ItemType.html#ItemType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_ItemType.html#ItemType>`_
 
 **Derived from:** n/a
 
 **Abstract:** True
 
-**Description:**  The abstract parent of ClusterType and DvAdapterType structural representation types.
+**Description:**  The abstract parent of ClusterType and XdAdapterType structural representation types.
 
 ClusterType
 -----------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvAnyType.html#DvAnyType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdAnyType.html#XdAnyType>`_
 
 **Derived from:** ItemType by extension
 
@@ -679,21 +679,21 @@ ClusterType
 **Description:**  The grouping variant of Item, which may contain further instances of Item,
 in an ordered list. This can serve as the root component for arbitrarily complex structures.
 
-DvAdapterType
+XdAdapterType
 -------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DvAdapterType.html#DvAdapterType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_XdAdapterType.html#XdAdapterType>`_
 
 **Derived from:** ItemType by extension
 
 **Abstract:** False
 
-**Description:**  The leaf variant of Item, to which any *DvAnyType* subtype instance is attached for use in a Cluster.
+**Description:**  The leaf variant of Item, to which any *XdAnyType* subtype instance is attached for use in a Cluster.
 
 EntryType
 ---------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_EntryType.html#EntryType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_EntryType.html#EntryType>`_
 
 **Derived from:** n/a
 
@@ -704,7 +704,7 @@ EntryType
 CareEntryType
 -------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_CareEntryType.html#CareEntryType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_CareEntryType.html#CareEntryType>`_
 
 **Derived from:** EntryType by extension
 
@@ -715,7 +715,7 @@ CareEntryType
 AdminEntryType
 --------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_AdminEntryType.html#AdminEntryType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_AdminEntryType.html#AdminEntryType>`_
 
 **Derived from:** EntryType by extension
 
@@ -726,7 +726,7 @@ AdminEntryType
 DemographicEntryType
 --------------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_DemographicEntryType.html#DemographicEntryType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_DemographicEntryType.html#DemographicEntryType>`_
 
 **Derived from:** EntryType by extension
 
@@ -734,28 +734,28 @@ DemographicEntryType
 
 **Description:**  Entry subtype for demographic information, i.e. name structures, roles, locations, etc. modeled as a separate type from AdminEntryType in order to facilitate the separation of clinical and non-clinical information to support de-identification of clinical and administrative data.
 
-CCDType
+DMType
 -------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Complex_Type_S3Model2_CCDType.html#CCDType>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Complex_Type_S3Model_DMType.html#DMType>`_
 
 **Derived from:** n/a
 
 **Abstract:** False
 
-**Description:**  This is the root node of a Concept Constraint Definition.
+**Description:**  This is the root node of a Data Model.
 
 ---------------
 RM simpleTypes
 ---------------
 
 The reference implementation simpleType descriptions.
-These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a CCD.
+These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a DM.
 
 MagnitudeStatus
 ---------------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Simple_Type_S3Model2_MagnitudeStatus.html#MagnitudeStatus>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Simple_Type_S3Model_MagnitudeStatus.html#MagnitudeStatus>`_
 
 **Derived from:** xs:string
 
@@ -775,12 +775,12 @@ MagnitudeStatus
 
         approximate : value is the approximately the magnitude
 
-These enumerations are used in they DvQuantifiedType subtypes.
+These enumerations are used in they XdQuantifiedType subtypes.
 
 TypeOfRatio
 -----------
 
-`Details <http://S3Model.org/rm250_html/S3Model250_xsd_Simple_Type_S3Model2_TypeOfRatio.html#TypeOfRatio>`_
+`Details <http://S3Model.org/rm250_html/S3Model50_xsd_Simple_Type_S3Model_TypeOfRatio.html#TypeOfRatio>`_
 
 **Derived from:** xs:string
 
@@ -799,11 +799,11 @@ Element Groups
 
 IntervalUnits
 -------------
-Used to state that if units are defined on a DvInterval based PCM then the units must have both a name and a URI.
+Used to state that if units are defined on a XdInterval based PCM then the units must have both a name and a URI.
 
 
 ------------
-Example CCDs
+Example DMs
 ------------
 
-Please check the `S3Model website documents <http://S3Model.org/documents.html>`_ section as well as the `CCD Library <http://www.ccdgen.com/ccdlib/>`_ on the CCD-Gen.
+Please check the `S3Model website documents <http://S3Model.org/documents.html>`_ section as well as the `DM Library <http://www.DMgen.com/DMlib/>`_ on the DM-Gen.
