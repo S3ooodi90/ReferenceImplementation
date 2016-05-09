@@ -109,11 +109,48 @@
         </xs:annotation>
       </xs:element>
       
+      <xs:element maxOccurs="1" minOccurs="0" name="latitude" nillable="true">
+        <xs:annotation>
+          <xs:documentation xml:lang="en-us">Latitude in decimal format. Value range -90.000000 to 90.000000.</xs:documentation>
+          <xs:appinfo>
+            <rdf:Description rdf:about="latitude">
+              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <rdfs:comment xml:lang="en-us">Latitude in decimal format. Value range -90.000000 to 90.000000.</rdfs:comment>
+            </rdf:Description>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType id="lattype">
+          <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="6"/>
+            <xs:totalDigits value="8"/>
+            <xs:maxInclusive value="90.000000"/>
+            <xs:minInclusive value="-90.000000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
       
-      ADD LAT / LON HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      
-      
-      
+      <xs:element maxOccurs="1" minOccurs="0" name="longitude" nillable="true">
+        <xs:annotation>
+          <xs:documentation xml:lang="en-us">Longitude in decimal format. Value range -180.000000 to 180.000000.</xs:documentation>
+          <xs:appinfo>
+            <rdf:Description rdf:about="longitude">
+              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <rdfs:comment xml:lang="en-us">Longitude in decimal format. Value range -180.000000 to 180.000000.</rdfs:comment>
+            </rdf:Description>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType id="lontype">
+          <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="6"/>
+            <xs:totalDigits value="9"/>
+            <xs:maxInclusive value="180.000000"/>
+            <xs:minInclusive value="-180.000000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+            
     </xs:sequence>
   </xs:complexType>
 
