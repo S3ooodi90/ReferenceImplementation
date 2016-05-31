@@ -22,8 +22,8 @@ for n in DJANGO_LANG:
 # no one should be able to delete a published object
 @receiver(pre_delete)
 def no_delete_test(sender, instance, **kwargs):
-    if sender in [Cluster, DM, DvBoolean, DvString, DvCount, DvString, DvInterval, DvFile, DvOrdinal,
-                  DvQuantity, DvRatio, DvString, DvTemporal, DvLink, Entry, Participation, Party, ReferenceRange, Units]:
+    if sender in [Cluster, DM, XdBoolean, XdString, XdCount, XdString, XdInterval, XdFile, XdOrdinal,
+                  XdQuantity, XdRatio, XdString, XdTemporal, XdLink, Entry, Participation, Party, ReferenceRange, Units]:
         if instance.published:
             raise PermissionDenied
 
@@ -37,62 +37,62 @@ def get_rcode(ctid):
         obj = None
         if not obj:
             try:
-                obj = DvBoolean.objects.get(ct_id=ctid)
+                obj = XdBoolean.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvLink.objects.get(ct_id=ctid)
+                obj = XdLink.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvString.objects.get(ct_id=ctid)
+                obj = XdString.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvString.objects.get(ct_id=ctid)
+                obj = XdString.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvString.objects.get(ct_id=ctid)
+                obj = XdString.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvFile.objects.get(ct_id=ctid)
+                obj = XdFile.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvFile.objects.get(ct_id=ctid)
+                obj = XdFile.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvOrdinal.objects.get(ct_id=ctid)
+                obj = XdOrdinal.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvCount.objects.get(ct_id=ctid)
+                obj = XdCount.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvQuantity.objects.get(ct_id=ctid)
+                obj = XdQuantity.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvRatio.objects.get(ct_id=ctid)
+                obj = XdRatio.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
         if not obj:
             try:
-                obj = DvTemporal.objects.get(ct_id=ctid)
+                obj = XdTemporal.objects.get(ct_id=ctid)
             except ObjectDoesNotExist:
                 obj = None
 
@@ -204,11 +204,11 @@ class Common(models.Model):
         abstract = True
 
 
-class DvAny(Common):
+class XdAny(Common):
     """
     Abstract root of all datatypes.
     """
-    adapter_ctid = models.UUIDField(_("Adapter UUID"), default=uuid.uuid4, editable=False, unique=True, help_text=_('This UUID is generated for datatype that can be included in a Cluster. It is used to create a specific DvAdapter complexType.'))
+    adapter_ctid = models.UUIDField(_("Adapter UUID"), default=uuid.uuid4, editable=False, unique=True, help_text=_('This UUID is generated for datatype that can be included in a Cluster. It is used to create a specific XdAdapter complexType.'))
     require_vtb = models.BooleanField(_('Require Valid Time Begin?'), default=False, help_text=_('Check this box to require a Valid Time Begin element.'))
     require_vte = models.BooleanField(_('Require Valid Time End?'), default=False, help_text=_('Check this box to require a Valid Time End element.'))
     require_tr = models.BooleanField(_('Require Time Recorded?'), default=False, help_text=_('Check this box to require a Date & Time Recorded element.'))
@@ -218,13 +218,13 @@ class DvAny(Common):
         abstract = True
         ordering=['label']
 
-class DvBoolean(DvAny):
+class XdBoolean(XdAny):
     """
     Items which represent boolean decisions, such as true/false or yes/no answers. Use for such data, it
     is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results
     are in fact true or false.
 
-    Potential MisUse: The DvBoolean class should not be used as a replacement for naively
+    Potential MisUse: The XdBoolean class should not be used as a replacement for naively
     modelled enumerated types such as male/female etc. Such values should be coded, and in any case the enumeration often
     has more than two values.
     """
@@ -233,7 +233,7 @@ class DvBoolean(DvAny):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvBoolean(self)
+            result = publish_XdBoolean(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -251,7 +251,7 @@ class DvBoolean(DvAny):
         ordering=['project','label']
 
 
-class DvLink(DvAny):
+class XdLink(XdAny):
     """
     Used to specify a link to another resource such as another DM.
     """
@@ -260,7 +260,7 @@ class DvLink(DvAny):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvLink(self)
+            result = publish_XdLink(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -277,7 +277,7 @@ class DvLink(DvAny):
         verbose_name_plural = "Links"
         ordering=['project','label']
 
-class DvString(DvAny):
+class XdString(XdAny):
     """
     The string data type may contain characters, line feeds, carriage returns, and tab characters.
     Used to constrain strings to an enumerated set or may be used for free text entry.
@@ -291,7 +291,7 @@ class DvString(DvAny):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvString(self)
+            result = publish_XdString(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -309,9 +309,9 @@ class DvString(DvAny):
         verbose_name_plural = "Strings"
         ordering=['project','label']
 
-class Units(DvAny):
+class Units(XdAny):
     """
-    A DvString data type used to define Units for Quantified types.
+    A XdString data type used to define Units for Quantified types.
     """
     min_length = models.IntegerField(_('minimum length'),help_text=_("Enter the minimum number of characters that are required for this concept. If the character is optional, leave it blank."), null=True, blank=True)
     max_length = models.IntegerField(_('maximum length'),help_text=_("Enter the maximum number of characters that are required for this concept. If the character is optional, leave it blank."), null=True, blank=True)
@@ -322,7 +322,7 @@ class Units(DvAny):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvString(self)
+            result = publish_XdString(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -339,7 +339,7 @@ class Units(DvAny):
         verbose_name_plural = "Units"
         ordering=['project','label']
 
-class DvFile(DvAny):
+class XdFile(XdAny):
     """
     Used to define external files that may be included directly or by reference.
     """
@@ -352,7 +352,7 @@ class DvFile(DvAny):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvFile(self)
+            result = publish_XdFile(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -369,7 +369,7 @@ class DvFile(DvAny):
         ordering=['project','label']
 
 
-class DvInterval(DvAny):
+class XdInterval(XdAny):
     """
     Generic class defining an interval (i.e. range) of a comparable type. An interval is a contiguous
     subrange of a comparable base type. Used to define intervals of dates, times, quantities Whose units of measure match
@@ -390,7 +390,7 @@ class DvInterval(DvAny):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvInterval(self)
+            result = publish_XdInterval(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -406,7 +406,7 @@ class DvInterval(DvAny):
         verbose_name = "Interval"
         ordering=['project','label']
 
-class ReferenceRange(DvAny):
+class ReferenceRange(XdAny):
     """
     Defines a named range to be associated with any ORDERED datum.
 
@@ -414,7 +414,7 @@ class ReferenceRange(DvAny):
 
 
     definition = models.CharField(_("Definition"), max_length=110, help_text=_("Enter the term that indicates the status of this range, e.g. 'normal', 'critical', 'therapeutic' etc."))
-    interval = models.ForeignKey(DvInterval, verbose_name=_('interval'),help_text=_("The data range for this meaning. Select the appropriate DvInterval."))
+    interval = models.ForeignKey(XdInterval, verbose_name=_('interval'),help_text=_("The data range for this meaning. Select the appropriate XdInterval."))
     is_normal = models.BooleanField(_('Is Normal?'),default=False, help_text=_("Is this considered the normal range?"))
 
     def publish(self, request):
@@ -435,13 +435,13 @@ class ReferenceRange(DvAny):
         verbose_name = "ReferenceRange"
         ordering=['project','label']
 
-class DvOrdered(DvAny):
+class XdOrdered(XdAny):
     """
     Abstract class defining the concept of ordered values, which includes ordinals as well as true
     quantities. The implementations require the functions ‘&lt;’, '&gt;' and is_strictly_comparable_to ('==').
     """
     reference_ranges = models.ManyToManyField(ReferenceRange, verbose_name=_('reference ranges'), blank=True, help_text=_('Select the appropriate ReferenceRange that defines each ordered value. The listing is by Project: Reference Range Name.'))
-    normal_status = models.CharField(_('normal status'),max_length=110, help_text=_("Enter text that indicates a normal status. Example: This should be a Symbol in a DvOrdinal, a date range in a DvTemporal, a value range in a DvCount, etc."), blank=True, null=True)
+    normal_status = models.CharField(_('normal status'),max_length=110, help_text=_("Enter text that indicates a normal status. Example: This should be a Symbol in a XdOrdinal, a date range in a XdTemporal, a value range in a XdCount, etc."), blank=True, null=True)
 
     def publish(self):
         pass
@@ -450,7 +450,7 @@ class DvOrdered(DvAny):
         abstract = True
 
 
-class DvOrdinal(DvOrdered):
+class XdOrdinal(XdOrdered):
     """
     Models rankings and scores, e.g. pain, Apgar values, etc, where there is:
     a) implied ordering,
@@ -472,7 +472,7 @@ class DvOrdinal(DvOrdered):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvOrdinal(self)
+            result = publish_XdOrdinal(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -488,7 +488,7 @@ class DvOrdinal(DvOrdered):
         verbose_name = "Ordinal"
         ordering=['project','label']
 
-class DvQuantified(DvOrdered):
+class XdQuantified(XdOrdered):
     """
     Abstract class defining the concept of true quantified values, i.e. values which are not only ordered,
     but which have a precise magnitude.
@@ -508,7 +508,7 @@ class DvQuantified(DvOrdered):
         abstract = True
 
 
-class DvCount(DvQuantified):
+class XdCount(XdQuantified):
     """
     Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy
     patient), number of cigarettes smoked in a day, etc. Misuse:Not used for amounts of physical entities (which all have
@@ -518,7 +518,7 @@ class DvCount(DvQuantified):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvCount(self)
+            result = publish_XdCount(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -535,7 +535,7 @@ class DvCount(DvQuantified):
         ordering=['project','label']
 
 
-class DvQuantity(DvQuantified):
+class XdQuantity(XdQuantified):
     """
     Quantitified type representing “scientific” quantities, i.e. quantities expressed as a magnitude and
     units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual
@@ -546,7 +546,7 @@ class DvQuantity(DvQuantified):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvQuantity(self)
+            result = publish_XdQuantity(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -563,7 +563,7 @@ class DvQuantity(DvQuantified):
         verbose_name_plural = "Quantities"
         ordering=['project','label']
 
-class DvRatio(DvQuantified):
+class XdRatio(XdQuantified):
     """
     Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not
     be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading
@@ -587,7 +587,7 @@ class DvRatio(DvQuantified):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvRatio(self)
+            result = publish_XdRatio(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -603,7 +603,7 @@ class DvRatio(DvQuantified):
         verbose_name = "Ratio"
         ordering=['project','label']
 
-class DvTemporal(DvOrdered):
+class XdTemporal(XdOrdered):
     """
     Class defining the concept of date and time types.
     Must be constrained in DMs to be one or more of the allowed types.
@@ -627,7 +627,7 @@ class DvTemporal(DvOrdered):
 
     def publish(self, request):
         if self.schema_code == '':
-            result = publish_DvTemporal(self)
+            result = publish_XdTemporal(self)
             if len(self.schema_code) > 100:
                 self.published = True
                 self.save()
@@ -648,7 +648,7 @@ class Party(Common):
     A proxy description of a party, including an optional link to data for this party in a demographic or other identity management system.
     """
     details = models.ForeignKey('Cluster', verbose_name=_('details'), related_name='%(class)s_related', null=True, blank=True, help_text=_('A Cluster structure that defines the details of this Party.'))
-    external_ref = models.ManyToManyField(DvLink, verbose_name=_('external reference'), help_text=_("Optional DvLink(s) that point to a description of this Party in other services."), blank=True, related_name='%(class)s_related')
+    external_ref = models.ManyToManyField(XdLink, verbose_name=_('external reference'), help_text=_("Optional XdLink(s) that point to a description of this Party in other services."), blank=True, related_name='%(class)s_related')
 
     class Meta:
         verbose_name = "Party"
@@ -672,7 +672,7 @@ class Audit(Common):
     """
     Audit provides a mechanism to identifiy the who/where/when tracking of instances as they move from system to system.
     """
-    system_id = models.ForeignKey(DvString, verbose_name=_('system id'), null=True, blank=True, related_name='%(class)s_related', help_text=_('Identifier of the system which handled the information item.'))
+    system_id = models.ForeignKey(XdString, verbose_name=_('system id'), null=True, blank=True, related_name='%(class)s_related', help_text=_('Identifier of the system which handled the information item.'))
     system_user = models.ForeignKey(Party, verbose_name=_('system user'), null=True, blank=True, related_name='%(class)s_related', help_text=_('A model for user(s) who created, committed, forwarded or otherwise handled the item.'))
     location = models.ForeignKey('Cluster', verbose_name=_('location'), related_name='%(class)s_related', null=True, blank=True, help_text=_('A Cluster for location information.'))
 
@@ -700,9 +700,9 @@ class Attestation(Common):
     Record an attestation by a party of item(s) of record content.
     The type of attestation is recorded by the reason attribute, which my be coded from a vocabulary.
     """
-    view = models.ForeignKey(DvFile, verbose_name=_('attested view'), related_name='attested_view', null=True, blank=True, help_text=_('Select a model for the recorded view that is being attested.'))
-    proof = models.ForeignKey(DvFile, verbose_name=_('proof'), related_name='proof', null=True, blank=True, help_text=_('Select a model for the proof of attestation such as an GPG signature.'))
-    reason = models.ForeignKey(DvString, verbose_name=_('reason'), related_name='%(class)s_related', null=True, blank=True, help_text=_('Select a model for the reason.'))
+    view = models.ForeignKey(XdFile, verbose_name=_('attested view'), related_name='attested_view', null=True, blank=True, help_text=_('Select a model for the recorded view that is being attested.'))
+    proof = models.ForeignKey(XdFile, verbose_name=_('proof'), related_name='proof', null=True, blank=True, help_text=_('Select a model for the proof of attestation such as an GPG signature.'))
+    reason = models.ForeignKey(XdString, verbose_name=_('reason'), related_name='%(class)s_related', null=True, blank=True, help_text=_('Select a model for the reason.'))
     committer = models.ForeignKey(Party, verbose_name=_('committer'), related_name='%(class)s_related_committer', null=True, blank=True, help_text=_('The Party that commited the Attestation.'))
 
     def publish(self, request):
@@ -729,8 +729,8 @@ class Participation(Common):
     which is not explicitly in the model, e.g. assisting nurse, ambulance service, etc. Can be used to record past or future participations.
     """
     performer = models.ForeignKey(Party, verbose_name='Performer', related_name='%(class)s_related_performer', null=True, help_text=_('The Party instance and possibly demographic system link of the party participating in the activity.'))
-    function = models.ForeignKey(DvString, related_name='%(class)s_related', null=True, help_text=_('The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.'))
-    mode = models.ForeignKey(DvString, related_name='%(class)s_related_mode', null=True, help_text=_('The mode of the performer / activity interaction, e.g. present, by telephone, by email etc. If the participation is by device or software it may contain a protocol standard or interface definition.'))
+    function = models.ForeignKey(XdString, related_name='%(class)s_related', null=True, help_text=_('The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.'))
+    mode = models.ForeignKey(XdString, related_name='%(class)s_related_mode', null=True, help_text=_('The mode of the performer / activity interaction, e.g. present, by telephone, by email etc. If the participation is by device or software it may contain a protocol standard or interface definition.'))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -756,15 +756,15 @@ class Cluster(Common):
     provides the root Item for potentially very complex structures.
     """
     clusters = models.ManyToManyField('Cluster',help_text="Select zero or more Clusters to include in this Cluster. You cannot put a Cluster inside itself, it will be ignored if you select itself.", blank=True)
-    dvboolean = models.ManyToManyField(DvBoolean, related_name='%(class)s_related', help_text="Select zero or more booleans to include in this Cluster.", blank=True)
-    dvlink = models.ManyToManyField(DvLink, related_name='%(class)s_related', help_text="Select zero or more uris to include in this Cluster.", blank=True)
-    dvstring = models.ManyToManyField(DvString, related_name='%(class)s_related', help_text="Select zero or more strings to include in this Cluster.", blank=True)
-    dvfile = models.ManyToManyField(DvFile, related_name='%(class)s_related', help_text="Select zero or more media items to include in this Cluster.", blank=True)
-    dvordinal = models.ManyToManyField(DvOrdinal, related_name='%(class)s_related', help_text="Select zero or more ordinals to include in this Cluster.", blank=True)
-    dvcount = models.ManyToManyField(DvCount, related_name='%(class)s_related', help_text="Select zero or more counts to include in this Cluster.", blank=True)
-    dvquantity = models.ManyToManyField(DvQuantity, related_name='%(class)s_related', help_text="Select zero or more quantity items to include in this Cluster.", blank=True)
-    dvratio = models.ManyToManyField(DvRatio, related_name='%(class)s_related', help_text="Select zero or more ratios to include in this Cluster.", blank=True)
-    dvtemporal = models.ManyToManyField(DvTemporal, related_name='%(class)s_related', help_text="Select zero or more temporal items to include in this Cluster.", blank=True)
+    Xdboolean = models.ManyToManyField(XdBoolean, related_name='%(class)s_related', help_text="Select zero or more booleans to include in this Cluster.", blank=True)
+    Xdlink = models.ManyToManyField(XdLink, related_name='%(class)s_related', help_text="Select zero or more uris to include in this Cluster.", blank=True)
+    Xdstring = models.ManyToManyField(XdString, related_name='%(class)s_related', help_text="Select zero or more strings to include in this Cluster.", blank=True)
+    Xdfile = models.ManyToManyField(XdFile, related_name='%(class)s_related', help_text="Select zero or more media items to include in this Cluster.", blank=True)
+    Xdordinal = models.ManyToManyField(XdOrdinal, related_name='%(class)s_related', help_text="Select zero or more ordinals to include in this Cluster.", blank=True)
+    Xdcount = models.ManyToManyField(XdCount, related_name='%(class)s_related', help_text="Select zero or more counts to include in this Cluster.", blank=True)
+    Xdquantity = models.ManyToManyField(XdQuantity, related_name='%(class)s_related', help_text="Select zero or more quantity items to include in this Cluster.", blank=True)
+    Xdratio = models.ManyToManyField(XdRatio, related_name='%(class)s_related', help_text="Select zero or more ratios to include in this Cluster.", blank=True)
+    Xdtemporal = models.ManyToManyField(XdTemporal, related_name='%(class)s_related', help_text="Select zero or more temporal items to include in this Cluster.", blank=True)
 
     def publish(self, request):
         if self.schema_code == '':
@@ -797,11 +797,11 @@ class Entry(Common):
     subject = models.ForeignKey(Party, verbose_name=_('entry subject'), related_name='%(class)s_related_subject', null=True, blank=True, help_text=_('Refers to the subject of the record for anonymous or identified reference.'))
     provider = models.ForeignKey(Party, verbose_name=_('entry provider'), related_name='%(class)s_related_provider', null=True, blank=True, help_text=_('Select a Party that is the provider of the activity in this Entry.'))
     participations = models.ManyToManyField(Participation, verbose_name=_('other participations'), blank=True, help_text=_('Select any Participations that describe additional entities involved in this Entry.'))
-    protocol = models.ForeignKey(DvString, null=True, verbose_name=_('protocol id'), blank=True, help_text=_('Optional external identifier of protocol used to create this Entry.  This could be a clinical guideline, an operations protocol,etc.'))
-    workflow = models.ForeignKey(DvLink, null=True, verbose_name=_('workflow id'), blank=True, help_text=_('Identifier of externally held workflow engine (state machine) data for this workflow execution.'))
+    protocol = models.ForeignKey(XdString, null=True, verbose_name=_('protocol id'), blank=True, help_text=_('Optional external identifier of protocol used to create this Entry.  This could be a clinical guideline, an operations protocol,etc.'))
+    workflow = models.ForeignKey(XdLink, null=True, verbose_name=_('workflow id'), blank=True, help_text=_('Identifier of externally held workflow engine (state machine) data for this workflow execution.'))
     audit = models.ForeignKey('Audit', verbose_name=_('audit'), null=True, blank=True, help_text=_('Audit structure to provide audit trail tracking of information.'))
     attestation = models.ForeignKey(Attestation, verbose_name=_('attestation'), null=True, blank=True, help_text=_('An attestation that this Entry is correct.'))
-    links = models.ManyToManyField(DvLink, verbose_name=_('links'), blank=True, related_name='%(class)s_related_links', default=None, help_text=_('Can be used to establish ad-hoc links between concepts.'))
+    links = models.ManyToManyField(XdLink, verbose_name=_('links'), blank=True, related_name='%(class)s_related_links', default=None, help_text=_('Can be used to establish ad-hoc links between concepts.'))
 
     def publish(self, request):
         if self.schema_code == '':

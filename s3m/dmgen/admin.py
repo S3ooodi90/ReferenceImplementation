@@ -61,8 +61,8 @@ republish.short_description = _("Re-Publish (Development Only!)")
 
 def republishAll(modeladmin, request, queryset):
     if request.user.is_superuser:
-        q = DvBoolean.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvBooleans.")
+        q = XdBoolean.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdBooleans.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -83,8 +83,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvString.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvStrings.")
+        q = XdString.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdStrings.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -94,8 +94,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvLink.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvLinks.")
+        q = XdLink.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdLinks.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -105,8 +105,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvInterval.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvIntervals.")
+        q = XdInterval.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdIntervals.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -127,8 +127,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvOrdinal.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvOrdinals.")
+        q = XdOrdinal.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdOrdinals.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -138,8 +138,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvCount.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvCounts.")
+        q = XdCount.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdCounts.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -149,8 +149,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvQuantity.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvQuantities.")
+        q = XdQuantity.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdQuantities.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -160,8 +160,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvRatio.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvRatios.")
+        q = XdRatio.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdRatios.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -171,8 +171,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvFile.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvFiles.")
+        q = XdFile.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdFiles.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -182,8 +182,8 @@ def republishAll(modeladmin, request, queryset):
             if msg[1] != messages.SUCCESS: # there was an error.
                 print(obj.__str__() + " wasn't republished.")
 
-        q = DvTemporal.objects.filter(published=True)
-        print("Re-publishing " + str(len(q)) + " DvTemporals.")
+        q = XdTemporal.objects.filter(published=True)
+        print("Re-publishing " + str(len(q)) + " XdTemporals.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
@@ -503,7 +503,7 @@ class EntryAdmin(admin.ModelAdmin):
                     'fields':('links','audit','participations',
                                      'protocol','workflow','state','attestation'),
                     'description':_('At least a generic item should be selected for each of these. This allows data to be entered at runtime.')}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code',)}),
     )
@@ -519,17 +519,17 @@ class EntryAdmin(admin.ModelAdmin):
 
 admin.site.register(Entry,EntryAdmin)
 
-class DvBooleanAdmin(admin.ModelAdmin):
+class XdBooleanAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator',]
     search_fields = ['label','ct_id',]
     ordering = ['project','label',]
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
-    form = DvBooleanAdminForm
+    form = XdBooleanAdminForm
     filter_horizontal = ['pred_obj',]
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvBooleanAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdBooleanAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -540,7 +540,7 @@ class DvBooleanAdmin(admin.ModelAdmin):
                        'fields':('published',('label','project','lang'), 'require_vtb', 'require_vte', 'require_tr', 'trues','falses')}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
 
@@ -555,19 +555,19 @@ class DvBooleanAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvBoolean, DvBooleanAdmin)
+admin.site.register(XdBoolean, XdBooleanAdmin)
 
-class DvLinkAdmin(admin.ModelAdmin):
+class XdLinkAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
-    form = DvLinkAdminForm
+    form = XdLinkAdminForm
     filter_horizontal = ['pred_obj',]
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvLinkAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdLinkAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -578,7 +578,7 @@ class DvLinkAdmin(admin.ModelAdmin):
                        'fields':('published',('label','project','lang'), 'require_vtb', 'require_vte', 'require_tr', 'relation',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
 
@@ -592,19 +592,19 @@ class DvLinkAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvLink,DvLinkAdmin)
+admin.site.register(XdLink,XdLinkAdmin)
 
-class DvStringAdmin(admin.ModelAdmin):
+class XdStringAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
     filter_horizontal = ['pred_obj',]
-    form = DvStringAdminForm
+    form = XdStringAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvStringAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdStringAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -617,7 +617,7 @@ class DvStringAdmin(admin.ModelAdmin):
                        'fields':('min_length','max_length','exact_length','enums','definitions','def_val',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
 
@@ -631,7 +631,7 @@ class DvStringAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvString,DvStringAdmin)
+admin.site.register(XdString,XdStringAdmin)
 
 class UnitsAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
@@ -654,7 +654,7 @@ class UnitsAdmin(admin.ModelAdmin):
                        'fields':('published',('label','project','lang'), 'require_vtb', 'require_vte', 'require_tr', 'enums','definitions','def_val',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
 
@@ -672,17 +672,17 @@ class UnitsAdmin(admin.ModelAdmin):
 admin.site.register(Units,UnitsAdmin)
 
 
-class DvCountAdmin(admin.ModelAdmin):
+class XdCountAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
     filter_horizontal = ['reference_ranges','pred_obj',]
-    form = DvCountAdminForm
+    form = XdCountAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvCountAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdCountAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -699,7 +699,7 @@ class DvCountAdmin(admin.ModelAdmin):
         ("Optional", {'classes':('collapse',),
                        'fields':('normal_status','reference_ranges',
                                  'min_inclusive','max_inclusive','min_exclusive','max_exclusive','total_digits',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
     )
@@ -712,19 +712,19 @@ class DvCountAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvCount,DvCountAdmin)
+admin.site.register(XdCount,XdCountAdmin)
 
-class DvIntervalAdmin(admin.ModelAdmin):
+class XdIntervalAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
-    form = DvIntervalAdminForm
+    form = XdIntervalAdminForm
     filter_horizontal = ['pred_obj',]
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvIntervalAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdIntervalAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -739,7 +739,7 @@ class DvIntervalAdmin(admin.ModelAdmin):
                                      'fields':('units_name','units_uri',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
     )
@@ -752,19 +752,19 @@ class DvIntervalAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvInterval,DvIntervalAdmin)
+admin.site.register(XdInterval,XdIntervalAdmin)
 
-class DvFileAdmin(admin.ModelAdmin):
+class XdFileAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
-    form = DvFileAdminForm
+    form = XdFileAdminForm
     filter_horizontal = ['pred_obj',]
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvFileAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdFileAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -777,7 +777,7 @@ class DvFileAdmin(admin.ModelAdmin):
                        'fields':('description','pred_obj','content_mode',)}),
         ("Optional", {'classes':('collapse',),
                        'fields':('language','media_type','encoding','alt_txt',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
     )
@@ -790,19 +790,19 @@ class DvFileAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvFile,DvFileAdmin)
+admin.site.register(XdFile,XdFileAdmin)
 
-class DvOrdinalAdmin(admin.ModelAdmin):
+class XdOrdinalAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
     filter_horizontal = ['reference_ranges','pred_obj',]
-    form = DvOrdinalAdminForm
+    form = XdOrdinalAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvOrdinalAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdOrdinalAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -816,7 +816,7 @@ class DvOrdinalAdmin(admin.ModelAdmin):
                        'fields':('normal_status','reference_ranges',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
     )
@@ -829,19 +829,19 @@ class DvOrdinalAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvOrdinal,DvOrdinalAdmin)
+admin.site.register(XdOrdinal,XdOrdinalAdmin)
 
-class DvQuantityAdmin(admin.ModelAdmin):
+class XdQuantityAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
     filter_horizontal = ['reference_ranges','pred_obj',]
-    form = DvQuantityAdminForm
+    form = XdQuantityAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvQuantityAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdQuantityAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -858,7 +858,7 @@ class DvQuantityAdmin(admin.ModelAdmin):
                                  'min_inclusive','max_inclusive','min_exclusive','max_exclusive','total_digits','fraction_digits',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
     )
@@ -871,19 +871,19 @@ class DvQuantityAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvQuantity,DvQuantityAdmin)
+admin.site.register(XdQuantity,XdQuantityAdmin)
 
-class DvRatioAdmin(admin.ModelAdmin):
+class XdRatioAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
     filter_horizontal = ['reference_ranges','pred_obj',]
-    form = DvRatioAdminForm
+    form = XdRatioAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvRatioAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdRatioAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -908,7 +908,7 @@ class DvRatioAdmin(admin.ModelAdmin):
                                  'reference_ranges','min_magnitude','max_magnitude',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
     )
@@ -921,19 +921,19 @@ class DvRatioAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvRatio,DvRatioAdmin)
+admin.site.register(XdRatio,XdRatioAdmin)
 
-class DvTemporalAdmin(admin.ModelAdmin):
+class XdTemporalAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
     search_fields = ['label','ct_id']
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_dt, republish,delete_mcs,]
     readonly_fields = ['published','schema_code','r_code','creator','edited_by',]
     filter_horizontal = ['reference_ranges','pred_obj',]
-    form = DvTemporalAdminForm
+    form = XdTemporalAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(DvTemporalAdmin, self).get_form(request, obj, **kwargs)
+        form = super(XdTemporalAdmin, self).get_form(request, obj, **kwargs)
         modeller = Modeler.objects.get(pk=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
@@ -951,7 +951,7 @@ class DvTemporalAdmin(admin.ModelAdmin):
                        'fields':('description','pred_obj',)}),
         ("Optional", {'classes':('collapse',),
                                'fields':('normal_status','reference_ranges',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code','r_code',)}),
     )
@@ -964,7 +964,7 @@ class DvTemporalAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('label','project','published','edited_by','creator',)
-admin.site.register(DvTemporal,DvTemporalAdmin)
+admin.site.register(XdTemporal,XdTemporalAdmin)
 
 class ClusterAdmin(admin.ModelAdmin):
     list_filter = ['published','project','creator']
@@ -972,7 +972,7 @@ class ClusterAdmin(admin.ModelAdmin):
     ordering = ['project','label']
     actions = [make_published, unpublish, copy_cluster,delete_mcs,]
     readonly_fields = ['published','schema_code','creator','edited_by',]
-    filter_horizontal = ['dvboolean','dvlink','dvstring','clusters','dvfile','dvordinal','dvtemporal','dvcount','dvquantity','dvratio','pred_obj',]
+    filter_horizontal = ['Xdboolean','Xdlink','Xdstring','clusters','Xdfile','Xdordinal','Xdtemporal','Xdcount','Xdquantity','Xdratio','pred_obj',]
     form = ClusterAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
@@ -989,13 +989,13 @@ class ClusterAdmin(admin.ModelAdmin):
                        'fields':('clusters',),
                        'description':_('Select all Clusters that you wish to include in this Cluster.'),}),
         ("Non-Quantitative", {'classes':('wide',),
-                       'fields':('dvboolean','dvlink','dvstring', 'dvfile','dvordinal','dvtemporal',),
+                       'fields':('Xdboolean','Xdlink','Xdstring', 'Xdfile','Xdordinal','Xdtemporal',),
                        'description':_('Select one or more non-quantitative datatype(s) for this Cluster.')}),
         ("Quantitative", {'classes':('wide',),
-                       'fields':('dvcount','dvquantity','dvratio',),
+                       'fields':('Xdcount','Xdquantity','Xdratio',),
                        'description':_('Select one or more quantitative datatype(s) for this Cluster.')}),
 
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code',)}),
     )
@@ -1032,7 +1032,7 @@ class PartyAdmin(admin.ModelAdmin):
                        'fields':('published',('label','project','lang'),'details','external_ref',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code',)}),
     )
@@ -1069,7 +1069,7 @@ class ReferenceRangeAdmin(admin.ModelAdmin):
                                  'interval','is_normal',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code',)}),
     )
@@ -1107,7 +1107,7 @@ class AuditAdmin(admin.ModelAdmin):
                        'fields':('description','pred_obj',)}),
         (None, {'classes':('wide',),
                        'fields':('system_id','system_user','location',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code',)}),
     )
@@ -1144,7 +1144,7 @@ class AttestationAdmin(admin.ModelAdmin):
                        'fields':('published',('label','project','lang'),'view','reason','proof','committer',)}),
         ("Additional Information", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code',)}),
     )
@@ -1180,7 +1180,7 @@ class ParticipationAdmin(admin.ModelAdmin):
                        'fields':('published',('label','project','lang'),'performer','function','mode',)}),
         ("Additional Information ", {'classes':('wide',),
                        'fields':('description','pred_obj',)}),
-        ("Advanced", {'classes':('collapse',),'fields':('asserts',)}),
+        ("AXdanced", {'classes':('collapse',),'fields':('asserts',)}),
         ("Read Only", {'classes':('collapse',),
                            'fields':('creator','edited_by','schema_code',)}),
     )

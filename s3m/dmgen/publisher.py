@@ -45,9 +45,9 @@ def reset_publication(self):
 
 
 #====================================================================
-def publish_DvBoolean(self):
+def publish_XdBoolean(self):
     """
-    Writes the complete DM complexType code for the containing the DvBoolean itself. Saves it in the schema_code
+    Writes the complete DM complexType code for the containing the XdBoolean itself. Saves it in the schema_code
     attribute. Once written it sets the 'published' flag to True. This flag can never be reset to False.
 
     Completed.
@@ -58,7 +58,7 @@ def publish_DvBoolean(self):
     self.save()
 
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvBoolean')
+    self.r_code = pct_rcode(self, 'XdBoolean')
     self.save()
 
     # fix double quotes in label
@@ -91,28 +91,28 @@ def publish_DvBoolean(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvBooleanType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdBooleanType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvBooleanType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdBooleanType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvBooleanType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdBooleanType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvBoolean
+    #XdBoolean
     dt_str += padding.rjust(indent+8) + ("<xs:choice maxOccurs='1' minOccurs='1'>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element name='true-value'>\n")
     dt_str += padding.rjust(indent+10) + ("<xs:simpleType>\n")
@@ -153,9 +153,9 @@ def publish_DvBoolean(self):
     return msg
 
 
-def publish_DvLink(self):
+def publish_XdLink(self):
     """
-     Writes the complete DM complexType code for the containing the DvLink itself. Saves it in the schema_code
+     Writes the complete DM complexType code for the containing the XdLink itself. Saves it in the schema_code
      attribute. Once written it sets the 'published' flag to True. This flag can never be reset to False.
 
      Completed.
@@ -164,7 +164,7 @@ def publish_DvLink(self):
     self.published = False
     self.save()
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvLink')
+    self.r_code = pct_rcode(self, 'XdLink')
     self.save()
 
     # fix double quotes in label
@@ -189,28 +189,28 @@ def publish_DvLink(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvLinkType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdLinkType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+quote(self.ct_id)+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvLinkType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdLinkType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvLinkType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdLinkType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvLink
+    #XdLink
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='link' type='xs:anyURI'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='"+escape(self.relation.strip())+"'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='relation-uri' type='xs:anyURI' fixed='"+escape(self.relation_uri.strip())+"'/>\n")
@@ -236,9 +236,9 @@ def publish_DvLink(self):
     return msg
 
 
-def publish_DvString(self):
+def publish_XdString(self):
     """
-    Writes the complete DM complexType code for the containing Element and the DvString itself.
+    Writes the complete DM complexType code for the containing Element and the XdString itself.
     Saves it in the schema_code attribute. Once written it sets the 'published' flag to True.
     This flag can never be reset to False.
 
@@ -248,7 +248,7 @@ def publish_DvString(self):
     self.published = False
     self.save()
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvString')
+    self.r_code = pct_rcode(self, 'XdString')
     self.save()
 
     # fix double quotes in label
@@ -293,38 +293,38 @@ def publish_DvString(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvStringType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdStringType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvStringType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdStringType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvStringType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdStringType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvString
+    #XdString
     if enumList:
         if default:
-            dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' default='"+escape(default.strip())+"'>\n")
+            dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='Xdstring-value' default='"+escape(default.strip())+"'>\n")
         else:
-            dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvstring-value'>\n")
+            dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='Xdstring-value'>\n")
     else:
         if default:
-            dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string' default='"+escape(default)+"'/>\n")
+            dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='Xdstring-value' type='xs:string' default='"+escape(default)+"'/>\n")
         else:
-            dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvstring-value' type='xs:string'/>\n")
+            dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='Xdstring-value' type='xs:string'/>\n")
 
 # Enumerations
     if enumList:
@@ -342,7 +342,7 @@ def publish_DvString(self):
             dt_str += padding.rjust(indent+16) + ("<xs:enumeration value='"+escape(enumList[n].strip())+"'>\n")
             dt_str += padding.rjust(indent+16) + ("<xs:annotation>\n")
             dt_str += padding.rjust(indent+18) + ("<xs:appinfo>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"/dvstring-value/"+quote(enumList[n].strip())+"'>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"/Xdstring-value/"+quote(enumList[n].strip())+"'>\n")
             dt_str += padding.rjust(indent+2) + ("  <rdfs:subPropertyOf rdf:resource='s3m:mc-"+self.ct_id+"'/>\n")
             dt_str += padding.rjust(indent+2) + ("  <rdfs:label>"+enumList[n].strip()+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("  <rdfs:isDefinedBy>"+tips[n].strip()+"</rdfs:isDefinedBy>")
@@ -354,7 +354,7 @@ def publish_DvString(self):
         dt_str += padding.rjust(indent+12) + ("</xs:simpleType>\n")
         dt_str += padding.rjust(indent+10) + ("</xs:element>\n")
 
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvstring-language' type='xs:language' default='"+self.lang+"'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdstring-language' type='xs:language' default='"+self.lang+"'/>\n")
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
         str1 = "<xs:assert test="
@@ -375,9 +375,9 @@ def publish_DvString(self):
 
     return msg
 
-def publish_DvFile(self):
+def publish_XdFile(self):
     """
-    Writes the complete DM complexType code for the DvFile itself.
+    Writes the complete DM complexType code for the XdFile itself.
     Saves it in the schema_code attribute. Once written it sets the 'published' flag to True.
     This flag can never be reset to False.
     """
@@ -386,7 +386,7 @@ def publish_DvFile(self):
     self.save()
 
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvFile')
+    self.r_code = pct_rcode(self, 'XdFile')
     self.save()
 
     # encode double quotes in label
@@ -418,31 +418,31 @@ def publish_DvFile(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvFileType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdFileType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvFileType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdFileType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvFileType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdFileType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label)+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvFile
+    #XdFile
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='size' type='xs:int'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='encoding' type='xs:string' default='"+self.encoding.strip()+"'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvfile-language' type='xs:language' default='"+self.language.strip()+"'/>\n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdfile-language' type='xs:language' default='"+self.language.strip()+"'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='formalism' type='xs:string' default=''/>\n")
     if not media_list:
         dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='media-type' type='xs:string'/>\n")
@@ -496,7 +496,7 @@ def publish_DvFile(self):
     return msg
 
 
-def publish_DvInterval(self):
+def publish_XdInterval(self):
     """
     Completed.
     """
@@ -531,7 +531,7 @@ def publish_DvInterval(self):
 
     if self.interval_type not in ['int', 'decimal','date','time','dateTime','float','duration']:
         reset_publication(self)
-        msg = ("Invalid Type for DvInterval. "+repr(self.interval_type)+" in "+self.label+" is not an allowed, ordered type.", messages.ERROR)
+        msg = ("Invalid Type for XdInterval. "+repr(self.interval_type)+" in "+self.label+" is not an allowed, ordered type.", messages.ERROR)
 
     # check for modelling errors
     if self.lower_bounded and not self.lower:
@@ -567,28 +567,28 @@ def publish_DvInterval(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvIntervalType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdIntervalType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvIntervalType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdIntervalType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvIntervalType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdIntervalType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvInterval
+    #XdInterval
     # create an UUIDs for the invl-type restrictions
     lower_id = str(uuid4())
     upper_id = str(uuid4())
@@ -675,14 +675,14 @@ def publish_ReferenceRange(self):
 
     #TODO - change interval to interval
 
-    dvi_id = str(self.interval.ct_id)
+    Xdi_id = str(self.interval.ct_id)
     if self.is_normal:
         normal="true"
     else:
         normal = "false"
     if not self.interval.published:
         reset_publication(self)
-        msg = ("DvInterval: "+self.interval.label+" hasn't been published. Please publish the interval and retry.", messages.ERROR)
+        msg = ("XdInterval: "+self.interval.label+" hasn't been published. Please publish the interval and retry.", messages.ERROR)
 
     padding = ('').rjust(indent)
 
@@ -710,7 +710,7 @@ def publish_ReferenceRange(self):
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
     dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:ReferenceRangeType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
@@ -719,7 +719,7 @@ def publish_ReferenceRange(self):
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
     #ReferenceRange
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' fixed='"+rr_def.strip()+"'/>\n")
-    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-"+dvi_id+"'/> \n")
+    dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-"+Xdi_id+"'/> \n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='is-normal' type='xs:boolean' fixed='"+normal+"'/>\n")
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -742,9 +742,9 @@ def publish_ReferenceRange(self):
     return msg
 
 
-def publish_DvOrdinal(self):
+def publish_XdOrdinal(self):
     """
-    Writes the complete DM complexType code for the containing Element and the DvOrdinal itself.
+    Writes the complete DM complexType code for the containing Element and the XdOrdinal itself.
     Saves it in the schema_code attribute. Once written it sets the 'published' flag to True.
     This flag can never be reset to False.
 
@@ -755,14 +755,14 @@ def publish_DvOrdinal(self):
     self.save()
 
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvOrdinal')
+    self.r_code = pct_rcode(self, 'XdOrdinal')
     self.save()
 
     # fix double quotes in label
     self.label.replace('"','&quot;')
     self.save()
 
-    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same dvinterval in a dvordinal
+    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same Xdinterval in a Xdordinal
 
     #default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
@@ -805,28 +805,28 @@ def publish_DvOrdinal(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvOrdinalType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdOrdinalType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvOrdinalType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdOrdinalType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvOrdinalType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdOrdinalType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvOrdered
+    #XdOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
             if not rr.published:
@@ -837,10 +837,10 @@ def publish_DvOrdinal(self):
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+rr.ct_id+"'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
-                    used_ctid_list.append(rr.interval.ct_id) # track the used DvInterval IDs
+                    used_ctid_list.append(rr.interval.ct_id) # track the used XdInterval IDs
                 else:
                     reset_publication(self)
-                    msg = (self.label + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
+                    msg = (self.label + ": You cannot use multiple ReferenceRanges with the same XdInterval declared as the data-range in one XdOrdinal.", messages.ERROR)
                     return msg
     if self.normal_status:
         dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='normal-status' type='xs:string' fixed='"+escape(self.normal_status.strip())+"'/> \n")
@@ -848,7 +848,7 @@ def publish_DvOrdinal(self):
         self.normal_status = ''
 
 
-    #DvOrdinal
+    #XdOrdinal
     dt_str += padding.rjust(indent+10) + ("<xs:element maxOccurs='1' minOccurs='1' name='ordinal'>\n")
     dt_str += padding.rjust(indent+12) + ("<xs:simpleType>\n")
     dt_str += padding.rjust(indent+12) + ("<xs:restriction base='xs:decimal'>\n")
@@ -894,9 +894,9 @@ def publish_DvOrdinal(self):
 
     return msg
 
-def publish_DvCount(self):
+def publish_XdCount(self):
     """
-    Writes the complete DM complexType code for the containing Element and the DvCount itself.
+    Writes the complete DM complexType code for the containing Element and the XdCount itself.
     Saves it in the schema_code attribute. Once written it sets the 'published' flag to True.
     This flag can never be reset to False.
 
@@ -908,14 +908,14 @@ def publish_DvCount(self):
     self.save()
 
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvCount')
+    self.r_code = pct_rcode(self, 'XdCount')
     self.save()
 
     # fix double quotes in label
     self.label.replace('"','&quot;')
     self.save()
 
-    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same dvinterval in a dvcount
+    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same Xdinterval in a Xdcount
 
     #default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
@@ -942,29 +942,29 @@ def publish_DvCount(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvCountType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdCountType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvCountType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdCountType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
 
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvCountType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdCountType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvOrdered
+    #XdOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
             if not rr.published:
@@ -974,10 +974,10 @@ def publish_DvCount(self):
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+rr.ct_id+"'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
-                    used_ctid_list.append(rr.interval.ct_id) # track the used DvInterval IDs
+                    used_ctid_list.append(rr.interval.ct_id) # track the used XdInterval IDs
                 else:
                     reset_publication(self)
-                    msg = (self.__str__() + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
+                    msg = (self.__str__() + ": You cannot use multiple ReferenceRanges with the same XdInterval declared as the data-range in one XdOrdinal.", messages.ERROR)
                     return msg
 
     if self.normal_status:
@@ -985,17 +985,17 @@ def publish_DvCount(self):
     else:
         self.normal_status = ''
 
-    #DvQuantified
+    #XdQuantified
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='magnitude-status' type='s3m:MagnitudeStatus'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='error'  type='xs:int' default='0'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='accuracy' type='xs:int' default='0'/>\n")
 
 
-    #DvCount
+    #XdCount
     if not mag_constrained:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='dvcount-value' type='xs:int'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='Xdcount-value' type='xs:int'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='dvcount-value'>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='Xdcount-value'>\n")
         dt_str += padding.rjust(indent+10) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent+10) + ("<xs:restriction base='xs:int'>\n")
         if self.min_inclusive != None:
@@ -1015,7 +1015,7 @@ def publish_DvCount(self):
 
     if not self.units:
         reset_publication(self)
-        msg = ("DvCount "+self.__str__()+" MUST have a Units definition.", messages.ERROR)
+        msg = ("XdCount "+self.__str__()+" MUST have a Units definition.", messages.ERROR)
         return msg
 
     else:
@@ -1024,7 +1024,7 @@ def publish_DvCount(self):
             msg = ( "Units: "+self.units.label+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             return msg
 
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvcount-units' type='s3m:mc-"+str(self.units.ct_id)+"'/> \n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='Xdcount-units' type='s3m:mc-"+str(self.units.ct_id)+"'/> \n")
 
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -1048,23 +1048,23 @@ def publish_DvCount(self):
     return msg
 
 
-def publish_DvQuantity(self):
+def publish_XdQuantity(self):
     """
-    Publish DvQuantity
+    Publish XdQuantity
     """
     self.ct_id = str(uuid4())
     self.published = False
     self.save()
 
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvQuantity')
+    self.r_code = pct_rcode(self, 'XdQuantity')
     self.save()
 
     # fix double quotes in label
     self.label.replace('"','&quot;')
     self.save()
 
-    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same dvinterval in a dvquantity
+    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same Xdinterval in a Xdquantity
 
     #default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
@@ -1091,29 +1091,29 @@ def publish_DvQuantity(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvQuantityType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdQuantityType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvQuantityType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdQuantityType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
 
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvQuantityType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdQuantityType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvOrdered
+    #XdOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
             if not rr.published:
@@ -1123,26 +1123,26 @@ def publish_DvQuantity(self):
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+rr.ct_id+"'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
-                    used_ctid_list.append(rr.interval.ct_id) # track the used DvInterval IDs
+                    used_ctid_list.append(rr.interval.ct_id) # track the used XdInterval IDs
                 else:
                     reset_publication(self)
-                    msg = (self.__str__() + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
+                    msg = (self.__str__() + ": You cannot use multiple ReferenceRanges with the same XdInterval declared as the data-range in one XdOrdinal.", messages.ERROR)
                     return msg
     if self.normal_status:
         dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='normal-status' type='xs:string' fixed='"+escape(self.normal_status.strip())+"'/> \n")
     else:
         self.normal_status = ''
 
-    #DvQuantified
+    #XdQuantified
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='magnitude-status' type='s3m:MagnitudeStatus'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='error'  type='xs:int' default='0'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='accuracy' type='xs:int' default='0'/>\n")
 
-    #DvQuantity
+    #XdQuantity
     if not mag_constrained:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='dvquantity-value' type='xs:decimal'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='Xdquantity-value' type='xs:decimal'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='dvquantity-value'>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='Xdquantity-value'>\n")
         dt_str += padding.rjust(indent+10) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent+10) + ("<xs:restriction base='xs:decimal'>\n")
         if self.min_inclusive != None:
@@ -1163,14 +1163,14 @@ def publish_DvQuantity(self):
 
     if not self.units:
         reset_publication(self)
-        msg = ("DvQuantity "+self.__str__()+" MUST have a Units definition.", messages.ERROR)
+        msg = ("XdQuantity "+self.__str__()+" MUST have a Units definition.", messages.ERROR)
         return msg
 
     else:
         if not self.units.published:
             reset_publication(self)
             msg = ( "Units: "+self.units.label+" hasn't been published. Please publish the object and retry.", messages.ERROR)
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='dvquantity-units' type='s3m:mc-"+str(self.units.ct_id)+"'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='Xdquantity-units' type='s3m:mc-"+str(self.units.ct_id)+"'/>\n")
 
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -1194,23 +1194,23 @@ def publish_DvQuantity(self):
     return msg
 
 
-def publish_DvRatio(self):
+def publish_XdRatio(self):
     """
-    Publish DvRatio
+    Publish XdRatio
     """
     self.ct_id = str(uuid4())
     self.published = False
     self.save()
 
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvRatio')
+    self.r_code = pct_rcode(self, 'XdRatio')
     self.save()
 
     # fix double quotes in label
     self.label.replace('"','&quot;')
     self.save()
 
-    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same dvinterval in a dvratio
+    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same Xdinterval in a Xdratio
 
     #default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
@@ -1236,29 +1236,29 @@ def publish_DvRatio(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvRatioType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdRatioType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvRatioType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdRatioType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
 
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvRatioType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdRatioType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvOrdered
+    #XdOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
             if not rr.published:
@@ -1269,10 +1269,10 @@ def publish_DvRatio(self):
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+rr.ct_id+"'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
-                    used_ctid_list.append(rr.interval.ct_id) # track the used DvInterval IDs
+                    used_ctid_list.append(rr.interval.ct_id) # track the used XdInterval IDs
                 else:
                     reset_publication(self)
-                    msg = (self.__str__() + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
+                    msg = (self.__str__() + ": You cannot use multiple ReferenceRanges with the same XdInterval declared as the data-range in one XdOrdinal.", messages.ERROR)
                     return msg
 
     if self.normal_status:
@@ -1280,12 +1280,12 @@ def publish_DvRatio(self):
     else:
         self.normal_status = ''
 
-    #DvQuantified
+    #XdQuantified
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='magnitude-status' type='s3m:MagnitudeStatus'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='error'  type='xs:int' default='0'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='accuracy' type='xs:int' default='0'/>\n")
 
-    #DvRatio
+    #XdRatio
 
     # tests for proper modelling
     if (self.num_min_inclusive and self.num_min_exclusive) or (self.num_max_inclusive and self.num_max_exclusive):
@@ -1348,9 +1348,9 @@ def publish_DvRatio(self):
     dt_str += padding.rjust(indent+8) + ("</xs:element>\n")
 
     if not mag_constrained:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvratio-value' type='xs:decimal'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdratio-value' type='xs:decimal'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0'  name='dvratio-value'>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0'  name='Xdratio-value'>\n")
         dt_str += padding.rjust(indent+10) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent+10) + ("<xs:restriction base='xs:decimal'>\n")
         if self.min_magnitude is not None:
@@ -1403,7 +1403,7 @@ def publish_DvRatio(self):
     return msg
 
 
-def publish_DvTemporal(self):
+def publish_XdTemporal(self):
     """
     All time based options.
     Only one duration type is allowed.  If multiple durations are chosen by the modeller, a modelling error is raised.
@@ -1414,14 +1414,14 @@ def publish_DvTemporal(self):
     self.save()
 
     # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'DvTemporal')
+    self.r_code = pct_rcode(self, 'XdTemporal')
     self.save()
 
     # fix double quotes in label
     self.label.replace('"','&quot;')
     self.save()
 
-    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same dvinterval in a dvtemporal
+    used_ctid_list = [] # it is a modelling error to use multiple reference ranges with the same Xdinterval in a Xdtemporal
 
     #default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
@@ -1440,28 +1440,28 @@ def publish_DvTemporal(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvTemporalType'/>\n")
+            dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdTemporalType'/>\n")
             dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
             dt_str += padding.rjust(indent+2) + ("<"+po.predicate.ns_abbrev.__str__()+":"+po.predicate.class_name.strip()+" rdf:resource='"+ quote(po.object_uri) +"'/>\n")
             dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent+2) + ("<rdf:Description rdf:about='s3m:mc-"+self.ct_id+"'>\n")
-        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:DvTemporalType'/>\n")
+        dt_str += padding.rjust(indent+2) + ("<rdfs:subClassOf rdf:resource='s3m:XdTemporalType'/>\n")
         dt_str += padding.rjust(indent+2) + ("<rdfs:label>"+escape(self.label.strip())+"</rdfs:label>\n")
         dt_str += padding.rjust(indent+2) + ("</rdf:Description>\n")
     dt_str += padding.rjust(indent+2) + ('</xs:appinfo>\n')
     dt_str += padding.rjust(indent+2) + ("</xs:annotation>\n")
     dt_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvTemporalType'>\n")
+    dt_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdTemporalType'>\n")
     dt_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-    #DvAny
+    #XdAny
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vtb))+"' name='vtb' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_vte))+"' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_tr))+"' name='tr' type='xs:dateTimeStamp'/>\n")
     dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='"+str(int(self.require_mod))+"' name='modified' type='xs:dateTimeStamp'/>\n")
-    #DvOrdered
+    #XdOrdered
     if len(self.reference_ranges.all()) != 0: # reference ranges defined
         for rr in self.reference_ranges.all():
             if not rr.published:
@@ -1471,17 +1471,17 @@ def publish_DvTemporal(self):
             else:
                 dt_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+rr.ct_id+"'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
-                    used_ctid_list.append(rr.interval.ct_id) # track the used DvInterval IDs
+                    used_ctid_list.append(rr.interval.ct_id) # track the used XdInterval IDs
                 else:
                     reset_publication(self)
-                    msg = (self.__str__() + ": You cannot use multiple ReferenceRanges with the same DvInterval declared as the data-range in one DvOrdinal.", messages.ERROR)
+                    msg = (self.__str__() + ": You cannot use multiple ReferenceRanges with the same XdInterval declared as the data-range in one XdOrdinal.", messages.ERROR)
                     return msg
     if self.normal_status:
         dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='normal-status' type='xs:string' fixed='"+escape(self.normal_status.strip())+"'/> \n")
     else:
         self.normal_status = ''
 
-    #DvTemporal - every element must be included as either allowed or not allowed.
+    #XdTemporal - every element must be included as either allowed or not allowed.
     if (self.allow_duration and self.allow_ymduration) or (self.allow_duration and self.allow_dtduration) or (self.allow_ymduration and self.allow_dtduration):
         reset_publication(self)
         msg = (self.__str__()+": Only one of the duration types are allowed to be selected.", messages.ERROR)
@@ -1493,64 +1493,64 @@ def publish_DvTemporal(self):
         return msg
 
     if self.allow_date:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-date' type='xs:date'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-date' type='xs:date'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-date' type='xs:date'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-date' type='xs:date'/>\n")
 
     if self.allow_time:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-time' type='xs:time'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-time' type='xs:time'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-time' type='xs:time'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-time' type='xs:time'/>\n")
 
     if self.allow_datetime:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-datetime' type='xs:dateTime'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-datetime' type='xs:dateTime'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-datetime' type='xs:dateTime'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-datetime' type='xs:dateTime'/>\n")
 
     if self.allow_datetimestamp:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
 
     if self.allow_day:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-day' type='xs:gDay'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-day' type='xs:gDay'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-day' type='xs:gDay'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-day' type='xs:gDay'/>\n")
 
     if self.allow_month:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-month' type='xs:gMonth'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-month' type='xs:gMonth'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-month' type='xs:gMonth'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-month' type='xs:gMonth'/>\n")
 
     if self.allow_year:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-year' type='xs:gYear'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-year' type='xs:gYear'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-year' type='xs:gYear'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-year' type='xs:gYear'/>\n")
 
     if self.allow_year_month:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-year-month' type='xs:gYearMonth'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-year-month' type='xs:gYearMonth'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-year-month' type='xs:gYearMonth'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-year-month' type='xs:gYearMonth'/>\n")
 
     if self.allow_month_day:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-month-day' type='xs:gMonthDay'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-month-day' type='xs:gMonthDay'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-month-day' type='xs:gMonthDay'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-month-day' type='xs:gMonthDay'/>\n")
 
     if self.allow_duration:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-duration' type='xs:duration'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-duration' type='xs:duration'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-duration' type='xs:duration'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-duration' type='xs:duration'/>\n")
 
     if self.allow_ymduration:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-ymduration' type='xs:yearMonthDuration'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-ymduration' type='xs:yearMonthDuration'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-ymduration' type='xs:yearMonthDuration'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-ymduration' type='xs:yearMonthDuration'/>\n")
 
     if self.allow_dtduration:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='dvtemporal-dtduration' type='xs:dayTimeDuration'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-dtduration' type='xs:dayTimeDuration'/>\n")
     else:
-        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='dvtemporal-dtduration' type='xs:dayTimeDuration'/>\n")
+        dt_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-dtduration' type='xs:dayTimeDuration'/>\n")
 
 
     dt_str += padding.rjust(indent+8) + ("</xs:sequence>\n")
@@ -1622,7 +1622,7 @@ def publish_Party(self):
         for xref in self.external_ref.all():
             if not xref.published:
                 reset_publication(self)
-                msg = ("External Reference: "+xref.__str__().strip()+" hasn't been published. Please publish the DvLink and retry.", messages.ERROR)
+                msg = ("External Reference: "+xref.__str__().strip()+" hasn't been published. Please publish the XdLink and retry.", messages.ERROR)
                 return msg
             else:
                 party_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' name='party-ref' type='s3m:mc-"+str(xref.ct_id)+"'/>\n"
@@ -1699,12 +1699,12 @@ def publish_Audit(self):
     aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="+'"'+escape(self.label.strip())+'"'+"/>\n")
 
     if not self.system_id:
-        msg = ("System ID: (DvString) has not been selected.", messages.ERROR)
+        msg = ("System ID: (XdString) has not been selected.", messages.ERROR)
         return msg
     else:
         if not self.system_id.published:
             reset_publication(self)
-            msg = ("System ID: (DvString) "+self.system_id.__str__().strip()+" has not been published.", messages.ERROR)
+            msg = ("System ID: (XdString) "+self.system_id.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
         aud_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='1' name='system-id' type='s3m:mc-"+str(self.system_id.ct_id)+"'/>\n")
 
@@ -1790,21 +1790,21 @@ def publish_Attestation(self):
     if self.view:
         if not self.view.published:
             reset_publication(self)
-            msg = ("View: (DvFile) "+self.view.__str__().strip()+" has not been published.", messages.ERROR)
+            msg = ("View: (XdFile) "+self.view.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
         att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='view' type='s3m:mc-"+str(self.view.ct_id)+"'/> \n")
 
     if self.proof:
         if not self.proof.published:
             reset_publication(self)
-            msg = ("Proof: (DvFile) "+self.proof.__str__().strip()+" has not been published.", messages.ERROR)
+            msg = ("Proof: (XdFile) "+self.proof.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
         att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='proof' type='s3m:mc-"+str(self.proof.ct_id)+"'/> \n")
 
     if self.reason:
         if not self.reason.published:
             reset_publication(self)
-            msg = ("Reason: (DvString) "+self.reason.__str__().strip()+" has not been published.", messages.ERROR)
+            msg = ("Reason: (XdString) "+self.reason.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
         att_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='reason' type='s3m:mc-"+str(self.reason.ct_id)+"'/> \n")
 
@@ -1883,7 +1883,7 @@ def publish_Participation(self):
     if self.performer:
         if not self.performer.published:
             reset_publication(self)
-            msg = ("Performer: "+self.performer.__str__().strip()+" hasn't been published. Please publish the DvURI and retry.", messages.ERROR)
+            msg = ("Performer: "+self.performer.__str__().strip()+" hasn't been published. Please publish the XdURI and retry.", messages.ERROR)
             return msg
         ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='performer' type='s3m:mc-"+str(self.performer.ct_id)+"'/>\n")
     else:
@@ -1894,23 +1894,23 @@ def publish_Participation(self):
     if self.function:
         if not self.function.published:
             reset_publication(self)
-            msg = ("Function: (DvString) "+self.function.__str__().strip()+" has not been published.", messages.ERROR)
+            msg = ("Function: (XdString) "+self.function.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
         ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='function' type='s3m:mc-"+str(self.function.ct_id)+"'/>\n")
     else:
         reset_publication(self)
-        msg = ("You must define a function (DvString) for Participation: "+self.__str__().strip(), messages.ERROR)
+        msg = ("You must define a function (XdString) for Participation: "+self.__str__().strip(), messages.ERROR)
         return msg
 
     if self.mode:
         if not self.mode.published:
             reset_publication(self)
-            msg = ("Mode: (DvString) "+self.simple_mode.__str__().strip()+" has not been published.", messages.ERROR)
+            msg = ("Mode: (XdString) "+self.simple_mode.__str__().strip()+" has not been published.", messages.ERROR)
             return msg
         ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='mode' type='s3m:mc-"+str(self.mode.ct_id)+"'/> \n")
     else:
         reset_publication(self)
-        msg = ("You must define a mode (DvString) for Participation: "+self.__str__().strip(), messages.ERROR)
+        msg = ("You must define a mode (XdString) for Participation: "+self.__str__().strip(), messages.ERROR)
         return msg
 
     ptn_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='start' type='xs:dateTimeStamp'/>\n")
@@ -2003,77 +2003,77 @@ def publish_Cluster(self):
                 msg = ( "(Cluster) "+item.__str__().strip()+" NOTICE: You cannot nest a Cluster inside of itself at any level.", messages.ERROR)
                 return msg
 
-    if self.dvboolean.all():
+    if self.Xdboolean.all():
         has_content = True
-        for item in self.dvboolean.all():
+        for item in self.Xdboolean.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvBoolean) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdBoolean) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
-    if self.dvlink.all():
+    if self.Xdlink.all():
         has_content = True
-        for item in self.dvlink.all():
+        for item in self.Xdlink.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvLink) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdLink) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
-    if self.dvstring.all():
+    if self.Xdstring.all():
         has_content = True
-        for item in self.dvstring.all():
+        for item in self.Xdstring.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvString) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdString) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
-    if self.dvfile.all():
+    if self.Xdfile.all():
         has_content = True
-        for item in self.dvfile.all():
+        for item in self.Xdfile.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvFile) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdFile) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
-    if self.dvordinal.all():
+    if self.Xdordinal.all():
         has_content = True
-        for item in self.dvordinal.all():
+        for item in self.Xdordinal.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvOrdinal) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdOrdinal) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
-    if self.dvcount.all():
+    if self.Xdcount.all():
         has_content = True
-        for item in self.dvcount.all():
+        for item in self.Xdcount.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvCount) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdCount) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
-    if self.dvquantity.all():
+    if self.Xdquantity.all():
         has_content = True
-        for item in self.dvquantity.all():
+        for item in self.Xdquantity.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvQuantity) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdQuantity) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
 
-    if self.dvratio.all():
+    if self.Xdratio.all():
         has_content = True
-        for item in self.dvratio.all():
+        for item in self.Xdratio.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvRatio) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdRatio) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
-    if self.dvtemporal.all():
+    if self.Xdtemporal.all():
         has_content = True
-        for item in self.dvtemporal.all():
+        for item in self.Xdtemporal.all():
             if not item.published:
                 reset_publication(self)
-                msg = ( "(DvTemporal) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
+                msg = ( "(XdTemporal) "+item.__str__().strip()+" hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent+4) + ("<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(item.adapter_ctid)+"'/>\n")
 
 
@@ -2194,7 +2194,7 @@ def publish_Entry(self):
     if self.protocol:
         if not self.protocol.published:
             reset_publication(self)
-            msg = ("Protocol: "+self.protocol.__str__().strip()+" hasn't been published. Please publish the DvString and retry.", messages.ERROR)
+            msg = ("Protocol: "+self.protocol.__str__().strip()+" hasn't been published. Please publish the XdString and retry.", messages.ERROR)
             return msg
         else:
             entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='protocol' type='s3m:mc-"+str(self.protocol.ct_id)+"'/>\n")
@@ -2205,7 +2205,7 @@ def publish_Entry(self):
     if self.workflow:
         if not self.workflow.published:
             reset_publication(self)
-            msg = ("Workflow: "+self.workflow.__str__().strip()+" hasn't been published. Please publish the DvLink and retry.", messages.ERROR)
+            msg = ("Workflow: "+self.workflow.__str__().strip()+" hasn't been published. Please publish the XdLink and retry.", messages.ERROR)
             return msg
         else:
             entry_str += padding.rjust(indent+8) + ("<xs:element maxOccurs='1' minOccurs='0' name='workflow' type='s3m:mc-"+str(self.workflow.ct_id)+"'/>\n")
@@ -2238,7 +2238,7 @@ def publish_Entry(self):
         for link in self.links.all():
             if not link.published:
                 reset_publication(self)
-                msg = ("Link: "+link.__str__().strip()+" hasn't been published. Please publish the DvLink and retry.", messages.ERROR)
+                msg = ("Link: "+link.__str__().strip()+" hasn't been published. Please publish the XdLink and retry.", messages.ERROR)
                 return msg
             else:
                 entry_str += padding.rjust(indent+8) +"<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-"+str(link.ct_id)+"'/>\n"

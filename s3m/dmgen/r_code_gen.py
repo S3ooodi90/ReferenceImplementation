@@ -30,25 +30,25 @@ def pct_rcode(self, pcmType):
     rstr += "#' The XML element name is pcs-"+ct_id+" as a restriction of the "+pcmType+"\n"
     # add the list of vectors to the documentation
     rstr += "#' The vectors are: label, vtb, vte, "
-    if pcmType == 'DvBoolean':
+    if pcmType == 'XdBoolean':
         rstr += "#' true_value, false_value, "
-    elif pcmType == 'DvLink':
+    elif pcmType == 'XdLink':
         rstr += "#' link, relation, relation_uri, "
-    elif pcmType == 'DvString':
-        rstr += "#' dvstring_value, dvstring_language, "
-    elif pcmType == 'DvFile':
-        rstr += "#' size, encoding, dvfile_language, media_type, compression_type, hash_result, hash_function, alt_txt, uri, media_content, text_content, "
-    elif pcmType == 'DvOrdinal':
+    elif pcmType == 'XdString':
+        rstr += "#' Xdstring_value, Xdstring_language, "
+    elif pcmType == 'XdFile':
+        rstr += "#' size, encoding, Xdfile_language, media_type, compression_type, hash_result, hash_function, alt_txt, uri, media_content, text_content, "
+    elif pcmType == 'XdOrdinal':
         rstr += "#' normal_status, ordinal, symbol, rr_label, rr_definition, rr_vtb, rr_vtb, rr_is_normal, interval_label, interval_lower, interval_upper, lower_included, upper_included, lower_bounded, upper_bounded, "
-    elif pcmType == 'DvCount':
-        rstr += "#' normal_status, dvcount_value,  units_value, units_label,  rr_label, rr_definition, rr_vtb, rr_vtb, rr_is_normal, interval_label, interval_lower, interval_upper, lower_included, upper_included, lower_bounded, upper_bounded, "
-    elif pcmType == 'DvTemporal':
+    elif pcmType == 'XdCount':
+        rstr += "#' normal_status, Xdcount_value,  units_value, units_label,  rr_label, rr_definition, rr_vtb, rr_vtb, rr_is_normal, interval_label, interval_lower, interval_upper, lower_included, upper_included, lower_bounded, upper_bounded, "
+    elif pcmType == 'XdTemporal':
         rstr += "#' normal_status,  rr_label, rr_definition, rr_vtb, rr_vtb, rr_is_normal, interval_label, interval_lower, interval_upper, lower_included, upper_included, lower_bounded, upper_bounded, "
-        rstr += "#' One or more of: dvtemporal_date, dvtemporal_time, dvtemporal_datetime, dvtemporal_datetime_stamp, dvtemporal_day, dvtemporal_month, dvtemporal_year, dvtemporal_year_month, dvtemporal_month_day, dvtemporal_duration, dvtemporal_ymduration, dvtemporal_dtduration\n"
-    elif pcmType == 'DvQuantity':
-        rstr += "#' normal_status, dvquantity_value, magnitude_status, error, accuracy, units_value, units_label,  rr_label, rr_definition, rr_vtb, rr_vtb, rr_is_normal, interval_label, interval_lower, interval_upper, lower_included, upper_included, lower_bounded, upper_bounded, "
-    elif pcmType == 'DvRatio':
-        rstr += "#' normal_status, dvratio_value, magnitude_status, error, accuracy, ratio_type, numerator, denominator, numerator_units, numerator_units_label, denominator_units, denominator_units_label, ratio_units,  rr_label, rr_definition, rr_vtb, rr_vtb, rr_is_normal, interval_label, interval_lower, interval_upper, lower_included, upper_included, lower_bounded, upper_bounded, "
+        rstr += "#' One or more of: Xdtemporal_date, Xdtemporal_time, Xdtemporal_datetime, Xdtemporal_datetime_stamp, Xdtemporal_day, Xdtemporal_month, Xdtemporal_year, Xdtemporal_year_month, Xdtemporal_month_day, Xdtemporal_duration, Xdtemporal_ymduration, Xdtemporal_dtduration\n"
+    elif pcmType == 'XdQuantity':
+        rstr += "#' normal_status, Xdquantity_value, magnitude_status, error, accuracy, units_value, units_label,  rr_label, rr_definition, rr_vtb, rr_vtb, rr_is_normal, interval_label, interval_lower, interval_upper, lower_included, upper_included, lower_bounded, upper_bounded, "
+    elif pcmType == 'XdRatio':
+        rstr += "#' normal_status, Xdratio_value, magnitude_status, error, accuracy, ratio_type, numerator, denominator, numerator_units, numerator_units_label, denominator_units, denominator_units_label, ratio_units,  rr_label, rr_definition, rr_vtb, rr_vtb, rr_is_normal, interval_label, interval_lower, interval_upper, lower_included, upper_included, lower_bounded, upper_bounded, "
 
     rstr += "#' ccd, sourceName,\n"
     rstr += "#' \n"

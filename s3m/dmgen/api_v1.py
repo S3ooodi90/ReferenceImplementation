@@ -7,7 +7,7 @@ Resource definitions and Api registrations.
 from tastypie.resources import ModelResource
 from tastypie.api import Api
 
-from dmgen.models import DvBoolean, DvString, Project
+from dmgen.models import XdBoolean, XdString, Project
 
 # define the resources based on the models.
 
@@ -17,17 +17,17 @@ class ProjectResource(ModelResource):
         queryset = Project.objects.all()
         resource_name = 'project'
 
-#DvAny subclasses
-class DvBooleanResource(ModelResource):
+#XdAny subclasses
+class XdBooleanResource(ModelResource):
     class Meta:
-        queryset = DvBoolean.objects.all()
-        resource_name = 'dvboolean'
+        queryset = XdBoolean.objects.all()
+        resource_name = 'Xdboolean'
         excludes = ['r_code', 'schema_code']
 
-class DvStringResource(ModelResource):
+class XdStringResource(ModelResource):
     class Meta:
-        queryset = DvString.objects.all()
-        resource_name = 'dvstring'
+        queryset = XdString.objects.all()
+        resource_name = 'Xdstring'
 
 
 
@@ -36,6 +36,6 @@ v1_api = Api(api_name='v1')
 
 v1_api.register(ProjectResource())
 
-v1_api.register(DvBooleanResource())
-v1_api.register(DvStringResource())
+v1_api.register(XdBooleanResource())
+v1_api.register(XdStringResource())
 

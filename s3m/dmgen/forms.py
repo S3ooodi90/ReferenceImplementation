@@ -24,10 +24,10 @@ def is_number(s):
     return(False)
 
 # dmgen forms
-class DvBooleanAdminForm(forms.ModelForm):
+class XdBooleanAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
-        super(DvBooleanAdminForm, self).__init__(*args, **kwargs)
+        super(XdBooleanAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
 
         if instance.published:
@@ -42,17 +42,17 @@ class DvBooleanAdminForm(forms.ModelForm):
 
 
     def clean(self):
-        cleaned_data = super(DvBooleanAdminForm, self).clean()
+        cleaned_data = super(XdBooleanAdminForm, self).clean()
 
         return
 
     class Meta:
-        model = DvBoolean
+        model = XdBoolean
         fields = '__all__'
 
-class DvStringAdminForm(forms.ModelForm):
+class XdStringAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvStringAdminForm, self).__init__(*args, **kwargs)
+        super(XdStringAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -64,7 +64,7 @@ class DvStringAdminForm(forms.ModelForm):
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvStringAdminForm, self).clean()
+        cleaned_data = super(XdStringAdminForm, self).clean()
         # are the number of enums and enums_Def correct?
         if  cleaned_data['enums'] and not cleaned_data['definitions']:
             raise forms.ValidationError("You have enumerations but your annotations seem to be missing.")
@@ -103,7 +103,7 @@ class DvStringAdminForm(forms.ModelForm):
         return
 
     class Meta:
-        model = DvString
+        model = XdString
         fields = '__all__'
 
 class UnitsAdminForm(forms.ModelForm):
@@ -145,9 +145,9 @@ class UnitsAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class DvTemporalAdminForm(forms.ModelForm):
+class XdTemporalAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvTemporalAdminForm, self).__init__(*args, **kwargs)
+        super(XdTemporalAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -161,7 +161,7 @@ class DvTemporalAdminForm(forms.ModelForm):
             self.fields['reference_ranges'].queryset = ReferenceRange.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvTemporalAdminForm, self).clean()
+        cleaned_data = super(XdTemporalAdminForm, self).clean()
 
         #only one duration is allowed
         if (cleaned_data['allow_duration'] and cleaned_data['allow_ymduration']) or (cleaned_data['allow_duration'] and cleaned_data['allow_dtduration']) or (cleaned_data['allow_ymduration'] and cleaned_data['allow_dtduration']):
@@ -177,13 +177,13 @@ class DvTemporalAdminForm(forms.ModelForm):
         return
 
     class Meta:
-        model = DvTemporal
+        model = XdTemporal
         fields = '__all__'
 
 
-class DvFileAdminForm(forms.ModelForm):
+class XdFileAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvFileAdminForm, self).__init__(*args, **kwargs)
+        super(XdFileAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -195,7 +195,7 @@ class DvFileAdminForm(forms.ModelForm):
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvFileAdminForm, self).clean()
+        cleaned_data = super(XdFileAdminForm, self).clean()
         cleaned_data['language'] = cleaned_data['lang']
 
         if cleaned_data['content_mode'] == 'select':
@@ -205,13 +205,13 @@ class DvFileAdminForm(forms.ModelForm):
         return
 
     class Meta:
-        model = DvFile
+        model = XdFile
         fields = '__all__'
 
 
-class DvLinkAdminForm(forms.ModelForm):
+class XdLinkAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvLinkAdminForm, self).__init__(*args, **kwargs)
+        super(XdLinkAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -223,17 +223,17 @@ class DvLinkAdminForm(forms.ModelForm):
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvLinkAdminForm, self).clean()
+        cleaned_data = super(XdLinkAdminForm, self).clean()
         # do something useful here
         return
 
     class Meta:
-        model = DvLink
+        model = XdLink
         fields = '__all__'
 
-class DvOrdinalAdminForm(forms.ModelForm):
+class XdOrdinalAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvOrdinalAdminForm, self).__init__(*args, **kwargs)
+        super(XdOrdinalAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -247,7 +247,7 @@ class DvOrdinalAdminForm(forms.ModelForm):
             self.fields['reference_ranges'].queryset = ReferenceRange.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvOrdinalAdminForm, self).clean()
+        cleaned_data = super(XdOrdinalAdminForm, self).clean()
         o = cleaned_data['ordinals']
         # test that the ordinals are really ints
         for n in o.splitlines():
@@ -271,9 +271,9 @@ class DvOrdinalAdminForm(forms.ModelForm):
 
         return
 
-class DvCountAdminForm(forms.ModelForm):
+class XdCountAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvCountAdminForm, self).__init__(*args, **kwargs)
+        super(XdCountAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -289,19 +289,19 @@ class DvCountAdminForm(forms.ModelForm):
             self.fields['units'].queryset = Units.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvCountAdminForm, self).clean()
+        cleaned_data = super(XdCountAdminForm, self).clean()
         # do something here if needed.
 
         return
 
     class Meta:
-        model = DvCount
+        model = XdCount
         fields = '__all__'
 
 
-class DvQuantityAdminForm(forms.ModelForm):
+class XdQuantityAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvQuantityAdminForm, self).__init__(*args, **kwargs)
+        super(XdQuantityAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -317,18 +317,18 @@ class DvQuantityAdminForm(forms.ModelForm):
             self.fields['units'].queryset = Units.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvQuantityAdminForm, self).clean()
+        cleaned_data = super(XdQuantityAdminForm, self).clean()
         # do something here if needed.
 
         return
 
     class Meta:
-        model = DvQuantity
+        model = XdQuantity
         fields = '__all__'
 
-class DvRatioAdminForm(forms.ModelForm):
+class XdRatioAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvRatioAdminForm, self).__init__(*args, **kwargs)
+        super(XdRatioAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -348,7 +348,7 @@ class DvRatioAdminForm(forms.ModelForm):
             self.fields['ratio_units'].queryset = Units.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvRatioAdminForm, self).clean()
+        cleaned_data = super(XdRatioAdminForm, self).clean()
         nmini = cleaned_data['num_min_inclusive']
         nmine = cleaned_data['num_min_exclusive']
         nmaxi = cleaned_data['num_max_inclusive']
@@ -367,13 +367,13 @@ class DvRatioAdminForm(forms.ModelForm):
         return
 
     class Meta:
-        model = DvRatio
+        model = XdRatio
         fields = '__all__'
 
 
-class DvIntervalAdminForm(forms.ModelForm):
+class XdIntervalAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(DvIntervalAdminForm, self).__init__(*args, **kwargs)
+        super(XdIntervalAdminForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance.published:
             for fld in self.fields:
@@ -385,7 +385,7 @@ class DvIntervalAdminForm(forms.ModelForm):
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
 
     def clean(self):
-        cleaned_data = super(DvIntervalAdminForm, self).clean()
+        cleaned_data = super(XdIntervalAdminForm, self).clean()
 
         if cleaned_data['interval_type'] == 'None':
             raise forms.ValidationError("You must select an Interval Type.")
@@ -454,7 +454,7 @@ class DvIntervalAdminForm(forms.ModelForm):
         return
 
     class Meta:
-        model = DvInterval
+        model = XdInterval
         fields = '__all__'
 
 class ReferenceRangeAdminForm(forms.ModelForm):
@@ -467,10 +467,10 @@ class ReferenceRangeAdminForm(forms.ModelForm):
                 self.fields[fld].widget.attrs['disabled'] = True
         if instance.pk != None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
-            self.fields['interval'].queryset = DvInterval.objects.filter(project=instance.project)
+            self.fields['interval'].queryset = XdInterval.objects.filter(project=instance.project)
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
-            self.fields['interval'].queryset = DvInterval.objects.filter(project=self.default_prj)
+            self.fields['interval'].queryset = XdInterval.objects.filter(project=self.default_prj)
 
     def clean(self):
         cleaned_data = super(ReferenceRangeAdminForm, self).clean()
@@ -493,27 +493,27 @@ class ClusterAdminForm(forms.ModelForm):
         if instance.pk != None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
             self.fields['clusters'].queryset = Cluster.objects.filter(project=instance.project)
-            self.fields['dvboolean'].queryset = DvBoolean.objects.filter(project=instance.project)
-            self.fields['dvlink'].queryset = DvLink.objects.filter(project=instance.project)
-            self.fields['dvstring'].queryset = DvString.objects.filter(project=instance.project)
-            self.fields['dvfile'].queryset = DvFile.objects.filter(project=instance.project)
-            self.fields['dvordinal'].queryset = DvOrdinal.objects.filter(project=instance.project)
-            self.fields['dvcount'].queryset = DvCount.objects.filter(project=instance.project)
-            self.fields['dvquantity'].queryset = DvQuantity.objects.filter(project=instance.project)
-            self.fields['dvratio'].queryset = DvRatio.objects.filter(project=instance.project)
-            self.fields['dvtemporal'].queryset = DvTemporal.objects.filter(project=instance.project)
+            self.fields['Xdboolean'].queryset = XdBoolean.objects.filter(project=instance.project)
+            self.fields['Xdlink'].queryset = XdLink.objects.filter(project=instance.project)
+            self.fields['Xdstring'].queryset = XdString.objects.filter(project=instance.project)
+            self.fields['Xdfile'].queryset = XdFile.objects.filter(project=instance.project)
+            self.fields['Xdordinal'].queryset = XdOrdinal.objects.filter(project=instance.project)
+            self.fields['Xdcount'].queryset = XdCount.objects.filter(project=instance.project)
+            self.fields['Xdquantity'].queryset = XdQuantity.objects.filter(project=instance.project)
+            self.fields['Xdratio'].queryset = XdRatio.objects.filter(project=instance.project)
+            self.fields['Xdtemporal'].queryset = XdTemporal.objects.filter(project=instance.project)
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
             self.fields['clusters'].queryset = Cluster.objects.filter(project=self.default_prj)
-            self.fields['dvboolean'].queryset = DvBoolean.objects.filter(project=self.default_prj)
-            self.fields['dvlink'].queryset = DvLink.objects.filter(project=self.default_prj)
-            self.fields['dvstring'].queryset = DvString.objects.filter(project=self.default_prj)
-            self.fields['dvfile'].queryset = DvFile.objects.filter(project=self.default_prj)
-            self.fields['dvordinal'].queryset = DvOrdinal.objects.filter(project=self.default_prj)
-            self.fields['dvcount'].queryset = DvCount.objects.filter(project=self.default_prj)
-            self.fields['dvquantity'].queryset = DvQuantity.objects.filter(project=self.default_prj)
-            self.fields['dvratio'].queryset = DvRatio.objects.filter(project=self.default_prj)
-            self.fields['dvtemporal'].queryset = DvTemporal.objects.filter(project=self.default_prj)
+            self.fields['Xdboolean'].queryset = XdBoolean.objects.filter(project=self.default_prj)
+            self.fields['Xdlink'].queryset = XdLink.objects.filter(project=self.default_prj)
+            self.fields['Xdstring'].queryset = XdString.objects.filter(project=self.default_prj)
+            self.fields['Xdfile'].queryset = XdFile.objects.filter(project=self.default_prj)
+            self.fields['Xdordinal'].queryset = XdOrdinal.objects.filter(project=self.default_prj)
+            self.fields['Xdcount'].queryset = XdCount.objects.filter(project=self.default_prj)
+            self.fields['Xdquantity'].queryset = XdQuantity.objects.filter(project=self.default_prj)
+            self.fields['Xdratio'].queryset = XdRatio.objects.filter(project=self.default_prj)
+            self.fields['Xdtemporal'].queryset = XdTemporal.objects.filter(project=self.default_prj)
 
     def clean(self):
         cleaned_data = super(ClusterAdminForm, self).clean()
@@ -539,9 +539,9 @@ class EntryAdminForm(forms.ModelForm):
         if instance.pk != None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
             self.fields['participations'].queryset = Participation.objects.filter(project=instance.project)
-            self.fields['links'].queryset = DvLink.objects.filter(project=instance.project)
-            self.fields['protocol'].queryset = DvString.objects.filter(project=instance.project)
-            self.fields['workflow'].queryset = DvLink.objects.filter(project=instance.project)
+            self.fields['links'].queryset = XdLink.objects.filter(project=instance.project)
+            self.fields['protocol'].queryset = XdString.objects.filter(project=instance.project)
+            self.fields['workflow'].queryset = XdLink.objects.filter(project=instance.project)
             self.fields['attestation'].queryset = Attestation.objects.filter(project=instance.project)
             self.fields['audit'].queryset = Audit.objects.filter(project=instance.project)
             self.fields['data'].queryset = Cluster.objects.filter(project=instance.project)
@@ -550,9 +550,9 @@ class EntryAdminForm(forms.ModelForm):
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
             self.fields['participations'].queryset = Participation.objects.filter(project=self.default_prj)
-            self.fields['links'].queryset = DvLink.objects.filter(project=self.default_prj)
-            self.fields['protocol'].queryset = DvString.objects.filter(project=self.default_prj)
-            self.fields['workflow'].queryset = DvLink.objects.filter(project=self.default_prj)
+            self.fields['links'].queryset = XdLink.objects.filter(project=self.default_prj)
+            self.fields['protocol'].queryset = XdString.objects.filter(project=self.default_prj)
+            self.fields['workflow'].queryset = XdLink.objects.filter(project=self.default_prj)
             self.fields['attestation'].queryset = Attestation.objects.filter(project=self.default_prj)
             self.fields['audit'].queryset = Audit.objects.filter(project=self.default_prj)
             self.fields['data'].queryset = Cluster.objects.filter(project=self.default_prj)
@@ -631,12 +631,12 @@ class AuditAdminForm(forms.ModelForm):
                 self.fields[fld].widget.attrs['disabled'] = True
         if instance.pk != None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
-            self.fields['system_id'].queryset = DvString.objects.filter(project=instance.project)
+            self.fields['system_id'].queryset = XdString.objects.filter(project=instance.project)
             self.fields['system_user'].queryset = Party.objects.filter(project=instance.project)
             self.fields['location'].queryset = Cluster.objects.filter(project=instance.project)
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
-            self.fields['system_id'].queryset = DvString.objects.filter(project=self.default_prj)
+            self.fields['system_id'].queryset = XdString.objects.filter(project=self.default_prj)
             self.fields['system_user'].queryset = Party.objects.filter(project=self.default_prj)
             self.fields['location'].queryset = Cluster.objects.filter(project=self.default_prj)
 
@@ -661,13 +661,13 @@ class ParticipationAdminForm(forms.ModelForm):
         if instance.pk != None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
             self.fields['performer'].queryset = Party.objects.filter(project=instance.project)
-            self.fields['function'].queryset = DvString.objects.filter(project=instance.project)
-            self.fields['mode'].queryset = DvString.objects.filter(project=instance.project)
+            self.fields['function'].queryset = XdString.objects.filter(project=instance.project)
+            self.fields['mode'].queryset = XdString.objects.filter(project=instance.project)
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
             self.fields['performer'].queryset = Party.objects.filter(project=self.default_prj)
-            self.fields['function'].queryset = DvString.objects.filter(project=self.default_prj)
-            self.fields['mode'].queryset = DvString.objects.filter(project=self.default_prj)
+            self.fields['function'].queryset = XdString.objects.filter(project=self.default_prj)
+            self.fields['mode'].queryset = XdString.objects.filter(project=self.default_prj)
 
     def clean(self):
         cleaned_data = super(ParticipationAdminForm, self).clean()
@@ -690,11 +690,11 @@ class PartyAdminForm(forms.ModelForm):
         if instance.pk != None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
             self.fields['details'].queryset = Cluster.objects.filter(project=instance.project)
-            self.fields['external_ref'].queryset = DvLink.objects.filter(project=instance.project)
+            self.fields['external_ref'].queryset = XdLink.objects.filter(project=instance.project)
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
             self.fields['details'].queryset = Cluster.objects.filter(project=self.default_prj)
-            self.fields['external_ref'].queryset = DvLink.objects.filter(project=self.default_prj)
+            self.fields['external_ref'].queryset = XdLink.objects.filter(project=self.default_prj)
 
     def clean(self):
         cleaned_data = super(PartyAdminForm, self).clean()
@@ -716,15 +716,15 @@ class AttestationAdminForm(forms.ModelForm):
                 self.fields[fld].widget.attrs['disabled'] = True
         if instance.pk != None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
-            self.fields['view'].queryset = DvFile.objects.filter(project=instance.project)
-            self.fields['proof'].queryset = DvFile.objects.filter(project=instance.project)
-            self.fields['reason'].queryset = DvString.objects.filter(project=instance.project)
+            self.fields['view'].queryset = XdFile.objects.filter(project=instance.project)
+            self.fields['proof'].queryset = XdFile.objects.filter(project=instance.project)
+            self.fields['reason'].queryset = XdString.objects.filter(project=instance.project)
             self.fields['committer'].queryset = Party.objects.filter(project=instance.project)
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
-            self.fields['view'].queryset = DvFile.objects.filter(project=self.default_prj)
-            self.fields['proof'].queryset = DvFile.objects.filter(project=self.default_prj)
-            self.fields['reason'].queryset = DvString.objects.filter(project=self.default_prj)
+            self.fields['view'].queryset = XdFile.objects.filter(project=self.default_prj)
+            self.fields['proof'].queryset = XdFile.objects.filter(project=self.default_prj)
+            self.fields['reason'].queryset = XdString.objects.filter(project=self.default_prj)
             self.fields['committer'].queryset = Party.objects.filter(project=self.default_prj)
 
     def clean(self):

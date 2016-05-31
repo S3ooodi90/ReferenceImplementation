@@ -36,7 +36,7 @@ from .exceptions import PublishingError, GenerationError
 
 from dmgen.models import NS, get_rcode
 
-from .ig import cluster, dv_link, party, participation, dv_string, audit, attestation
+from .ig import cluster, Xd_link, party, participation, Xd_string, audit, attestation
 
 from .fg import buildHTML
 
@@ -189,12 +189,12 @@ class DMPkg(object):
             self.xml +=  """<current-state>"""+entry.state+"""</current-state>\n"""
 
 
-            #links - need to process links first because a DvLink 'could' be reused in a later Cluster and we need to insure it gets a substitution group PCS
+            #links - need to process links first because a XdLink 'could' be reused in a later Cluster and we need to insure it gets a substitution group PCS
             if entry.links.all():
                 for link in entry.links.all():
-                    if self.registerUUID(link.ct_id, 'DvLinkType','DvLink'):
+                    if self.registerUUID(link.ct_id, 'XdLinkType','XdLink'):
                         self.xsd += link.schema_code
-                        link_str += dv_link(link, indent) # we put the DvLink instance info in a temp string and add it at the bottom of the Entry
+                        link_str += Xd_link(link, indent) # we put the XdLink instance info in a temp string and add it at the bottom of the Entry
                         if msg[1] == messages.ERROR:
                             return(msg)
 
@@ -245,18 +245,18 @@ class DMPkg(object):
 
             #protocol
             if entry.protocol:
-                if self.registerUUID(entry.protocol.ct_id, 'DvStringType'):
+                if self.registerUUID(entry.protocol.ct_id, 'XdStringType'):
                     self.xsd += entry.protocol.schema_code
                     self.xml += "<protocol>\n"
-                    self.xml += dv_string(entry.protocol, indent, False)
+                    self.xml += Xd_string(entry.protocol, indent, False)
                     self.xml += "</protocol>\n"
 
             #workflow
             if entry.workflow:
-                if self.registerUUID(entry.workflow.ct_id, 'DvLinkType'):
+                if self.registerUUID(entry.workflow.ct_id, 'XdLinkType'):
                     self.xsd += entry.workflow.schema_code
                     self.xml += "<workflow>\n"
-                    self.xml += dv_link(entry.workflow, indent, False)
+                    self.xml += Xd_link(entry.workflow, indent, False)
                     self.xml += "</workflow>\n"
 
             #audit
@@ -281,7 +281,7 @@ class DMPkg(object):
                     if msg[1] == messages.ERROR:
                         return(msg)
 
-            # add the DvLink string to the XML instance
+            # add the XdLink string to the XML instance
             self.xml += link_str
             self.xml +=  """</s3m:me-"""+str(entry.ct_id)+""">\n"""
 
@@ -305,202 +305,202 @@ class DMPkg(object):
                 if msg[1] == messages.ERROR:
                     return(msg)
 
-        #DvBooleans in Cluster
-        for dv in cluster.dvboolean.all():
-            if self.registerUUID(dv.ct_id, 'DvBooleanType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvBoolean: "+dv.label+" is published.", messages.ERROR)
+        #XdBooleans in Cluster
+        for Xd in cluster.Xdboolean.all():
+            if self.registerUUID(Xd.ct_id, 'XdBooleanType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdBoolean: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+                self.xsd += Xd.schema_code #get the Xd code
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
-        #DvLinks in Cluster
-        for dv in cluster.dvlink.all():
-            if self.registerUUID(dv.ct_id, 'DvLinkType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvLink: "+dv.label+" is published.", messages.ERROR)
+        #XdLinks in Cluster
+        for Xd in cluster.Xdlink.all():
+            if self.registerUUID(Xd.ct_id, 'XdLinkType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdLink: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+                self.xsd += Xd.schema_code #get the Xd code
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
-        #DvStrings in Cluster
-        for dv in cluster.dvstring.all():
-            if self.registerUUID(dv.ct_id, 'DvStringType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvString: "+dv.label+" is published.", messages.ERROR)
+        #XdStrings in Cluster
+        for Xd in cluster.Xdstring.all():
+            if self.registerUUID(Xd.ct_id, 'XdStringType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdString: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+                self.xsd += Xd.schema_code #get the Xd code
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
-        #DvFiles in Cluster
-        for dv in cluster.dvfile.all():
-            if self.registerUUID(dv.ct_id, 'DvFileType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvFile: "+dv.label+" is published.", messages.ERROR)
+        #XdFiles in Cluster
+        for Xd in cluster.Xdfile.all():
+            if self.registerUUID(Xd.ct_id, 'XdFileType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdFile: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+                self.xsd += Xd.schema_code #get the Xd code
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
-        #DvOrdinals in Cluster
-        for dv in cluster.dvordinal.all():
-            if self.registerUUID(dv.ct_id, 'DvOrdinalType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvOrdinal: "+dv.label+" is published.", messages.ERROR)
+        #XdOrdinals in Cluster
+        for Xd in cluster.Xdordinal.all():
+            if self.registerUUID(Xd.ct_id, 'XdOrdinalType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdOrdinal: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-                if dv.reference_ranges.all():
-                    for rr in dv.reference_ranges.all():
+                self.xsd += Xd.schema_code #get the Xd code
+                if Xd.reference_ranges.all():
+                    for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             if len(rr.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: "+rr.label+" is published.", messages.ERROR)
                                 return(msg)
                             self.xsd += rr.schema_code
-                            if self.registerUUID(rr.interval.ct_id, 'DvIntervalType'):
+                            if self.registerUUID(rr.interval.ct_id, 'XdIntervalType'):
                                 if len(rr.interval.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                                    msg = ("Something happened to your MC code. Check that DvInterval: "+rr.interval.label+" is published.", messages.ERROR)
+                                    msg = ("Something happened to your MC code. Check that XdInterval: "+rr.interval.label+" is published.", messages.ERROR)
                                     return(msg)
                                 self.xsd += rr.interval.schema_code
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
-        #DvCounts in Cluster
-        for dv in cluster.dvcount.all():
-            if self.registerUUID(dv.ct_id, 'DvCountType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvCount: "+dv.label+" is published.", messages.ERROR)
+        #XdCounts in Cluster
+        for Xd in cluster.Xdcount.all():
+            if self.registerUUID(Xd.ct_id, 'XdCountType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdCount: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-                if dv.reference_ranges.all():
-                    for rr in dv.reference_ranges.all():
+                self.xsd += Xd.schema_code #get the Xd code
+                if Xd.reference_ranges.all():
+                    for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             if len(rr.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: "+rr.label+" is published.", messages.ERROR)
                                 return(msg)
                             self.xsd += rr.schema_code
-                            if self.registerUUID(rr.interval.ct_id, 'DvIntervalType'):
+                            if self.registerUUID(rr.interval.ct_id, 'XdIntervalType'):
                                 if len(rr.interval.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                                    msg = ("Something happened to your MC code. Check that DvInterval: "+rr.interval.label+" is published.", messages.ERROR)
+                                    msg = ("Something happened to your MC code. Check that XdInterval: "+rr.interval.label+" is published.", messages.ERROR)
                                     return(msg)
                                 self.xsd += rr.interval.schema_code
-                if dv.units:
-                    if self.registerUUID(dv.units.ct_id, 'Units'):
-                        if len(dv.units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                            msg = ("Something happened to your MC code. Check that Units: "+dv.units.label+" is published.", messages.ERROR)
+                if Xd.units:
+                    if self.registerUUID(Xd.units.ct_id, 'Units'):
+                        if len(Xd.units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                            msg = ("Something happened to your MC code. Check that Units: "+Xd.units.label+" is published.", messages.ERROR)
                             return(msg)
-                        self.xsd += dv.units.schema_code
+                        self.xsd += Xd.units.schema_code
                 else:
-                    msg = ("Your DvCount is missing a dvcount-units value. This should have been a publishing error; <b>Contact the DMGEN authors</b>.", messages.ERROR)
+                    msg = ("Your XdCount is missing a Xdcount-units value. This should have been a publishing error; <b>Contact the DMGEN authors</b>.", messages.ERROR)
                     return(msg)
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
-        #DvQuantities in Cluster
-        for dv in cluster.dvquantity.all():
-            if self.registerUUID(dv.ct_id, 'DvQuantityType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvQuanitiy: "+dv.label+" is published.", messages.ERROR)
+        #XdQuantities in Cluster
+        for Xd in cluster.Xdquantity.all():
+            if self.registerUUID(Xd.ct_id, 'XdQuantityType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdQuanitiy: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-                if dv.reference_ranges.all():
-                    for rr in dv.reference_ranges.all():
+                self.xsd += Xd.schema_code #get the Xd code
+                if Xd.reference_ranges.all():
+                    for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             if len(rr.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: "+rr.label+" is published.", messages.ERROR)
                                 return(msg)
                             self.xsd += rr.schema_code
-                            if self.registerUUID(rr.interval.ct_id, 'DvIntervalType'):
+                            if self.registerUUID(rr.interval.ct_id, 'XdIntervalType'):
                                 if len(rr.interval.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                                    msg = ("Something happened to your MC code. Check that DvInterval: "+rr.interval.label+" is published.", messages.ERROR)
+                                    msg = ("Something happened to your MC code. Check that XdInterval: "+rr.interval.label+" is published.", messages.ERROR)
                                     return(msg)
                                 self.xsd += rr.interval.schema_code
-                if dv.units:
-                    if self.registerUUID(dv.units.ct_id, 'Units'):
-                        if len(dv.units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                            msg = ("Something happened to your MC code. Check that Units: "+dv.units.label+" is published.", messages.ERROR)
+                if Xd.units:
+                    if self.registerUUID(Xd.units.ct_id, 'Units'):
+                        if len(Xd.units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                            msg = ("Something happened to your MC code. Check that Units: "+Xd.units.label+" is published.", messages.ERROR)
                             return(msg)
-                        self.xsd += dv.units.schema_code
+                        self.xsd += Xd.units.schema_code
                 else:
-                    msg = ("Your DvQuantity is missing a dvquantity-units value. This should have been a publishing error; <b>Contact the DMGEN authors</b>.", messages.ERROR)
+                    msg = ("Your XdQuantity is missing a Xdquantity-units value. This should have been a publishing error; <b>Contact the DMGEN authors</b>.", messages.ERROR)
                     return(msg)
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
-        #DvRatios in Cluster
-        for dv in cluster.dvratio.all():
-            if self.registerUUID(dv.ct_id, 'DvRatioType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvRatio: "+dv.label+" is published.", messages.ERROR)
+        #XdRatios in Cluster
+        for Xd in cluster.Xdratio.all():
+            if self.registerUUID(Xd.ct_id, 'XdRatioType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdRatio: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-                if dv.reference_ranges.all():
-                    for rr in dv.reference_ranges.all():
+                self.xsd += Xd.schema_code #get the Xd code
+                if Xd.reference_ranges.all():
+                    for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             if len(rr.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: "+rr.label+" is published.", messages.ERROR)
                                 return(msg)
                             self.xsd += rr.schema_code
-                            if self.registerUUID(rr.interval.ct_id, 'DvIntervalType'):
+                            if self.registerUUID(rr.interval.ct_id, 'XdIntervalType'):
                                 if len(rr.interval.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                                    msg = ("Something happened to your MC code. Check that DvInterval: "+rr.interval.label+" is published.", messages.ERROR)
+                                    msg = ("Something happened to your MC code. Check that XdInterval: "+rr.interval.label+" is published.", messages.ERROR)
                                     return(msg)
                                 self.xsd += rr.interval.schema_code
-                if dv.num_units:
-                    if self.registerUUID(dv.num_units.ct_id, 'Units'):
-                        if len(dv.num_units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                            msg = ("Something happened to your MC code. Check that Units: "+dv.num_units.label+" is published.", messages.ERROR)
+                if Xd.num_units:
+                    if self.registerUUID(Xd.num_units.ct_id, 'Units'):
+                        if len(Xd.num_units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                            msg = ("Something happened to your MC code. Check that Units: "+Xd.num_units.label+" is published.", messages.ERROR)
                             return(msg)
-                        self.xsd += dv.num_units.schema_code
-                if dv.den_units:
-                    if self.registerUUID(dv.den_units.ct_id, 'Units'):
-                        if len(dv.den_units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                            msg = ("Something happened to your MC code. Check that Units: "+dv.den_units.label+" is published.", messages.ERROR)
+                        self.xsd += Xd.num_units.schema_code
+                if Xd.den_units:
+                    if self.registerUUID(Xd.den_units.ct_id, 'Units'):
+                        if len(Xd.den_units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                            msg = ("Something happened to your MC code. Check that Units: "+Xd.den_units.label+" is published.", messages.ERROR)
                             return(msg)
-                        self.xsd += dv.den_units.schema_code
+                        self.xsd += Xd.den_units.schema_code
 
-                if dv.ratio_units:
-                    if self.registerUUID(dv.ratio_units.ct_id, 'Units'):
-                        if len(dv.ratio_units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                            msg = ("Something happened to your MC code. Check that Units: "+dv.ratio_units.label+" is published.", messages.ERROR)
+                if Xd.ratio_units:
+                    if self.registerUUID(Xd.ratio_units.ct_id, 'Units'):
+                        if len(Xd.ratio_units.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                            msg = ("Something happened to your MC code. Check that Units: "+Xd.ratio_units.label+" is published.", messages.ERROR)
                             return(msg)
-                        self.xsd += dv.ratio_units.schema_code
+                        self.xsd += Xd.ratio_units.schema_code
 
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
-        #DvTemporals in Cluster
-        for dv in cluster.dvtemporal.all():
-            if self.registerUUID(dv.ct_id, 'DvTemporalType','DvAdapter-value'):
-                if len(dv.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvTemporall: "+dv.label+" is published.", messages.ERROR)
+        #XdTemporals in Cluster
+        for Xd in cluster.Xdtemporal.all():
+            if self.registerUUID(Xd.ct_id, 'XdTemporalType','XdAdapter-value'):
+                if len(Xd.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
+                    msg = ("Something happened to your MC code. Check that XdTemporall: "+Xd.label+" is published.", messages.ERROR)
                     return(msg)
-                self.xsd += dv.schema_code #get the Dv code
-                if dv.reference_ranges.all():
-                    for rr in dv.reference_ranges.all():
+                self.xsd += Xd.schema_code #get the Xd code
+                if Xd.reference_ranges.all():
+                    for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             if len(rr.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: "+rr.label+" is published.", messages.ERROR)
                                 return(msg)
                             self.xsd += rr.schema_code
-                            if self.registerUUID(rr.interval.ct_id, 'DvIntervalType'):
+                            if self.registerUUID(rr.interval.ct_id, 'XdIntervalType'):
                                 if len(rr.interval.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                                    msg = ("Something happened to your MC code. Check that DvInterval: "+rr.interval.label+" is published.", messages.ERROR)
+                                    msg = ("Something happened to your MC code. Check that XdInterval: "+rr.interval.label+" is published.", messages.ERROR)
                                     return(msg)
                                 self.xsd += rr.interval.schema_code
-            if not (dv.adapter_ctid in self.adapters):
-                self.xsd += self.makeDvAdapter(dv.ct_id,dv.adapter_ctid, dv.label) #create the DvAdapterType code
-                self.adapters.append(dv.adapter_ctid)
+            if not (Xd.adapter_ctid in self.adapters):
+                self.xsd += self.makeXdAdapter(Xd.ct_id,Xd.adapter_ctid, Xd.label) #create the XdAdapterType code
+                self.adapters.append(Xd.adapter_ctid)
 
 
         return(msg)
@@ -510,9 +510,9 @@ class DMPkg(object):
 
         if party.external_ref.all():
             for ref in party.external_ref.all():
-                if self.registerUUID(ref.ct_id, 'DvLinkType'):
+                if self.registerUUID(ref.ct_id, 'XdLinkType'):
                     if len(ref.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                        msg = ("Something happened to your MC code. Check that DvLink: "+ref.label+" is published.", messages.ERROR)
+                        msg = ("Something happened to your MC code. Check that XdLink: "+ref.label+" is published.", messages.ERROR)
                         return(msg)
                     self.xsd += ref.schema_code
 
@@ -537,16 +537,16 @@ class DMPkg(object):
                 msg = self.processParty(part.performer)
 
         if part.function:
-            if self.registerUUID(part.function.ct_id, 'DvStringType'):
+            if self.registerUUID(part.function.ct_id, 'XdStringType'):
                 if len(part.function.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvString: "+part.function.label+" is published.")
+                    msg = ("Something happened to your MC code. Check that XdString: "+part.function.label+" is published.")
                     return(msg)
                 self.xsd += part.function.schema_code
 
         if part.mode:
-            if self.registerUUID(part.mode.ct_id, 'DvStringType'):
+            if self.registerUUID(part.mode.ct_id, 'XdStringType'):
                 if len(part.mode.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvString: "+part.mode.label+" is published.", messages.ERROR)
+                    msg = ("Something happened to your MC code. Check that XdString: "+part.mode.label+" is published.", messages.ERROR)
                     return(msg)
                 self.xsd += part.mode.schema_code
 
@@ -557,9 +557,9 @@ class DMPkg(object):
         msg = ("Processed Audit "+aud.label, messages.SUCCESS)
 
         if aud.system_id:
-            if self.registerUUID(aud.system_id.ct_id, 'DvStringType'):
+            if self.registerUUID(aud.system_id.ct_id, 'XdStringType'):
                 if len(aud.system_id.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvString: "+aud.system_id.label+" is published.", messages.ERROR)
+                    msg = ("Something happened to your MC code. Check that XdString: "+aud.system_id.label+" is published.", messages.ERROR)
                 self.xsd += aud.system_id.schema_code
 
         if aud.system_user:
@@ -584,21 +584,21 @@ class DMPkg(object):
         msg = ("Processed Attestation "+att.label, messages.SUCCESS)
 
         if att.view:
-            if self.registerUUID(att.view.ct_id, 'DvFileType'):
+            if self.registerUUID(att.view.ct_id, 'XdFileType'):
                 if len(att.view.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvFile: "+att.view.label+" is published.", messages.ERROR)
+                    msg = ("Something happened to your MC code. Check that XdFile: "+att.view.label+" is published.", messages.ERROR)
                 self.xsd += att.view.schema_code
 
         if att.proof:
-            if self.registerUUID(att.proof.ct_id, 'DvFileType'):
+            if self.registerUUID(att.proof.ct_id, 'XdFileType'):
                 if len(att.proof.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvFile: "+att.proof.label+" is published.", messages.ERROR)
+                    msg = ("Something happened to your MC code. Check that XdFile: "+att.proof.label+" is published.", messages.ERROR)
                 self.xsd += att.proof.schema_code
 
         if att.reason:
-            if self.registerUUID(att.reason.ct_id, 'DvStringType'):
+            if self.registerUUID(att.reason.ct_id, 'XdStringType'):
                 if len(att.reason.schema_code) < 10: # len 10 was arbitrarily chosen as an obviously incorrect code length.
-                    msg = ("Something happened to your MC code. Check that DvString: "+att.reason.label+" is published.", messages.ERROR)
+                    msg = ("Something happened to your MC code. Check that XdString: "+att.reason.label+" is published.", messages.ERROR)
                 self.xsd += att.reason.schema_code
 
         if att.committer:
@@ -613,7 +613,7 @@ class DMPkg(object):
 
 
 
-    def makeDvAdapter(self,ct_id, adapter_id, dvname):
+    def makeXdAdapter(self,ct_id, adapter_id, Xdname):
         """
         Create an Element adapter for a complexType when used in a Cluster.
         Requires the ct_id of the complexType and the pre-generated Element ID for that datatype.
@@ -627,11 +627,11 @@ class DMPkg(object):
 
         #Create the Adapter
         adr_str += padding.rjust(indent) + ("<xs:element name='me-"+adapter_id+"' substitutionGroup='s3m:Items' type='s3m:mc-"+adapter_id+"'/>\n")
-        adr_str += padding.rjust(indent) + ("<xs:complexType name='mc-"+adapter_id+"'> <!-- Adapter for: "+escape(dvname)+" -->\n")
+        adr_str += padding.rjust(indent) + ("<xs:complexType name='mc-"+adapter_id+"'> <!-- Adapter for: "+escape(Xdname)+" -->\n")
         adr_str += padding.rjust(indent+2) + ("<xs:complexContent>\n")
-        adr_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:DvAdapterType'>\n")
+        adr_str += padding.rjust(indent+4) + ("<xs:restriction base='s3m:XdAdapterType'>\n")
         adr_str += padding.rjust(indent+6) + ("<xs:sequence>\n")
-        adr_str += padding.rjust(indent+8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:me-"+ct_id+"'/> <!-- Reference to: "+escape(dvname)+" -->\n")
+        adr_str += padding.rjust(indent+8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:me-"+ct_id+"'/> <!-- Reference to: "+escape(Xdname)+" -->\n")
         adr_str += padding.rjust(indent+6) + ("</xs:sequence>\n")
         adr_str += padding.rjust(indent+4) + ("</xs:restriction>\n")
         adr_str += padding.rjust(indent+2) + ("</xs:complexContent>\n")
