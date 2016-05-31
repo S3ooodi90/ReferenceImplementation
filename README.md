@@ -9,3 +9,5 @@ The rdf:about attribute of the rdf:Description defining the RDF/XML Subject prep
 
 
 All Reference Models are named with their version number and are dereferenceable in the '/ns/s3m/' folder on the site. I.e. http://www.s3model.com/ns/s3m/s3model_1_0_0.xsd
+
+The complexTypes in the RM named Xd* all descend from XdAnyType where Xd denotes eXtended Datatype. 

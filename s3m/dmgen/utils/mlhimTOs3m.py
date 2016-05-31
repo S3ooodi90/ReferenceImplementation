@@ -140,8 +140,8 @@ curS3M.executemany(query, data)
 S3M.commit()
 
 
-#DvBoolean
-print("Adding DvBooleans")
+#XdBoolean
+print("Adding XdBooleans")
 curMLHIM.execute("SELECT *  from ccdgen_dvboolean")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -163,12 +163,12 @@ for line in rowsMLHIM:
     trues = line[17]
     falses = line[18]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,trues,falses,''))
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,trues,falses,''))
 
-query = ("""INSERT INTO dmgen_dvboolean
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+query = ("""INSERT INTO dmgen_xdboolean
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr, require_mod,
               trues,falses,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s
               %s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -183,14 +183,14 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvboolean_pred_obj (id,dvboolean_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdboolean_pred_obj (id,xdboolean_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
 
 
-#DvStrings
-print("Adding DvStrings")
+#XdStrings
+print("Adding XdStrings")
 curMLHIM.execute("SELECT *  from ccdgen_dvstring")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -218,13 +218,13 @@ for line in rowsMLHIM:
     if len(def_val) > 250:
         def_val = ''
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                            min_len,max_len,exact_len,enums,eanno,def_val,''))
 
-query = ("""INSERT INTO dmgen_dvstring
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+query = ("""INSERT INTO dmgen_xdstring
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,requre_mod,
               min_length,max_length,exact_length,enums,definitions,def_val,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
              %s,%s,%s,%s,%s,%s,%s)""")
 
 curS3M.executemany(query, data)
@@ -240,7 +240,7 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvstring_pred_obj (id,dvstring_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdstring_pred_obj (id,xdstring_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
@@ -273,13 +273,13 @@ for line in rowsMLHIM:
     if len(def_val) > 250:
         def_val = ''
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                            min_len,max_len,exact_len,enums,eanno,def_val,''))
 
 query = ("""INSERT INTO dmgen_units
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,
               min_length,max_length,exact_length,enums,definitions,def_val,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
              %s,%s,%s,%s,%s,%s,%s)""")
 
 curS3M.executemany(query, data)
@@ -299,8 +299,8 @@ query = ("INSERT INTO dmgen_units_pred_obj (id,units_id,predobj_id) VALUES(%s,%s
 curS3M.executemany(query, data)
 S3M.commit()
 
-#DvIntervals
-print("Adding DvIntervals")
+#XdIntervals
+print("Adding XdIntervals")
 curMLHIM.execute("SELECT *  from ccdgen_dvinterval")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -330,13 +330,13 @@ for line in rowsMLHIM:
     uname = line[24]
     uuri = line[25]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                            lower,upper,invl_type,li,ui,lb,ub,uname,uuri,''))
 
-query = ("""INSERT INTO dmgen_dvinterval
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+query = ("""INSERT INTO dmgen_xdinterval
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,requre_mod,
               lower,upper,interval_type,lower_included,upper_included,lower_bounded,upper_bounded,units_name,units_uri,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
              %s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""")
 
 curS3M.executemany(query, data)
@@ -352,7 +352,7 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvinterval_pred_obj (id,dvinterval_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdinterval_pred_obj (id,xdinterval_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
@@ -380,13 +380,13 @@ for line in rowsMLHIM:
     interval_id = line[18]
     is_norm = line[19]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                          defn,interval_id,is_norm,''))
 
 query = ("""INSERT INTO dmgen_referencerange
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,
               definition,interval_id,is_normal,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
               %s,%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -405,8 +405,8 @@ query = ("INSERT INTO dmgen_referencerange_pred_obj (id,referencerange_id,predob
 curS3M.executemany(query, data)
 S3M.commit()
 
-#DvLinks
-print("Adding DvLinks")
+#XdLinks
+print("Adding XdLinks")
 curMLHIM.execute("SELECT *  from ccdgen_dvlink")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -428,13 +428,13 @@ for line in rowsMLHIM:
     relation = line[17]
     rel_uri = line[18]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                           relation,rel_uri,''))
 
-query = ("""INSERT INTO dmgen_dvlink
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+query = ("""INSERT INTO dmgen_xdlink
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,requre_mod,
               relation,relation_uri,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
               %s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -449,13 +449,13 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvlink_pred_obj (id,dvlink_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdlink_pred_obj (id,xdlink_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
 
-#DvFiles
-print("Adding DvFiles")
+#XdFiles
+print("Adding XdFiles")
 curMLHIM.execute("SELECT *  from ccdgen_dvfile")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -481,13 +481,13 @@ for line in rowsMLHIM:
     alt_txt = line[20]
     cm = line[21]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                           mime,encoding,cont_lang,alt_txt,cm,''))
 
-query = ("""INSERT INTO dmgen_dvfile
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+query = ("""INSERT INTO dmgen_xdfile
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,
               media_type,encoding,language,alt_txt,content_mode,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
               %s,%s,%s,%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -502,13 +502,13 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvfile_pred_obj (id,dvfile_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdfile_pred_obj (id,xdfile_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
 
-#DvTemporals
-print("Adding DvTemporals")
+#XdTemporals
+print("Adding XdTemporals")
 curMLHIM.execute("SELECT *  from ccdgen_dvtemporal")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -542,15 +542,15 @@ for line in rowsMLHIM:
     allow_year_month = line[28]
     allow_month_day = line[29]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                           normal_status,allow_duration,allow_ymduration,allow_dtduration,allow_date,allow_time,
                           allow_datetime,allow_datetimestamp,allow_day,allow_month,allow_year,allow_year_month,allow_month_day,''))
 
-query = ("""INSERT INTO dmgen_dvtemporal
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+query = ("""INSERT INTO dmgen_xdtemporal
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,
               normal_status,allow_duration,allow_ymduration,allow_dtduration,allow_date,allow_time,allow_datetime,allow_datetimestamp,
               allow_day,allow_month,allow_year,allow_year_month,allow_month_day,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
               %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""")
 
 curS3M.executemany(query, data)
@@ -566,13 +566,13 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvtemporal_pred_obj (id,dvtemporal_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdtemporal_pred_obj (id,xdtemporal_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
 
-#DvOrdinals
-print("Adding DvOrdinals")
+#XdOrdinals
+print("Adding XdOrdinals")
 curMLHIM.execute("SELECT *  from ccdgen_dvordinal")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -597,13 +597,13 @@ for line in rowsMLHIM:
     symbols = line[19]
     eannon = line[20]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                           normal_status,ordinals,symbols,eanno,''))
 
-query = ("""INSERT INTO dmgen_dvordinal
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+query = ("""INSERT INTO dmgen_xdordinal
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,
               normal_status,ordinals,symbols,annotations,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
               %s,%s,%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -618,13 +618,13 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvordinal_pred_obj (id,dvordinal_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdordinal_pred_obj (id,xdordinal_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
 
-#DvCounts
-print("Adding DvCounts")
+#XdCounts
+print("Adding XdCounts")
 curMLHIM.execute("SELECT *  from ccdgen_dvcount")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -654,13 +654,13 @@ for line in rowsMLHIM:
     tot_dig   = line[24]
     units_id  = line[25]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                          normal_status,min_mag,max_mag,min_inc,max_inc,min_exc,max_exc,tot_dig,units_id,''))
 
-query = ("""INSERT INTO dmgen_dvcount
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
+query = ("""INSERT INTO dmgen_xdcount
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,
               normal_status,min_magnitude,max_magnitude,min_inclusive,max_inclusive,min_exclusive,max_exclusive,total_digits,units_id,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
               %s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -675,13 +675,13 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvcount_pred_obj (id,dvcount_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdcount_pred_obj (id,xdcount_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
 
-#DvQuantities
-print("Adding DvQuantities")
+#XdQuantities
+print("Adding XdQuantities")
 curMLHIM.execute("SELECT *  from ccdgen_dvquantity")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -712,13 +712,12 @@ for line in rowsMLHIM:
     frac_dig   = line[25]
     units_id  = line[26]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                          normal_status,min_mag,max_mag,min_inc,max_inc,min_exc,max_exc,tot_dig,units_id,frac_dig,''))
 
-query = ("""INSERT INTO dmgen_dvquantity
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
-              normal_status,min_magnitude,max_magnitude,min_inclusive,max_inclusive,min_exclusive,max_exclusive,total_digits,units_id,fraction_digits,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+query = ("""INSERT INTO dmgen_xdquantity
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,              normal_status,min_magnitude,max_magnitude,min_inclusive,max_inclusive,min_exclusive,max_exclusive,total_digits,units_id,fraction_digits,schema_code)
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,$s,
               %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""")
 
 curS3M.executemany(query, data)
@@ -734,13 +733,13 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvquantity_pred_obj (id,dvquantity_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdquantity_pred_obj (id,xdquantity_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
 
-#DvRatios
-print("Adding DvRatios")
+#XdRatios
+print("Adding XdRatios")
 curMLHIM.execute("SELECT *  from ccdgen_dvratio")
 rowsMLHIM = curMLHIM.fetchall()
 data = []
@@ -784,15 +783,14 @@ for line in rowsMLHIM:
     den_units_id  = line[35]
     ratio_units_id  = line[36]
 
-    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,
+    data.append((pk,prj,label,ct_id,created,updated,False,descr,asserts,lang,creator_id,edited_by,ad_ctid, False,False,False,False,
                            normal_status,min_mag,max_mag,min_inc,max_inc,min_exc,max_exc,tot_dig,ratio_type,num_min_inc,num_max_inc,num_min_exc,num_max_exc,
                            den_min_inc,den_max_inc,den_min_exc,den_max_exc,num_units_id,den_units_id,ratio_units_id,''))
 
-query = ("""INSERT INTO dmgen_dvratio
-              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,
-              normal_status,min_magnitude,max_magnitude,min_inclusive,max_inclusive,min_exclusive,max_exclusive,total_digits,ratio_type,num_min_inclusive,num_max_inclusive,num_min_exclusive,num_max_exclusive,
+query = ("""INSERT INTO dmgen_xdratio
+              (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,              normal_status,min_magnitude,max_magnitude,min_inclusive,max_inclusive,min_exclusive,max_exclusive,total_digits,ratio_type,num_min_inclusive,num_max_inclusive,num_min_exclusive,num_max_exclusive,
               den_min_inclusive,den_max_inclusive,den_min_exclusive,den_max_exclusive,num_units_id,den_units_id,ratio_units_id,schema_code)
-              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
               %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -807,7 +805,7 @@ for line in rowsMLHIM:
     pobj_id = line[2]
     data.append((pk,dv_id,pobj_id))
 
-query = ("INSERT INTO dmgen_dvratio_pred_obj (id,dvratio_id,predobj_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_xdratio_pred_obj (id,xdratio_id,predobj_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
@@ -876,8 +874,8 @@ data = []
 for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
-query = ("""INSERT INTO dmgen_cluster_dvboolean
-              (id,cluster_id,dvboolean_id)
+query = ("""INSERT INTO dmgen_cluster_xdboolean
+              (id,cluster_id,xdboolean_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -890,8 +888,8 @@ data = []
 for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
-query = ("""INSERT INTO dmgen_cluster_dvcount
-              (id,cluster_id,dvcount_id)
+query = ("""INSERT INTO dmgen_cluster_xdcount
+              (id,cluster_id,xdcount_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -905,7 +903,7 @@ for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
 query = ("""INSERT INTO dmgen_cluster_dvlink
-              (id,cluster_id,dvlink_id)
+              (id,cluster_id,xdlink_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -918,8 +916,8 @@ data = []
 for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
-query = ("""INSERT INTO dmgen_cluster_dvfile
-              (id,cluster_id,dvfile_id)
+query = ("""INSERT INTO dmgen_cluster_xdfile
+              (id,cluster_id,xdfile_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -932,8 +930,8 @@ data = []
 for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
-query = ("""INSERT INTO dmgen_cluster_dvordinal
-              (id,cluster_id,dvordinal_id)
+query = ("""INSERT INTO dmgen_cluster_xdordinal
+              (id,cluster_id,xdordinal_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -946,8 +944,8 @@ data = []
 for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
-query = ("""INSERT INTO dmgen_cluster_dvquantity
-              (id,cluster_id,dvquantity_id)
+query = ("""INSERT INTO dmgen_cluster_xdquantity
+              (id,cluster_id,xdquantity_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -960,8 +958,8 @@ data = []
 for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
-query = ("""INSERT INTO dmgen_cluster_dvratio
-              (id,cluster_id,dvratio_id)
+query = ("""INSERT INTO dmgen_cluster_xdratio
+              (id,cluster_id,xdratio_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -974,8 +972,8 @@ data = []
 for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
-query = ("""INSERT INTO dmgen_cluster_dvstring
-              (id,cluster_id,dvstring_id)
+query = ("""INSERT INTO dmgen_cluster_xdstring
+              (id,cluster_id,xdstring_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -988,8 +986,8 @@ data = []
 for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
-query = ("""INSERT INTO dmgen_cluster_dvtemporal
-              (id,cluster_id,dvtemporal_id)
+query = ("""INSERT INTO dmgen_cluster_xdtemporal
+              (id,cluster_id,xdtemporal_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -1047,7 +1045,7 @@ for line in rowsMLHIM:
     link_id = line[2]
     data.append((pk,party_id,link_id))
 
-query = ("INSERT INTO dmgen_party_external_ref (id,party_id,dvlink_id) VALUES(%s,%s,%s)")
+query = ("INSERT INTO dmgen_party_external_ref (id,party_id,xdlink_id) VALUES(%s,%s,%s)")
 curS3M.executemany(query, data)
 S3M.commit()
 
@@ -1250,7 +1248,7 @@ for line in rowsMLHIM:
     data.append((line[0],line[1],line[2]))
 
 query = ("""INSERT INTO dmgen_entry_links
-              (id,entry_id,dvlink_id)
+              (id,entry_id,xdlink_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -1333,7 +1331,7 @@ for line in rowsMLHIM:
     data.append((line[0]+100,line[1]+100,line[2]))
 
 query = ("""INSERT INTO dmgen_entry_links
-              (id,entry_id,dvlink_id)
+              (id,entry_id,xdlink_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
@@ -1416,7 +1414,7 @@ for line in rowsMLHIM:
     data.append((line[0]+200,line[1]+200,line[2]))
 
 query = ("""INSERT INTO dmgen_entry_links
-              (id,entry_id,dvlink_id)
+              (id,entry_id,xdlink_id)
               VALUES(%s,%s,%s)""")
 curS3M.executemany(query, data)
 S3M.commit()
