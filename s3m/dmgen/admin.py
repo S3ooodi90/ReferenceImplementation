@@ -477,7 +477,8 @@ class DMAdmin(admin.ModelAdmin):
             kwargs['form'] = DMAdminForm
 
         form = super(DMAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(pk=request.user.id)
+        print(request.user.id)
+        modeller = Modeler.objects.get(user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
 
@@ -1127,6 +1128,51 @@ class ReferenceRangeAdmin(admin.ModelAdmin):
 
     list_display = ('label', 'project', 'published', 'edited_by', 'creator',)
 admin.site.register(ReferenceRange, ReferenceRangeAdmin)
+
+
+class SimpleRRAdmin(admin.ModelAdmin):
+    list_filter = ['published', 'project', 'creator']
+    search_fields = ['label', 'ct_id']
+    ordering = ['project', 'label']
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    readonly_fields = ['published', 'schema_code', 'creator', 'edited_by', ]
+    form = SimpleRRAdminForm
+    filter_horizontal = ['pred_obj', ]
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(SimpleRRAdmin, self).get_form(request, obj, **kwargs)
+        modeller = Modeler.objects.get(pk=request.user.id)
+        form.current_user = request.user
+        form.default_prj = modeller.project
+        form.prj_filter = modeller.prj_filter
+
+        return form
+
+    fieldsets = (
+        (None, {'classes': ('wide', ),
+                'fields': ('published', ('label', 'project', 'lang'), 'definition', 'is_normal', 'interval_type',
+                           'lower', 'upper', 'lower_included', 'upper_included', 'lower_bounded',
+                           'upper_bounded', )}),
+
+        ("Optional Units", {'classes': ('collapse', ),
+                            'fields': ('units_name', 'units_uri', )}),
+
+        ("Additional Information ", {'classes': ('wide', ),
+                                     'fields': ('description', 'pred_obj', )}),
+        ("Advanced", {'classes': ('collapse', ), 'fields': ('asserts', )}),
+        ("Read Only", {'classes': ('collapse', ),
+                       'fields': ('creator', 'edited_by', 'schema_code', )}),
+    )
+
+    def save_model(self, request, obj, form, change):
+        modeller = Modeler.objects.get(pk=request.user.id)
+        if obj.creator.id == 1:
+            obj.creator = modeller
+        obj.edited_by = modeller
+        obj.save()
+
+    list_display = ('label', 'project', 'published', 'edited_by', 'creator', )
+admin.site.register(SimpleReferenceRange, SimpleRRAdmin)
 
 
 class AuditAdmin(admin.ModelAdmin):

@@ -579,6 +579,36 @@ class ReferenceRangeAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class SimpleRRAdminForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SimpleRRAdminForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance.published:
+            for fld in self.fields:
+                self.fields[fld].widget.attrs['readonly'] = True
+                self.fields[fld].widget.attrs['disabled'] = True
+        if instance.pk is not None:
+            if self.prj_filter:
+                self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
+            else:
+                self.fields['pred_obj'].queryset = PredObj.objects.all()
+        else:
+            if self.prj_filter:
+                self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
+            else:
+                self.fields['pred_obj'].queryset = PredObj.objects.all()
+
+    def clean(self):
+        cleaned_data = super(SimpleRRAdminForm, self).clean()
+        # do something here if needed.
+
+        return cleaned_data
+
+    class Meta:
+        model = SimpleReferenceRange
+        fields = '__all__'
+
+
 class ClusterAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):

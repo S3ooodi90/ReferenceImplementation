@@ -2731,9 +2731,9 @@ def publish_Cluster(self):
                        " NOTICE: You cannot nest a Cluster inside of itself at any level.", messages.ERROR)
                 return msg
 
-    if self.Xdboolean.all():
+    if self.xdboolean.all():
         has_content = True
-        for item in self.Xdboolean.all():
+        for item in self.xdboolean.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdBoolean) " + item.__str__().strip() +
@@ -2741,9 +2741,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 4) + (
                 "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
 
-    if self.Xdlink.all():
+    if self.xdlink.all():
         has_content = True
-        for item in self.Xdlink.all():
+        for item in self.xdlink.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdLink) " + item.__str__().strip() +
@@ -2751,9 +2751,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 4) + (
                 "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
 
-    if self.Xdstring.all():
+    if self.xdstring.all():
         has_content = True
-        for item in self.Xdstring.all():
+        for item in self.xdstring.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdString) " + item.__str__().strip() +
@@ -2761,9 +2761,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 4) + (
                 "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
 
-    if self.Xdfile.all():
+    if self.xdfile.all():
         has_content = True
-        for item in self.Xdfile.all():
+        for item in self.xdfile.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdFile) " + item.__str__().strip() +
@@ -2771,9 +2771,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 4) + (
                 "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
 
-    if self.Xdordinal.all():
+    if self.xdordinal.all():
         has_content = True
-        for item in self.Xdordinal.all():
+        for item in self.xdordinal.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdOrdinal) " + item.__str__().strip() +
@@ -2781,9 +2781,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 4) + (
                 "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
 
-    if self.Xdcount.all():
+    if self.xdcount.all():
         has_content = True
-        for item in self.Xdcount.all():
+        for item in self.xdcount.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdCount) " + item.__str__().strip() +
@@ -2791,9 +2791,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 4) + (
                 "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
 
-    if self.Xdquantity.all():
+    if self.xdquantity.all():
         has_content = True
-        for item in self.Xdquantity.all():
+        for item in self.xdquantity.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdQuantity) " + item.__str__().strip() +
@@ -2801,9 +2801,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 4) + (
                 "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
 
-    if self.Xdratio.all():
+    if self.xdratio.all():
         has_content = True
-        for item in self.Xdratio.all():
+        for item in self.xdratio.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdRatio) " + item.__str__().strip() +
@@ -2811,9 +2811,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 4) + (
                 "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
 
-    if self.Xdtemporal.all():
+    if self.xdtemporal.all():
         has_content = True
-        for item in self.Xdtemporal.all():
+        for item in self.xdtemporal.all():
             if not item.published:
                 reset_publication(self)
                 msg = ("(XdTemporal) " + item.__str__().strip() +
