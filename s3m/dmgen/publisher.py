@@ -360,17 +360,17 @@ def publish_XdString(self):
     if enumList:
         if default:
             dt_str += padding.rjust(indent + 8) + (
-                "<xs:element maxOccurs='1' minOccurs='1' name='Xdstring-value' default='" + escape(default.strip()) + "'>\n")
+                "<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' default='" + escape(default.strip()) + "'>\n")
         else:
             dt_str += padding.rjust(indent + 8) + (
-                "<xs:element maxOccurs='1' minOccurs='1' name='Xdstring-value'>\n")
+                "<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value'>\n")
     else:
         if default:
             dt_str += padding.rjust(indent + 8) + (
-                "<xs:element maxOccurs='1' minOccurs='1' name='Xdstring-value' type='xs:string' default='" + escape(default) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string' default='" + escape(default) + "'/>\n")
         else:
             dt_str += padding.rjust(indent + 8) + (
-                "<xs:element maxOccurs='1' minOccurs='1' name='Xdstring-value' type='xs:string'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>\n")
 
 # Enumerations
     if enumList:
@@ -392,7 +392,7 @@ def publish_XdString(self):
             dt_str += padding.rjust(indent + 16) + ("<xs:annotation>\n")
             dt_str += padding.rjust(indent + 18) + ("<xs:appinfo>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdf:Description rdf:about='s3m:mc-" +
-                                                   self.ct_id + "/Xdstring-value/" + quote(enumList[n].strip()) + "'>\n")
+                                                   self.ct_id + "/xdstring-value/" + quote(enumList[n].strip()) + "'>\n")
             dt_str += padding.rjust(indent + 2) + (
                 "  <rdfs:subPropertyOf rdf:resource='s3m:mc-" + self.ct_id + "'/>\n")
             dt_str += padding.rjust(indent + 2) + ("  <rdfs:label>" +
@@ -408,7 +408,7 @@ def publish_XdString(self):
         dt_str += padding.rjust(indent + 10) + ("</xs:element>\n")
 
     dt_str += padding.rjust(indent + 8) + (
-        "<xs:element maxOccurs='1' minOccurs='0' name='Xdstring-language' type='xs:language' default='" + self.lang + "'/>\n")
+        "<xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='" + self.lang + "'/>\n")
     dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
     if self.asserts:
         str1 = "<xs:assert test="
@@ -1483,10 +1483,10 @@ def publish_XdCount(self):
     # XdCount
     if not mag_constrained:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1'  name='Xdcount-value' type='xs:int'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='1'  name='xdcount-value' type='xs:int'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1'  name='Xdcount-value'>\n")
+            "<xs:element maxOccurs='1' minOccurs='1'  name='xdcount-value'>\n")
         dt_str += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent + 10) + \
             ("<xs:restriction base='xs:int'>\n")
@@ -1523,7 +1523,7 @@ def publish_XdCount(self):
             return msg
 
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1' name='Xdcount-units' type='s3m:mc-" + str(self.units.ct_id) + "'/> \n")
+            "<xs:element maxOccurs='1' minOccurs='1' name='xdcount-units' type='s3m:mc-" + str(self.units.ct_id) + "'/> \n")
 
     dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -1664,10 +1664,10 @@ def publish_XdQuantity(self):
     # XdQuantity
     if not mag_constrained:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1'  name='Xdquantity-value' type='xs:decimal'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value' type='xs:decimal'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1'  name='Xdquantity-value'>\n")
+            "<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value'>\n")
         dt_str += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent + 10) + \
             ("<xs:restriction base='xs:decimal'>\n")
@@ -1705,7 +1705,7 @@ def publish_XdQuantity(self):
             msg = ("Units: " + self.units.label +
                    " hasn't been published. Please publish the object and retry.", messages.ERROR)
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1' name='Xdquantity-units' type='s3m:mc-" + str(self.units.ct_id) + "'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='1' name='xdquantity-units' type='s3m:mc-" + str(self.units.ct_id) + "'/>\n")
 
     dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -1925,10 +1925,10 @@ def publish_XdRatio(self):
 
     if not mag_constrained:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdratio-value' type='xs:decimal'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdratio-value' type='xs:decimal'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0'  name='Xdratio-value'>\n")
+            "<xs:element maxOccurs='1' minOccurs='0'  name='xdratio-value'>\n")
         dt_str += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent + 10) + \
             ("<xs:restriction base='xs:decimal'>\n")

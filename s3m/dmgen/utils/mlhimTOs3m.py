@@ -218,8 +218,6 @@ for line in rowsMLHIM:
     enums = line[15]
     eanno = line[16]
     def_val = line[17]
-    if len(def_val) > 250:
-        def_val = ''
     creator_id = line[18]
     edited_by = line[19]
     prj = line[20]
@@ -272,16 +270,13 @@ for line in rowsMLHIM:
     max_len = line[13]
     exact_len = line[14]
     enums = line[15]
-    eanno = line[16]
-    def_val = line[17]
-    if len(def_val) > 250:
-        def_val = ''
+    def_val = line[16]
+    eanno = line[17]
     creator_id = line[18]
     edited_by = line[19]
     prj = line[20]
 
-    data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
-                 min_len, max_len, exact_len, enums, eanno, def_val, ''))
+    data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,  min_len, max_len, exact_len, enums, eanno, def_val, ''))
 
 query = ("""INSERT INTO dmgen_units
               (id,project_id,label,ct_id,created,updated,published,description,asserts,lang,creator_id,edited_by_id,adapter_ctid,require_vtb,require_vte,require_tr,require_mod,

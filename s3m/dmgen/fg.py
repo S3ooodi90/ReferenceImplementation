@@ -286,40 +286,40 @@ def fcluster(clu, indent):
     frmstr += '<fieldset><legend>' + clu.label + '</legend><br/>\n'
     frmstr += '<div>\n'
 
-    if clu.Xdstring:
-        for Xd in clu.Xdstring.all():
+    if clu.xdstring:
+        for Xd in clu.xdstring.all():
             frmstr += fXd_string(Xd, indent + '  ')
 
-    if clu.Xdboolean:
-        for Xd in clu.Xdboolean.all():
+    if clu.xdboolean:
+        for Xd in clu.xdboolean.all():
             frmstr += fXd_boolean(Xd, indent + '  ')
 
-    if clu.Xdlink:
-        for Xd in clu.Xdlink.all():
+    if clu.xdlink:
+        for Xd in clu.xdlink.all():
             frmstr += fXd_link(Xd, indent + '  ')
 
-    if clu.Xdfile:
-        for Xd in clu.Xdfile.all():
+    if clu.xdfile:
+        for Xd in clu.xdfile.all():
             frmstr += fXd_file(Xd, indent + '  ')
 
-    if clu.Xdordinal:
-        for Xd in clu.Xdordinal.all():
+    if clu.xdordinal:
+        for Xd in clu.xdordinal.all():
             frmstr += fXd_ordinal(Xd, indent + '  ')
 
-    if clu.Xdcount:
-        for Xd in clu.Xdcount.all():
+    if clu.xdcount:
+        for Xd in clu.xdcount.all():
             frmstr += fXd_count(Xd, indent + '  ')
 
-    if clu.Xdquantity:
-        for Xd in clu.Xdquantity.all():
+    if clu.xdquantity:
+        for Xd in clu.xdquantity.all():
             frmstr += fXd_quantity(Xd, indent + '  ')
 
-    if clu.Xdratio:
-        for Xd in clu.Xdratio.all():
+    if clu.xdratio:
+        for Xd in clu.xdratio.all():
             frmstr += fXd_ratio(Xd, indent + '  ')
 
-    if clu.Xdtemporal:
-        for Xd in clu.Xdtemporal.all():
+    if clu.xdtemporal:
+        for Xd in clu.xdtemporal.all():
             frmstr += fXd_temporal(Xd, indent + '  ')
 
     # close the fieldset after getting all of the data types, then loop

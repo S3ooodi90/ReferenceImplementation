@@ -321,7 +321,7 @@ class DMPkg(object):
                     return(msg)
 
         # XdBooleans in Cluster
-        for Xd in cluster.Xdboolean.all():
+        for Xd in cluster.xdboolean.all():
             if self.registerUUID(Xd.ct_id, 'XdBooleanType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.
@@ -337,7 +337,7 @@ class DMPkg(object):
                 self.adapters.append(Xd.adapter_ctid)
 
         # XdLinks in Cluster
-        for Xd in cluster.Xdlink.all():
+        for Xd in cluster.xdlink.all():
             if self.registerUUID(Xd.ct_id, 'XdLinkType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.
@@ -353,7 +353,7 @@ class DMPkg(object):
                 self.adapters.append(Xd.adapter_ctid)
 
         # XdStrings in Cluster
-        for Xd in cluster.Xdstring.all():
+        for Xd in cluster.xdstring.all():
             if self.registerUUID(Xd.ct_id, 'XdStringType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.
@@ -369,7 +369,7 @@ class DMPkg(object):
                 self.adapters.append(Xd.adapter_ctid)
 
         # XdFiles in Cluster
-        for Xd in cluster.Xdfile.all():
+        for Xd in cluster.xdfile.all():
             if self.registerUUID(Xd.ct_id, 'XdFileType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.
@@ -385,7 +385,7 @@ class DMPkg(object):
                 self.adapters.append(Xd.adapter_ctid)
 
         # XdOrdinals in Cluster
-        for Xd in cluster.Xdordinal.all():
+        for Xd in cluster.xdordinal.all():
             if self.registerUUID(Xd.ct_id, 'XdOrdinalType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.
@@ -419,7 +419,7 @@ class DMPkg(object):
                 self.adapters.append(Xd.adapter_ctid)
 
         # XdCounts in Cluster
-        for Xd in cluster.Xdcount.all():
+        for Xd in cluster.xdcount.all():
             if self.registerUUID(Xd.ct_id, 'XdCountType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.
@@ -465,7 +465,7 @@ class DMPkg(object):
                 self.adapters.append(Xd.adapter_ctid)
 
         # XdQuantities in Cluster
-        for Xd in cluster.Xdquantity.all():
+        for Xd in cluster.xdquantity.all():
             if self.registerUUID(Xd.ct_id, 'XdQuantityType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.
@@ -511,7 +511,7 @@ class DMPkg(object):
                 self.adapters.append(Xd.adapter_ctid)
 
         # XdRatios in Cluster
-        for Xd in cluster.Xdratio.all():
+        for Xd in cluster.xdratio.all():
             if self.registerUUID(Xd.ct_id, 'XdRatioType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.
@@ -574,7 +574,7 @@ class DMPkg(object):
                 self.adapters.append(Xd.adapter_ctid)
 
         # XdTemporals in Cluster
-        for Xd in cluster.Xdtemporal.all():
+        for Xd in cluster.xdtemporal.all():
             if self.registerUUID(Xd.ct_id, 'XdTemporalType', 'XdAdapter-value'):
                 # len 10 was arbitrarily chosen as an obviously incorrect code
                 # length.

@@ -754,21 +754,11 @@ class DMAdminForm(forms.ModelForm):
         if instance.pk is not None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=instance.project)
-            self.fields['admin_definition'].queryset = AdminEntry.objects.filter(
-                project=instance.project)
-            self.fields['care_definition'].queryset = CareEntry.objects.filter(
-                project=instance.project)
-            self.fields['demog_definition'].queryset = DemographicEntry.objects.filter(
-                project=instance.project)
+            self.fields['entry'].queryset = Entry.objects.filter(project=instance.project)
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
-            self.fields['admin_definition'].queryset = AdminEntry.objects.filter(
-                project=self.default_prj)
-            self.fields['care_definition'].queryset = CareEntry.objects.filter(
-                project=self.default_prj)
-            self.fields['demog_definition'].queryset = DemographicEntry.objects.filter(
-                project=self.default_prj)
+            self.fields['entry'].queryset = Entry.objects.filter(project=self.default_prj)
 
     def clean(self):
         cleaned_data = super(DMAdminForm, self).clean()

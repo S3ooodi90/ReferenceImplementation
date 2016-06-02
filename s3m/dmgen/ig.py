@@ -725,72 +725,72 @@ def cluster(clu, indent, pcs=True):
         for c in clu.clusters.all():
             elstr += cluster(c, indent)
 
-    if clu.Xdboolean:
-        for Xd in clu.Xdboolean.all():
+    if clu.xdboolean:
+        for Xd in clu.xdboolean.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_boolean(Xd, indent + '  ')
             elstr += indent + """  </s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
-    if clu.Xdlink:
-        for Xd in clu.Xdlink.all():
+    if clu.xdlink:
+        for Xd in clu.xdlink.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_link(Xd, indent + '  ')
             elstr += indent + """  </s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
-    if clu.Xdstring:
-        for Xd in clu.Xdstring.all():
+    if clu.xdstring:
+        for Xd in clu.xdstring.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_string(Xd, indent + '  ')
             elstr += indent + """  </s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
-    if clu.Xdfile:
-        for Xd in clu.Xdfile.all():
+    if clu.xdfile:
+        for Xd in clu.xdfile.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_file(Xd, indent + '  ')
             elstr += indent + """  </s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
-    if clu.Xdordinal:
-        for Xd in clu.Xdordinal.all():
+    if clu.xdordinal:
+        for Xd in clu.xdordinal.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_ordinal(Xd, indent + '  ')
             elstr += indent + """  </s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
-    if clu.Xdcount:
-        for Xd in clu.Xdcount.all():
+    if clu.xdcount:
+        for Xd in clu.xdcount.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_count(Xd, indent + '  ')
             elstr += indent + """  </s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
-    if clu.Xdquantity:
-        for Xd in clu.Xdquantity.all():
+    if clu.xdquantity:
+        for Xd in clu.xdquantity.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_quantity(Xd, indent + '  ')
             elstr += indent + """  </s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
-    if clu.Xdratio:
-        for Xd in clu.Xdratio.all():
+    if clu.xdratio:
+        for Xd in clu.xdratio.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_ratio(Xd, indent + '  ')
             elstr += indent + """  </s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
-    if clu.Xdtemporal:
-        for Xd in clu.Xdtemporal.all():
+    if clu.xdtemporal:
+        for Xd in clu.xdtemporal.all():
             elstr += indent + """  <s3m:me-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_temporal(Xd, indent + '  ')
