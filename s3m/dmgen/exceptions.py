@@ -1,19 +1,27 @@
-#application specific exceptions
+"""
+application specific exceptions
+"""
+
 
 class S3MDatatypeError(Exception):
-      pass
+    pass
+
 
 class PublishingError(Exception):
-      pass
+    pass
+
 
 class AnnotationsError(Exception):
-      pass
+    pass
+
 
 class ModellingError(Exception):
-      pass
+    pass
+
 
 class GenerationError(Exception):
-      pass
+    pass
+
 
 class CodesImportError(Exception):
-      pass
+    pass

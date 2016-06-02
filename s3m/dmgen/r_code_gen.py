@@ -1,18 +1,20 @@
-# -*- coding: utf-8 -*-
-# Copyright, 2014-2015 - Timothy W. Cook <tim@mlhim.org>. All Rights Reserved.
-# Generate source code for data analysis using the R language system.
+"""
+Generate example R code
+"""
 from datetime import datetime, date
 from xml.sax.saxutils import unescape
 
 now = date.today()
 year = str(now.timetuple()[0])
 
+
 def pct_rcode(self, pcmType):
     ct_id = self.ct_id
     label = self.label
-    rstr = '' #The string to write to each PcT
-    r_name = ''.join(e for e in label if e.isalnum())  # replace all special characters.
-    rstr += "# Copyright "+year+", Timothy W. Cook <tim@mlhim.org>\n"
+    rstr = ''  # The string to write to each PcT
+    # replace all special characters.
+    r_name = ''.join(e for e in label if e.isalnum())
+    rstr += "# Copyright " + year + ", Timothy W. Cook <tim@mlhim.org>\n"
     rstr += "# Licensed under the Apache License, Version 2.0 (the 'License');\n"
     rstr += "# you may not use this file except in compliance with the License.\n"
     rstr += "# You may obtain a copy of the License at\n"
@@ -23,11 +25,13 @@ def pct_rcode(self, pcmType):
     rstr += "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n"
     rstr += "# See the License for the specific language governing permissions and\n"
     rstr += "# limitations under the License.\n"
-    rstr += "#' \code{"+label.strip()+".}\n"
+    rstr += "#' \code{" + label.strip() + ".}\n"
     rstr += "#'\n"
-    rstr += "#' Returns a data.frame of the collected nodes of: \code{"+label.strip()+"} from the XML instance passed as fileName.\n"
+    rstr += "#' Returns a data.frame of the collected nodes of: \code{" + label.strip(
+    ) + "} from the XML instance passed as fileName.\n"
     rstr += "#' The source name and the CCD ID are also included in each row to assist in identifying the source of the data.\n"
-    rstr += "#' The XML element name is pcs-"+ct_id+" as a restriction of the "+pcmType+"\n"
+    rstr += "#' The XML element name is pcs-" + ct_id + \
+        " as a restriction of the " + pcmType + "\n"
     # add the list of vectors to the documentation
     rstr += "#' The vectors are: label, vtb, vte, "
     if pcmType == 'XdBoolean':
@@ -54,7 +58,7 @@ def pct_rcode(self, pcmType):
     rstr += "#' \n"
     descr = self.description.splitlines()
     for n in range(0, len(descr)):
-        rstr += "#' "+descr[n]+"\n"
+        rstr += "#' " + descr[n] + "\n"
     rstr += "#' \n"
     rstr += "#' @references\n"
     rstr += "#' The data is structured according to the Multi-Level Healthcare Information Modelling Reference Model release 2.5.0\n"
@@ -62,7 +66,9 @@ def pct_rcode(self, pcmType):
     rstr += "#' The semantic reference(s) for this data:\n"
     rstr += "#' @references\n"
 
-    # rstr += "#' \\code{"+self.predicate.__str__()+"} \\url{"+unescape(self.object_uri)+"} and can be accessed via the CCD. A CCD is an XML Schema with embeded RDF.\n"
+    # rstr += "#' \\code{"+self.predicate.__str__()+"}
+    # \\url{"+unescape(self.object_uri)+"} and can be accessed via the CCD. A
+    # CCD is an XML Schema with embeded RDF.\n"
 
     rstr += "#' \n"
     rstr += "#' @param fileList - The path/file name(s) of the XML file(s) to process.\n"
@@ -71,27 +77,28 @@ def pct_rcode(self, pcmType):
     rstr += "#' The examples use the included files. Any source that can be processed via the XML::xmlTreeParse function can be used.\n"
     rstr += "#' @examples\n"
     rstr += "#' files <- dir('./inst/examples', recursive=TRUE, full.names=TRUE, pattern='\\\.xml$')\n"
-    rstr += "#' "+r_name+" <- get"+r_name+"(files) \n"
+    rstr += "#' " + r_name + " <- get" + r_name + "(files) \n"
     rstr += "#' \n"
     rstr += "#' @export\n"
-    rstr += "get"+r_name+" <- function(sourceList)\n"
+    rstr += "get" + r_name + " <- function(sourceList)\n"
     rstr += "{\n"
-    rstr += "    data <- lapply(sourceList, parse"+r_name+")\n"
+    rstr += "    data <- lapply(sourceList, parse" + r_name + ")\n"
     rstr += "    data <- data.table::rbindlist(data, fill=TRUE)\n"
     rstr += "    return(data)\n"
     rstr += "}\n"
     rstr += "\n"
     rstr += "#' @export\n"
-    rstr += "parse"+r_name+" <- function(sourceName) {\n"
+    rstr += "parse" + r_name + " <- function(sourceName) {\n"
     rstr += "  nsDEF <- c(mlhim2='http://www.mlhim.org/ns/mlhim2/', xsi='http://www.w3.org/2001/XMLSchema-instance')\n"
     rstr += "  doc <- XML::xmlTreeParse(sourceName, handlers=list('comment'=function(x,...){NULL}), asTree = TRUE)\n"
     rstr += "  root <- XML::xmlRoot(doc)\n"
-    rstr += "  pcm <- XML::getNodeSet(root, '//mlhim2:pcs-"+ct_id+"', nsDEF)\n"
-    rstr += "  data <- lapply(pcm, mlhim250rm::"+pcmType+")\n"
+    rstr += "  pcm <- XML::getNodeSet(root, '//mlhim2:pcs-" + \
+        ct_id + "', nsDEF)\n"
+    rstr += "  data <- lapply(pcm, mlhim250rm::" + pcmType + ")\n"
     rstr += "  data <- data.table::rbindlist(data, fill=TRUE)\n"
     rstr += "  if (length(data) > 0) { \n"
     rstr += "      data$ccd <- XML::xmlName(root)\n"
-    rstr += "      data$pcs <- 'pcs-"+ct_id+"'\n"
+    rstr += "      data$pcs <- 'pcs-" + ct_id + "'\n"
     rstr += "      data$ccd <- XML::xmlName(root)\n"
     rstr += "      data$sourceName <- sourceName\n"
     rstr += " } else {\n"
