@@ -188,6 +188,10 @@ class Predicate(models.Model):
     def __str__(self):
         return self.ns_abbrev.abbrev + ":" + self.class_name.strip()
 
+    class Meta:
+        ordering = ['ns_abbrev', 'class_name']
+        verbose_name = "Predicate"
+        verbose_name_plural = "Predicates"
 
 class PredObj(models.Model):
     """
@@ -1082,6 +1086,7 @@ class Entry(Common):
 
     class Meta:
         ordering = ['project', 'label']
+        verbose_name = "Entry"
 
 
 class DM(models.Model):

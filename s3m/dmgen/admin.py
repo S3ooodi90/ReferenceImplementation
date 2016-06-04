@@ -3,6 +3,7 @@ Django Admin definitions.
 """
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import get_object_or_404
 
 from dmgen.models import *
 from dmgen.forms import *
@@ -27,10 +28,10 @@ def delete_mcs(modeladmin, request, queryset):
             else:
                 name = " this object."
             if obj.creator.id != cur_modeler[0].id and request.user.is_superuser is False:
-                modeladmin.message_user(request, cur_modeler[
-                                        0].user.username + " is not the creator of " + name, messages.ERROR)
+                modeladmin.message_user(request, "Cannot delete the model component " + name + " because " + cur_modeler[
+                    0].user.username + " is not the creator.", messages.ERROR)
             else:
-                obj.delete()
+                    obj.delete()
     else:
         modeladmin.message_user(request, request.user.username +
                                 " is not a registered DMGen modeler. ", messages.ERROR)
@@ -477,15 +478,14 @@ class DMAdmin(admin.ModelAdmin):
             kwargs['form'] = DMAdminForm
 
         form = super(DMAdmin, self).get_form(request, obj, **kwargs)
-        print(request.user.id)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
 
         return form
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         obj.creator = modeller
         obj.edited_by = modeller
         obj.save()
@@ -505,7 +505,7 @@ class EntryAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(EntryAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -531,7 +531,7 @@ class EntryAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -554,7 +554,7 @@ class XdBooleanAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdBooleanAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -571,7 +571,7 @@ class XdBooleanAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -593,7 +593,7 @@ class XdLinkAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdLinkAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -610,7 +610,7 @@ class XdLinkAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -632,7 +632,7 @@ class XdStringAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdStringAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -651,7 +651,7 @@ class XdStringAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -673,7 +673,7 @@ class UnitsAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(UnitsAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -690,7 +690,7 @@ class UnitsAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -712,7 +712,7 @@ class XdCountAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdCountAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -734,7 +734,7 @@ class XdCountAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -756,7 +756,7 @@ class XdIntervalAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdIntervalAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -776,7 +776,7 @@ class XdIntervalAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -798,7 +798,7 @@ class XdFileAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdFileAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -816,7 +816,7 @@ class XdFileAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -838,7 +838,7 @@ class XdOrdinalAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdOrdinalAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -856,7 +856,7 @@ class XdOrdinalAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -878,7 +878,7 @@ class XdQuantityAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdQuantityAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -900,7 +900,7 @@ class XdQuantityAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -922,7 +922,7 @@ class XdRatioAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdRatioAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -952,7 +952,7 @@ class XdRatioAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -974,7 +974,7 @@ class XdTemporalAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(XdTemporalAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -997,7 +997,7 @@ class XdTemporalAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -1019,7 +1019,7 @@ class ClusterAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(ClusterAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -1043,7 +1043,7 @@ class ClusterAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -1065,7 +1065,7 @@ class PartyAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(PartyAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -1081,7 +1081,7 @@ class PartyAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -1103,7 +1103,7 @@ class ReferenceRangeAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super(ReferenceRangeAdmin, self).get_form(
             request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -1120,7 +1120,7 @@ class ReferenceRangeAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -1141,7 +1141,7 @@ class SimpleRRAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(SimpleRRAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         form.prj_filter = modeller.prj_filter
@@ -1165,7 +1165,7 @@ class SimpleRRAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -1187,7 +1187,7 @@ class AuditAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(AuditAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -1205,7 +1205,7 @@ class AuditAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -1227,7 +1227,7 @@ class AttestationAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(AttestationAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -1243,7 +1243,7 @@ class AttestationAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller
@@ -1265,7 +1265,7 @@ class ParticipationAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(ParticipationAdmin, self).get_form(request, obj, **kwargs)
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         form.current_user = request.user
         form.default_prj = modeller.project
         return form
@@ -1281,7 +1281,7 @@ class ParticipationAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        modeller = Modeler.objects.get(user_id=request.user.id)
+        modeller = get_object_or_404(Modeler, user_id=request.user.id)
         if obj.creator.id == 1:
             obj.creator = modeller
         obj.edited_by = modeller

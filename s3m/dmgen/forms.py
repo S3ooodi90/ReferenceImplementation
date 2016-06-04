@@ -50,6 +50,7 @@ class XdBooleanAdminForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(XdBooleanAdminForm, self).clean()
+        print(cleaned_data)
 
         return
 

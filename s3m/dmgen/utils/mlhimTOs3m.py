@@ -90,6 +90,9 @@ for line in rowsMLHIM:
     prjfilter = line[3]
     prjid = line[4]
     userid = line[5]
+    if name == 'admin':
+        adminpk = pk
+
     data.append((pk, userid, name, email, prjid, prjfilter))
 
 query = ("INSERT INTO dmgen_modeler (id,user_id,name,email,project_id,prj_filter) VALUES(%s,%s,%s,%s,%s,%s)")
@@ -163,9 +166,13 @@ for line in rowsMLHIM:
 
     trues = line[12]
     falses = line[13]
-    creator_id = line[14]
-    edited_by = line[15]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[16]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by,
                  ad_ctid, False, False, False, False,
                  trues, falses, ''))
@@ -218,9 +225,12 @@ for line in rowsMLHIM:
     enums = line[15]
     eanno = line[16]
     def_val = line[17]
-    creator_id = line[18]
-    edited_by = line[19]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[20]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  min_len, max_len, exact_len, enums, eanno, def_val, ''))
@@ -272,9 +282,13 @@ for line in rowsMLHIM:
     enums = line[15]
     def_val = line[16]
     eanno = line[17]
-    creator_id = line[18]
-    edited_by = line[19]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[20]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,  min_len, max_len, exact_len, enums, eanno, def_val, ''))
 
@@ -328,9 +342,13 @@ for line in rowsMLHIM:
     ub = line[18]
     uname = line[19]
     uuri = line[20]
-    creator_id = line[21]
-    edited_by = line[22]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[23]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  lower, upper, invl_type, li, ui, lb, ub, uname, uuri, ''))
@@ -378,10 +396,14 @@ for line in rowsMLHIM:
 
     defn = line[12]
     is_norm = line[13]
-    creator_id = line[14]
-    edited_by = line[15]
+    creator_id = adminpk
+    edited_by = adminpk
     interval_id = line[16]
     prj = line[17]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  defn, interval_id, is_norm, ''))
@@ -429,9 +451,13 @@ for line in rowsMLHIM:
     relation = line[12]
     rel_uri = line[13]
 
-    creator_id = line[14]
-    edited_by = line[15]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[16]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  relation, rel_uri, ''))
@@ -482,9 +508,13 @@ for line in rowsMLHIM:
     cont_lang = line[14]
     alt_txt = line[15]
     cm = line[16]
-    creator_id = line[17]
-    edited_by = line[18]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[19]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  mime, encoding, cont_lang, alt_txt, cm, ''))
@@ -544,9 +574,13 @@ for line in rowsMLHIM:
     allow_year_month = line[23]
     allow_month_day = line[24]
 
-    creator_id = line[25]
-    edited_by = line[26]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[27]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  normal_status, allow_duration, allow_ymduration, allow_dtduration, allow_date, allow_time,
@@ -599,10 +633,14 @@ for line in rowsMLHIM:
     ordinals = line[13]
     symbols = line[14]
     eannon = line[15]
-    creator_id = line[16]
-    edited_by = line[17]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[18]
     srr = line[19]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  normal_status, ordinals, symbols, eanno, srr, ''))
 
@@ -655,11 +693,15 @@ for line in rowsMLHIM:
     min_exc = line[17]
     max_exc = line[18]
     tot_dig = line[19]
-    creator_id = line[20]
-    edited_by = line[21]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[22]
     srr = line[23]
     units_id = line[24]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  normal_status, min_mag, max_mag, min_inc, max_inc, min_exc, max_exc, tot_dig, units_id, srr, ''))
@@ -715,11 +757,15 @@ for line in rowsMLHIM:
     tot_dig = line[19]
     frac_dig = line[20]
 
-    creator_id = line[21]
-    edited_by = line[22]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[23]
     srr = line[24]
     units_id = line[25]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  normal_status, min_mag, max_mag, min_inc, max_inc, min_exc, max_exc, tot_dig, units_id, frac_dig, srr, ''))
@@ -786,13 +832,17 @@ for line in rowsMLHIM:
     den_min_exc = line[27]
     den_max_exc = line[28]
 
-    creator_id = line[29]
+    creator_id = adminpk
     den_units_id = line[30]
-    edited_by = line[31]
+    edited_by = adminpk
     num_units_id = line[32]
     prj = line[33]
     ratio_units_id = line[34]
     srr = line[35]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by, ad_ctid, False, False, False, False,
                  normal_status, min_mag, max_mag, min_inc, max_inc, min_exc, max_exc, tot_dig, ratio_type, num_min_inc, num_max_inc, num_min_exc, num_max_exc,
@@ -837,9 +887,13 @@ for line in rowsMLHIM:
     descr = line[6]
     asserts = line[8]
     lang = line[9]
-    creator_id = line[11]
-    edited_by = line[12]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[13]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False,
                  descr, asserts, lang, creator_id, edited_by, ''))
@@ -1020,10 +1074,14 @@ for line in rowsMLHIM:
     descr = line[6]
     asserts = line[8]
     lang = line[9]
-    creator_id = line[11]
+    creator_id = adminpk
     details = line[12]
-    edited_by = line[13]
+    edited_by = adminpk
     prj = line[14]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False,
                  descr, asserts, lang, creator_id, edited_by, details, ''))
@@ -1079,12 +1137,16 @@ for line in rowsMLHIM:
     descr = line[6]
     asserts = line[8]
     lang = line[9]
-    creator_id = line[11]
-    edited_by = line[12]
+    creator_id = adminpk
+    edited_by = adminpk
     function = line[13]
     mode = line[14]
     performer = line[15]
     prj = line[16]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by,
                  performer, function, mode, ''))
@@ -1129,12 +1191,16 @@ for line in rowsMLHIM:
     asserts = line[8]
     lang = line[9]
     committer = line[11]
-    creator_id = line[12]
-    edited_by = line[13]
+    creator_id = adminpk
+    edited_by = adminpk
     prj = line[14]
     proof = line[15]
     reason = line[16]
     view = line[17]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by,
                  view, proof, reason, committer, ''))
@@ -1178,12 +1244,16 @@ for line in rowsMLHIM:
     asserts = line[8]
     lang = line[9]
 
-    creator_id = line[11]
-    edited_by = line[12]
+    creator_id = adminpk
+    edited_by = adminpk
     location = line[13]
     prj = line[14]
     sysid = line[15]
     sysuser = line[16]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by,
                  sysid, sysuser, location, ''))
@@ -1232,14 +1302,18 @@ for line in rowsMLHIM:
     state = line[13]
     attestation = line[14]
     audit = line[15]
-    creator_id = line[16]
+    creator_id = adminpk
     entrydata = line[17]
-    edited_by = line[18]
+    edited_by = adminpk
     prj = line[19]
     protocol = line[20]
     provider = line[21]
     subject = line[22]
     workflow = line[23]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by,
                  language, encoding, state, entrydata, subject, provider, protocol, workflow, audit, attestation, ''))
@@ -1314,14 +1388,18 @@ for line in rowsMLHIM:
     state = line[13]
     attestation = line[14]
     audit = line[15]
-    creator_id = line[16]
+    creator_id = adminpk
     entrydata = line[17]
-    edited_by = line[18]
+    edited_by = adminpk
     prj = line[19]
     protocol = line[20]
     provider = line[21]
     subject = line[22]
     workflow = line[23]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by,
                  language, encoding, state, entrydata, subject, provider, protocol, workflow, audit, attestation, ''))
@@ -1396,14 +1474,18 @@ for line in rowsMLHIM:
     state = line[13]
     attestation = line[14]
     audit = line[15]
-    creator_id = line[16]
+    creator_id = adminpk
     entrydata = line[17]
-    edited_by = line[18]
+    edited_by = adminpk
     prj = line[19]
     protocol = line[20]
     provider = line[21]
     subject = line[22]
     workflow = line[23]
+
+    if isinstance(asserts,str):
+        asserts = asserts.replace('dv','xd')
+
 
     data.append((pk, prj, label, ct_id, created, updated, False, descr, asserts, lang, creator_id, edited_by,
                  language, encoding, state, entrydata, subject, provider, protocol, workflow, audit, attestation, ''))
@@ -1464,7 +1546,7 @@ print("\nFinished copying.")
 curMLHIM.close()
 print("Cleaning the dmgen DB")
 S3M.set_isolation_level(0)
-curS3M.execute("VACUUM FULL ANALYZE")
+curS3M.execute("VACUUM FULL")
 curS3M.close()
 
 MLHIM.close()

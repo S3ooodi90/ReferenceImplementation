@@ -516,7 +516,7 @@ def publish_XdFile(self):
     dt_str += padding.rjust(indent + 8) + (
         "<xs:element maxOccurs='1' minOccurs='1' name='encoding' type='xs:string' default='" + self.encoding.strip() + "'/>\n")
     dt_str += padding.rjust(indent + 8) + (
-        "<xs:element maxOccurs='1' minOccurs='0' name='Xdfile-language' type='xs:language' default='" + self.language.strip() + "'/>\n")
+        "<xs:element maxOccurs='1' minOccurs='0' name='xdfile-language' type='xs:language' default='" + self.language.strip() + "'/>\n")
     dt_str += padding.rjust(indent + 8) + (
         "<xs:element maxOccurs='1' minOccurs='0' name='formalism' type='xs:string' default=''/>\n")
     if not media_list:
@@ -2107,87 +2107,87 @@ def publish_XdTemporal(self):
 
     if self.allow_date:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-date' type='xs:date'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-date' type='xs:date'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-date' type='xs:date'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-date' type='xs:date'/>\n")
 
     if self.allow_time:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-time' type='xs:time'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-time' type='xs:time'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-time' type='xs:time'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-time' type='xs:time'/>\n")
 
     if self.allow_datetime:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-datetime' type='xs:dateTime'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-datetime' type='xs:dateTime'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-datetime' type='xs:dateTime'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-datetime' type='xs:dateTime'/>\n")
 
     if self.allow_datetimestamp:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
 
     if self.allow_day:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-day' type='xs:gDay'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-day' type='xs:gDay'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-day' type='xs:gDay'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-day' type='xs:gDay'/>\n")
 
     if self.allow_month:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-month' type='xs:gMonth'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-month' type='xs:gMonth'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-month' type='xs:gMonth'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-month' type='xs:gMonth'/>\n")
 
     if self.allow_year:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-year' type='xs:gYear'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-year' type='xs:gYear'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-year' type='xs:gYear'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-year' type='xs:gYear'/>\n")
 
     if self.allow_year_month:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-year-month' type='xs:gYearMonth'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-year-month' type='xs:gYearMonth'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-year-month' type='xs:gYearMonth'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-year-month' type='xs:gYearMonth'/>\n")
 
     if self.allow_month_day:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-month-day' type='xs:gMonthDay'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-month-day' type='xs:gMonthDay'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-month-day' type='xs:gMonthDay'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-month-day' type='xs:gMonthDay'/>\n")
 
     if self.allow_duration:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-duration' type='xs:duration'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-duration' type='xs:duration'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-duration' type='xs:duration'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-duration' type='xs:duration'/>\n")
 
     if self.allow_ymduration:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-ymduration' type='xs:yearMonthDuration'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-ymduration' type='xs:yearMonthDuration'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-ymduration' type='xs:yearMonthDuration'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-ymduration' type='xs:yearMonthDuration'/>\n")
 
     if self.allow_dtduration:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='Xdtemporal-dtduration' type='xs:dayTimeDuration'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-dtduration' type='xs:dayTimeDuration'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='Xdtemporal-dtduration' type='xs:dayTimeDuration'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-dtduration' type='xs:dayTimeDuration'/>\n")
 
     dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
     if self.asserts:

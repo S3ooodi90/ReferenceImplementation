@@ -84,10 +84,10 @@ def Xd_string(Xd, indent, pcs=True):
             enumList.append(escape(e))
         s = choice(enumList)
     elif Xd.asserts:
-        # Example: matches(Xdstring-value, '^\d{5}([\-]?\d{3})$')
+        # Example: matches(xdstring-value, '^\d{5}([\-]?\d{3})$')
         try:
             x = Xd.asserts.replace(
-                "matches(Xdstring-value, '", '')[:-1].replace("'", '')
+                "matches(xdstring-value, '", '')[:-1].replace("'", '')
             s = exrex.getone(x)
         except:
             s = 'DefaultString'
@@ -103,10 +103,10 @@ def Xd_string(Xd, indent, pcs=True):
 
     elstr += indent + """  <vtb>""" + vtb + """</vtb>\n"""
     elstr += indent + """  <vte>""" + vte + """</vte>\n"""
-    elstr += indent + """  <Xdstring-value>""" + \
-        s.strip() + """</Xdstring-value>\n"""
-    elstr += indent + """  <Xdstring-language>""" + \
-        Xd.lang + """</Xdstring-language>\n"""
+    elstr += indent + """  <xdstring-value>""" + \
+        s.strip() + """</xdstring-value>\n"""
+    elstr += indent + """  <xdstring-language>""" + \
+        Xd.lang + """</xdstring-language>\n"""
     if pcs:
         elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
 
@@ -144,12 +144,7 @@ def Xd_count(Xd, indent):
 
     if Xd.total_digits is not None:
         if len(str(mag)) > Xd.total_digits:  # Opps!  Have to trim it down.
-            # Just pick from a list to make life simple
-            if Xd.total_digits > 14:
-                idx = 14
-            tdlist = [0, 1, 11, 111, 1111, 11111, 111111, 1111111, 11111111,
-                      1111111111, 111111111111, 1111111111111, 111111111111111]
-            mag = tdlist[Xd.total_digits]
+            mag = int(str(mag)[:Xd.total_digits])
 
     indent += '  '
     elstr = indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
@@ -169,10 +164,10 @@ def Xd_count(Xd, indent):
     elstr += indent + """    <magnitude-status>equal</magnitude-status>\n"""
     elstr += indent + """    <error>0</error>\n"""
     elstr += indent + """    <accuracy>0</accuracy>\n"""
-    elstr += indent + """    <Xdcount-value>""" + \
-        str(mag) + """</Xdcount-value>\n"""
-    elstr += indent + """    <Xdcount-units>\n<label>""" + escape(Xd.units.label.strip(
-    )) + """</label>\n<Xdstring-value>""" + unit + """</Xdstring-value>\n</Xdcount-units>\n"""
+    elstr += indent + """    <xdcount-value>""" + \
+        str(mag) + """</xdcount-value>\n"""
+    elstr += indent + """    <xdcount-units>\n<label>""" + escape(Xd.units.label.strip(
+    )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</xdcount-units>\n"""
 
     elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
 
@@ -251,8 +246,8 @@ def Xd_file(Xd, indent, pcs=True):
     elstr += indent + """  <vte>""" + vte + """</vte>\n"""
     elstr += indent + """  <size>64536</size>\n"""
     elstr += indent + """  <encoding>utf-8</encoding>\n"""
-    elstr += indent + """  <Xdfile-language>""" + \
-        Xd.lang + """</Xdfile-language>\n"""
+    elstr += indent + """  <xdfile-language>""" + \
+        Xd.lang + """</xdfile-language>\n"""
 
     if mt:
         elstr += indent + """  <media-type>""" + mt + """</media-type>\n"""
@@ -315,34 +310,6 @@ def Xd_ordinal(Xd, indent):
     return elstr
 
 
-def Xd_parsable(Xd, indent):
-
-    vtb = random_dtstr()
-    vte = random_dtstr(start=vtb)
-
-    if Xd.size:
-        size = Xd.size
-    else:
-        size = 0
-
-    indent += '  '
-    elstr = indent + """<s3m:me-""" + \
-        str(Xd.ct_id) + """> <!-- XdParsable -->\n"""
-    elstr += indent + """  <label>""" + \
-        escape(Xd.label.strip()) + """</label>\n"""
-
-    elstr += indent + """  <vtb>""" + vtb + """</vtb>\n"""
-    elstr += indent + """  <vte>""" + vte + """</vte>\n"""
-    elstr += indent + """  <size>""" + str(size) + """</size>\n"""
-    elstr += indent + """  <encoding>utf-8</encoding>\n"""
-    elstr += indent + """  <language>""" + Xd.lang + """</language>\n"""
-    elstr += indent + """  <XdParsable-Xd>Some parsable information.</XdParsable-Xd>\n"""
-    elstr += indent + """  <formalism>Unknown</formalism>\n"""
-    elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
-
-    return elstr
-
-
 def Xd_quantity(Xd, indent):
 
     vtb = random_dtstr()
@@ -391,7 +358,7 @@ def Xd_quantity(Xd, indent):
 
     if Xd.total_digits is not None:
         if len(str(mag)) > Xd.total_digits:  # Opps!  Have to trim it down.
-            mag = float(str(mag)[:(0 - Xd.total_digits)])
+            mag = float(str(mag)[:Xd.total_digits])
 
     indent += '  '
     elstr = indent + """<s3m:me-""" + \
@@ -410,10 +377,10 @@ def Xd_quantity(Xd, indent):
     elstr += indent + """  <magnitude-status>equal</magnitude-status>\n"""
     elstr += indent + """  <error>0</error>\n"""
     elstr += indent + """  <accuracy>0</accuracy>\n"""
-    elstr += indent + """    <Xdquantity-value>""" + \
-        str(mag) + """</Xdquantity-value>\n"""
-    elstr += indent + """    <Xdquantity-units>\n<label>""" + escape(Xd.units.label.strip(
-    )) + """</label>\n<Xdstring-value>""" + unit + """</Xdstring-value>\n</Xdquantity-units>\n"""
+    elstr += indent + """    <xdquantity-value>""" + \
+        str(mag) + """</xdquantity-value>\n"""
+    elstr += indent + """    <xdquantity-units>\n<label>""" + escape(Xd.units.label.strip(
+    )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</xdquantity-units>\n"""
     elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
@@ -493,26 +460,26 @@ def Xd_ratio(Xd, indent):
     elstr += indent + """  <ratio-type>""" + Xd.ratio_type + """</ratio-type>\n"""
     elstr += indent + """  <numerator>""" + str(num) + """</numerator>\n"""
     elstr += indent + """  <denominator>""" + str(den) + """</denominator>\n"""
-    elstr += indent + """    <Xdratio-value>""" + \
-        str(mag) + """</Xdratio-value>\n"""
+    elstr += indent + """    <xdratio-value>""" + \
+        str(mag) + """</xdratio-value>\n"""
     if Xd.num_units:
         for e in Xd.num_units.enums.splitlines():
             enumList.append(escape(e))
         unit = choice(enumList)
         elstr += indent + """<numerator-units>\n<label>""" + escape(Xd.num_units.label.strip(
-        )) + """</label>\n<Xdstring-value>""" + unit + """</Xdstring-value>\n</numerator-units>\n"""
+        )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</numerator-units>\n"""
     if Xd.den_units:
         for e in Xd.den_units.enums.splitlines():
             enumList.append(escape(e))
         unit = choice(enumList)
         elstr += indent + """<denominator-units>\n<label>""" + escape(Xd.den_units.label.strip(
-        )) + """</label>\n<Xdstring-value>""" + unit + """</Xdstring-value>\n</denominator-units>\n"""
+        )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</denominator-units>\n"""
     if Xd.ratio_units:
         for e in Xd.ratio_units.enums.splitlines():
             enumList.append(escape(e))
         unit = choice(enumList)
         elstr += indent + """<ratio-units>\n<label>""" + escape(Xd.ratio_units.label.strip(
-        )) + """</label>\n<Xdstring-value>""" + unit + """</Xdstring-value>\n</ratio-units>\n"""
+        )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</ratio-units>\n"""
 
     elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
 
@@ -547,43 +514,43 @@ def Xd_temporal(Xd, indent):
         elstr += indent + """  <normal-status>""" + \
             Xd.normal_status.strip() + """</normal-status>\n"""
     if Xd.allow_date:
-        elstr += indent + """  <Xdtemporal-date>""" + \
+        elstr += indent + """  <xdtemporal-date>""" + \
             datetime.strftime(rdt.date(), '%Y-%m-%d') + \
-            """</Xdtemporal-date>\n"""
+            """</xdtemporal-date>\n"""
     if Xd.allow_time:
-        elstr += indent + """  <Xdtemporal-time>""" + \
+        elstr += indent + """  <xdtemporal-time>""" + \
             datetime.strftime(rdt.date(), '%H:%M:%S') + \
-            """</Xdtemporal-time>\n"""
+            """</xdtemporal-time>\n"""
     if Xd.allow_datetime:
-        elstr += indent + """  <Xdtemporal-datetime>""" + \
-            random_dtstr() + """</Xdtemporal-datetime>\n"""
+        elstr += indent + """  <xdtemporal-datetime>""" + \
+            random_dtstr() + """</xdtemporal-datetime>\n"""
     if Xd.allow_datetimestamp:
-        elstr += indent + """  <Xdtemporal-datetime-stamp>""" + \
-            random_dtstr() + """</Xdtemporal-datetime-stamp>\n"""
+        elstr += indent + """  <xdtemporal-datetime-stamp>""" + \
+            random_dtstr() + """</xdtemporal-datetime-stamp>\n"""
     if Xd.allow_day:
-        elstr += indent + """  <Xdtemporal-day>""" + \
-            datetime.strftime(rdt.date(), '---%d') + """</Xdtemporal-day>\n"""
+        elstr += indent + """  <xdtemporal-day>""" + \
+            datetime.strftime(rdt.date(), '---%d') + """</xdtemporal-day>\n"""
     if Xd.allow_month:
-        elstr += indent + """  <Xdtemporal-month>""" + \
-            datetime.strftime(rdt.date(), '--%m') + """</Xdtemporal-month>\n"""
+        elstr += indent + """  <xdtemporal-month>""" + \
+            datetime.strftime(rdt.date(), '--%m') + """</xdtemporal-month>\n"""
     if Xd.allow_year:
-        elstr += indent + """  <Xdtemporal-year>""" + \
-            datetime.strftime(rdt.date(), '%Y') + """</Xdtemporal-year>\n"""
+        elstr += indent + """  <xdtemporal-year>""" + \
+            datetime.strftime(rdt.date(), '%Y') + """</xdtemporal-year>\n"""
     if Xd.allow_year_month:
-        elstr += indent + """  <Xdtemporal-year-month>""" + \
+        elstr += indent + """  <xdtemporal-year-month>""" + \
             datetime.strftime(rdt.date(), '%Y-%m') + \
-            """</Xdtemporal-year-month>\n"""
+            """</xdtemporal-year-month>\n"""
     if Xd.allow_month_day:
-        elstr += indent + """  <Xdtemporal-month-day>--""" + \
+        elstr += indent + """  <xdtemporal-month-day>--""" + \
             datetime.strftime(rdt.date(), '%m-%d') + \
-            """</Xdtemporal-month-day>\n"""
+            """</xdtemporal-month-day>\n"""
     if Xd.allow_duration:
-        elstr += indent + """  <Xdtemporal-duration>""" + 'P' + \
-            str(dur) + 'D' + """</Xdtemporal-duration>\n"""
+        elstr += indent + """  <xdtemporal-duration>""" + 'P' + \
+            str(dur) + 'D' + """</xdtemporal-duration>\n"""
     if Xd.allow_ymduration:
-        elstr += indent + """  <Xdtemporal-ymduration>P2Y6M</Xdtemporal-ymduration>\n"""
+        elstr += indent + """  <xdtemporal-ymduration>P2Y6M</xdtemporal-ymduration>\n"""
     if Xd.allow_dtduration:
-        elstr += indent + """  <Xdtemporal-dtduration>PT2H10M</Xdtemporal-dtduration>\n"""
+        elstr += indent + """  <xdtemporal-dtduration>PT2H10M</xdtemporal-dtduration>\n"""
     elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
