@@ -31,7 +31,7 @@ Purpose & Scope
 The purpose of the S3Model project is to provide a free and openly available specification for implementation of computable semantic interoperability for information exchange.
 The S3Model specifications are designed to provide semantic interoperability that is fully independent of any implementation specific contexts. Therefore workflow, security, user access, data persistence, etc. are all outside the scope of S3Model.
 
-The S3Model site on `GitHub <https://github.com/S3Model>`_ contains a growing number of demonstration projects and tools that research how this approach and focused scope enables interoperability across many contexts. S3Model based data can be exchanged via any transport method. Including existing HL7 v.2 and v.3 exchange systems to enhance the semantic interoperability of existing HL7 implementations.
+The `S3Model site <http://datainsights.tech/S3Model/>`_ contains a growing number of demonstration projects and tools that research how this approach and focused scope enables interoperability across many contexts. S3Model based data can be exchanged via any transport method. Including existing HL7 v.2 and v.3 exchange systems to enhance the semantic interoperability of existing HL7 implementations.
 
 Conformance
 -----------
@@ -50,6 +50,7 @@ These specifications;
 * Are in compliance with applicable sections of ISO/TR 20514:2005.
 * Are in compliance with applicable sections of ISO 13606-1:2007.
 * Are in conformance with W3C XML Schema Definition Language (XSD) 1.1
+* Are in conformance with W3C Resource Description Framework (RDF) 1.1
 
 Availability
 ------------
