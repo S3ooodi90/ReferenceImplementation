@@ -10,6 +10,9 @@ S3ModelTester.log
 
 #Django
 settings.py
+dmlib/
+media/
+migrations/
 
 #Sphinx
 build/
