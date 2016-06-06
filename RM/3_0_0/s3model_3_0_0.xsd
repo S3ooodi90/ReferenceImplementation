@@ -2240,16 +2240,22 @@
       <xs:documentation xml:lang="en-us">Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be
         useful in many instances. CCMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="ExceptionalValueType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
-          <rdfs:subClassOf rdf:resource="Exception"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Exception"/>
           <rdfs:label xml:lang="en-us">ExceptionalValueType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be
             useful in many instances. CCMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">उपप्रकार इंगित करने के लिए क्यों एक मूल्य (शून्य) याद आ रही है इस्तेमाल कर रहे हैं या एक औसत दर्जे सीमा के बाहर है। तत्व EV-नाम एक वर्णनात्मक स्ट्रिंग के लिए प्रतिबंधित प्रकार में तय हो गई है। संदर्भ मॉडल में परिभाषित उपप्रकार होना करने के लिए पर्याप्त रूप से सामान्य माना जाता है
+                         कई मामलों में उपयोगी है। CCMS गुमराह या लापता डेटा के लिए डोमेन संबंधी कारणों के लिए अनुमति देने के लिए अतिरिक्त ExceptionalValueType प्रतिबंध हो सकती है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">وتستخدم أنواع فرعية للإشارة لماذا قيمة مفقودة (فارغة) أو هو خارج نطاق قياس. يتم إصلاح عنصر EV-اسم في أنواع محدودة إلى سلسلة صفية. وتعتبر الأنواع الفرعية المحددة في النموذج المرجعي عام بما فيه الكفاية ليكون
+                         مفيد في حالات كثيرة. آليات التنسيق قد تحتوي على قيود ExceptionalValueType إضافية للسماح لأسباب تتعلق المجال لبيانات المخطئين أو في عداد المفقودين.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Los subtipos se utilizan para indicar por qué se pierde un valor (nulo) o está fuera de un rango de medición. El EV-nombre del elemento se fija en los tipos restringidos a una cadena descriptiva. Los subtipos definidos en el modelo de referencia se consideran suficientemente genéricos para ser
+                         útil en muchos casos. Los MCP pueden contener restricciones adicionales para permitir ExceptionalValueType por motivos relacionados con el dominio de los datos errante o desaparecidos.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Os subtipos são utilizados para indicar por um valor em falta é (nulo) ou está fora de uma gama mensurável. O EV-nome do elemento é fixa em tipos restritos a uma cadeia descritiva. Os subtipos definidos no modelo de referência são considerados suficientemente genérico para ser
+                         útil em muitos casos. CCMs pode conter restrições ExceptionalValueType adicionais para permitir que, por razões relacionadas com domínio de dados errante ou em falta.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">亚型用于指示为何值缺少（空）或者是可测量的范围之外。元素EV-名是固定在限定的类型描述字符串。在参考模型中定义的亚型被认为足够通用的是
+                        在许多情况下是有用的。国家协调委员会可能包含其他ExceptionalValueType限制，允许对错误的或丢失的数据域相关的原因。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2258,22 +2264,28 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">A short title or phase for the exceptional type value.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="ev-name">
-              <rdfs:domain rdf:resource="ExceptionalValueType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType/ev-name">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">A short title or phase for the exceptional type value.</rdfs:comment>
+              <rdfs:comment xml:lang="hi">एक छोटा शीर्षक या असाधारण प्रकार मूल्य के लिए चरण।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">عنوان قصير أو مرحلة لقيمة نوع استثنائية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Un título corto o fase para el valor de tipo excepcional.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Um título curto ou fase para o valor do tipo excepcional.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">一个简短的标题或阶段的特殊类型值。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  
   <xs:element abstract="true" name="ExceptionalValue" type="s3m:ExceptionalValueType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="ExceptionalValue">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="ExceptionalValueType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2285,16 +2297,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">No Information : The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="NIType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NIType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NIType.html#NIType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NIType</rdfs:label>
-              <rdfs:comment xml:lang="en-us">No Information : The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.
-             </rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="en-us">No Information : The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</rdfs:comment>
+              <rdfs:comment xml:lang="hi">कोई जानकारी: मूल्य असाधारण है (याद आ रही है, छोड़े गए, अधूरा, अनुचित)। एक असाधारण मूल्य जा रहा है के लिए कारण के रूप में कोई जानकारी उपलब्ध कराई गई है। यह सबसे सामान्य असाधारण मूल्य है। यह भी डिफ़ॉल्ट असाधारण मूल्य है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">لا توجد معلومات: قيمة استثنائية (عداد المفقودين، وحذفها، غير مكتملة، غير لائق). وتقدم أية معلومات عن سبب كونه قيمة استثنائية. هذا هو قيمة استثنائية الأكثر عمومية. بل هو أيضا قيمة استثنائية الافتراضية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Sin información: El valor es excepcional (que falta, se omite, incompleta, incorrecta). No se proporciona ninguna información en cuanto a la razón de ser de un valor excepcional. Este es el valor excepcional más general. También es el valor excepcional por defecto.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Sem informação: O valor é excepcional (faltando, omitido, incompleta, inadequada). Nenhuma informação sobre a razão de ser um valor excepcional é fornecido. Este é o valor excepcional mais geral. É também o valor excepcional padrão.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">暂无相关信息：值是例外（缺失，省略，不完整，不正确的）。未提供资料，为成为一个卓越的价值的原因。这是最普遍的非凡价值。这也是默认的非凡价值。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2304,12 +2316,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="NI" substitutionGroup="s3m:ExceptionalValue" type="s3m:NIType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="NI">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="NIType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NI">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NIType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2322,16 +2335,22 @@
           <xs:documentation xml:lang="en-us">Masked : There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information. Warning: Using this exceptional value
             does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="MSKType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSKType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_MSKType.html#MSKType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">MSKType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Masked : There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information. Warning: Using this exceptional value
                 does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">नकाबपोश: इस आइटम उपलब्ध सूचना के आधार पर है, लेकिन यह इस से सुरक्षा, गोपनीयता या अन्य कारणों की वजह प्रदान नहीं की गई है। इस जानकारी तक पहुँच पाने के लिए एक वैकल्पिक तंत्र हो सकता है। चेतावनी: इस असाधारण मूल्य का उपयोग
+                                 , सूचना की गोपनीयता का उल्लंघन हो सकता है कि प्रदान करता है, भले ही कोई विस्तार डेटा प्रदान की जाती है। इसका प्राथमिक उद्देश्य उन परिस्थितियों में जहां यह आवश्यक है कि रिसीवर जानकारी किसी भी विस्तार से उपलब्ध कराने के बिना मौजूद है सूचित करने के लिए है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">ملثمون: هناك معلومات عن هذا البند متوفرة ولكن لم يتم تقديمها من قبل المرسل بسبب الأمن والخصوصية أو لأسباب أخرى. قد تكون هناك آلية بديلة من أجل الوصول إلى هذه المعلومات. تحذير: استخدام هذه قيمة استثنائية
+                                 لا توفر معلومات قد تكون خرقا للسرية، على الرغم من عدم تقديم البيانات التفصيلية. والغرض الرئيسي هو لتلك الظروف حيث أنه من الضروري إبلاغ المتلقي أن المعلومات موجودة دون تقديم أي تفاصيل.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Enmascarado: No hay información sobre este tema disponible, pero no ha sido facilitado por el remitente debido a la seguridad, privacidad u otros motivos. Puede haber un mecanismo alternativo para obtener acceso a esta información. Advertencia: El uso de este valor excepcional
+                                 no proporcionar información que puede ser una violación de la confidencialidad, a pesar de que no se proporcionan datos detalle. Su objetivo principal es para aquellas circunstancias en las que es necesario informar al receptor de que la información existe sin proporcionar ningún detalle.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Masked: Não há informações sobre este item disponível, mas não foi fornecida pelo remetente, devido à segurança, privacidade ou por outros motivos. Pode haver um mecanismo alternativo para ter acesso a esta informação. Aviso: Usando este valor excepcional
+                                 não fornecer informações que pode ser uma violação da confidencialidade, mesmo que é fornecido nenhum dado detalhes. Seu objetivo principal é para aquelas circunstâncias em que é necessário informar o receptor que a informação existe, sem fornecer qualquer detalhe.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">蒙面：有可用此项目的信息，但一直没有由发送者因安全，隐私或其他原因提供。有可能对于获得这种信息的访问的替代机制。警告：使用这项非凡的价值
+                                并提供可能违反保密信息，即使没有提供详细的数据。其主要目的是为那些情况，其中有必要通知接收机，该信息不会而不提供任何细节存在。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2341,12 +2360,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="MSK" substitutionGroup="s3m:ExceptionalValue" type="s3m:MSKType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="MSK">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="MSKType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSK">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2358,15 +2378,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Invalid : The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="INVType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INVType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_INVType.html#INVType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">INVType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Invalid : The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">अमान्य: उदाहरण में प्रतिनिधित्व के रूप में मूल्य एक चर के लिए विवश मूल्य डोमेन में अनुमति दी डेटा मूल्यों की स्थापना का सदस्य नहीं है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">صالح: القيمة المتمثلة في المقام ليست عضوا في مجموعة من القيم البيانات المسموح بها في المجال قيمة مقيدة متغير.</rdfs:comment>
+              <rdfs:comment xml:lang="es">No válido: El valor representado en la instancia no es un miembro del conjunto de valores de datos permitidas en el dominio de valores de una variable limitado.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Inválida: o valor representado na instância não é um membro do conjunto de valores de dados permitidos no domínio de valores restrita de uma variável.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">无效：如在实例所表示的值不处于变量的约束值的域的集合允许数据值中的一个成员。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2376,12 +2397,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="INV" substitutionGroup="s3m:ExceptionalValue" type="s3m:INVType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="INV">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="INVType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INV">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INVType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2398,10 +2420,11 @@
               <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">DERType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Derived : An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">निकाले जाते हैं: एक वास्तविक मूल्य मौजूद हो सकता है, लेकिन यह उपलब्ध कराई गई जानकारी से प्राप्त किया जा चाहिए; आम तौर पर एक अभिव्यक्ति सीधे प्रदान की जाती है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">تستمد: قد توجد هناك قيمة فعلية، ولكنها يجب أن تكون مستمدة من المعلومات المقدمة؛ عادة يتم توفير التعبير مباشرة.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Derivar: puede existir un valor real, sino que debe derivarse de la información proporcionada; por lo general una expresión se proporciona directamente.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Derivar: Um valor real pode existir, mas deve ser derivada da informação fornecida; normalmente uma expressão é fornecido diretamente.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">推导：一个实际值可能存在，但它必须从所提供的信息中导出;通常一个表达式被直接提供。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2411,12 +2434,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="DER" substitutionGroup="s3m:ExceptionalValue" type="s3m:DERType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="DER">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="DERType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DER">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DERType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2428,15 +2452,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Unencoded : No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="UNCType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNCType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_UNCType.html#UNCType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">UNCType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Unencoded : No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">Unencoded: कोई प्रयास जानकारी सही ढंग से सांकेतिक शब्दों में बदलना करने के लिए बनाया गया है, लेकिन कच्चे स्रोत के बारे में जानकारी का प्रतिनिधित्व करती है, आम तौर पर स्वतंत्र पाठ में।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">غير مشفر: لم يتم إجراء أي محاولة لترميز المعلومات بشكل صحيح ولكن يتم تمثيل المعلومات من مصادرها الأولية، وعادة في النص الحر.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Sin codificar: se ha hecho ningún intento de codificar la información correctamente pero la información de la fuente está representado en bruto, por lo general en texto libre.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Unencoded: Nenhuma tentativa foi feita para codificar as informações corretamente, mas as informações de fonte de matéria é representada, geralmente em texto livre.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">未编码的：否已经尝试向信息正确编码，但原始源信息表示，通常在自由文本。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2446,12 +2471,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="UNC" substitutionGroup="s3m:ExceptionalValue" type="s3m:UNCType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="UNC">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="UNCType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNC">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNCType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2463,15 +2489,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="OTHType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTHType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_OTHType.html#OTHType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">OTHType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">अन्य: वास्तविक मूल्य चर में अनुमति दी डेटा मूल्यों का सदस्य नहीं है। (उदाहरण के लिए, जब चर के मूल्य कोडिंग प्रणाली से नहीं है)</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">البعض: القيمة الفعلية ليست عضوا في قيم البيانات المسموح بها في المتغير. (على سبيل المثال، عندما تكون قيمة المتغير هو ليس عن طريق نظام الترميز)</rdfs:comment>
+              <rdfs:comment xml:lang="es">Otros: El valor real no es un miembro de los valores de los datos permitidos en la variable. (Por ejemplo, cuando el valor de la variable no es por el sistema de codificación)</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Outros: O valor real não é um membro dos valores de dados permitidos na variável. (Por exemplo, quando o valor da variável não é pelo sistema de codificação)</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">其他：实际值不是在可变允许数据值中的一员。 （例如，当变量的值是不被编码系统）</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2481,12 +2508,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="OTH" substitutionGroup="s3m:ExceptionalValue" type="s3m:OTHType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="OTH">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="OTHType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTH">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTHType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2498,15 +2526,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Negative Infinity : Negative infinity of numbers</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="NINFType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINFType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NINFType.html#NINFType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NINFType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Negative Infinity : Negative infinity of numbers</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">नकारात्मक अनन्तता: नंबर का नकारात्मक अनन्तता</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اللانهاية السالبة: اللانهاية السالبة من الأرقام</rdfs:comment>
+              <rdfs:comment xml:lang="es">Infinito negativo: el infinito de números negativos</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Infinito negativo: O infinito negativo de números</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">负无穷大：数字的负无穷</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2516,12 +2545,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="NINF" substitutionGroup="s3m:ExceptionalValue" type="s3m:NINFType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="NINF">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="NINFType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINF">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINFType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2533,15 +2563,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Positive Infinity : Positive infinity of numbers</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="PINFType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINFType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_PINFType.html#PINFType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">PINFType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Positive Infinity : Positive infinity of numbers</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">सकारात्मक अनंत: नंबर के सकारात्मक इन्फिनिटी</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">إنفينيتي إيجابي: اللانهاية الإيجابية من الأرقام</rdfs:comment>
+              <rdfs:comment xml:lang="es">Infinity positivo: el infinito positivo de los números</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Infinito positivo: infinito positivo de números</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">正无穷大：数字正无穷大</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2551,12 +2582,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="PINF" substitutionGroup="s3m:ExceptionalValue" type="s3m:PINFType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="PINF">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="PINFType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINF">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINFType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2568,15 +2600,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Unknown : A proper value is applicable, but not known.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="UNKType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNKType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_UNKType.html#UNKType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">UNKType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Unknown : A proper value is applicable, but not known.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">अज्ञात: एक उचित मूल्य के लिए लागू है, लेकिन नहीं जाना जाता है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">غير معروف: قيمة مناسبة قابلة للتطبيق، ولكن غير معروفة.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Desconocido: Un valor adecuado es aplicable, pero no se conoce.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Desconhecido: Um valor adequado é aplicável, mas não conhecida.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">未知：一个适当的值是适用的，但不知道。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2586,12 +2619,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="UNK" substitutionGroup="s3m:ExceptionalValue" type="s3m:UNKType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="UNK">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="UNKType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNK">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2603,15 +2637,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Asked and Refused : Information was sought but refused to be provided (e.g., patient was asked but refused to answer).</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="ASKRType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKRType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ASKRType.html#ASKRType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">ASKRType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Asked and Refused : Information was sought but refused to be provided (e.g., patient was asked but refused to answer).</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">यह पूछे जाने पर और मना कर दिया: सूचना मांगी गई थी, लेकिन उपलब्ध कराई जाने से इनकार कर दिया है (जैसे, रोगी को कहा, लेकिन जवाब देने से इनकार कर दिया गया था)।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">وردا على سؤال ورفض: وطلب معلومات لكنها رفضت أن تقدم (على سبيل المثال، طلب المريض لكنه رفض الإجابة).</rdfs:comment>
+              <rdfs:comment xml:lang="es">Preguntó y se negó: Se ha solicitado información, pero se negó a ser proporcionada (por ejemplo, se pidió a los pacientes, pero se negó a responder).</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Perguntado e recusou-se: informação foi procurado, mas se recusou a fornecer (por exemplo, o paciente foi solicitado, mas se recusou a responder).</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">问及拒绝：信息已力求但他拒绝提供（例如，病人被要求，但拒绝回答）。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2624,9 +2659,9 @@
   <xs:element name="ASKR" substitutionGroup="s3m:ExceptionalValue" type="s3m:ASKRType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="ASKR">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="ASKRType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKR">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKRType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2638,15 +2673,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Not Asked : This information has not been sought (e.g., patient was not asked)</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="NASKType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASKType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NASKType.html#NASKType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NASKType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Not Asked : This information has not been sought (e.g., patient was not asked)</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">नहीं कहा: यह जानकारी मांगी नहीं किया गया है (उदाहरण के लिए, रोगी के लिए नहीं कहा गया था)</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">لا ردا على سؤال: لم يتم سعت هذه المعلومات (على سبيل المثال، لم يسأل المريض)</rdfs:comment>
+              <rdfs:comment xml:lang="es">No Pregunta: Esta información no se ha buscado (por ejemplo, no se le pidió paciente)</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Não Perguntado: Esta informação não tenha sido solicitada (por exemplo, o paciente não foi solicitado)</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">没有问：该信息还没有被追捧（例如，病人并没有被要求）</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2656,12 +2692,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="NASK" substitutionGroup="s3m:ExceptionalValue" type="s3m:NASKType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="NASK">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="NASKType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASK">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2673,16 +2710,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="QSType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QSType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_QSType.html#QSType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">QSType</rdfs:label>
-              <rdfs:comment xml:lang="en-us">Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.
-             </rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="en-us">Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</rdfs:comment>
+              <rdfs:comment xml:lang="hi">पर्याप्त मात्रा: विशिष्ट मात्रा ज्ञात नहीं है, लेकिन गैर-शून्य करने के लिए जाना जाता है और यह निर्दिष्ट नहीं है, क्योंकि यह सामग्री के थोक बनाता है; संघटक एक्स की 10 मिलीग्राम, घटक वाई के 50mg और 100mL के लिए पानी की पर्याप्त मात्रा जोड़ें।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">كافية الكمية: ولا يعرف كمية محددة، ولكن من المعروف أن غير الصفر ولم يتم تحديد لأنها تشكل الجزء الأكبر من المواد. إضافة 10mg من X المكون، 50mg من عنصر Y وكمية كافية من الماء ل100ML.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Cantidad suficiente: La cantidad específica no es conocida, pero se sabe que no es cero y no se especifica debido a que constituye la mayor parte del material; Añadir 10 mg de ingrediente X, 50 mg de ingrediente Y y cantidad suficiente de agua a 100 ml.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Quantidade Suficiente: A quantidade específica não é conhecido, mas é sabido que diferente de zero e não é especificada porque torna-se a maior parte do material; Adicionar 10 mg de ingrediente X, 50 mg de ingrediente Y e quantidade suficiente de água para 100 mL.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">足够数量：特定量是未知的，但已知的非零并且它没有被指定，因为它弥补了大量的材料制成;添加成分的X10毫克，配料的Y为50mg和水足量至100mL。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2692,12 +2729,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="QS" substitutionGroup="s3m:ExceptionalValue" type="s3m:QSType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="QS">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="QSType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QS">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QSType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2709,15 +2747,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Trace : The content is greater or less than zero but too small to be quantified.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="TRCType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRCType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_TRCType.html#TRCType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">TRCType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Trace : The content is greater or less than zero but too small to be quantified.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">ट्रेस: सामग्री अधिक से अधिक या शून्य से भी कम है, लेकिन बहुत छोटा मात्रा निर्धारित किया जा रहा है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">تتبع: المحتوى هو أكبر أو أقل من الصفر ولكن صغيرة جدا بحيث لا يمكن قياسها كميا.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Traza: El contenido es mayor o menor que cero, pero demasiado pequeños para ser cuantificado.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Seguir a: O conteúdo é maior ou menor do que zero, mas muito pequeno para ser quantificado.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">跟踪：内容是大于或小于零，但太小而无法定量。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2727,12 +2766,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="TRC" substitutionGroup="s3m:ExceptionalValue" type="s3m:TRCType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="TRC">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="TRCType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRC">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRCType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2744,15 +2784,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Asked but Unknown : Information was sought but not found (e.g., patient was asked but did not know)</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="ASKUType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKUType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ASKUType.html#ASKUType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">ASKUType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Asked but Unknown : Information was sought but not found (e.g., patient was asked but did not know)</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">यह पूछे जाने पर लेकिन अज्ञात: जानकारी मांगी गई थी, लेकिन नहीं मिला है (जैसे, रोगी को कहा गया था, लेकिन नहीं पता था)</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">وردا على سؤال لكنها غير معروفة: وطلب معلومات ولكن لم يتم العثور (على سبيل المثال، طلب المريض ولكن لا يعلمون)</rdfs:comment>
+              <rdfs:comment xml:lang="es">Preguntó, pero desconocido: Se solicitó información pero no se encuentra (por ejemplo, se pidió a los pacientes, pero no sabía)</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Perguntado mas nascimento: Sem informações foi procurado mas não encontrado (por exemplo, o paciente foi solicitado, mas não sabia)</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">当被问及但未知：资料是力求但没有找到（例如，病人被要求但不知道）</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2762,12 +2803,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="ASKU" substitutionGroup="s3m:ExceptionalValue" type="s3m:ASKUType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="ASKU">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="ASKUType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKU">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKUType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2779,11 +2821,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Not Available: This information is not available and the specific reason is not known.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="NAVType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAVType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NAVType.html#NAVType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NAVType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Not Available: This information is not available and the specific reason is not known.</rdfs:comment>
+              <rdfs:comment xml:lang="hi">उपलब्ध नहीं है: यह जानकारी उपलब्ध नहीं है और विशेष कारण ज्ञात नहीं है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">غير متوفر: هذه المعلومات غير متوفرة وسبب محدد ليست معروفة.</rdfs:comment>
+              <rdfs:comment xml:lang="es">No está disponible: Esta información no está disponible y la razón específica no se conoce.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Não disponível: Esta informação não está disponível e o motivo específico não é conhecido.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">不提供：该信息不可用，具体原因还不清楚。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2793,12 +2840,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="NAV" substitutionGroup="s3m:ExceptionalValue" type="s3m:NAVType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="NAV">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="NAVType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAV">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAVType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2810,15 +2858,16 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Not Applicable : No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="NAType">
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NAType.html#NAType"/>
-              <rdfs:subClassOf rdf:resource="ExceptionalValueType"/>
+              <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NAType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Not Applicable : No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">लागू नहीं: नहीं उचित मूल्य उदा, सिगरेट की संख्या एक धूम्रपान न करने वाला विषय द्वारा प्रति दिन स्मोक्ड इस संदर्भ में लागू है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">لا ينطبق: لا قيمة المناسبة هي المعمول بها في هذا السياق على سبيل المثال، يدخن عدد السجائر يوميا بحلول غير المدخن الموضوع.</rdfs:comment>
+              <rdfs:comment xml:lang="es">No aplicable No es aplicable valor apropiado en este contexto, por ejemplo, el número de cigarrillos fumados por día por un sujeto no fumador.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Não Aplicável: Nenhum valor apropriado é aplicável neste contexto por exemplo, o número de cigarros fumados por dia por um sujeito não-fumante.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">不适用：否适当的值是适用于这种情况下例如，每天吸烟通过非吸烟者受试者的香烟数量。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2828,12 +2877,13 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="NA" substitutionGroup="s3m:ExceptionalValue" type="s3m:NAType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="NA">
-          <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="NAType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NA">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>

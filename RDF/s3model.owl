@@ -9,14 +9,7 @@
      xmlns:s3m="http://www.s3model.com/ns/s3m/">
     <owl:Ontology rdf:about="http://www.s3model.com/ns/s3m/s3model"/>
     
-    <!-- 
-        <s3m:description xml:lang="pt"></s3m:description>
-        <s3m:description xml:lang="es"></s3m:description>
-        <s3m:description xml:lang="ar"></s3m:description>
-        <s3m:description xml:lang="hi"></s3m:description>
-        <s3m:description xml:lang="zh-s"></s3m:description>
 
-    -->
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -67,9 +60,9 @@
     <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/containsCCM">
         <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/RM"/>
         <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
-        <s3m:description xml:lang="en-us">Defines the relation that a RM contains a specific CCM.</s3m:description>
         <s3m:description xml:lang="pt">Define a relação que um MR contém um CCM específica.</s3m:description>
         <s3m:description xml:lang="es">Define la relación que una RM contiene un CCM específica.</s3m:description>
+        <s3m:description xml:lang="en-us">Defines the relation that a RM contains a specific CCM.</s3m:description>
         <s3m:description xml:lang="ar">يحدد العلاقة أن RM يحتوي على CCM محددة.</s3m:description>
         <s3m:description xml:lang="hi">संबंध है कि एक आरएम एक विशिष्ट सीसीएम शामिल परिभाषित करता है।</s3m:description>
         <s3m:description xml:lang="zh-s">定义一个RM包含特定CCM的关系。</s3m:description>
@@ -82,12 +75,22 @@
     <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/containsPCM">
         <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/DMI"/>
         <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/PCM"/>
-        <s3m:description xml:lang="en-us">Defines the relation that a DMI contains a specific PCM.</s3m:description>
         <s3m:description xml:lang="pt">Define a relação que uma DMI contém um PCM específica.</s3m:description>
         <s3m:description xml:lang="es">Define la relación que un DMI contiene un PCM específico.</s3m:description>
+        <s3m:description xml:lang="en-us">Defines the relation that a DMI contains a specific PCM.</s3m:description>
         <s3m:description xml:lang="ar">يحدد العلاقة أن مؤسسة دبي للإعلام يحتوي على PCM معين.</s3m:description>
         <s3m:description xml:lang="hi">संबंध है कि एक डीएमआई एक विशिष्ट पीसीएम शामिल परिभाषित करता है।</s3m:description>
         <s3m:description xml:lang="zh-s">定义一个DMI包含特定PCM的关系。</s3m:description>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.s3model.com/ns/s3m/s3model/hasException -->
+
+    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/hasException">
+        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/DataInstanceInvalid"/>
+        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/Exception"/>
+        <s3m:description xml:lang="en">Relates an Exception subclass to an invalid data instance.</s3m:description>
     </owl:ObjectProperty>
     
 
@@ -281,6 +284,15 @@ A set of selected PCMs that are constraints on the RM components (CCMs) in order
         <s3m:description xml:lang="en-us">Subclass of DataInstance. A set of data items that conforms to a DMI to represent an instance of that concept AND the all of the data values are valid according to the DMI constraints.</s3m:description>
         <s3m:description xml:lang="pt">Subclasse de DataInstance. Um conjunto de itens de dados que está em conformidade com a DMI para representar uma instância desse conceito e as dos valores de dados todos são válidos de acordo com as restrições de DMI.</s3m:description>
         <s3m:description xml:lang="ar">فئة فرعية من DataInstance. وهناك مجموعة من عناصر البيانات التي تتطابق إلى مؤسسة دبي للإعلام لتمثيل مثيل لهذا المفهوم وقيم البيانات كلها صحيحة وفقا للقيود مؤسسة دبي للإعلام.</s3m:description>
+    </owl:Class>
+    
+
+
+    <!-- http://www.s3model.com/ns/s3m/s3model/Exception -->
+
+    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/Exception">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
+        <s3m:description xml:lang="en">Exceptions indicate that a data instance may be invalid when validated against its model. However, the exceptional value may be explainable and provide valuable contextual information. A specific Excpetion subclass will provide that additional information.</s3m:description>
     </owl:Class>
     
 
