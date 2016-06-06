@@ -2112,16 +2112,16 @@
     <xs:annotation>
       <xs:documentation xml:lang="en-us">Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="ParticipationType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">ParticipationType</rdfs:label>
-          <rdfs:comment xml:lang="en-us">Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.
-         </rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="en-us">Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">एक एक गतिविधि में एक पार्टी की भागीदारी (किसी भी अभिनेता या भूमिका) की मॉडल। , कुछ गतिविधि में एक पार्टी के किसी भी भागीदारी है, जो स्पष्ट रूप से मॉडल में नहीं है का प्रतिनिधित्व करते थे जैसे कि नर्स की सहायता। अतीत या भविष्य participations रिकॉर्ड करने के लिए इस्तेमाल किया जा सकता है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">نموذج لمشاركة أحد الأطراف (أي ممثل أو دور) في النشاط. تستخدم لتمثيل أي مشاركة من أي طرف بعض النشاط، وهو غير صريح في هذا النموذج، على سبيل المثال، مساعدة ممرضة. يمكن استخدامها لتسجيل المساهمات الماضية أو المستقبلية.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Modelo de una participación de una Parte (cualquier actor o papel) en una actividad. Se utiliza para representar cualquier participación de una Parte en alguna actividad, que no es explícita en el modelo, por ejemplo, ayudar a la enfermera. Se puede utilizar para grabar participaciones pasadas o futuras.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Modelo de uma participação de uma parte (qualquer ator ou Papel) em uma atividade. Usado para representar qualquer participação de um partido em alguma atividade, que não é explicitamente no modelo, por exemplo, auxiliar enfermeira. Pode ser usado para gravar participações passadas ou futuras.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">一方在活动参与（任何演员或角色）的模型。用来表示一个党在一些活动中的任何参与，这是没有明确的模式，例如协助护士。可用于记录过去或未来参股。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2130,14 +2130,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="label">
-              <rdfs:domain rdf:resource="ParticipationType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType/label">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस डेटा प्रकार के मॉडल का वर्णनात्मक नाम। मॉडल के लिए अर्थ 'नाम' प्रदान करता है। की जगह क्या एक्सएमएल तत्व नाम या पारंपरिक मॉडलिंग में वर्ग के नाम होगा।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اسم وصفي هذا النوع من البيانات نموذج. يوفر 'اسم' الدلالي للنموذج. محل ما يمكن أن يكون اسم عنصر XML أو اسم الفئة في النمذجة التقليدية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">nombre descriptivo de este modelo de tipo de datos. Proporciona el 'nombre' semántica para el modelo. Sustituye lo que sería XML nombre del elemento o nombre de la clase en el modelado convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">nome descritivo deste modelo tipo de dados. Fornece o 'nome' semântico para o modelo. Substitui o que seria XML nome do elemento ou nome de classe na modelagem convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">这种数据类型的模型描述性名称。为模型中的语义“名字”。替换什么是XML元素的名称，或在传统的模拟类名。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2146,14 +2147,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The id and possibly demographic system link of the party participating in the activity.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="performer">
-              <rdfs:domain rdf:resource="ParticipationType"/>
-              <rdfs:range rdf:resource="PartyType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType/performer">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:comment xml:lang="en-us">The id and possibly demographic system link of the party participating in the activity.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">पार्टी की गतिविधियों में भाग लेने की आईडी और संभवतः जनसांख्यिकीय प्रणाली लिंक।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">هوية وربما نظام الديموغرافي الارتباط من طرف المشاركين في النشاط.</rdfs:comment>
+              <rdfs:comment xml:lang="es">El sistema de identificación y demográfica posiblemente enlace de la parte que participe en la actividad.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">O link id e do sistema demográfico, possivelmente, do partido participar na actividade.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">参与活动的党的ID和可能的人口系统链接。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2162,14 +2164,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="function">
-              <rdfs:domain rdf:resource="ParticipationType"/>
-              <rdfs:range rdf:resource="XdStringType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType/function">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
               <rdfs:comment xml:lang="en-us">The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस भागीदारी में पार्टी के समारोह (ध्यान दें कि किसी दिए गए पार्टी के एक विशेष गतिविधि में एक से अधिक रास्ते में भाग लेने सकता है)। कुछ अनुप्रयोगों में यह एक भूमिका बुलाया जा सकता है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">وظيفة الحزب في هذه المشاركة (لاحظ أن طرفا معينا يمكن أن تشارك في أكثر من طريقة واحدة في نشاط معين). في بعض التطبيقات هذا يمكن تسميته دور.</rdfs:comment>
+              <rdfs:comment xml:lang="es">La función de la Parte en esta participación (tenga en cuenta que una parte dada podría participar en más de una forma en una actividad en particular). En algunas aplicaciones esto podría llamarse una función.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">A função do partido neste participação (note que um determinado partido pode participar de mais de uma maneira de uma atividade específica). Em algumas aplicações isto pode ser chamado de uma função.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">党在这种参与的功能（注意，一个给定的一方可能会在特定的活动参与方式不止一种）。在某些应用中，这可能被称为角色。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2178,14 +2181,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The mode of the performer / activity interaction, e.g. present, by telephone, by email etc. If the participation is by device or software it may contain a protocol standard or interface definition.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="mode">
-              <rdfs:domain rdf:resource="ParticipationType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType/mode">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
               <rdfs:range rdf:resource="XdStringType"/>
               <rdfs:comment xml:lang="en-us">The mode of the performer / activity interaction, e.g. present, by telephone, by email etc. If the participation is by device or software it may contain a protocol standard or interface definition.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">कलाकार / गतिविधि बातचीत की विधा है, उदा वर्तमान में, टेलीफोन द्वारा, ईमेल आदि की भागीदारी डिवाइस या सॉफ्टवेयर से यह एक प्रोटोकॉल मानक या इंटरफेस परिभाषा हो सकती है है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">طريقة التفاعل أداء / النشاط، على سبيل المثال، الحاضر، عبر الهاتف، عن طريق البريد الإلكتروني وما إلى ذلك إذا كانت المشاركة هي عن طريق جهاز أو برنامج قد يحتوي على مستوى البروتوكول أو تعريف واجهة.</rdfs:comment>
+              <rdfs:comment xml:lang="es">El modo de la interacción intérprete / actividad, por ejemplo, Actualmente, por teléfono, por correo electrónico, etc. Si la participación es por el dispositivo o software que puede contener un protocolo estándar o definición de interfaz.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">O modo da interacção intérprete / actividade, e.g. Actualmente, por telefone, por e-mail etc. Se a participação é de dispositivo ou software pode conter um padrão de protocolo ou definição de interface.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">表演者/活动交互的模式，例如目前，通过电话，通过电子邮件等。如果参与是由设备或软件它可含有一个协议标准或接口定义。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2194,14 +2198,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The beginning datetime when the participation took place.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="start">
-              <rdfs:domain rdf:resource="ParticipationType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType/start">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
               <rdfs:comment xml:lang="en-us">The beginning datetime when the participation took place.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">शुरुआत दिनांक समय जब भागीदारी जगह ले ली।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">البداية التاريخ والوقت عندما وقعت مشاركة مكان.</rdfs:comment>
+              <rdfs:comment xml:lang="es">La fecha y hora a partir de cuando la participación se llevó a cabo.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">O tempo de data de início quando a participação ocorreu.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">起始日期时间参与发生。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2210,26 +2215,28 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The ending datetime when the participation took place.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="end">
-              <rdfs:domain rdf:resource="ParticipationType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType/end">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
               <rdfs:comment xml:lang="en-us">The ending datetime when the participation took place.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">अंतिम दिनांक समय था जब भागीदारी जगह ले ली।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">لإنهاء التاريخ والوقت عندما وقعت مشاركة مكان.</rdfs:comment>
+              <rdfs:comment xml:lang="es">La fecha de fin de tiempo cuando la participación se llevó a cabo.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">O tempo de data de término quando a participação ocorreu.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">结束日期时间参与发生。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  
   <xs:element name="Participation" type="s3m:ParticipationType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="Participation">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Participation">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="ParticipationType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
