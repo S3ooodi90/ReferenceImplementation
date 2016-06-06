@@ -2992,22 +2992,20 @@
     </xs:annotation>
   </xs:element>
 
-  <!--Content / entry types -->
   <xs:complexType name="EntryType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">The abstract parent of all Entry subtypes. An Entry is the root of a logical set of data items. Each subtype has an identical information structure. The subtyping is used to allow persistence to separate the types of Entries; primarily important in
-        healthcare for the de-identification of clinical information.</xs:documentation>
+      <xs:documentation xml:lang="en-us">An Entry is the root of a logical set of data items.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_EntryType.html#EntryType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">EntryType</rdfs:label>
-          <rdfs:comment xml:lang="en-us">The abstract parent of all Entry subtypes. An Entry is the root of a logical set of data items. Each subtype has an identical information structure. The subtyping is used to allow persistence to separate the types of Entries; primarily important in
-            healthcare for the de-identification of clinical information.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="en-us">An Entry is the root of a logical set of data items.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">एक प्रवेश डेटा मदों की एक तार्किक सेट की जड़ है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">إدخال هو جذر مجموعة منطقية من عناصر البيانات.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Una entrada es la raíz de un conjunto lógico de elementos de datos.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Uma entrada é a raiz de um conjunto lógico de itens de dados.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">一个条目是一个逻辑组数据项的根源。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3020,10 +3018,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस डेटा प्रकार के मॉडल का वर्णनात्मक नाम। मॉडल के लिए अर्थ 'नाम' प्रदान करता है। की जगह क्या एक्सएमएल तत्व नाम या पारंपरिक मॉडलिंग में वर्ग के नाम होगा।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اسم وصفي هذا النوع من البيانات نموذج. يوفر 'اسم' الدلالي للنموذج. محل ما يمكن أن يكون اسم عنصر XML أو اسم الفئة في النمذجة التقليدية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">nombre descriptivo de este modelo de tipo de datos. Proporciona el 'nombre' semántica para el modelo. Sustituye lo que sería XML nombre del elemento o nombre de la clase en el modelado convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">nome descritivo deste modelo tipo de dados. Fornece o 'nome' semântico para o modelo. Substitui o que seria XML nome do elemento ou nome de classe na modelagem convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">这种数据类型的模型描述性名称。为模型中的语义“名字”。替换什么是XML元素的名称，或在传统的模拟类名。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3036,10 +3035,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#language"/>
               <rdfs:comment xml:lang="en-us">Mandatory indicator of the localised language in which this Entry is written. The value space of language is the set of all strings that are valid language identifiers as defined [RFC 3066].</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">स्थानीय भाषा में जो इस एंट्री लिखा है की अनिवार्य सूचक। भाषा के मूल्य अंतरिक्ष सभी तारों के रूप में परिभाषित [आरएफसी 3066] वैध भाषा पहचानकर्ता हैं का सेट है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">مؤشر الإلزامي للغة مترجمة التي يتم فيها كتابة هذا المقال. مساحة قيمة اللغة هو كل مجموعة من السلاسل التي هي معرفات لغة صحيحة على النحو المحدد [RFC 3066].</rdfs:comment>
+              <rdfs:comment xml:lang="es">Indicador obligatoria del idioma localizado en la que está escrita esta entrada. El espacio de valores de la lengua es el conjunto de todas las cadenas que son identificadores de idioma válido según se define [RFC 3066].</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Indicador obrigatória do idioma localizado no qual esta entrada está escrito. O espaço de valor da linguagem é o conjunto de todas as cadeias que são identificadores de idioma válidos como definido [RFC 3066].</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">在此条目被写入本地化语言的强制性指标。语言的价值空间是一组是有效的语言标识符定义[RFC3066]中的所有字符串。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3052,10 +3052,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Name of character set encoding in which text values in this Entry are encoded. Default is utf-8.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">चरित्र सेट एन्कोडिंग का नाम है जिसमें इस प्रविष्टि में पाठ मान इनकोड किया गया है। डिफ़ॉल्ट UTF-8 है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اسم ترميز مجموعة الأحرف التي يتم ترميز القيم النص في هذا المقال. الافتراضي هو UTF-8.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Nombre del juego de caracteres de codificación en el que se codifican los valores de texto en esta entrada. El valor predeterminado es UTF-8.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Nome de codificação de caracteres em que os valores de texto nesta entrada são codificados. O padrão é utf-8.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">字符集编码的名称在这本记录文本值进行编码。默认为UTF-8。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3068,10 +3069,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">The current state according to the state machine / workflow engine identified in the workflow element.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">वर्तमान स्थिति राज्य मशीन / कार्यप्रवाह कार्यप्रवाह तत्व में पहचान इंजन के अनुसार।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">الحالة الراهنة وفقا لحالة المحرك آلة / سير العمل التي تم تحديدها في عنصر العمل.</rdfs:comment>
+              <rdfs:comment xml:lang="es">El estado actual de acuerdo con el motor de la máquina / flujo de trabajo del Estado identificada en el elemento de flujo de trabajo.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">O estado atual de acordo com o motor / máquina de fluxo de trabalho estado identificado no elemento de fluxo de trabalho.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">根据在工作流元件所确定的状态机/工作流引擎的当前状态。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3084,11 +3086,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Item"/>
               <rdfs:comment xml:lang="en-us">The data structure of the Entry.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> 
-              <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">एंट्री के डेटा संरचना।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">هيكل بيانات الدخول.</rdfs:comment>
+              <rdfs:comment xml:lang="es">La estructura de datos de la entrada.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">A estrutura de dados da entrada.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">条目的数据结构。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3242,7 +3244,6 @@
     </xs:annotation>
   </xs:element>
 
-  <!-- DM constraint model -->
   <xs:complexType name="DMType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">This is the root node of a Data Model (DM).</xs:documentation>
