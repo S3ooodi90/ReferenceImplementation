@@ -2872,15 +2872,16 @@
     <xs:annotation>
       <xs:documentation xml:lang="en-us">The grouping variant of Item, which may contain further instances of Item, in an ordered list. This can serve as the root component for arbitrarily complex structures.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="ClusterType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType"/>
-          <rdfs:subClassOf rdf:resource="ItemType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
           <rdfs:label xml:lang="en-us">ClusterType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The grouping variant of Item, which may contain further instances of Item, in an ordered list. This can serve as the root component for arbitrarily complex structures.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">मद के समूह संस्करण है, जो एक आदेश सूची में आइटम के आगे उदाहरणों, हो सकती है। यह मनमाने ढंग से जटिल संरचनाओं के लिए रूट घटक के रूप में सेवा कर सकते हैं।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">البديل التجمع من البند، والتي قد تحتوي على مزيد من حالات البند، في قائمة مرتبة. هذه يمكن أن تكون بمثابة مكون الجذر لهياكل معقدة بصورة تعسفية.</rdfs:comment>
+          <rdfs:comment xml:lang="es">La variante de la agrupación de artículos, que pueden contener otras instancias del artículo, en una lista ordenada. Esto puede servir como el componente de raíz para estructuras complejas de forma arbitraria.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">A variante agrupamento de Item, que pode conter outras instâncias de item, em uma lista ordenada. Isso pode servir como o componente de raiz para estruturas arbitrariamente complexas.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">项目的分组变体，其可以包含在一个有序列表项的进一步的实例。这可以作为根组件为任意复杂的结构。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2889,16 +2890,17 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Descriptive subject line for this group of DMs.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Descriptive subject line for this group of CCMs.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="label">
-                  <rdfs:domain rdf:resource="ClusterType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType/label">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                  <rdfs:comment xml:lang="en-us">Descriptive subject line for this group of DMs.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Descriptive subject line for this group of CCMs.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">CCMS के इस समूह के लिए वर्णनात्मक विषय पंक्ति।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">سطر الموضوع وصفي لهذه المجموعة من آليات التنسيق.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">línea de asunto descriptivo para este grupo de MCP.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">linha de assunto descritivo para este grupo de CCMs.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">描述性的主题为这组CCM消息。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -2907,14 +2909,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">List of Item types.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="Items">
-                  <rdfs:domain rdf:resource="ClusterType"/>
-                  <rdfs:range rdf:resource="ItemType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType/Items">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
                   <rdfs:comment xml:lang="en-us">List of Item types.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">आइटम प्रकार की सूची।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">قائمة أنواع العناصر.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Lista de tipos de elementos.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Lista de tipos de itens.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">项目类型的列表。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -2923,13 +2926,15 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="Items" type="s3m:ItemType"/>
+  
   <xs:element name="Cluster" substitutionGroup="s3m:Item" type="s3m:ClusterType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="Cluster">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Cluster">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="ClusterType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
