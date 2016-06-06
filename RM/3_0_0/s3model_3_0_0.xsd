@@ -2839,30 +2839,31 @@
     </xs:annotation>
   </xs:element>
 
-  <!--Structures / items types -->
   <xs:complexType abstract="true" name="ItemType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">The abstract parent of ClusterType and XdAdapterType structural representation types.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="ItemType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">ItemType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The abstract parent of ClusterType and XdAdapterType structural representation types.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">क्लस्टर प्रकार और XD एडाप्टर प्रकार संरचनात्मक प्रतिनिधित्व प्रकार के सार माता पिता।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">الوالد مجردة من نوع العنقودية و xD محول نوع أنواع التمثيل البنيوي.</rdfs:comment>
+          <rdfs:comment xml:lang="es">La matriz abstracta de tipo cluster y Xd tipo de adaptador tipos de representación estructural.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">O pai abstrato do tipo cluster e Xd Tipo de adaptador tipos de representação estrutural.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">集群类型和Xd适配器类型结构示意图类型的抽象父。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
   </xs:complexType>
+  
   <xs:element abstract="true" name="Item" type="s3m:ItemType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="Item">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Item">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="ItemType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
