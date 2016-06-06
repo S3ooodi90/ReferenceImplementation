@@ -1,5 +1,5 @@
 """
-Return strings to build an instance template for a MLHIM 2.5.0 CCD.
+Return strings to build an instance template
 """
 from datetime import timedelta, datetime, date
 from random import randint, choice, uniform

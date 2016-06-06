@@ -3084,7 +3084,8 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Item"/>
               <rdfs:comment xml:lang="en-us">The data structure of the Entry.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
+              <rdfs:comment xml:lang="hi"></rdfs:comment> 
+              <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
               <rdfs:comment xml:lang="pt"></rdfs:comment>
               <rdfs:comment xml:lang="zh-s"></rdfs:comment>
@@ -3100,10 +3101,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:comment xml:lang="en-us">Id of human subject of this Entry, e.g.: • subject of record (patient, etc.) • organ donor • foetus • a family member • another clinically relevant person.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस प्रविष्टि के मानव विषय, उदा .: • रिकॉर्ड (रोगी, आदि) के अधीन • एक परिवार के सदस्य • एक और चिकित्सकीय संबंधित व्यक्ति • • अंग दाता भ्रूण की आईडी।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">معرف موضوع الإنسان من هذا المقال، على سبيل المثال: • موضوع سجل (المريض، الخ) • متبرع • الجنين • أحد أفراد الأسرة • شخص آخر ذي صلة سريريا.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Identificación del sujeto humano de esta entrada, por ejemplo .: • objeto de registro (paciente, etc.) • órgano del donante • feto • un miembro de la familia • otra persona clínicamente relevante.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Id de sujeito humano desta entrada, por exemplo .: • objecto de registo (paciente, etc.) • órgão do doador • feto • um membro da família • outra pessoa clinicamente relevante.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">此项人体受试者记录（患者等）例如为：•主题•器官捐赠•胎儿•家庭成员•其他临床相关的人的个人身份证。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3116,10 +3118,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:comment xml:lang="en-us">Optional identification of the source of the information in this Entry, which might be: • the patient • a patient agent, e.g. parent, guardian • the clinician • a device or software</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस प्रविष्टि में जानकारी है, जो हो सकता है के स्रोत के वैकल्पिक पहचान: • मरीज को एक रोगी एजेंट •, जैसे माता-पिता, अभिभावक चिकित्सक एक डिवाइस या सॉफ्टवेयर • •</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">تحديد اختياري من مصدر المعلومات في هذا المقال، والتي قد تكون: • المريض • وكيل المريض، على سبيل المثال، الوالدين أو الوصي • الطبيب • جهاز أو برنامج</rdfs:comment>
+              <rdfs:comment xml:lang="es">identificación opcional de la fuente de la información en esta entrada, que puede ser: • • el paciente un agente del paciente, por ejemplo, padre, tutor • • el clínico un dispositivo o software</rdfs:comment>
+              <rdfs:comment xml:lang="pt">identificação opcional da fonte da informação nesta entrada, que pode ser: • paciente • um agente do paciente, por exemplo, pai, tutor • o clínico • um dispositivo ou software</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">在此输入的信息，这可能是源可选识别：•病人•病人剂，例如父母，监护人•医生•一个设备或软件</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3132,10 +3135,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Participation"/>
               <rdfs:comment xml:lang="en-us">List of other participations at Entry level.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">प्रवेश स्तर पर अन्य प्रतिभागियों की सूची।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">قائمة المشاركين الآخرين في مستوى الدخول.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Lista de participantes a nivel de entrada.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Lista de outros participantes no nível de entrada.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">在入门级其他与会人员名单。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3148,10 +3152,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
               <rdfs:comment xml:lang="en-us">Optional external identifier of protocol used to create this Entry. This could be a clinical guideline, an operations protocol,etc.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">प्रोटोकॉल के वैकल्पिक बाह्य पहचानकर्ता इस प्रविष्टि बनाने के लिए इस्तेमाल किया। यह एक नैदानिक दिशानिर्देश, एक संचालन प्रोटोकॉल, आदि हो सकता है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">المعرف الخارجي الاختياري للبروتوكول يستخدم لإنشاء هذا المقال. يمكن أن يكون هذا المبدأ التوجيهي السريري، بروتوكول العمليات، وما إلى ذلك.</rdfs:comment>
+              <rdfs:comment xml:lang="es">identificador externo opcional del protocolo utilizado para crear esta entrada. Esto podría ser una guía clínica, un protocolo de operaciones, etc.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">identificador externo opcional do protocolo usado para criar esta entrada. Esta poderia ser uma diretriz clínica, um protocolo de operações, etc.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">协议的可选外部标识用于创建该条目。这可能是一个临床指南，一个操作方案，等等。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3164,10 +3169,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
               <rdfs:comment xml:lang="en-us">Identifier of externally held workflow engine (state machine) data for this workflow execution.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">बाह्य रूप से आयोजित कार्यप्रवाह इंजन (राज्य मशीन) इस कार्यप्रवाह निष्पादन के लिए डेटा का पहचानकर्ता।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">المعرف البيانات لتنفيذ سير العمل هذا المحرك العمل التي عقدت خارجيا (آلة الدولة).</rdfs:comment>
+              <rdfs:comment xml:lang="es">Identificador del motor de flujo de trabajo celebrada el exterior (máquina de estado) de datos para esta ejecución del flujo de trabajo.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Identificador de motor de fluxo de trabalho realizada externamente (máquina de estado) de dados para esta execução do workflow.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">举行外部工作流引擎（状态机），这个工作流执行数据的标识符。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3180,10 +3186,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
               <rdfs:comment xml:lang="en-us">Audit trail from the system of original commit of information forming the content of this node, or from a conversion gateway which has synthesised this node.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">मूल की प्रणाली से ऑडिट ट्रेल के लिए प्रतिबद्ध इस नोड की सामग्री के गठन के बारे में जानकारी के लिए, या एक रूपांतरण प्रवेश द्वार है जो इस नोड संश्लेषित है से।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">مراجعة الحسابات من النظام الأصلي ارتكاب المعلومات التي تشكل مضمون هذه العقدة، أو من بوابة التحويل التي تمت توليفها هذه العقدة.</rdfs:comment>
+              <rdfs:comment xml:lang="es">pista de auditoría del sistema de original que cometen de la información que forma el contenido de este nodo, o desde una pasarela de conversión que ha sintetizado este nodo.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">trilha de auditoria do sistema de original a confirmação de informações que formam o conteúdo deste nó, ou a partir de um gateway de conversão, que sintetizou esse nó.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">从原始的系统审计跟踪提交的形成该节点的内容的信息，或从已合成这个节点的转换网关。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3196,10 +3203,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
               <rdfs:comment xml:lang="en-us">Attestation recorded.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">कसम दर्ज की गई।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">شهادة تسجيلها.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Certificación registrada.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Atestado gravado.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">认证记录。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3212,10 +3220,11 @@
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLink"/>
               <rdfs:comment xml:lang="en-us">Optional link(s) to other locatable structures or external entities.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">वैकल्पिक लिंक) अन्य पुनर्निधारणीय संरचनाओं या बाहरी संस्थाओं के लिए।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">وصلات اختياري) إلى الإنشاءات المنقولة الأخرى أو الكيانات الخارجية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">enlaces opcionales) a otras estructuras movibles o entidades externas.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">links opcionais) para outras estruturas relocalizáveis ou entidades externas.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">可选链接）到其他浮动结构或外部实体。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
