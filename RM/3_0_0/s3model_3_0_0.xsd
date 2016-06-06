@@ -361,8 +361,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdLink">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdLinkType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdLinkType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -431,8 +431,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdString">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdStringType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdStringType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -657,8 +657,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdFile">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdFileType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdFileType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -723,8 +723,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdOrdered">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdOrderedType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdOrderedType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -792,8 +792,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdOrdinal">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdOrdinalType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdOrdinalType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -875,8 +875,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdQuantified">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdQuantifiedType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdQuantifiedType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -889,8 +889,7 @@
         magnitude</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="MagnitudeStatus">
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:comment xml:lang="en-us">MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses. Optional status of magnitude indicators: equal : magnitude is a point
             value less_than : value is less than the magnitude greater_than : value is greater than the magnitude less_than_or_equal : value is less_than_or_equal to the magnitude greater_than_or_equal : value is greater_than_or_equal to the magnitude approximate : value is the approximately the
             magnitude</rdfs:comment>
@@ -979,8 +978,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdCount">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdCountType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdCountType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1047,8 +1046,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdQuantity">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdQuantityType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdQuantityType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1195,8 +1194,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdRatio">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdRatioType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdRatioType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1208,8 +1207,7 @@
         relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="TypeOfRatio">
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:comment xml:lang="en-us">Indicates semantic type of ratio. ratio = a relationship between two numbers. proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)
             rate = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</rdfs:comment>
           <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
@@ -1477,8 +1475,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdTemporal">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdTemporalType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdTemporalType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1629,8 +1627,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdInterval">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdIntervalType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdIntervalType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1643,8 +1641,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="InvlType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_.InvlTypehtml#InvlType"/>
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">InvlType</rdfs:label>
           <rdfs:comment xml:lang="en-us">In the CCM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
             boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the CCM. See: http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rdfs:comment>
@@ -1672,8 +1669,7 @@
         temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="IntervalUnits">
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:comment xml:lang="en-us">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
             temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</rdfs:comment>
           <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
@@ -1762,8 +1758,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="ReferenceRange">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="ReferenceRangeType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="ReferenceRangeType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1778,8 +1774,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="AuditType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">AuditType</rdfs:label>
           <rdfs:comment xml:lang="en-us">AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</rdfs:comment>
         </rdf:Description>
@@ -1872,8 +1867,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="Audit">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="AuditType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="AuditType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1886,8 +1881,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="PartyType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">PartyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
             information is to be anonymous then do not include the details element.</rdfs:comment>
@@ -1965,8 +1959,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="Party">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="PartyType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="PartyType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1978,8 +1972,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="AttestationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">AttestationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which my be coded.</rdfs:comment>
           <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
@@ -2108,8 +2101,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="Attestation">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="AttestationType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="AttestationType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2121,7 +2114,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="ParticipationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">ParticipationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.
          </rdfs:comment>
@@ -2235,8 +2228,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="Participation">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="ParticipationType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="ParticipationType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2250,7 +2243,6 @@
         <rdf:Description rdf:about="ExceptionalValueType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
           <rdfs:subClassOf rdf:resource="Exception"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
           <rdfs:label xml:lang="en-us">ExceptionalValueType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be
             useful in many instances. CCMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</rdfs:comment>
@@ -2280,8 +2272,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="ExceptionalValue">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="ExceptionalValueType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="ExceptionalValueType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2317,7 +2309,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="NI">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="NIType"/>
+          <s3m:isConceptSymbolOf rdf:resource="NIType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2354,7 +2346,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="MSK">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="MSKType"/>
+          <s3m:isConceptSymbolOf rdf:resource="MSKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2389,7 +2381,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="INV">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="INVType"/>
+          <s3m:isConceptSymbolOf rdf:resource="INVType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2424,7 +2416,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="DER">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="DERType"/>
+          <s3m:isConceptSymbolOf rdf:resource="DERType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2459,7 +2451,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="UNC">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="UNCType"/>
+          <s3m:isConceptSymbolOf rdf:resource="UNCType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2494,7 +2486,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="OTH">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="OTHType"/>
+          <s3m:isConceptSymbolOf rdf:resource="OTHType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2529,7 +2521,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="NINF">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="NINFType"/>
+          <s3m:isConceptSymbolOf rdf:resource="NINFType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2564,7 +2556,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="PINF">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="PINFType"/>
+          <s3m:isConceptSymbolOf rdf:resource="PINFType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2599,7 +2591,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="UNK">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="UNKType"/>
+          <s3m:isConceptSymbolOf rdf:resource="UNKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2634,7 +2626,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="ASKR">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="ASKRType"/>
+          <s3m:isConceptSymbolOf rdf:resource="ASKRType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2669,7 +2661,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="NASK">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="NASKType"/>
+          <s3m:isConceptSymbolOf rdf:resource="NASKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2705,7 +2697,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="QS">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="QSType"/>
+          <s3m:isConceptSymbolOf rdf:resource="QSType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2740,7 +2732,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="TRC">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="TRCType"/>
+          <s3m:isConceptSymbolOf rdf:resource="TRCType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2775,7 +2767,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="ASKU">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="ASKUType"/>
+          <s3m:isConceptSymbolOf rdf:resource="ASKUType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2806,7 +2798,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="NAV">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="NAVType"/>
+          <s3m:isConceptSymbolOf rdf:resource="NAVType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2841,7 +2833,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="NA">
           <rdfs:subClassOf rdf:resource="ExceptionalValue"/>
-          <s3m:isCoreSymbolOf rdf:resource="NAType"/>
+          <s3m:isConceptSymbolOf rdf:resource="NAType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2854,8 +2846,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="ItemType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">ItemType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The abstract parent of ClusterType and XdAdapterType structural representation types.</rdfs:comment>
           <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
@@ -2870,8 +2861,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="Item">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="ItemType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="ItemType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2937,8 +2928,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="Cluster">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="ClusterType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="ClusterType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2983,7 +2974,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdAdapter-value">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
           <s3m:isSymbolIn rdf:resource="XdAdapterType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -2994,8 +2985,8 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="XdAdapter">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="XdAdapterType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="XdAdapterType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3007,10 +2998,9 @@
       <xs:documentation xml:lang="en-us">The abstract parent of all Entry subtypes. An Entry is the root of a logical set of data items. Each subtype has an identical information structure. The subtyping is used to allow persistence to separate the types of Entries; primarily important in
         healthcare for the de-identification of clinical information.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="EntryType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_EntryType.html#EntryType"/>
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">EntryType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The abstract parent of all Entry subtypes. An Entry is the root of a logical set of data items. Each subtype has an identical information structure. The subtyping is used to allow persistence to separate the types of Entries; primarily important in
             healthcare for the de-identification of clinical information.</rdfs:comment>
@@ -3026,8 +3016,8 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="label">
-              <rdfs:domain rdf:resource="EntryType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/label">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
@@ -3042,8 +3032,8 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Mandatory indicator of the localised language in which this Entry is written. The value space of language is the set of all strings that are valid language identifiers as defined [RFC 3066].</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="entry-language">
-              <rdfs:domain rdf:resource="EntryType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/entry-language">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#language"/>
               <rdfs:comment xml:lang="en-us">Mandatory indicator of the localised language in which this Entry is written. The value space of language is the set of all strings that are valid language identifiers as defined [RFC 3066].</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
@@ -3058,8 +3048,8 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Name of character set encoding in which text values in this Entry are encoded. Default is utf-8.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="entry-encoding">
-              <rdfs:domain rdf:resource="EntryType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/entry-encoding">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Name of character set encoding in which text values in this Entry are encoded. Default is utf-8.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
@@ -3074,8 +3064,8 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The current state according to the state machine / workflow engine identified in the workflow element.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="current-state">
-              <rdfs:domain rdf:resource="EntryType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/current-state">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">The current state according to the state machine / workflow engine identified in the workflow element.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
@@ -3090,9 +3080,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The data structure of the Entry.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="data">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="Item"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/data">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Item"/>
               <rdfs:comment xml:lang="en-us">The data structure of the Entry.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3106,9 +3096,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Id of human subject of this Entry, e.g.: • subject of record (patient, etc.) • organ donor • foetus • a family member • another clinically relevant person.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="subject">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="PartyType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/subject">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:comment xml:lang="en-us">Id of human subject of this Entry, e.g.: • subject of record (patient, etc.) • organ donor • foetus • a family member • another clinically relevant person.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3122,9 +3112,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Optional identification of the source of the information in this Entry, which might be: • the patient • a patient agent, e.g. parent, guardian • the clinician • a device or software</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="provider">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="PartyType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/provider">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:comment xml:lang="en-us">Optional identification of the source of the information in this Entry, which might be: • the patient • a patient agent, e.g. parent, guardian • the clinician • a device or software</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3138,9 +3128,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">List of other participations at Entry level.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="participations">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="Participation"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/participations">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Participation"/>
               <rdfs:comment xml:lang="en-us">List of other participations at Entry level.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3154,9 +3144,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Optional external identifier of protocol used to create this Entry. This could be a clinical guideline, an operations protocol,etc.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="protocol">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="XdStringType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/protocol">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
               <rdfs:comment xml:lang="en-us">Optional external identifier of protocol used to create this Entry. This could be a clinical guideline, an operations protocol,etc.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3170,9 +3160,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Identifier of externally held workflow engine (state machine) data for this workflow execution.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="workflow">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="XdLinkType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/workflow">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
               <rdfs:comment xml:lang="en-us">Identifier of externally held workflow engine (state machine) data for this workflow execution.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3186,9 +3176,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Audit trail from the system of original commit of information forming the content of this node, or from a conversion gateway which has synthesised this node.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="audit">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="AuditType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/audit">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
               <rdfs:comment xml:lang="en-us">Audit trail from the system of original commit of information forming the content of this node, or from a conversion gateway which has synthesised this node.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3202,9 +3192,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Attestation recorded.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="attestation">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="AttestationType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/attestation">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
               <rdfs:comment xml:lang="en-us">Attestation recorded.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3218,9 +3208,9 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Optional link(s) to other locatable structures or external entities.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="links">
-              <rdfs:domain rdf:resource="EntryType"/>
-              <rdfs:range rdf:resource="XdLink"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/links">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLink"/>
               <rdfs:comment xml:lang="en-us">Optional link(s) to other locatable structures or external entities.</rdfs:comment>
               <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
               <rdfs:comment xml:lang="es"></rdfs:comment>
@@ -3235,29 +3225,29 @@
   <xs:element name="Entry" type="s3m:EntryType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="Entry">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="EntryType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Entry">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
 
-  <!--DM / constraint model -->
+  <!-- DM constraint model -->
   <xs:complexType name="DMType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">This is the root node of a Data Model (DM).</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="CCMType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_DMType.html#DMType"/>
-          <rdfs:subClassOf rdf:resource="CoreMC"/>
-          <s3m:isCoreModelIn rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd"/>
-          <rdfs:label xml:lang="en-us">CCMType</rdfs:label>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:label xml:lang="en-us">DMType</rdfs:label>
           <rdfs:comment xml:lang="en-us">This is the root node of a Data Model.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">यह एक डाटा मॉडल की जड़ नोड है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">هذه هي العقدة جذر نموذج البيانات.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Este es el nodo raíz de un modelo de datos.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Este é o nó raiz de um modelo de dados.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">这是一个数据模型的根节点。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3270,10 +3260,11 @@
               <rdfs:domain rdf:resource="DMType"/>
               <rdfs:range rdf:resource="Definition"/>
               <rdfs:comment xml:lang="en-us">Structural definition element for this DM.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस डीएम के लिए स्ट्रक्चरल परिभाषा तत्व।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">عنصر تعريف الهيكلي لهذا DM.</rdfs:comment>
+              <rdfs:comment xml:lang="es">elemento de definición estructural para este DM.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">elemento de definição estrutural para este DM.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">该DM结构定义的元素。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -3283,8 +3274,9 @@
   <xs:element name="Definition" type="s3m:EntryType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="Definition">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Definition">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3292,9 +3284,9 @@
   <xs:element name="DM" type="s3m:DMType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="DM">
-          <rdfs:subClassOf rdf:resource="CoreCS"/>
-          <s3m:isCoreSymbolOf rdf:resource="DMType"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DM">
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
