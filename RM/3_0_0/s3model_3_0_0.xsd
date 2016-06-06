@@ -2939,9 +2939,9 @@
     <xs:annotation>
       <xs:documentation xml:lang="en-us">The leaf variant of Item, to which any XdAnyType subtype instance is attached for use in a Cluster.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdAdapterType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdAdapterType.html#XdAdapterType"/>
-          <rdfs:subClassOf rdf:resource="ItemType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
           <rdfs:label xml:lang="en-us">XdAdapterType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The leaf variant of Item, to which any XdAnyType subtype instance is attached for use in a Cluster.</rdfs:comment>
         </rdf:Description>
@@ -2954,14 +2954,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Data value type of this leaf. By rule, there must only be one XdAnyType subtype defined here. The unbounded occurrences is allowed so that the DM can specify how many repetitions may occur in the instance.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="XdAdapter-value">
-                  <rdfs:domain rdf:resource="XdAdapterType"/>
-                  <rdfs:range rdf:resource="XdAnyType"/>
-                  <rdfs:comment xml:lang="en-us">Data value type of this leaf. By rule, there must only be one XdAnyType subtype defined here. The unbounded occurrences is allowed so that the DM can specify how many repetitions may occur in the instance.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType/XdAdapter-value">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
+                  <rdfs:comment xml:lang="en-us">Data value type of this leaf. By rule, there must only be one XdAnyType subtype defined here. The unbounded occurrences is allowed so that the DM can specify how many repetitions may occur in the instance data.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">इस पत्ती का डाटा मान लिखें। नियम के अनुसार, वहाँ केवल एक XdAnyType उप प्रकार यहाँ परिभाषित किया जाना चाहिए। इतना है कि डीएम कितने repetitions उदाहरण डेटा में हो सकता है निर्दिष्ट कर सकते हैं असीम घटनाओं अनुमति दी है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">نوع قيمة البيانات من هذه الورقة. في المادة، يجب أن يكون هناك واحد فقط النوع الفرعي XdAnyType المحدد هنا. ولا يسمح للأحداث غير محدود بحيث DM يمكن تحديد عدد التكرار قد تحدث في البيانات مثيل.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Tipo de valor de los datos de esta hoja. Por regla general, sólo debe haber un subtipo XdAnyType definido aquí. Las ocurrencias no acotados se permite de manera que el DM puede especificar el número de repeticiones puede ocurrir en los datos de instancia.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Tipo de valor de dados desta folha. Por regra, não deve ser apenas um subtipo XdAnyType definido aqui. As ocorrências ilimitados é permitido para que o DM pode especificar quantas repetições podem ocorrer nos dados de instância.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">数据值类型这片叶子的。按规则，也只能在这里定义了一个XdAnyType亚型。无界出现是允许的，使得DM可以指定实例数据可能会出现多少个重复。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -2970,12 +2971,12 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="XdAdapter-value" type="s3m:XdAnyType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdAdapter-value">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType/XdAdapter-value">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isSymbolIn rdf:resource="XdAdapterType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2984,9 +2985,9 @@
   <xs:element name="XdAdapter" substitutionGroup="s3m:Item" type="s3m:XdAdapterType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdAdapter">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapter">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdAdapterType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3281,6 +3282,7 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  
   <xs:element name="Definition" type="s3m:EntryType">
     <xs:annotation>
       <xs:appinfo>
@@ -3291,6 +3293,7 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
+  
   <xs:element name="DM" type="s3m:DMType">
     <xs:annotation>
       <xs:appinfo>
@@ -3301,4 +3304,5 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
+
 </xs:schema>
