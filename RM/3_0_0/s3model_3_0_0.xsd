@@ -1203,23 +1203,42 @@
 
   <xs:simpleType name="TypeOfRatio">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us"> Indicates semantic type of ratio. ratio = a relationship between two numbers. proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator) rate = a
-        relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</xs:documentation>
+      <xs:documentation xml:lang="en-us">Indicates semantic type of ratio.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="TypeOfRatio">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TypeOfRatio">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
-          <rdfs:comment xml:lang="en-us">Indicates semantic type of ratio. ratio = a relationship between two numbers. proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)
-            rate = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="en-us">Indicates semantic type of ratio.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">अनुपात का अर्थ प्रकार इंगित करता है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">يشير نوع الدلالي للنسبة.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Indica el tipo de relación semántica.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Indica tipo semântica da relação.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">指示语义类型的比例。</rdfs:comment>
         </rdf:Description>
         <!-- Individual types of ratio -->
-        <rdf:Description rdf:about="proportion"/>
-        <rdf:Description rdf:about="rate"/>
-        <rdf:Description rdf:about="ratio"/>
-
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TypeOfRatio/proportion">
+          <rdfs:comment xml:lang="en-us">A relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)</rdfs:comment>
+          <rdfs:comment xml:lang="hi">दो संख्याओं के बीच एक रिश्ता है जहाँ मीटर और विभाजक के बीच एक संबंध है biunivocal (अंश भाजक में निहित है)</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">(يرد البسط في المقام) وجود علاقة بين رقمين حيث هناك علاقة biunivocal بين البسط والمقام</rdfs:comment>
+          <rdfs:comment xml:lang="es">Una relación entre dos números, donde existe una relación biunívoca entre el numerador y el denominador (el numerador está contenida en el denominador)</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Uma relação entre dois números em que existe uma relação biunívoca entre o numerador eo denominador (o numerador está contido no denominador)</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">哪里有分子和分母之间biunivocal关系两个数之间的关系（分子被包含在分母）</rdfs:comment>    
+        </rdf:Description>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TypeOfRatio/rate">
+          <rdfs:comment xml:lang="en-us">A relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</rdfs:comment>
+          <rdfs:comment xml:lang="hi">दो संख्याओं के बीच एक रिश्ता है जहाँ वहाँ मीटर और विभाजक के बीच एक biunivocal संबंध नहीं है (अंश भाजक में निहित नहीं है)</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">وثمة علاقة بين رقمين حيث لا يوجد علاقة biunivocal بين البسط والمقام (لا تحتوي على البسط في المقام)</rdfs:comment>
+          <rdfs:comment xml:lang="es">Una relación entre dos números donde no hay una relación biunívoca entre el numerador y el denominador (el numerador no está contenido en el denominador)</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Uma relação entre dois números, onde não há uma relação biunívoca entre o numerador e o denominador (o numerador não está contido no denominador)</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">那里没有分子和分母之间biunivocal关系两个数之间的关系（分子中不分母包含）</rdfs:comment>          
+        </rdf:Description>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TypeOfRatio/ratio">
+          <rdfs:comment xml:lang="en-us">A relationship between two numbers.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">दो संख्याओं के बीच एक रिश्ता है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">وثمة علاقة بين رقمين.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Una relación entre dos números.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Uma relação entre dois números.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">两个数字之间的关系。</rdfs:comment>
+        </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
