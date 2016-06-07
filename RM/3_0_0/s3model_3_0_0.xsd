@@ -1668,15 +1668,20 @@
       <xs:documentation xml:lang="en-us">The units designation for an Intreval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
         temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="IntervalUnits">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#IntervalUnits">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:comment xml:lang="en-us">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
             temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> 
-          <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">एक अंतराल के लिए इकाइयों पदनाम अन्य complexTypes की तुलना में थोड़ा अलग है। इस complexType एक इकाइयों नाम और एक यूआरआइ की रचना की वजह से एक ReferenceRange माता-पिता में अलग-अलग श्रेणियों के लिए अलग-अलग इकाइयों में हो सकता है। उदाहरण: एक XdQuantity की
+                         तापमान डिग्री फारेनहाइट में एक सीमा है और डिग्री सेल्सियस में से एक हो सकता है। सीसीएम में निकाली गई complexType इन मूल्यों मॉडलर द्वारा तय की है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">تعيين وحدات لالفاصل الزمني يختلف قليلا من complexTypes البعض. ويتكون هذا complexType من اسم وحدة وأوري لأنه في الأصل ReferenceRange يمكن أن يكون هناك وحدات مختلفة لنطاقات مختلفة. مثال: XdQuantity من
+                         درجة الحرارة يمكن أن يكون مجموعة في درجة فهرنهايت واحدة في درجة مئوية. وcomplexType المستمدة في CCM له هذه القيم ثابتة من قبل صانع التماثيل.</rdfs:comment>
+          <rdfs:comment xml:lang="es">La designación de unidades para un intervalo es ligeramente diferente a otros complexTypes. Este complexType se compone de un nombre de unidades y un URI porque en un padre ReferenceRange no puede haber diferentes unidades para diferentes rangos. Ejemplo: Un XdQuantity de
+                         la temperatura puede tener un radio de acción en grados Fahrenheit y uno en grados Celsius. El tipoCompuesto derivada en el CCM tiene estos valores fijados por el modelador.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">A designação unidades para um intervalo é um pouco diferente do que outros complexTypes. Este tipo complexo é composto por unidades de um nome e um URI porque num progenitor ReferenceRange pode haver diferentes unidades para diferentes gamas. Exemplo: Um XdQuantity de
+                         a temperatura pode ter uma gama em graus centígrados e uma em graus Celsius. O complexType derivado na CCM tem esses valores fixos pelo modelador.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">单位指定为一个间隔比其他复合类型略有不同。此复杂类型是由一个单位的名称和URI的，因为在一个ReferenceRange父可以存在于不同的范围不同的单元。例如：一XdQuantity
+                        温度可以在华氏度摄氏度的范围内，一个。在CCM派生的complexType具有这些值由建模者固定。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
