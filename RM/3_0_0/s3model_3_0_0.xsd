@@ -442,15 +442,16 @@
     <xs:annotation>
       <xs:documentation xml:lang="en-us">A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdFileType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType"/>
-          <rdfs:subClassOf rdf:resource="XdAnyType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdFileType</rdfs:label>
           <rdfs:comment xml:lang="en-us">A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">एक प्रकार छवि, ऑडियो और एक परिभाषित माइम प्रकार के साथ अन्य प्रकार के मीडिया के लिए समझाया सामग्री (उर्फ। फ़ाइलें) के लिए उपयोग करने के लिए। इस प्रकार के डेटा में सामग्री एम्बेड या सामग्री को इंगित करने के लिए एक यूआरएल का उपयोग करने का एक विकल्प प्रदान करता है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">وهناك نوع لاستخدام للمحتوى مغلف (ويعرف أيضا باسم. الملفات) للصورة والصوت وأنواع وسائل الإعلام الأخرى مع نوع MIME محددة. يوفر هذا النوع اختيار تضمين المحتوى في البيانات أو باستخدام عنوان URL للإشارة إلى محتوى.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Un tipo de uso para el contenido encapsulado (aka. Archivos) para otros tipos de medios de imagen, audio y con un tipo MIME definido. Este tipo ofrece una opción de incrustar el contenido en los datos o el uso de un URL para que apunte al contenido.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Um tipo a ser usado para o conteúdo encapsulado (aka. Arquivos) para a imagem, áudio e outros tipos de mídia com um tipo MIME definido. Este tipo fornece uma opção de incorporar o conteúdo para os dados ou usando uma URL para apontar para o conteúdo.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">A型用于封装的内容（亦称文件）图像，音频和其他媒体类型的定义MIME类型。这种类型提供嵌入内容到数据或使用URL来指向的内容的选择。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -461,10 +462,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="size">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/size">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
                   <rdfs:comment xml:lang="en-us">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">इनकोडिंग समझाया डेटा के बाइट्स में मूल आकार। अर्थात। ऐसे base64, षोडश आधारी, आदि के रूप में एन्कोडिंग इस तत्व का मूल्य बदल नहीं है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">الحجم الأصلي في بايت من البيانات المشفرة مغلفة. أي. ترميزات مثل base64 في، عشري، وما إلى ذلك لا يغير من قيمة هذا العنصر.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Tamaño original en bytes de datos encapsulados codificados. Es decir. codificaciones como base 64, hexadecimal, etc. no cambian el valor de este elemento.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">tamanho original em bytes de dados encapsulados codificados. Isto é, codificações como base 64, hexadecimal, etc. não mudam o valor deste elemento.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">原始大小在编码封装的数据的字节。即这种编码为base64，十六进制等都不改变这个元素的值。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -474,15 +480,15 @@
               <xs:documentation xml:lang="en-us">Name of character encoding scheme in which this value is encoded. Coded from the IANA charcater set table: http://www.iana.org/assignments/character-sets Unicode is the default assumption in S3Model2, with UTF-8 being the assumed encoding. This
                 attribute allows for variations from these assumptions.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="encoding">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/encoding">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                  <rdfs:comment xml:lang="en-us">Name of character encoding scheme in which this value is encoded. Coded from the IANA charcater set table: http://www.iana.org/assignments/character-sets Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This
-                    attribute allows for variations from these assumptions.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Name of character encoding scheme in which this value is encoded. Coded from the IANA charcater set table. Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This attribute allows for variations from these assumptions.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">वर्ण एन्कोडिंग योजना का नाम है जिसमें इस मूल्य इनकोडिंग है। IANA charcater सेट मेज से कोडित। यूनिकोड S3Model में मूलभूत धारणा, UTF-8 एन्कोडिंग ग्रहण किया जा रहा है। यह विशेषता इन मान्यताओं से बदलाव के लिए अनुमति देता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">اسم مخطط ترميز الأحرف التي يتم ترميز هذه القيمة. مشفرة من الجدول مجموعة charcater ايانا. يونيكود هو الافتراض في S3Model، مع UTF-8 يجري الترميز المفترضة. هذه السمة تسمح للاختلافات من هذه الافتراضات.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Nombre del esquema de codificación de caracteres en el que se codifica este valor. Codificada del vector del conjunto charcater IANA. Unicode es el supuesto defecto en S3Model, con UTF-8 es la codificación asumido. Este atributo permite variaciones de estos supuestos.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Nome do esquema de codificação de caracteres em que esse valor é codificado. Codificados da tabela conjunto charcater o IANA. Unicode é o pressuposto padrão no S3Model, com UTF-8 sendo a codificação assumida. Este atributo permite variações destes pressupostos.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">字符编码方案的名称中，该值进行编码。从IANA charcater集表编码。 Unicode是在S3Model默认假设，使用UTF-8是假设的编码。此属性允许从这些假设的变化。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -491,14 +497,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Optional indicator of the localised language of the content. Typically reamins optional in the CCM and used at runtime when the content is in a different language from the enclosing CCM.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdfile-language">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/xdfile-language">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#language"/>
                   <rdfs:comment xml:lang="en-us">Optional indicator of the localised language of the content. Typically reamins optional in the CCM and used at runtime when the content is in a different language from the enclosing CCM.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">सामग्री के लिए स्थानीय भाषा के वैकल्पिक सूचक। आमतौर पर सीसीएम में वैकल्पिक और क्रम में इस्तेमाल किया रहता है जब सामग्री enclosing सीसीएम से एक अलग भाषा में है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">مؤشر اختياري للغة مترجمة من المحتوى. يبقى عادة اختياري في CCM واستخدامها في وقت التشغيل عندما يكون محتوى بلغة مختلفة عن CCM أرفق.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Indicador opcional del idioma localizado de los contenidos. Por lo general sigue siendo opcional en el CCM y se utiliza en tiempo de ejecución cuando el contenido está en un idioma diferente del CCM envolvente.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Opcional indicador de idioma localizado do conteúdo. Normalmente permanece opcional no CCM e usados em tempo de execução quando o conteúdo está em um idioma diferente do CCM envolvente.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">内容的本地化语言的可选的指示器。当内容是在从封闭的CCM不同的语言通常保持在CCM可选的，用于在运行时。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -507,14 +514,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="formalism">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/formalism">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                   <rdfs:comment xml:lang="en-us">Name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">रीतिवाद या वाक्य रचना सामग्री पर उपयोग करने के लिए एक उम्मीदवार पार्सर के बारे में एक आवेदन को सूचित करने के लिए इस्तेमाल का नाम। उदाहरणों में शामिल हो सकता है: 'ATL', 'MOLA', 'QVT', 'जीडीएल', 'GLIF', आदि</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">اسم الشكلية أو بناء جملة تستخدم لإبلاغ تطبيق فيما يتعلق محلل مرشح لاستخدامها في المحتوى. ويمكن أن تشمل الأمثلة على ذلك: "ATL '،' MOLA '،' QVT '،' GDL '،' GLIF، الخ</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Nombre del formalismo o sintaxis utilizada para informar a una solicitud relativa a un programa de análisis candidato para ser usado en el contenido. Los ejemplos pueden incluir: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Nome do formalismo ou a sintaxe utilizada para informar um pedido a respeito de um analisador candidato para usar no conteúdo. Os exemplos podem incluir: "ATL", "MOLA", "QVT ',' GDL ',' GLIF ', etc.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">用来通知应用程序有关的候选人解析器上的内容使用形式主义或语法的名称。的例子可能包括：“ATL”，“MOLA'，'QVT'，'GDL'，'GLIF'等</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -523,14 +531,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Media (MIME) type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="media-type">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/media-type">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                   <rdfs:comment xml:lang="en-us">MIME type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi"> मूल मीडिया सामग्री की, w / ओ किसी भी संपीड़न के माइम प्रकार। IANA पंजीकृत प्रकार दे  http://www.iana.org/assignments/media-types/media-types.xhtmlखें:</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">http://www.iana.org/assignments/media-types/media-types.xhtmlنوع MIME من وسائل الإعلام المحتوى الأصلي ث / س أي ضغط. يرجى الاطلاع على أنواع ايانا مسجل:</rdfs:comment>
+                  <rdfs:comment xml:lang="es">MIME tipo de mídia, conteúdo original w / o qualquer compressão. Veja os tipos registados IANA: http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">MIME tipo de mídia, conteúdo original w / o qualquer compressão. Veja os tipos registados IANA: http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">MIME类型原始媒体内容W / O任何压缩的。见IANA注册类型：http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -539,14 +548,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Compression/archiving mime-type. If this elements does not exist then it means there is no compression/archiving. For a list of common mime-types for compression/archiving see: http://en.wikipedia.org/wiki/List_of_archive_formats.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="compression-type">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/compression-type">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                   <rdfs:comment xml:lang="en-us">Compression/archiving mime-type. If this elements does not exist then it means there is no compression/archiving. For a list of common mime-types for compression/archiving see: http://en.wikipedia.org/wiki/List_of_archive_formats.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">संपीड़न / संग्रह माइम प्रकार। इस तत्व तो मौजूद नहीं करता है तो इसका मतलब है कोई संपीड़न / संग्रह है। संपीड़न के लिए आम माइम-प्रकार की एक सूची के लिए / संग्रहhttp://en.wikipedia.org/wiki/List_of_archive_formats देखें:</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">http://en.wikipedia.org/wiki/List_of_archive_formatsضغط / أرشفة التمثيل الصامت نوع. من لا وجود له ثم هذه العناصر وهو ما يعني عدم وجود ضغط / الأرشفة. للحصول على قائمة التمثيل الصامت-الأنواع الشائعة لضغط / أرشفة انظر:</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Compresión / archivo de tipo mime. De estos elementos no existe, entonces significa que no hay compresión / archivo. Para obtener una lista de tipos MIME comunes de compresión / archivo ver:http://en.wikipedia.org/wiki/List_of_archive_formats</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Compressão / arquivamento mime-type. Desta elementos não existem, então isso significa que não há compressão / arquivamento. Para uma lista de tipos MIME comuns para compressão / arquivamento ver:http://en.wikipedia.org/wiki/List_of_archive_formats</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">压缩/归档MIME类型。此元素不存在，那么它意味着没有压缩/归档。对于常见的MIME类型压缩列表/存档看到：http://en.wikipedia.org/wiki/List_of_archive_formats</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -555,14 +565,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Hash function result of the 'media-content'. There must be a corresponding hash function type listed for this to have any meaning. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="hash-result">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/hash-result">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                   <rdfs:comment xml:lang="en-us">Hash function result of the 'media-content'. There must be a corresponding hash function type listed for this to have any meaning. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">'मीडिया-सामग्री' के हैश समारोह नतीजा है। वहाँ एक इसी हैश समारोह इस के लिए सूचीबद्ध किसी भी अर्थ है प्रकार होना चाहिए। http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functionsदेख:</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functionsهاش وظيفة نتيجة لل"وسائل الإعلام المحتوى. يجب أن يكون هناك المقابلة نوع وظيفة التجزئة المدرجة لهذا أن يكون له أي معنى. يرى:</rdfs:comment>
+                  <rdfs:comment xml:lang="es">resultado de la función hash de la 'media-contenido ". Tiene que haber un correspondiente tipo de función hash que aparece para que esto tenga algún sentido. Ver:http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">resultado da função hash da 'media-content'. Deve haver um tipo de função hash correspondente coletados para este de ter qualquer significado. Vejo:http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">在“媒体内容”的Hash函数的结果。必须有此列有任何意义相应的哈希函数的类型。 看到：http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -571,14 +582,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Hash function used to compute hash-result. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="hash-function">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/hash-function">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                   <rdfs:comment xml:lang="en-us">Hash function used to compute hash-result. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">हैश समारोह की गणना करने के हैश परिणाम इस्तेमाल किया। देख:  http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">وظيفة هاش المستخدمة لحساب البعثرة نتيجة. يرى:  http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
+                  <rdfs:comment xml:lang="es">función hash usada para calcular hash resultado. Ver: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">função hash usado para calcular hash resultado. Vejo: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">Hash函数用于计算哈希结果。 看到： http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -587,14 +599,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Text to display in lieu of multimedia display or execution.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="alt-txt">
-                  <rdfs:domain rdf:resource="XdFileType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/alt-txt">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                   <rdfs:comment xml:lang="en-us">Text to display in lieu of multimedia display or execution.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">पाठ मल्टीमीडिया प्रदर्शन या निष्पादन के एवज में प्रदर्शित करने के लिए।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">النص الذي سيعرض بدلا من عرض الوسائط المتعددة أو التنفيذ.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Texto a mostrar en lugar de la pantalla multimedia o ejecución.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Texto a ser exibido no lugar de exibição ou a execução de multimédia.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">文本代替多媒体显示或执行的显示。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -602,16 +615,17 @@
           <xs:choice maxOccurs="1" minOccurs="1">
             <xs:element name="uri" type="xs:anyURI">
               <xs:annotation>
-                <xs:documentation xml:lang="en-us">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
+                <xs:documentation xml:lang="en-us">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference.</xs:documentation>
                 <xs:appinfo>
-                  <rdf:Description rdf:about="uri">
-                    <rdfs:domain rdf:resource="XdFileType"/>
+                  <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/uri">
+                    <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-                    <rdfs:comment xml:lang="en-us">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
-                    <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                    <rdfs:comment xml:lang="es"></rdfs:comment>
-                    <rdfs:comment xml:lang="pt"></rdfs:comment>
-                    <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                    <rdfs:comment xml:lang="en-us">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference.</rdfs:comment>
+                    <rdfs:comment xml:lang="hi">इलेक्ट्रॉनिक जानकारी के लिए यूआरआइ संदर्भ, एक फ़ाइल, डेटाबेस प्रवेश आदि के रूप में रिकॉर्ड के बाहर जमा हो जाती है, तो एक संदर्भ के रूप में की आपूर्ति की।</rdfs:comment> 
+                    <rdfs:comment xml:lang="ar">أوري إشارة إلى المعلومات الإلكترونية المخزنة خارج السجل كملف إدخال قاعدة بيانات الخ، وإذا زودت كمرجع.</rdfs:comment>
+                    <rdfs:comment xml:lang="es">referencia URI a la información electrónica almacenada fuera del registro como un archivo, la entrada de la base de datos, etc, si se suministra como referencia.</rdfs:comment>
+                    <rdfs:comment xml:lang="pt">URI referência à informação electrónica armazenada fora do registro como um arquivo, a entrada de banco de dados etc, se fornecido como uma referência.</rdfs:comment>
+                    <rdfs:comment xml:lang="zh-s">URI引用到的电子信息存储在记录外部作为一个文件，数据库条目等，如果作为参考提供。</rdfs:comment>
                   </rdf:Description>
                 </xs:appinfo>
               </xs:annotation>
@@ -620,14 +634,15 @@
               <xs:annotation>
                 <xs:documentation xml:lang="en-us">The content, if stored locally as binary content. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
                 <xs:appinfo>
-                  <rdf:Description rdf:about="media-content">
-                    <rdfs:domain rdf:resource="XdFileType"/>
+                  <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/media-content">
+                    <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#base64Binary"/>
                     <rdfs:comment xml:lang="en-us">The content, if stored locally as binary content. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
-                    <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                    <rdfs:comment xml:lang="es"></rdfs:comment>
-                    <rdfs:comment xml:lang="pt"></rdfs:comment>
-                    <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                    <rdfs:comment xml:lang="hi">सामग्री, अगर द्विआधारी सामग्री के रूप में स्थानीय रूप से संग्रहीत। सीसीएम मॉडलर या तो एक उड़ी, एक द्विआधारी सामग्री की, एक तत्व या एक पाठ-सामग्री तत्व चुनता है।</rdfs:comment> 
+                    <rdfs:comment xml:lang="ar">المحتوى، إذا المخزنة محليا باسم محتوى ثنائي. اختار مصمم نماذج CCM إما اوري، وهو عنصر ثنائي محتوى أو عنصر النص المحتوى.</rdfs:comment>
+                    <rdfs:comment xml:lang="es">El contenido, si se almacena localmente como contenido binario. El modelador de CCM elegirá entre un URI, un elemento binario-contenido o un elemento de texto de contenido.</rdfs:comment>
+                    <rdfs:comment xml:lang="pt">O conteúdo, se for armazenado localmente como conteúdo binário. O modelador CCM escolhe quer uma uri, um elemento binário conteúdo ou um elemento de texto em conteúdo.</rdfs:comment>
+                    <rdfs:comment xml:lang="zh-s">的内容，如果本地存储为二进制内容。 CCM的建模要么选择一个URI，二进制内容元素或者文本的内容元素。</rdfs:comment>
                   </rdf:Description>
                 </xs:appinfo>
               </xs:annotation>
@@ -636,14 +651,15 @@
               <xs:annotation>
                 <xs:documentation xml:lang="en-us">The content, if stored locally as text content. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
                 <xs:appinfo>
-                  <rdf:Description rdf:about="text-content">
-                    <rdfs:domain rdf:resource="XdFileType"/>
+                  <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/text-content">
+                    <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                     <rdfs:comment xml:lang="en-us">The content, if stored locally as text content. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
-                    <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                    <rdfs:comment xml:lang="es"></rdfs:comment>
-                    <rdfs:comment xml:lang="pt"></rdfs:comment>
-                    <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                    <rdfs:comment xml:lang="hi">सामग्री, अगर पाठ सामग्री के रूप में स्थानीय रूप से संग्रहीत। सीसीएम मॉडलर या तो एक उड़ी, एक द्विआधारी सामग्री की, एक तत्व या एक पाठ-सामग्री तत्व चुनता है।</rdfs:comment> 
+                    <rdfs:comment xml:lang="ar">المحتوى، إذا المخزنة محليا باسم محتوى النص. اختار مصمم نماذج CCM إما اوري، وهو عنصر ثنائي محتوى أو عنصر النص المحتوى.</rdfs:comment>
+                    <rdfs:comment xml:lang="es">El contenido, si se almacena localmente como el contenido del texto. El modelador de CCM elegirá entre un URI, un elemento binario-contenido o un elemento de texto de contenido.</rdfs:comment>
+                    <rdfs:comment xml:lang="pt">O conteúdo, se for armazenado localmente como conteúdo de texto. O modelador CCM escolhe quer uma uri, um elemento binário conteúdo ou um elemento de texto em conteúdo.</rdfs:comment>
+                    <rdfs:comment xml:lang="zh-s">的内容，如果本地存储为文本内容。 CCM的建模要么选择一个URI，二进制内容元素或者文本的内容元素。</rdfs:comment>
                   </rdf:Description>
                 </xs:appinfo>
               </xs:annotation>
@@ -653,12 +669,13 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="XdFile" substitutionGroup="s3m:XdAny" type="s3m:XdFileType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdFile">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFile">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdFileType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -673,10 +690,10 @@
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
          <rdfs:label xml:lang="en-us">XdOrderedType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Abstract type defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, '&gt;' and is_strictly_comparable_to ('==').</rdfs:comment>
-          <rdfs:comment xml:lang="hi">सार प्रकार का आदेश दिया मूल्यों की अवधारणा है, जो ऑर्डिनल्स के साथ-साथ सच्चे मात्रा में शामिल परिभाषित। कार्यान्वयन कार्यों की आवश्यकता होती है 'और लेफ्टिनेंट;', '& gt;' और is_strictly_comparable_to ( '==')।</rdfs:comment> 
-          <rdfs:comment xml:lang="ar">نمط مجرد تحديد مفهوم القيم أمرت، والذي يتضمن الترتيبية وكذلك كميات الحقيقية. تتطلب تطبيقات وظائف "العلامة & lt؛ '،' وGT." وis_strictly_comparable_to ( '==').</rdfs:comment>
-          <rdfs:comment xml:lang="es">tipo abstracto que define el concepto de valores ordenados, que incluye los ordinales, así como las cantidades reales. Las implementaciones requieren las funciones '& lt;', '& gt;' y is_strictly_comparable_to ('==').</rdfs:comment>
-          <rdfs:comment xml:lang="pt">tipo abstrato definir o conceito de valores ordenados, que inclui ordinais, bem como verdadeiros quantidades. As implementações requerem as funções '& lt;', '& gt;' e is_strictly_comparable_to ('==').</rdfs:comment>
+          <rdfs:comment xml:lang="hi">सार प्रकार का आदेश दिया मूल्यों की अवधारणा है, जो ऑर्डिनल्स के साथ-साथ सच्चे मात्रा में शामिल परिभाषित। कार्यान्वयन कार्यों की आवश्यकता होती है 'और लेफ्टिनेंट;', '&gt;' और is_strictly_comparable_to ( '==')।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">نمط مجرد تحديد مفهوم القيم أمرت، والذي يتضمن الترتيبية وكذلك كميات الحقيقية. تتطلب تطبيقات وظائف "العلامة  lt؛ '،' وGT." وis_strictly_comparable_to ( '==').</rdfs:comment>
+          <rdfs:comment xml:lang="es">tipo abstracto que define el concepto de valores ordenados, que incluye los ordinales, así como las cantidades reales. Las implementaciones requieren las funciones '&lt;', '&gt;' y is_strictly_comparable_to ('==').</rdfs:comment>
+          <rdfs:comment xml:lang="pt">tipo abstrato definir o conceito de valores ordenados, que inclui ordinais, bem como verdadeiros quantidades. As implementações requerem as funções '&lt;', '&gt;' e is_strictly_comparable_to ('==').</rdfs:comment>
           <rdfs:comment xml:lang="zh-s">抽象类型定义有序值的概念，它包括序以及真实数量。的实现需要的功能'＆LT;'，'＆GT;'和is_strictly_comparable_to（'=='）。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
