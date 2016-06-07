@@ -291,15 +291,20 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdLinkType.html#XdLinkType"/>
-          <rdfs:subClassOf rdf:resource="XdAnyType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdLinkType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM. Intended use is to provide a mechanism that can be used to link together Concept Models. The relation element allows for the use of a descriptive
-            term for the link with an optional URI pointing to the source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute. Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 'link-value'.
-         </rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+            term for the link with an optional URI pointing to the source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute. Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 'link-value'.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">एक यूनिवर्सल रिसोर्स पहचानकर्ता निर्दिष्ट करने के लिए इस्तेमाल किया। डीएम में अपनी आवश्यकताओं को समायोजित करने के लिए पैटर्न पहलू सेट करें। इरादा उपयोग के लिए एक तंत्र है कि अवधारणा मॉडल एक साथ लिंक करने के लिए इस्तेमाल किया जा सकता है प्रदान करना है। संबंध तत्व एक वर्णनात्मक के उपयोग के लिए अनुमति देता है
+                         स्रोत शब्दावली के लिए एक वैकल्पिक यूआरआइ ओर इशारा करते हुए के साथ लिंक के लिए शब्द। सबसे usecases में मॉडलर इन 'तय' विशेषता का उपयोग के सभी तीन को परिभाषित करेगा। अन्य usecases 'संबंध' और 'संबंध-उड़ी' तत्वों तय की और आवेदन की लिंक-मूल्य 'प्रदान करेगा होगा।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">تستخدم لتحديد معرف الموارد العالمي. تعيين الوجه نمط لتلبية الاحتياجات الخاصة بك في بلدية دبي. الاستخدام المقصود هو توفير آلية التي يمكن استخدامها لربط معا نماذج مفهوم. العنصر يتعلق يسمح للاستخدام وصفي
+                         المدى للارتباط مع أوري لافتا اختياري لمفردات المصدر. في معظم usecases صانع التماثيل سيحدد كل ثلاثة من هذه باستخدام السمة "ثابتة". سوف usecases البعض لديهم "علاقة" وعناصر "، فيما أوري" ثابتة والتطبيق سوف يوفر 'الارتباط قيمة'.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Se utiliza para especificar un identificador uniforme de recursos. Establecer el patrón de las facetas para dar cabida a sus necesidades en el DM. uso previsto es proporcionar un mecanismo que puede utilizarse para vincular modelos de concepto. El elemento de relación permite el uso de un descriptiva
+                         plazo para el enlace con un señalador opcional URI para el vocabulario de origen. En la mayoría de los casos de uso del modelador definirá los tres de éstos mediante el atributo "fijo". Otros casos de uso tendrán la "relación" y elementos "relación-uri 'fijos y la aplicación proporcionará el" eslabón-valor ".</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Usado para especificar um Universal Resource Identifier. Definir a faceta padrão para acomodar as suas necessidades no DM. uso pretendido é o de proporcionar um mecanismo que pode ser usado para unir Conceito Models. O elemento relação permite a utilização de um descritiva
+                         prazo para a ligação com um apontador URI opcional para o vocabulário de origem. Na maioria dos casos de uso do modelador vai definir todos os três destes usando o atributo 'fixo'. Outros casos de uso terá a 'relação' e elementos "relação-uri 'fixos ea aplicação irá fornecer o" elo de valor'.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">用于指定一个通用资源标识符。设置模式方面，以适应DM您的需求。预期用途是提供可用于概念模型连接在一起的机制。关系元件允许使用一个描述的
+                        术语具有可选的URI指向源词汇的链接。在大多数用例建模将确定这三个使用“固定”属性。其他的用例将有'关系'固定'关系-URI“元素和应用程序将提供”链接价值“。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -308,16 +313,17 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="1" name="link" type="xs:anyURI">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CCM or just the ccd-{uuid}.</xs:documentation>
+              <xs:documentation xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CCM or just the dm-{uuid}.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="link">
-                  <rdfs:domain rdf:resource="XdLinkType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType/link">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-                  <rdfs:comment xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CCM or just the ccd-{uuid}.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CCM or just the dm-{uuid}.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक आवश्यक यूआरआइ। एक और सीसीएम या सिर्फ dm- {} UUID के लिए एक dereferenceable (या नहीं) URL।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">وURI المطلوبة. وdereferenceable (أو لا) URL لCCM آخر أو مجرد dm- {UUID}.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Un URI requiere. Una URL Dereferenceable (o no) a otra CCM o simplemente el DM-uuid {}.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Um URI necessária. Um dereferenceable (ou não) para um outro URL CCM ou apenas o UUID dm- {}.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">一个必需的URI。一提领（或没有）URL在CCM或只是DM-{} UUID。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -326,14 +332,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">A required term, normally drawn from a vocabulary or ontology such as the OBO RO.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="relation">
-                  <rdfs:domain rdf:resource="XdLinkType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkTyperelation">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                   <rdfs:comment xml:lang="en-us">A required term, normally drawn from a vocabulary or ontology such as the OBO RO.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक आवश्यक अवधि, आम तौर पर इस तरह के बोरो के रूप में आंटलजी बनाम एक शब्दावली से खींचा।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">مصطلح المطلوب تعادل عادة من المفردات مقابل الأنطولوجيا مثل قانون الحقوق.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Un término requerido, normalmente extrae de un vocabulario vs ontología como la Carta de Derechos.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Um termo necessário, normalmente retirados de um vocabulário vs ontologia como a BORO.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">必须的搜索项，通常是从一个词汇VS本体，如人权法案绘制。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -342,14 +349,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">A URI where the definition of the relation element term can be found. Normally points to an ontology such as the OBO RO http://purl.obolibrary.org/obo/ro.owl</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="relation-uri">
-                  <rdfs:domain rdf:resource="XdLinkType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkTyperelation-uri">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
                   <rdfs:comment xml:lang="en-us">A URI where the definition of the relation element term can be found. Normally points to an ontology such as the OBO RO http://purl.obolibrary.org/obo/ro.owl</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक यूआरआइ जहां संबंध तत्व शब्द की परिभाषा पाया जा सकता है। आम तौर पर इस तरह के बोरो के रूप में एक आंटलजी के लिए अंक</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">وURI حيث يمكن العثور على تعريف مصطلح عنصر العلاقة. يشير عادة إلى الأنطولوجيا مثل BORO</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Un URI donde la definición del término elemento de relación se puede encontrar. Normalmente apunta a una ontología como la Carta de Derechos</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">A URI onde a definição do termo elemento de relação pode ser encontrada. Normalmente aponta para uma ontologia como a BORO</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">一个URI，其中的关系要素一词的定义可以找到。通常指向一个本体，如人权法案</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -358,12 +366,13 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="XdLink" substitutionGroup="s3m:XdAny" type="s3m:XdLinkType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdLink">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLink">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdLinkType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
