@@ -1231,19 +1231,18 @@
 
   <xs:complexType name="XdTemporalType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero
-        cause the element to be prohibited.</xs:documentation>
+      <xs:documentation xml:lang="en-us">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdTemporalType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType"/>
-          <rdfs:subClassOf rdf:resource="XdOrderedType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
           <rdfs:label xml:lang="en-us">XdTemporalType</rdfs:label>
-          <rdfs:comment xml:lang="en-us">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero
-            cause the element to be prohibited.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="en-us">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">दिनांक और समय प्रकार की अवधारणा को परिभाषित करने के लिए लिखें। डीएमएस में विवश होना चाहिए एक या एक से नीचे तत्वों के और अधिक हो। इस मॉडलर चलाते समय पर पूर्ण या आंशिक तारीखों की अनुमति देने के वैकल्पिक करने की क्षमता देता है। तत्व शून्य कारण करने के लिए दोनों maxOccurs और minOccurs स्थापना निषिद्ध किया जाना है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">اكتب تعريف مفهوم التاريخ والوقت أنواع. يجب أن تكون مقيدة في الطرائق ليكون واحدا أو أكثر من العناصر التالية. وهذا يعطي مصمم نماذج القدرة على اختياريا نسمح للتواريخ كاملة أو جزئية في وقت التشغيل. وضع كل من maxOccurs وminOccurs لسبب الصفر العنصر المراد محظورة.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Escriba la definición del concepto de tipos de fecha y hora. Debe ser restringida en DM para ser uno o más de los elementos siguientes. Esto le da al modelador de la capacidad de permitir que opcionalmente fechas completas o parciales en tiempo de ejecución. Ajuste de los dos maxOccurs y minOccurs a cero causa que el elemento se prohíbe.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Digite definir o conceito de data e hora tipos. Deve ser constrangidos no DMS ser um ou mais dos elementos abaixo. Isto dá o modelador a capacidade de permitir opcionalmente datas completas ou parciais em tempo de execução. Definindo ambos os maxOccurs e minOccurs a causa de zero do elemento a ser proibida.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">键入限定日期和时间类型的概念。必须在模式草案被限制在一个或多个以下元件。这使建模有选择地允许在运行时完全或部分日期的能力。两者的maxOccurs和的minOccurs设置为零，原因元素被禁止。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1252,162 +1251,155 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-date" type="xs:date">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals
-                disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-date">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-date">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-                  <rdfs:comment xml:lang="en-us">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals
-                    disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">dateTime की समयसीमा पर लंबाई में ठीक एक दिन के शीर्ष से खोलने के अंतराल का प्रतिनिधित्व करता है, प्रत्येक दिन की शुरुआत पल पर शुरुआत, अप करने के लिए, लेकिन अगले दिन की शुरुआत पल शामिल नहीं)। गैर timezoned मूल्यों के लिए, ऊपर से खुला अंतराल disjointly गैर timezoned समय, प्रति दिन एक को कवर किया। timezoned मूल्यों के लिए, हर मिनट के अंतराल पर शुरू हो और इसलिए ओवरलैप।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">تمثل فترات أعلى المفتوحة بالضبط يوم واحد في طول على الجداول الزمنية من التاريخ والوقت، تبدأ من لحظة بداية كل يوم، حتى ولكن لا بما في ذلك لحظة ابتداء من اليوم التالي). القيم غير timezoned، وفترات أعلى فتح تغطية disjointly الجدول الزمني غير timezoned، واحدة يوميا. للقيم timezoned، تبدأ فترات في كل دقيقة، وبالتالي تتداخل.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Representa la parte superior intervalos abiertos de exactamente un día en la longitud de las líneas de tiempo de fecha y hora, comenzando en el momento inicial de cada día, hasta, pero no incluyendo el momento de inicio del día siguiente). Para valores no timezoned, los intervalos superiores a abrir cubren disjointly la línea de tiempo no timezoned, una por día. Para valores timezoned, los intervalos comienzan a cada minuto y por lo tanto se superponen.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Representa intervalos top-abertas de exatamente um dia de duração sobre os prazos de dateTime, a partir do momento em início de cada dia, até, mas não incluindo o momento de início do dia seguinte). Para valores não-timezoned, os intervalos top-aberto disjointly cobrir o cronograma não timezoned, um por dia. Para valores timezoned, os intervalos começam em cada minuto e portanto sobrepor-se.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">恰好表示一天的日期时间的时间表长度的顶部开区间，开始在每一天的开始时刻开始，直到但不包括第二天的开始时刻）。对于非timezoned值，顶开区间disjointly覆盖非timezoned时间轴，每天一次。对于timezoned值时，开始时间为每分钟，因此重叠。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-time" type="xs:time">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-time">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-time">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
                   <rdfs:comment xml:lang="en-us">Represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">समय है कि प्रत्येक कैलेंडर दिन में एक ही बिंदु पर पाए जाते हैं, या कि कुछ मनमाने ढंग से कैलेंडर दिन में होने की instants प्रतिनिधित्व करता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">يمثل اللحظات من الزمن التي تحدث في نفس النقطة في كل يوم من أيام الأسبوع، أو التي تحدث في يوم من الأيام التقويمية التعسفي.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Representa instantes de tiempo que se producen en el mismo punto en cada día del calendario, o que ocurren en un día del calendario arbitrario.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Representa instantes de tempo que ocorrem no mesmo ponto em cada dia de calendário, ou que ocorrem em alguns dias de calendário arbitrária.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">代表发生在每个日历日的相同点，或发生在一些任意日历天时刻。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-datetime" type="xs:dateTime">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-datetime">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-datetime">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
                   <rdfs:comment xml:lang="en-us">Represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">समय की instants का प्रतिनिधित्व करता है, वैकल्पिक रूप से ऑफसेट एक विशेष समय क्षेत्र के साथ चिह्नित। एक ही पल अलग समय क्षेत्र ऑफसेट का प्रतिनिधित्व लेकिन होने मूल्यों बराबर लेकिन समान नहीं हैं।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">يمثل اللحظات من الزمن، تميزت اختياريا مع منطقة زمنية معينة الإزاحة. القيم التي تمثلها نفس اللحظة ولكن بعد إزاحة منطقة زمنية مختلفة متساوية ولكنها غير متطابقة.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Representa instantes de tiempo, opcionalmente marcado con una zona de tiempo en particular offset. Los valores que representan el mismo instante, pero que tienen desplazamientos de zona diferente de tiempo son iguales, pero no idénticos.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Representa instantes de tempo, opcionalmente marcado com um fuso horário deslocamento específico. Os valores representam o mesmo instante, mas tendo deslocamentos de fuso horário diferente são iguais, mas não idêntica.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">代表的时刻，可选择标有特定的时区偏移。代表同一时刻，但不同的时区偏移值相等，但不完全相同。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-datetime-stamp" type="xs:dateTimeStamp">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Derived from dateTime by giving the value required to its explicitTimezone facet. The result is that all values of dateTimeStamp are required to have explicit time zone offsets and the datatype is totally ordered.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-datetime-stamp">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-datetime-stamp">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
                   <rdfs:comment xml:lang="en-us">Derived from dateTime by giving the value required to its explicitTimezone facet. The result is that all values of dateTimeStamp are required to have explicit time zone offsets and the datatype is totally ordered.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">इसकी explicitTimezone पहलू को अपेक्षित मूल्य देकर DATETIME से निकाली गई। नतीजा यह है कि dateTimeStamp के सभी मूल्यों स्पष्ट समय क्षेत्र ऑफसेट के लिए आवश्यक हैं और डेटा प्रकार पूरी तरह से आदेश दिया जाता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">المستمدة من التاريخ والوقت من خلال إعطاء القيمة المطلوبة إلى جانب explicitTimezone لها. والنتيجة هي أن على جميع قيم dateTimeStamp أن يكون صريحة إزاحة المنطقة الزمنية وأمرت نوع البيانات تماما.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Derivado de fechaHora dando el valor requerido para su faceta explicitTimezone. El resultado es que se requiere que todos los valores de datetimestamp tener desplazamientos de zona de tiempo especificados y el tipo de datos es totalmente ordenado.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Derivado do dateTime, dando o valor necessário para sua faceta explicitTimezone. O resultado é que todos os valores de DateTimeStamp são obrigados a ter compensações explícitas de fuso horário e o tipo de dados é totalmente ordenado.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">通过给需要它的explicitTimezone面的值从日期时间的。其结果是，dateTimeStamp的所有值都要求有明确的时区偏移和数据类型是完全有序。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
-
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-day" type="xs:gDay">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of
-                each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</xs:documentation>
+              <xs:documentation xml:lang="en-us">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-day">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-day">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gDay"/>
-                  <rdfs:comment xml:lang="en-us">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of
-                    each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक मनमाना माह के दिनों कि प्रत्येक (ग्रेगोरियन) महीने में एक ही बिंदु पर पुनरावृत्ति के भीतर पूरे दिन का प्रतिनिधित्व करता है। यह डेटा प्रकार महीने की एक विशिष्ट दिन प्रतिनिधित्व करने के लिए प्रयोग किया जाता है। उदाहरण के लिए इंगित करने के लिए, कि एक कर्मचारी को प्रत्येक माह की 15 तारीख को एक पेचेक हो जाता है। (जाहिर है, 28 से परे दिन सभी महीनों में घटित नहीं कर सकते हैं, वे फिर भी, अनुमति दी जाती है 31 तक)</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">एक मनमाना माह के दिनों कि प्रत्येक (ग्रेगोरियन) महीने में एक ही बिंदु पर पुनरावृत्ति के भीतर पूरे दिन का प्रतिनिधित्व करता है। यह डेटा प्रकार महीने की एक विशिष्ट दिन प्रतिनिधित्व करने के लिए प्रयोग किया जाता है। उदाहरण के लिए इंगित करने के लिए, कि एक कर्मचारी को प्रत्येक माह की 15 तारीख को एक पेचेक हो जाता है। (जाहिर है, 28 से परे दिन सभी महीनों में घटित नहीं कर सकते हैं, वे फिर भी, अनुमति दी जाती है 31 तक)</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Representa días enteros arbitrarios dentro de un mes-día que se repiten en el mismo punto en cada mes (gregoriano). Este tipo de datos se utiliza para representar un día específico del mes. Para indicar, por ejemplo, que un empleado recibe un cheque de pago el día 15 de cada mes. (Obviamente, más allá de 28 días no se pueden realizar en todos los meses, pero son las permitidas, hasta 31.)</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Representa dias inteiros dentro de um mês arbitrárias dias que se repetem no mesmo ponto em cada (gregoriano) mês. Este tipo de dados é usado para representar um dia específico do mês. Para indicar, por exemplo, que um empregado recebe um salário no dia 15 de cada mês. (Obviamente, dias além do dia 28 não pode ocorrer em todos os meses, pois eles são, no entanto, permitido, até 31.)</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">एक मनमाना माह के दिनों कि प्रत्येक (ग्रेगोरियन) महीने में एक ही बिंदु पर पुनरावृत्ति के भीतर पूरे दिन का प्रतिनिधित्व करता है। यह डेटा प्रकार महीने की एक विशिष्ट दिन प्रतिनिधित्व करने के लिए प्रयोग किया जाता है। उदाहरण के लिए इंगित करने के लिए, कि एक कर्मचारी को प्रत्येक माह की 15 तारीख को एक पेचेक हो जाता है। (जाहिर है, 28 से परे दिन सभी महीनों में घटित नहीं कर सकते हैं, वे फिर भी, अनुमति दी जाती है 31 तक)</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-month" type="xs:gMonth">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States,
-                --10 in Canada, and possibly other months in other countries).</xs:documentation>
+              <xs:documentation xml:lang="en-us">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States, --10 in Canada, and possibly other months in other countries).</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-month">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-month">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gMonth"/>
-                  <rdfs:comment xml:lang="en-us">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States,
-                    --10 in Canada, and possibly other months in other countries).</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States, --10 in Canada, and possibly other months in other countries).</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक मनमाना साल के महीनों है कि प्रत्येक वर्ष में एक ही बिंदु पर पुनरावृत्ति के भीतर पूरे (ग्रेगोरियन) महीने का प्रतिनिधित्व करता है। यह उदाहरण के लिए इस्तेमाल किया जा सकता है, क्या महीने वार्षिक धन्यवाद समारोह में विभिन्न देशों (संयुक्त राज्य अमेरिका में --11, कनाडा में --10, और संभवतः अन्य महीनों अन्य देशों में) में गिरावट कहने के लिए।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">تمثل أشهر كاملة (ميلادي) ضمن أشهر السنة التعسفية التي تتكرر في نفس النقطة في كل عام. فإنه يمكن استخدامها، على سبيل المثال، ليقول ما الشهر تقع احتفالات عيد الشكر السنوية في بلدان مختلفة (--11 في الولايات المتحدة، --10 في كندا، وربما أشهر أخرى في بلدان أخرى).</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Representa meses enteros (gregoriano) Dentro de un año arbitrarias meses que se repiten en el mismo punto en cada año. Podría ser utilizado, por ejemplo, para decir qué mes celebraciones de Acción de Gracias caen en diferentes países (--11 en los Estados Unidos, --10 en Canadá, y posiblemente otros meses en otros países).</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Representa meses inteiros (gregoriano) dentro de um ano arbitrárias meses que se repetem no mesmo ponto em cada ano. Pode ser usado, por exemplo, para dizer que mês celebrações anuais de graças cair em diferentes países (--11 nos Estados Unidos, --10 no Canadá, e possivelmente outros meses em outros países).</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">表示任意一年几个月复发在每年的相同点内整（阳历）个月。它可能被使用，例如，说什么一个月周年感恩庆典落在不同的国家（--11在美国，加拿大--10，以及其他可能的月份在其他国家）。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-year" type="xs:gYear">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Represents Gregorian calendar years.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-year">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-year">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
                   <rdfs:comment xml:lang="en-us">Represents Gregorian calendar years.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">ग्रेगोरियन कैलेंडर साल का प्रतिनिधित्व करता।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">يمثل سنة ميلادية.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Representa años calendario gregoriano.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Representa anos calendário gregoriano.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">代表阳历年。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-year-month" type="xs:gYearMonth">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Represents specific whole Gregorian months in specific Gregorian years.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-year-month">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-year-month">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYearMonth"/>
                   <rdfs:comment xml:lang="en-us">Represents specific whole Gregorian months in specific Gregorian years.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">विशिष्ट ग्रेगोरियन वर्षों में विशिष्ट पूरे ग्रेगोरियन महीने का प्रतिनिधित्व करता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">تمثل أشهر ميلادية كاملة محددة في سنة ميلادية معينة.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Representa meses gregorianos enteros específicos en años gregorianos específicos.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Representa meses gregorianos inteiras específicas em anos gregorianos específicos.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">代表了特定的格列高利年特定整个公历个月。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-month-day" type="xs:gMonthDay">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-month-day">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-month-day">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gMonthDay"/>
                   <rdfs:comment xml:lang="en-us">Represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">पूरे कैलेंडर दिनों कि प्रत्येक कैलेंडर वर्ष में एक ही बिंदु पर फिर से याद पड़ना, या कि कुछ मनमाने ढंग से कैलेंडर वर्ष में होते हैं प्रतिनिधित्व करता है। (जाहिर है, 28 से परे दिन सभी Februaries में नहीं हो सकता, फिर भी 29 अनुमति दी है।)</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">يمثل يوما كاملة التي تتكرر في نفس النقطة في كل سنة تقويمية، أو التي تحدث في بعض السنة التقويمية التعسفي. (من الواضح، أيام ما بعد 28 لا يمكن أن يحدث في كل Februaries (29)؛ وعلى الرغم من ذلك مسموح به.)</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Representa días naturales enteros que se repiten en el mismo punto en cada año calendario, o que ocurren en algún año calendario arbitrario. (Obviamente, más allá de 28 días no pueden ocurrir en todos los febreros; sin embargo, se permitió 29).</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Representa dias inteiros que se repetem no mesmo ponto em cada ano civil, ou que ocorrem em algum ano-calendário arbitrário. (Obviamente, dias além do dia 28 não pode ocorrer em todas as Februaries; 29 não deixa de ser permitida.)</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">表示复发在每个日历年度的相同点，或发生在一些任意历年全日历天。 （显然，28天以后就不会发生在所有Februaries;29仍然允许的。）</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-duration" type="xs:duration">
@@ -1416,53 +1408,61 @@
                 "'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs, and can be the result of
                 subtracting dateTime values.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-duration">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-duration">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#duration"/>
                   <rdfs:comment xml:lang="en-us">A datatype that represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, "15 days" (whose most common lexical representation in duration is
                     "'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs, and can be the result of
                     subtracting dateTime values.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक डेटा प्रकार है कि समय की अवधियों का प्रतिनिधित्व करता है। अवधि की अवधारणा, कब्जा किया जा रहा [आईएसओ 8601] के उन लोगों से तैयार की है विशेष रूप से तय समापन के बिना durations। उदाहरण के लिए, "15 दिनों" (जिसका अवधि में सबसे आम शाब्दिक प्रतिनिधित्व है
+                                         " 'P15D'") एक अवधि मान है; "समाप्त होने के 12 जुलाई 1995 के 15 दिन" "15 दिन 12 जुलाई 1995 के शुरुआत" और अवधि मूल्यों को नहीं कर रहे हैं। यह डेटा प्रकार अवधि मूल्यों के बीच और अवधि / datetime मूल्य जोड़े के बीच इसके अलावा और घटाव के संचालन प्रदान कर सकते हैं, और का नतीजा हो सकता
+                                         dateTime मूल्यों घटाकर।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">ونوع البيانات التي تمثل فترات من الزمن. مفهوم مدة إلقاء القبض عليه ويوجه من تلك [ISO 8601]، والمدد على وجه التحديد دون نقاط النهاية الثابتة. على سبيل المثال، "15 يوما" (التي التمثيل المفردات الأكثر شيوعا في مدة لا
+                                         "" P15D ") هو قيمة المدة. "15 يوما تبدأ 12 يوليو 1995" و "15 يوما تنتهي في 12 يوليو 1995" ليست قيما المدة. هذه البيانات يمكن أن توفر عمليات الجمع والطرح بين القيم مدة وبين مدة أزواج قيمة / التاريخ والوقت، ويمكن أن يكون نتيجة ل
+                                         طرح قيم التاريخ والوقت.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Un tipo de datos que representa las duraciones de tiempo. El concepto de duración de ser capturado se extrae de las de [ISO 8601], específicamente duraciones sin puntos finales fijos. Por ejemplo, "15 días" (cuya representación léxica más común en la duración es
+                                         "'P15D'") es un valor de duración; "15 días a partir del 12 de julio de 1995" y "15 días que termina el 12 de julio de 1995" no son valores de duración. Este tipo de datos puede proporcionar las operaciones de suma y resta entre los valores de duración y entre pares de valores de duración / dateTime, y puede ser el resultado de
+                                         restando los valores de fecha y hora.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Um tipo de dados que representa períodos de tempo. O conceito de duração sendo capturado é tirado dos de [ISO 8601], durações especificamente sem extremos fixos. Por exemplo, "15 dias" (cuja representação lexical mais comum em duração é
+                                         "'P15D'") é um valor de duração; "15 dias com início 12 de julho de 1995" e "15 dias que termina 12 de julho de 1995" não são valores de duração. Este tipo de dados pode fornecer operações de adição e subtração entre valores de duração e entre os pares de valor de duração / DateTime, e pode ser o resultado de
+                                         subtraindo valores data e hora.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">表示的持续时间数据类型。时间的概念被抓获从这些[ISO 8601]绘制，具体持续时间没有固定端点。例如，“十五日”（其持续时间最常见的词汇表示是
+                                        “'P15D'”）是一个持续时间值; “15天，自1995年7月12日”和“十五日内结束投放的1995年7月12日”都没有时间值。此数据类型可以提供加减运算时间值之间和持续时间/日期值对之间，可结果
+                                        减去DateTime值。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-ymduration" type="xs:yearMonthDuration">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">a datatype ·derived· from duration by restricting its ·lexical representations· to instances of yearMonthDurationLexicalRep. The ·value space· of yearMonthDuration is therefore that of duration restricted to those whose ·seconds· property is 0. This
-                results in a duration datatype which is totally ordered.</xs:documentation>
+              <xs:documentation xml:lang="en-us">A datatype derived from duration by restricting its lexical representations to instances of yearMonthDurationLexicalRep. The value space of yearMonthDuration is therefore that of duration restricted to those whose seconds property is 0. This results in a duration datatype which is totally ordered.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-ymduration">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-ymduration">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#yearMonthDuration"/>
-                  <rdfs:comment xml:lang="en-us">a datatype ·derived· from duration by restricting its ·lexical representations· to instances of yearMonthDurationLexicalRep. The ·value space· of yearMonthDuration is therefore that of duration restricted to those whose ·seconds· property is 0. This
-                    results in a duration datatype which is totally ordered.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">A datatype derived from duration by restricting its lexical representations to instances of yearMonthDurationLexicalRep. The value space of yearMonthDuration is therefore that of duration restricted to those whose seconds property is 0. This results in a duration datatype which is totally ordered.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक डेटा प्रकार yearMonthDurationLexicalRep के उदाहरण के लिए इसके शाब्दिक अभ्यावेदन सीमित द्वारा अवधि से निकाली गई। yearMonthDuration के मूल्य अंतरिक्ष इसलिए उन जिसका सेकंड संपत्ति 0. है यह एक अवधि डेटा प्रकार जो पूरी तरह से आदेश दिया है में परिणाम के लिए प्रतिबंधित अवधि का है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">نوع بيانات مستمدة من مدة عن طريق تقييد تمثيلاتها المعجمية لحالات yearMonthDurationLexicalRep. وبالتالي فإن مساحة قيمة yearMonthDuration هو أن مدة تقتصر على أولئك الذين ثواني الملكية هو 0. وهذا يؤدي إلى نوع بيانات مدة التي أمر تماما.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Un tipo de datos deriva de duración mediante la restricción de sus representaciones léxicas a los casos de yearMonthDurationLexicalRep. Por consiguiente, el espacio de valores de yearMonthDuration es el de duración limitada a aquellos cuyas propiedades segundo es 0. Esto da lugar a un tipo de datos de duración que está totalmente ordenó.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Um tipo de dados derivado de duração, restringindo suas representações lexicais a instâncias de yearMonthDurationLexicalRep. O espa de valor de yearMonthDuration é, por conseguinte, que de duração restrita àqueles cuja segundos propriedade é 0. Isso resulta em um tipo de dados de duração que é totalmente ordenado.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">一个数据类型从持续时间延长限制其词汇交涉yearMonthDurationLexicalRep实例的。因此yearMonthDuration的值空间是持续时间受限于那些秒属性是0。这导致在一个持续时间的数据类型是完全有序的。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
-
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-dtduration" type="xs:dayTimeDuration">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">A datatype ·derived· from duration by restricting its ·lexical representations· to instances of dayTimeDurationLexicalRep. The ·value space· of dayTimeDuration is therefore that of duration restricted to those whose ·months· property is 0. This
-                results in a duration datatype which is totally ordered.</xs:documentation>
+              <xs:documentation xml:lang="en-us">A datatype derived from duration by restricting its lexical representations to instances of dayTimeDurationLexicalRep. The value space of dayTimeDuration is therefore that of duration restricted to those whose months property is 0. This results in a duration datatype which is totally ordered.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdtemporal-dtduration">
-                  <rdfs:domain rdf:resource="XdTemporalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-dtduration">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dayTimeDuration"/>
-                  <rdfs:comment xml:lang="en-us">A datatype ·derived· from duration by restricting its ·lexical representations· to instances of dayTimeDurationLexicalRep. The ·value space· of dayTimeDuration is therefore that of duration restricted to those whose ·months· property is 0. This
-                    results in a duration datatype which is totally ordered.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">A datatype derived from duration by restricting its lexical representations to instances of dayTimeDurationLexicalRep. The value space of dayTimeDuration is therefore that of duration restricted to those whose months property is 0. This results in a duration datatype which is totally ordered.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक डेटा प्रकार dayTimeDurationLexicalRep के उदाहरण के लिए इसके शाब्दिक अभ्यावेदन सीमित द्वारा अवधि से निकाली गई। dayTimeDuration के मूल्य अंतरिक्ष इसलिए उन जिसका महीनों संपत्ति 0. है यह एक अवधि डेटा प्रकार जो पूरी तरह से आदेश दिया है में परिणाम के लिए प्रतिबंधित अवधि का है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">نوع بيانات مستمدة من مدة عن طريق تقييد تمثيلاتها المعجمية لحالات dayTimeDurationLexicalRep. وبالتالي فإن مساحة قيمة dayTimeDuration هو أن مدة تقتصر على أولئك الذين شهرا الملكية هو 0. وهذا يؤدي إلى نوع بيانات مدة التي أمر تماما.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Un tipo de datos deriva de duración mediante la restricción de sus representaciones léxicas a los casos de dayTimeDurationLexicalRep. Por consiguiente, el espacio de valores de dayTimeDuration es el de duración limitada a aquellos cuyas propiedades mes es 0. Esto da lugar a un tipo de datos de duración que está totalmente ordenó.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Um tipo de dados derivado de duração, restringindo suas representações lexicais a instâncias de dayTimeDurationLexicalRep. O espa de valor de dayTimeDuration é, por conseguinte, que de duração restrita àqueles cuja meses propriedade é 0. Isso resulta em um tipo de dados de duração que é totalmente ordenado.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">一个数据类型从持续时间延长限制其词汇交涉dayTimeDurationLexicalRep实例的。因此dayTimeDuration的值空间是持续时间受限于那些个属性是0。这导致在一个持续时间的数据类型是完全有序的。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1471,12 +1471,13 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="XdTemporal" substitutionGroup="s3m:XdAny" type="s3m:XdTemporalType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdTemporal">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporal">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdTemporalType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
