@@ -1970,15 +1970,16 @@
     <xs:annotation>
       <xs:documentation xml:lang="en-us">Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which my be coded.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="AttestationType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">AttestationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which my be coded.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">रिकॉर्ड की सामग्री मद (s) की एक पार्टी द्वारा एक सत्यापन रिकॉर्ड। सत्यापन के प्रकार के कारण विशेषता है, जो कोडित किया My से दर्ज की गई है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">يسجل شهادة من قبل طرف من البند (ق) من محتوى قياسية. يتم تسجيل نوع من شهادة من قبل السمة السبب، والذي نفسي تكون مشفرة.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Registrar un certificado por un grupo de elemento (s) del contenido del documento. El tipo de certificación es registrada por el atributo de la razón, que mi ser codificado.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Grave a declaração por um grupo de item (s) de conteúdo de registro. O tipo de comprovação é registrado pelo atributo razão, que o meu ser codificada.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">通过记录内容项目（S）的一方记录的证明。类型认证的由原因属性，它我的编码记录。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1987,14 +1988,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="label">
-              <rdfs:domain rdf:resource="AttestationType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType/label">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस डेटा प्रकार के मॉडल का वर्णनात्मक नाम। मॉडल के लिए अर्थ 'नाम' प्रदान करता है। की जगह क्या एक्सएमएल तत्व नाम या पारंपरिक मॉडलिंग में वर्ग के नाम होगा।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اسم وصفي هذا النوع من البيانات نموذج. يوفر 'اسم' الدلالي للنموذج. محل ما يمكن أن يكون اسم عنصر XML أو اسم الفئة في النمذجة التقليدية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">nombre descriptivo de este modelo de tipo de datos. Proporciona el 'nombre' semántica para el modelo. Sustituye lo que sería XML nombre del elemento o nombre de la clase en el modelado convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">nome descritivo deste modelo tipo de dados. Fornece o 'nome' semântico para o modelo. Substitui o que seria XML nome do elemento ou nome de classe na modelagem convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">这种数据类型的模型描述性名称。为模型中的语义“名字”。替换什么是XML元素的名称，或在传统的模拟类名。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2003,14 +2005,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Optional visual representation of content attested e.g. screen image.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="view">
-              <rdfs:domain rdf:resource="AttestationType"/>
-              <rdfs:range rdf:resource="XdFileType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType/view">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
               <rdfs:comment xml:lang="en-us">Optional visual representation of content attested e.g. screen image.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">सामग्री के वैकल्पिक दृश्य प्रतिनिधित्व जैसे अभिप्रमाणित स्क्रीन छवि।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">التمثيل المرئي اختياري من المحتويات يشهد على سبيل المثال الصورة المعروضة على الشاشة.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Opcional representación visual del contenido atestiguada por ejemplo, imagen de la pantalla.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">representação visual opcional de conteúdo atestada por exemplo imagem na tela.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">内容可选的视觉表现证明如屏幕图像。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2019,14 +2022,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Proof of attestation such as an GPG signature.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="proof">
-              <rdfs:domain rdf:resource="AttestationType"/>
-              <rdfs:range rdf:resource="XdFileType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType/proof">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
               <rdfs:comment xml:lang="en-us">Proof of attestation such as an GPG signature.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">एक GPG हस्ताक्षर के रूप में इस तरह के सत्यापन का प्रमाण।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">دليل على شهادة مثل توقيع المنافع العامة العالمية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">La prueba de certificación, tales como una firma GPG.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">A prova de comprovação, como uma assinatura GPG.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">认证如GPG签名的证明。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2035,14 +2039,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Reason of this attestation. Usually coded from a standardized vocabulary.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="reason">
-              <rdfs:domain rdf:resource="AttestationType"/>
-              <rdfs:range rdf:resource="XdStringType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType/reason">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
               <rdfs:comment xml:lang="en-us">Reason of this attestation. Usually coded from a standardized vocabulary.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस सत्यापन के कारण। आम तौर पर एक मानकीकृत शब्दावली से कोडित।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">السبب في ذلك شهادة. مشفرة عادة من مفردات موحدة.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Motivo de esta certificación. Por lo general, codificada de un vocabulario estandarizado.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Motivo desta certificação. Normalmente, codificada a partir de um vocabulário padronizado.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">该认证的原因。通常是从一个标准化的词汇编码。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2051,14 +2056,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Identity of person who committed the item.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="committer">
-              <rdfs:domain rdf:resource="AttestationType"/>
-              <rdfs:range rdf:resource="PartyType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType/committer">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:comment xml:lang="en-us">Identity of person who committed the item.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">जो व्यक्ति आइटम प्रतिबद्ध की पहचान।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">هوية الشخص الذي ارتكب هذا البند.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Identidad de la persona que cometió el artículo.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Identidade de pessoa que cometeu o item.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">人谁犯的项目标识。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2067,14 +2073,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Timestamp of committal of the item.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="committed">
-              <rdfs:domain rdf:resource="AttestationType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType/committed">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
               <rdfs:comment xml:lang="en-us">Timestamp of committal of the item.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">आइटम के दफ़न की टाइमस्टैम्प।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">الطابع الزمني لإحالة هذا البند.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Marca de tiempo de internamiento del artículo.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Timestamp de compromisso do item.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">该项目的拘押时间戳。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2083,26 +2090,28 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">True if this attestation is outstanding; 'false' means it has been completed.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="pending">
-              <rdfs:domain rdf:resource="AttestationType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType/pending">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
               <rdfs:comment xml:lang="en-us">True if this attestation is outstanding; 'false' means it has been completed.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">यह सच है कि अगर यह सत्यापन बकाया है; 'गलत' यह पूरा हो गया है इसका मतलब है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">صحيح إذا كان هذا شهادة المعلقة. 'كاذبة' يعني تم الانتهاء منه.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Es cierto que si esta declaración es excepcional; "Falsa" significa que se ha completado.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Verdadeiro se este atestado é excelente; "Falso" significa que tenha sido concluída.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">如果此认证是优秀的; “假”意味着它已经完成。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  
   <xs:element name="Attestation" type="s3m:AttestationType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="Attestation">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Attestation">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="AttestationType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
