@@ -803,15 +803,16 @@
     <xs:annotation>
       <xs:documentation xml:lang="en-us">Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdQuantifiedType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType"/>
-          <rdfs:subClassOf rdf:resource="XdOrderedType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
           <rdfs:label xml:lang="en-us">XdQuantifiedType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">सार प्रकार सच्चे मात्रा निर्धारित मूल्यों की अवधारणा को परिभाषित है, यानी मूल्यों जो केवल आदेश नहीं कर रहे हैं, लेकिन जो एक सटीक परिमाण है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">نمط مجرد تحديد مفهوم القيم كميا الحقيقية، أي القيم التي لا يؤمر به إلا، ولكن التي لديها حجم الدقيق.</rdfs:comment>
+          <rdfs:comment xml:lang="es">tipo abstracto que define el concepto de valores cuantificados verdaderos, es decir, valores que no sólo sean ordenados, pero que tienen una magnitud precisa.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">tipo abstrato definir o conceito de valores quantificados verdadeiros, ou seja, valores que não são apenas solicitados, mas que têm uma magnitude precisa.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">抽象类型定义量化真值的概念，即，不仅有序，但它的值有一个精确的幅度。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -822,14 +823,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Optional status of magnitude.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="magnitude-status">
-                  <rdfs:domain rdf:resource="XdQuantifiedType"/>
-                  <rdfs:range rdf:resource="MagnitudeStatus"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType/magnitude-status">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus"/>
                   <rdfs:comment xml:lang="en-us">Optional status of magnitude.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">परिमाण के वैकल्पिक स्थिति।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">وضع اختياري من حجمها.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Opcional estado de magnitud.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Status Opcional de magnitude.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">幅度的可选状态。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -838,14 +840,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Error margin of measurement, indicating error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e. no error.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="error">
-                  <rdfs:domain rdf:resource="XdQuantifiedType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType/error">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
                   <rdfs:comment xml:lang="en-us">Error margin of measurement, indicating error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e. no error.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">माप की त्रुटि मार्जिन, रिकॉर्डिंग विधि या साधन (+/-%) में त्रुटि का संकेत है। 0 के एक तार्किक मान 100% सटीकता, यानी ऐसी कोई त्रुटि इंगित करता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">هامش الخطأ في القياس، مشيرا إلى خطأ في طريقة تسجيل أو أداة (+/-٪). قيمة منطقية من 0 إلى دقة 100٪، أي عدم وجود خطأ.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">margen de error de la medición, de error que indica en el método de grabación o instrumento (+/-%). Un valor lógico de 0 indica que el 100% de precisión, es decir, no hay error.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">margem de erro de medição, o que indica erro no método de gravação ou instrumento (+/-%). Um valor lógico 0 indica 100% de precisão, ou seja, nenhum erro.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">测量的误差，这表明在记录方法或仪器（+/-％）错误。 0逻辑值表示100％的准确率，即没有错误。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -855,14 +858,15 @@
               <xs:documentation xml:lang="en-us"/>
               <xs:documentation xml:lang="en-us">Accuracy of the value in the magnitude attribute in the range 0% to (+/-)100%. A value of 0 means that the accuracy is unknown.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="accuracy">
-                  <rdfs:domain rdf:resource="XdQuantifiedType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType/accuracy">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
                   <rdfs:comment xml:lang="en-us">Accuracy of the value in the magnitude attribute in the range 0% to (+/-)100%. A value of 0 means that the accuracy is unknown.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">(+/-) 100% करने के लिए रेंज 0% परिमाण विशेषता में मूल्य की सटीकता की। मान 0 का मतलब है कि सटीकता अज्ञात है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">دقة القيمة في سمة الضخامة في النطاق من 0٪ إلى (+/-) 100٪. قيمة 0 تعني أن دقة غير معروف.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">La exactitud del valor en el atributo de magnitud en el rango de 0% a (+/-) 100%. Un valor de 0 significa que la precisión es desconocida.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Precisão do valor no atributo magnitude no intervalo de 0% para (+/-) 100%. Um valor de 0 significa que a precisão é desconhecida.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">在范围为0％的幅度属性（+/-）100％的值的精确度。 0值意味着精度是未知的。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -874,9 +878,9 @@
   <xs:element abstract="true" name="XdQuantified" substitutionGroup="s3m:XdAny" type="s3m:XdQuantifiedType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdQuantified">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantified">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdQuantifiedType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
