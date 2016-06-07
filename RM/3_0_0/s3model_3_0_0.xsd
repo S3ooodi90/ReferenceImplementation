@@ -23,8 +23,6 @@
     </xs:appinfo>
   </xs:annotation>
 
-  <!--Datatypes package-->
-
   <xs:complexType abstract="true" name="XdAnyType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">Serves as the common ancestor of all eXtended data-types (Xd*) in S3Model.</xs:documentation>
@@ -34,11 +32,11 @@
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">XdAnyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Serves as a common ancestor of all eXtended data-types (Xd*) in S3Model.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> 
-          <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">सभी विस्तारित डेटा प्रकार (XD *) S3 मॉडल में से एक ही पूर्वज के रूप में कार्य करता है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">بمثابة سلف مشترك من جميع أنواع البيانات الموسعة (Xd ل*) في S3 النموذجي.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Sirve como un ancestro común de todos los tipos de datos extendida (Xd *) en S3 Modelo.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Serve como um ancestral comum de todos os dados-tipos estendidos (XD *) Em S3 Modelo.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">作为在S3型号所有扩展数据类型（XD*）的一个共同的祖先。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -48,15 +46,15 @@
           <xs:documentation xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be a global XML element name or class name in conventional modeling.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType/label">
-              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:label xml:lang="en-us">label</rdfs:label>
               <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be a global XML element name or class name in conventional modeling.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> 
-              <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस डेटा प्रकार के मॉडल का वर्णनात्मक नाम। मॉडल के लिए अर्थ 'नाम' प्रदान करता है। की जगह क्या पारंपरिक मॉडलिंग में एक वैश्विक एक्सएमएल तत्व का नाम या वर्ग के नाम होगा।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اسم وصفي هذا النوع من البيانات نموذج. يوفر 'اسم' الدلالي للنموذج. محل ما يمكن أن يكون اسما أو فئة عنصر XML اسم عالمي في مجال النمذجة التقليدية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">nombre descriptivo de este modelo de tipo de datos. Proporciona el 'nombre' semántica para el modelo. Sustituye a lo que sería un nombre o tipo de elemento XML nombre global en el modelado convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">nome descritivo deste modelo tipo de dados. Fornece o 'nome' semântico para o modelo. Substitui o que seria um nome ou nome de classe mundial elemento XML na modelagem convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">这种数据类型的模型描述性名称。为模型中的语义“名字”。取代这将是传统造型的全局XML元素名称或类别名称。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -66,97 +64,92 @@
           <xs:documentation xml:lang="en-us">In an invalid instance, the application can indicate here why data is missing or invalid. The sub-types are based on ISO 21090 NULL Flavors entries, with additions noted from real-world usage.</xs:documentation>
         </xs:annotation>
       </xs:element>
-
       <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Valid Time Begin. If present this must be a valid datetime including timezone. It is used to indicate the beginning time that information is considered valid.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType/vtb">
-              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
               <rdfs:label xml:lang="en-us">vtb</rdfs:label>
               <rdfs:comment xml:lang="en-us">Valid Time Begin. If present this must be a valid datetime including timezone. It is used to indicate the beginning time that information is considered valid.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> 
-              <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">मान्य समय शुरू करो। अगर मौजूद है इस समय क्षेत्र सहित एक वैध datetime होना चाहिए। यह शुरुआत का समय है कि जानकारी वैध माना जाता है इंगित करने के लिए प्रयोग किया जाता है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">صحيح الوقت بيغن. إذا كان موجودا يجب أن يكون هذا التاريخ والوقت ساري المفعول بما في ذلك التوقيت. يتم استخدامه للإشارة إلى بداية الوقت أن المعلومات تعتبر سارية المفعول.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Tiempo válido Begin. Si está presente esta debe ser una fecha y hora válida incluyendo la zona horaria. Se utiliza para indicar la hora de inicio que la información se considera válido.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Hora de início válida. Se estiver presente este deve ser um datetime válido incluindo fuso horário. É usado para indicar a hora de início que a informação é considerado válido.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">有效时间开始。如果存在这一定是包括时区的有效日期时间。它被用于指示该信息被认为是有效的开始时间。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-
       <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Valid Time End. If present this must be a valid date-time including timezone. It is used to indicate the ending time that information is considered valid or the time the information expired or will expire.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType/vte">
-              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
               <rdfs:label xml:lang="en-us">vte</rdfs:label>
               <rdfs:comment xml:lang="en-us">Valid Time End. If present this must be a valid date-time including timezone. It is used to indicate the ending time that information is considered valid or the time the information expired.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment>
-              <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">मान्य समय अंत। अगर मौजूद है इस समय क्षेत्र सहित एक मान्य दिनांक-समय होना चाहिए। यह समाप्त होने का समय है कि जानकारी समय की जानकारी समाप्त हो गई है या वैध माना जाता है इंगित करने के लिए प्रयोग किया जाता है।</rdfs:comment>
+              <rdfs:comment xml:lang="ar">نهاية الوقت صالح. إذا كان موجودا يجب أن يكون لمرة وتاريخ صالح بما في ذلك المنطقة الزمنية. يتم استخدامه للإشارة إلى وقت النهاية أن المعلومات يعتبر ساري المفعول أو الوقت انتهت من المعلومات.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Hora de finalización válida. Si está presente esta debe ser una fecha-hora válida incluida la zona horaria. Se utiliza para indicar la hora de finalización que la información se considera válida o el tiempo de la información expiró.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">End Time válido. Se estiver presente este deve ser um tempo de data válida incluindo o fuso horário. É usado para indicar a hora de fim de que a informação é considerada válida, ou o tempo da informação expirado.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">有效时间结束。如果存在这一定是一个有效的日期，时间，包括时区。它被用于指示该信息被认为是有效或信息过期的时间的结束时间。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-
       <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTimeStamp" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Time Recorded. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was recorded.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType/tr">
-              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
               <rdfs:label xml:lang="en-us">tr</rdfs:label>
               <rdfs:comment xml:lang="en-us">Time Recorded. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was recorded.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment>
-              <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">समय दर्ज की गई। वर्तमान यदि यह एक मान्य दिनांक-समय टिकट होना चाहिए। यह वास्तविक तारीख और समय डेटा दर्ज किया गया था इंगित करने के लिए प्रयोग किया जाता है।</rdfs:comment>
+              <rdfs:comment xml:lang="ar">الوقت المسجل. إذا كان موجودا هذا يجب أن يكون طابع التاريخ مرة وصالح. يتم استخدامه للإشارة إلى وقت التاريخ الفعلي وتسجيل البيانات.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Tiempo registrado. Si está presente este debe ser un sello con la fecha válida. Se utiliza para indicar la fecha real y el momento en que se registran los datos.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Hora da gravação. Se estiver presente este deve ser um carimbo de data e hora válido. É usado para indicar a data e a hora real os dados foram gravados.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">记录时间。如果存在这必须是一个有效的日期时间戳。它用于指示数据被记录在实际日期和时间。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
-      </xs:element>
-      
+      </xs:element>      
       <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTimeStamp" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Time Modified. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was last changed.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType/modified">
-              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
               <rdfs:label xml:lang="en-us">modified</rdfs:label>
               <rdfs:comment xml:lang="en-us">Time Modified. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was last changed.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment>
-              <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">समय संशोधित। वर्तमान यदि यह एक मान्य दिनांक-समय टिकट होना चाहिए। यह वास्तविक तारीख और समय डेटा पिछले बदल गया था इंगित करने के लिए प्रयोग किया जाता है।</rdfs:comment>
+              <rdfs:comment xml:lang="ar">وقت التعديل. إذا كان موجودا هذا يجب أن يكون طابع التاريخ مرة وصالح. يتم استخدامه للإشارة إلى وقت التاريخ الفعلي والبيانات تم تغيير آخر.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Hora de modificación. Si está presente este debe ser un sello con la fecha válida. Se utiliza para indicar la fecha real y el tiempo de los datos se cambió por última vez.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Tempo de modificação. Se estiver presente este deve ser um carimbo de data e hora válido. É usado para indicar a data real e o momento em que o último foi mudado de dados.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">修改的时间。如果存在这必须是一个有效的日期时间戳。它被用来指示的实际日期和时间数据被最后改变。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
-      </xs:element>
-      
+      </xs:element>      
       <xs:element maxOccurs="1" minOccurs="0" name="latitude" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Latitude in decimal format. Value range -90.000000 to 90.000000.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType/latitude">
-              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
               <rdfs:label xml:lang="en-us">latitude</rdfs:label>
               <rdfs:comment xml:lang="en-us">Latitude in decimal format. Value range -90.000000 to 90.000000.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> 
-              <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">दशमलव प्रारूप में अक्षांश। मूल्य सीमा -९०.०००००० 90.000000 के लिए।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">الحرية في تنسيق عشري. مجموعة قيمة -90،000000 إلى 90.000000.</rdfs:comment>
+              <rdfs:comment xml:lang="es">La latitud en formato decimal. Rango de valores -90,000000-90,000000.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Latitude em formato decimal. faixa de valor -90,000000 para 90,000 mil.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">纬度十进制格式。值范围-90.000000至90.000000。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -168,22 +161,21 @@
             <xs:minInclusive value="-90.000000"/>
           </xs:restriction>
         </xs:simpleType>
-      </xs:element>
-      
+      </xs:element>      
       <xs:element maxOccurs="1" minOccurs="0" name="longitude" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Longitude in decimal format. Value range -180.000000 to 180.000000.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType/longitude">
-              <rdfs:domain rdf:resource="XdAnyType"/>
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
               <rdfs:label xml:lang="en-us">longitude</rdfs:label>
               <rdfs:comment xml:lang="en-us">Longitude in decimal format. Value range -180.000000 to 180.000000.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> 
-              <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">दशमलव प्रारूप में देशांतर। मूल्य सीमा -१८०.०००००० 180.000000 है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">خط الطول في تنسيق عشري. مجموعة قيمة -180.000000 إلى 180.000000.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Longitud en formato decimal. Rango de valores -180,000000-180,000000.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Longitude em formato decimal. faixa de valor -180,000000 para 180,000 mil.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">经度十进制格式。值范围-180.000000为180.000000。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -219,17 +211,32 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdBooleanType.html#XdBooleanType"/>
-          <rdfs:subClassOf rdf:resource="XdAnyType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdBooleanType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Items which represent boolean decisions, such as true/false or yes/no answers. Use for such data, it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false. The
-            possible choices for True or False are enumerations in the CCM. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. Potential Misuse: The XdBooleanType should not be used as a replacement for enumerated types such as
+            possible choices for True or False are enumerations in the CM. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. Potential Misuse: The XdBooleanType should not be used as a replacement for enumerated types such as
             male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, 'true' and 'false' are contained in an xs:choice and only one or the other is instantiated
-            in the instance data with its value coming from the enumerations defined in a CCM.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> 
-          <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+            in the instance data with its value coming from the enumerations defined in a CM.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">आइटम जो इस तरह के सही / गलत या हां / नहीं जवाब के रूप में बूलियन निर्णय, प्रतिनिधित्व करते हैं। इस तरह के डेटा के लिए प्रयोग करें, यह अर्थ (आमतौर पर व्यक्तिपरक डेटा में प्रश्न) वसीयत करने के लिए ध्यान, ताकि केवल अनुमति परिणाम सही है या गलत वास्तव में महत्वपूर्ण है।
+                         सही है या गलत के लिए संभव विकल्पों मुख्यमंत्री में enumerations हैं। संदर्भ मॉडल को परिभाषित करता है 'सच' और एक विकल्प तो केवल एक या अन्य उदाहरण डेटा में मौजूद हो सकता है में 'गलत'। संभावित दुरुपयोग: XdBooleanType जैसे प्रगणित प्रकार के लिए एक स्थानापन्न के रूप में इस्तेमाल नहीं किया जाना चाहिए
+                         पुरुष / महिला, आदि इस तरह के मूल्यों enumerations साथ XdStrings के रूप में मॉडलिंग की जानी चाहिए और एक नियंत्रित शब्दावली संदर्भ हो सकता है। किसी भी मामले में गणन अक्सर दो से अधिक मान है। तत्वों, 'सच' और 'गलत' एक XS में समाहित कर रहे हैं: चुनाव और केवल एक या अन्य चालू है
+                         अपने मूल्य enumerations एक मुख्यमंत्री में परिभाषित से आने के साथ उदाहरण के डेटा में।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">البنود التي تمثل قرارات منطقية مثل صح / خطأ أو نعم / لا إجابات. استخدام لهذه البيانات، فمن الأهمية بمكان وضع المعاني (عادة الأسئلة في البيانات الذاتية) بعناية، بحيث تكون نتائج يسمح فقط هي في الواقع صحيحة أو خاطئة. ال
+                         الخيارات الممكنة للصواب أو خطأ والتعدادات في CM. يحدد النموذج المرجعي "صحيح" و "كاذبة" في خيار واحد وذلك فقط أو أخرى قد تكون موجودة في البيانات مثيل. سوء استخدام محتمل: إن XdBooleanType لا ينبغي أن تستخدم كبديل لأنواع المذكورة مثل
+                         ذكر / أنثى، وما إلى ذلك ينبغي أن تكون على غرار هذه القيم كما XdStrings مع التعدادات وقد مرجع مفردات قياسية. على أي حال في كثير من الأحيان التعداد أكثر من قيمتين. وترد العناصر، "صحيح" و "كاذبة" في XS: اختيار واحد فقط أو الآخر مثيل
+                         في بيانات المثيل مع قيمته القادمة من التعدادات محددة في سم.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Los artículos que representan las decisiones booleanos, como verdadero / falso o sí / no respuestas. El uso para este tipo de datos, es importante idear los significados (por lo general las preguntas en datos subjetivos) con cuidado, de manera que los resultados sólo se permiten en realidad son verdaderas o falsas. los
+                         posibles opciones para Verdadero o Falso son enumeraciones en el CM. El modelo de referencia define "verdadero" y "falso" en una elección tan sólo uno o el otro puede estar presente en los datos de la instancia. El mal uso potencial: La XdBooleanType no debe ser utilizado como un sustituto de los tipos enumerados como
+                         macho / hembra, etc. Tales valores deben ser modelado como XdStrings con enumeraciones y puede hacer referencia a un vocabulario controlado. En cualquier caso la enumeración a menudo tiene más de dos valores. Los elementos, "verdadero" y "falso" están contenidos en una xs: elección y sólo uno o el otro se crea una instancia
+                         en los datos de la instancia con su valor procedente de las enumeraciones definidas en un CM.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Itens que representam decisões boolean, como verdadeiro / falso ou respostas sim / não. Utilizar para esses dados, é importante elaborar os significados (geralmente perguntas em dados subjetivos) cuidadosamente, de modo que os resultados só permitidas são de fato verdadeiras ou falsas. o
+                         possíveis opções para Verdadeiro ou Falso são enumerações no CM. O modelo de referência define "verdadeiro" e "falso" em uma escolha tão somente um ou outro pode estar presente nos dados de instância. Desvio Potencial: O XdBooleanType não deve ser utilizado como um substituto para tipos enumerados como
+                         masculino / feminino, etc. Tais valores devem ser modelados como XdStrings com enumerações e pode fazer referência a um vocabulário controlado. Em qualquer caso, a enumeração tem muitas vezes mais do que dois valores. Os elementos, "verdadeiro" e "falso" estão contidos em um xs: escolha e apenas um ou o outro é instanciado
+                         nos dados de instância com o seu valor proveniente das enumerações definidas em um CM.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">这表示布尔决定，如真/假或是/否的答案项。使用这样的数据，它要仔细设计的含义（通常在主观数据的问题），因此，只允许结果实际上真的还是假的是重要的。该
+                        为真或假可能的选择是在CM枚举。该参考模型定义“真”，并在选择，以便只有一个或另一个可以存在于实例数据“假”。潜在的滥用：本XdBooleanType不应被用作用于枚举类型诸如替换
+                        男/女，等等。这样的价值观应该被建模为具有枚举XdStrings和可以引用一个受控词汇。在任何情况下枚举往往具有两个以上的值。元素，“真”和“假”被包含在一个xs：选择和仅一个或另一个被实例
+                        与它的价值来自于CM中定义的枚举传来的实例数据。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -238,32 +245,34 @@
         <xs:choice maxOccurs="1" minOccurs="1">
           <xs:element name="true-value" type="xs:string">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">A string that represents a boolean True in the implementation. These are constrained by a set of enumerations in the DM.</xs:documentation>
+              <xs:documentation xml:lang="en-us">A string that represents a boolean True in the implementation. These are constrained by a set of enumerations in the CM.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType/true-value">
-                  <rdfs:domain rdf:resource="XdBooleanType"/>
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                  <rdfs:comment xml:lang="en-us">A string that represents a boolean True in the implementation. These are constrained by a set of enumerations in the DM.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">A string that represents a boolean True in the implementation. These are constrained by a set of enumerations in the CM.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक स्ट्रिंग है कि एक बूलियन कार्यान्वयन में सच का प्रतिनिधित्व करता है। ये मुख्यमंत्री में enumerations का एक सेट द्वारा विवश कर रहे हैं।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">سلسلة يمثل منطقية صحيح في التنفيذ. مقيدة هذه من قبل مجموعة من التعدادات في CM.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Una cadena que representa un valor booleano verdadero en la aplicación. Estos se ven limitados por un conjunto de enumeraciones en el CM.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">A cadeia que representa um booleano True na implementação. Estes são limitados por um conjunto de enumerações no CM.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">它表示在执行一个布尔的字符串。这些是由一组在CM枚举的限制。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
           <xs:element name="false-value" type="xs:string">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">A string that represents a boolean False in the implementation. These are constrained by a set of enumerations in the DM.</xs:documentation>
+              <xs:documentation xml:lang="en-us">A string that represents a boolean False in the implementation. These are constrained by a set of enumerations in the CM.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType/false-value">
-                  <rdfs:domain rdf:resource="XdBooleanType"/>
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                  <rdfs:comment xml:lang="en-us">A string that represents a boolean False in the implementation. These are constrained by a set of enumerations in the DM.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">A string that represents a boolean False in the implementation. These are constrained by a set of enumerations in the CM.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">एक स्ट्रिंग है कि कार्यान्वयन में एक बूलियन झूठी प्रतिनिधित्व करता है। ये मुख्यमंत्री में enumerations का एक सेट द्वारा विवश कर रहे हैं।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">سلسلة يمثل خطأ منطقي في التنفيذ. مقيدة هذه من قبل مجموعة من التعدادات في CM.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Una cadena que representa un falso booleano en la aplicación. Estos se ven limitados por un conjunto de enumeraciones en el CM.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">A cadeia que representa uma falsa boolean na implementação. Estes são limitados por um conjunto de enumerações no CM.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">它表示在执行一个布尔值false的字符串。这些是由一组在CM枚举的限制。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
