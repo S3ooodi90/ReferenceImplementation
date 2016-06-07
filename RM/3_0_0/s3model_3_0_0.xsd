@@ -1879,16 +1879,22 @@
       <xs:documentation xml:lang="en-us">Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
         information is to be anonymous then do not include the details element.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="PartyType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">PartyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
             information is to be anonymous then do not include the details element.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">एक पार्टी का विवरण, एक वैकल्पिक बाह्य एक जनसांख्यिकीय या अन्य पहचान प्रबंधन प्रणाली में इस पार्टी के लिए डेटा के लिए लिंक भी शामिल है। एक अतिरिक्त जानकारी के तत्व इस पार्टी के सीधे से संबंधित जानकारी का समावेश के लिए प्रदान करता है। पार्टी के हैं
+                         जानकारी तो गुमनाम होना विवरण तत्व शामिल नहीं है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">وصف أحد الأطراف، بما في ذلك ارتباط خارجي اختياري لبيانات لهذا الحزب في نظام إدارة الهوية الديموغرافية أو غيرها. يوفر تفاصيل عنصر إضافي لإدراج المعلومات المتعلقة بهذا الحزب مباشرة. إذا كان الطرف
+                         المعلومات لتكون مجهولة ثم لا تشمل عنصر من التفاصيل.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Descripción de un partido, incluyendo un enlace externo opcional a los datos para este partido en un sistema de gestión de la identidad demográfica o de otro tipo. Un elemento adicional detalles prevé la inclusión de información relativa a esta parte directamente. Si el partido
+                         información es ser anónimo entonces no incluir el elemento de datos.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Descrição de uma das partes, incluindo um link externo opcional para dados para esta festa em um sistema de gerenciamento de identidade demográfica ou outro. Um elemento detalhes adicionais prevê a inclusão de informações relacionadas a este partido diretamente. Se o partido
+                         informação deve ser anônimo, então não incluir o elemento mais detalhes.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">一方当事人的描述，包括在人口或其他身份管理系统可选的外部链接数据这个党。另外一个细节元素为列入与本方直接信息。如果一方
+                        信息是匿名的，然后不包含的细节元素。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1897,14 +1903,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="label">
-              <rdfs:domain rdf:resource="PartyType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType/label">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस डेटा प्रकार के मॉडल का वर्णनात्मक नाम। मॉडल के लिए अर्थ 'नाम' प्रदान करता है। की जगह क्या एक्सएमएल तत्व नाम या पारंपरिक मॉडलिंग में वर्ग के नाम होगा।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اسم وصفي هذا النوع من البيانات نموذج. يوفر 'اسم' الدلالي للنموذج. محل ما يمكن أن يكون اسم عنصر XML أو اسم الفئة في النمذجة التقليدية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">nombre descriptivo de este modelo de tipo de datos. Proporciona el 'nombre' semántica para el modelo. Sustituye lo que sería XML nombre del elemento o nombre de la clase en el modelado convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">nome descritivo deste modelo tipo de dados. Fornece o 'nome' semântico para o modelo. Substitui o que seria XML nome do elemento ou nome de classe na modelagem convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">这种数据类型的模型描述性名称。为模型中的语义“名字”。替换什么是XML元素的名称，或在传统的模拟类名。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1913,10 +1920,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Optional human-readable name (in String form).</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="party-name">
-              <rdfs:domain rdf:resource="PartyType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType/party-name">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Optional human-readable name (in String form).</rdfs:comment>
+              <rdfs:comment xml:lang="hi">वैकल्पिक मानव पठनीय नाम (स्ट्रिंग के रूप में)।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اختياري اسم الذي يمكن قراءته (في شكل سلسلة).</rdfs:comment>
+              <rdfs:comment xml:lang="es">nombre legible por humanos opcional (en forma de cadena).</rdfs:comment>
+              <rdfs:comment xml:lang="pt">nome legível opcional (na forma String).</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">可选人类可读的名称（字符串形式）。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1925,14 +1937,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Optional reference to more detailed demographic or identification information for this party, in an external system.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="party-ref">
-              <rdfs:domain rdf:resource="PartyType"/>
-              <rdfs:range rdf:resource="XdLinkType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType/party-ref">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
               <rdfs:comment xml:lang="en-us">Optional reference to more detailed demographic or identification information for this party, in an external system.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस पार्टी के लिए और अधिक विस्तृत जनसांख्यिकीय या पहचान की जानकारी के लिए वैकल्पिक संदर्भ, एक बाहरी प्रणाली में।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">إشارة اختياري على المعلومات الديموغرافية أو تحديد أكثر تفصيلا لهذا الحزب، في نظام خارجي.</rdfs:comment>
+              <rdfs:comment xml:lang="es">referencia opcional a la información demográfica o de identificación más detallada de este partido, en un sistema externo.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">referência opcional para informações demográficas ou identificação mais detalhada para esta festa, em um sistema externo.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">可选参考更多详细的人口统计或识别此信息，派对，在外部系统。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1941,14 +1954,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Structural details about the party.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="party-details">
-              <rdfs:domain rdf:resource="PartyType"/>
-              <rdfs:range rdf:resource="ClusterType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType/party-details">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
               <rdfs:comment xml:lang="en-us">Structural details about the party.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">पार्टी के बारे में संरचनात्मक विवरण।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">تفاصيل حول هيكلية الحزب.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Los detalles estructurales de la fiesta.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Detalhes estruturais sobre a festa.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">关于党的结构细节。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1958,9 +1972,9 @@
   <xs:element name="Party" type="s3m:PartyType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="Party">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Party">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="PartyType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
