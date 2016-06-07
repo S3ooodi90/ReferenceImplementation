@@ -794,7 +794,7 @@
                         للدم غير haemolysed {NEG، أثر، معتدل}؛
                         للدم haemolysed {NEG واقتفاء أثرها، صغيرة، أو متوسطة، كبيرة}.
                         عناصر ترتيبي والرمز يجب أن يكون بالضبط نفس العدد من التعدادات.</rdfs:comment>
-          <rdfs:comment xml:lang="es"><Modelos de las clasificaciones y calificaciones, por ejemplo dolor, los valores de Apgar, etc, donde hay
+          <rdfs:comment xml:lang="es">Modelos de las clasificaciones y calificaciones, por ejemplo dolor, los valores de Apgar, etc, donde hay
                         a) ordenación implícita,
                         b) no implica que la distancia entre cada valor es constante, y
                         c) el número total de valores es finito.
@@ -807,35 +807,35 @@
                         Ejemplos: Los resultados sobre una tira de análisis de orina, por ejemplo, {Neg, vestigios, +, ++, +++} se utilizan para los leucocitos, proteínas, nitritos, etc;
                         para que la sangre no hemolizado {neg, vestigios, moderada};
                         para la sangre hemolizada {neg, vestigios, pequeño, moderado, gran}.
-                        Elementos ordinal y el símbolo debe tener exactamente el mismo número de enumeraciones./rdfs:comment>
-            <rdfs:comment xml:lang="pt">Modelos classificações e pontuações, por exemplo, dor, valores de Apgar, etc, onde existe
-                          a) ordenação implícita,
-                          b) nenhuma sugestão de que a distância entre cada valor é constante, e
-                          c) o número total de valores é finito.
-                          Observe que, embora o termo "ordinal" em matemática significa números naturais somente, aqui qualquer decimal é permitida, desde negativo e zero valores são muitas vezes utilizados por profissionais médicos e outros para valores em torno de um ponto neutro.
-                          Além disso, os valores decimais são por vezes utilizadas, tais como 0,5 ou 0,25
-                          Exemplos de conjuntos de valores ordinais:
-                          -3, -2, -1, 0, 1, 2, 3 - valores de resposta reflexa
-                          0, 1, 2 - valores de Apgar
-                          Também é usado para a gravação de qualquer dado clínico ou outro que é habitualmente gravado utilizando valores simbólicos.
-                          Exemplos: Os resultados sobre uma tira de exame de urina, por exemplo, {Neg, traço, +, ++, +++} são usados ​​para leucócitos, proteínas, nitritos, etc;
-                          para o sangue não hemolisado {neg, traço, moderada};
-                          por sangue hemolisado {neg, traço, pequena, moderada, grande}.
-                          Elementos ordinal eo símbolo devem ter exatamente o mesmo número de enumerações.</rdfs:comment>
-            <rdfs:comment xml:lang="zh-s">模型的排名和成绩，例如疼痛，Apgar评分值等，哪里有
-                          一）暗示排序，
-                          b）任何暗示每个值之间的距离是恒定的，并
-                          三）的值的总数是有限的。
-                          注意，虽然在数学术语“序数”是指自然数只，这里的任何小数是允许的，因为负和零值通常用于医疗和其它专业人士提供值周围的中性点。
-                          另外，十进制值有时使用如0.5或0.25
-                          集序数值的例子：
-                          -3，-2，-1，0，1，2，3 - 反射响应值
-                          0，1，2 - Apgar评分值
-                          还用于记录这是使用符号值的记录习惯任何临床或其他数据。
-                          例如：结果在尿检条，例如{NEG，跟踪，+，++，+++}被用于白细胞，蛋白质，亚硝酸盐等;
-                          非溶血血{负，跟踪，适度};
-                          为溶血血{负，跟踪，小型，中型，大型}。
-                          元素是有序和符号必须具有相同数量枚举。</rdfs:comment>
+                        Elementos ordinal y el símbolo debe tener exactamente el mismo número de enumeraciones.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Modelos classificações e pontuações, por exemplo, dor, valores de Apgar, etc, onde existe
+                        a) ordenação implícita,
+                        b) nenhuma sugestão de que a distância entre cada valor é constante, e
+                        c) o número total de valores é finito.
+                        Observe que, embora o termo "ordinal" em matemática significa números naturais somente, aqui qualquer decimal é permitida, desde negativo e zero valores são muitas vezes utilizados por profissionais médicos e outros para valores em torno de um ponto neutro.
+                        Além disso, os valores decimais são por vezes utilizadas, tais como 0,5 ou 0,25
+                        Exemplos de conjuntos de valores ordinais:
+                        -3, -2, -1, 0, 1, 2, 3 - valores de resposta reflexa
+                        0, 1, 2 - valores de Apgar
+                        Também é usado para a gravação de qualquer dado clínico ou outro que é habitualmente gravado utilizando valores simbólicos.
+                        Exemplos: Os resultados sobre uma tira de exame de urina, por exemplo, {Neg, traço, +, ++, +++} são usados ​​para leucócitos, proteínas, nitritos, etc;
+                        para o sangue não hemolisado {neg, traço, moderada};
+                        por sangue hemolisado {neg, traço, pequena, moderada, grande}.
+                        Elementos ordinal eo símbolo devem ter exatamente o mesmo número de enumerações.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">模型的排名和成绩，例如疼痛，Apgar评分值等，哪里有
+                        一）暗示排序，
+                        b）任何暗示每个值之间的距离是恒定的，并
+                        三）的值的总数是有限的。
+                        注意，虽然在数学术语“序数”是指自然数只，这里的任何小数是允许的，因为负和零值通常用于医疗和其它专业人士提供值周围的中性点。
+                        另外，十进制值有时使用如0.5或0.25
+                        集序数值的例子：
+                        -3，-2，-1，0，1，2，3 - 反射响应值
+                        0，1，2 - Apgar评分值
+                        还用于记录这是使用符号值的记录习惯任何临床或其他数据。
+                        例如：结果在尿检条，例如{NEG，跟踪，+，++，+++}被用于白细胞，蛋白质，亚硝酸盐等;
+                        非溶血血{负，跟踪，适度};
+                        为溶血血{负，跟踪，小型，中型，大型}。
+                        元素是有序和符号必须具有相同数量枚举。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -850,11 +850,11 @@
                   <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
                   <rdfs:comment xml:lang="en-us">Value in ordered enumeration of values. The base integer is zero with any number of integer values used to order the symbols. Example 1: 0 = Trace, 1 = +, 2 = ++, 3 = +++, etc. Example 2: 0 = Mild, 1 = Moderate, 2 = Severe</rdfs:comment>
-                  <rdfs:comment xml:lang="hi">मूल्यों का आदेश दिया गणना में मान। आधार पूर्णांक शून्य प्रतीकों के आदेश करने के लिए इस्तेमाल पूर्णांक मान के किसी भी संख्या के साथ है। उदाहरण 1: 0 = ट्रेस, 1 = + 2 = ++, 3 = +++, आदि के उदाहरण 2: 0 = हल्के, मध्यम 1 = 2 = गंभीर</rdfs:comment> 
-                  <rdfs:comment xml:lang="ar">قيمة في التعداد أمر من القيم. عدد صحيح قاعدة صفرا مع أي عدد من قيم الأعداد المستخدمة لترتيب حرف. مثال 1: 0 = تتبع، 1 = + 2 = ++، 3 = + + +، الخ مثال 2: 0 = الطري، 1 = متوسطة، 2 = شديد</rdfs:comment>
-                  <rdfs:comment xml:lang="es">Valor de la enumeración ordenada de valores. El número entero de base es cero con cualquier número de valores enteros utilizados para ordenar los símbolos. Ejemplo 1: 0 = Trace, 1 = +, 2 = ++, +++ = 3, etc. Ejemplo 2: 0 = leve, 1 = Moderado, 2 = Severo</rdfs:comment>
-                  <rdfs:comment xml:lang="pt">Valor na enumeração ordenada de valores. O número inteiro de base é igual a zero, com qualquer número de valores inteiros usados para ordenar os símbolos. Exemplo 1: 0 = Trace, 1 = +, 2 = ++, +++ = 3, etc. Exemplo 2: 0 = suave, 1 = moderado, 2 = severo</rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s">值值的有序枚举。该基地整数零与任意数量的用于排序符号整数值。实施例1：0 =痕量，1 =+2 =++3 =+++等。实施例2：0 =轻度，1 =温和，2 =严重</rdfs:comment>
+                  <rdfs:comment xml:lang="hi"></rdfs:comment> 
+                  <rdfs:comment xml:lang="ar"></rdfs:comment>
+                  <rdfs:comment xml:lang="es"></rdfs:comment>
+                  <rdfs:comment xml:lang="pt"></rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -866,12 +866,13 @@
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType/symbol">
                   <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                  <rdfs:comment xml:lang="en-us">Coded textual representation of this value in the enumeration, which may be strings made from “+” symbols, or other enumerations of terms such as “mild”, “moderate”, “severe”, or even the same number series as the values, e.g. “1”, “2”, “3”.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi">जो तार "+" प्रतीक, या इस तरह के "मामूली", "मध्यम", "गंभीर", या यहां तक कि एक ही नंबर श्रृंखला मूल्यों के रूप में के रूप में शर्तों के अन्य enumerations से बनाया जा सकता गणना में इस मूल्य, का कोडित शाब्दिक प्रतिनिधित्व, जैसे "1", "2", "3"।</rdfs:comment> 
-                  <rdfs:comment xml:lang="ar">مشفرة تمثيل نصية من هذه القيمة في التعداد، والتي قد تكون السلاسل المصنوعة من حرف "+"، أو غيرها من التعدادات لمصطلحات مثل "خفيفة"، "المعتدل"، "خطير"، أو حتى نفس السلسلة عدد كقيم، على سبيل المثال "1"، "2"، "3".</rdfs:comment>
-                  <rdfs:comment xml:lang="es">representación textual codificada de este valor en la enumeración, que pueden ser cuerdas hechas de símbolos "+", u otras enumeraciones de términos tales como "leve", "moderado", "grave", o incluso la misma serie de números como los valores, p.ej "1", "2", "3".</rdfs:comment>
-                  <rdfs:comment xml:lang="pt">representação textual codificada deste valor na enumeração, que pode ser cordas feitas de símbolos "+" ou outras enumerações de termos como "suave", "moderado", "severo", ou mesmo a mesma série de números como os valores, por exemplo "1", "2", "3".</rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s">在枚举此值，它可以从“+”符号或术语的其他枚举，如“温和的”，“温和”，“严重”，甚至相同数量的系列作为值的字符串由编码的文字表述， 例如“1”，“2”，“3”。</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Coded textual representation of this value in the enumeration, which may be strings made from “+” symbols, or other enumerations of terms such as “mild”, “moderate”, “severe”, or even the same number series as the values, e.g. “1”, “2”, “3”.
+                 </rdfs:comment>
+                  <rdfs:comment xml:lang="hi"></rdfs:comment> 
+                  <rdfs:comment xml:lang="ar"></rdfs:comment>
+                  <rdfs:comment xml:lang="es"></rdfs:comment>
+                  <rdfs:comment xml:lang="pt"></rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
