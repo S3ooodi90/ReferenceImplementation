@@ -884,26 +884,65 @@
 
   <xs:simpleType name="MagnitudeStatus">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses. Optional status of magnitude indicators: equal : magnitude is a point
-        value less_than : value is less than the magnitude greater_than : value is greater than the magnitude less_than_or_equal : value is less_than_or_equal to the magnitude greater_than_or_equal : value is greater_than_or_equal to the magnitude approximate : value is the approximately the
-        magnitude</xs:documentation>
+      <xs:documentation xml:lang="en-us">MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="MagnitudeStatus">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
-          <rdfs:comment xml:lang="en-us">MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses. Optional status of magnitude indicators: equal : magnitude is a point
-            value less_than : value is less than the magnitude greater_than : value is greater than the magnitude less_than_or_equal : value is less_than_or_equal to the magnitude greater_than_or_equal : value is greater_than_or_equal to the magnitude approximate : value is the approximately the
-            magnitude</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="en-us">MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">परिमाण स्थिति परिमाण मात्रा निर्धारित उपप्रकारों में व्यक्त की सटीकता की एक सामान्य संकेत प्रदान करता है। निर्णय का समर्थन उपयोगों के लिए उपयोगकर्ताओं और न सूचित करने के लिए इस्तेमाल किया जाना चाहिए।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">يوفر مركز حجم مؤشرا عاما من دقة حجم أعرب في الأنواع الفرعية كميا. وينبغي أن تستخدم لإعلام المستخدمين وليس لاستخدامات دعم اتخاذ القرار.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Estado Magnitud proporciona una indicación general de la exactitud de la magnitud expresada en los subtipos cuantificados. Debe utilizarse para informar a los usuarios y no para usos de soporte de decisiones.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Estado magnitude fornece uma indicação geral da precisão da magnitude expressa nos subtipos quantificados. Deve ser utilizado para informar os usuários e não para fins de apoio à decisão.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">幅度状态提供了在量化亚型表达的量值的精确度的一般指示。使用时应告知用户，而不是用于决策支持的用途。</rdfs:comment>
         </rdf:Description>
-        <rdf:Description rdf:about="approximate"/>
-        <rdf:Description rdf:about="equal"/>
-        <rdf:Description rdf:about="greater_than"/>
-        <rdf:Description rdf:about="greater_than_or_equal"/>
-        <rdf:Description rdf:about="less_than"/>
-        <rdf:Description rdf:about="less_than_or_equal"/>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus/approximate">
+          <rdfs:comment xml:lang="en-us">value is the approximately the magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="hi">मूल्य लगभग परिमाण है</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">القيمة هي تقريبية لحجم</rdfs:comment>
+          <rdfs:comment xml:lang="es">es el valor aproximado de la magnitud</rdfs:comment>
+          <rdfs:comment xml:lang="pt">valor é o aproximada da magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">值是近似的大小</rdfs:comment>          
+        </rdf:Description>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus/equal">
+          <rdfs:comment xml:lang="en-us">magnitude is a point value</rdfs:comment>
+          <rdfs:comment xml:lang="hi">परिमाण एक बिंदु मूल्य है</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">حجم هو قيمة نقطة</rdfs:comment>
+          <rdfs:comment xml:lang="es">magnitud es un valor de punto</rdfs:comment>
+          <rdfs:comment xml:lang="pt">magnitude é um valor de ponto</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">震级是一个点值</rdfs:comment>          
+        </rdf:Description>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus/greater_than">
+          <rdfs:comment xml:lang="en-us">value is greater than the magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="hi">मूल्य के परिमाण से अधिक है</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">قيمة أكبر من حجم</rdfs:comment>
+          <rdfs:comment xml:lang="es">valor es mayor que la magnitud</rdfs:comment>
+          <rdfs:comment xml:lang="pt">valor é maior do que a magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">值比幅值更大</rdfs:comment>          
+        </rdf:Description>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus/greater_than_or_equal">
+          <rdfs:comment xml:lang="en-us">value is greater than or equal to the magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="hi">मूल्य से अधिक या परिमाण के बराबर है</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">قيمة أكبر من أو مساوية لحجم</rdfs:comment>
+          <rdfs:comment xml:lang="es">valor es mayor que o igual a la magnitud</rdfs:comment>
+          <rdfs:comment xml:lang="pt">valor é maior do que ou igual à grandeza</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">值大于或等于幅度</rdfs:comment>          
+        </rdf:Description>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus/less_than">
+          <rdfs:comment xml:lang="en-us">value is less than the magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="hi">मूल्य के परिमाण की तुलना में कम है</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">القيمة هي أقل من حجم</rdfs:comment>
+          <rdfs:comment xml:lang="es">valor es menor que la magnitud</rdfs:comment>
+          <rdfs:comment xml:lang="pt">valor é menor do que a magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">值小于幅度</rdfs:comment>          
+        </rdf:Description>
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus/less_than_or_equal">
+          <rdfs:comment xml:lang="en-us">value is less than or equal to the magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="hi">मूल्य के परिमाण से कम या बराबर है</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">القيمة أقل من أو مساو لحجم</rdfs:comment>
+          <rdfs:comment xml:lang="es">valor es menor que o igual a la magnitud</rdfs:comment>
+          <rdfs:comment xml:lang="pt">valor é inferior ou igual à magnitude</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">值小于或等于幅度</rdfs:comment>          
+        </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
     <xs:restriction base="xs:string">
