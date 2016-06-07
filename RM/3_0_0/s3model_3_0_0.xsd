@@ -1634,21 +1634,28 @@
     </xs:annotation>
   </xs:element>
 
+  <!-- See: http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html -->
   <xs:complexType name="InvlType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">In the CCM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
-        boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the CCM. See: http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</xs:documentation>
+      <xs:documentation xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
+        boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CCM.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="InvlType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#InvlType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_.InvlTypehtml#InvlType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">InvlType</rdfs:label>
-          <rdfs:comment xml:lang="en-us">In the CCM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
-            boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the CCM. See: http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
+            boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CCM.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">डीएम, मॉडलर इस complexType पर दो प्रतिबंध बनाता है। 'कम' मूल्य के लिए एक और 'ऊपरी' मूल्य के लिए एक। दोनों एक ही तत्व प्रतिबंध विकल्प नहीं होगा और मूल्य प्रत्येक निचले और ऊपरी मूल्य सीमा का प्रतिनिधित्व करने पर 'तय' है
+                         सीमा। शून्य = 'सच' विशेषता: मूल्य xsi का उपयोग करके रिक्त (असीम) के लिए सेट किया जा सकता है। maxOccurs और minOccurs माता पिता सीसीएम में 1 से स्थापित किया जाना चाहिए।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">في بلدية دبي، والتماثيل يخلق اثنين من القيود المفروضة على هذه complexType. واحد لقيمة "أقل" واحد لقيمة 'العليا'. وسيقوم كل القيود لديها خيار نفس العنصر والقيمة هو 'ثابت' على كل تمثل مجموعة قيمة السفلي والعلوي
+                         الحدود. قد يتم تعيين القيمة إلى NULL (غير محدود) باستخدام XSI: لا شيء = السمة 'الحقيقية'. يجب تعيين maxOccurs وminOccurs إلى 1، في CCM الأم.</rdfs:comment>
+          <rdfs:comment xml:lang="es">En el marco alemán, el modelador crea dos restricciones a este tipoCompuesto. Una para el valor "inferior" y otra para el valor "superior". Ambas restricciones tendrán la misma elección elemento y el valor es "fijo" en cada uno representando el rango inferior y superior valor
+                         límite. El valor puede establecerse en NULL (sin límites) mediante el xsi: nil = atributo "verdadero". maxOccurs y minOccurs deben ser puestos a 1, en el MCP padres.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">No DM, o modelador cria duas restrições nesta complexType. Um para o valor "inferior" e um para o valor 'superior'. Ambas as restrições terão o mesmo elemento de escolha e o valor é "fixo" em cada uma representando a gama inferior e superior valor
+                         fronteira. O valor pode ser definido como NULL (sem limites) usando o xsi: nil = atributo 'true'. maxOccurs e minOccurs deve ser definido como 1, na CCM pai.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">在DM，建模创建这个复杂类型两个限制。一为'低'的值，一个用于'上'的值。两个限制将有相同的元件的选择，该值是在每一个代表下和上限值的范围“固定”
+                         边界。零=“真”属性：值可以通过使用XSI设置为NULL（无限）。 maxOccurs的和的minOccurs必须设置为1，在父CCM。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
