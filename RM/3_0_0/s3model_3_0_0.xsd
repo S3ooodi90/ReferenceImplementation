@@ -1058,16 +1058,22 @@
       <xs:documentation xml:lang="en-us">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
         when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdRatioType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType"/>
-          <rdfs:subClassOf rdf:resource="XdQuantifiedType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
           <rdfs:label xml:lang="en-us">XdRatioType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
             when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">मॉडल मूल्यों का एक अनुपात है, यानी जहां मीटर और विभाजक दोनों शुद्ध संख्या रहे हैं। रक्तचाप की तरह बातें जो अक्सर एक '/' चरित्र का उपयोग कर लिखा जाता प्रतिनिधित्व करने के लिए, भ्रामक धारणा दे रही है कि आइटम एक अनुपात है नहीं किया जाना चाहिए,
+                         जब वास्तव में यह एक संरचित मूल्य है। इसी तरह, दृश्य तीक्ष्णता, अक्सर के रूप में (उदाहरण के लिए) "20/20" नैदानिक नोटों में एक अनुपात लेकिन एक क्रमसूचक नहीं है (जो CF जैसे गैर-न्यूमेरिक प्रतीकों में शामिल = गिनती उंगलियों आदि) लिखा है। योगों के लिए नहीं किया जाना चाहिए।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">نماذج نسبة من القيم، أي حيث البسط والمقام على حد سواء أرقام نقية. لا ينبغي أن تستخدم لتمثيل أشياء مثل ضغط الدم والتي غالبا ما تتم كتابتها باستخدام حرف '/'، وإعطاء الانطباع المضلل أن هذا البند هو النسبة،
+                         عندما تكون في واقع الأمر هو قيمة منظم. وبالمثل، حدة الإبصار، في كثير من الأحيان كما هو مكتوب (على سبيل المثال) "20/20" في الملاحظات السريرية ليس نسبة لكن ترتيبي (والذي يتضمن حرف غير رقمية مثل CF = عد الأصابع وما إلى ذلك). لا ينبغي أن تستخدم لتركيبات.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Modelos de una relación de los valores, es decir donde el numerador y el denominador son ambos números puros. No debe ser utilizado para representar cosas como la presión arterial, que a menudo se escriben utilizando un carácter '/', dando la impresión errónea de que el artículo es una relación,
+                         cuando en realidad se trata de un valor estructurado. Del mismo modo, la agudeza visual, a menudo escrito como (por ejemplo) "20/20" en las notas clínicas no es una relación, pero un ordinal (que incluye símbolos no numéricos como CF = contar los dedos, etc). No debe ser utilizado para las formulaciones.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Modelos de um rácio de valores, isto é, onde o numerador eo denominador são ambos os números puros. Não deve ser usado para representar coisas como a pressão arterial que muitas vezes são escritas usando um caractere "/", dando a impressão enganosa de que o item é uma relação,
+                         quando na verdade ele é um valor estruturado. Da mesma forma, a acuidade visual, muitas vezes escrito como (por exemplo) "20/20" em notas clínicas não é uma relação, mas um ordinal (que inclui símbolos não numéricos como CF = contar os dedos etc). Não deve ser usado para formulações.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">模型值的比率，即，其中的分子和分母都是纯数字。不应该被用来表示事物如血压这往往是用“/”字符写，给人错误的印象，该项目是一个比值，
+                        而实际上它是一个结构化的价值。同样，视力，经常写为（例如）“20/20”在临床笔记不是一个比率，但序号（其中包括像CF非数字符号=手指算等）。不应该被用于制剂。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1078,14 +1084,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Indicates specific type of ratio modeled in the DM.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="ratio-type">
-                  <rdfs:domain rdf:resource="XdRatioType"/>
-                  <rdfs:range rdf:resource="TypeOfRatio"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/ratio-type">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TypeOfRatio"/>
                   <rdfs:comment xml:lang="en-us">Indicates specific type of ratio modeled in the DM.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अनुपात के विशिष्ट प्रकार के डीएम में मॉडलिंग इंगित करता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">يشير نوع معين من نسبة غرار في بلدية دبي.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Indica tipo específico de relación de modelado en el DM.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Indica tipo específico de relação modelada no DM.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">表示在DM模型比例的具体类型。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1094,14 +1101,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Numerator of ratio.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="numerator">
-                  <rdfs:domain rdf:resource="XdRatioType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/numerator">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
                   <rdfs:comment xml:lang="en-us">Numerator of ratio.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अनुपात का अंश।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">بسط النسبة.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Numerador de la relación.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Numerador do rácio.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">比的分子。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1110,14 +1118,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Denominator of ratio.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="denominator">
-                  <rdfs:domain rdf:resource="XdRatioType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/denominator">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
                   <rdfs:comment xml:lang="en-us">Denominator of ratio.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अनुपात की विभाजक।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">مقام النسبة.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Denominador de la relación.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Denominador do rácio.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">比的分母。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1126,30 +1135,32 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Numeric value of the ratio.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdratio-value">
-                  <rdfs:domain rdf:resource="XdRatioType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/xdratio-value">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
                   <rdfs:comment xml:lang="en-us">Numeric value of the ratio.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अनुपात के संख्यात्मक मूल्य।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">قيمة رقمية من النسبة.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Valor numérico de la relación.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">valor numérico da razão.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">比的数值。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="numerator-units" type="s3m:XdStringType">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology such as OBO Foundry Units ontology.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="numerator-units">
-                  <rdfs:domain rdf:resource="XdRatioType"/>
-                  <rdfs:range rdf:resource="XdStringType"/>
-                  <rdfs:comment xml:lang="en-us">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology such as OBO Foundry Units ontology.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/numerator-units">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
+                  <rdfs:comment xml:lang="en-us">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology.</rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अंश के अर्थ को व्यक्त करने के लिए इस्तेमाल किया। इस तरह के रूप में आम तौर गणनीय इकाइयों; सिगरेट, पेय, व्यायाम की अवधि, आदि या एक शब्दावली से नहीं आ सकता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">تستخدم للتعبير عن معنى البسط. وحدات معدودة عادة مثل: السجائر والمشروبات، وفترات ممارسة، وما قد أو قد لا يأتي من المصطلحات.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Se utiliza para transmitir el significado del numerador. Típicamente unidades contables, tales como; cigarrillos, bebidas, períodos de ejercicio, etc., pueden o no pueden venir de una terminología.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Usado para transmitir o significado do numerador. unidades normalmente contáveis, tais como; cigarros, bebidas, períodos de exercício, etc., pode ou não pode vir de uma terminologia.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">用于传达分子的含义。通常可数的单位，如;香烟，饮料，运动时间等可以或可以不是来自一个术语。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1158,14 +1169,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. May or may not come from a standard terminology.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="denominator-units">
-                  <rdfs:domain rdf:resource="XdRatioType"/>
-                  <rdfs:range rdf:resource="XdStringType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/denominator-units">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
                   <rdfs:comment xml:lang="en-us">Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. May or may not come from a standard terminology.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">भाजक के अर्थ को व्यक्त करने के लिए इस्तेमाल किया। आमतौर पर इकाइयों जैसे; मिनट, घंटे, दिन, वर्ष, महीने, आदि या एक मानक शब्दावली से नहीं आ सकता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">تستخدم للتعبير عن معنى القاسم. عادة وحدات مثل: الدقائق والساعات والأيام والسنوات أو الشهور، وما إلى ذلك قد أو قد لا يأتي من مصطلحات القياسية.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Se utiliza para transmitir el significado del denominador. Típicamente unidades tales como; minutos, horas, días, años, meses, etc., pueden o no pueden venir de una terminología estándar.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Usado para transmitir o significado do denominador. Tipicamente unidades, tais como; minutos, horas, dias, anos, meses, etc., pode ou não pode vir de uma terminologia padrão.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">用于传达分母的含义。典型的单位，如;分，时，日，年，月等可以或可以不是来自一个标准术语。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1174,14 +1186,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdratio-units">
-                  <rdfs:domain rdf:resource="XdRatioType"/>
-                  <rdfs:range rdf:resource="XdStringType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/xdratio-units">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
                   <rdfs:comment xml:lang="en-us">Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">xdratio मूल्य के अर्थ को व्यक्त करने के लिए इस्तेमाल किया। हो सकता है या नहीं हो सकता एक मानक शब्दावली से आते हैं।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">تستخدم للتعبير معنى القيمة xdratio. قد أو قد لا تأتي من مصطلحات القياسية.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Se utiliza para transmitir el significado de la xdratio-valor. Puede o no puede venir de una terminología estándar.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Usado para transmitir o significado do valor xdratio. Pode ou não pode vir de uma terminologia padrão.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">用于传达xdratio值的含义。可能会或可能不会来自于一个标准术语。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1190,12 +1203,13 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  
   <xs:element name="XdRatio" substitutionGroup="s3m:XdAny" type="s3m:XdRatioType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdRatio">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatio">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdRatioType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
