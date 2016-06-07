@@ -668,15 +668,16 @@
     <xs:annotation>
       <xs:documentation xml:lang="en-us">Abstract type defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, '&gt;' and is_strictly_comparable_to ('==').</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdOrderedType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType"/>
-          <rdfs:subClassOf rdf:resource="XdAnyType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
          <rdfs:label xml:lang="en-us">XdOrderedType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Abstract type defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, '&gt;' and is_strictly_comparable_to ('==').</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">सार प्रकार का आदेश दिया मूल्यों की अवधारणा है, जो ऑर्डिनल्स के साथ-साथ सच्चे मात्रा में शामिल परिभाषित। कार्यान्वयन कार्यों की आवश्यकता होती है 'और लेफ्टिनेंट;', '& gt;' और is_strictly_comparable_to ( '==')।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">نمط مجرد تحديد مفهوم القيم أمرت، والذي يتضمن الترتيبية وكذلك كميات الحقيقية. تتطلب تطبيقات وظائف "العلامة & lt؛ '،' وGT." وis_strictly_comparable_to ( '==').</rdfs:comment>
+          <rdfs:comment xml:lang="es">tipo abstracto que define el concepto de valores ordenados, que incluye los ordinales, así como las cantidades reales. Las implementaciones requieren las funciones '& lt;', '& gt;' y is_strictly_comparable_to ('==').</rdfs:comment>
+          <rdfs:comment xml:lang="pt">tipo abstrato definir o conceito de valores ordenados, que inclui ordinais, bem como verdadeiros quantidades. As implementações requerem as funções '& lt;', '& gt;' e is_strictly_comparable_to ('==').</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">抽象类型定义有序值的概念，它包括序以及真实数量。的实现需要的功能'＆LT;'，'＆GT;'和is_strictly_comparable_to（'=='）。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -687,14 +688,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Optional list of ReferenceRanges for this value in its particular measurement context.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="range">
-                  <rdfs:domain rdf:resource="XdOrderedType"/>
-                  <rdfs:range rdf:resource="ReferenceRangeType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType/range">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRangeType"/>
                   <rdfs:comment xml:lang="en-us">Optional list of ReferenceRanges for this value in its particular measurement context.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">संदर्भ की वैकल्पिक सूची में अपनी विशेष माप संदर्भ में इस मूल्य के लिए पर्वतमाला।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">قائمة اختيارية المرجعية نطاقات لهذه القيمة في سياقها قياس معين.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">lista opcional de Intervalos de referencia para este valor en su contexto particular de medición.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">lista opcional de intervalos de referência para este valor em seu contexto de medição particular.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">参考的可选列表范围在其特定的测量情况下这个值。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -703,14 +705,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Optional normal status indicator of value with respect to normal range for this value. Often included by lab, even if the normal range itself is not included. Coded by ordinals in series HHH, HH, H, (nothing), L, LL, LLL, etc.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="normal-status">
-                  <rdfs:domain rdf:resource="XdOrderedType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType/normal-status">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                   <rdfs:comment xml:lang="en-us">Optional normal status indicator of value with respect to normal range for this value. Often included by lab, even if the normal range itself is not included. Coded by ordinals in series HHH, HH, H, (nothing), L, LL, LLL, etc.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">इस मूल्य के लिए सामान्य श्रेणी के लिए सम्मान के साथ मूल्य की वैकल्पिक सामान्य स्थिति संकेतक। अक्सर, प्रयोगशाला द्वारा शामिल भले ही सामान्य श्रेणी में ही शामिल नहीं है। श्रृंखला HHH, एच एच, एच, कुछ भी नहीं (), एल, करूँगा, एल, आदि में ऑर्डिनल्स द्वारा कोडित</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">مؤشر الوضع الطبيعي اختياري من قيمة فيما يتعلق المعدل الطبيعي لهذه القيمة. غالبا ما تدرج من قبل المختبر، حتى لو لم يتم تضمين المعدل الطبيعي نفسه. مشفرة عن طريق الترتيبية في سلسلة HHH، HH، H، (لا شيء)، L، LL، LLL، الخ</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Indicador de estado normal opcional de valor con respecto al rango normal para este valor. A menudo incluido por el laboratorio, incluso si el rango normal en sí no está incluido. Codificado por los ordinales en serie HHH, HH, H, (nada), L, LL, LLL, etc.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">indicador de status normal opcional de valor em relação ao intervalo normal para este valor. Muitas vezes incluído por laboratório, mesmo que o intervalo normal não está incluído. Codificados por ordinais em série HHH, HH, H, (nada), L, LL, LLL, etc.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">相对于正常范围为这个值的值可选正常状态指示器。通过实验室通常包括，即使在正常范围本身不包括在内。通过串联HHH，HH，H，（无），L，LL，LLL等编码序号</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -722,9 +725,9 @@
   <xs:element abstract="true" name="XdOrdered" substitutionGroup="s3m:XdAny" type="s3m:XdOrderedType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdOrdered">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdered">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdOrderedType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
