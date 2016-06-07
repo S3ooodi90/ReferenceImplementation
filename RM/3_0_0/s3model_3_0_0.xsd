@@ -990,16 +990,16 @@
       <xs:documentation xml:lang="en-us">Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months,
         years, etc. when no temporal calculation is to be performed.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdQuantityType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdQuantityType.html#XdQuantityType"/>
-          <rdfs:subClassOf rdf:resource="XdQuantifiedType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
           <rdfs:label xml:lang="en-us">XdQuantityType</rdfs:label>
-          <rdfs:comment xml:lang="en-us">Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months,
-            years, etc. when no temporal calculation is to be performed.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="en-us">Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">मात्रा निर्धारित प्रकार विशिष्ट मात्रा का प्रतिनिधित्व करने, अर्थात मात्रा एक परिमाण और इकाइयों के रूप में व्यक्त किया। यह भी समय durations, जहां यह अधिक है जब कोई लौकिक गणना प्रदर्शन किया जा रहा है बस व्यक्ति सेकंड, मिनट, घंटे, दिन, महीने, साल, आदि की एक संख्या के रूप में इन के इलाज के लिए सुविधाजनक है के लिए इस्तेमाल किया जा सकता है।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">نوع كميا تمثل كميات محددة، أعربت أي كميات كما قوته والوحدات. ويمكن أيضا أن تستخدم لفترات الزمن، حيث أنها أكثر ملاءمة لعلاج هذه كما مجرد عدد الثواني الفردية والدقائق والساعات والأيام والشهور والسنوات والخ عندما لا حساب الزمانية التي يتعين القيام بها.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Tipo cuantificado en representación de cantidades específicas, es decir, cantidades expresa como una magnitud y unidades. También se puede utilizar para duraciones de tiempo, en los que es más conveniente para el tratamiento de estos como simplemente un número de segundos individuales, minutos, horas, días, meses, años, etc., cuando ningún cálculo temporal se va a realizar.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Tipo quantificados representando quantidades específicas, isto é, quantidades expressa como uma magnitude e unidades. Também pode ser usado por períodos de tempo, em que seja mais conveniente para tratar estes simplesmente como um número de segundos individuais, minutos, horas, dias, meses, anos, etc., quando nenhum cálculo temporal é para ser realizada.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">代表特定量量化类型，即，数量表示为量值和单位。也可用于时间的持续时间，它是更方便地把这些作为一个简单的数的个体秒，分钟，小时，天，月，年等时没有时间计算被执行。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1010,14 +1010,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Numeric value of the quantity.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdquantity-value">
-                  <rdfs:domain rdf:resource="XdQuantityType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType/xdquantity-value">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
                   <rdfs:comment xml:lang="en-us">Numeric value of the quantity.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">मात्रा के संख्यात्मक मूल्य।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">قيمة رقمية من الكمية.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Valor numérico de la cantidad.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">valor numérico da quantidade.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">量的数值。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1026,14 +1027,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">The name or type of the quantity. Examples are "kg/m2", “mmHg", "ms-1", "km/h". May or may not come from a standard terminology.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="xdquantity-units">
-                  <rdfs:domain rdf:resource="XdQuantityType"/>
-                  <rdfs:range rdf:resource="XdStringType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType/xdquantity-units">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
                   <rdfs:comment xml:lang="en-us">The name or type of the quantity. Examples are "kg/m2", “mmHg", "ms-1", "km/h". May or may not come from a standard terminology.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">नाम या मात्रा के प्रकार। उदाहरण "किग्रा / एम 2 'कर रहे हैं," एमएमएचजी "," सुश्री-1 "," किमी / घंटा "। या नहीं, एक मानक शब्दावली से आया हो सकता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">اسم أو نوع من الكمية. ومن الأمثلة على ذلك "كجم / M2"، "مم زئبق"، "MS-1"، "كلم / ساعة". قد أو قد لا يأتي من مصطلحات القياسية.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">El nombre o tipo de la cantidad. Ejemplos de ello son "kg / m2", "mmHg", "ms-1", "km / h". Puede tener o no proviene de una terminología estándar.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">O nome ou o tipo de quantidade. Exemplos são "kg / m2", "mm Hg", "MS-1", "km / h". Pode ou não vir de uma terminologia padrão.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">的名称或数量的类型。实例是“公斤/平方米”，“毫米汞柱”，“MS-1”，“公里/小时”。可以或可以不是来自一个标准术语。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1045,9 +1047,9 @@
   <xs:element name="XdQuantity" substitutionGroup="s3m:XdAny" type="s3m:XdQuantityType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdQuantity">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantity">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdQuantityType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
