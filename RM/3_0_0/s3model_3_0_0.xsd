@@ -1765,18 +1765,20 @@
     </xs:annotation>
   </xs:element>
 
-
-  <!--Common package types-->
-
   <xs:complexType name="AuditType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="AuditType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
           <rdfs:label xml:lang="en-us">AuditType</rdfs:label>
           <rdfs:comment xml:lang="en-us">AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</rdfs:comment>
+          <rdfs:comment xml:lang="hi">लेखा परीक्षा प्रकार की पहचान करने के लिए एक तंत्र प्रदान करता है जो / जहां / जब उदाहरणों की ट्रैकिंग के रूप में वे व्यवस्था करने के लिए सिस्टम से चलते हैं।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">يوفر نوع التدقيق آلية لتحديد الذين / حيث / عندما تتبع من الحالات لأنها تتحرك من نظام إلى نظام.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Tipo de auditoría proporciona un mecanismo para identificar el quién / dónde / cuándo el seguimiento de casos ya que pasar de un sistema a otro.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">Tipo de auditoria fornece um mecanismo para identificar o que / onde / quando o controle de instâncias como eles se movem de sistema para sistema.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">审计类型提供了一种机制，以确定谁/在哪里/实例的跟踪，当他们从一个系统移到另一个系统。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1785,14 +1787,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="label">
-              <rdfs:domain rdf:resource="AuditType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType/label">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
               <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">इस डेटा प्रकार के मॉडल का वर्णनात्मक नाम। मॉडल के लिए अर्थ 'नाम' प्रदान करता है। की जगह क्या एक्सएमएल तत्व नाम या पारंपरिक मॉडलिंग में वर्ग के नाम होगा।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">اسم وصفي هذا النوع من البيانات نموذج. يوفر 'اسم' الدلالي للنموذج. محل ما يمكن أن يكون اسم عنصر XML أو اسم الفئة في النمذجة التقليدية.</rdfs:comment>
+              <rdfs:comment xml:lang="es">nombre descriptivo de este modelo de tipo de datos. Proporciona el 'nombre' semántica para el modelo. Sustituye lo que sería XML nombre del elemento o nombre de la clase en el modelado convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">nome descritivo deste modelo tipo de dados. Fornece o 'nome' semântico para o modelo. Substitui o que seria XML nome do elemento ou nome de classe na modelagem convencional.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">这种数据类型的模型描述性名称。为模型中的语义“名字”。替换什么是XML元素的名称，或在传统的模拟类名。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1801,14 +1804,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Identifier of systems which created or handled the information item. 'Systems' can also be defined as an individual application or a data repository in which the data was manipulated.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="system-id">
-              <rdfs:domain rdf:resource="AuditType"/>
-              <rdfs:range rdf:resource="XdStringType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType/system-id">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
               <rdfs:comment xml:lang="en-us">Identifier of systems which created or handled the information item. 'Systems' can also be defined as an individual application or a data repository in which the data was manipulated.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">सिस्टम जो बनाया या सूचना आइटम संभाला का पहचानकर्ता। 'सिस्टम' भी एक व्यक्ति या एक आवेदन डेटा भंडार में जो डेटा हेरफेर किया गया था के रूप में परिभाषित किया जा सकता है।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">معرف من النظم التي تم إنشاؤها أو التعامل معها على بند المعلومات. "أنظمة" يمكن أيضا تعريف كتطبيق الفردية أو مستودع البيانات التي تم التلاعب بها البيانات.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Identificador de sistemas que crean o manipulan el elemento de información. "Sistemas" también se puede definir como una aplicación individual o un repositorio de datos en el que se manipula los datos.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Identificador de sistemas que criaram ou manipulado o item de informação. 'Sistemas' também pode ser definida como uma aplicação individual ou um repositório de dados em que os dados foram manipulados.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">其中创建或处理的信息项系统标识符。 “系统”也可以被定义为一个单独的应用程序或其中的数据被操纵的数据存储库。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1817,14 +1821,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">User(s) who created, committed, forwarded or otherwise handled the item.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="system-user">
-              <rdfs:domain rdf:resource="AuditType"/>
-              <rdfs:range rdf:resource="PartyType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType/system-user">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
               <rdfs:comment xml:lang="en-us">User(s) who created, committed, forwarded or otherwise handled the item.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">उपयोगकर्ता (ओं) जो बनाया, प्रतिबद्ध अग्रेषित या अन्यथा आइटम संभाला।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">المستخدم (ق) الذي خلق، ملتزمة، إعادة توجيهها أو خلاف ذلك التعامل مع هذا البند.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Usuario (s) que lo creó, comprometida, transmitido o manejado el tema.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Usuário (s) que criou, comprometido, encaminhados ou não lidou com o item.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">用户（S）是谁创造，锐意，转发或以其他方式处理的项目。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1833,14 +1838,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Location information of the particular site/facility within an organisation which handled the item.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="location">
-              <rdfs:domain rdf:resource="AuditType"/>
-              <rdfs:range rdf:resource="ClusterType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType/location">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
+              <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
               <rdfs:comment xml:lang="en-us">Location information of the particular site/facility within an organisation which handled the item.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">एक संगठन है जो आइटम संभाला भीतर विशेष साइट / सुविधा के स्थान की जानकारी।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">معلومات عن الموقع من موقع معين / مرفق داخل المنظمة التي عالجت هذا البند.</rdfs:comment>
+              <rdfs:comment xml:lang="es">La información de ubicación del sitio en particular / instalación dentro de una organización que maneja el elemento.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">informações de localização do local particular / instalação dentro de uma organização que movimentou o item.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">该处理的项目组织内的特定站点/设备的位置信息。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1849,14 +1855,15 @@
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Timestamp of handling the item.</xs:documentation>
           <xs:appinfo>
-            <rdf:Description rdf:about="timestamp">
-              <rdfs:domain rdf:resource="AuditType"/>
+            <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType/timestamp">
+              <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
               <rdfs:comment xml:lang="en-us">Timestamp of handling the item.</rdfs:comment>
-              <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-              <rdfs:comment xml:lang="es"></rdfs:comment>
-              <rdfs:comment xml:lang="pt"></rdfs:comment>
-              <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+              <rdfs:comment xml:lang="hi">मद से निपटने में टाइमस्टैम्प।</rdfs:comment> 
+              <rdfs:comment xml:lang="ar">الطابع الزمني على التعامل مع هذا البند.</rdfs:comment>
+              <rdfs:comment xml:lang="es">Marca de tiempo de manejar el tema.</rdfs:comment>
+              <rdfs:comment xml:lang="pt">Timestamp de lidar com o item.</rdfs:comment>
+              <rdfs:comment xml:lang="zh-s">处理项目的时间戳。</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1866,9 +1873,9 @@
   <xs:element name="Audit" type="s3m:AuditType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="Audit">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Audit">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="AuditType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
