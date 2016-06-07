@@ -1487,16 +1487,22 @@
       <xs:documentation xml:lang="en-us">Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are
         primarily used in defining reference ranges.</xs:documentation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdIntervalType">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType"/>
-          <rdfs:subClassOf rdf:resource="XdAnyType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdIntervalType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are
             primarily used in defining reference ranges.</rdfs:comment>
-          <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-          <rdfs:comment xml:lang="es"></rdfs:comment>
-          <rdfs:comment xml:lang="pt"></rdfs:comment>
-          <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+          <rdfs:comment xml:lang="hi">सामान्य प्रकार एक तुलनीय प्रकार के अंतराल (अर्थात् रेंज) को परिभाषित। एक अंतराल के एक तुलनीय आधार प्रकार के एक सन्निहित subrange है। दिनांक, समय, मात्रा, आदि किसका datatypes वही कर रहे हैं और आदेश दिए हैं के अंतराल को परिभाषित किया। S3Model में, वे कर रहे हैं
+                         मुख्य रूप से संदर्भ पर्वतमाला परिभाषित करने में इस्तेमाल किया।</rdfs:comment> 
+          <rdfs:comment xml:lang="ar">نوع عام تحديد فاصل زمني (أي مجموعة) من نوع مماثل. فاصل هو مدى فرعي متجاورة من نوع قاعدة قابلة للمقارنة. تستخدم لتحديد فترات التواريخ والأوقات، والكميات، الخ لمن أنواع البيانات هي نفسها وأمر. في S3Model، فهي
+                         تستخدم في المقام الأول في تحديد مجال مرجعي.</rdfs:comment>
+          <rdfs:comment xml:lang="es">Tipo genérico que define un intervalo (es decir, alcance) de un tipo comparable. Un intervalo es un subrango contigua de un tipo base comparable. Se utiliza para definir los intervalos de fechas, horas, cantidades, etc., cuyo tipos de datos son los mismos y se ordenan. En S3Model, son
+                         utilizado principalmente en la definición de los rangos de referencia.</rdfs:comment>
+          <rdfs:comment xml:lang="pt">tipo genérico que define um intervalo (ou seja, intervalo) de um tipo comparável. Um intervalo é um sub-intervalo contíguo de um tipo base comparável. Usado para definir intervalos de datas, horários, quantidades, etc. cuja tipos de dados são os mesmos e são ordenados. Em S3Model, eles são
+                         usado principalmente na definição de valores de referência.</rdfs:comment>
+          <rdfs:comment xml:lang="zh-s">一般类型定义一个可比类型的间隔（即范围）。一个间隔是可比碱型的连续子区间。用于定义的日期，时间，数量等谁数据类型是相同的，是有序的间隔。在S3Model，它们是
+                        在确定参考范围主要用于。</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1507,14 +1513,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Defines the lower value of the interval.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="lower">
-                  <rdfs:domain rdf:resource="XdIntervalType"/>
-                  <rdfs:range rdf:resource="InvlType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType/lower">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#InvlType"/>
                   <rdfs:comment xml:lang="en-us">Defines the lower value of the interval.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अंतराल के निचले मूल्य परिभाषित करता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">يحدد قيمة أقل من نهاية الشوط الاول.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Define el valor inferior del intervalo.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Define o valor inferior do intervalo.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">限定的时间间隔的较低的值。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1523,14 +1530,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Defines the upper value of the interval.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="upper">
-                  <rdfs:domain rdf:resource="XdIntervalType"/>
-                  <rdfs:range rdf:resource="InvlType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType/upper">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#InvlType"/>
                   <rdfs:comment xml:lang="en-us">Defines the upper value of the interval.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अंतराल के ऊपरी मूल्य परिभाषित करता है।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">يحدد القيمة العليا من نهاية الشوط الاول.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Define el valor superior del intervalo.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Define o valor superior do intervalo.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">限定的时间间隔的上限值。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1539,14 +1547,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Is the lower value of the interval inclusive?</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="lower-included">
-                  <rdfs:domain rdf:resource="XdIntervalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType/lower-included">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
                   <rdfs:comment xml:lang="en-us">Is the lower value of the interval inclusive?</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अंतराल के निचले मूल्य समावेशी है?</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">هي قيمة أقل من الفترة شاملة؟</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Es el valor inferior del intervalo incluido?</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">É o valor mais baixo do intervalo inclusiva?</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">是间隔的较低的值包容？</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1555,14 +1564,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Is the upper value of the interval inclusive?</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="upper-included">
-                  <rdfs:domain rdf:resource="XdIntervalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType/upper-included">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
                   <rdfs:comment xml:lang="en-us">Is the upper value of the interval inclusive?</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अंतराल के ऊपरी मूल्य समावेशी है?</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">هي القيمة العليا من فترة شاملة؟</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Es el valor superior del intervalo incluido?</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">É o valor superior do intervalo, inclusive?</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">是间隔的上限值包容？</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1571,14 +1581,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Is the lower value of the interval bounded?</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="lower-bounded">
-                  <rdfs:domain rdf:resource="XdIntervalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType/lower-bounded">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
                   <rdfs:comment xml:lang="en-us">Is the lower value of the interval bounded?</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अंतराल के निचले मूल्य घिरा है?</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">هو قيمة أقل من الفترة يحدها؟</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Es limitado el valor inferior del intervalo de?</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">É o valor mais baixo do intervalo delimitado?</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">在区间的下限数值界？</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1587,14 +1598,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Is the upper value of the interval bounded?</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="upper-bounded">
-                  <rdfs:domain rdf:resource="XdIntervalType"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType/upper-bounded">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
                   <rdfs:comment xml:lang="en-us">Is the upper value of the interval bounded?</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">अंतराल के ऊपरी मूल्य घिरा है?</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">هو القيمة العليا من فترة يحدها؟</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Es limitado el valor superior del intervalo de?</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">É o valor superior do intervalo delimitado?</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">在间隔的上限值限定？</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1603,14 +1615,15 @@
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Defines the the units for this Interval.</xs:documentation>
               <xs:appinfo>
-                <rdf:Description rdf:about="interval-units">
-                  <rdfs:domain rdf:resource="XdIntervalType"/>
-                  <rdfs:range rdf:resource="IntervalUnits"/>
+                <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType/interval-units">
+                  <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
+                  <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#IntervalUnits"/>
                   <rdfs:comment xml:lang="en-us">Defines the the units for this Interval.</rdfs:comment>
-                  <rdfs:comment xml:lang="hi"></rdfs:comment> <rdfs:comment xml:lang="ar"></rdfs:comment>
-                  <rdfs:comment xml:lang="es"></rdfs:comment>
-                  <rdfs:comment xml:lang="pt"></rdfs:comment>
-                  <rdfs:comment xml:lang="zh-s"></rdfs:comment>
+                  <rdfs:comment xml:lang="hi">इस अंतराल के लिए परिभाषित करता है इकाइयों।</rdfs:comment> 
+                  <rdfs:comment xml:lang="ar">تعرف على وحدات لهذا الفاصل الزمني.</rdfs:comment>
+                  <rdfs:comment xml:lang="es">Define las unidades para este intervalo.</rdfs:comment>
+                  <rdfs:comment xml:lang="pt">Define as unidades para este intervalo.</rdfs:comment>
+                  <rdfs:comment xml:lang="zh-s">定义这个时间间隔的单位。</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1626,9 +1639,9 @@
   <xs:element name="XdInterval" substitutionGroup="s3m:XdAny" type="s3m:XdIntervalType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="XdInterval">
+        <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdInterval">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="XdIntervalType"/>
+          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
