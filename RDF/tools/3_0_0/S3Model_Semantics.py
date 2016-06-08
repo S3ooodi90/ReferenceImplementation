@@ -7,7 +7,7 @@ See: http://www.srdc.com.tr/projects/salus/blog/?p=189
 
 This tool collects the semantics from your S3Models and applies those semantics to your XML data. It does so by creating a RDF/XML triples file for each file. These files are ready to be uploaded to your favorite Triple Store or imported by your visualization tool.
 
-The semantics generator uses a configuration file to find your data, concept models and reference models. It does not check for the S3Model.owl base ontology or any XML catalog files.
+The semantics generator uses a configuration file to find your data, concept models and reference models. It does not check for the s3model.owl base ontology or any XML catalog files.
 
 The configuration file must be located in the same directory as S3Model_Semantics.py it is named: config.ini
 
