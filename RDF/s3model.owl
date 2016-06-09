@@ -70,17 +70,17 @@
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/containsPCM -->
+    <!-- http://www.s3model.com/ns/s3m/s3model/containsPMC -->
 
-    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/containsPCM">
+    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/containsPMC">
         <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/DMI"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/PCM"/>
-        <s3m:description xml:lang="pt">Define a relação que uma DMI contém um PCM específica.</s3m:description>
-        <s3m:description xml:lang="es">Define la relación que un DMI contiene un PCM específico.</s3m:description>
-        <s3m:description xml:lang="en-us">Defines the relation that a DMI contains a specific PCM.</s3m:description>
-        <s3m:description xml:lang="ar">يحدد العلاقة أن مؤسسة دبي للإعلام يحتوي على PCM معين.</s3m:description>
+        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/PMC"/>
+        <s3m:description xml:lang="pt">Define a relação que uma DMI contém um PMC específica.</s3m:description>
+        <s3m:description xml:lang="es">Define la relación que un DMI contiene un PMC específico.</s3m:description>
+        <s3m:description xml:lang="en-us">Defines the relation that a DMI contains a specific PMC.</s3m:description>
+        <s3m:description xml:lang="ar">يحدد العلاقة أن مؤسسة دبي للإعلام يحتوي على PMC معين.</s3m:description>
         <s3m:description xml:lang="hi">संबंध है कि एक डीएमआई एक विशिष्ट पीसीएम शामिल परिभाषित करता है।</s3m:description>
-        <s3m:description xml:lang="zh-s">定义一个DMI包含特定PCM的关系。</s3m:description>
+        <s3m:description xml:lang="zh-s">定义一个DMI包含特定PMC的关系。</s3m:description>
     </owl:ObjectProperty>
     
 
@@ -132,13 +132,13 @@
     <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/isPluggableSymbolOf">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/PCS"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/PCM"/>
-        <s3m:description xml:lang="pt">Refere-se um símbolo (PCS) com um modelo (PCM).</s3m:description>
-        <s3m:description xml:lang="en-us">Relates a symbol (PCS) to a model (PCM).</s3m:description>
-        <s3m:description xml:lang="es">Se relaciona un símbolo (PCS) a un modelo (PCM).</s3m:description>
-        <s3m:description xml:lang="ar">يتعلق برمز (PCS) إلى نموذج (PCM).</s3m:description>
+        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/PMC"/>
+        <s3m:description xml:lang="pt">Refere-se um símbolo (PCS) com um modelo (PMC).</s3m:description>
+        <s3m:description xml:lang="en-us">Relates a symbol (PCS) to a model (PMC).</s3m:description>
+        <s3m:description xml:lang="es">Se relaciona un símbolo (PCS) a un modelo (PMC).</s3m:description>
+        <s3m:description xml:lang="ar">يتعلق برمز (PCS) إلى نموذج (PMC).</s3m:description>
         <s3m:description xml:lang="hi">एक मॉडल (पीसीएम) के लिए एक प्रतीक (पीसीएस) से संबंधित है।</s3m:description>
-        <s3m:description xml:lang="zh-s">涉及符号（PCS）到模型（PCM）。</s3m:description>
+        <s3m:description xml:lang="zh-s">涉及符号（PCS）到模型（PMC）。</s3m:description>
     </owl:ObjectProperty>
     
 
@@ -186,22 +186,22 @@ A composable model contained in a reference model. A CCM represents a specific c
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
         <s3m:description xml:lang="en-us">Core Concept Symbol
 
-A CCS represents a CCM in instance data. In practice, it is usually substituted for by a Pluggable Concept Symbol (PCS). This substitution is due to the fact that constraints are expressed in a Pluggable Concept Model (PCM) which is then represented by a PCS.</s3m:description>
+A CCS represents a CCM in instance data. In practice, it is usually substituted for by a Pluggable Concept Symbol (PCS). This substitution is due to the fact that constraints are expressed in a Pluggable Concept Model (PMC) which is then represented by a PCS.</s3m:description>
         <s3m:description xml:lang="es">Símbolo Concepto básico
             
-            Un CCS representa un MCP de datos de instancia. En la práctica, por lo general es sustituido por un enchufable Concept Símbolo (PCS). Esta sustitución es debido al hecho de que las restricciones se expresan en un enchufable Concept Model (PCM), que a continuación está representada por un PCS.</s3m:description>
+            Un CCS representa un MCP de datos de instancia. En la práctica, por lo general es sustituido por un enchufable Concept Símbolo (PCS). Esta sustitución es debido al hecho de que las restricciones se expresan en un enchufable Concept Model (PMC), que a continuación está representada por un PCS.</s3m:description>
         <s3m:description xml:lang="pt">Símbolo conceito central
             
-            A CCS representa um CCM em dados de instância. Na prática, é usualmente substituído por uma conectável Conceito Símbolo (PCS). Esta substituição é devido ao fato de que as restrições são expressos numa conectável conceito de modelo (PCM), o qual é então representado por um PCS.</s3m:description>
+            A CCS representa um CCM em dados de instância. Na prática, é usualmente substituído por uma conectável Conceito Símbolo (PCS). Esta substituição é devido ao fato de que as restrições são expressos numa conectável conceito de modelo (PMC), o qual é então representado por um PCS.</s3m:description>
         <s3m:description xml:lang="ar">جوهر مفهوم الرمز
             
-            يمثل قانون الأحوال المدنية وCCM في البيانات مثيل. في الممارسة العملية، وعادة ما يتم استبداله لمن قابلية مفهوم الرمز (PCS). هذا الاستبدال ويرجع ذلك إلى حقيقة أن يتم التعبير عن القيود في قابلية مفهوم نموذج (PCM) التي يتم بعد ذلك يمثله PCS.</s3m:description>
+            يمثل قانون الأحوال المدنية وCCM في البيانات مثيل. في الممارسة العملية، وعادة ما يتم استبداله لمن قابلية مفهوم الرمز (PCS). هذا الاستبدال ويرجع ذلك إلى حقيقة أن يتم التعبير عن القيود في قابلية مفهوم نموذج (PMC) التي يتم بعد ذلك يمثله PCS.</s3m:description>
         <s3m:description xml:lang="hi">मूल अवधारणा प्रतीक
             
             एक सीसीएस उदाहरण डेटा में एक सीसीएम प्रतिनिधित्व करता है। व्यवहार में, यह आमतौर पर एक प्लगेबल संकल्पना प्रतीक (पीसीएस) द्वारा दिया जाता है। यह तथ्य यह है कि प्रतिस्थापन की कमी एक प्लगेबल अवधारणा मॉडल (पीसीएम) में व्यक्त कर रहे हैं जो फिर एक पीसीएस द्वारा प्रतिनिधित्व किया है की वजह से है।</s3m:description>
         <s3m:description xml:lang="zh-s">核心理念符号
             
-            CCS的代表实例数据的CCM。在实践中，它通常是由可插入概念符号（PCS）取代。这种替代是由于，然后通过一个PCS表示的事实，即限制在一个可插入概念模型（PCM）表示。</s3m:description>
+            CCS的代表实例数据的CCM。在实践中，它通常是由可插入概念符号（PCS）取代。这种替代是由于，然后通过一个PCS表示的事实，即限制在一个可插入概念模型（PMC）表示。</s3m:description>
     </owl:Class>
     
 
@@ -212,19 +212,19 @@ A CCS represents a CCM in instance data. In practice, it is usually substituted 
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
         <s3m:description xml:lang="en-us">Data Model Instance
 
-A set of selected PCMs that are constraints on the RM components (CCMs) in order to represent a domain concept. In the implementation language there may be additional syntactic conventions required. Caution: Not to be confused with Data Instance.</s3m:description>
+A set of selected PMCs that are constraints on the RM components (CCMs) in order to represent a domain concept. In the implementation language there may be additional syntactic conventions required. Caution: Not to be confused with Data Instance.</s3m:description>
         <s3m:description xml:lang="pt">Modelo de Dados Instância
             
-            Um conjunto de PCMs selecionados que são restrições sobre os componentes RM (CCM) a fim de representar um conceito de domínio. Na linguagem de implementação pode haver convenções sintáticas adicionais necessários. Cuidado: Não deve ser confundido com dados de instância.</s3m:description>
+            Um conjunto de PMCs selecionados que são restrições sobre os componentes RM (CCM) a fim de representar um conceito de domínio. Na linguagem de implementação pode haver convenções sintáticas adicionais necessários. Cuidado: Não deve ser confundido com dados de instância.</s3m:description>
         <s3m:description xml:lang="es">Modelo de datos Instancia
             
-            Un conjunto de PCM seleccionados que son restricciones sobre los componentes RM (MCP) con el fin de representar un concepto de dominio. En el lenguaje de implementación puede haber convenciones sintácticas adicionales requeridos. Precaución: No se debe confundir con datos de instancia.</s3m:description>
+            Un conjunto de PMC seleccionados que son restricciones sobre los componentes RM (MCP) con el fin de representar un concepto de dominio. En el lenguaje de implementación puede haber convenciones sintácticas adicionales requeridos. Precaución: No se debe confundir con datos de instancia.</s3m:description>
         <s3m:description xml:lang="ar">البيانات نموذج مثيل
             
-            وهناك مجموعة من PCMS مختارة ذات القيود على مكونات RM (آليات التنسيق) من أجل تمثيل مفهوم المجال. في اللغة التنفيذ قد يكون هناك اتفاقيات النحوية الإضافية المطلوبة. تحذير: لا ينبغي الخلط بينه وبين مثيل البيانات.</s3m:description>
+            وهناك مجموعة من PMCS مختارة ذات القيود على مكونات RM (آليات التنسيق) من أجل تمثيل مفهوم المجال. في اللغة التنفيذ قد يكون هناك اتفاقيات النحوية الإضافية المطلوبة. تحذير: لا ينبغي الخلط بينه وبين مثيل البيانات.</s3m:description>
         <s3m:description xml:lang="hi">डाटा मॉडल उल्लेख
             
-            चुने गए PCMs कि आदेश में एक डोमेन अवधारणा का प्रतिनिधित्व करने में आरएम घटकों (CCMS) पर बाधाओं का एक सेट। कार्यान्वयन भाषा में हो सकता है अतिरिक्त वाक्यात्मक सम्मेलनों की आवश्यकता है। सावधानी: डाटा उदाहरण के साथ भ्रमित होने की नहीं।</s3m:description>
+            चुने गए PMCs कि आदेश में एक डोमेन अवधारणा का प्रतिनिधित्व करने में आरएम घटकों (CCMS) पर बाधाओं का एक सेट। कार्यान्वयन भाषा में हो सकता है अतिरिक्त वाक्यात्मक सम्मेलनों की आवश्यकता है। सावधानी: डाटा उदाहरण के साथ भ्रमित होने की नहीं।</s3m:description>
         <s3m:description xml:lang="zh-s">数据模型实例
             
             一组选定的相变材料是为了代表一个领域概念的RM组件委员会（CCM）的约束。在实现语言有可能需要额外的语法约定。注意事项：不要与数据实例相混淆。</s3m:description>
@@ -297,54 +297,54 @@ A set of selected PCMs that are constraints on the RM components (CCMs) in order
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/PCM -->
-
-    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/PCM">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
-        <s3m:description xml:lang="pt">Conceito conectável Modelo
-            
-            O nome dado a um CCM que tem sido restringido para utilização num DMI. Através das restrições, a PCM define um conceito único com base em restrições de dados sintáticos, bem como semântica especificada. É pluggable, porque ele pode ser reutilizado em múltiplas DMIs.</s3m:description>
-        <s3m:description xml:lang="es">Modelo enchufable Concept
-            
-            El nombre dado a un CCM que ha sido restringido para su uso en un DMI. A través de las limitaciones, un PCM define un único concepto basado en restricciones de datos sintácticos, así como la semántica especificadas. Es enchufable, ya que puede ser reutilizado en múltiples DMIs.</s3m:description>
-        <s3m:description xml:lang="en-us">Pluggable Concept Model
-
-The name given to a CCM that has been constrained for use in a DMI. Through the constraints, a PCM defines a single concept based on syntactic data constraints as well as specified semantics. It is pluggable because it can be reused in multiple DMIs.</s3m:description>
-        <s3m:description xml:lang="ar">مفهوم قابل للتوصيل نموذج
-            
-            الاسم الذي يطلق على CCM التي تم مقيدة للاستخدام في مؤسسة دبي للإعلام. من خلال القيود، وPCM يحدد مفهوم واحد على أساس القيود البيانات النحوية وكذلك دلالات محددة. فمن قابل للتوصيل لأنه يمكن استخدامها في العديد من DMIS.</s3m:description>
-        <s3m:description xml:lang="hi">प्लगेबल अवधारणा मॉडल
-            
-            नाम एक सीसीएम कि एक डीएमआई में इस्तेमाल के लिए विवश कर दिया गया है करने के लिए दिया। बाधाओं के माध्यम से, एक पीसीएम वाक्यात्मक डेटा की कमी के रूप में अच्छी तरह के रूप में निर्दिष्ट शब्दों के आधार पर एक भी अवधारणा को परिभाषित करता है। यह pluggable है, क्योंकि यह कई DMIS में पुन: उपयोग किया जा सकता है।</s3m:description>
-        <s3m:description xml:lang="zh-s">可插拔的概念模型
-            
-            给已约束用于在DMI使用一个CCM的名称。通过约束，一个PCM定义基于句法数据约束以及指定的语义单的概念。它是可插入的，因为它可以在多个DMIS重复使用。</s3m:description>
-    </owl:Class>
-    
-
-
     <!-- http://www.s3model.com/ns/s3m/s3model/PCS -->
 
     <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/PCS">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
         <s3m:description xml:lang="es">Enchufable del concepto del símbolo
             
-            Representa un PCM de datos de instancia. Puede considerarse como un contenedor de datos para los componentes de un PCM.</s3m:description>
+            Representa un PMC de datos de instancia. Puede considerarse como un contenedor de datos para los componentes de un PMC.</s3m:description>
         <s3m:description xml:lang="en-us">Pluggable Concept Symbol 
 
-Represents a PCM in instance data. Can be considered as a data container for the components of a PCM.</s3m:description>
+Represents a PMC in instance data. Can be considered as a data container for the components of a PMC.</s3m:description>
         <s3m:description xml:lang="pt">Símbolo Conceito conectável
             
-            Representa um PCM em dados de instância. Pode ser considerada como um contentor de dados para os componentes de um PCM.</s3m:description>
+            Representa um PMC em dados de instância. Pode ser considerada como um contentor de dados para os componentes de um PMC.</s3m:description>
         <s3m:description xml:lang="ar">قابل للتوصيل مفهوم الرمز
             
-            يمثل PCM في البيانات مثيل. يمكن اعتبار يحوي بيانات للمكونات PCM.</s3m:description>
+            يمثل PMC في البيانات مثيل. يمكن اعتبار يحوي بيانات للمكونات PMC.</s3m:description>
         <s3m:description xml:lang="hi">प्लगेबल संकल्पना प्रतीक
             
             उदाहरण के डेटा में एक पीसीएम प्रतिनिधित्व करता है। एक पीसीएम के घटकों के लिए एक डेटा कंटेनर के रूप में माना जा सकता है।</s3m:description>
         <s3m:description xml:lang="zh-s">可插拔的概念符号
             
-            代表实例数据的PCM。可被认为是为一个PCM的部件的数据容器。</s3m:description>
+            代表实例数据的PMC。可被认为是为一个PMC的部件的数据容器。</s3m:description>
+    </owl:Class>
+    
+
+
+    <!-- http://www.s3model.com/ns/s3m/s3model/PMC -->
+
+    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/PMC">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
+        <s3m:description xml:lang="pt">Conceito conectável Modelo
+            
+            O nome dado a um CCM que tem sido restringido para utilização num DMI. Através das restrições, a PMC define um conceito único com base em restrições de dados sintáticos, bem como semântica especificada. É pluggable, porque ele pode ser reutilizado em múltiplas DMIs.</s3m:description>
+        <s3m:description xml:lang="es">Modelo enchufable Concept
+            
+            El nombre dado a un CCM que ha sido restringido para su uso en un DMI. A través de las limitaciones, un PMC define un único concepto basado en restricciones de datos sintácticos, así como la semántica especificadas. Es enchufable, ya que puede ser reutilizado en múltiples DMIs.</s3m:description>
+        <s3m:description xml:lang="en-us">Pluggable Concept Model
+
+The name given to a CCM that has been constrained for use in a DMI. Through the constraints, a PMC defines a single concept based on syntactic data constraints as well as specified semantics. It is pluggable because it can be reused in multiple DMIs.</s3m:description>
+        <s3m:description xml:lang="ar">مفهوم قابل للتوصيل نموذج
+            
+            الاسم الذي يطلق على CCM التي تم مقيدة للاستخدام في مؤسسة دبي للإعلام. من خلال القيود، وPMC يحدد مفهوم واحد على أساس القيود البيانات النحوية وكذلك دلالات محددة. فمن قابل للتوصيل لأنه يمكن استخدامها في العديد من DMIS.</s3m:description>
+        <s3m:description xml:lang="hi">प्लगेबल अवधारणा मॉडल
+            
+            नाम एक सीसीएम कि एक डीएमआई में इस्तेमाल के लिए विवश कर दिया गया है करने के लिए दिया। बाधाओं के माध्यम से, एक पीसीएम वाक्यात्मक डेटा की कमी के रूप में अच्छी तरह के रूप में निर्दिष्ट शब्दों के आधार पर एक भी अवधारणा को परिभाषित करता है। यह pluggable है, क्योंकि यह कई DMIS में पुन: उपयोग किया जा सकता है।</s3m:description>
+        <s3m:description xml:lang="zh-s">可插拔的概念模型
+            
+            给已约束用于在DMI使用一个CCM的名称。通过约束，一个PMC定义基于句法数据约束以及指定的语义单的概念。它是可插入的，因为它可以在多个DMIS重复使用。</s3m:description>
     </owl:Class>
     
 

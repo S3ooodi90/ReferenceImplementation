@@ -394,11 +394,11 @@ def publish_XdString(self):
             dt_str += padding.rjust(indent + 2) + ("<rdf:Description rdf:about='mc-" +
                                                    self.ct_id + "/xdstring-value/" + quote(enumList[n].strip()) + "'>\n")
             dt_str += padding.rjust(indent + 2) + (
-                "  <rdfs:subPropertyOf rdf:resource='s3m:mc-" + self.ct_id + "'/>\n")
+                "  <rdfs:subPropertyOf rdf:resource='mc-" + self.ct_id + "'/>\n")
             dt_str += padding.rjust(indent + 2) + ("  <rdfs:label>" +
                                                    enumList[n].strip() + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("  <rdfs:isDefinedBy>" +
-                                                   tips[n].strip() + "</rdfs:isDefinedBy>")
+                                                   tips[n].strip() + "</rdfs:isDefinedBy>\n")
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
             dt_str += padding.rjust(indent + 18) + ("</xs:appinfo>\n")
             dt_str += padding.rjust(indent + 16) + ("</xs:annotation>\n")
@@ -968,7 +968,7 @@ def publish_SimpleReferenceRange(self):
     padding = ('').rjust(indent)
 
     # Create the  RR datatype
-    dt_str += '\n\n' + padding.rjust(indent) + ("<xs:complexType name='cm-" + self.ct_id + "' xml:lang='" +
+    dt_str += '\n\n' + padding.rjust(indent) + ("<xs:complexType name='mc-" + self.ct_id + "' xml:lang='" +
                                                 self.lang + "'> \n")
     dt_str += padding.rjust(indent + 2) + ("<xs:annotation>\n")
     dt_str += padding.rjust(indent + 2) + ("<xs:documentation>\n")
@@ -980,7 +980,7 @@ def publish_SimpleReferenceRange(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:cm-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
@@ -991,7 +991,7 @@ def publish_SimpleReferenceRange(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:pcm-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
             ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
@@ -1020,7 +1020,7 @@ def publish_SimpleReferenceRange(self):
     dt_str += (padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' "
                                             "fixed='") + rr_def.strip() + "'/>\n")
     dt_str += (padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval' "
-                                            "type='s3m:pcm-") + dvi_id + "'/> \n")
+                                            "type='s3m:mc-") + dvi_id + "'/> \n")
     dt_str += (padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='is-normal' "
                                             "type='xs:boolean' fixed='") + normal + "'/>\n")
     dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
@@ -1035,7 +1035,7 @@ def publish_SimpleReferenceRange(self):
     dt_str += padding.rjust(indent + 2) + ("</xs:complexType>")
 
     # XdInterval
-    dt_str += '\n\n' + padding.rjust(indent) + ("<xs:complexType name='pcm-" + dvi_id + "' xml:lang='" +
+    dt_str += '\n\n' + padding.rjust(indent) + ("<xs:complexType name='mc-" + dvi_id + "' xml:lang='" +
                                                 self.lang + "'> \n")
     dt_str += padding.rjust(indent + 2) + ("<xs:annotation>\n")
     dt_str += padding.rjust(indent + 2) + ("<xs:documentation>\n")
@@ -1047,7 +1047,7 @@ def publish_SimpleReferenceRange(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:pcm-" + dvi_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + dvi_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdIntervalType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
@@ -1058,7 +1058,7 @@ def publish_SimpleReferenceRange(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:pcm-" + dvi_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + dvi_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
             ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdIntervalType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
@@ -1084,9 +1084,9 @@ def publish_SimpleReferenceRange(self):
     lower_id = str(uuid4())
     upper_id = str(uuid4())
     dt_str += (padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='lower' "
-                                            "type='s3m:pcm-") + lower_id + "'/>\n")
+                                            "type='s3m:mc-") + lower_id + "'/>\n")
     dt_str += (padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='upper' "
-                                            "type='s3m:pcm-") + upper_id + "'/>\n")
+                                            "type='s3m:mc-") + upper_id + "'/>\n")
     dt_str += (padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='lower-included' "
                                             "type='xs:boolean' fixed='") + li + "'/>\n")
     dt_str += (padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='upper-included' "
@@ -1118,7 +1118,7 @@ def publish_SimpleReferenceRange(self):
 
     # lower value restriction
     dt_str += padding.rjust(indent + 2) + \
-        ("<xs:complexType name='pcm-" + lower_id + "'>\n")
+        ("<xs:complexType name='mc-" + lower_id + "'>\n")
     dt_str += padding.rjust(indent + 4) + ("<xs:complexContent>\n")
     dt_str += padding.rjust(indent + 6) + \
         ("<xs:restriction base='s3m:InvlType'>\n")
@@ -1143,7 +1143,7 @@ def publish_SimpleReferenceRange(self):
 
     # upper value restriction
     dt_str += padding.rjust(indent + 2) + \
-        ("<xs:complexType name='pcm-" + upper_id + "'>\n")
+        ("<xs:complexType name='mc-" + upper_id + "'>\n")
     dt_str += padding.rjust(indent + 4) + ("<xs:complexContent>\n")
     dt_str += padding.rjust(indent + 6) + \
         ("<xs:restriction base='s3m:InvlType'>\n")
@@ -1861,21 +1861,21 @@ def publish_XdRatio(self):
         if self.num_units.ct_id == self.den_units.ct_id:
             reset_publication(self)
             msg = (self.__str__(
-            ) + ": Numerator and denominator units must use different PCMs.", messages.ERROR)
+            ) + ": Numerator and denominator units must use different MCs.", messages.ERROR)
             return msg
 
     if self.num_units is not None and self.ratio_units is not None:
         if self.num_units.ct_id == self.ratio_units.ct_id:
             reset_publication(self)
             msg = (self.__str__(
-            ) + ": Numerator and ratio units must use different PCMs.", messages.ERROR)
+            ) + ": Numerator and ratio units must use different MCs.", messages.ERROR)
             return msg
 
     if self.den_units is not None and self.ratio_units is not None:
         if self.den_units.ct_id == self.ratio_units.ct_id:
             reset_publication(self)
             msg = (self.__str__(
-            ) + ": Denominator and ratio units must use different PCMs.", messages.ERROR)
+            ) + ": Denominator and ratio units must use different MCs.", messages.ERROR)
             return msg
 
     dt_str += padding.rjust(indent + 8) + (

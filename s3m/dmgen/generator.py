@@ -797,13 +797,13 @@ class DMPkg(object):
     def pcmRDF(self):
         msg = ("PCM RDF was generated.", messages.SUCCESS)
 
-        self.xsd += '\n<!-- RDF for contained PCMs -->\n'
+        self.xsd += '\n<!-- RDF for contained Pluggable Model Components -->\n'
         self.xsd += "  <xs:annotation>\n"
         self.xsd += "  <xs:appinfo>\n"
 
         for uuid in self.used_uuids:
             self.xsd += '      <rdf:Description rdf:about="dm-' + self.dm.ct_id + '">\n'
-            self.xsd += '        <s3m:containsPCM rdf:resource="cm-' + str(uuid) + '"/>\n'
+            self.xsd += '        <s3m:containsPMC rdf:resource="mc-' + str(uuid) + '"/>\n'
             self.xsd += '      </rdf:Description>\n'
 
         self.xsd += "  </xs:appinfo>\n"
