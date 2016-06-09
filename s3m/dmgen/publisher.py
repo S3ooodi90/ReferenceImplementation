@@ -23,7 +23,7 @@ from collections import OrderedDict
 from xml.sax.saxutils import escape
 from django.contrib import messages
 
-from s3m.settings import RMVERSION
+from s3m.settings import RMVERSION, RM_URI
 
 from .exceptions import PublishingError, ModellingError
 from .r_code_gen import pct_rcode
@@ -88,9 +88,9 @@ def publish_XdBoolean(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdBooleanType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdBooleanType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -98,9 +98,9 @@ def publish_XdBoolean(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdBooleanType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdBooleanType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -207,9 +207,9 @@ def publish_XdLink(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdLinkType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdLinkType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -217,9 +217,9 @@ def publish_XdLink(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + (
-            "<rdf:Description rdf:about='s3m:mc-" + quote(self.ct_id) + "'>\n")
+            "<rdf:Description rdf:about='mc-" + quote(self.ct_id) + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdLinkType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdLinkType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -321,9 +321,9 @@ def publish_XdString(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdStringType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdStringType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -331,9 +331,9 @@ def publish_XdString(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdStringType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdStringType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -391,7 +391,7 @@ def publish_XdString(self):
                 "<xs:enumeration value='" + escape(enumList[n].strip()) + "'>\n")
             dt_str += padding.rjust(indent + 16) + ("<xs:annotation>\n")
             dt_str += padding.rjust(indent + 18) + ("<xs:appinfo>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdf:Description rdf:about='s3m:mc-" +
+            dt_str += padding.rjust(indent + 2) + ("<rdf:Description rdf:about='mc-" +
                                                    self.ct_id + "/xdstring-value/" + quote(enumList[n].strip()) + "'>\n")
             dt_str += padding.rjust(indent + 2) + (
                 "  <rdfs:subPropertyOf rdf:resource='s3m:mc-" + self.ct_id + "'/>\n")
@@ -475,9 +475,9 @@ def publish_XdFile(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdFileType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdFileType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -485,9 +485,9 @@ def publish_XdFile(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdFileType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdFileType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -663,9 +663,9 @@ def publish_XdInterval(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdIntervalType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdIntervalType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -673,9 +673,9 @@ def publish_XdInterval(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdIntervalType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdIntervalType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -828,9 +828,9 @@ def publish_ReferenceRange(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:ReferenceRangeType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -838,9 +838,9 @@ def publish_ReferenceRange(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:ReferenceRangeType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -982,7 +982,7 @@ def publish_SimpleReferenceRange(self):
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdf:Description rdf:about='s3m:cm-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:ReferenceRangeType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -993,7 +993,7 @@ def publish_SimpleReferenceRange(self):
         dt_str += padding.rjust(indent + 2) + \
             ("<rdf:Description rdf:about='s3m:pcm-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:ReferenceRangeType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -1049,7 +1049,7 @@ def publish_SimpleReferenceRange(self):
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdf:Description rdf:about='s3m:pcm-" + dvi_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdIntervalType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdIntervalType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1060,7 +1060,7 @@ def publish_SimpleReferenceRange(self):
         dt_str += padding.rjust(indent + 2) + \
             ("<rdf:Description rdf:about='s3m:pcm-" + dvi_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdIntervalType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdIntervalType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -1244,9 +1244,9 @@ def publish_XdOrdinal(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdOrdinalType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdOrdinalType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1254,9 +1254,9 @@ def publish_XdOrdinal(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdOrdinalType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdOrdinalType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -1327,7 +1327,7 @@ def publish_XdOrdinal(self):
             ("<xs:enumeration value='" + s[n].strip() + "'>\n")
         dt_str += padding.rjust(indent + 16) + ("<xs:annotation>\n")
         dt_str += padding.rjust(indent + 18) + ("<xs:appinfo>\n")
-        dt_str += padding.rjust(indent + 18) + ("<rdf:Description rdf:about='s3m:mc-" +
+        dt_str += padding.rjust(indent + 18) + ("<rdf:Description rdf:about='mc-" +
                                                 self.ct_id + "/symbol/" + quote(s[n].strip()) + "'>\n")
         dt_str += padding.rjust(indent + 20) + (
             "<rdfs:isDefinedBy rdf:resource='" + quote(tips[n].strip()) + "'/>\n")
@@ -1410,9 +1410,9 @@ def publish_XdCount(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdCountType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdCountType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1420,9 +1420,9 @@ def publish_XdCount(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdCountType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdCountType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -1592,9 +1592,9 @@ def publish_XdQuantity(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdQuantityType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdQuantityType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1602,9 +1602,9 @@ def publish_XdQuantity(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdQuantityType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdQuantityType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -1774,9 +1774,9 @@ def publish_XdRatio(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdRatioType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdRatioType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1784,9 +1784,9 @@ def publish_XdRatio(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdRatioType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdRatioType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -2031,9 +2031,9 @@ def publish_XdTemporal(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:XdTemporalType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdTemporalType'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -2041,9 +2041,9 @@ def publish_XdTemporal(self):
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         dt_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:XdTemporalType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdTemporalType'/>\n")
         dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -2240,9 +2240,9 @@ def publish_Party(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             party_str += padding.rjust(indent + 2) + (
-                "<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                "<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             party_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:PartyType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "PartyType'/>\n")
             party_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                       escape(self.label.strip()) + "</rdfs:label>\n")
             party_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2250,9 +2250,9 @@ def publish_Party(self):
             party_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         party_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         party_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:PartyType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "PartyType'/>\n")
         party_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     party_str += padding.rjust(indent + 2) + ('</xs:appinfo>\n')
     party_str += padding.rjust(indent + 2) + ("</xs:annotation>\n")
@@ -2337,9 +2337,9 @@ def publish_Audit(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             aud_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             aud_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:AuditType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "AuditType'/>\n")
             aud_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             aud_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2347,9 +2347,9 @@ def publish_Audit(self):
             aud_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         aud_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         aud_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:AuditType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "AuditType'/>\n")
         aud_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     aud_str += padding.rjust(indent + 2) + ('</xs:appinfo>\n')
     aud_str += padding.rjust(indent + 2) + ("</xs:annotation>\n")
@@ -2444,9 +2444,9 @@ def publish_Attestation(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             att_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             att_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:AttestationType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "AttestationType'/>\n")
             att_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             att_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2454,9 +2454,9 @@ def publish_Attestation(self):
             att_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         att_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         att_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:AttestationType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "AttestationType'/>\n")
         att_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     att_str += padding.rjust(indent + 2) + ('</xs:appinfo>\n')
     att_str += padding.rjust(indent + 2) + ("</xs:annotation>\n")
@@ -2557,9 +2557,9 @@ def publish_Participation(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             ptn_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             ptn_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:ParticipationType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ParticipationType'/>\n")
             ptn_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             ptn_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2567,9 +2567,9 @@ def publish_Participation(self):
             ptn_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         ptn_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         ptn_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:ParticipationType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ParticipationType'/>\n")
         ptn_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     ptn_str += padding.rjust(indent + 2) + ('</xs:appinfo>\n')
     ptn_str += padding.rjust(indent + 2) + ("</xs:annotation>\n")
@@ -2686,9 +2686,9 @@ def publish_Cluster(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             cl_str += padding.rjust(indent + 2) + \
-                ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             cl_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:ClusterType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ClusterType'/>\n")
             cl_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             cl_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -2696,9 +2696,9 @@ def publish_Cluster(self):
             cl_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         cl_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         cl_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:ClusterType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ClusterType'/>\n")
         cl_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                escape(self.label.strip()) + "</rdfs:label>\n")
         cl_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -2878,9 +2878,9 @@ def publish_Entry(self):
     if len(self.pred_obj.all()) != 0:
         for po in self.pred_obj.all():
             entry_str += padding.rjust(indent + 2) + (
-                "<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+                "<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             entry_str += padding.rjust(indent + 2) + \
-                ("<rdfs:subClassOf rdf:resource='s3m:EntryType'/>\n")
+                ("<rdfs:subClassOf rdf:resource='" + RM_URI + "EntryType'/>\n")
             entry_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                       escape(self.label.strip()) + "</rdfs:label>\n")
             entry_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2888,9 +2888,9 @@ def publish_Entry(self):
             entry_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     else:
         entry_str += padding.rjust(indent + 2) + \
-            ("<rdf:Description rdf:about='s3m:mc-" + self.ct_id + "'>\n")
+            ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
         entry_str += padding.rjust(indent + 2) + \
-            ("<rdfs:subClassOf rdf:resource='s3m:EntryType'/>\n")
+            ("<rdfs:subClassOf rdf:resource='" + RM_URI + "EntryType'/>\n")
         entry_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
     entry_str += padding.rjust(indent + 2) + ('</xs:appinfo>\n')
     entry_str += padding.rjust(indent + 2) + ("</xs:annotation>\n")

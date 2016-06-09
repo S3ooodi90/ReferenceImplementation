@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 """
-rm_rdf_extractor.py
+rm_semantics_extractor.py
 
 Extracts the semantics from S3Model RM and creates RDF triples in RDF/XML
 
-    Copyright (C) 2016 Timothy W. Cook, All Rights Reserved.
+    Copyright (C) 2016 Data Insights, Inc., All Rights Reserved.
 
 """
 import os
