@@ -18,68 +18,68 @@ RM
 --
 Reference Model
 
-A set of components called *Core Concept Models* (CCMs) that provide structural integrity for a domain concept. Some CCMs are mandatory in DMs and some are optional. Optionality is defined in each RM implementation.
+A set of components called *Core Model Components* (CMCs) that provide structural integrity for a domain concept. Some CMCs are mandatory in DMs and some are optional. Optionality is defined in each RM implementation.
 
 ---
-CCM
+CMC
 ---
-Core Concept Model
+Core Model Component
 
-A composable model contained in a reference model. A CCM represents a specific core type of component that further contains elements with base datatypes and/or other CCMs to define its structure.
-
----
-CCS
----
-Core Concept Symbol
-
-A CCS represents a CCM in instance data. In practice, it is usually substituted for by a Pluggable Concept Symbol (PCS).
-This substitution is due to the fact that constraints are expressed in a Pluggable Concept Model (PCM) which is then represented by a PCS. 
+A composable model contained in a reference model. A CMC represents a specific core type of component that further contains elements with base datatypes and/or other CMCs to define its structure.
 
 ---
-DMI
+CMS
 ---
-Data Model Instance
+Core Model Symbol
 
-A set of selected PCMs that are constraints on the RM components (CCMs) in order to represent a domain concept.
+A CMS represents a CMC in instance data. In practice, it is usually substituted for by a Reusable Model Symbol (RMS).
+This substitution is due to the fact that constraints are expressed in a Reusable Model Component (RMC) which is then represented by a RMS. 
+
+--
+DM
+--
+Data Model
+
+A set of selected RMCs that are constraints on the RM components (CMCs) in order to represent a domain concept.
 In the implementation language there may be additional syntactic conventions required. *Caution:* Not to be confused with Data Instance.
 
 ---
-PCM
+RMC
 ---
-Pluggable Concept Model
+Reusable Model Component
 
-The name given to a CCM that has been constrained for use in a DMI. Through the constraints, a PCM defines a single concept based on syntactic data constraints as well as specified semantics. It is *pluggable* because it can be reused in multiple DMIs.
+The name given to a CMC that has been constrained for use in a DM. Through the constraints, a RMC defines a single concept based on syntactic data constraints as well as specified semantics. It is *reusable* because it can be reused in multiple DMs.
 
 ---
-PCS
+RMS
 ---
-Pluggable Concept Symbol
-Represents a PCM in instance data. Can be considered as a data container for the components of a PCM.
+Reusable Model Symbol
+Represents a RMC in instance data. Can be considered as a data container for the components of a RMC.
 
 ------------
 DataInstance
 ------------
-A set of data items that reports via *isInstanceOf* property that it conforms to a DMI. In this state it has not been tested for validation.
+A set of data items that reports via *isInstanceOf* property that it conforms to a DM. In this state it has not been tested for validation.
 
 -----------------
 DataInstanceValid
 -----------------
 Subclass of DataInstance.
-A set of data items that conforms to a DMI to represent an instance of that concept **AND** the all of the data values are valid according to the DMI constraints.
+A set of data items that conforms to a DM to represent an instance of that concept **AND** the all of the data values are valid according to the DM constraints.
 
 -------------------
 DataInstanceInvalid
 -------------------
 Subclass of DataInstance.
-A set of data items that conforms to a DMI to represent an instance of that concept **AND** at least some of the data values are **NOT** valid according to the DMI constraints. An Invalid Data Instance must contain one or more children of an Exception. 
+A set of data items that conforms to a DM to represent an instance of that concept **AND** at least some of the data values are **NOT** valid according to the DM constraints. An Invalid Data Instance must contain one or more children of an Exception. 
 
 -----------------
 DataInstanceError
 -----------------
 Subclass of DataInstance.
-A set of data items that **DOES NOT** conform to the DMI it represents **OR** it contains invalid data and does not contain one or more children of an Exception. If there are no noted Exceptions in the Data Instance then it should be considered suspect and discarded.
+A set of data items that **DOES NOT** conform to the DM it represents **OR** it contains invalid data and does not contain one or more children of an Exception. If there are no noted Exceptions in the Data Instance then it should be considered suspect and discarded.
 
 ---------
 Exception
 ---------
-Indicates that some data is outside of the parameters defined by the DMI and provides some context as to the cause of the anomaly. 
+Indicates that some data is outside of the parameters defined by the DM and provides some context as to the cause of the anomaly through defined subclasses. 
