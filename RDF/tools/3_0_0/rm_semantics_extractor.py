@@ -31,7 +31,7 @@ def main():
     dest.write("""<?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>\n""")
 
-    src = open('s3model_3_0_0.xsd', 'r')
+    src = open('rm/s3model_3_0_0.xsd', 'r')
     tree = etree.parse(src, parser)
     root = tree.getroot()
 

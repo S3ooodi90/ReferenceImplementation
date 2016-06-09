@@ -7,7 +7,7 @@
       </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">XdAnyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Serves as a common ancestor of all eXtended data-types (Xd*) in S3Model.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2360;&#2349;&#2368; &#2357;&#2367;&#2360;&#2381;&#2340;&#2366;&#2352;&#2367;&#2340; &#2337;&#2375;&#2335;&#2366; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352; (XD *) S3 &#2350;&#2377;&#2337;&#2354; &#2350;&#2375;&#2306; &#2360;&#2375; &#2319;&#2325; &#2361;&#2368; &#2346;&#2370;&#2352;&#2381;&#2357;&#2332; &#2325;&#2375; &#2352;&#2370;&#2346; &#2350;&#2375;&#2306; &#2325;&#2366;&#2352;&#2381;&#2351; &#2325;&#2352;&#2340;&#2366; &#2361;&#2376;&#2404;</rdfs:comment> 
@@ -94,8 +94,8 @@
               <rdfs:comment xml:lang="zh-s">&#32463;&#24230;&#21313;&#36827;&#21046;&#26684;&#24335;&#12290;&#20540;&#33539;&#22260;-180.000000&#20026;180.000000&#12290;</rdfs:comment>
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAny">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdBooleanType.html#XdBooleanType"/>
@@ -147,8 +147,8 @@
                   <rdfs:comment xml:lang="zh-s">&#23427;&#34920;&#31034;&#22312;&#25191;&#34892;&#19968;&#20010;&#24067;&#23572;&#20540;false&#30340;&#23383;&#31526;&#20018;&#12290;&#36825;&#20123;&#26159;&#30001;&#19968;&#32452;&#22312;CM&#26522;&#20030;&#30340;&#38480;&#21046;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBoolean">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdLinkType.html#XdLinkType"/>
@@ -198,8 +198,8 @@
                   <rdfs:comment xml:lang="zh-s">&#19968;&#20010;URI&#65292;&#20854;&#20013;&#30340;&#20851;&#31995;&#35201;&#32032;&#19968;&#35789;&#30340;&#23450;&#20041;&#21487;&#20197;&#25214;&#21040;&#12290;&#36890;&#24120;&#25351;&#21521;&#19968;&#20010;&#26412;&#20307;&#65292;&#22914;&#20154;&#26435;&#27861;&#26696;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLink">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType"/>
@@ -233,8 +233,8 @@
                   <rdfs:comment xml:lang="zh-s">&#22312;&#35813;&#25968;&#25454;&#31867;&#22411;&#34987;&#20889;&#20837;&#30340;&#26412;&#22320;&#21270;&#35821;&#35328;&#30340;&#21487;&#36873;&#30340;&#25351;&#31034;&#22120;&#12290;&#21482;&#26377;&#24403;&#36825;&#37324;&#25152;&#29992;&#30340;&#35821;&#35328;&#26159;&#20174;&#23553;&#38381;&#26465;&#30446;&#19981;&#21516;&#38656;&#35201;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdString">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType"/>
@@ -368,8 +368,8 @@
                     <rdfs:comment xml:lang="zh-s">&#30340;&#20869;&#23481;&#65292;&#22914;&#26524;&#26412;&#22320;&#23384;&#20648;&#20026;&#25991;&#26412;&#20869;&#23481;&#12290; CCM&#30340;&#24314;&#27169;&#35201;&#20040;&#36873;&#25321;&#19968;&#20010;URI&#65292;&#20108;&#36827;&#21046;&#20869;&#23481;&#20803;&#32032;&#25110;&#32773;&#25991;&#26412;&#30340;&#20869;&#23481;&#20803;&#32032;&#12290;</rdfs:comment>
                   </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFile">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType"/>
@@ -403,8 +403,8 @@
                   <rdfs:comment xml:lang="zh-s">&#30456;&#23545;&#20110;&#27491;&#24120;&#33539;&#22260;&#20026;&#36825;&#20010;&#20540;&#30340;&#20540;&#21487;&#36873;&#27491;&#24120;&#29366;&#24577;&#25351;&#31034;&#22120;&#12290;&#36890;&#36807;&#23454;&#39564;&#23460;&#36890;&#24120;&#21253;&#25324;&#65292;&#21363;&#20351;&#22312;&#27491;&#24120;&#33539;&#22260;&#26412;&#36523;&#19981;&#21253;&#25324;&#22312;&#20869;&#12290;&#36890;&#36807;&#20018;&#32852;HHH&#65292;HH&#65292;H&#65292;&#65288;&#26080;&#65289;&#65292;L&#65292;LL&#65292;LLL&#31561;&#32534;&#30721;&#24207;&#21495;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdered">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdOrdinalType.html#XdOrdinalType"/>
@@ -518,8 +518,8 @@
                   <rdfs:comment xml:lang="zh-s"/>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinal">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType"/>
@@ -563,11 +563,11 @@
                   <rdfs:comment xml:lang="zh-s">&#22312;&#33539;&#22260;&#20026;0&#65285;&#30340;&#24133;&#24230;&#23646;&#24615;&#65288;+/-&#65289;100&#65285;&#30340;&#20540;&#30340;&#31934;&#30830;&#24230;&#12290; 0&#20540;&#24847;&#21619;&#30528;&#31934;&#24230;&#26159;&#26410;&#30693;&#30340;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantified">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:comment xml:lang="en-us">MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2346;&#2352;&#2367;&#2350;&#2366;&#2339; &#2360;&#2381;&#2341;&#2367;&#2340;&#2367; &#2346;&#2352;&#2367;&#2350;&#2366;&#2339; &#2350;&#2366;&#2340;&#2381;&#2352;&#2366; &#2344;&#2367;&#2352;&#2381;&#2343;&#2366;&#2352;&#2367;&#2340; &#2313;&#2346;&#2346;&#2381;&#2352;&#2325;&#2366;&#2352;&#2379;&#2306; &#2350;&#2375;&#2306; &#2357;&#2381;&#2351;&#2325;&#2381;&#2340; &#2325;&#2368; &#2360;&#2335;&#2368;&#2325;&#2340;&#2366; &#2325;&#2368; &#2319;&#2325; &#2360;&#2366;&#2350;&#2366;&#2344;&#2381;&#2351; &#2360;&#2306;&#2325;&#2375;&#2340; &#2346;&#2381;&#2352;&#2342;&#2366;&#2344; &#2325;&#2352;&#2340;&#2366; &#2361;&#2376;&#2404; &#2344;&#2367;&#2352;&#2381;&#2339;&#2351; &#2325;&#2366; &#2360;&#2350;&#2352;&#2381;&#2341;&#2344; &#2313;&#2346;&#2351;&#2379;&#2327;&#2379;&#2306; &#2325;&#2375; &#2354;&#2367;&#2319; &#2313;&#2346;&#2351;&#2379;&#2327;&#2325;&#2352;&#2381;&#2340;&#2366;&#2323;&#2306; &#2324;&#2352; &#2344; &#2360;&#2370;&#2330;&#2367;&#2340; &#2325;&#2352;&#2344;&#2375; &#2325;&#2375; &#2354;&#2367;&#2319; &#2311;&#2360;&#2381;&#2340;&#2375;&#2350;&#2366;&#2354; &#2325;&#2367;&#2351;&#2366; &#2332;&#2366;&#2344;&#2366; &#2330;&#2366;&#2361;&#2367;&#2319;&#2404;</rdfs:comment> 
           <rdfs:comment xml:lang="ar">&#1610;&#1608;&#1601;&#1585; &#1605;&#1585;&#1603;&#1586; &#1581;&#1580;&#1605; &#1605;&#1572;&#1588;&#1585;&#1575; &#1593;&#1575;&#1605;&#1575; &#1605;&#1606; &#1583;&#1602;&#1577; &#1581;&#1580;&#1605; &#1571;&#1593;&#1585;&#1576; &#1601;&#1610; &#1575;&#1604;&#1571;&#1606;&#1608;&#1575;&#1593; &#1575;&#1604;&#1601;&#1585;&#1593;&#1610;&#1577; &#1603;&#1605;&#1610;&#1575;. &#1608;&#1610;&#1606;&#1576;&#1594;&#1610; &#1571;&#1606; &#1578;&#1587;&#1578;&#1582;&#1583;&#1605; &#1604;&#1573;&#1593;&#1604;&#1575;&#1605; &#1575;&#1604;&#1605;&#1587;&#1578;&#1582;&#1583;&#1605;&#1610;&#1606; &#1608;&#1604;&#1610;&#1587; &#1604;&#1575;&#1587;&#1578;&#1582;&#1583;&#1575;&#1605;&#1575;&#1578; &#1583;&#1593;&#1605; &#1575;&#1578;&#1582;&#1575;&#1584; &#1575;&#1604;&#1602;&#1585;&#1575;&#1585;.</rdfs:comment>
@@ -655,8 +655,8 @@
                   <rdfs:comment xml:lang="zh-s">&#21517;&#31216;&#25110;&#35745;&#25968;&#30340;&#29289;&#21697;&#30340;&#31867;&#22411;&#12290;&#20363;&#23376;&#26377;&#39321;&#28895;&#65292;&#39278;&#26009;&#65292;&#24576;&#23381;&#65292;&#24773;&#33410;&#31561;&#21487;&#33021;&#20250;&#25110;&#21487;&#33021;&#19981;&#20250;&#26469;&#33258;&#20110;&#19968;&#20010;&#26631;&#20934;&#26415;&#35821;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdCount">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdCountType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdCountType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdQuantityType.html#XdQuantityType"/>
@@ -690,8 +690,8 @@
                   <rdfs:comment xml:lang="zh-s">&#30340;&#21517;&#31216;&#25110;&#25968;&#37327;&#30340;&#31867;&#22411;&#12290;&#23454;&#20363;&#26159;&#8220;&#20844;&#26020;/&#24179;&#26041;&#31859;&#8221;&#65292;&#8220;&#27627;&#31859;&#27742;&#26609;&#8221;&#65292;&#8220;MS-1&#8221;&#65292;&#8220;&#20844;&#37324;/&#23567;&#26102;&#8221;&#12290;&#21487;&#20197;&#25110;&#21487;&#20197;&#19981;&#26159;&#26469;&#33258;&#19968;&#20010;&#26631;&#20934;&#26415;&#35821;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantity">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType"/>
@@ -781,11 +781,11 @@
                   <rdfs:comment xml:lang="zh-s">&#29992;&#20110;&#20256;&#36798;xdratio&#20540;&#30340;&#21547;&#20041;&#12290;&#21487;&#33021;&#20250;&#25110;&#21487;&#33021;&#19981;&#20250;&#26469;&#33258;&#20110;&#19968;&#20010;&#26631;&#20934;&#26415;&#35821;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatio">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TypeOfRatio">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:comment xml:lang="en-us">Indicates semantic type of ratio.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2309;&#2344;&#2369;&#2346;&#2366;&#2340; &#2325;&#2366; &#2309;&#2352;&#2381;&#2341; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352; &#2311;&#2306;&#2327;&#2367;&#2340; &#2325;&#2352;&#2340;&#2366; &#2361;&#2376;&#2404;</rdfs:comment> 
           <rdfs:comment xml:lang="ar">&#1610;&#1588;&#1610;&#1585; &#1606;&#1608;&#1593; &#1575;&#1604;&#1583;&#1604;&#1575;&#1604;&#1610; &#1604;&#1604;&#1606;&#1587;&#1576;&#1577;.</rdfs:comment>
@@ -961,8 +961,8 @@
                   <rdfs:comment xml:lang="zh-s">&#19968;&#20010;&#25968;&#25454;&#31867;&#22411;&#20174;&#25345;&#32493;&#26102;&#38388;&#24310;&#38271;&#38480;&#21046;&#20854;&#35789;&#27719;&#20132;&#28041;dayTimeDurationLexicalRep&#23454;&#20363;&#30340;&#12290;&#22240;&#27492;dayTimeDuration&#30340;&#20540;&#31354;&#38388;&#26159;&#25345;&#32493;&#26102;&#38388;&#21463;&#38480;&#20110;&#37027;&#20123;&#20010;&#23646;&#24615;&#26159;0&#12290;&#36825;&#23548;&#33268;&#22312;&#19968;&#20010;&#25345;&#32493;&#26102;&#38388;&#30340;&#25968;&#25454;&#31867;&#22411;&#26159;&#23436;&#20840;&#26377;&#24207;&#30340;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporal">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType"/>
@@ -1052,12 +1052,12 @@
                   <rdfs:comment xml:lang="zh-s">&#23450;&#20041;&#36825;&#20010;&#26102;&#38388;&#38388;&#38548;&#30340;&#21333;&#20301;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdInterval">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#InvlType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_.InvlTypehtml#InvlType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">InvlType</rdfs:label>
           <rdfs:comment xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
             boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CCM.</rdfs:comment>
@@ -1073,7 +1073,7 @@
             &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &#36793;&#30028;&#12290;&#38646;=&#8220;&#30495;&#8221;&#23646;&#24615;&#65306;&#20540;&#21487;&#20197;&#36890;&#36807;&#20351;&#29992;XSI&#35774;&#32622;&#20026;NULL&#65288;&#26080;&#38480;&#65289;&#12290; maxOccurs&#30340;&#21644;&#30340;minOccurs&#24517;&#39035;&#35774;&#32622;&#20026;1&#65292;&#22312;&#29238;CCM&#12290;</rdfs:comment>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#IntervalUnits">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:comment xml:lang="en-us">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
             temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2319;&#2325; &#2309;&#2306;&#2340;&#2352;&#2366;&#2354; &#2325;&#2375; &#2354;&#2367;&#2319; &#2311;&#2325;&#2366;&#2311;&#2351;&#2379;&#2306; &#2346;&#2342;&#2344;&#2366;&#2350; &#2309;&#2344;&#2381;&#2351; complexTypes &#2325;&#2368; &#2340;&#2369;&#2354;&#2344;&#2366; &#2350;&#2375;&#2306; &#2341;&#2379;&#2337;&#2364;&#2366; &#2309;&#2354;&#2327; &#2361;&#2376;&#2404; &#2311;&#2360; complexType &#2319;&#2325; &#2311;&#2325;&#2366;&#2311;&#2351;&#2379;&#2306; &#2344;&#2366;&#2350; &#2324;&#2352; &#2319;&#2325; &#2351;&#2370;&#2310;&#2352;&#2310;&#2311; &#2325;&#2368; &#2352;&#2330;&#2344;&#2366; &#2325;&#2368; &#2357;&#2332;&#2361; &#2360;&#2375; &#2319;&#2325; ReferenceRange &#2350;&#2366;&#2340;&#2366;-&#2346;&#2367;&#2340;&#2366; &#2350;&#2375;&#2306; &#2309;&#2354;&#2327;-&#2309;&#2354;&#2327; &#2358;&#2381;&#2352;&#2375;&#2339;&#2367;&#2351;&#2379;&#2306; &#2325;&#2375; &#2354;&#2367;&#2319; &#2309;&#2354;&#2327;-&#2309;&#2354;&#2327; &#2311;&#2325;&#2366;&#2311;&#2351;&#2379;&#2306; &#2350;&#2375;&#2306; &#2361;&#2379; &#2360;&#2325;&#2340;&#2366; &#2361;&#2376;&#2404; &#2313;&#2342;&#2366;&#2361;&#2352;&#2339;: &#2319;&#2325; XdQuantity &#2325;&#2368;
@@ -1135,12 +1135,12 @@
                   <rdfs:comment xml:lang="zh-s">&#22914;&#26524;&#27492;&#21442;&#32771;&#33539;&#22260;&#23450;&#20041;&#20102;&#34987;&#35748;&#20026;&#26159;&#27491;&#24120;&#30340;&#20540;&#12290;&#22312;&#23450;&#20041;&#35201;&#32032;&#30340;&#20540;&#30340;&#24773;&#20917;&#19979;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRange">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRangeType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRangeType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">AuditType</rdfs:label>
           <rdfs:comment xml:lang="en-us">AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2354;&#2375;&#2326;&#2366; &#2346;&#2352;&#2368;&#2325;&#2381;&#2359;&#2366; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352; &#2325;&#2368; &#2346;&#2361;&#2330;&#2366;&#2344; &#2325;&#2352;&#2344;&#2375; &#2325;&#2375; &#2354;&#2367;&#2319; &#2319;&#2325; &#2340;&#2306;&#2340;&#2381;&#2352; &#2346;&#2381;&#2352;&#2342;&#2366;&#2344; &#2325;&#2352;&#2340;&#2366; &#2361;&#2376; &#2332;&#2379; / &#2332;&#2361;&#2366;&#2306; / &#2332;&#2348; &#2313;&#2342;&#2366;&#2361;&#2352;&#2339;&#2379;&#2306; &#2325;&#2368; &#2335;&#2381;&#2352;&#2376;&#2325;&#2367;&#2306;&#2327; &#2325;&#2375; &#2352;&#2370;&#2346; &#2350;&#2375;&#2306; &#2357;&#2375; &#2357;&#2381;&#2351;&#2357;&#2360;&#2381;&#2341;&#2366; &#2325;&#2352;&#2344;&#2375; &#2325;&#2375; &#2354;&#2367;&#2319; &#2360;&#2367;&#2360;&#2381;&#2335;&#2350; &#2360;&#2375; &#2330;&#2354;&#2340;&#2375; &#2361;&#2376;&#2306;&#2404;</rdfs:comment> 
@@ -1200,12 +1200,12 @@
               <rdfs:comment xml:lang="zh-s">&#22788;&#29702;&#39033;&#30446;&#30340;&#26102;&#38388;&#25139;&#12290;</rdfs:comment>
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Audit">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">PartyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
             information is to be anonymous then do not include the details element.</rdfs:comment>
@@ -1261,12 +1261,12 @@
               <rdfs:comment xml:lang="zh-s">&#20851;&#20110;&#20826;&#30340;&#32467;&#26500;&#32454;&#33410;&#12290;</rdfs:comment>
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Party">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">AttestationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which my be coded.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2352;&#2367;&#2325;&#2377;&#2352;&#2381;&#2337; &#2325;&#2368; &#2360;&#2366;&#2350;&#2327;&#2381;&#2352;&#2368; &#2350;&#2342; (s) &#2325;&#2368; &#2319;&#2325; &#2346;&#2366;&#2352;&#2381;&#2335;&#2368; &#2342;&#2381;&#2357;&#2366;&#2352;&#2366; &#2319;&#2325; &#2360;&#2340;&#2381;&#2351;&#2366;&#2346;&#2344; &#2352;&#2367;&#2325;&#2377;&#2352;&#2381;&#2337;&#2404; &#2360;&#2340;&#2381;&#2351;&#2366;&#2346;&#2344; &#2325;&#2375; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352; &#2325;&#2375; &#2325;&#2366;&#2352;&#2339; &#2357;&#2367;&#2358;&#2375;&#2359;&#2340;&#2366; &#2361;&#2376;, &#2332;&#2379; &#2325;&#2379;&#2337;&#2367;&#2340; &#2325;&#2367;&#2351;&#2366; My &#2360;&#2375; &#2342;&#2352;&#2381;&#2332; &#2325;&#2368; &#2327;&#2312; &#2361;&#2376;&#2404;</rdfs:comment> 
@@ -1346,12 +1346,12 @@
               <rdfs:comment xml:lang="zh-s">&#22914;&#26524;&#27492;&#35748;&#35777;&#26159;&#20248;&#31168;&#30340;; &#8220;&#20551;&#8221;&#24847;&#21619;&#30528;&#23427;&#24050;&#32463;&#23436;&#25104;&#12290;</rdfs:comment>
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Attestation">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">ParticipationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2319;&#2325; &#2319;&#2325; &#2327;&#2340;&#2367;&#2357;&#2367;&#2343;&#2367; &#2350;&#2375;&#2306; &#2319;&#2325; &#2346;&#2366;&#2352;&#2381;&#2335;&#2368; &#2325;&#2368; &#2349;&#2366;&#2327;&#2368;&#2342;&#2366;&#2352;&#2368; (&#2325;&#2367;&#2360;&#2368; &#2349;&#2368; &#2309;&#2349;&#2367;&#2344;&#2375;&#2340;&#2366; &#2351;&#2366; &#2349;&#2370;&#2350;&#2367;&#2325;&#2366;) &#2325;&#2368; &#2350;&#2377;&#2337;&#2354;&#2404; , &#2325;&#2369;&#2331; &#2327;&#2340;&#2367;&#2357;&#2367;&#2343;&#2367; &#2350;&#2375;&#2306; &#2319;&#2325; &#2346;&#2366;&#2352;&#2381;&#2335;&#2368; &#2325;&#2375; &#2325;&#2367;&#2360;&#2368; &#2349;&#2368; &#2349;&#2366;&#2327;&#2368;&#2342;&#2366;&#2352;&#2368; &#2361;&#2376;, &#2332;&#2379; &#2360;&#2381;&#2346;&#2359;&#2381;&#2335; &#2352;&#2370;&#2346; &#2360;&#2375; &#2350;&#2377;&#2337;&#2354; &#2350;&#2375;&#2306; &#2344;&#2361;&#2368;&#2306; &#2361;&#2376; &#2325;&#2366; &#2346;&#2381;&#2352;&#2340;&#2367;&#2344;&#2367;&#2343;&#2367;&#2340;&#2381;&#2357; &#2325;&#2352;&#2340;&#2375; &#2341;&#2375; &#2332;&#2376;&#2360;&#2375; &#2325;&#2367; &#2344;&#2352;&#2381;&#2360; &#2325;&#2368; &#2360;&#2361;&#2366;&#2351;&#2340;&#2366;&#2404; &#2309;&#2340;&#2368;&#2340; &#2351;&#2366; &#2349;&#2357;&#2367;&#2359;&#2381;&#2351; participations &#2352;&#2367;&#2325;&#2377;&#2352;&#2381;&#2337; &#2325;&#2352;&#2344;&#2375; &#2325;&#2375; &#2354;&#2367;&#2319; &#2311;&#2360;&#2381;&#2340;&#2375;&#2350;&#2366;&#2354; &#2325;&#2367;&#2351;&#2366; &#2332;&#2366; &#2360;&#2325;&#2340;&#2366; &#2361;&#2376;&#2404;</rdfs:comment> 
@@ -1421,8 +1421,8 @@
               <rdfs:comment xml:lang="zh-s">&#32467;&#26463;&#26085;&#26399;&#26102;&#38388;&#21442;&#19982;&#21457;&#29983;&#12290;</rdfs:comment>
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Participation">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
@@ -1452,8 +1452,8 @@
               <rdfs:comment xml:lang="zh-s">&#19968;&#20010;&#31616;&#30701;&#30340;&#26631;&#39064;&#25110;&#38454;&#27573;&#30340;&#29305;&#27530;&#31867;&#22411;&#20540;&#12290;</rdfs:comment>
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NIType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NIType.html#NIType"/>
@@ -1468,7 +1468,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NI">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NIType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NIType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSKType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_MSKType.html#MSKType"/>
@@ -1489,7 +1489,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSK">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSKType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSKType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INVType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_INVType.html#INVType"/>
@@ -1504,7 +1504,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INV">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INVType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INVType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="DERType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_DERType.html#DERType"/>
@@ -1519,7 +1519,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DER">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DERType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DERType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNCType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_UNCType.html#UNCType"/>
@@ -1534,7 +1534,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNC">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNCType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNCType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTHType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_OTHType.html#OTHType"/>
@@ -1549,7 +1549,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTH">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTHType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTHType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINFType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NINFType.html#NINFType"/>
@@ -1564,7 +1564,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINF">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINFType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINFType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINFType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_PINFType.html#PINFType"/>
@@ -1579,7 +1579,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINF">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINFType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINFType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNKType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_UNKType.html#UNKType"/>
@@ -1594,7 +1594,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNK">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNKType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNKType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKRType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ASKRType.html#ASKRType"/>
@@ -1609,7 +1609,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKR">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKRType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKRType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASKType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NASKType.html#NASKType"/>
@@ -1624,7 +1624,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASK">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASKType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASKType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QSType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_QSType.html#QSType"/>
@@ -1639,7 +1639,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QS">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QSType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QSType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRCType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_TRCType.html#TRCType"/>
@@ -1654,7 +1654,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRC">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRCType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRCType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKUType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ASKUType.html#ASKUType"/>
@@ -1669,7 +1669,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKU">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKUType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKUType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAVType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NAVType.html#NAVType"/>
@@ -1684,7 +1684,7 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAV">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAVType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAVType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAType">
               <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_NAType.html#NAType"/>
@@ -1699,11 +1699,11 @@
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NA">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">ItemType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The abstract parent of ClusterType and XdAdapterType structural representation types.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2325;&#2381;&#2354;&#2360;&#2381;&#2335;&#2352; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352; &#2324;&#2352; XD &#2319;&#2337;&#2366;&#2346;&#2381;&#2335;&#2352; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352; &#2360;&#2306;&#2352;&#2330;&#2344;&#2366;&#2340;&#2381;&#2350;&#2325; &#2346;&#2381;&#2352;&#2340;&#2367;&#2344;&#2367;&#2343;&#2367;&#2340;&#2381;&#2357; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352; &#2325;&#2375; &#2360;&#2366;&#2352; &#2350;&#2366;&#2340;&#2366; &#2346;&#2367;&#2340;&#2366;&#2404;</rdfs:comment> 
@@ -1713,8 +1713,8 @@
           <rdfs:comment xml:lang="zh-s">&#38598;&#32676;&#31867;&#22411;&#21644;Xd&#36866;&#37197;&#22120;&#31867;&#22411;&#32467;&#26500;&#31034;&#24847;&#22270;&#31867;&#22411;&#30340;&#25277;&#35937;&#29238;&#12290;</rdfs:comment>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Item">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType"/>
@@ -1748,8 +1748,8 @@
                   <rdfs:comment xml:lang="zh-s">&#39033;&#30446;&#31867;&#22411;&#30340;&#21015;&#34920;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Cluster">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdAdapterType.html#XdAdapterType"/>
@@ -1768,15 +1768,15 @@
                   <rdfs:comment xml:lang="zh-s">&#25968;&#25454;&#20540;&#31867;&#22411;&#36825;&#29255;&#21494;&#23376;&#30340;&#12290;&#25353;&#35268;&#21017;&#65292;&#20063;&#21482;&#33021;&#22312;&#36825;&#37324;&#23450;&#20041;&#20102;&#19968;&#20010;XdAnyType&#20122;&#22411;&#12290;&#26080;&#30028;&#20986;&#29616;&#26159;&#20801;&#35768;&#30340;&#65292;&#20351;&#24471;DM&#21487;&#20197;&#25351;&#23450;&#23454;&#20363;&#25968;&#25454;&#21487;&#33021;&#20250;&#20986;&#29616;&#22810;&#23569;&#20010;&#37325;&#22797;&#12290;</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType/XdAdapter-value">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapter">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_EntryType.html#EntryType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">EntryType</rdfs:label>
           <rdfs:comment xml:lang="en-us">An Entry is the root of a logical set of data items.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2319;&#2325; &#2346;&#2381;&#2352;&#2357;&#2375;&#2358; &#2337;&#2375;&#2335;&#2366; &#2350;&#2342;&#2379;&#2306; &#2325;&#2368; &#2319;&#2325; &#2340;&#2366;&#2352;&#2381;&#2325;&#2367;&#2325; &#2360;&#2375;&#2335; &#2325;&#2368; &#2332;&#2337;&#2364; &#2361;&#2376;&#2404;</rdfs:comment> 
@@ -1916,12 +1916,12 @@
               <rdfs:comment xml:lang="zh-s">&#21487;&#36873;&#38142;&#25509;&#65289;&#21040;&#20854;&#20182;&#28014;&#21160;&#32467;&#26500;&#25110;&#22806;&#37096;&#23454;&#20307;&#12290;</rdfs:comment>
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Entry">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_DMType.html#DMType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">DMType</rdfs:label>
           <rdfs:comment xml:lang="en-us">This is the root node of a Data Model.</rdfs:comment>
           <rdfs:comment xml:lang="hi">&#2351;&#2361; &#2319;&#2325; &#2337;&#2366;&#2335;&#2366; &#2350;&#2377;&#2337;&#2354; &#2325;&#2368; &#2332;&#2337;&#2364; &#2344;&#2379;&#2337; &#2361;&#2376;&#2404;</rdfs:comment> 
@@ -1941,11 +1941,11 @@
               <rdfs:comment xml:lang="zh-s">&#35813;DM&#32467;&#26500;&#23450;&#20041;&#30340;&#20803;&#32032;&#12290;</rdfs:comment>
             </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Definition">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="http://www.s3model.com/ns/s3m/" rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DM">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType"/>
         </rdf:Description>
 </rdf:RDF>

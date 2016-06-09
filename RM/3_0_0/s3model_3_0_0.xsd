@@ -28,7 +28,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">XdAnyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Serves as a common ancestor of all eXtended data-types (Xd*) in S3Model.</rdfs:comment>
           <rdfs:comment xml:lang="hi">सभी विस्तारित डेटा प्रकार (XD *) S3 मॉडल में से एक ही पूर्वज के रूप में कार्य करता है।</rdfs:comment> 
@@ -194,7 +194,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAny">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -285,7 +285,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBoolean">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -379,7 +379,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLink">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -450,7 +450,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdString">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -693,7 +693,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFile">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -762,7 +762,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdered">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -924,7 +924,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinal">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1011,7 +1011,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantified">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1023,7 +1023,7 @@
       <xs:documentation xml:lang="en-us">MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MagnitudeStatus">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:comment xml:lang="en-us">MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.</rdfs:comment>
           <rdfs:comment xml:lang="hi">परिमाण स्थिति परिमाण मात्रा निर्धारित उपप्रकारों में व्यक्त की सटीकता की एक सामान्य संकेत प्रदान करता है। निर्णय का समर्थन उपयोगों के लिए उपयोगकर्ताओं और न सूचित करने के लिए इस्तेमाल किया जाना चाहिए।</rdfs:comment> 
           <rdfs:comment xml:lang="ar">يوفر مركز حجم مؤشرا عاما من دقة حجم أعرب في الأنواع الفرعية كميا. وينبغي أن تستخدم لإعلام المستخدمين وليس لاستخدامات دعم اتخاذ القرار.</rdfs:comment>
@@ -1153,7 +1153,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdCount">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdCountType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1222,7 +1222,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantity">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1384,7 +1384,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatio">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1396,7 +1396,7 @@
       <xs:documentation xml:lang="en-us">Indicates semantic type of ratio.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TypeOfRatio">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:comment xml:lang="en-us">Indicates semantic type of ratio.</rdfs:comment>
           <rdfs:comment xml:lang="hi">अनुपात का अर्थ प्रकार इंगित करता है।</rdfs:comment> 
           <rdfs:comment xml:lang="ar">يشير نوع الدلالي للنسبة.</rdfs:comment>
@@ -1685,7 +1685,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporal">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1850,7 +1850,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdInterval">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -1865,7 +1865,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#InvlType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_.InvlTypehtml#InvlType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">InvlType</rdfs:label>
           <rdfs:comment xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
             boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CCM.</rdfs:comment>
@@ -1899,7 +1899,7 @@
         temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#IntervalUnits">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:comment xml:lang="en-us">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
             temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</rdfs:comment>
           <rdfs:comment xml:lang="hi">एक अंतराल के लिए इकाइयों पदनाम अन्य complexTypes की तुलना में थोड़ा अलग है। इस complexType एक इकाइयों नाम और एक यूआरआइ की रचना की वजह से एक ReferenceRange माता-पिता में अलग-अलग श्रेणियों के लिए अलग-अलग इकाइयों में हो सकता है। उदाहरण: एक XdQuantity की
@@ -2007,7 +2007,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRange">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRangeType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -2020,7 +2020,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">AuditType</rdfs:label>
           <rdfs:comment xml:lang="en-us">AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</rdfs:comment>
           <rdfs:comment xml:lang="hi">लेखा परीक्षा प्रकार की पहचान करने के लिए एक तंत्र प्रदान करता है जो / जहां / जब उदाहरणों की ट्रैकिंग के रूप में वे व्यवस्था करने के लिए सिस्टम से चलते हैं।</rdfs:comment> 
@@ -2123,7 +2123,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Audit">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -2137,7 +2137,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">PartyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
             information is to be anonymous then do not include the details element.</rdfs:comment>
@@ -2229,7 +2229,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Party">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -2242,7 +2242,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">AttestationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which my be coded.</rdfs:comment>
           <rdfs:comment xml:lang="hi">रिकॉर्ड की सामग्री मद (s) की एक पार्टी द्वारा एक सत्यापन रिकॉर्ड। सत्यापन के प्रकार के कारण विशेषता है, जो कोडित किया My से दर्ज की गई है।</rdfs:comment> 
@@ -2380,7 +2380,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Attestation">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -2393,7 +2393,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">ParticipationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.</rdfs:comment>
           <rdfs:comment xml:lang="hi">एक एक गतिविधि में एक पार्टी की भागीदारी (किसी भी अभिनेता या भूमिका) की मॉडल। , कुछ गतिविधि में एक पार्टी के किसी भी भागीदारी है, जो स्पष्ट रूप से मॉडल में नहीं है का प्रतिनिधित्व करते थे जैसे कि नर्स की सहायता। अतीत या भविष्य participations रिकॉर्ड करने के लिए इस्तेमाल किया जा सकता है।</rdfs:comment> 
@@ -2514,7 +2514,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Participation">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -2570,7 +2570,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -3181,7 +3181,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">ItemType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The abstract parent of ClusterType and XdAdapterType structural representation types.</rdfs:comment>
           <rdfs:comment xml:lang="hi">क्लस्टर प्रकार और XD एडाप्टर प्रकार संरचनात्मक प्रतिनिधित्व प्रकार के सार माता पिता।</rdfs:comment> 
@@ -3198,7 +3198,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Item">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -3270,7 +3270,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Cluster">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -3318,7 +3318,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType/XdAdapter-value">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3328,7 +3328,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapter">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -3341,7 +3341,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_EntryType.html#EntryType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">EntryType</rdfs:label>
           <rdfs:comment xml:lang="en-us">An Entry is the root of a logical set of data items.</rdfs:comment>
           <rdfs:comment xml:lang="hi">एक प्रवेश डेटा मदों की एक तार्किक सेट की जड़ है।</rdfs:comment> 
@@ -3580,7 +3580,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Entry">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -3593,7 +3593,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_DMType.html#DMType"/>
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">DMType</rdfs:label>
           <rdfs:comment xml:lang="en-us">This is the root node of a Data Model.</rdfs:comment>
           <rdfs:comment xml:lang="hi">यह एक डाटा मॉडल की जड़ नोड है।</rdfs:comment> 
@@ -3629,7 +3629,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Definition">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
         </rdf:Description>
       </xs:appinfo>
@@ -3640,7 +3640,7 @@
     <xs:annotation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DM">
-          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
+          <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType"/>
         </rdf:Description>
       </xs:appinfo>
