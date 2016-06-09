@@ -1290,7 +1290,7 @@ def publish_XdOrdinal(self):
 
             else:
                 dt_str += padding.rjust(indent + 8) + \
-                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + rr.ct_id + "'/> \n"
+                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + rr.ct_id + "'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
                     # track the used XdInterval IDs
                     used_ctid_list.append(rr.interval.ct_id)
@@ -1456,7 +1456,7 @@ def publish_XdCount(self):
                 return msg
             else:
                 dt_str += padding.rjust(indent + 8) + \
-                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + rr.ct_id + "'/> \n"
+                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + rr.ct_id + "'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
                     # track the used XdInterval IDs
                     used_ctid_list.append(rr.interval.ct_id)
@@ -1638,7 +1638,7 @@ def publish_XdQuantity(self):
                 return msg
             else:
                 dt_str += padding.rjust(indent + 8) + \
-                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + rr.ct_id + "'/> \n"
+                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + rr.ct_id + "'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
                     # track the used XdInterval IDs
                     used_ctid_list.append(rr.interval.ct_id)
@@ -1821,7 +1821,7 @@ def publish_XdRatio(self):
 
             else:
                 dt_str += padding.rjust(indent + 8) + \
-                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + rr.ct_id + "'/> \n"
+                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + rr.ct_id + "'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
                     # track the used XdInterval IDs
                     used_ctid_list.append(rr.interval.ct_id)
@@ -2076,7 +2076,7 @@ def publish_XdTemporal(self):
                 return msg
             else:
                 dt_str += padding.rjust(indent + 8) + \
-                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + rr.ct_id + "'/> \n"
+                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + rr.ct_id + "'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
                     # track the used XdInterval IDs
                     used_ctid_list.append(rr.interval.ct_id)
@@ -2723,7 +2723,7 @@ def publish_Cluster(self):
                            " hasn't been published.", messages.ERROR)
                     return msg
                 cl_str += padding.rjust(indent + 4) + (
-                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.ct_id) + "'/>\n")
+                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.ct_id) + "'/>\n")
 
             else:
                 reset_publication(self)
@@ -2739,7 +2739,7 @@ def publish_Cluster(self):
                 msg = ("(XdBoolean) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     if self.xdlink.all():
         has_content = True
@@ -2749,7 +2749,7 @@ def publish_Cluster(self):
                 msg = ("(XdLink) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     if self.xdstring.all():
         has_content = True
@@ -2759,7 +2759,7 @@ def publish_Cluster(self):
                 msg = ("(XdString) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     if self.xdfile.all():
         has_content = True
@@ -2769,7 +2769,7 @@ def publish_Cluster(self):
                 msg = ("(XdFile) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     if self.xdordinal.all():
         has_content = True
@@ -2779,7 +2779,7 @@ def publish_Cluster(self):
                 msg = ("(XdOrdinal) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     if self.xdcount.all():
         has_content = True
@@ -2789,7 +2789,7 @@ def publish_Cluster(self):
                 msg = ("(XdCount) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     if self.xdquantity.all():
         has_content = True
@@ -2799,7 +2799,7 @@ def publish_Cluster(self):
                 msg = ("(XdQuantity) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     if self.xdratio.all():
         has_content = True
@@ -2809,7 +2809,7 @@ def publish_Cluster(self):
                 msg = ("(XdRatio) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     if self.xdtemporal.all():
         has_content = True
@@ -2819,7 +2819,7 @@ def publish_Cluster(self):
                 msg = ("(XdTemporal) " + item.__str__().strip() +
                        " hasn't been published. Please publish the object and retry.", messages.ERROR)
             cl_str += padding.rjust(indent + 4) + (
-                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(item.adapter_ctid) + "'/>\n")
+                "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(item.adapter_ctid) + "'/>\n")
 
     cl_str += padding.rjust(indent + 6) + ("</xs:sequence>\n")
     if self.asserts:
@@ -2918,7 +2918,7 @@ def publish_Entry(self):
                    " must be published before publishing the entry.", messages.ERROR)
             return msg
         entry_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1' ref='s3m:me-" + str(self.data.ct_id) + "'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='1' ref='s3m:ms-" + str(self.data.ct_id) + "'/>\n")
 
     if self.subject:
         entry_str += padding.rjust(indent + 8) + (
@@ -2955,7 +2955,7 @@ def publish_Entry(self):
                 return msg
             else:
                 entry_str += padding.rjust(
-                    indent + 8) + "<xs:element maxOccurs='unbounded' minOccurs='0' ref='s3m:me-" + str(op.ct_id) + "'/>\n"
+                    indent + 8) + "<xs:element maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-" + str(op.ct_id) + "'/>\n"
 
     if self.protocol:
         if not self.protocol.published:
@@ -3018,7 +3018,7 @@ def publish_Entry(self):
                 return msg
             else:
                 entry_str += padding.rjust(
-                    indent + 8) + "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:me-" + str(link.ct_id) + "'/>\n"
+                    indent + 8) + "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(link.ct_id) + "'/>\n"
 
     entry_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
     if self.asserts:

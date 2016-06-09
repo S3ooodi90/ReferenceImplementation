@@ -43,10 +43,10 @@
 
     <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/basedOnRM">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/DMI"/>
+        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/DM"/>
         <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/RM"/>
         <s3m:description xml:lang="pt">Relata uma DVI a uma RM.</s3m:description>
-        <s3m:description xml:lang="en-us">Relates a DMI to one RM.</s3m:description>
+        <s3m:description xml:lang="en-us">Relates a DM to one RM.</s3m:description>
         <s3m:description xml:lang="es">Se relaciona con un adaptador DVI a una RM.</s3m:description>
         <s3m:description xml:lang="ar">يروي DVI إلى RM واحد.</s3m:description>
         <s3m:description xml:lang="hi">एक आर एम के लिए एक डीवीआई संबंधित है।</s3m:description>
@@ -55,32 +55,32 @@
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/containsCCM -->
+    <!-- http://www.s3model.com/ns/s3m/s3model/containsCMC -->
 
-    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/containsCCM">
+    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/containsCMC">
         <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/RM"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
-        <s3m:description xml:lang="pt">Define a relação que um MR contém um CCM específica.</s3m:description>
-        <s3m:description xml:lang="es">Define la relación que una RM contiene un CCM específica.</s3m:description>
-        <s3m:description xml:lang="en-us">Defines the relation that a RM contains a specific CCM.</s3m:description>
-        <s3m:description xml:lang="ar">يحدد العلاقة أن RM يحتوي على CCM محددة.</s3m:description>
+        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
+        <s3m:description xml:lang="pt">Define a relação que um MR contém um CMC específica.</s3m:description>
+        <s3m:description xml:lang="es">Define la relación que una RM contiene un CMC específica.</s3m:description>
+        <s3m:description xml:lang="en-us">Defines the relation that a RM contains a specific CMC.</s3m:description>
+        <s3m:description xml:lang="ar">يحدد العلاقة أن RM يحتوي على CMC محددة.</s3m:description>
         <s3m:description xml:lang="hi">संबंध है कि एक आरएम एक विशिष्ट सीसीएम शामिल परिभाषित करता है।</s3m:description>
-        <s3m:description xml:lang="zh-s">定义一个RM包含特定CCM的关系。</s3m:description>
+        <s3m:description xml:lang="zh-s">定义一个RM包含特定CMC的关系。</s3m:description>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/containsPMC -->
+    <!-- http://www.s3model.com/ns/s3m/s3model/containsRMC -->
 
-    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/containsPMC">
-        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/DMI"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/PMC"/>
-        <s3m:description xml:lang="pt">Define a relação que uma DMI contém um PMC específica.</s3m:description>
-        <s3m:description xml:lang="es">Define la relación que un DMI contiene un PMC específico.</s3m:description>
-        <s3m:description xml:lang="en-us">Defines the relation that a DMI contains a specific PMC.</s3m:description>
-        <s3m:description xml:lang="ar">يحدد العلاقة أن مؤسسة دبي للإعلام يحتوي على PMC معين.</s3m:description>
+    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/containsRMC">
+        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/DM"/>
+        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/RMC"/>
+        <s3m:description xml:lang="pt">Define a relação que uma DM contém um RMC específica.</s3m:description>
+        <s3m:description xml:lang="es">Define la relación que un DM contiene un RMC específico.</s3m:description>
+        <s3m:description xml:lang="en-us">Defines the relation that a DM contains a specific RMC.</s3m:description>
+        <s3m:description xml:lang="ar">يحدد العلاقة أن مؤسسة دبي للإعلام يحتوي على RMC معين.</s3m:description>
         <s3m:description xml:lang="hi">संबंध है कि एक डीएमआई एक विशिष्ट पीसीएम शामिल परिभाषित करता है।</s3m:description>
-        <s3m:description xml:lang="zh-s">定义一个DMI包含特定PMC的关系。</s3m:description>
+        <s3m:description xml:lang="zh-s">定义一个DM包含特定RMC的关系。</s3m:description>
     </owl:ObjectProperty>
     
 
@@ -95,18 +95,18 @@
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/isConceptSymbolOf -->
+    <!-- http://www.s3model.com/ns/s3m/s3model/isCMSOf -->
 
-    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/isConceptSymbolOf">
+    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/isCMSOf">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCM"/>
-        <s3m:description xml:lang="pt">Relaciona um símbolo (CSS) para um modelo (CCM).</s3m:description>
-        <s3m:description xml:lang="en-us">Relates a symbol (CCS) to a model (CCM).</s3m:description>
-        <s3m:description xml:lang="es">Se relaciona con un símbolo (CSS) para un modelo (CCM).</s3m:description>
-        <s3m:description xml:lang="ar">يتعلق برمز (CSS) إلى نموذج (CCM).</s3m:description>
+        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMS"/>
+        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
+        <s3m:description xml:lang="pt">Relaciona um símbolo (CSS) para um modelo (CMC).</s3m:description>
+        <s3m:description xml:lang="en-us">Relates a symbol (CCS) to a model (CMC).</s3m:description>
+        <s3m:description xml:lang="es">Se relaciona con un símbolo (CSS) para un modelo (CMC).</s3m:description>
+        <s3m:description xml:lang="ar">يتعلق برمز (CSS) إلى نموذج (CMC).</s3m:description>
         <s3m:description xml:lang="hi">एक मॉडल (सीसीएम) के लिए एक प्रतीक (सीएसएस) से संबंधित है।</s3m:description>
-        <s3m:description xml:lang="zh-s">涉及符号（CSS）到模型（CCM）。</s3m:description>
+        <s3m:description xml:lang="zh-s">涉及符号（CSS）到模型（CMC）。</s3m:description>
     </owl:ObjectProperty>
     
 
@@ -116,29 +116,29 @@
     <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/isInstanceOf">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/DataInstance"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/DMI"/>
-        <s3m:description xml:lang="pt">Relata uma instância de dados a um Modelo de Dados Instância (DMI).</s3m:description>
-        <s3m:description xml:lang="en-us">Relates a DataInstance to a Data Model Instance (DMI).</s3m:description>
-        <s3m:description xml:lang="es">Se relaciona de una instancia de datos a un modelo de datos de instancia (DMI).</s3m:description>
-        <s3m:description xml:lang="ar">يتصل مثيل البيانات إلى نموذج مثيل البيانات (DMI).</s3m:description>
+        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/DM"/>
+        <s3m:description xml:lang="pt">Relata uma instância de dados a um Modelo de Dados Instância (DM).</s3m:description>
+        <s3m:description xml:lang="en-us">Relates a DataInstance to a Data Model Instance (DM).</s3m:description>
+        <s3m:description xml:lang="es">Se relaciona de una instancia de datos a un modelo de datos de instancia (DM).</s3m:description>
+        <s3m:description xml:lang="ar">يتصل مثيل البيانات إلى نموذج مثيل البيانات (DM).</s3m:description>
         <s3m:description xml:lang="hi">डेटा मॉडल उदाहरण (डीएमआई) के लिए एक डाटा उल्लेख संबंधित है।</s3m:description>
-        <s3m:description xml:lang="zh-s">涉及数据实例到数据模型实例（DMI）。</s3m:description>
+        <s3m:description xml:lang="zh-s">涉及数据实例到数据模型实例（DM）。</s3m:description>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/isPluggableSymbolOf -->
+    <!-- http://www.s3model.com/ns/s3m/s3model/isRMSOf -->
 
-    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/isPluggableSymbolOf">
+    <owl:ObjectProperty rdf:about="http://www.s3model.com/ns/s3m/s3model/isRMSOf">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/PCS"/>
-        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/PMC"/>
-        <s3m:description xml:lang="pt">Refere-se um símbolo (PCS) com um modelo (PMC).</s3m:description>
-        <s3m:description xml:lang="en-us">Relates a symbol (PCS) to a model (PMC).</s3m:description>
-        <s3m:description xml:lang="es">Se relaciona un símbolo (PCS) a un modelo (PMC).</s3m:description>
-        <s3m:description xml:lang="ar">يتعلق برمز (PCS) إلى نموذج (PMC).</s3m:description>
+        <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model/RMS"/>
+        <rdfs:range rdf:resource="http://www.s3model.com/ns/s3m/s3model/RMC"/>
+        <s3m:description xml:lang="pt">Refere-se um símbolo (RMS) com um modelo (RMC).</s3m:description>
+        <s3m:description xml:lang="en-us">Relates a symbol (RMS) to a model (RMC).</s3m:description>
+        <s3m:description xml:lang="es">Se relaciona un símbolo (RMS) a un modelo (RMC).</s3m:description>
+        <s3m:description xml:lang="ar">يتعلق برمز (RMS) إلى نموذج (RMC).</s3m:description>
         <s3m:description xml:lang="hi">एक मॉडल (पीसीएम) के लिए एक प्रतीक (पीसीएस) से संबंधित है।</s3m:description>
-        <s3m:description xml:lang="zh-s">涉及符号（PCS）到模型（PMC）。</s3m:description>
+        <s3m:description xml:lang="zh-s">涉及符号（RMS）到模型（RMC）。</s3m:description>
     </owl:ObjectProperty>
     
 
@@ -154,80 +154,80 @@
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/CCM -->
+    <!-- http://www.s3model.com/ns/s3m/s3model/CMC -->
 
-    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/CCM">
+    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/CMC">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
         <s3m:description xml:lang="pt">Conceito núcleo Modelo
             
-            Um modelo composable contido em um modelo de referência. Um CCM representa um núcleo tipo específico de componente que contém ainda elementos com tipos de dados de base e / ou de outras MCN para definir a sua estrutura.</s3m:description>
+            Um modelo composable contido em um modelo de referência. Um CMC representa um núcleo tipo específico de componente que contém ainda elementos com tipos de dados de base e / ou de outras MCN para definir a sua estrutura.</s3m:description>
         <s3m:description xml:lang="es">Concepto básico Modelo
             
             Un modelo componibles contenida en un modelo de referencia. El MCP representa un tipo de núcleo específico del componente que contiene además elementos con tipos de datos de base y / o en otros MCP para definir su estructura.</s3m:description>
-        <s3m:description xml:lang="en-us">Core Concept Model
+        <s3m:description xml:lang="en-us">Core Model Component
 
-A composable model contained in a reference model. A CCM represents a specific core type of component that further contains elements with base datatypes and/or other CCMs to define its structure.</s3m:description>
+A composable model contained in a reference model. A CMC represents a specific core type of component that further contains elements with base datatypes and/or other CMCs to define its structure.</s3m:description>
         <s3m:description xml:lang="ar">المفهوم الأساسي النموذجي
             
-            نموذج composable الواردة في النموذج المرجعي. يمثل وCCM نوع الأساسية معين من المكون الذي يحتوي على عناصر أخرى مع أنواع البيانات الأساسية و / أو آليات التنسيق الأخرى لتحديد هيكلها.</s3m:description>
+            نموذج composable الواردة في النموذج المرجعي. يمثل وCMC نوع الأساسية معين من المكون الذي يحتوي على عناصر أخرى مع أنواع البيانات الأساسية و / أو آليات التنسيق الأخرى لتحديد هيكلها.</s3m:description>
         <s3m:description xml:lang="hi">मूल अवधारणा मॉडल
             
-            एक composable मॉडल एक संदर्भ मॉडल में निहित। सीसीएम के घटक के एक विशिष्ट कोर प्रकार है कि आगे आधार datatypes और / या अन्य CCMS इसकी संरचना को परिभाषित करने के साथ तत्व शामिल हैं प्रतिनिधित्व करता है।</s3m:description>
+            एक composable मॉडल एक संदर्भ मॉडल में निहित। सीसीएम के घटक के एक विशिष्ट कोर प्रकार है कि आगे आधार datatypes और / या अन्य CMCS इसकी संरचना को परिभाषित करने के साथ तत्व शामिल हैं प्रतिनिधित्व करता है।</s3m:description>
         <s3m:description xml:lang="zh-s">核心概念模型
             
-            包含在参考模型中的可组合模型。一个CCM表示组件的特定芯型进一步包含基本数据类型和/或其它的CCM以限定其结构元素。</s3m:description>
+            包含在参考模型中的可组合模型。一个CMC表示组件的特定芯型进一步包含基本数据类型和/或其它的CMC以限定其结构元素。</s3m:description>
     </owl:Class>
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/CCS -->
+    <!-- http://www.s3model.com/ns/s3m/s3model/CMS -->
 
-    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/CCS">
+    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/CMS">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
-        <s3m:description xml:lang="en-us">Core Concept Symbol
+        <s3m:description xml:lang="en-us">Core Model Symbol
 
-A CCS represents a CCM in instance data. In practice, it is usually substituted for by a Pluggable Concept Symbol (PCS). This substitution is due to the fact that constraints are expressed in a Pluggable Concept Model (PMC) which is then represented by a PCS.</s3m:description>
+A CCS represents a CMC in instance data. In practice, it is usually substituted for by a Pluggable Concept Symbol (RMS). This substitution is due to the fact that constraints are expressed in a Pluggable Concept Model (RMC) which is then represented by a RMS.</s3m:description>
         <s3m:description xml:lang="es">Símbolo Concepto básico
             
-            Un CCS representa un MCP de datos de instancia. En la práctica, por lo general es sustituido por un enchufable Concept Símbolo (PCS). Esta sustitución es debido al hecho de que las restricciones se expresan en un enchufable Concept Model (PMC), que a continuación está representada por un PCS.</s3m:description>
+            Un CCS representa un MCP de datos de instancia. En la práctica, por lo general es sustituido por un enchufable Concept Símbolo (RMS). Esta sustitución es debido al hecho de que las restricciones se expresan en un enchufable Concept Model (RMC), que a continuación está representada por un RMS.</s3m:description>
         <s3m:description xml:lang="pt">Símbolo conceito central
             
-            A CCS representa um CCM em dados de instância. Na prática, é usualmente substituído por uma conectável Conceito Símbolo (PCS). Esta substituição é devido ao fato de que as restrições são expressos numa conectável conceito de modelo (PMC), o qual é então representado por um PCS.</s3m:description>
+            A CCS representa um CMC em dados de instância. Na prática, é usualmente substituído por uma conectável Conceito Símbolo (RMS). Esta substituição é devido ao fato de que as restrições são expressos numa conectável conceito de modelo (RMC), o qual é então representado por um RMS.</s3m:description>
         <s3m:description xml:lang="ar">جوهر مفهوم الرمز
             
-            يمثل قانون الأحوال المدنية وCCM في البيانات مثيل. في الممارسة العملية، وعادة ما يتم استبداله لمن قابلية مفهوم الرمز (PCS). هذا الاستبدال ويرجع ذلك إلى حقيقة أن يتم التعبير عن القيود في قابلية مفهوم نموذج (PMC) التي يتم بعد ذلك يمثله PCS.</s3m:description>
+            يمثل قانون الأحوال المدنية وCMC في البيانات مثيل. في الممارسة العملية، وعادة ما يتم استبداله لمن قابلية مفهوم الرمز (RMS). هذا الاستبدال ويرجع ذلك إلى حقيقة أن يتم التعبير عن القيود في قابلية مفهوم نموذج (RMC) التي يتم بعد ذلك يمثله RMS.</s3m:description>
         <s3m:description xml:lang="hi">मूल अवधारणा प्रतीक
             
             एक सीसीएस उदाहरण डेटा में एक सीसीएम प्रतिनिधित्व करता है। व्यवहार में, यह आमतौर पर एक प्लगेबल संकल्पना प्रतीक (पीसीएस) द्वारा दिया जाता है। यह तथ्य यह है कि प्रतिस्थापन की कमी एक प्लगेबल अवधारणा मॉडल (पीसीएम) में व्यक्त कर रहे हैं जो फिर एक पीसीएस द्वारा प्रतिनिधित्व किया है की वजह से है।</s3m:description>
         <s3m:description xml:lang="zh-s">核心理念符号
             
-            CCS的代表实例数据的CCM。在实践中，它通常是由可插入概念符号（PCS）取代。这种替代是由于，然后通过一个PCS表示的事实，即限制在一个可插入概念模型（PMC）表示。</s3m:description>
+            CCS的代表实例数据的CMC。在实践中，它通常是由可插入概念符号（RMS）取代。这种替代是由于，然后通过一个RMS表示的事实，即限制在一个可插入概念模型（RMC）表示。</s3m:description>
     </owl:Class>
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/DMI -->
+    <!-- http://www.s3model.com/ns/s3m/s3model/DM -->
 
-    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/DMI">
+    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/DM">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
-        <s3m:description xml:lang="en-us">Data Model Instance
-
-A set of selected PMCs that are constraints on the RM components (CCMs) in order to represent a domain concept. In the implementation language there may be additional syntactic conventions required. Caution: Not to be confused with Data Instance.</s3m:description>
+        <s3m:description xml:lang="en-us">Data Model
+            
+A set of selected RMCs that are constraints on the RM components (CMCs) in order to represent a domain concept. In the implementation language there may be additional syntactic conventions required. Caution: Not to be confused with Data Instance.</s3m:description>
         <s3m:description xml:lang="pt">Modelo de Dados Instância
             
-            Um conjunto de PMCs selecionados que são restrições sobre os componentes RM (CCM) a fim de representar um conceito de domínio. Na linguagem de implementação pode haver convenções sintáticas adicionais necessários. Cuidado: Não deve ser confundido com dados de instância.</s3m:description>
+            Um conjunto de RMCs selecionados que são restrições sobre os componentes RM (CMC) a fim de representar um conceito de domínio. Na linguagem de implementação pode haver convenções sintáticas adicionais necessários. Cuidado: Não deve ser confundido com dados de instância.</s3m:description>
         <s3m:description xml:lang="es">Modelo de datos Instancia
             
-            Un conjunto de PMC seleccionados que son restricciones sobre los componentes RM (MCP) con el fin de representar un concepto de dominio. En el lenguaje de implementación puede haber convenciones sintácticas adicionales requeridos. Precaución: No se debe confundir con datos de instancia.</s3m:description>
+            Un conjunto de RMC seleccionados que son restricciones sobre los componentes RM (MCP) con el fin de representar un concepto de dominio. En el lenguaje de implementación puede haber convenciones sintácticas adicionales requeridos. Precaución: No se debe confundir con datos de instancia.</s3m:description>
         <s3m:description xml:lang="ar">البيانات نموذج مثيل
             
-            وهناك مجموعة من PMCS مختارة ذات القيود على مكونات RM (آليات التنسيق) من أجل تمثيل مفهوم المجال. في اللغة التنفيذ قد يكون هناك اتفاقيات النحوية الإضافية المطلوبة. تحذير: لا ينبغي الخلط بينه وبين مثيل البيانات.</s3m:description>
+            وهناك مجموعة من RMCS مختارة ذات القيود على مكونات RM (آليات التنسيق) من أجل تمثيل مفهوم المجال. في اللغة التنفيذ قد يكون هناك اتفاقيات النحوية الإضافية المطلوبة. تحذير: لا ينبغي الخلط بينه وبين مثيل البيانات.</s3m:description>
         <s3m:description xml:lang="hi">डाटा मॉडल उल्लेख
             
-            चुने गए PMCs कि आदेश में एक डोमेन अवधारणा का प्रतिनिधित्व करने में आरएम घटकों (CCMS) पर बाधाओं का एक सेट। कार्यान्वयन भाषा में हो सकता है अतिरिक्त वाक्यात्मक सम्मेलनों की आवश्यकता है। सावधानी: डाटा उदाहरण के साथ भ्रमित होने की नहीं।</s3m:description>
+            चुने गए RMCs कि आदेश में एक डोमेन अवधारणा का प्रतिनिधित्व करने में आरएम घटकों (CMCS) पर बाधाओं का एक सेट। कार्यान्वयन भाषा में हो सकता है अतिरिक्त वाक्यात्मक सम्मेलनों की आवश्यकता है। सावधानी: डाटा उदाहरण के साथ भ्रमित होने की नहीं।</s3m:description>
         <s3m:description xml:lang="zh-s">数据模型实例
             
-            一组选定的相变材料是为了代表一个领域概念的RM组件委员会（CCM）的约束。在实现语言有可能需要额外的语法约定。注意事项：不要与数据实例相混淆。</s3m:description>
+            一组选定的相变材料是为了代表一个领域概念的RM组件委员会（CMC）的约束。在实现语言有可能需要额外的语法约定。注意事项：不要与数据实例相混淆。</s3m:description>
     </owl:Class>
     
 
@@ -236,7 +236,7 @@ A set of selected PMCs that are constraints on the RM components (CCMs) in order
 
     <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/DataInstance">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
-        <s3m:description xml:lang="en-us">A set of data items that reports via isInstanceOf property that it conforms to a DMI. In this state it has not been tested for validation.</s3m:description>
+        <s3m:description xml:lang="en-us">A set of data items that reports via isInstanceOf property that it conforms to a DM. In this state it has not been tested for validation.</s3m:description>
         <s3m:description xml:lang="pt">Um conjunto de itens de dados que informa via InstanceOf propriedade que está em conformidade com um DVI. Neste estado em que não foi testado para validação.</s3m:description>
         <s3m:description xml:lang="es">Un conjunto de elementos de datos que informa a través de instanceOf propiedad que se ajusta a una DVI. En este estado no ha sido probado para su validación.</s3m:description>
         <s3m:description xml:lang="ar">وهناك مجموعة من عناصر البيانات التي تفيد عن طريق الملكية instanceOf أنه يتفق إلى DVI. في هذه الحالة لم يتم اختباره للتأكد من صحة.</s3m:description>
@@ -251,10 +251,10 @@ A set of selected PMCs that are constraints on the RM components (CCMs) in order
     <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/DataInstanceError">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/DataInstance"/>
         <s3m:description xml:lang="hi">DataInstance के उपवर्ग। डेटा वस्तुओं का एक सेट है कि डीएमआई के अनुरूप नहीं यह प्रतिनिधित्व करता है या यह अवैध डेटा होता है और एक अपवाद के एक या एक से अधिक बच्चों को शामिल नहीं करता है। अगर कोई डेटा उदाहरण में कोई उल्लेख किया अपवाद तो यह संदिग्ध माना जाता है और खारिज कर दिया जाना चाहिए रहे हैं।</s3m:description>
-        <s3m:description xml:lang="zh-s">DataInstance的子类。一组数据项的不符合DMI它代表或者它包含无效数据，不包含异常的一个或更多的孩子。如果在数据实例没有注意到异常就应该被认为是嫌疑人丢弃。</s3m:description>
-        <s3m:description xml:lang="es">Subclase de DataInstance. Un conjunto de elementos de datos que no se ajusta a la DMI representa o contiene datos no válidos y no contiene uno o más hijos de una excepción. Si no hay excepciones que se indican en la Instancia de datos, entonces debe ser considerado sospechoso y se desecha.</s3m:description>
-        <s3m:description xml:lang="en-us">Subclass of DataInstance. A set of data items that DOES NOT conform to the DMI it represents OR it contains invalid data and does not contain one or more children of an Exception. If there are no noted Exceptions in the Data Instance then it should be considered suspect and discarded.</s3m:description>
-        <s3m:description xml:lang="pt">Subclasse de DataInstance. Um conjunto de itens de dados que não está em conformidade com a DMI ele representa ou contém dados inválidos e não contém um ou mais filhos de uma exceção. Se não houver exceções observadas na instância de dados, então ele deve ser considerado suspeito e descartados.</s3m:description>
+        <s3m:description xml:lang="zh-s">DataInstance的子类。一组数据项的不符合DM它代表或者它包含无效数据，不包含异常的一个或更多的孩子。如果在数据实例没有注意到异常就应该被认为是嫌疑人丢弃。</s3m:description>
+        <s3m:description xml:lang="es">Subclase de DataInstance. Un conjunto de elementos de datos que no se ajusta a la DM representa o contiene datos no válidos y no contiene uno o más hijos de una excepción. Si no hay excepciones que se indican en la Instancia de datos, entonces debe ser considerado sospechoso y se desecha.</s3m:description>
+        <s3m:description xml:lang="en-us">Subclass of DataInstance. A set of data items that DOES NOT conform to the DM it represents OR it contains invalid data and does not contain one or more children of an Exception. If there are no noted Exceptions in the Data Instance then it should be considered suspect and discarded.</s3m:description>
+        <s3m:description xml:lang="pt">Subclasse de DataInstance. Um conjunto de itens de dados que não está em conformidade com a DM ele representa ou contém dados inválidos e não contém um ou mais filhos de uma exceção. Se não houver exceções observadas na instância de dados, então ele deve ser considerado suspeito e descartados.</s3m:description>
         <s3m:description xml:lang="ar">فئة فرعية من DataInstance. وهناك مجموعة من العناصر البيانات التي لا تتفق مع مؤسسة دبي للإعلام أنه يمثل أو أنه يحتوي على بيانات غير صالحة ولا يحتوي على واحد أو أكثر من الأطفال من استثناء. إذا كان هناك أي استثناءات لوحظ في مثيل البيانات ثم فإنه ينبغي أن يعتبر المشتبه به والتخلص منها.</s3m:description>
     </owl:Class>
     
@@ -265,10 +265,10 @@ A set of selected PMCs that are constraints on the RM components (CCMs) in order
     <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/DataInstanceInvalid">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/DataInstance"/>
         <s3m:description xml:lang="hi">DataInstance के उपवर्ग। कि एक डीएमआई के अनुरूप डेटा वस्तुओं का एक सेट है कि अवधारणा का एक उदाहरण का प्रतिनिधित्व करने के लिए और डेटा मूल्यों के कम से कम कुछ डीएमआई बाधाओं के अनुसार मान्य नहीं हैं। एक अमान्य डेटा उल्लेख एक अपवाद के एक या एक से अधिक बच्चों को शामिल होना चाहिए।</s3m:description>
-        <s3m:description xml:lang="zh-s">DataInstance的子类。符合DMI的一组数据项，以表示概念的一个实例，并且至少一些数据值是无效的，根据该DMI约束。一个无效数据实例必须包含一个异常的一个或更多的孩子。</s3m:description>
-        <s3m:description xml:lang="es">Subclase de DataInstance. Un conjunto de elementos de datos que se ajuste a un DMI para representar una instancia de ese concepto y, al menos, algunos de los valores de los datos no son válidos de acuerdo con las limitaciones de DMI. Una de datos de instancia no válida debe contener uno o más hijos de una excepción.</s3m:description>
-        <s3m:description xml:lang="en-us">Subclass of DataInstance. A set of data items that conforms to a DMI to represent an instance of that concept AND at least some of the data values are NOT valid according to the DMI constraints. An Invalid Data Instance must contain one or more children of an Exception.</s3m:description>
-        <s3m:description xml:lang="pt">Subclasse de DataInstance. Um conjunto de itens de dados que está em conformidade com a DMI para representar uma instância desse conceito e, pelo menos, alguns dos valores dados não são válidos de acordo com as restrições de DMI. Um inválido dados de instância deve conter uma ou mais crianças de uma exceção.</s3m:description>
+        <s3m:description xml:lang="zh-s">DataInstance的子类。符合DM的一组数据项，以表示概念的一个实例，并且至少一些数据值是无效的，根据该DM约束。一个无效数据实例必须包含一个异常的一个或更多的孩子。</s3m:description>
+        <s3m:description xml:lang="es">Subclase de DataInstance. Un conjunto de elementos de datos que se ajuste a un DM para representar una instancia de ese concepto y, al menos, algunos de los valores de los datos no son válidos de acuerdo con las limitaciones de DM. Una de datos de instancia no válida debe contener uno o más hijos de una excepción.</s3m:description>
+        <s3m:description xml:lang="en-us">Subclass of DataInstance. A set of data items that conforms to a DM to represent an instance of that concept AND at least some of the data values are NOT valid according to the DM constraints. An Invalid Data Instance must contain one or more children of an Exception.</s3m:description>
+        <s3m:description xml:lang="pt">Subclasse de DataInstance. Um conjunto de itens de dados que está em conformidade com a DM para representar uma instância desse conceito e, pelo menos, alguns dos valores dados não são válidos de acordo com as restrições de DM. Um inválido dados de instância deve conter uma ou mais crianças de uma exceção.</s3m:description>
         <s3m:description xml:lang="ar">فئة فرعية من DataInstance. وهناك مجموعة من عناصر البيانات التي تتطابق إلى مؤسسة دبي للإعلام لتمثيل مثيل لهذا المفهوم وعلى الأقل بعض من قيم البيانات غير صحيحة وفقا للقيود مؤسسة دبي للإعلام. مثيل البيانات غير صالح يجب أن يحتوي على واحد أو أكثر من الأطفال من استثناء.</s3m:description>
     </owl:Class>
     
@@ -279,10 +279,10 @@ A set of selected PMCs that are constraints on the RM components (CCMs) in order
     <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/DataInstanceValid">
         <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/DataInstance"/>
         <s3m:description xml:lang="hi">DataInstance के उपवर्ग। कि एक डीएमआई के अनुरूप डेटा वस्तुओं का एक सेट है कि अवधारणा का एक उदाहरण का प्रतिनिधित्व करने के लिए और डेटा मूल्यों के सभी डीएमआई बाधाओं के अनुसार मान्य हैं।</s3m:description>
-        <s3m:description xml:lang="zh-s">DataInstance的子类。符合DMI的一组数据项，以表示概念的一个实例，并且根据本DMI约束的所有数据值是有效的。</s3m:description>
-        <s3m:description xml:lang="es">Subclase de DataInstance. Un conjunto de elementos de datos que se ajuste a un DMI para representar una instancia de ese concepto y el de los valores de datos son válidos de acuerdo con las limitaciones de DMI.</s3m:description>
-        <s3m:description xml:lang="en-us">Subclass of DataInstance. A set of data items that conforms to a DMI to represent an instance of that concept AND the all of the data values are valid according to the DMI constraints.</s3m:description>
-        <s3m:description xml:lang="pt">Subclasse de DataInstance. Um conjunto de itens de dados que está em conformidade com a DMI para representar uma instância desse conceito e as dos valores de dados todos são válidos de acordo com as restrições de DMI.</s3m:description>
+        <s3m:description xml:lang="zh-s">DataInstance的子类。符合DM的一组数据项，以表示概念的一个实例，并且根据本DM约束的所有数据值是有效的。</s3m:description>
+        <s3m:description xml:lang="es">Subclase de DataInstance. Un conjunto de elementos de datos que se ajuste a un DM para representar una instancia de ese concepto y el de los valores de datos son válidos de acuerdo con las limitaciones de DM.</s3m:description>
+        <s3m:description xml:lang="en-us">Subclass of DataInstance. A set of data items that conforms to a DM to represent an instance of that concept AND the all of the data values are valid according to the DM constraints.</s3m:description>
+        <s3m:description xml:lang="pt">Subclasse de DataInstance. Um conjunto de itens de dados que está em conformidade com a DM para representar uma instância desse conceito e as dos valores de dados todos são válidos de acordo com as restrições de DM.</s3m:description>
         <s3m:description xml:lang="ar">فئة فرعية من DataInstance. وهناك مجموعة من عناصر البيانات التي تتطابق إلى مؤسسة دبي للإعلام لتمثيل مثيل لهذا المفهوم وقيم البيانات كلها صحيحة وفقا للقيود مؤسسة دبي للإعلام.</s3m:description>
     </owl:Class>
     
@@ -297,58 +297,6 @@ A set of selected PMCs that are constraints on the RM components (CCMs) in order
     
 
 
-    <!-- http://www.s3model.com/ns/s3m/s3model/PCS -->
-
-    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/PCS">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
-        <s3m:description xml:lang="es">Enchufable del concepto del símbolo
-            
-            Representa un PMC de datos de instancia. Puede considerarse como un contenedor de datos para los componentes de un PMC.</s3m:description>
-        <s3m:description xml:lang="en-us">Pluggable Concept Symbol 
-
-Represents a PMC in instance data. Can be considered as a data container for the components of a PMC.</s3m:description>
-        <s3m:description xml:lang="pt">Símbolo Conceito conectável
-            
-            Representa um PMC em dados de instância. Pode ser considerada como um contentor de dados para os componentes de um PMC.</s3m:description>
-        <s3m:description xml:lang="ar">قابل للتوصيل مفهوم الرمز
-            
-            يمثل PMC في البيانات مثيل. يمكن اعتبار يحوي بيانات للمكونات PMC.</s3m:description>
-        <s3m:description xml:lang="hi">प्लगेबल संकल्पना प्रतीक
-            
-            उदाहरण के डेटा में एक पीसीएम प्रतिनिधित्व करता है। एक पीसीएम के घटकों के लिए एक डेटा कंटेनर के रूप में माना जा सकता है।</s3m:description>
-        <s3m:description xml:lang="zh-s">可插拔的概念符号
-            
-            代表实例数据的PMC。可被认为是为一个PMC的部件的数据容器。</s3m:description>
-    </owl:Class>
-    
-
-
-    <!-- http://www.s3model.com/ns/s3m/s3model/PMC -->
-
-    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/PMC">
-        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
-        <s3m:description xml:lang="pt">Conceito conectável Modelo
-            
-            O nome dado a um CCM que tem sido restringido para utilização num DMI. Através das restrições, a PMC define um conceito único com base em restrições de dados sintáticos, bem como semântica especificada. É pluggable, porque ele pode ser reutilizado em múltiplas DMIs.</s3m:description>
-        <s3m:description xml:lang="es">Modelo enchufable Concept
-            
-            El nombre dado a un CCM que ha sido restringido para su uso en un DMI. A través de las limitaciones, un PMC define un único concepto basado en restricciones de datos sintácticos, así como la semántica especificadas. Es enchufable, ya que puede ser reutilizado en múltiples DMIs.</s3m:description>
-        <s3m:description xml:lang="en-us">Pluggable Concept Model
-
-The name given to a CCM that has been constrained for use in a DMI. Through the constraints, a PMC defines a single concept based on syntactic data constraints as well as specified semantics. It is pluggable because it can be reused in multiple DMIs.</s3m:description>
-        <s3m:description xml:lang="ar">مفهوم قابل للتوصيل نموذج
-            
-            الاسم الذي يطلق على CCM التي تم مقيدة للاستخدام في مؤسسة دبي للإعلام. من خلال القيود، وPMC يحدد مفهوم واحد على أساس القيود البيانات النحوية وكذلك دلالات محددة. فمن قابل للتوصيل لأنه يمكن استخدامها في العديد من DMIS.</s3m:description>
-        <s3m:description xml:lang="hi">प्लगेबल अवधारणा मॉडल
-            
-            नाम एक सीसीएम कि एक डीएमआई में इस्तेमाल के लिए विवश कर दिया गया है करने के लिए दिया। बाधाओं के माध्यम से, एक पीसीएम वाक्यात्मक डेटा की कमी के रूप में अच्छी तरह के रूप में निर्दिष्ट शब्दों के आधार पर एक भी अवधारणा को परिभाषित करता है। यह pluggable है, क्योंकि यह कई DMIS में पुन: उपयोग किया जा सकता है।</s3m:description>
-        <s3m:description xml:lang="zh-s">可插拔的概念模型
-            
-            给已约束用于在DMI使用一个CCM的名称。通过约束，一个PMC定义基于句法数据约束以及指定的语义单的概念。它是可插入的，因为它可以在多个DMIS重复使用。</s3m:description>
-    </owl:Class>
-    
-
-
     <!-- http://www.s3model.com/ns/s3m/s3model/RM -->
 
     <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/RM">
@@ -358,19 +306,71 @@ The name given to a CCM that has been constrained for use in a DMI. Through the 
             Un conjunto de componentes llamados modelos de conceptos básicos (MCP) que proporcionan la integridad estructural de un concepto de dominio. Algunos MCP son obligatorios en los DM y algunas son opcionales. Opcionalidad se define en cada aplicación RM.</s3m:description>
         <s3m:description xml:lang="pt">Modelo de referência
             
-            Um conjunto de componentes chamados conceito central Models (CCMs) que fornecem a integridade estrutural de um conceito de domínio. Alguns CCMs são obrigatórios em DMs e alguns são opcionais. Opcionalidade é definida em cada aplicação RM.</s3m:description>
+            Um conjunto de componentes chamados conceito central Models (CMCs) que fornecem a integridade estrutural de um conceito de domínio. Alguns CMCs são obrigatórios em DMs e alguns são opcionais. Opcionalidade é definida em cada aplicação RM.</s3m:description>
         <s3m:description xml:lang="en-us">Reference Model
 
-A set of components called Core Concept Models (CCMs) that provide structural integrity for a domain concept. Some CCMs are mandatory in DMs and some are optional. Optionality is defined in each RM implementation.</s3m:description>
+A set of components called Core Concept Models (CMCs) that provide structural integrity for a domain concept. Some CMCs are mandatory in DMs and some are optional. Optionality is defined in each RM implementation.</s3m:description>
         <s3m:description xml:lang="ar">نموذج مرجعي
             
             وهناك مجموعة من المكونات تسمى نماذج مفهوم الأساسية (آليات التنسيق) التي توفر السلامة الهيكلية لمفهوم المجال. بعض آليات التنسيق إلزامية في الطرائق وبعض اختيارية. ويعرف Optionality في كل تنفيذ RM.</s3m:description>
         <s3m:description xml:lang="hi">संदर्भ मॉडल
             
-            घटक है कि एक डोमेन अवधारणा के लिए संरचनात्मक अखंडता प्रदान मूल अवधारणा मॉडल (CCMS) कहा जाता है का एक सेट। कुछ CCMS डीएमएस में अनिवार्य कर रहे हैं और कुछ वैकल्पिक हैं। Optionality प्रत्येक आरएम कार्यान्वयन में परिभाषित किया गया है।</s3m:description>
+            घटक है कि एक डोमेन अवधारणा के लिए संरचनात्मक अखंडता प्रदान मूल अवधारणा मॉडल (CMCS) कहा जाता है का एक सेट। कुछ CMCS डीएमएस में अनिवार्य कर रहे हैं और कुछ वैकल्पिक हैं। Optionality प्रत्येक आरएम कार्यान्वयन में परिभाषित किया गया है।</s3m:description>
         <s3m:description xml:lang="zh-s">参考模型
             
-            一组提供了一个领域的概念结构完整性称为核心概念模型委员会（CCM）组件。有些国家协调委员会是DMS中强制的，有些是可选的。可选性，在每个RM实现定义。</s3m:description>
+            一组提供了一个领域的概念结构完整性称为核心概念模型委员会（CMC）组件。有些国家协调委员会是DMS中强制的，有些是可选的。可选性，在每个RM实现定义。</s3m:description>
+    </owl:Class>
+    
+
+
+    <!-- http://www.s3model.com/ns/s3m/s3model/RMC -->
+
+    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/RMC">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
+        <s3m:description xml:lang="pt">Conceito conectável Modelo
+            
+            O nome dado a um CMC que tem sido restringido para utilização num DM. Através das restrições, a RMC define um conceito único com base em restrições de dados sintáticos, bem como semântica especificada. É pluggable, porque ele pode ser reutilizado em múltiplas DMs.</s3m:description>
+        <s3m:description xml:lang="es">Modelo enchufable Concept
+            
+            El nombre dado a un CMC que ha sido restringido para su uso en un DM. A través de las limitaciones, un RMC define un único concepto basado en restricciones de datos sintácticos, así como la semántica especificadas. Es enchufable, ya que puede ser reutilizado en múltiples DMs.</s3m:description>
+        <s3m:description xml:lang="en-us">Reusable Model Component 
+            
+The name given to a CMC that has been constrained for use in a DM. Through the constraints, a RMC defines a single concept based on syntactic data constraints as well as specified semantics. It is reusable because it can be reused in multiple DMs.</s3m:description>
+        <s3m:description xml:lang="ar">مفهوم قابل للتوصيل نموذج
+            
+            الاسم الذي يطلق على CMC التي تم مقيدة للاستخدام في مؤسسة دبي للإعلام. من خلال القيود، وRMC يحدد مفهوم واحد على أساس القيود البيانات النحوية وكذلك دلالات محددة. فمن قابل للتوصيل لأنه يمكن استخدامها في العديد من DMS.</s3m:description>
+        <s3m:description xml:lang="hi">प्लगेबल अवधारणा मॉडल
+            
+            नाम एक सीसीएम कि एक डीएमआई में इस्तेमाल के लिए विवश कर दिया गया है करने के लिए दिया। बाधाओं के माध्यम से, एक पीसीएम वाक्यात्मक डेटा की कमी के रूप में अच्छी तरह के रूप में निर्दिष्ट शब्दों के आधार पर एक भी अवधारणा को परिभाषित करता है। यह pluggable है, क्योंकि यह कई DMS में पुन: उपयोग किया जा सकता है।</s3m:description>
+        <s3m:description xml:lang="zh-s">可插拔的概念模型
+            
+            给已约束用于在DM使用一个CMC的名称。通过约束，一个RMC定义基于句法数据约束以及指定的语义单的概念。它是可插入的，因为它可以在多个DMS重复使用。</s3m:description>
+    </owl:Class>
+    
+
+
+    <!-- http://www.s3model.com/ns/s3m/s3model/RMS -->
+
+    <owl:Class rdf:about="http://www.s3model.com/ns/s3m/s3model/RMS">
+        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/S3Model"/>
+        <s3m:description xml:lang="es">Enchufable del concepto del símbolo
+            
+            Representa un RMC de datos de instancia. Puede considerarse como un contenedor de datos para los componentes de un RMC.</s3m:description>
+        <s3m:description xml:lang="en-us">Reusable Model Symbol 
+
+Represents a RMC in instance data. Can be considered as a data container for the components of a RMC.</s3m:description>
+        <s3m:description xml:lang="pt">Símbolo Conceito conectável
+            
+            Representa um RMC em dados de instância. Pode ser considerada como um contentor de dados para os componentes de um RMC.</s3m:description>
+        <s3m:description xml:lang="ar">قابل للتوصيل مفهوم الرمز
+            
+            يمثل RMC في البيانات مثيل. يمكن اعتبار يحوي بيانات للمكونات RMC.</s3m:description>
+        <s3m:description xml:lang="hi">प्लगेबल संकल्पना प्रतीक
+            
+            उदाहरण के डेटा में एक पीसीएम प्रतिनिधित्व करता है। एक पीसीएम के घटकों के लिए एक डेटा कंटेनर के रूप में माना जा सकता है।</s3m:description>
+        <s3m:description xml:lang="zh-s">可插拔的概念符号
+            
+            代表实例数据的RMC。可被认为是为一个RMC的部件的数据容器。</s3m:description>
     </owl:Class>
     
 

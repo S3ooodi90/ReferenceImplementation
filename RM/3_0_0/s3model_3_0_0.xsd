@@ -195,7 +195,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAny">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAnyType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -286,7 +286,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBoolean">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -380,7 +380,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLink">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -451,7 +451,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdString">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -694,7 +694,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFile">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -763,7 +763,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdered">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrderedType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -925,7 +925,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinal">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1012,7 +1012,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantified">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1154,7 +1154,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdCount">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdCountType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdCountType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1223,7 +1223,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantity">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1385,7 +1385,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatio">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1686,7 +1686,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporal">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1851,7 +1851,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdInterval">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdIntervalType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2008,7 +2008,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRange">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRangeType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ReferenceRangeType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2124,7 +2124,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Audit">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2230,7 +2230,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Party">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PartyType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2381,7 +2381,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Attestation">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2515,7 +2515,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Participation">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2571,7 +2571,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2608,7 +2608,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NI">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NIType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NIType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2652,7 +2652,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSK">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSKType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#MSKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2689,7 +2689,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INV">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INVType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#INVType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2726,7 +2726,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DER">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DERType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DERType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2763,7 +2763,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNC">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNCType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNCType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2800,7 +2800,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTH">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTHType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#OTHType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2837,7 +2837,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINF">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINFType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NINFType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2874,7 +2874,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINF">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINFType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#PINFType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2911,7 +2911,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNK">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNKType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#UNKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2947,7 +2947,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKR">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKRType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKRType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2984,7 +2984,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASK">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASKType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NASKType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3021,7 +3021,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QS">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QSType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#QSType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3058,7 +3058,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRC">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRCType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#TRCType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3095,7 +3095,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKU">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKUType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ASKUType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3132,7 +3132,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAV">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAVType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAVType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3169,7 +3169,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NA">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValue"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#NAType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3199,7 +3199,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Item">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ItemType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3271,7 +3271,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Cluster">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3329,7 +3329,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapter">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3581,7 +3581,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Entry">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3630,7 +3630,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#Definition">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -3641,7 +3641,7 @@
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DM">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CCS"/>
-          <s3m:isConceptSymbolOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType"/>
+          <s3m:isCMSOf rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#DMType"/>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>

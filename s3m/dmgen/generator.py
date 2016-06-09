@@ -161,7 +161,7 @@ class DMPkg(object):
             self.xsd += '  <xs:complexContent>\n'
             self.xsd += '    <xs:restriction base="s3m:DMType">\n'
             self.xsd += '      <xs:sequence>\n'
-            self.xsd += '        <xs:element maxOccurs="1" minOccurs="1" ref="s3m:me-' + \
+            self.xsd += '        <xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-' + \
                 str(entry.ct_id) + '"/> \n'
             self.xsd += '      </xs:sequence>\n'
             if self.dm.asserts:
@@ -192,7 +192,7 @@ class DMPkg(object):
             # add the published Entry code to the schema and example instance
             # data
             self.xsd += entry.schema_code
-            self.xml += """<s3m:me-""" + str(entry.ct_id) + """>\n"""
+            self.xml += """<s3m:ms-""" + str(entry.ct_id) + """>\n"""
             self.xml += """<label>""" + entry.label + """</label>\n"""
             self.xml += """<entry-language>""" + entry.language + """</entry-language>\n"""
             self.xml += """<entry-encoding>""" + entry.encoding + """</entry-encoding>\n"""
@@ -296,7 +296,7 @@ class DMPkg(object):
 
             # add the XdLink string to the XML instance
             self.xml += link_str
-            self.xml += """</s3m:me-""" + str(entry.ct_id) + """>\n"""
+            self.xml += """</s3m:ms-""" + str(entry.ct_id) + """>\n"""
 
         return(msg)
 
@@ -761,7 +761,7 @@ class DMPkg(object):
         ct_id = str(ct_id)
 
         # Create the Adapter
-        adr_str += padding.rjust(indent) + ("<xs:element name='me-" + adapter_id +
+        adr_str += padding.rjust(indent) + ("<xs:element name='ms-" + adapter_id +
                                             "' substitutionGroup='s3m:Items' type='s3m:mc-" + adapter_id + "'/>\n")
         adr_str += padding.rjust(indent) + ("<xs:complexType name='mc-" +
                                             adapter_id + "'> <!-- Adapter for: " + escape(Xdname) + " -->\n")
@@ -769,7 +769,7 @@ class DMPkg(object):
         adr_str += padding.rjust(indent + 4) + \
             ("<xs:restriction base='s3m:XdAdapterType'>\n")
         adr_str += padding.rjust(indent + 6) + ("<xs:sequence>\n")
-        adr_str += padding.rjust(indent + 8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:me-" +
+        adr_str += padding.rjust(indent + 8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-" +
                                                 ct_id + "'/> <!-- Reference to: " + escape(Xdname) + " -->\n")
         adr_str += padding.rjust(indent + 6) + ("</xs:sequence>\n")
         adr_str += padding.rjust(indent + 4) + ("</xs:restriction>\n")
@@ -790,14 +790,14 @@ class DMPkg(object):
                     if 's3m:' + self.used_uuids[uuid][n][1] not in sg_names:
                         sg_names.append('s3m:' + self.used_uuids[uuid][n][1])
                         sg_str = 'substitutionGroup="' + " ".join(sg_names)
-                        self.xsd += ('  <xs:element name="me-' + str(uuid) +
+                        self.xsd += ('  <xs:element name="ms-' + str(uuid) +
                                      '" ' + sg_str + '" type="s3m:mc-' + str(uuid) + '"/>\n')
         return(msg)
 
     def pcmRDF(self):
         msg = ("PCM RDF was generated.", messages.SUCCESS)
 
-        self.xsd += '\n<!-- RDF for contained Pluggable Model Components -->\n'
+        self.xsd += '\n<!-- RDF for contained Reusable Model Components -->\n'
         self.xsd += "  <xs:annotation>\n"
         self.xsd += "  <xs:appinfo>\n"
 

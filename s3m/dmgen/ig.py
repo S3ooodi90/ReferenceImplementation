@@ -35,14 +35,13 @@ def Xd_boolean(Xd, indent):
     vte = random_dtstr(start=vtb)
 
     indent += '  '
-    elstr = indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr = indent + """<s3m:ms-""" + str(Xd.ct_id) + """>\n"""
     elstr += indent + """  <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
-    elstr += indent + """  <!-- Use any subtype of ExceptionalValue here when a value is missing or invalid or invalid -->\n"""
     elstr += indent + """  <vtb>""" + vtb + """</vtb>\n"""
     elstr += indent + """  <vte>""" + vte + """</vte>\n"""
     elstr += indent + """  <true-value>""" + boolXd + """</true-value>\n"""
-    elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -54,7 +53,7 @@ def Xd_link(Xd, indent, pcs=True):
     elstr = ''
     indent += '  '
     if pcs:
-        elstr += indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
+        elstr += indent + """<s3m:ms-""" + str(Xd.ct_id) + """>\n"""
     elstr += indent + """  <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
 
@@ -66,7 +65,7 @@ def Xd_link(Xd, indent, pcs=True):
     elstr += indent + """  <relation-uri>""" + \
         escape(Xd.relation_uri.strip()) + """</relation-uri>\n"""
     if pcs:
-        elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+        elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -97,7 +96,7 @@ def Xd_string(Xd, indent, pcs=True):
     elstr = ''
     indent += '  '
     if pcs:
-        elstr += indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
+        elstr += indent + """<s3m:ms-""" + str(Xd.ct_id) + """>\n"""
     elstr += indent + """  <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
 
@@ -108,7 +107,7 @@ def Xd_string(Xd, indent, pcs=True):
     elstr += indent + """  <xdstring-language>""" + \
         Xd.lang + """</xdstring-language>\n"""
     if pcs:
-        elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+        elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -147,7 +146,7 @@ def Xd_count(Xd, indent):
             mag = int(str(mag)[:Xd.total_digits])
 
     indent += '  '
-    elstr = indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr = indent + """<s3m:ms-""" + str(Xd.ct_id) + """>\n"""
     elstr += indent + """    <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
 
@@ -167,9 +166,9 @@ def Xd_count(Xd, indent):
     elstr += indent + """    <xdcount-value>""" + \
         str(mag) + """</xdcount-value>\n"""
     elstr += indent + """    <xdcount-units>\n<label>""" + escape(Xd.units.label.strip(
-    )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</xdcount-units>\n"""
+    )) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </xdcount-units>\n"""
 
-    elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -239,7 +238,7 @@ def Xd_file(Xd, indent, pcs=True):
     elstr = ''
     indent += '  '
     if pcs:
-        elstr += indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
+        elstr += indent + """<s3m:ms-""" + str(Xd.ct_id) + """>\n"""
     elstr += indent + """  <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
     elstr += indent + """  <vtb>""" + vtb + """</vtb>\n"""
@@ -270,7 +269,7 @@ def Xd_file(Xd, indent, pcs=True):
     elif Xd.content_mode == 'url':
         elstr += indent + """  <uri>http://www.mlhim.org/fake_media.png</uri>\n"""
     if pcs:
-        elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+        elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -291,7 +290,7 @@ def Xd_ordinal(Xd, indent):
     ri = randint(0, len(o) - 1)  # get a random index
 
     indent += '  '
-    elstr = indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr = indent + """<s3m:ms-""" + str(Xd.ct_id) + """>\n"""
     elstr += indent + """  <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
 
@@ -305,7 +304,7 @@ def Xd_ordinal(Xd, indent):
             Xd.normal_status.strip() + """</normal-status>\n"""
     elstr += indent + """  <ordinal>""" + o[ri] + """</ordinal>\n"""
     elstr += indent + """  <symbol>""" + s[ri] + """</symbol>\n"""
-    elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -361,8 +360,8 @@ def Xd_quantity(Xd, indent):
             mag = float(str(mag)[:Xd.total_digits])
 
     indent += '  '
-    elstr = indent + """<s3m:me-""" + \
-        str(Xd.ct_id) + """> <!-- XdQuantity -->\n"""
+    elstr = indent + """<s3m:ms-""" + \
+        str(Xd.ct_id) + """> \n"""
     elstr += indent + """  <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
 
@@ -380,8 +379,8 @@ def Xd_quantity(Xd, indent):
     elstr += indent + """    <xdquantity-value>""" + \
         str(mag) + """</xdquantity-value>\n"""
     elstr += indent + """    <xdquantity-units>\n<label>""" + escape(Xd.units.label.strip(
-    )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</xdquantity-units>\n"""
-    elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    )) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </xdquantity-units>\n"""
+    elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -442,7 +441,7 @@ def Xd_ratio(Xd, indent):
     mag = num / den
 
     indent += '  '
-    elstr = indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr = indent + """<s3m:ms-""" + str(Xd.ct_id) + """>\n"""
     elstr += indent + """  <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
 
@@ -467,21 +466,21 @@ def Xd_ratio(Xd, indent):
             enumList.append(escape(e))
         unit = choice(enumList)
         elstr += indent + """<numerator-units>\n<label>""" + escape(Xd.num_units.label.strip(
-        )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</numerator-units>\n"""
+        )) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </numerator-units>\n"""
     if Xd.den_units:
         for e in Xd.den_units.enums.splitlines():
             enumList.append(escape(e))
         unit = choice(enumList)
         elstr += indent + """<denominator-units>\n<label>""" + escape(Xd.den_units.label.strip(
-        )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</denominator-units>\n"""
+        )) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </denominator-units>\n"""
     if Xd.ratio_units:
         for e in Xd.ratio_units.enums.splitlines():
             enumList.append(escape(e))
         unit = choice(enumList)
         elstr += indent + """<ratio-units>\n<label>""" + escape(Xd.ratio_units.label.strip(
-        )) + """</label>\n<xdstring-value>""" + unit + """</xdstring-value>\n</ratio-units>\n"""
+        )) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </ratio-units>\n"""
 
-    elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -501,7 +500,7 @@ def Xd_temporal(Xd, indent):
     dur = abs((rdt - rdt2).days)
 
     indent += '  '
-    elstr = indent + """<s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr = indent + """<s3m:ms-""" + str(Xd.ct_id) + """>\n"""
     elstr += indent + """  <label>""" + \
         escape(Xd.label.strip()) + """</label>\n"""
 
@@ -551,7 +550,7 @@ def Xd_temporal(Xd, indent):
         elstr += indent + """  <xdtemporal-ymduration>P2Y6M</xdtemporal-ymduration>\n"""
     if Xd.allow_dtduration:
         elstr += indent + """  <xdtemporal-dtduration>PT2H10M</xdtemporal-dtduration>\n"""
-    elstr += indent + """</s3m:me-""" + str(Xd.ct_id) + """>\n"""
+    elstr += indent + """</s3m:ms-""" + str(Xd.ct_id) + """>\n"""
 
     return elstr
 
@@ -561,21 +560,21 @@ def attestation(a, indent):
     indent += '  '
     elstr = """<label>""" + escape(a.label.strip()) + """</label>\n"""
     if a.view:
-        elstr += "<view>\n"
+        elstr += indent + "<view>\n"
         elstr += Xd_file(a.view, indent, False)
-        elstr += "</view>\n"
+        elstr += indent + "</view>\n"
     if a.proof:
-        elstr += "<proof>\n"
+        elstr += indent + "<proof>\n"
         elstr += Xd_file(a.proof, indent, False)
-        elstr += "</proof>\n"
+        elstr += indent + "</proof>\n"
     if a.reason:
-        elstr += "<reason>\n"
+        elstr += indent + "<reason>\n"
         elstr += Xd_string(a.reason, indent, False)
-        elstr += "</reason>\n"
+        elstr += indent + "</reason>\n"
     if a.committer:
-        elstr += "<committer>\n"
+        elstr += indent + "<committer>\n"
         elstr += party(a.committer, indent)
-        elstr += "</committer>\n"
+        elstr += indent + "</committer>\n"
     elstr += indent + "  <committed>" + random_dtstr() + "Z</committed>\n"
     elstr += indent + "  <pending>true</pending>\n"
 
@@ -587,19 +586,19 @@ def audit(aud, indent):
     elstr = indent + """<label>""" + \
         escape(aud.label.strip()) + """</label>\n"""
     if aud.system_id:
-        elstr += "<system-id>\n"
+        elstr += indent + "<system-id>\n"
         elstr += Xd_string(aud.system_id, indent, False)
-        elstr += "</system-id>\n"
+        elstr += indent + "</system-id>\n"
 
     if aud.system_user:
-        elstr += "<system-user>\n"
+        elstr += indent + "<system-user>\n"
         elstr += party(aud.system_user, indent)
-        elstr += "</system-user>\n"
+        elstr += indent + "</system-user>\n"
 
     if aud.location:
-        elstr += "<location>\n"
+        elstr += indent + "<location>\n"
         elstr += cluster(aud.location, indent, False)
-        elstr += "</location>\n"
+        elstr += indent + "</location>\n"
 
     elstr += indent + "  <timestamp>" + random_dtstr() + "Z</timestamp>\n"
 
@@ -612,7 +611,7 @@ def participation(p, indent):
     vte = random_dtstr(start=vtb)
 
     indent += '  '
-    elstr = indent + """<s3m:me-""" + str(p.ct_id) + """>\n"""
+    elstr = indent + """<s3m:ms-""" + str(p.ct_id) + """>\n"""
     elstr += indent + """<label>""" + \
         escape(p.label.strip()) + """</label>\n"""
 
@@ -633,7 +632,7 @@ def participation(p, indent):
 
     elstr += indent + """  <start>""" + vtb + """Z</start>\n"""
     elstr += indent + """  <end>""" + vte + """Z</end>\n"""
-    elstr += indent + """</s3m:me-""" + str(p.ct_id) + """>\n"""
+    elstr += indent + """</s3m:ms-""" + str(p.ct_id) + """>\n"""
 
     return elstr
 
@@ -644,14 +643,14 @@ def party(pi, indent):
     elstr += indent + "  <party-name>A. Sample Name</party-name>\n"
     if pi.external_ref:
         for ref in pi.external_ref.all():
-            elstr += "<party-ref>\n"
+            elstr += indent + "<party-ref>\n"
             elstr += Xd_link(ref, indent, False)
-            elstr += "</party-ref>\n"
+            elstr += indent + "</party-ref>\n"
 
     if pi.details:
-        elstr += "<party-details>\n"
+        elstr += indent + "<party-details>\n"
         elstr += cluster(pi.details, indent, False)
-        elstr += "</party-details>\n"
+        elstr += indent + "</party-details>\n"
 
     return elstr
 
@@ -662,7 +661,7 @@ def referencerange(rr, indent):
     vte = random_dtstr(start=vtb)
 
     indent += '  '
-    elstr = """<s3m:me-""" + str(rr.ct_id) + """> <!-- ReferenceRange -->\n"""
+    elstr = """<s3m:ms-""" + str(rr.ct_id) + """> \n"""
     elstr += indent + """  <label>""" + \
         escape(rr.label.strip()) + """</label>\n"""
 
@@ -676,7 +675,7 @@ def referencerange(rr, indent):
     else:
         n = 'false'
     elstr += indent + """  <is-normal>""" + n + """</is-normal>\n"""
-    elstr += indent + """</s3m:me-""" + str(rr.ct_id) + """>\n"""
+    elstr += indent + """</s3m:ms-""" + str(rr.ct_id) + """>\n"""
 
     return elstr
 
@@ -685,7 +684,7 @@ def cluster(clu, indent, pcs=True):
     indent += '  '
     elstr = ''
     if pcs:
-        elstr += indent + """<s3m:me-""" + str(clu.ct_id) + """>\n"""
+        elstr += indent + """<s3m:ms-""" + str(clu.ct_id) + """>\n"""
     elstr += indent + """  <label>""" + \
         escape(clu.label.strip()) + """</label>\n"""
     if clu.clusters:
@@ -694,76 +693,76 @@ def cluster(clu, indent, pcs=True):
 
     if clu.xdboolean:
         for Xd in clu.xdboolean.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_boolean(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
     if clu.xdlink:
         for Xd in clu.xdlink.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_link(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
     if clu.xdstring:
         for Xd in clu.xdstring.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_string(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
     if clu.xdfile:
         for Xd in clu.xdfile.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_file(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
     if clu.xdordinal:
         for Xd in clu.xdordinal.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_ordinal(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
     if clu.xdcount:
         for Xd in clu.xdcount.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_count(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
     if clu.xdquantity:
         for Xd in clu.xdquantity.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_quantity(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
     if clu.xdratio:
         for Xd in clu.xdratio.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_ratio(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
 
     if clu.xdtemporal:
         for Xd in clu.xdtemporal.all():
-            elstr += indent + """  <s3m:me-""" + \
+            elstr += indent + """  <s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
             elstr += Xd_temporal(Xd, indent + '  ')
-            elstr += indent + """  </s3m:me-""" + \
+            elstr += indent + """  </s3m:ms-""" + \
                 str(Xd.adapter_ctid) + """>\n"""
     if pcs:
-        elstr += indent + """</s3m:me-""" + str(clu.ct_id) + """>\n"""
+        elstr += indent + """</s3m:ms-""" + str(clu.ct_id) + """>\n"""
 
     return elstr
