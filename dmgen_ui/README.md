@@ -23,6 +23,7 @@ It controls how CSV data files can be used to drive model development and then t
         a. Is it a string?
             - is it restricted to a set of choices?
             - is it restricted to a regex pattern?
+            - does it have a min/max length?
 
         b. Is it a number?
             - is it integers only?
@@ -32,6 +33,8 @@ It controls how CSV data files can be used to drive model development and then t
 
         c. Are any two/three columns used together as a rate, proportion or ratio?
             - Select: numerator, denominator, result value
+
+        d. Do you have a URL that points to a definition of this data column?
 
     6. Offer to allow user to change the column header. Use the header to create the 'label' for each RMC.
         a. In a more advanced version prompt the user for data provenance model (Subject, Provider, Audit, etc.). 
