@@ -16,3 +16,10 @@ migrations/
 
 #Sphinx
 build/
+
+# RDF tools ignores
+RDF/tools/3_0_0/dm/
+RDF/tools/3_0_0/rdf/
+RDF/tools/3_0_0/rm/
+RDF/tools/3_0_0/xml/
+

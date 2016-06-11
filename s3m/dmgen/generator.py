@@ -22,7 +22,7 @@ from django.core.servers.basehttp import FileWrapper
 from django.core.files.base import ContentFile, File
 from django.contrib import messages
 
-from s3m.settings import DM_LIB, MEDIA_ROOT, RMVERSION
+from s3m.settings import DM_LIB, MEDIA_ROOT, RMVERSION, RM_URI
 
 from .exceptions import PublishingError, GenerationError
 
@@ -56,7 +56,6 @@ class DMPkg(object):
         self.xsdMetadata = self.xsdMetadata()
         self.rm = '<!-- Include the RM Schema -->\n  <xs:include schemaLocation="http://www.s3model.com/ns/s3m/s3model_' + \
             RMVERSION.replace('.', '_') + '.xsd"/>\n'
-        # http://www.s3model.com/ns/s3m/s3model_1_0_0.xsd
 
     def xmlHeader(self):
         """
@@ -86,7 +85,7 @@ class DMPkg(object):
 
     def xsdMetadata(self):
         mds = '<!-- Metadata -->\n  <xs:annotation><xs:appinfo><rdf:RDF><rdf:Description\n'
-        mds += '    rdf:about="http://dmgen.s3model.com/dmlib/dm-' + self.dm.ct_id + '.xsd">\n'
+        mds += '    rdf:about="dm-' + self.dm.ct_id + '">\n'
         mds += '    <dc:title>' + \
             escape(self.dm.title.strip()) + '</dc:title>\n'
         mds += '    <dc:creator>' + \
@@ -146,9 +145,9 @@ class DMPkg(object):
             self.xsd += '<xs:complexType name="mc-' + self.dm.ct_id + '"> \n'
             self.xsd += '  <xs:annotation>\n'
             self.xsd += '    <xs:appinfo>\n'
-            self.xsd += '      <rdf:Description rdf:about="http://www.s3model.com/ns/s3m:mc-' + \
-                self.dm.ct_id + '">\n'
-            self.xsd += '        <rdfs:subClassOf rdf:resource="s3m:DMType"/>\n'
+            self.xsd += '      <rdf:Description rdf:about="mc-' + self.dm.ct_id + '">\n'
+            self.xsd += '        <rdfs:subClassOf rdf:resource="' + RM_URI + 'DMType"/>\n'
+            self.xsd += '        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
             self.xsd += '        <rdfs:label>' + \
                 escape(self.dm.title.strip()) + '</rdfs:label>\n'
             if len(self.dm.pred_obj.all()) != 0:
@@ -163,7 +162,7 @@ class DMPkg(object):
             self.xsd += '  <xs:complexContent>\n'
             self.xsd += '    <xs:restriction base="s3m:DMType">\n'
             self.xsd += '      <xs:sequence>\n'
-            self.xsd += '        <xs:element maxOccurs="1" minOccurs="1" ref="s3m:me-' + \
+            self.xsd += '        <xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-' + \
                 str(entry.ct_id) + '"/> \n'
             self.xsd += '      </xs:sequence>\n'
             if self.dm.asserts:
@@ -175,7 +174,7 @@ class DMPkg(object):
             self.xsd += '  </xs:complexContent>\n'
             self.xsd += '</xs:complexType>\n\n'
 
-            # this registration should always succeed, but it is the process.
+            # this registration should always succeed, but it is checked here anyway.
             if self.registerUUID(entry.ct_id, 'EntryType', 'Definition'):
                 msg = self.processEntry(entry)
 
@@ -194,13 +193,13 @@ class DMPkg(object):
             # add the published Entry code to the schema and example instance
             # data
             self.xsd += entry.schema_code
-            self.xml += """<s3m:me-""" + str(entry.ct_id) + """>\n"""
+            self.xml += """<s3m:ms-""" + str(entry.ct_id) + """>\n"""
             self.xml += """<label>""" + entry.label + """</label>\n"""
             self.xml += """<entry-language>""" + entry.language + """</entry-language>\n"""
             self.xml += """<entry-encoding>""" + entry.encoding + """</entry-encoding>\n"""
             self.xml += """<current-state>""" + entry.state + """</current-state>\n"""
 
-            # links - need to process links first because a XdLink 'could' be
+            # links - we need to process links first because a XdLink 'could' be
             # reused in a later Cluster and we need to insure it gets a
             # substitution group PCS
             if entry.links.all():
@@ -298,7 +297,7 @@ class DMPkg(object):
 
             # add the XdLink string to the XML instance
             self.xml += link_str
-            self.xml += """</s3m:me-""" + str(entry.ct_id) + """>\n"""
+            self.xml += """</s3m:ms-""" + str(entry.ct_id) + """>\n"""
 
         return(msg)
 
@@ -763,7 +762,7 @@ class DMPkg(object):
         ct_id = str(ct_id)
 
         # Create the Adapter
-        adr_str += padding.rjust(indent) + ("<xs:element name='me-" + adapter_id +
+        adr_str += padding.rjust(indent) + ("<xs:element name='ms-" + adapter_id +
                                             "' substitutionGroup='s3m:Items' type='s3m:mc-" + adapter_id + "'/>\n")
         adr_str += padding.rjust(indent) + ("<xs:complexType name='mc-" +
                                             adapter_id + "'> <!-- Adapter for: " + escape(Xdname) + " -->\n")
@@ -771,7 +770,7 @@ class DMPkg(object):
         adr_str += padding.rjust(indent + 4) + \
             ("<xs:restriction base='s3m:XdAdapterType'>\n")
         adr_str += padding.rjust(indent + 6) + ("<xs:sequence>\n")
-        adr_str += padding.rjust(indent + 8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:me-" +
+        adr_str += padding.rjust(indent + 8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-" +
                                                 ct_id + "'/> <!-- Reference to: " + escape(Xdname) + " -->\n")
         adr_str += padding.rjust(indent + 6) + ("</xs:sequence>\n")
         adr_str += padding.rjust(indent + 4) + ("</xs:restriction>\n")
@@ -792,9 +791,27 @@ class DMPkg(object):
                     if 's3m:' + self.used_uuids[uuid][n][1] not in sg_names:
                         sg_names.append('s3m:' + self.used_uuids[uuid][n][1])
                         sg_str = 'substitutionGroup="' + " ".join(sg_names)
-                        self.xsd += ('  <xs:element name="me-' + str(uuid) +
+                        self.xsd += ('  <xs:element name="ms-' + str(uuid) +
                                      '" ' + sg_str + '" type="s3m:mc-' + str(uuid) + '"/>\n')
         return(msg)
+
+    def pcmRDF(self):
+        msg = ("PCM RDF was generated.", messages.SUCCESS)
+
+        self.xsd += '\n<!-- RDF for contained Reusable Model Components -->\n'
+        self.xsd += "  <xs:annotation>\n"
+        self.xsd += "  <xs:appinfo>\n"
+
+        for uuid in self.used_uuids:
+            self.xsd += '      <rdf:Description rdf:about="dm-' + self.dm.ct_id + '">\n'
+            self.xsd += '        <s3m:containsRMC rdf:resource="mc-' + str(uuid) + '"/>\n'
+            self.xsd += '      </rdf:Description>\n'
+
+        self.xsd += "  </xs:appinfo>\n"
+        self.xsd += "  </xs:annotation>\n"
+
+        return(msg)
+
 
     def getXSD(self):
         """
@@ -808,13 +825,13 @@ class DMPkg(object):
         self.xsd += '<!-- Complex Type Definitions -->\n'
 
         self.xml += self.xmlHead
-        # start building the DM, the XML instance
+        # start building the DM and the XML instance
         msg = self.processDM()
 
-        # create the substitution groups needed and close the schema and
-        # instance
+        # create the substitution groups, add RDF for contained MCs and close the schema and instance
         if msg[1] == messages.SUCCESS:
             msg = self.processSubstitutionGroups()
+            msg = self.pcmRDF()
 
         if msg[1] == messages.SUCCESS:
             self.xsd += self.xsdTail

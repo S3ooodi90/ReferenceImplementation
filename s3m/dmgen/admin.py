@@ -83,6 +83,9 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
+
 
         q = Units.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " Units.")
@@ -94,6 +97,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdString.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdStrings.")
@@ -105,6 +110,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdLink.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdLinks.")
@@ -116,6 +123,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdInterval.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdIntervals.")
@@ -127,6 +136,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = ReferenceRange.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " ReferenceRanges.")
@@ -138,6 +149,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdOrdinal.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdOrdinals.")
@@ -149,6 +162,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdCount.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdCounts.")
@@ -160,6 +175,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdQuantity.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdQuantities.")
@@ -171,6 +188,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdRatio.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdRatios.")
@@ -182,6 +201,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdFile.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdFiles.")
@@ -193,6 +214,8 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = XdTemporal.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdTemporals.")
@@ -204,22 +227,28 @@ def republishAll(modeladmin, request, queryset):
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
+            else:
+                print(obj.__str__() + " was republished.")
 
         q = Cluster.objects.filter(published=True)
-        q2 = []
-        q3 = []
-        print("Re-publishing " + str(len(q)) + " Clusters.")
-        print("Clusters pass #1")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
             obj.r_code = ''
             obj.save()
+
+        q2 = []
+        q3 = []
+        print("Re-publishing " + str(len(q)) + " Clusters.")
+        print("Clusters pass #1")
+        for obj in q:
             obj.publish(request)
+            print(obj.label, obj.published)
             if obj.published is False:
                 q2.append(obj)
 
         print("Clusters pass #2")
+        print("Re-publishing " + str(len(q2)) + " Clusters.")
         for obj in q2:
             if obj.published is False:
                 obj.publish(request)
@@ -227,6 +256,7 @@ def republishAll(modeladmin, request, queryset):
                     q3.append(obj)
 
         print("Clusters pass #3")
+        print("Re-publishing " + str(len(q3)) + " Clusters.")
         for obj in q3:
             if obj.published is False:
                 obj.publish(request)

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='../classes/index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+Data Properties
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+Individuals
+<a href='index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Datatype: rdf:PlainLiteral</h2>
+
+<div id='usage_(13)'>
+<h4>Usage (13)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../classes/CCM___-296238941.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/CCM">CCM</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Core Concept Model<br /><br />A composable model contained in a reference model. A CCM represents a specific core type of component that further contains elements with base datatypes and/or other CCMs to define its structure."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/CCS___-296238935.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/CCS">CCS</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Core Concept Symbol<br /><br />A CCS represents a CCM in instance data. In practice, it is usually substituted for by a Pluggable Concept Symbol (PCS). This substitution is due to the fact that constraints are expressed in a Pluggable Concept Model (PCM) which is then represented by a PCS."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DMI___-296237674.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/DMI">DMI</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Data Model Instance<br /><br />A set of selected PCMs that are constraints on the RM components (CCMs) in order to represent a domain concept. In the implementation language there may be additional syntactic conventions required. Caution: Not to be confused with Data Instance."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DataInstance___1750380341.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/DataInstance">DataInstance</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"A set of data items that reports via isInstanceOf property that it conforms to a DMI. In this state it has not been tested for validation."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DataInstanceError___-67542145.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/DataInstanceError">DataInstanceError</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Subclass of DataInstance. A set of data items that DOES NOT conform to the DMI it represents OR it contains invalid data and does not contain one or more children of an Exception. If there are no noted Exceptions in the Data Instance then it should be considered suspect and discarded."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DataInstanceInvalid___-354265298.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/DataInstanceInvalid">DataInstanceInvalid</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Subclass of DataInstance. A set of data items that conforms to a DMI to represent an instance of that concept AND at least some of the data values are NOT valid according to the DMI constraints. An Invalid Data Instance must contain one or more children of an Exception."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DataInstanceValid___-52354701.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/DataInstanceValid">DataInstanceValid</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Subclass of DataInstance. A set of data items that conforms to a DMI to represent an instance of that concept AND the all of the data values are valid according to the DMI constraints."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/PCM___-296226448.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/PCM">PCM</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Pluggable Concept Model<br /><br />The name given to a CCM that has been constrained for use in a DMI. Through the constraints, a PCM defines a single concept based on syntactic data constraints as well as specified semantics. It is pluggable because it can be reused in multiple DMIs."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/PCS___-296226442.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/PCS">PCS</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Pluggable Concept Symbol <br /><br />Represents a PCM in instance data. Can be considered as a data container for the components of a PCM."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/RM___-296302863.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/RM">RM</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Reference Model<br /><br />A set of components called Core Concept Models (CCMs) that provide structural integrity for a domain concept. Some CCMs are mandatory in DMs and some are optional. Optionality is defined in each RM implementation."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/S3Model___1886659967.html" class='Class' title="http://www.s3model.com/ns/s3m/s3model/S3Model">S3Model</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"The root concept. The abstract idea of S3Model. All of the S3Model classes are subclasses of this class."</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/isInstanceOf___-1517975860.html" class='Object Property' title="http://www.s3model.com/ns/s3m/s3model/isInstanceOf">isInstanceOf</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Relates a DataInstance to a Data Model Instance (DMI)."</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/isSymbolOf___698408335.html" class='Object Property' title="http://www.s3model.com/ns/s3m/s3model/isSymbolOf">isSymbolOf</a>&nbsp;<a href="../annotationproperties/description___1574391916.html" class='Annotation Property' title="http://www.s3model.com/ns/s3m/description">description</a> <span class='literal'>"Relates a symbol (PCS or CCS) to a model (PCM or CCM)."</span>&nbsp;</li>
+</ul>
+</div>
+</div><!-- usage (13) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>
