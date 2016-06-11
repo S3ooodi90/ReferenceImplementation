@@ -1,75 +1,40 @@
-# Polymer App Toolbox - Drawer Template
+** Data Model Generator ** 
+*aka. Data Translator*
 
-This template is a starting point for building apps using a drawer-based
-layout.  The layout is provided by `app-layout` elements.
-
-This template, along with the `polymer-cli` toolchain, also demonstrates use
-of the "PRPL pattern" This pattern allows fast first delivery and interaction with
-the content at the initial route requested by the user, along with fast subsequent
-navigation by pre-caching the remaining components required by the app and
-progressively loading them on-demand as the user navigates through the app.
-
-The PRPL pattern, in a nutshell:
-
-* **Push** components required for the initial route
-* **Render** initial route ASAP
-* **Pre-cache** components for remaining routes
-* **Lazy-load** and progressively upgrade next routes on-demand
-
-### Setup
-
-##### Prerequisites
-
-Install [polymer-cli](https://github.com/Polymer/polymer-cli):
-
-    npm install -g polymer-cli
-
-##### Initialize project from template
-
-    mkdir my-app
-    cd my-app
-    polymer init app-drawer-template
-
-### Start the development server
-
+See README_polymer.md for details about the infrastructure.
 This command serves the app at `http://localhost:8080` and provides basic URL
 routing for the app:
 
     polymer serve
 
 
-### Build
+This UI connects to the DMGEN via a REST API.
 
-This command performs HTML, CSS, and JS minification on the application
-dependencies, and generates a service-worker.js file with code to pre-cache the
-dependencies based on the entrypoint and fragments specified in `polymer.json`.
-The minified files are output to the `build/unbundled` folder, and are suitable
-for serving from a HTTP/2+Push compatible server.
+It controls how CSV data files can be used to drive model development and then translate the CSV into a compliant XML document on a per row basis. 
 
-In addition the command also creates a fallback `build/bundled` folder,
-generated using fragment bundling, suitable for serving from non
-H2/push-compatible servers or to clients that do not support H2/Push.
+**STEPS**
+0. Select the file and the type of record separator (comma, semicolon, pipe)
+1. Load the CSV file.
+2. Read the first 10 records if more than 10, otherwise read them all.
+3. Confirm the total number of records and columns with the user. 
+4. For each column attempt to guess the datatype.
+5. Ask the user to confirm/select the correct datatype for each column. 
+    a. Is it a string?
+        - is it restricted to a set of choices?
+        - is it restricted to a regex pattern?
 
-    polymer build
+    b. Is it a number?
+        - is it integers only?
+        - does it have min/max values? are they inclusive/exclusive?
+        - are the number of digits limited?
+        - if float are decimal positions limited?
+        
+    c. Are any two/three columns used together as a rate, proportion or ratio?
+        - Select: numerator, denominator, result value
 
-### Test the build
-
-This command serves the minified version of the app in an unbundled state, as it would
-be served by a push-compatible server:
-
-    polymer serve build/unbundled
-
-This command serves the minified version of the app generated using fragment bundling:
-
-    polymer serve build/bundled
-
-### Extend
-
-You can extend the app by adding more elements that will be demand-loaded
-e.g. based on the route, or to progressively render non-critical sections
-of the application.  Each new demand-loaded fragment should be added to the
-list of `fragments` in the included `polymer.json` file.  This will ensure
-those components and their dependencies are added to the list of pre-cached
-components (and will have bundles created in the fallback `bundled` build).
-
+6. Offer to allow user to change the column header. Use the header to create the 'label' for each RMC.
+    a. In a more advanced version prompt the user for data provenance model (Subject, Provider, Audit, etc.). 
+7. Ask user for a model 'title', 'description', 'copyright', etc. select: 'author' & 'contributors'.
+8. Create the model package.
+9. Generate an XML file for each record in the CSV. 
 

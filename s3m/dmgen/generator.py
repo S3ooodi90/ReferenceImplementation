@@ -147,6 +147,7 @@ class DMPkg(object):
             self.xsd += '    <xs:appinfo>\n'
             self.xsd += '      <rdf:Description rdf:about="mc-' + self.dm.ct_id + '">\n'
             self.xsd += '        <rdfs:subClassOf rdf:resource="' + RM_URI + 'DMType"/>\n'
+            self.xsd += '        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
             self.xsd += '        <rdfs:label>' + \
                 escape(self.dm.title.strip()) + '</rdfs:label>\n'
             if len(self.dm.pred_obj.all()) != 0:
@@ -803,7 +804,7 @@ class DMPkg(object):
 
         for uuid in self.used_uuids:
             self.xsd += '      <rdf:Description rdf:about="dm-' + self.dm.ct_id + '">\n'
-            self.xsd += '        <s3m:containsPMC rdf:resource="mc-' + str(uuid) + '"/>\n'
+            self.xsd += '        <s3m:containsRMC rdf:resource="mc-' + str(uuid) + '"/>\n'
             self.xsd += '      </rdf:Description>\n'
 
         self.xsd += "  </xs:appinfo>\n"

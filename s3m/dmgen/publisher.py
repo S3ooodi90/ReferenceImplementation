@@ -91,6 +91,7 @@ def publish_XdBoolean(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdBooleanType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -210,6 +211,7 @@ def publish_XdLink(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdLinkType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -324,6 +326,7 @@ def publish_XdString(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdStringType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -478,6 +481,7 @@ def publish_XdFile(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdFileType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -666,6 +670,7 @@ def publish_XdInterval(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdIntervalType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -831,6 +836,7 @@ def publish_ReferenceRange(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -983,6 +989,7 @@ def publish_SimpleReferenceRange(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1247,6 +1254,7 @@ def publish_XdOrdinal(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdOrdinalType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1413,6 +1421,7 @@ def publish_XdCount(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdCountType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1595,6 +1604,7 @@ def publish_XdQuantity(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdQuantityType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1777,6 +1787,7 @@ def publish_XdRatio(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdRatioType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -2034,6 +2045,7 @@ def publish_XdTemporal(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdTemporalType'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -2243,6 +2255,7 @@ def publish_Party(self):
                 "<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             party_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "PartyType'/>\n")
+            party_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             party_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                       escape(self.label.strip()) + "</rdfs:label>\n")
             party_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2340,6 +2353,7 @@ def publish_Audit(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             aud_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "AuditType'/>\n")
+            aud_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             aud_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             aud_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2447,6 +2461,7 @@ def publish_Attestation(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             att_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "AttestationType'/>\n")
+            att_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             att_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             att_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2560,6 +2575,7 @@ def publish_Participation(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             ptn_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ParticipationType'/>\n")
+            ptn_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             ptn_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             ptn_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2689,6 +2705,7 @@ def publish_Cluster(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             cl_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ClusterType'/>\n")
+            cl_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             cl_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             cl_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -2881,6 +2898,7 @@ def publish_Entry(self):
                 "<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             entry_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "EntryType'/>\n")
+            entry_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             entry_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                       escape(self.label.strip()) + "</rdfs:label>\n")
             entry_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
