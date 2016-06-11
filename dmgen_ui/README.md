@@ -13,6 +13,7 @@ This UI connects to the DMGEN via a REST API.
 It controls how CSV data files can be used to drive model development and then translate the CSV into a compliant XML document on a per row basis. 
 
 **STEPS**
+
     0. Select the file and the type of record separator (comma, semicolon, pipe)
     1. Load the CSV file.
     2. Read the first 10 records if more than 10, otherwise read them all.
