@@ -15,25 +15,28 @@ def main(theFile):
     """
     Load and analyze.
 
-   CREATE TABLE "model" ("title" CHAR(250), "description" TEXT, "copyright" CHAR(250), "author" CHAR(250), "contributors" TEXT)
+CREATE TABLE "model" ("title" CHAR(250), "description" TEXT, "copyright" CHAR(250), "author" CHAR(250), "contributors" TEXT)
 
-    CREATE TABLE "record"
-           (header  char(100), label char(250), datatype char(10), minlen int, maxlen int, "choices" TEXT, "regex" CHAR(250), "minval" FLOAT, "maxval" FLOAT, "valInclusive" BOOL, "url" CHAR(500))
-
+ CREATE TABLE "record"
+           (header  char(100), label char(250), datatype char(10), minlen int, maxlen int, "choices" TEXT, "regex" CHAR(250), "minval" FLOAT, "maxval" FLOAT, "valInclusive" BOOL, "url" CHAR(500), "value" TEXT)
 
     """
 
-    conn = sqlite3.connect('analyze.sqlite')
-    c = conn.cursor()
 
     data = []
     with open(theFile) as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=';')
+        reader = csv.DictReader(csvfile, delimiter=',')
         for h in reader.fieldnames:
             print('Adding: ', h)
-            data.append((h,h,'String',0,0,'','',0,0,True,'',''))
+            data.append((h,h,'String',0,0,'','',0,0,True,''))
 
-    c.executemany("INSERT INTO csv VALUES (?,?,?,?,?)", data)
+
+    conn = sqlite3.connect('analyze.sqlite')
+    c = conn.cursor()
+    c.executemany("INSERT INTO record VALUES (?,?,?,?,?,?,?,?,?,?,?)", data)
+    conn.commit()
+    data =[ (theFile,theFile,'','','')]
+    c.executemany("insert into model values (?,?,?,?,?)", data)
     conn.commit()
     conn.close()
 

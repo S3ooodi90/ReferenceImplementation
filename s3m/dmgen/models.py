@@ -27,10 +27,11 @@ for n in DJANGO_LANG:
 
 @receiver(pre_delete)
 def no_delete_test(sender, instance, **kwargs):
-    if sender in [Cluster, DM, XdBoolean, XdString, XdCount, XdString, XdInterval, XdFile, XdOrdinal,
+    if sender in [Cluster, XdBoolean, XdString, XdCount, XdString, XdInterval, XdFile, XdOrdinal,
                   XdQuantity, XdRatio, XdString, XdTemporal, XdLink, Entry, Participation, Party, ReferenceRange, Units]:
         if instance.published:
-            raise PermissionDenied
+            pass
+            #raise PermissionDenied
 
 
 def dm_folder(instance, filename):

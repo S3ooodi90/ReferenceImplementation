@@ -85,7 +85,7 @@ class DMPkg(object):
 
     def xsdMetadata(self):
         mds = '<!-- Metadata -->\n  <xs:annotation><xs:appinfo><rdf:RDF><rdf:Description\n'
-        mds += '    rdf:about="dm-' + self.dm.ct_id + '">\n'
+        mds += '    rdf:about="dm-' + str(self.dm.ct_id) + '">\n'
         mds += '    <dc:title>' + \
             escape(self.dm.title.strip()) + '</dc:title>\n'
         mds += '    <dc:creator>' + \
@@ -141,11 +141,11 @@ class DMPkg(object):
         # build the DMType restriction
         if msg[1] == messages.SUCCESS:
             self.xsd += '<xs:element name="' + self.dm.identifier + \
-                '" type="s3m:mc-' + self.dm.ct_id + '"/>\n'
-            self.xsd += '<xs:complexType name="mc-' + self.dm.ct_id + '"> \n'
+                '" type="s3m:mc-' + str(self.dm.ct_id) + '"/>\n'
+            self.xsd += '<xs:complexType name="mc-' + str(self.dm.ct_id) + '"> \n'
             self.xsd += '  <xs:annotation>\n'
             self.xsd += '    <xs:appinfo>\n'
-            self.xsd += '      <rdf:Description rdf:about="mc-' + self.dm.ct_id + '">\n'
+            self.xsd += '      <rdf:Description rdf:about="mc-' + str(self.dm.ct_id) + '">\n'
             self.xsd += '        <rdfs:subClassOf rdf:resource="' + RM_URI + 'DMType"/>\n'
             self.xsd += '        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
             self.xsd += '        <rdfs:label>' + \
@@ -328,7 +328,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdBoolean: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
             if not (Xd.adapter_ctid in self.adapters):
                 # create the XdAdapterType code
                 self.xsd += self.makeXdAdapter(Xd.ct_id,
@@ -344,7 +344,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdLink: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
             if not (Xd.adapter_ctid in self.adapters):
                 # create the XdAdapterType code
                 self.xsd += self.makeXdAdapter(Xd.ct_id,
@@ -376,7 +376,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdFile: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
             if not (Xd.adapter_ctid in self.adapters):
                 # create the XdAdapterType code
                 self.xsd += self.makeXdAdapter(Xd.ct_id,
@@ -392,13 +392,13 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdOrdinal: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             # len 10 was arbitrarily chosen as an obviously
                             # incorrect code length.
-                            if len(rr.schema_code) < 10:
+                            if len(rr.schema_code ) < 10:
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: " +
                                        rr.label + " is published.", messages.ERROR)
                                 return(msg)
@@ -406,7 +406,7 @@ class DMPkg(object):
                             if self.registerUUID(rr.interval.ct_id, 'XdIntervalType'):
                                 # len 10 was arbitrarily chosen as an obviously
                                 # incorrect code length.
-                                if len(rr.interval.schema_code) < 10:
+                                if len(rr.interval.schema_code ) < 10:
                                     msg = ("Something happened to your MC code. Check that XdInterval: " +
                                            rr.interval.label + " is published.", messages.ERROR)
                                     return(msg)
@@ -432,7 +432,7 @@ class DMPkg(object):
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             # len 10 was arbitrarily chosen as an obviously
                             # incorrect code length.
-                            if len(rr.schema_code) < 10:
+                            if len(rr.schema_code ) < 10:
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: " +
                                        rr.label + " is published.", messages.ERROR)
                                 return(msg)
@@ -472,7 +472,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdQuanitiy: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
@@ -518,7 +518,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdRatio: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
@@ -581,7 +581,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdTemporall: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
@@ -803,7 +803,7 @@ class DMPkg(object):
         self.xsd += "  <xs:appinfo>\n"
 
         for uuid in self.used_uuids:
-            self.xsd += '      <rdf:Description rdf:about="dm-' + self.dm.ct_id + '">\n'
+            self.xsd += '      <rdf:Description rdf:about="dm-' + str(self.dm.ct_id) + '">\n'
             self.xsd += '        <s3m:containsRMC rdf:resource="mc-' + str(uuid) + '"/>\n'
             self.xsd += '      </rdf:Description>\n'
 
