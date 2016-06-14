@@ -175,24 +175,12 @@ def dmgen(modeladmin, request, queryset):
         qs = DM.objects.filter(pk=dm.id)
         generate_dm(modeladmin, request, qs)
 
+        if obj.data_gen:
+            print("Generating data files..........")
+
+
         modeladmin.message_user(request, msg[0], msg[1])
 dmgen.short_description = _("Generate a Data Model")
-
-
-#def print_data(modeladmin, request, queryset):
-    #"""
-    #Print the CSV data to the console.
-    #"""
-    #for obj in queryset:
-        #msg = (obj.__str__() + " Is being processed.", messages.SUCCESS)
-
-        #with open(os.path.join(MEDIA_ROOT, obj.csv_file.url)) as csvfile:
-            #reader = csv.DictReader(csvfile, delimiter=obj.delim)
-            #for row in reader:
-                #print(row)
-
-        #modeladmin.message_user(request, msg[0], msg[1])
-#print_data.short_description = _("Print CSV data")
 
 
 class DMDAdmin(admin.ModelAdmin):
@@ -204,7 +192,7 @@ class DMDAdmin(admin.ModelAdmin):
         (None, {'classes': ('wide',),
                 'fields': (('title', 'project'),)}),
         (None, {'classes': ('wide',),
-                                     'fields': ('description','definitions','delim','lang','author', 'contrib', 'csv_file',)}),
+                                     'fields': ('description','definitions','delim','lang','author', 'contrib', 'data_gen', 'csv_file',)}),
     )
 
 admin.site.register(DMD, DMDAdmin)
