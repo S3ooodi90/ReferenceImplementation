@@ -883,11 +883,11 @@ def generateDM(dm, request):
         # open a schema file dm-(uuid).xsd
         f = ContentFile(dmpkg.xsd.encode("utf-8"))
         xsd = dm.xsd_file
-        xsd.save('dm-' + dm.ct_id + '.xsd', f, save=True)
+        xsd.save('dm-' + str(dm.ct_id) + '.xsd', f, save=True)
         xsd.flush()
         dm.xsd_file.close()
         f.close()
-        lf = os.open(dm_dir + '/dm-' + dm.ct_id +
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) +
                      '.xsd', os.O_RDWR | os.O_CREAT)
         os.write(lf, dmpkg.xsd.encode("utf-8"))
         os.close(lf)
@@ -898,11 +898,11 @@ def generateDM(dm, request):
         # open an HTML file dm-(uuid).html
         f = ContentFile(dmpkg.html.encode("utf-8"))
         html = dm.html_file
-        html.save('dm-' + dm.ct_id + '.html', f, save=True)
+        html.save('dm-' + str(dm.ct_id) + '.html', f, save=True)
         html.flush()
         dm.html_file.close()
         f.close()
-        lf = os.open(dm_dir + '/dm-' + dm.ct_id +
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) +
                      '.html', os.O_RDWR | os.O_CREAT)
         os.write(lf, dmpkg.html.encode("utf-8"))
         os.close(lf)
@@ -912,11 +912,11 @@ def generateDM(dm, request):
         # open an instance file dm-(uuid).xml
         f = ContentFile(dmpkg.xml.encode("utf-8"))
         xml = dm.xml_file
-        xml.save('dm-' + dm.ct_id + '.xml', f, save=True)
+        xml.save('dm-' + str(dm.ct_id) + '.xml', f, save=True)
         xml.flush()
         dm.xml_file.close()
         f.close()
-        lf = os.open(dm_dir + '/dm-' + dm.ct_id +
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) +
                      '.xml', os.O_RDWR | os.O_CREAT)
         os.write(lf, dmpkg.xml.encode("utf-8"))
         os.close(lf)
@@ -940,16 +940,16 @@ def generateDM(dm, request):
         # messages.add_message(request, messages.SUCCESS, "Wrote the JSON Instance file.")
 
         # generate and write the SHA1 file
-        dmxsd = open(dm_dir + '/dm-' + dm.ct_id + '.xsd', encoding="utf-8")
+        dmxsd = open(dm_dir + '/dm-' + str(dm.ct_id) + '.xsd', encoding="utf-8")
         dm_content = dmxsd.read()
         dmxsd.close()
         h = hashlib.sha1(dm_content.encode("utf-8")).hexdigest()
         f = ContentFile(h)
         sha1 = dm.sha1_file
-        sha1.save('dm-' + dm.ct_id + '.sha1', f)
+        sha1.save('dm-' + str(dm.ct_id) + '.sha1', f)
         sha1.close()
         f.close()
-        lf = os.open(dm_dir + '/dm-' + dm.ct_id +
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) +
                      '.sha1', os.O_RDWR | os.O_CREAT)
         os.write(lf, h.encode("utf-8"))
         os.close(lf)
@@ -965,7 +965,7 @@ def generateDM(dm, request):
         # setup the project name
         r_proj = 'dm'
         r_proj += ''.join([c for c in dm.title if c.isalnum() and ord(c) <= 127])
-        r_proj += dm.ct_id.split('-')[-1]
+        r_proj += str(dm.ct_id).split('-')[-1]
 
         r_projdir = dm_dir + '/' + r_proj
         # create the project directory
@@ -1023,7 +1023,7 @@ def generateDM(dm, request):
         r_descfile.write(
             'Maintainer: Timothy W. Cook <timothywayne.cook@gmail.com>\n'.encode("utf-8"))
         r_descfile.write(('Description: Creates a data frame from instances of the S3Model DM for:\n  ' +
-                          dm.title + '\n  The DM ID is: dm-' + dm.ct_id + '\n  ' + dm.description + '\n').encode("utf-8"))
+                          dm.title + '\n  The DM ID is: dm-' + str(dm.ct_id) + '\n  ' + dm.description + '\n').encode("utf-8"))
         r_descfile.write('License: Apache License 2.0\n'.encode("utf-8"))
         r_descfile.write('Depends: \n'.encode("utf-8"))
         r_descfile.write('  s3modelRM (>= 1.0.0),\n'.encode("utf-8"))
@@ -1031,7 +1031,7 @@ def generateDM(dm, request):
         r_descfile.close()
 
         # put the sample XML file in the R project as an example.
-        xmlfile = open(dm_dir + '/dm-' + dm.ct_id +
+        xmlfile = open(dm_dir + '/dm-' + str(dm.ct_id) +
                        '.xml', 'r', encoding="utf-8")
         xml = xmlfile.read()
         xmlfile.close
@@ -1074,7 +1074,7 @@ def generateDM(dm, request):
         """
         create ZIP of the directory and the JSON, html, xsd, xml, sha1 files and the R project
         """
-        zf = zipfile.ZipFile(MEDIA_ROOT + '/dm-' + dm.ct_id + '.zip', 'w')
+        zf = zipfile.ZipFile(MEDIA_ROOT + '/dm-' + str(dm.ct_id) + '.zip', 'w')
         for dirname, subdirs, files in os.walk(dm_dir):
             for filename in files:
                 zf.write(os.path.join(dirname, filename),
@@ -1102,7 +1102,7 @@ def gen_metadataR(self):
     rstr = ''  # The string to write
     rstr += "# Copyright 2013-" + year + \
         ", Timothy W. Cook <timothywayne.cook@gmail.com>\n"
-    rstr += "# metadata.R for dm-" + self.ct_id + ".xsd\n"
+    rstr += "# metadata.R for dm-" + str(self.ct_id) + ".xsd\n"
     rstr += "# Licensed under the Apache License, Version 2.0 (the 'License');\n"
     rstr += "# you may not use this file except in compliance with the License.\n"
     rstr += "# You may obtain a copy of the License at\n"
@@ -1126,7 +1126,7 @@ def gen_metadataR(self):
     rstr += "  dc_relation='" + self.relation + "',\n"
     rstr += "  dc_coverage='" + self.coverage + "',\n"
     rstr += "  dc_type='S3Model Data Model (DM)',\n"
-    rstr += "  dc_identifier='dm-" + self.ct_id + "',\n"
+    rstr += "  dc_identifier='dm-" + str(self.ct_id) + "',\n"
     rstr += "  dc_description='" + self.description + "',\n"
     rstr += "  dc_publisher='" + self.publisher + "',\n"
     pdstr = self.pub_date.strftime("%Y-%m-%d %H:%M%S")
@@ -1139,7 +1139,7 @@ def gen_metadataR(self):
 
     rstr += "dmuri <- function(){\n"
     rstr += "    return('http://dmgen.s3model.com/dmlib/dm-" + \
-        self.ct_id + ".xsd')\n"
+        str(self.ct_id) + ".xsd')\n"
     rstr += "}\n"
     rstr += "\n"
 

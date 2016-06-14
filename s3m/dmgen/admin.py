@@ -445,13 +445,13 @@ def generate_dm(modeladmin, request, queryset):
     elif queryset[0].published and request.user.is_superuser is False:
         msg = (_("This DM has been previously generated. Please make a copy and generate a new one."), messages.ERROR)
     else:
-        new_id = str(uuid4())
+        #new_id = str(uuid4())
         obj = queryset[0]
-        obj.ct_id = new_id
-        obj.identifier = 'dm-' + new_id
+        #obj.ct_id = new_id
+        obj.identifier = 'dm-' + str(obj.ct_id)
         obj.save()
         modeladmin.message_user(
-            request, "Generating dm-" + new_id + " " + obj.title, messages.INFO)
+            request, "Generating dm-" + str(obj.ct_id) + " " + obj.title, messages.INFO)
         msg = generateDM(obj, request)
         # final msg from generator says success. create a standard success msg.
         if msg[1] == messages.SUCCESS:

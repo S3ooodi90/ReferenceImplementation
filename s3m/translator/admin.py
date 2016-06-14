@@ -15,7 +15,7 @@ from dmgen.generator import generateDM
 from dmgen.admin import generate_dm
 
 from .models import DMD, Record
-
+from .datagen import dataGen
 
 def make_records(modeladmin, request, queryset):
     """
@@ -85,7 +85,6 @@ def dmgen(modeladmin, request, queryset):
             mc = None
             new = False
             rec = recs.get(header=col)
-            print('Creating: ', rec.label)
             if rec.dt_type == 'xdstring':
                 mc = XdString.objects.create(project=dm.project, label=rec.label, lang=lang, description=rec.description, min_length=rec.min_length, max_length=rec.max_length, exact_length=rec.exact_length, enums=rec.enums, def_val=rec.def_val )
 
@@ -172,11 +171,13 @@ def dmgen(modeladmin, request, queryset):
         msg = entry.publish(request)
 
         # need to send a queryset to the call to generate_dm from the dmgen admin
-        qs = DM.objects.filter(pk=dm.id)
+        print("Looking up: ", str(dm.ct_id))
+        qs = DM.objects.filter(ct_id=dm.ct_id)
         generate_dm(modeladmin, request, qs)
 
         if obj.data_gen:
             print("Generating data files..........")
+            dataGen(obj, dm)
 
 
         modeladmin.message_user(request, msg[0], msg[1])
