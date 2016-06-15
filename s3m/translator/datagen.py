@@ -86,7 +86,7 @@ def cluster(clu, records, csvdata, indent):
     if clu.xdcount:
         for Xd in clu.xdcount.all():
             rec = records.get(label=Xd.label)
-            value = re.sub("[^0123456789\.,]","",csvdata[rec.header.strip()])
+            value = re.sub("[^0123456789\.]","",csvdata[rec.header.strip()])
             unit = Xd.units.enums.splitlines()[0].strip()
             xmlstr += indent + """  <s3m:ms-""" + str(Xd.adapter_ctid) + """>\n"""
             xmlstr += indent + """  <s3m:ms-""" + str(Xd.ct_id) + """>\n"""
@@ -105,7 +105,7 @@ def cluster(clu, records, csvdata, indent):
     if clu.xdquantity:
         for Xd in clu.xdquantity.all():
             rec = records.get(label=Xd.label)
-            value = re.sub("[^0123456789\.,]","",csvdata[rec.header.strip()])
+            value = re.sub("[^0123456789\.]","",csvdata[rec.header.strip()])
             unit = Xd.units.enums.splitlines()[0].strip()
             xmlstr += indent + """  <s3m:ms-""" + str(Xd.adapter_ctid) + """>\n"""
             xmlstr += indent + """  <s3m:ms-""" + str(Xd.ct_id) + """>\n"""
