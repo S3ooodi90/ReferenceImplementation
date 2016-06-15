@@ -28,7 +28,6 @@ def make_records(modeladmin, request, queryset):
             reader = csv.DictReader(csvfile, delimiter=obj.delim)
             for hdr in reader.fieldnames:
                 hdr = hdr.strip()
-                print('Adding: ', hdr)
 
                 rec = Record(dmd=obj, header=hdr, label=hdr,dt_type='xdstring', description='Created by the Data Insights, Inc. Data Translator.')
                 rec.save()
@@ -165,20 +164,18 @@ def dmgen(modeladmin, request, queryset):
                 cluster.save()
 
             else:
-                print("Shit! Something broke.")
+                modeladmin.message_user(request, "Something broke while finding your datatype!", messages.ERROR)
 
         msg = cluster.publish(request)
         msg = entry.publish(request)
 
         # need to send a queryset to the call to generate_dm from the dmgen admin
-        print("Looking up: ", str(dm.ct_id))
         qs = DM.objects.filter(ct_id=dm.ct_id)
         generate_dm(modeladmin, request, qs)
 
         if obj.data_gen:
-            print("Generating data files..........")
+            modeladmin.message_user(request, "Generating data files..........", messages.SUCCESS)
             dataGen(obj, dm)
-
 
         modeladmin.message_user(request, msg[0], msg[1])
 dmgen.short_description = _("Generate a Data Model")

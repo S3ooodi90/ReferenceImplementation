@@ -162,8 +162,6 @@ def cluster(clu, records, csvdata, indent):
 
 
 def dataGen(dmd, dm):
-    print('Data generation for: ', dm.ct_id)
-    print('Using: ', dmd.csv_file)
 
     recnum = 0
     datapath = os.path.join(MEDIA_ROOT,dmd.csv_file.url.strip('.csv'))
@@ -175,7 +173,6 @@ def dataGen(dmd, dm):
 
     with open(os.path.join(MEDIA_ROOT, dmd.csv_file.url)) as csvfile:
         reader = csv.DictReader(csvfile, delimiter=dmd.delim)
-        print("Parsing CSV data file.")
         for row in reader:
             #normalize the keys coming from the CSV data to remove suprious whitespace
             csvdata = {}
