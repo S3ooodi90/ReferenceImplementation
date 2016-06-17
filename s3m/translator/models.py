@@ -51,6 +51,7 @@ class DMD(models.Model):
                             default='en-US', help_text=_('Choose the language of this Data Model.'))
 
     data_gen = models.BooleanField(_('Generate Data?'), default=False, help_text=_('Check this box to automatically generate a dataset based on the generated model. If not checked, only a model and sample files is generated.'))
+    rdf_gen = models.BooleanField(_('Generate RDF?'), default=False, help_text=_('Check this box to automatically generate a RDF dataset based on the generated model and the data files. This is only function if the Generate Data box is also checked.'))
 
     csv_file = models.FileField(
         "CSV Upload", upload_to=data_upload, max_length=2048, blank=True, null=True)

@@ -7,7 +7,7 @@ from xml.sax.saxutils import escape
 
 from django.shortcuts import get_object_or_404
 
-from s3m.settings import MEDIA_ROOT
+from s3m.settings import MEDIA_ROOT, DATA_LIB
 from dmgen.models import NS
 from .models import Record
 
@@ -164,7 +164,7 @@ def cluster(clu, records, csvdata, indent):
 def dataGen(dmd, dm):
 
     recnum = 0
-    datapath = os.path.join(MEDIA_ROOT,dmd.csv_file.url.strip('.csv'))
+    datapath = os.path.join(DATA_LIB,dmd.csv_file.url.strip('.csv'))
     records = Record.objects.filter(dmd=dmd)
 
     if os.path.exists(datapath):
@@ -210,6 +210,9 @@ def dataGen(dmd, dm):
             f.write(data.xml)
             f.write(data.xmlTail)
             f.close()
+
+    return
+
 
 class DataInstance(object):
     """

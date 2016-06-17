@@ -5,6 +5,7 @@ import os
 import sys
 import time
 import codecs
+import re
 from datetime import datetime, date
 import hashlib
 import zipfile
@@ -16,6 +17,7 @@ from urllib.parse import quote
 import json
 import xmltodict
 import shortuuid
+from lxml import etree
 
 from django.http import HttpResponse
 from django.core.servers.basehttp import FileWrapper
@@ -74,7 +76,7 @@ class DMPkg(object):
         Build the header string for the XSD
         """
         hstr = '<?xml version="1.0" encoding="UTF-8"?>\n'
-        hstr += '<?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>\n'
+        # hstr += '<?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>\n'
         hstr += '<xs:schema\n'
         for ns in NS.objects.all():
             hstr += '  xmlns:' + ns.abbrev.strip() + '="' + ns.uri.strip() + '"\n'
@@ -923,23 +925,27 @@ def generateDM(dm, request):
         messages.add_message(request, messages.SUCCESS,
                              "Wrote the XML Instance file.")
 
-        # open and write a JSON instance file dm-(uuid).json
-        # namespaces = {}
-        # for ns in NS.objects.all():
-        # namespaces[ns.uri.strip()] = ns.abbrev.strip()
-        # f = ContentFile(dmpkg.xml.encode("utf-8")) #this is the XML instance before conversion
-        # xmldict = xmltodict.parse(f, process_namespaces=True, namespaces=namespaces)
-        # j = json.dumps(xmldict, indent=2)
-        # jfile = ContentFile(j)
-        # jsonfile = dm.json_file
-        # jsonfile.save('dm-'+dm.ct_id+'.json', jfile)
-        # jsonfile.close()
-        # lf = os.open(dm_dir+'/dm-'+ dm.ct_id+'.json', os.O_RDWR|os.O_CREAT )
-        # os.write(lf,j.encode("utf-8"))
-        # os.close(lf)
-        # messages.add_message(request, messages.SUCCESS, "Wrote the JSON Instance file.")
+        """
+         open and write a JSON instance file dm-(uuid).json
+        """
+        namespaces = {}
+        for ns in NS.objects.all():
+            namespaces[ns.uri.strip()] = ns.abbrev.strip()
+        f = ContentFile(dmpkg.xml.encode("utf-8")) #this is the XML instance before conversion
+        xmldict = xmltodict.parse(f, process_namespaces=True, namespaces=namespaces)
+        j = json.dumps(xmldict, indent=2)
+        jfile = ContentFile(j)
+        jsonfile = dm.json_file
+        jsonfile.save('dm-' + str(dm.ct_id) + '.json', jfile)
+        jsonfile.close()
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) + '.json', os.O_RDWR|os.O_CREAT )
+        os.write(lf,j.encode("utf-8"))
+        os.close(lf)
+        messages.add_message(request, messages.SUCCESS, "Wrote the JSON Instance file.")
 
-        # generate and write the SHA1 file
+        """
+        generate and write the SHA1 file
+        """
         dmxsd = open(dm_dir + '/dm-' + str(dm.ct_id) + '.xsd', encoding="utf-8")
         dm_content = dmxsd.read()
         dmxsd.close()
@@ -955,6 +961,42 @@ def generateDM(dm, request):
         os.close(lf)
         messages.add_message(request, messages.SUCCESS,
                              "Wrote the SHA1 digital signature file.")
+
+        """
+        Generate the RDF from the semantics embeded in the XSD.
+        """
+
+        rootdir = '.'
+        nsDict={'xs':'http://www.w3.org/2001/XMLSchema',
+                'rdf':'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+                'rdfs':'http://www.w3.org/2000/01/rdf-schema#',
+                'dct':'http://purl.org/dc/terms/',
+                'owl':'http://www.w3.org/2002/07/owl#',
+                'vc':'http://www.w3.org/2007/XMLSchema-versioning',
+                's3m':'http://www.s3model.com/ns/s3m/'}
+
+        parser = etree.XMLParser(ns_clean=True, recover=True)
+        about = etree.XPath("//xs:annotation/xs:appinfo/rdf:Description", namespaces=nsDict)
+        md = etree.XPath("//rdf:RDF/rdf:Description", namespaces=nsDict)
+        rdf_file = os.open(dm_dir + '/dm-' + str(dm.ct_id) + '.rdf', os.O_RDWR | os.O_CREAT)
+
+        rdfstr = """<?xml version="1.0" encoding="UTF-8"?>\n<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>\n"""
+
+        tree = etree.parse(ContentFile(dmpkg.xsd.encode("utf-8")), parser)
+        root = tree.getroot()
+
+        rdf = about(root)
+        for m in md(root):
+            rdfstr += '    '+etree.tostring(m).decode('utf-8')+'\n'
+
+        for r in rdf:
+            rdfstr += '    '+etree.tostring(r).decode('utf-8')+'\n'
+
+        rdfstr += '</rdf:RDF>\n'
+        os.write(rdf_file, rdfstr.encode("utf-8"))
+        os.close(rdf_file)
+        messages.add_message(request, messages.SUCCESS,
+                             "Wrote the RDF for the DM.")
 
         """
         Create a subdirectory for the R project using the following string:
@@ -1019,14 +1061,14 @@ def generateDM(dm, request):
         r_descfile.write(
             ('Date: ' + dm.pub_date.strftime("%Y-%m-%d") + '\n').encode("utf-8"))
         r_descfile.write(
-            'Author: Timothy W. Cook <timothywayne.cook@gmail.com>\n'.encode("utf-8"))
+            'Author: Timothy W. Cook <tim@datainsights.tech>\n'.encode("utf-8"))
         r_descfile.write(
-            'Maintainer: Timothy W. Cook <timothywayne.cook@gmail.com>\n'.encode("utf-8"))
+            'Maintainer: Timothy W. Cook <tim@datainsights.tech>\n'.encode("utf-8"))
         r_descfile.write(('Description: Creates a data frame from instances of the S3Model DM for:\n  ' +
                           dm.title + '\n  The DM ID is: dm-' + str(dm.ct_id) + '\n  ' + dm.description + '\n').encode("utf-8"))
         r_descfile.write('License: Apache License 2.0\n'.encode("utf-8"))
         r_descfile.write('Depends: \n'.encode("utf-8"))
-        r_descfile.write('  s3modelRM (>= 1.0.0),\n'.encode("utf-8"))
+        r_descfile.write('  s3modelRM (>= 3.0.0),\n'.encode("utf-8"))
         r_descfile.write('  data.table\n'.encode("utf-8"))
         r_descfile.close()
 

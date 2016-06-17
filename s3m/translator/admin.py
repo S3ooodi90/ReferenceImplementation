@@ -16,6 +16,7 @@ from dmgen.admin import generate_dm
 
 from .models import DMD, Record
 from .datagen import dataGen
+from .rdfgen import rdfGen
 
 def make_records(modeladmin, request, queryset):
     """
@@ -176,6 +177,12 @@ def dmgen(modeladmin, request, queryset):
         if obj.data_gen:
             modeladmin.message_user(request, "Generating data files..........", messages.SUCCESS)
             dataGen(obj, dm)
+            if obj.rdf_gen:
+                modeladmin.message_user(request, "Generating RDF files..........", messages.SUCCESS)
+                rdfGen(obj, dm)
+        else:
+            modeladmin.message_user(request, "Data and RDF Generation was skipped.", messages.WARNING)
+
 
         modeladmin.message_user(request, msg[0], msg[1])
 dmgen.short_description = _("Generate a Data Model")
@@ -190,7 +197,7 @@ class DMDAdmin(admin.ModelAdmin):
         (None, {'classes': ('wide',),
                 'fields': (('title', 'project'),)}),
         (None, {'classes': ('wide',),
-                                     'fields': ('description','definitions','delim','lang','author', 'contrib', 'data_gen', 'csv_file',)}),
+                                     'fields': ('description','definitions','delim','lang','author', 'contrib', 'data_gen', 'rdf_gen', 'csv_file',)}),
     )
 
 admin.site.register(DMD, DMDAdmin)
