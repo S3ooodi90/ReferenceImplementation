@@ -5,6 +5,8 @@
 *.zip
 *.sh
 
+DMGEN.json
+
 #ModelTester
 S3ModelTester.log
 
@@ -13,6 +15,8 @@ settings.py
 dmlib/
 media/
 migrations/
+datalib/
+docs/source/_static/
 
 #Sphinx
 build/

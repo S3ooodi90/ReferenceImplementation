@@ -15,10 +15,8 @@ from s3m.settings import MEDIA_ROOT, DATA_LIB
 def parse_el(element, dest, filename, tree):
 
     for child in element.getchildren():
-        print('0: ', child)
         if child.tag is not etree.Comment:
             if 'ms-' not in child.tag:
-                print('1: ', child.tag)
                 c_name = child.tag.replace('{http://www.s3model.com/ns/s3m/}','s3m:')
                 dest.write("<rdf:Description rdf:about='data/" + filename + tree.getpath(child) + "'>\n")
                 dest.write("  <rdfs:domain rdf:resource='data/" + filename + "'/>\n")
@@ -29,7 +27,6 @@ def parse_el(element, dest, filename, tree):
                     dest.write("  <rdf:value></rdf:value>\n")
                 dest.write("</rdf:Description>\n\n")
             else:
-                print('2: ', child.tag)
                 c_name = child.tag.replace('{http://www.s3model.com/ns/s3m/}','s3m:')
                 dest.write("<rdf:Description rdf:about='data/" + filename + tree.getpath(child) + "'>\n")
                 dest.write("  <rdfs:domain rdf:resource='data/" + filename + "'/>\n")
