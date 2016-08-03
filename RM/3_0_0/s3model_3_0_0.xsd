@@ -1895,7 +1895,7 @@
 
   <xs:complexType name="InvlUnits">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">The units designation for an Intreval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
+      <xs:documentation xml:lang="en-us">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
         temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#IntervalUnits">
