@@ -18,10 +18,12 @@ The goal of S3Model is to be Minimalistic, Sustainable, Implementable AND Intero
 
 Acknowledgements
 ----------------
+(coming soon)
 
 
 Error Reporting
 ---------------
+`Report Issues Here <https://github.com/DataInsightsInc/S3Model_public/issues>`_ 
 
 
 Purpose & Scope
@@ -35,12 +37,8 @@ The `S3Model site <http://datainsights.tech/S3Model/>`_ contains a growing numbe
 
 Conformance
 -----------
-Conformance to these specifications are represented in a Language Implementation Specification (LIS). A LIS is a formal document detailing the mappings and conventions used in relation to these specifications.
-A LIS is in direct conformance to these specifications when;
-
-1. All datatypes are defined and mapped.
-2. The value spaces of the healthcare datatypes used by the entity to be identical to the value spaces specified herein.
-3. To the extent that the entity provides operations other than movement or translation of values, define operations on the healthcare datatypes which can be derived from, or are otherwise consistent with the characterizing operations specified herein.
+Conformance to these specifications are represented by creating a Data Model (XML Schema) that follows the guidelines in this document and is valid against the specified S3Model reference model schema.
+ 
 
 Compliance
 ----------
