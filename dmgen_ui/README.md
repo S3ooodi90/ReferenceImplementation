@@ -18,6 +18,8 @@ It controls how CSV data files can be used to drive model development and then t
     1. Load the CSV file.
     2. Read the first 10 records if more than 10, otherwise read them all.
     3. Confirm the total number of records and columns with the user. 
+
+
     4. For each column attempt to guess the datatype.
     5. Ask the user to confirm/select the correct datatype for each column. 
         a. Is it a string?
@@ -38,6 +40,8 @@ It controls how CSV data files can be used to drive model development and then t
 
     6. Offer to allow user to change the column header. Use the header to create the 'label' for each RMC.
         a. In a more advanced version prompt the user for data provenance model (Subject, Provider, Audit, etc.). 
+
+
     7. Ask user for a model 'title', 'description', 'copyright', etc. select: 'author' & 'contributors'.
     8. Create the model package.
     9. Generate an XML file for each record in the CSV. 

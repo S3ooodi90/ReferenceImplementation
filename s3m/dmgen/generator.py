@@ -5,6 +5,7 @@ import os
 import sys
 import time
 import codecs
+import re
 from datetime import datetime, date
 import hashlib
 import zipfile
@@ -16,9 +17,11 @@ from urllib.parse import quote
 import json
 import xmltodict
 import shortuuid
+from lxml import etree
 
 from django.http import HttpResponse
-from django.core.servers.basehttp import FileWrapper
+# from django.core.servers.basehttp import FileWrapper
+from wsgiref.util import FileWrapper
 from django.core.files.base import ContentFile, File
 from django.contrib import messages
 
@@ -74,7 +77,7 @@ class DMPkg(object):
         Build the header string for the XSD
         """
         hstr = '<?xml version="1.0" encoding="UTF-8"?>\n'
-        hstr += '<?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>\n'
+        # hstr += '<?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>\n'
         hstr += '<xs:schema\n'
         for ns in NS.objects.all():
             hstr += '  xmlns:' + ns.abbrev.strip() + '="' + ns.uri.strip() + '"\n'
@@ -85,7 +88,7 @@ class DMPkg(object):
 
     def xsdMetadata(self):
         mds = '<!-- Metadata -->\n  <xs:annotation><xs:appinfo><rdf:RDF><rdf:Description\n'
-        mds += '    rdf:about="dm-' + self.dm.ct_id + '">\n'
+        mds += '    rdf:about="dm-' + str(self.dm.ct_id) + '">\n'
         mds += '    <dc:title>' + \
             escape(self.dm.title.strip()) + '</dc:title>\n'
         mds += '    <dc:creator>' + \
@@ -141,11 +144,11 @@ class DMPkg(object):
         # build the DMType restriction
         if msg[1] == messages.SUCCESS:
             self.xsd += '<xs:element name="' + self.dm.identifier + \
-                '" type="s3m:mc-' + self.dm.ct_id + '"/>\n'
-            self.xsd += '<xs:complexType name="mc-' + self.dm.ct_id + '"> \n'
+                '" type="s3m:mc-' + str(self.dm.ct_id) + '"/>\n'
+            self.xsd += '<xs:complexType name="mc-' + str(self.dm.ct_id) + '"> \n'
             self.xsd += '  <xs:annotation>\n'
             self.xsd += '    <xs:appinfo>\n'
-            self.xsd += '      <rdf:Description rdf:about="mc-' + self.dm.ct_id + '">\n'
+            self.xsd += '      <rdf:Description rdf:about="mc-' + str(self.dm.ct_id) + '">\n'
             self.xsd += '        <rdfs:subClassOf rdf:resource="' + RM_URI + 'DMType"/>\n'
             self.xsd += '        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
             self.xsd += '        <rdfs:label>' + \
@@ -328,7 +331,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdBoolean: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
             if not (Xd.adapter_ctid in self.adapters):
                 # create the XdAdapterType code
                 self.xsd += self.makeXdAdapter(Xd.ct_id,
@@ -344,7 +347,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdLink: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
             if not (Xd.adapter_ctid in self.adapters):
                 # create the XdAdapterType code
                 self.xsd += self.makeXdAdapter(Xd.ct_id,
@@ -376,7 +379,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdFile: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
             if not (Xd.adapter_ctid in self.adapters):
                 # create the XdAdapterType code
                 self.xsd += self.makeXdAdapter(Xd.ct_id,
@@ -392,13 +395,13 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdOrdinal: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             # len 10 was arbitrarily chosen as an obviously
                             # incorrect code length.
-                            if len(rr.schema_code) < 10:
+                            if len(rr.schema_code ) < 10:
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: " +
                                        rr.label + " is published.", messages.ERROR)
                                 return(msg)
@@ -406,7 +409,7 @@ class DMPkg(object):
                             if self.registerUUID(rr.interval.ct_id, 'XdIntervalType'):
                                 # len 10 was arbitrarily chosen as an obviously
                                 # incorrect code length.
-                                if len(rr.interval.schema_code) < 10:
+                                if len(rr.interval.schema_code ) < 10:
                                     msg = ("Something happened to your MC code. Check that XdInterval: " +
                                            rr.interval.label + " is published.", messages.ERROR)
                                     return(msg)
@@ -432,7 +435,7 @@ class DMPkg(object):
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             # len 10 was arbitrarily chosen as an obviously
                             # incorrect code length.
-                            if len(rr.schema_code) < 10:
+                            if len(rr.schema_code ) < 10:
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: " +
                                        rr.label + " is published.", messages.ERROR)
                                 return(msg)
@@ -472,7 +475,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdQuanitiy: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
@@ -518,7 +521,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdRatio: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
@@ -581,7 +584,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdTemporall: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code  # get the Xd code
+                self.xsd += Xd.schema_code   # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
@@ -803,7 +806,7 @@ class DMPkg(object):
         self.xsd += "  <xs:appinfo>\n"
 
         for uuid in self.used_uuids:
-            self.xsd += '      <rdf:Description rdf:about="dm-' + self.dm.ct_id + '">\n'
+            self.xsd += '      <rdf:Description rdf:about="dm-' + str(self.dm.ct_id) + '">\n'
             self.xsd += '        <s3m:containsRMC rdf:resource="mc-' + str(uuid) + '"/>\n'
             self.xsd += '      </rdf:Description>\n'
 
@@ -883,11 +886,11 @@ def generateDM(dm, request):
         # open a schema file dm-(uuid).xsd
         f = ContentFile(dmpkg.xsd.encode("utf-8"))
         xsd = dm.xsd_file
-        xsd.save('dm-' + dm.ct_id + '.xsd', f, save=True)
+        xsd.save('dm-' + str(dm.ct_id) + '.xsd', f, save=True)
         xsd.flush()
         dm.xsd_file.close()
         f.close()
-        lf = os.open(dm_dir + '/dm-' + dm.ct_id +
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) +
                      '.xsd', os.O_RDWR | os.O_CREAT)
         os.write(lf, dmpkg.xsd.encode("utf-8"))
         os.close(lf)
@@ -898,11 +901,11 @@ def generateDM(dm, request):
         # open an HTML file dm-(uuid).html
         f = ContentFile(dmpkg.html.encode("utf-8"))
         html = dm.html_file
-        html.save('dm-' + dm.ct_id + '.html', f, save=True)
+        html.save('dm-' + str(dm.ct_id) + '.html', f, save=True)
         html.flush()
         dm.html_file.close()
         f.close()
-        lf = os.open(dm_dir + '/dm-' + dm.ct_id +
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) +
                      '.html', os.O_RDWR | os.O_CREAT)
         os.write(lf, dmpkg.html.encode("utf-8"))
         os.close(lf)
@@ -912,49 +915,89 @@ def generateDM(dm, request):
         # open an instance file dm-(uuid).xml
         f = ContentFile(dmpkg.xml.encode("utf-8"))
         xml = dm.xml_file
-        xml.save('dm-' + dm.ct_id + '.xml', f, save=True)
+        xml.save('dm-' + str(dm.ct_id) + '.xml', f, save=True)
         xml.flush()
         dm.xml_file.close()
         f.close()
-        lf = os.open(dm_dir + '/dm-' + dm.ct_id +
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) +
                      '.xml', os.O_RDWR | os.O_CREAT)
         os.write(lf, dmpkg.xml.encode("utf-8"))
         os.close(lf)
         messages.add_message(request, messages.SUCCESS,
                              "Wrote the XML Instance file.")
 
-        # open and write a JSON instance file dm-(uuid).json
-        # namespaces = {}
-        # for ns in NS.objects.all():
-        # namespaces[ns.uri.strip()] = ns.abbrev.strip()
-        # f = ContentFile(dmpkg.xml.encode("utf-8")) #this is the XML instance before conversion
-        # xmldict = xmltodict.parse(f, process_namespaces=True, namespaces=namespaces)
-        # j = json.dumps(xmldict, indent=2)
-        # jfile = ContentFile(j)
-        # jsonfile = dm.json_file
-        # jsonfile.save('dm-'+dm.ct_id+'.json', jfile)
-        # jsonfile.close()
-        # lf = os.open(dm_dir+'/dm-'+ dm.ct_id+'.json', os.O_RDWR|os.O_CREAT )
-        # os.write(lf,j.encode("utf-8"))
-        # os.close(lf)
-        # messages.add_message(request, messages.SUCCESS, "Wrote the JSON Instance file.")
+        """
+         open and write a JSON instance file dm-(uuid).json
+        """
+        namespaces = {}
+        for ns in NS.objects.all():
+            namespaces[ns.uri.strip()] = ns.abbrev.strip()
+        f = ContentFile(dmpkg.xml.encode("utf-8")) #this is the XML instance before conversion
+        xmldict = xmltodict.parse(f, process_namespaces=True, namespaces=namespaces)
+        j = json.dumps(xmldict, indent=2)
+        jfile = ContentFile(j)
+        jsonfile = dm.json_file
+        jsonfile.save('dm-' + str(dm.ct_id) + '.json', jfile)
+        jsonfile.close()
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) + '.json', os.O_RDWR|os.O_CREAT )
+        os.write(lf,j.encode("utf-8"))
+        os.close(lf)
+        messages.add_message(request, messages.SUCCESS, "Wrote the JSON Instance file.")
 
-        # generate and write the SHA1 file
-        dmxsd = open(dm_dir + '/dm-' + dm.ct_id + '.xsd', encoding="utf-8")
+        """
+        generate and write the SHA1 file
+        """
+        dmxsd = open(dm_dir + '/dm-' + str(dm.ct_id) + '.xsd', encoding="utf-8")
         dm_content = dmxsd.read()
         dmxsd.close()
         h = hashlib.sha1(dm_content.encode("utf-8")).hexdigest()
         f = ContentFile(h)
         sha1 = dm.sha1_file
-        sha1.save('dm-' + dm.ct_id + '.sha1', f)
+        sha1.save('dm-' + str(dm.ct_id) + '.sha1', f)
         sha1.close()
         f.close()
-        lf = os.open(dm_dir + '/dm-' + dm.ct_id +
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) +
                      '.sha1', os.O_RDWR | os.O_CREAT)
         os.write(lf, h.encode("utf-8"))
         os.close(lf)
         messages.add_message(request, messages.SUCCESS,
                              "Wrote the SHA1 digital signature file.")
+
+        """
+        Generate the RDF from the semantics embeded in the XSD.
+        """
+
+        rootdir = '.'
+        nsDict={'xs':'http://www.w3.org/2001/XMLSchema',
+                'rdf':'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+                'rdfs':'http://www.w3.org/2000/01/rdf-schema#',
+                'dct':'http://purl.org/dc/terms/',
+                'owl':'http://www.w3.org/2002/07/owl#',
+                'vc':'http://www.w3.org/2007/XMLSchema-versioning',
+                's3m':'http://www.s3model.com/ns/s3m/'}
+
+        parser = etree.XMLParser(ns_clean=True, recover=True)
+        about = etree.XPath("//xs:annotation/xs:appinfo/rdf:Description", namespaces=nsDict)
+        md = etree.XPath("//rdf:RDF/rdf:Description", namespaces=nsDict)
+        rdf_file = os.open(dm_dir + '/dm-' + str(dm.ct_id) + '.rdf', os.O_RDWR | os.O_CREAT)
+
+        rdfstr = """<?xml version="1.0" encoding="UTF-8"?>\n<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>\n"""
+
+        tree = etree.parse(ContentFile(dmpkg.xsd.encode("utf-8")), parser)
+        root = tree.getroot()
+
+        rdf = about(root)
+        for m in md(root):
+            rdfstr += '    '+etree.tostring(m).decode('utf-8')+'\n'
+
+        for r in rdf:
+            rdfstr += '    '+etree.tostring(r).decode('utf-8')+'\n'
+
+        rdfstr += '</rdf:RDF>\n'
+        os.write(rdf_file, rdfstr.encode("utf-8"))
+        os.close(rdf_file)
+        messages.add_message(request, messages.SUCCESS,
+                             "Wrote the RDF for the DM.")
 
         """
         Create a subdirectory for the R project using the following string:
@@ -965,7 +1008,7 @@ def generateDM(dm, request):
         # setup the project name
         r_proj = 'dm'
         r_proj += ''.join([c for c in dm.title if c.isalnum() and ord(c) <= 127])
-        r_proj += dm.ct_id.split('-')[-1]
+        r_proj += str(dm.ct_id).split('-')[-1]
 
         r_projdir = dm_dir + '/' + r_proj
         # create the project directory
@@ -1019,19 +1062,19 @@ def generateDM(dm, request):
         r_descfile.write(
             ('Date: ' + dm.pub_date.strftime("%Y-%m-%d") + '\n').encode("utf-8"))
         r_descfile.write(
-            'Author: Timothy W. Cook <timothywayne.cook@gmail.com>\n'.encode("utf-8"))
+            'Author: Timothy W. Cook <tim@datainsights.tech>\n'.encode("utf-8"))
         r_descfile.write(
-            'Maintainer: Timothy W. Cook <timothywayne.cook@gmail.com>\n'.encode("utf-8"))
+            'Maintainer: Timothy W. Cook <tim@datainsights.tech>\n'.encode("utf-8"))
         r_descfile.write(('Description: Creates a data frame from instances of the S3Model DM for:\n  ' +
-                          dm.title + '\n  The DM ID is: dm-' + dm.ct_id + '\n  ' + dm.description + '\n').encode("utf-8"))
+                          dm.title + '\n  The DM ID is: dm-' + str(dm.ct_id) + '\n  ' + dm.description + '\n').encode("utf-8"))
         r_descfile.write('License: Apache License 2.0\n'.encode("utf-8"))
         r_descfile.write('Depends: \n'.encode("utf-8"))
-        r_descfile.write('  s3modelRM (>= 1.0.0),\n'.encode("utf-8"))
+        r_descfile.write('  s3modelRM (>= 3.0.0),\n'.encode("utf-8"))
         r_descfile.write('  data.table\n'.encode("utf-8"))
         r_descfile.close()
 
         # put the sample XML file in the R project as an example.
-        xmlfile = open(dm_dir + '/dm-' + dm.ct_id +
+        xmlfile = open(dm_dir + '/dm-' + str(dm.ct_id) +
                        '.xml', 'r', encoding="utf-8")
         xml = xmlfile.read()
         xmlfile.close
@@ -1074,7 +1117,7 @@ def generateDM(dm, request):
         """
         create ZIP of the directory and the JSON, html, xsd, xml, sha1 files and the R project
         """
-        zf = zipfile.ZipFile(MEDIA_ROOT + '/dm-' + dm.ct_id + '.zip', 'w')
+        zf = zipfile.ZipFile(MEDIA_ROOT + '/dm-' + str(dm.ct_id) + '.zip', 'w')
         for dirname, subdirs, files in os.walk(dm_dir):
             for filename in files:
                 zf.write(os.path.join(dirname, filename),
@@ -1102,7 +1145,7 @@ def gen_metadataR(self):
     rstr = ''  # The string to write
     rstr += "# Copyright 2013-" + year + \
         ", Timothy W. Cook <timothywayne.cook@gmail.com>\n"
-    rstr += "# metadata.R for dm-" + self.ct_id + ".xsd\n"
+    rstr += "# metadata.R for dm-" + str(self.ct_id) + ".xsd\n"
     rstr += "# Licensed under the Apache License, Version 2.0 (the 'License');\n"
     rstr += "# you may not use this file except in compliance with the License.\n"
     rstr += "# You may obtain a copy of the License at\n"
@@ -1126,7 +1169,7 @@ def gen_metadataR(self):
     rstr += "  dc_relation='" + self.relation + "',\n"
     rstr += "  dc_coverage='" + self.coverage + "',\n"
     rstr += "  dc_type='S3Model Data Model (DM)',\n"
-    rstr += "  dc_identifier='dm-" + self.ct_id + "',\n"
+    rstr += "  dc_identifier='dm-" + str(self.ct_id) + "',\n"
     rstr += "  dc_description='" + self.description + "',\n"
     rstr += "  dc_publisher='" + self.publisher + "',\n"
     pdstr = self.pub_date.strftime("%Y-%m-%d %H:%M%S")
@@ -1139,7 +1182,7 @@ def gen_metadataR(self):
 
     rstr += "dmuri <- function(){\n"
     rstr += "    return('http://dmgen.s3model.com/dmlib/dm-" + \
-        self.ct_id + ".xsd')\n"
+        str(self.ct_id) + ".xsd')\n"
     rstr += "}\n"
     rstr += "\n"
 

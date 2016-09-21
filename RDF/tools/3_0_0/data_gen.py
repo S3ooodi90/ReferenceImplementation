@@ -3,23 +3,9 @@
 """
     data_gen.py
 
-    S3Model 2.4.6 (and later) data instance generator for the semantics demo.
+    S3Model 3.0.0 (and later) data instance generator.
 
-    Copyright (C) 2014 Timothy W. Cook tim@S3Model.org
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+    Copyright (C) 2016 Data Insights, Inc., All Rights Reserved.
 """
 import sys, getopt, csv
 from datetime import datetime
@@ -28,12 +14,8 @@ def main(count):
    print("""
     S3Model data generator for the semantics demo.
 
-    Copyright (C) 2014, Timothy W. Cook
+    Copyright (C) 2016 Data Insights, Inc., All Rights Reserved.
     See the file README.md for usage.
-
-    This program comes with ABSOLUTELY NO WARRANTY;
-    This is free software, and you are welcome to redistribute it
-    under certain conditions. See the LICENSE for details.
    """)
 
    print("Creating " +count+ " copies of each of the three example data instances.")

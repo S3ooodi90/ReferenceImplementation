@@ -525,7 +525,7 @@ def Xd_temporal(Xd, indent):
             random_dtstr() + """</xdtemporal-datetime>\n"""
     if Xd.allow_datetimestamp:
         elstr += indent + """  <xdtemporal-datetime-stamp>""" + \
-            random_dtstr() + """</xdtemporal-datetime-stamp>\n"""
+            random_dtstr() + """Z</xdtemporal-datetime-stamp>\n"""
     if Xd.allow_day:
         elstr += indent + """  <xdtemporal-day>""" + \
             datetime.strftime(rdt.date(), '---%d') + """</xdtemporal-day>\n"""

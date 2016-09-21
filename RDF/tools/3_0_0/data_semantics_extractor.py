@@ -3,7 +3,7 @@
 """
 data_semantics_extractor.py
 
-Extracts S3Model 2.4.6 (and later) data and creates RDF triples in RDF/XML
+Extracts S3Model 3.0.0 (and later) data and creates RDF triples in RDF/XML
 This script must be executed after the ccd_semantics_extractor.py script.
 
 Copyright (C) 2016 Data Insights, Inc., All Rights Reserved.
@@ -103,20 +103,6 @@ def main():
 
             dest.write('\n</rdf:RDF>\n')
             dest.close()
-
-
-def genEntry(tree, entry, filename, ccdid, dest):
-    entry_el = entry.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
-    dest.write("<rdf:Description rdf:about='data/"+filename+"/"+ccdid+"/"+entry_el+"'>\n")
-    children = entry.getchildren()
-    for child in children:
-        if child.tag is etree.Comment:
-            pass
-        else:
-            el_name = child.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
-            print("<rdf:Description rdf:about='data/"+filename+tree.getpath(child)+"'>\n")
-            print("<rdf:type rdf:resource='"+el_name.replace('el-','ct-')+"'/>\n")
-    dest.write("</rdf:Description>\n")
 
 
 if __name__ == '__main__':
