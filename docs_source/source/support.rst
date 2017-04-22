@@ -6,32 +6,36 @@ Publications, tutorials and presentations by the developers of S3Model and other
 
 Peer Reviewed
 -------------
-See the Documents area of the `S3Model website <http://S3Model.org/documents>`_ for the current listing.
+See the Documents area of the `MLHIM website <http://mlhim.org/documents>`_ for the background research documents.
 
 Specifications Wiki
 -------------------
-`Read <https://github.com/S3Model/specs/wiki>`_ various pieces of content not in the documentation.
+`Read <https://github.com/DataInsightsInc/S3Model/wiki>`_ various pieces of content not in the documentation.
 
 DM Library
 -----------
-`Examples of DMs <https://github.com/S3Model/DMlib>`_
+Coming Soon
+
+.. `Examples of DMs <https://github.com/S3Model/DMlib>`_
 
 Presentations
 -------------
-`SlideShare <http://www.slideshare.net/twcook>`_
+Coming Soon
+
+.. `SlideShare <http://www.slideshare.net/twcook>`_
 
 Videos
 ------
-`YouTube <http://www.youtube.com/user/S3ModeldotORG>`_
+Coming Soon
+
+.. `YouTube <http://www.youtube.com/user/S3ModeldotORG>`_
 
 Primary disscussion venue
 -------------------------
-`S3Model Community <https://plus.google.com/u/0/communities/117032458601124539887>`_
+Coming Soon
+
+.. `S3Model Community <https://plus.google.com/u/0/communities/117032458601124539887>`_
 
 Issues Reporting
 ----------------
-Please report all issues `here <https://github.com/S3Model/specs/issues>`_.
-
-FaceBook
---------
-Just announcements and a few questions answered on our `FB page <https://www.facebook.com/S3Model>`_.
+Please report all issues `here <https://github.com/DataInsightsInc/S3Model/issues>`_.

@@ -5,7 +5,7 @@ Introduction
 History
 -------
 
-The Shareable, Structured, Semantic Model (S3Model) specifications are based on years of research and development in healthcare IT. 
+The Shareable, Structured, Semantic Model (S3Model) specifications are based on years of research and development. 
 
 Only the reference model is implemented in software where needed. In many implementations, the application can use XML Tools to validate against the DM and reference model using any SQL, NoSQL or other persistent storage. For devices or other small apps even the file system will suffice as a storage solution.
 

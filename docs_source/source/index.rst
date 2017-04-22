@@ -8,7 +8,7 @@ S3Model User & Reference Guide
 
 Status - 3.0.0 Draft
 
-**Copyright 2016 Data Insights, Inc. - All Rights Reserved.**
+**Copyright 2016 - 2017 Data Insights, Inc. - All Rights Reserved.**
 
 Contents:
 
