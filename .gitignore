@@ -16,7 +16,7 @@ dmlib/
 media/
 migrations/
 datalib/
-docs/source/_static/
+
 
 #Sphinx
 build/
