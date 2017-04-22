@@ -2,7 +2,13 @@
 The Reference Implementation - Reference Model
 ==============================================
 
-**Note:**  Any discrepancies between this document and the XML Schema implementation is to be resolved by the XML Schema RM. The automatically generated XML Schema documentation is available `here <rm/index.html>`_ 
+**Note:**  Any discrepancies between this document and the XML Schema implementation is to be resolved by the XML Schema RM. The automatically generated XML Schema documentation is available at the link below.
+
+.. |location_link| raw:: html
+
+    <a href='rm/index.html' target='_blank'>Referencce Model Technical Docs</a>
+
+
 Assumed Types
 =============
 
