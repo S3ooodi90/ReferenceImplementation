@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The S3Model Eco-System &mdash; S3Model 3.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="S3Model 3.0.0 documentation" href="index.html"/>
+        <link rel="next" title="S3Model Data Analysis" href="data_analysis.html"/>
+        <link rel="prev" title="S3Model as a Component of an Enterprise Architecture" href="S3Model_and_EA.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> S3Model
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Docs Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">S3Model Abstract Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rm.html">The Reference Implementation - Reference Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linked_data.html">Linked Data Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The S3Model Eco-System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-core">The Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-to-interoperability">Key to Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-publication">Model Publication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bottom-up-vs-top-down">Bottom Up vs. Top Down</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-many-dms">How Many DMs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-valid-dm-must">A Valid DM Must:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-valid-dm-must-not">A Valid DM Must Not:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dm-functionality">DM Functionality</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#semantics">Semantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s3model-in-operation">S3Model in Operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmgen.html">Data Model Generator (DM-Gen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">S3Model</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>The S3Model Eco-System</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ecosystem.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-s3model-eco-system">
+<h1>The S3Model Eco-System<a class="headerlink" href="#the-s3model-eco-system" title="Permalink to this headline">¶</a></h1>
+<p>It is important here to describe all of the components of the S3Model conceptual eco-system in order for the reader to appreciate the scope of S3Model and the importance of the governance policies.</p>
+<div class="section" id="the-core">
+<h2>The Core<a class="headerlink" href="#the-core" title="Permalink to this headline">¶</a></h2>
+<p>At the base of the S3Model eco-system is the Reference Model (RM). Though the reference implementation is in XML Schema format, in real world applications a chosen object oriented language will likely be used for implementations. Often, tools are available to automatically generate the reference model classes from the XML Schema. This is the basis for larger S3Model compliant applications. We will later cover implementation options for smaller applications such as mHealth (apps for smartphones and tablets, as well as purpose specific devices such as a home blood pressure monitor).</p>
+<p>The next level of the S3Model hierarchy is the Data Model (DM). The DM is a set of constraints against the RM that <em>narrow</em> the valid data options to a point where they can represent a specific healthcare concept. The DM is essentially an XML Schema that uses the RM complex types as base types. This is conceptually equivalent to inheritance in object oriented applications, represented in XML Schema.</p>
+</div>
+<div class="section" id="key-to-interoperability">
+<h2>Key to Interoperability<a class="headerlink" href="#key-to-interoperability" title="Permalink to this headline">¶</a></h2>
+<p>Since a DM (by definition) <em>can only narrow the constraints</em> of the RM, then any data instance that is compliant with a DM is also compliant in any software application that implements the RM or is designed to validate against the RM. Even if the DM is not available, an application can know how to display and even analyze certain information. For example, if a receiving application does not have a DM for a given data instance it will be able to discern the DM ID and RM version from the element name and attributes of the root element. It may or may not be able to retrieve the DM from the xsi:schemaLocation attribute. If not, it will still be able to infer, based on the reference model version, information about the data by using the names of elements nested within an element with the prefix &#8216;pcs-&#8216;. Because these element names are unique to certain RM complexTypes. If there is a &lt;Xdcount-value&gt; element then that data is from a XdCountType and <em>name</em> is in the preceding &lt;label&gt;.</p>
+</div>
+<div class="section" id="model-publication">
+<h2>Model Publication<a class="headerlink" href="#model-publication" title="Permalink to this headline">¶</a></h2>
+<p>We are not implying that all DMs must be publicly available. It is possible to maintain a set of DMs within a certain political jurisdiction or within a certain professional sector or in a company. How and where these DMs are maintained are outside the scope of these specifications. Developers proficient in XML technologies will understand how this fits into their application environment and how to use XML Catalogs to reference any local copy.</p>
+</div>
+<div class="section" id="bottom-up-vs-top-down">
+<h2>Bottom Up vs. Top Down<a class="headerlink" href="#bottom-up-vs-top-down" title="Permalink to this headline">¶</a></h2>
+<p>This is now the point where the S3Model eco-system is in contrast to the top-down approach used by other multi-level modeling specifications and the Standards Development Organization (SDO) approach.</p>
+<p><em>In the real world</em>; we know that there can never be complete consensus across the healthcare spectrum of domains, cultures and languages; concerning the details of a specific concept. Therefore the concept of a <em>maximal data model</em>, though idealistically valid, is realistically unattainable. Several years of participation in and observation of these attempts to build consensus has led to the development of the <a class="reference external" href="https://github.com/S3Model/specs/wiki/Cavalini-Cook-Conjecture-&amp;-Theory">Cavalini-Cook Theory</a> - <strong>The probability of reaching consensus among biomedical experts tends to zero with the increase of the number of concepts considered and the number of experts included in the consensus panel.</strong></p>
+<p>In S3Model, participants at any level are encouraged to create domain knowledge models that <em>fit their needs</em>. The RM has very little semantic context in it to get in the way. This allows structures to be created as the modeler sees fit for purpose. The Cluster complexType allows for any data structure <a class="footnote-reference" href="#f1" id="id1">[1]</a> to be built to match implementation needs. There is no inherent idea of a specific application such as an Electronic Health Record (EHR), Electronic Medical Record (EMR), etc. in the RM although the S3Model specifications can also be adopted for the development of these types of applications. This approach provides an opportunity for development of small, purpose specific apps such as mobile or portable device software as well.</p>
+</div>
+<div class="section" id="how-many-dms">
+<h2>How Many DMs?<a class="headerlink" href="#how-many-dms" title="Permalink to this headline">¶</a></h2>
+<p>In S3Model, the bottom-up approach makes room for dozens, hundreds or even thousands of DMs to describe each healthcare concept, (e.g. blood pressure, body temperature, problem list, medication list, Glasgow Coma Scale, cost of a medical procedure, or any other healthcare phenomena) vs. the top-down approach that requires a single, flat model implemented in software that must encompass all descriptions/uses/etc. This multiplicity of compatible domain knowledge models is achieved by the way DMs are uniquely identified by a Version 4 Universal Unique Identifier (UUID) prefixed with the string, &#8216;DM-&#8216;.</p>
+<p>DMs are assembled out of pluggable concept models (PCMs) so that modelers can use granular definitions to create any size application model or models, as needed. Modelers and developers can create systems that allow users to choose between a selection of DMs to include at specific points, at run-time. Reuse of existing PCMs in multiple DMs and reusing DMs across multiple applications makes data sharing and analysis easier. However, given that the semantics are in the DM, data consumers can decide if the data fits their needs or how to include certain components (PCM based data) from multiple DMs.</p>
+<p>Over time, <strong>the cream will rise to the top</strong> and the most useful DMs will be used most often.</p>
+<p>With S3Model DMs you can deliver your data with complete syntactic interoperability and as much semantic interoperability and information exchange as the modeler chose to include in the DM.
+The governance of DMs is left to the modeler and/or publishing organization.</p>
+<p><strong>There are very strict guidelines that define what constitutes a valid DM, as seen above.</strong></p>
+</div>
+<div class="section" id="a-valid-dm-must">
+<h2>A Valid DM Must:<a class="headerlink" href="#a-valid-dm-must" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Be a valid XML Schema 1.1 schema as determined by widely available parser/validators such as <a class="reference external" href="http://xerces.apache.org/xerces2-j/faq-xs.html#faq-2">Xerces</a> or <a class="reference external" href="http://www.saxonica.com/documentation/schema-processing/">Saxon</a></p>
+</li>
+<li><p class="first">Consist of complexTypes that only use the <em>restriction</em> element of complexTypes with a <em>base</em> attribute from the associated reference model</p>
+</li>
+<li><p class="first">use Type 4 UUIDs for complexType names, with the prefix of, &#8216;pcm-&#8216;. Example <a class="footnote-reference" href="#f2" id="id2">[2]</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pcm-8c177dbd-c25e-4908-bffa-cdcb5c0e38e6&#39;</span> <span class="n">xml</span><span class="p">:</span><span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">publish a global element for each complexType where a substitutionGroup is required <a class="footnote-reference" href="#f3" id="id3">[3]</a>. The element <strong>MUST</strong> be defined using the same UUID as the complexType with the &#8216;pcm-&#8216; prefix replaced with &#8216;pcs-&#8216;.</p>
+</li>
+<li><p class="first">Include the reference model schema from www.S3Model.org using the appropriately defined namespace. Example for release 2.5.0 and later releases, S3Model uses the namespace <a class="reference external" href="http://www.S3Model.org/ns/S3Model/">http://www.S3Model.org/ns/S3Model/</a> with the standard prefix of S3Model <a class="footnote-reference" href="#f4" id="id4">[4]</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pcs-8c177dbd-c25e-4908-bffa-cdcb5c0e3888&#39;</span> <span class="n">substitutionGroup</span><span class="o">=</span><span class="s1">&#39;S3Model:XdAdapter-value&#39;</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;S3Model:pcm-8c177dbd-c25e-4908-bffa-cdcb5c0e3888&#39;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">use the correct substitution group(s) as in the example above</p>
+</li>
+<li><p class="first">define the required namespaces used in the DM as in Figure 1.</p>
+</li>
+<li><p class="first">define the minimum <a class="reference external" href="http://dublincore.org/">DCMI</a> metadata items as shown in Figure 2.</p>
+</li>
+</ul>
+<img alt="dm_header.png" src="dm_header.png" />
+<p>Figure 1.</p>
+<img alt="dm_metadata.png" src="dm_metadata.png" />
+<p>Figure 2.</p>
+</div>
+<div class="section" id="a-valid-dm-must-not">
+<h2>A Valid DM Must Not:<a class="headerlink" href="#a-valid-dm-must-not" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Contain any other language processing instructions required for validating instance data. For example; Schematron rules. While Schematron can be very valuable in some processing environments it is considered implementation specific and not part of the S3Model interoperability framework.</li>
+<li>Import or include any XML Schema document other than its parent reference model schema.</li>
+</ul>
+</div>
+<div class="section" id="dm-functionality">
+<h2>DM Functionality<a class="headerlink" href="#dm-functionality" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="structure">
+<h3>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h3>
+<p>A DM is just an XML Schema. It uses the xs:include element to reference the RM schema from the S3Model website. For performance a local copy should be used via an <a class="reference external" href="https://www.oasis-open.org/standards#xmlcatalogsv1.1">XML Catalog</a>
+The design of DMs allows us to separate the structure from the domain semantics of a complexType. This is key in having a small RM that represents structural components that provide a well defined data query platform which is essential for analytics and decision support.</p>
+<p>Prior to XML Schema 1.1, other languages (such as <a class="reference external" href="http://www.schematron.com/">Schematron</a> ) were <em>needed</em> to provide for complex validation scenarios. The <a class="reference external" href="http://www.w3.org/TR/xmlschema11-1/#cAssertions">xs:assert element</a> now takes care of those issues. This in addition to gaining additional data model types and the ability to use multiple substitutionGroups is why we specify XML Schema 1.1 as a requirement for DMs.</p>
+<p>Schematron may still be useful for defining business rules in your implementation. But these definitions are implementation specific and do not apply to the S3Model semantic interoperability goals. Experience shows that these implementation details <em>leaked</em> into the data structure definition creates a barrier to interoperability.</p>
+<p>The use of UUIDs has been controversial and is a perceived barrier by some people. In reality though they are what allows S3Model to be such a simple, yet powerful solution. This is how we separate the structure and domain semantics. By using UUIDs for the complexType and element names we build a structure that has only <em>structural semantics</em>. As an example take a look at <a class="reference external" href="http://www.hl7.org/">HL7</a> CDA or FHIR schemas or <a class="reference external" href="https://www.niem.gov">NIEM</a> schemas. Notice how they mix domain semantics into the names of complexTypes and elements. This creates a nasty chain of optional domain elements because you cannot know a priori what is going to be needed where.  There is an attempt to use attributes to provide some uniqueness to types of entries. But this has grow out of control to a point where those schemas are very complex. NIEM attempted to solve the problem by using a multi-level model approach.  But then <em>specified</em> that domain element names <strong>MUST</strong> be terms from the Oxford English Dictionary. So that limits its usefulness to 5.4% of the global population.  To be fair, NIEM is designed and named to be used in the US.  But that is a bit of a short-sighted development approach considering the global world we live in today.</p>
+<p>In designing S3Model we had the aXdantage of being able to analyze HL7 v3.x, openEHR, ISO 13606 and other interoperability attempts and use these as lessons learned points. NIEM was started about the same time as S3Model.</p>
+<p>We realized that this mix of structure and domain semantics was a key problem in the complexity of the models. In openEHR the focus is specifically about EHR systems but it introduced multi-level modeling as a constraint based approach. S3Model takes the constraint based, multi-level  approach along with the data package view. We say data package because you may view a data instance as a message or as a document <em>or</em> as a component of a message or a document. A <em>S3Model data instance</em> is just that. They can be very small or very large and they can be combined into documents or messages or standalone; depending upon the implementation needs. This is part of the <em>multi-level paradigm</em>.</p>
+<p>The need for multiple substitutionGroups arises because, one PCM may be reused in multiple places in a DM. For example a XdLinkType based PCM may be reused as a link in an EntryType as well as used in a ClusterType based PCM.  In this case the since <em>element</em> of type <em>complexType</em> must be defined as substituting for the RM elements <em>XdLink</em> and <em>XdAdapter-value</em> elements from the RM.  Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pcs-a05e8d88-a6dc-43d5-b1b8-723cdc9bf680&#39;</span> <span class="n">substitutionGroup</span><span class="o">=</span><span class="s2">&quot;S3Model:XdLink S3Model:XdAdapter-value&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;S3Model:pcm-a05e8d88-a6dc-43d5-b1b8-723cdc9bf680&#39;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="semantics">
+<h3>Semantics<a class="headerlink" href="#semantics" title="Permalink to this headline">¶</a></h3>
+<p>With the reusability and structural simplicity out of the way we can now discuss the issue of <strong>what does the data mean?</strong></p>
+<p><strong>NOTE: This section is in active transition from RDF Semantics to OWL2 DL using the RL Profile.</strong></p>
+<p>If you are not familiar with RDF you may want to read more at <a class="reference external" href="http://www.linkeddatatools.com/">LinkedDataTools</a> or directly from the <a class="reference external" href="http://www.w3.org/TR/rdf11-primer/">W3C Specifications</a>.</p>
+<p>The world of data exchange is composed of two primary players; <em>data providers</em> and <em>data consumers</em>. Whether those two parties are people or software applications they require this knowledge to turn <em>data</em> into useful <em>information</em>. We discussed approaches to transferring this information in the <strong>Semantic Models vs. Semantic Markup</strong> section of <em>Modeling Concepts</em>.</p>
+<p>Adding the semantics to the model allows all of the meaning of the data to be in one known location. Each data instance has a pointer to its parent DM. Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xsi</span><span class="p">:</span><span class="n">schemaLocation</span><span class="o">=</span><span class="s1">&#39;http://www.S3Model.org/ns/S3Model/ http://www.DMgen.com/DMlib/DM-00605c3e-cd14-492e-9891-6ad3ad26230e.xsd&#39;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>this example from a data instance says that the schema in the namespace <em>http://www.S3Model.org/ns/S3Model/</em> is located on the DM-Gen and is named <em>DM-00605c3e-cd14-492e-9891-6ad3ad26230e.xsd</em>. Typically DMs are located locally and an XML Catalog is used to resolve these locations.</p>
+<p>The first part of the semantics describes the model itself. This is accomplished using the DCMI metadata elements. See the example above in Figure 2.</p>
+<p>Taking a <em>simplistic</em> example DM (the sequence of appearance of the complexTypes is not important) we can see a PCM with a XdLinkType restriction:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pcm-a05e8d88-a6dc-43d5-b1b8-723cdc9bf680&#39;</span> <span class="n">xml</span><span class="p">:</span><span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">annotation</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">documentation</span><span class="o">&gt;</span>
+    <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">test</span> <span class="n">XdLink</span> <span class="n">used</span> <span class="k">for</span> <span class="n">an</span> <span class="n">example</span><span class="o">.</span>
+  <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">documentation</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">appinfo</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">rdf</span><span class="p">:</span><span class="n">Description</span> <span class="n">rdf</span><span class="p">:</span><span class="n">about</span><span class="o">=</span><span class="s1">&#39;S3Model:pcm-a05e8d88-a6dc-43d5-b1b8-723cdc9bf680&#39;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">rdfs</span><span class="p">:</span><span class="n">subClassOf</span> <span class="n">rdf</span><span class="p">:</span><span class="n">resource</span><span class="o">=</span><span class="s1">&#39;&amp;S3Model;XdLinkType&#39;</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">rdfs</span><span class="p">:</span><span class="n">isDefinedBy</span> <span class="n">rdf</span><span class="p">:</span><span class="n">resource</span><span class="o">=</span><span class="s1">&#39;http://www.S3Model.org/generic_PCMs&#39;</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">rdfs</span><span class="p">:</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Test</span> <span class="n">XdLink</span><span class="o">&lt;/</span><span class="n">rdfs</span><span class="p">:</span><span class="n">label</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">rdf</span><span class="p">:</span><span class="n">Description</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">appinfo</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">annotation</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexContent</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">restriction</span> <span class="n">base</span><span class="o">=</span><span class="s1">&#39;S3Model:XdLinkType&#39;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s1">&#39;1&#39;</span> <span class="n">minOccurs</span><span class="o">=</span><span class="s1">&#39;1&#39;</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;label&#39;</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;xs:string&#39;</span> <span class="n">fixed</span><span class="o">=</span><span class="s2">&quot;Test XdLink&quot;</span><span class="o">/&gt;</span>
+
+    <span class="o">...</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Notice that inside the xs:annotation there are two child elements; xs:documentation and xs:appinfo.  The xs:documentation element has a free text, human readable description of the purpose of the PCM. The xs:annotation element has a child element rdf:Description this element has an rdf:about attribute with a value of the namespace and the complexType name. This forms the <em>Subject</em> component of the RDF statements to follow.</p>
+<p>The first child of rdf:Description is a rdfs:subClassOf element. This element name is the <em>Predicate</em> component of the first RDF statement. This element has an attribute of rdf:resource and a URI of S3Model:XdLinkType which forms the <em>Object</em> component of this RDF statement.</p>
+<p>The second child of rdf:Description is a rdfs:isDefinedBy element. This element name is the <em>Predicate</em> component of the second RDF statement about the PCM. The rdf:resource attribute
+points to a resource on the S3Model website. <a class="reference external" href="http://www.S3Model.org/generic_PCMs">Give it a try</a>. It is just a simple plain text document used as a resource for these examples. Note that it is not a requirement that all URI resources be resolvable URLs. But we think it is a good idea that they are whenever possible.</p>
+<p>The third child of rdf:Description is a rdfs:label This element defines a fixed text label to this PCM. So the <em>Predicate</em> is rdfs:label and the <em>Object</em> is the string &#8220;Test XdLink&#8221;.</p>
+<p>So now we have three statements about the unique subject called <em>S3Model:pcm-a05e8d88-a6dc-43d5-b1b8-723cdc9bf680</em>. We know it is a subtype of the S3Model XdLinkType that is defined in the S3Model Reference Model schema that is included (via xs:include) in this DM. We can also find a definition of this PCM in the resource at http://www.S3Model.org/generic_PCMs.</p>
+<p>So now we have some machine processable semantics as well as some documentation. All available from the model. Also note that there is the <em>label</em> element. When a modeler defines a PCM they give it a fixed name as a human readable string. This is included in the data instance and even though the XML element is a UUID, this readable text is immediately below it and describes what the modeler defined for the name. The rdfs:label and the label <strong>SHOULD</strong> be the same string.</p>
+<p>Example from the instance data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">S3Model</span><span class="p">:</span><span class="n">pcs</span><span class="o">-</span><span class="n">c05e8d88</span><span class="o">-</span><span class="n">a6dc</span><span class="o">-</span><span class="mi">43</span><span class="n">d5</span><span class="o">-</span><span class="n">b1b8</span><span class="o">-</span><span class="mi">723</span><span class="n">cdc9bf680</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Test</span> <span class="n">XdLink</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+  <span class="o">...</span>
+<span class="o">&lt;/</span><span class="n">S3Model</span><span class="p">:</span><span class="n">pcs</span><span class="o">-</span><span class="n">c05e8d88</span><span class="o">-</span><span class="n">a6dc</span><span class="o">-</span><span class="mi">43</span><span class="n">d5</span><span class="o">-</span><span class="n">b1b8</span><span class="o">-</span><span class="mi">723</span><span class="n">cdc9bf680</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The next section describes how all of this can be used in an operational setting.</p>
+</div>
+<div class="section" id="s3model-in-operation">
+<h3>S3Model in Operation<a class="headerlink" href="#s3model-in-operation" title="Permalink to this headline">¶</a></h3>
+<p>We have a Reference Model, a Data Model and some data instances; all in XML. How does all of that fit together, especially since I use JSON with my REST Services and Turtle for my RDF semantics syntax?</p>
+<p>Glad you asked ....</p>
+<p>Remember that the XML and RDF/XML syntaxes are used because they are robust. They are the canonical definitions for the models and the data because the tools are available for validating the syntax and the semantics.</p>
+<p>Because S3Model XML data has a <em>very specific structure</em> it is quite easy to perform lossless conversion to and from JSON. So you can send and receive JSON data. The points in your data chain that need require validated data can be converted back to XML for validation.</p>
+<p>So (a snippet) like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  &lt;S3Model:pcs-d4079097-c68b-4c99-9a5e-b85628d55897&gt;
+&lt;!-- Party --&gt;
+&lt;party-name&gt;A. Sample Name&lt;/party-name&gt;
+&lt;!-- PI external-ref --&gt;
+&lt;S3Model:pcs-ab51a8c0-ba5c-4053-8201-ae29c1a534bb&gt;
+  &lt;!-- XdURI --&gt;
+  &lt;label&gt;External Reference for Party&lt;/label&gt;
+  &lt;!-- Use any subtype of ExceptionalValue here when a value is missing--&gt;
+  &lt;valid-time-begin&gt;2006-04-15T04:18:21Z&lt;/valid-time-begin&gt;
+  &lt;valid-time-end&gt;1981-12-10T19:35:00Z&lt;/valid-time-end&gt;
+  &lt;XdURI-Xd&gt;http://www.DMgen.com&lt;/XdURI-Xd&gt;
+  &lt;relation&gt;Party Associated with the record&lt;/relation&gt;
+&lt;/S3Model:pcs-ab51a8c0-ba5c-4053-8201-ae29c1a534bb&gt;
+</pre></div>
+</div>
+<p>can be converted to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="p">},</span>
+<span class="s2">&quot;S3Model:pcs-d4079097-c68b-4c99-9a5e-b85628d55897&quot;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="s2">&quot;party-name&quot;</span><span class="p">:</span> <span class="s2">&quot;A. Sample Name&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;S3Model:pcs-ab51a8c0-ba5c-4053-8201-ae29c1a534bb&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;External Reference for Party&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;valid-time-begin&quot;</span><span class="p">:</span> <span class="s2">&quot;2006-04-15T04:18:21Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;valid-time-end&quot;</span><span class="p">:</span> <span class="s2">&quot;1981-12-10T19:35:00Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XdURI-Xd&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.DMgen.com&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;relation&quot;</span><span class="p">:</span> <span class="s2">&quot;Party Associated with the record&quot;</span>
+  <span class="p">},</span>
+</pre></div>
+</div>
+<p>and back again. All depending upon the needs of your information flow.</p>
+<p>Two of the S3Model projects on GitHub demonstrate combining the model semantics with the data instances to create a Graph and storing it in a Triple Store. The connections can then be visualized using open source tools and / or queried using SPARQL.</p>
+<p>For deeper details on using S3Model in various scenarios you should refer to the <a class="reference external" href="https://github.com/S3Model">GitHub repository</a> specifically <a class="reference external" href="https://github.com/S3Model/S3Model_semantics_extractor">this project</a> as well as the <a class="reference external" href="https://github.com/S3Model/mxic">MXIC demo</a> and the <a class="reference external" href="https://github.com/S3Model/MAPLE">MAPLE demo</a> These all use older versions of S3Model but the concepts are the same for any 2.x version.</p>
+<p>Two projects that may be of particular interest is <a class="reference external" href="https://github.com/S3Model/ichi2015_fhir_semantics">adding semantics to FHIR models</a> and <a class="reference external" href="https://github.com/S3Model/hl7v2_semantics">adding semantics to HL7v2 messages</a></p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Used here to mean; trees, lists, tables, etc.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>The language attribute is optional.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Substitution groups are required where the base type allows multiple elements and where the base type allows an abstract element.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Some previous releases had a specific namespace for the RM and each DM. This was changed to a single namespace for all of S3Model 2.x versions to improve query and processing interoperability.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="data_analysis.html" class="btn btn-neutral float-right" title="S3Model Data Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="S3Model_and_EA.html" class="btn btn-neutral" title="S3Model as a Component of an Enterprise Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016 - 2017, Data Insights, Inc..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

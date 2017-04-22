@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The Reference Implementation - Reference Model &mdash; S3Model 3.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="S3Model 3.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Linked Data Modeling" href="linked_data.html"/>
+        <link rel="prev" title="Modeling Concepts" href="modeling_concepts.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> S3Model
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Docs Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">S3Model Abstract Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The Reference Implementation - Reference Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assumed-types">Assumed Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#non-ordered-types">Non-Ordered Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#boolean">boolean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#string">string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anyuri">anyURI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ordered-types">Ordered types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datetime">dateTime</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#date">date</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time">time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#duration">duration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#negative-duration">Negative Duration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partial-date-types">Partial Date Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#real">real</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integer">integer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-model-documentation">3.0.0 Reference Model Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rm-complextypes">RM complexTypes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xdanytype">XdAnyType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdbooleantype">XdBooleanType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdlinktype">XdLinkType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdstringtype">XdStringType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdfiletype">XdFileType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdorderedtype">XdOrderedType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdordinaltype">XdOrdinalType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdcounttype">XdCountType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdquantitytype">XdQuantityType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdratiotype">XdRatioType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdtemporaltype">XdTemporalType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdintervaltype">XdIntervalType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#invltype">InvlType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#invlunits">InvlUnits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#referencerangetype">ReferenceRangeType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#audittype">AuditType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partytype">PartyType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#attestationtype">AttestationType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#participationtype">ParticipationType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nitype">NIType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#msktype">MSKType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#invtype">INVType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dertype">DERType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unctype">UNCType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#othtype">OTHType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ninftype">NINFType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pinftype">PINFType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unktype">UNKType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#askrtype">ASKRType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nasktype">NASKType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qstype">QSType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trctype">TRCType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#askutype">ASKUType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#navtype">NAVType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#natype">NAType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#itemtype">ItemType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clustertype">ClusterType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdadaptertype">XdAdapterType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#entrytype">EntryType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dmtype">DMType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rm-simpletypes">RM simpleTypes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#magnitudestatus">MagnitudeStatus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#typeofratio">TypeOfRatio</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linked_data.html">Linked Data Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmgen.html">Data Model Generator (DM-Gen)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">S3Model</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>The Reference Implementation - Reference Model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rm.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-reference-implementation-reference-model">
+<h1>The Reference Implementation - Reference Model<a class="headerlink" href="#the-reference-implementation-reference-model" title="Permalink to this headline">¶</a></h1>
+<p><strong>Note:</strong>  Any discrepancies between this document and the XML Schema implementation is to be resolved by the XML Schema RM. The automatically generated XML Schema documentation is available in PDF and downloadable HTML forms: <a class="reference external" href="http://S3Model.org/documents.html">http://S3Model.org/documents.html</a> The sources are maintained on GitHub at <a class="reference external" href="https://github.com/S3Model/specs">https://github.com/S3Model/specs</a> To get the most recent development version using git create a clone of <a class="reference external" href="https://github.com/S3Model/specs.git">https://github.com/S3Model/specs.git</a> Then checkout the most recent branch.</p>
+<div class="section" id="assumed-types">
+<h2>Assumed Types<a class="headerlink" href="#assumed-types" title="Permalink to this headline">¶</a></h2>
+<p>There are several types that are assumed to be supported by the underlying implementation technology. These assumed types are based on XML Schema 1.1 Part 2 Datatypes. They should be available in your implementation language or add-on libraries. The names may or may not be exactly the same.</p>
+<div class="section" id="non-ordered-types">
+<h3>Non-Ordered Types<a class="headerlink" href="#non-ordered-types" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="boolean">
+<h4>boolean<a class="headerlink" href="#boolean" title="Permalink to this headline">¶</a></h4>
+<p>Two state only.  Either true or false.</p>
+</div>
+<div class="section" id="string">
+<h4>string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h4>
+<p>The string data type can contain characters, line feeds, carriage returns, and tab characters.</p>
+</div>
+<div class="section" id="anyuri">
+<h4>anyURI<a class="headerlink" href="#anyuri" title="Permalink to this headline">¶</a></h4>
+<p>Specifies a Unique Resource Identifier (URI).</p>
+</div>
+</div>
+<div class="section" id="ordered-types">
+<h3>Ordered types<a class="headerlink" href="#ordered-types" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="datetime">
+<h4>dateTime<a class="headerlink" href="#datetime" title="Permalink to this headline">¶</a></h4>
+<p>The dateTime data type is used to specify a date and a time.
+The dateTime is specified in the following form &#8220;YYYY-MM-DDThh:mm:ss&#8221; where:</p>
+<ul class="simple">
+<li>YYYY indicates the year</li>
+<li>MM indicates the month</li>
+<li>DD indicates the day</li>
+<li>T indicates the start of the required time section</li>
+<li>hh indicates the hour</li>
+<li>mm indicates the minute</li>
+<li>ss indicates the second</li>
+</ul>
+<p>The following is an example of a dateTime declaration in a schema:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;startdate&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:dateTime&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>An element in your document might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Or it might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><em>Time Zones</em></p>
+<p>To specify a time zone, you can either enter a dateTime in UTC time by adding a &#8220;Z&#8221; behind the time - like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or you can specify an offset from the UTC time by adding a positive or negative time behind the time - like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span> <span class="ow">or</span>
+<span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="date">
+<h4>date<a class="headerlink" href="#date" title="Permalink to this headline">¶</a></h4>
+<p>The date data type is used to specify a date.</p>
+<p>The date is specified in the following form &#8220;YYYY-MM-DD&#8221; where:</p>
+<ul class="simple">
+<li>YYYY indicates the year</li>
+<li>MM indicates the month</li>
+<li>DD indicates the day</li>
+</ul>
+<p>An element in an XML Document  might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">24</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="time">
+<h4>time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h4>
+<p>The time data type is used to specify a time.
+The time is specified in the following form &#8220;hh:mm:ss&#8221; where:</p>
+<ul class="simple">
+<li>hh indicates the hour</li>
+<li>mm indicates the minute</li>
+<li>ss indicates the second</li>
+</ul>
+<p>The following is an example of a time declaration in a schema:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;start&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:time&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>An element in your document might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Or it might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><em>Time Zones</em></p>
+<p>To specify a time zone, you can either enter a time in UTC time by adding a &#8220;Z&#8221; behind the time - like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or you can specify an offset from the UTC time by adding a positive or negative time behind the time - like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>  <span class="ow">or</span>  <span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="duration">
+<h4>duration<a class="headerlink" href="#duration" title="Permalink to this headline">¶</a></h4>
+<p>The duration data type is used to specify a time interval.
+The time interval is specified in the following form &#8220;PnYnMnDTnHnMnS&#8221; where:</p>
+<ul class="simple">
+<li>P indicates the period (required)</li>
+<li>nY indicates the number of years</li>
+<li>nM indicates the number of months</li>
+<li>nD indicates the number of days</li>
+<li>T indicates the start of a time section (required if you are going to specify hours, minutes, or seconds)</li>
+<li>nH indicates the number of hours</li>
+<li>nM indicates the number of minutes</li>
+<li>nS indicates the number of seconds</li>
+</ul>
+<p>The following is an example of a duration declaration in a schema:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;period&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:duration&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>An element in your document might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The example above indicates a period of five years.
+Or it might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The example above indicates a period of five years, two months, and 10 days.
+Or it might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10DT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The example above indicates a period of five years, two months, 10 days, and 15 hours.
+Or it might look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">PT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The example above indicates a period of 15 hours.</p>
+</div>
+<div class="section" id="negative-duration">
+<h4>Negative Duration<a class="headerlink" href="#negative-duration" title="Permalink to this headline">¶</a></h4>
+<p>To specify a negative duration, enter a minus sign before the P:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;-</span><span class="n">P10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The example above indicates a period of minus 10 days.</p>
+</div>
+<div class="section" id="partial-date-types">
+<h4>Partial Date Types<a class="headerlink" href="#partial-date-types" title="Permalink to this headline">¶</a></h4>
+<p>Support for partial dates is essential to avoid poor data quality. In order to provide for partial dates and times the following types are assumed to be available in the language or in a library.</p>
+<ul class="simple">
+<li>Day – provide on the day of the month, 1 – 31</li>
+<li>Month – provide only the month of the year, 1 – 12</li>
+<li>Year – provide on the year,  CCYY</li>
+<li>MonthDay – provide only the Month and the Day (no year)</li>
+<li>YearMonth – provide only the Year and the Month (no day)</li>
+</ul>
+</div>
+<div class="section" id="real">
+<h4>real<a class="headerlink" href="#real" title="Permalink to this headline">¶</a></h4>
+<p>The decimal data type is used to specify a numeric value.
+Note: The maximum number of decimal digits you can specify is 18.</p>
+</div>
+<div class="section" id="integer">
+<h4>integer<a class="headerlink" href="#integer" title="Permalink to this headline">¶</a></h4>
+<p>The integer data type is used to specify a numeric value without a fractional component.</p>
+</div>
+</div>
+</div>
+<div class="section" id="reference-model-documentation">
+<h2>3.0.0 Reference Model Documentation<a class="headerlink" href="#reference-model-documentation" title="Permalink to this headline">¶</a></h2>
+<p>The complete technical documentation is available <a class="reference external" href="http://datainsights.tech/S3Model/docs/rm/index.html">here</a>.</p>
+<div class="section" id="rm-complextypes">
+<h3>RM complexTypes<a class="headerlink" href="#rm-complextypes" title="Permalink to this headline">¶</a></h3>
+<p>The reference implementation complexType descriptions.</p>
+<div class="section" id="xdanytype">
+<h4>XdAnyType<a class="headerlink" href="#xdanytype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong>  n/a</p>
+<p><strong>Abstract:</strong> True</p>
+<p><strong>Description:</strong>  Serves as a common ancestor of all extended datatypes in S3Model models.</p>
+</div>
+<div class="section" id="xdbooleantype">
+<h4>XdBooleanType<a class="headerlink" href="#xdbooleantype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines &#8216;true&#8217; and &#8216;false&#8217; in a choice so only one or the other may be present in the instance data. The XdBooleanType should not be used as a replacement for enumerated choice types such as male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, &#8216;true&#8217; and &#8216;false&#8217; are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a DM.</p>
+</div>
+<div class="section" id="xdlinktype">
+<h4>XdLinkType<a class="headerlink" href="#xdlinktype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Used to specify a Universal Resource Identifier.
+Set the pattern facet to accommodate your needs in the PCM.
+The primary use is to provide a mechanism that can be used to link together DMs.
+The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary. In most use cases the modeler will define all three of these using the &#8216;fixed&#8217; attribute. Other use cases will have the &#8216;relation&#8217; and &#8216;relation-uri&#8217; elements fixed and the application will provide the &#8216;link&#8217;.</p>
+</div>
+<div class="section" id="xdstringtype">
+<h4>XdStringType<a class="headerlink" href="#xdstringtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  The string data type can contain characters, line feeds, carriage returns,
+and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns may be specified.</p>
+</div>
+<div class="section" id="xdfiletype">
+<h4>XdFileType<a class="headerlink" href="#xdfiletype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.</p>
+</div>
+<div class="section" id="xdorderedtype">
+<h4>XdOrderedType<a class="headerlink" href="#xdorderedtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Abstract:</strong> True</p>
+<p><strong>Description:</strong>  Abstract class defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, &#8216;&gt;&#8217; and is_strictly_comparable_to (&#8216;==&#8217;).</p>
+</div>
+<div class="section" id="xdordinaltype">
+<h4>XdOrdinalType<a class="headerlink" href="#xdordinaltype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdOrderedType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Models rankings and scores, e.g. pain, Apgar values, etc, where there is;</p>
+<ul class="simple">
+<li>implied ordering,</li>
+<li>no implication that the distance between each value is constant, and</li>
+<li>the total number of values is finite.</li>
+</ul>
+<p>Note that although the term ‘ordinal’ in mathematics means natural numbers only, here any decimal is allowed, since negative and zero values are often used by medical and other professionals for values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25</p>
+<p>Examples of sets of ordinal values;</p>
+<ul class="simple">
+<li>-3, -2, -1, 0, 1, 2, 3 &#8211; reflex response values</li>
+<li>0, 1, 2 &#8211; Apgar values</li>
+</ul>
+<p>Also used for recording any clinical or other datum which is customarily recorded using symbolic values. Examples;</p>
+<ul class="simple">
+<li>the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;</li>
+<li>for non-haemolysed blood {neg, trace, moderate};</li>
+<li>for haemolysed blood {neg, trace, small, moderate, large}.</li>
+</ul>
+<p>Elements ordinal and symbol MUST have exactly the same number of enumerations in the PCM.</p>
+</div>
+<div class="section" id="xdquantifiedtype">
+<h4>XdQuantifiedType<a class="headerlink" href="#xdquantifiedtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdOrderedType by extension</p>
+<p><strong>Abstract:</strong> True</p>
+<p><strong>Description:</strong>  Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.</p>
+</div>
+<div class="section" id="xdcounttype">
+<h4>XdCountType<a class="headerlink" href="#xdcounttype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc.
+The <em>thing(s)</em> being counted must be represented in the units element.</p>
+<p><strong>Misuse:</strong> Not used for amounts of physical entities (which all have standardized units).</p>
+</div>
+<div class="section" id="xdquantitytype">
+<h4>XdQuantityType<a class="headerlink" href="#xdquantitytype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.</p>
+</div>
+<div class="section" id="xdratiotype">
+<h4>XdRatioType<a class="headerlink" href="#xdratiotype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a forward slash (&#8216;/&#8217;) character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</p>
+</div>
+<div class="section" id="xdtemporaltype">
+<h4>XdTemporalType<a class="headerlink" href="#xdtemporaltype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdOrderedType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Type defining the concept of date and time types. Must be constrained in PCMs to be one or more of the below elements.  This gives the modeler the ability to optionally allow full or partial dates at run time.  Setting both maxOccurs and minOccurs to zero causes the element to be prohibited.</p>
+</div>
+<div class="section" id="xdintervaltype">
+<h4>XdIntervalType<a class="headerlink" href="#xdintervaltype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are primarily used in defining reference ranges.</p>
+</div>
+<div class="section" id="invltype">
+<h4>InvlType<a class="headerlink" href="#invltype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> In the DM, the modeler creates two restrictions on this complexType.
+One for the &#8216;lower&#8217; value and one for the &#8216;upper&#8217; value.
+Both restrictions will have the same element choice and the value is &#8216;fixed&#8217; on each representing the lower and upper value range boundary. The value may be set to NULL (unbounded) by using the xsi:nil=&#8217;true&#8217; attribute. The maxOccurs and minOccurs attributes must be set to 1, in the DM.</p>
+<p>For more information on using this approach <a class="reference external" href="http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html">see these tips</a></p>
+</div>
+<div class="section" id="invlunits">
+<h4>InvlUnits<a class="headerlink" href="#invlunits" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range in degrees Fahrenheit and one in degrees Celsius.
+The derived complexType in the DM has these values fixed by the modeler.</p>
+</div>
+<div class="section" id="referencerangetype">
+<h4>ReferenceRangeType<a class="headerlink" href="#referencerangetype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Defines a named range to be associated with any ORDERED datum. Each such
+range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.</p>
+</div>
+<div class="section" id="audittype">
+<h4>AuditType<a class="headerlink" href="#audittype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</p>
+</div>
+<div class="section" id="partytype">
+<h4>PartyType<a class="headerlink" href="#partytype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party information is to be anonymous then do not include the details element.</p>
+</div>
+<div class="section" id="attestationtype">
+<h4>AttestationType<a class="headerlink" href="#attestationtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which may be coded.</p>
+</div>
+<div class="section" id="participationtype">
+<h4>ParticipationType<a class="headerlink" href="#participationtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.</p>
+</div>
+<div class="section" id="exceptionalvaluetype">
+<h4>ExceptionalValueType<a class="headerlink" href="#exceptionalvaluetype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> True</p>
+<p><strong>Description:</strong> Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances.</p>
+<p>DMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</p>
+</div>
+<div class="section" id="nitype">
+<h4>NIType<a class="headerlink" href="#nitype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  No Information: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</p>
+</div>
+<div class="section" id="msktype">
+<h4>MSKType<a class="headerlink" href="#msktype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Masked: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
+.. Warning:
+Using this exceptional value does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.</p>
+</div>
+<div class="section" id="invtype">
+<h4>INVType<a class="headerlink" href="#invtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Invalid: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</p>
+</div>
+<div class="section" id="dertype">
+<h4>DERType<a class="headerlink" href="#dertype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Derived: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.</p>
+</div>
+<div class="section" id="unctype">
+<h4>UNCType<a class="headerlink" href="#unctype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Unencoded: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</p>
+</div>
+<div class="section" id="othtype">
+<h4>OTHType<a class="headerlink" href="#othtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</p>
+</div>
+<div class="section" id="ninftype">
+<h4>NINFType<a class="headerlink" href="#ninftype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Negative Infinity: Negative infinity of numbers</p>
+</div>
+<div class="section" id="pinftype">
+<h4>PINFType<a class="headerlink" href="#pinftype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Positive Infinity: Positive infinity of numbers</p>
+</div>
+<div class="section" id="unktype">
+<h4>UNKType<a class="headerlink" href="#unktype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Unknown: A proper value is applicable, but not known.</p>
+</div>
+<div class="section" id="askrtype">
+<h4>ASKRType<a class="headerlink" href="#askrtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Asked and Refused: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)</p>
+</div>
+<div class="section" id="nasktype">
+<h4>NASKType<a class="headerlink" href="#nasktype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Not Asked: This information has not been sought (e.g., patient was not asked)</p>
+</div>
+<div class="section" id="qstype">
+<h4>QSType<a class="headerlink" href="#qstype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</p>
+</div>
+<div class="section" id="trctype">
+<h4>TRCType<a class="headerlink" href="#trctype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Trace: The content is greater or less than zero but too small to be quantified.</p>
+</div>
+<div class="section" id="askutype">
+<h4>ASKUType<a class="headerlink" href="#askutype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Asked but Unknown: Information was sought but not found (e.g., patient was asked but did not know)</p>
+</div>
+<div class="section" id="navtype">
+<h4>NAVType<a class="headerlink" href="#navtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Not Available: This information is not available and the specific reason is not known.</p>
+</div>
+<div class="section" id="natype">
+<h4>NAType<a class="headerlink" href="#natype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  Not Applicable: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</p>
+</div>
+<div class="section" id="itemtype">
+<h4>ItemType<a class="headerlink" href="#itemtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> True</p>
+<p><strong>Description:</strong>  The abstract parent of ClusterType and XdAdapterType structural representation types.</p>
+</div>
+<div class="section" id="clustertype">
+<h4>ClusterType<a class="headerlink" href="#clustertype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ItemType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  The grouping variant of Item, which may contain further instances of Item,
+in an ordered list. This can serve as the root component for arbitrarily complex structures.</p>
+</div>
+<div class="section" id="xdadaptertype">
+<h4>XdAdapterType<a class="headerlink" href="#xdadaptertype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> ItemType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  The leaf variant of Item, to which any <em>XdAnyType</em> subtype instance is attached for use in a Cluster.</p>
+</div>
+<div class="section" id="entrytype">
+<h4>EntryType<a class="headerlink" href="#entrytype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> An Entry is the root of a logical set of data items.</p>
+</div>
+<div class="section" id="dmtype">
+<h4>DMType<a class="headerlink" href="#dmtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong>  This is the root node of a Data Model.</p>
+</div>
+</div>
+<div class="section" id="rm-simpletypes">
+<h3>RM simpleTypes<a class="headerlink" href="#rm-simpletypes" title="Permalink to this headline">¶</a></h3>
+<p>The reference implementation simpleType descriptions.
+These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a DM.</p>
+<div class="section" id="magnitudestatus">
+<h4>MagnitudeStatus<a class="headerlink" href="#magnitudestatus" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> xs:string</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Optional status of magnitude with values:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">equal</span> <span class="p">:</span> <span class="n">magnitude</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">point</span> <span class="n">value</span>
+
+<span class="n">less_than</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
+
+<span class="n">greater_than</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
+
+<span class="n">less_than_or_equal</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less_than_or_equal</span> <span class="n">to</span> <span class="n">the</span> <span class="n">magnitude</span>
+
+<span class="n">greater_than_or_equal</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">greater_than_or_equal</span> <span class="n">to</span> <span class="n">the</span> <span class="n">magnitude</span>
+
+<span class="n">approximate</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">approximately</span> <span class="n">the</span> <span class="n">magnitude</span>
+</pre></div>
+</div>
+<p>These enumerations are used in they XdQuantifiedType subtypes.</p>
+</div>
+<div class="section" id="typeofratio">
+<h4>TypeOfRatio<a class="headerlink" href="#typeofratio" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> xs:string</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Indicates semantic type of ratio.</p>
+<ul class="simple">
+<li>ratio = a relationship between two numbers.</li>
+<li>proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)</li>
+<li>rate = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="linked_data.html" class="btn btn-neutral float-right" title="Linked Data Modeling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modeling_concepts.html" class="btn btn-neutral" title="Modeling Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016 - 2017, Data Insights, Inc..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
