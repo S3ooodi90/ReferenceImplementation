@@ -27,3 +27,6 @@ RDF/tools/3_0_0/rdf/
 RDF/tools/3_0_0/rm/
 RDF/tools/3_0_0/xml/
 
+
+# project files
+*.xpr
