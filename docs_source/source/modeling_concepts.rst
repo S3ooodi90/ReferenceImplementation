@@ -34,7 +34,7 @@ Data Insights, Inc. has a Data Model Generator (DMGen) for license.
 
 DM Identification
 ------------------
-The root element of a DM and all complexType and global elements will use 4 Type UUIDs as defined by the IETF RFC 4122 See: http://www.ietf.org/rfc/rfc4122.txt
+The root element of a DM and all complexType and global elements will use 4 Type UUIDs as defined by the IETF RFC 4122 See: https://www.ietf.org/rfc/rfc4122.txt
 The filename of a DM may use any format defined by the DM author. The DM author must recognize that the metadata section of the DM must contain the correct RDF:about URI with this filename. 
 
 As a matter of consistency and to avoid any possible name clashes, the DMs created by the DMGen also use the DM ID (DM-<uuid>.xsd). To be a viable DM for validation purposes the DM should use the W3C assigned extension of '.xsd'. Though many tools may still process the artifact as an XML Schema without it.

@@ -2,7 +2,7 @@
 S3Model Docs Overview
 =====================
 
-Implementable semantic interoperability.
+The Esperanto of Information Management.
 
 Status - **Draft 3.0.0** Released: N/A
 
@@ -19,9 +19,13 @@ The goal of S3Model is to be Minimalistic, Sustainable, Implementable AND Intero
 Acknowledgements
 ----------------
 
+We would like to thank all of the members of the MLHIM Advanced Technology Lab, UERJ as well as FAPERJ for multiple grants. 
+
 
 Error Reporting
 ---------------
+
+Please report all issues `here. <https://github.com/DataInsightsInc/S3Model_public/issues>`_
 
 
 Purpose & Scope
@@ -31,7 +35,9 @@ Purpose & Scope
 The purpose of the S3Model project is to provide a free and openly available specification for implementation of computable semantic interoperability for information exchange.
 The S3Model specifications are designed to provide semantic interoperability that is fully independent of any implementation specific contexts. Therefore workflow, security, user access, data persistence, etc. are all outside the scope of S3Model.
 
-The `S3Model site <http://datainsights.tech/S3Model/>`_ contains a growing number of demonstration projects and tools that research how this approach and focused scope enables interoperability across many contexts. S3Model based data can be exchanged via any transport method. Including existing HL7 v.2 and v.3 exchange systems to enhance the semantic interoperability of existing HL7 implementations.
+The Data Insights, Inc. has a growing number of implementation projects and tools that demonstrate this approach and enables interoperability across many contexts. 
+
+S3Model based data can be exchanged via any transport method such as ReST, SOAP, FTP, etc. This includes wrapped in existing HL7 v.2 and v.3 messages to enhance the semantic interoperability of existing HL7 implementations.
 
 Conformance
 -----------
@@ -55,6 +61,10 @@ These specifications;
 Availability
 ------------
 
-The S3Model specifications, reference implementation and tools are available from `Data Insights, Inc. <http://www.datainsights.tech>`_
+The S3Model specifications, reference implementation and tools are available from `Data Insights, Inc. <https://www.datainsights.tech>`_ 
+
+.. raw:: html
+
+  <p><a href="mailto:tim@datainsights.tech">Contact Us</a>  for information.</p>
 
 *The ninety and nine are with dreams, content but the hope of the world made new, is the hundredth man who is grimly bent on making those dreams come true. - Edgar Alan Poe*

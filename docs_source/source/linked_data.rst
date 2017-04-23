@@ -38,7 +38,7 @@ The Python utilities used to perform this extraction are included as examples of
 S3Model Semantics
 =================
 
-These are the entities defined in `S3Model.rdf <http://www.S3Model.org/ns/S3Model/S3Model.rdf>`_
+These are the entities defined in `S3Model.rdf <https://www.S3Model.org/ns/S3Model/S3Model.rdf>`_
 
 Top-Level
 =========
@@ -96,9 +96,9 @@ The most widely used (at this writing) metadata definitions come from the Dublin
 
 Context processing
 ==================
-Refer to the JSON-LD-API `context processing <http://www.w3.org/TR/json-ld-api/#context-processing-algorithms>`_ specifications to understand how the S3Model.jsonld, S3Model50.jsonld and the DM jsonld work together.
+Refer to the JSON-LD-API `context processing <https://www.w3.org/TR/json-ld-api/#context-processing-algorithms>`_ specifications to understand how the S3Model.jsonld, S3Model50.jsonld and the DM jsonld work together.
 
-For setting your JSON-LD processor for the correct location of context files, see this `StackExchange <https://stackoverflow.com/questions/32047434/json-ld-external-context-redirect/32105641>`_ discussion. The options for compliant processors is discussed in the `JSON-LD Specs <http://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type>`_
+For setting your JSON-LD processor for the correct location of context files, see this `StackExchange <https://stackoverflow.com/questions/32047434/json-ld-external-context-redirect/32105641>`_ discussion. The options for compliant processors is discussed in the `JSON-LD Specs <https://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type>`_
 
 Linked Data Tools
 =================

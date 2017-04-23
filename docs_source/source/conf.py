@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'S3Model'
-copyright = '2016 - 2017, Data Insights, Inc.'
+copyright = '2016 - 2017, Data Insights, Inc. https://datainsights.tech  '
 author = 'Timothy W. Cook'
 
 # The version info for the project you're documenting, acts as replacement for

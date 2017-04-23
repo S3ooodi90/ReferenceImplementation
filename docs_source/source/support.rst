@@ -6,7 +6,7 @@ Publications, tutorials and presentations by the developers of S3Model and other
 
 Peer Reviewed
 -------------
-See the Documents area of the `MLHIM website <http://mlhim.org/documents>`_ for the background research documents.
+See the Documents area of the `MLHIM website <https://mlhim.org/documents>`_ for the background research documents.
 
 Specifications Wiki
 -------------------
@@ -22,13 +22,13 @@ Presentations
 -------------
 Coming Soon
 
-.. `SlideShare <http://www.slideshare.net/twcook>`_
+.. `SlideShare <https://www.slideshare.net/twcook>`_
 
 Videos
 ------
 Coming Soon
 
-.. `YouTube <http://www.youtube.com/user/S3ModeldotORG>`_
+.. `YouTube <https://www.youtube.com/user/S3ModeldotORG>`_
 
 Primary disscussion venue
 -------------------------

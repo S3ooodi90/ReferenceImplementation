@@ -189,7 +189,6 @@ The integer data type is used to specify a numeric value without a fractional co
 3.0.0 Reference Model Documentation
 ===================================
 
-The complete technical documentation is available `here <http://datainsights.tech/S3Model/docs/rm/index.html>`_.
 
 ---------------
 RM complexTypes
@@ -355,7 +354,7 @@ InvlType
 One for the 'lower' value and one for the 'upper' value.
 Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. The maxOccurs and minOccurs attributes must be set to 1, in the DM.
 
-For more information on using this approach `see these tips <http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html>`_
+For more information on using this approach `see these tips <https://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html>`_
 
 InvlUnits
 ---------

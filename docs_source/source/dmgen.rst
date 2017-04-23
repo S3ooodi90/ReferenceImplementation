@@ -1,7 +1,7 @@
 =================================================
 Data Model Generator (DM-Gen)
 =================================================
-The `DM-Gen <http://www.DMgen.com>`_ is not part of the specifications. However, since it is a primary tool for authoring DMs we include this chapter.
+The `DM-Gen <https://www.DMgen.com>`_ is not part of the specifications. However, since it is a primary tool for authoring DMs we include this chapter.
 
 Registration & Access
 ---------------------
@@ -14,7 +14,7 @@ Creating and Managing DMs
 --------------------------
 The DM-Gen is an online tool used to create DMs via a web driven, declarative environment. The DM-Gen allows the building of complete DMs by selecting the desired Pluggable complexType (PCM) definitions from existing PCMs or ones that you design yourself. You assemble the pieces into the concept definition you need. By re-using PCMs you improve the data exchange and analysis capability.
 
-Many of the PCMs have been designed based on existing data models. Resources such as the `Common Data Element <https://cdebrowser.nci.nih.gov/CDEBrowser/>`_ definitions from the US National Cancer Institute, the United States Health Information Knowledgebase (USHIK), from the Agency for Healthcare Research and Quality (AHRQ) and many others. Some `HL7 FHIR® <http://www.hl7.org/fhir/>`_ models have been translated to PCMs. More are planned and you can contribute to the open content effort. The `Siscolo <http://goo.gl/mSHk47>`_ application has been modeled and `example <https://github.com/S3Model/TB-Data-in-eXist-db>`_ of translating a controlled vocabulary using ICD-10 in an XML-DB is on GitHub.
+Many of the PCMs have been designed based on existing data models. Resources such as the `Common Data Element <https://cdebrowser.nci.nih.gov/CDEBrowser/>`_ definitions from the US National Cancer Institute, the United States Health Information Knowledgebase (USHIK), from the Agency for Healthcare Research and Quality (AHRQ) and many others. Some `HL7 FHIR® <https://www.hl7.org/fhir/>`_ models have been translated to PCMs. More are planned and you can contribute to the open content effort. The `Siscolo <https://goo.gl/mSHk47>`_ application has been modeled and `example <https://github.com/S3Model/TB-Data-in-eXist-db>`_ of translating a controlled vocabulary using ICD-10 in an XML-DB is on GitHub.
 
 The DM is an XML Schema that is compliant with the W3C XML Schema 1.1 standards. It is valid against one S3Model Reference Model release. However, many of the PCMs maybe used in DMs across various reference model releases. A DM provides an approach to improve the process of allowing semantic interoperability between various applications. This process is enabled due the ability to *exchange the syntax and semantics for data models designed by domain experts.*
 
@@ -57,6 +57,6 @@ Users and developers should note that the metadata.R file is not included in the
 
 .. rubric:: Footnotes
 
-.. [#f1] http://www.r-project.org/
+.. [#f1] https://www.r-project.org/
 .. [#f2] https://www.rstudio.com/
-.. [#f3] http://cran.r-project.org/
+.. [#f3] https://cran.r-project.org/

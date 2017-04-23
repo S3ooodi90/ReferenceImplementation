@@ -45,20 +45,20 @@ The governance of DMs is left to the modeler and/or publishing organization.
 
 A Valid DM Must:
 -----------------
-* Be a valid XML Schema 1.1 schema as determined by widely available parser/validators such as `Xerces <http://xerces.apache.org/xerces2-j/faq-xs.html#faq-2>`_ or `Saxon <http://www.saxonica.com/documentation/schema-processing/>`_
+* Be a valid XML Schema 1.1 schema as determined by widely available parser/validators such as `Xerces <https://xerces.apache.org/xerces2-j/faq-xs.html#faq-2>`_ or `Saxon <https://www.saxonica.com/documentation/schema-processing/>`_
 * Consist of complexTypes that only use the *restriction* element of complexTypes with a *base* attribute from the associated reference model
 * use Type 4 UUIDs for complexType names, with the prefix of, 'pcm-'. Example [#f2]_ ::
 
     <xs:complexType name='pcm-8c177dbd-c25e-4908-bffa-cdcb5c0e38e6' xml:lang='en-US'>
 
 * publish a global element for each complexType where a substitutionGroup is required [#f3]_. The element **MUST** be defined using the same UUID as the complexType with the 'pcm-' prefix replaced with 'pcs-'.
-* Include the reference model schema from www.S3Model.org using the appropriately defined namespace. Example for release 2.5.0 and later releases, S3Model uses the namespace http://www.S3Model.org/ns/S3Model/ with the standard prefix of S3Model [#f4]_ ::
+* Include the reference model schema from www.S3Model.org using the appropriately defined namespace. Example for release 2.5.0 and later releases, S3Model uses the namespace https://www.S3Model.org/ns/S3Model/ with the standard prefix of S3Model [#f4]_ ::
 
   <xs:element name='pcs-8c177dbd-c25e-4908-bffa-cdcb5c0e3888' substitutionGroup='S3Model:XdAdapter-value' type='S3Model:pcm-8c177dbd-c25e-4908-bffa-cdcb5c0e3888'/>
 
 * use the correct substitution group(s) as in the example above
 * define the required namespaces used in the DM as in Figure 1.
-* define the minimum `DCMI <http://dublincore.org/>`_ metadata items as shown in Figure 2.
+* define the minimum `DCMI <https://dublincore.org/>`_ metadata items as shown in Figure 2.
 
 .. image:: dm_header.png
 
@@ -83,11 +83,11 @@ Structure
 A DM is just an XML Schema. It uses the xs:include element to reference the RM schema from the S3Model website. For performance a local copy should be used via an `XML Catalog <https://www.oasis-open.org/standards#xmlcatalogsv1.1>`_
 The design of DMs allows us to separate the structure from the domain semantics of a complexType. This is key in having a small RM that represents structural components that provide a well defined data query platform which is essential for analytics and decision support.
 
-Prior to XML Schema 1.1, other languages (such as `Schematron <http://www.schematron.com/>`_ ) were *needed* to provide for complex validation scenarios. The `xs:assert element <http://www.w3.org/TR/xmlschema11-1/#cAssertions>`_ now takes care of those issues. This in addition to gaining additional data model types and the ability to use multiple substitutionGroups is why we specify XML Schema 1.1 as a requirement for DMs.
+Prior to XML Schema 1.1, other languages (such as `Schematron <https://www.schematron.com/>`_ ) were *needed* to provide for complex validation scenarios. The `xs:assert element <https://www.w3.org/TR/xmlschema11-1/#cAssertions>`_ now takes care of those issues. This in addition to gaining additional data model types and the ability to use multiple substitutionGroups is why we specify XML Schema 1.1 as a requirement for DMs.
 
 Schematron may still be useful for defining business rules in your implementation. But these definitions are implementation specific and do not apply to the S3Model semantic interoperability goals. Experience shows that these implementation details *leaked* into the data structure definition creates a barrier to interoperability.
 
-The use of UUIDs has been controversial and is a perceived barrier by some people. In reality though they are what allows S3Model to be such a simple, yet powerful solution. This is how we separate the structure and domain semantics. By using UUIDs for the complexType and element names we build a structure that has only *structural semantics*. As an example take a look at `HL7 <http://www.hl7.org/>`_ CDA or FHIR schemas or `NIEM <https://www.niem.gov>`_ schemas. Notice how they mix domain semantics into the names of complexTypes and elements. This creates a nasty chain of optional domain elements because you cannot know a priori what is going to be needed where.  There is an attempt to use attributes to provide some uniqueness to types of entries. But this has grow out of control to a point where those schemas are very complex. NIEM attempted to solve the problem by using a multi-level model approach.  But then *specified* that domain element names **MUST** be terms from the Oxford English Dictionary. So that limits its usefulness to 5.4% of the global population.  To be fair, NIEM is designed and named to be used in the US.  But that is a bit of a short-sighted development approach considering the global world we live in today.
+The use of UUIDs has been controversial and is a perceived barrier by some people. In reality though they are what allows S3Model to be such a simple, yet powerful solution. This is how we separate the structure and domain semantics. By using UUIDs for the complexType and element names we build a structure that has only *structural semantics*. As an example take a look at `HL7 <https://www.hl7.org/>`_ CDA or FHIR schemas or `NIEM <https://www.niem.gov>`_ schemas. Notice how they mix domain semantics into the names of complexTypes and elements. This creates a nasty chain of optional domain elements because you cannot know a priori what is going to be needed where.  There is an attempt to use attributes to provide some uniqueness to types of entries. But this has grow out of control to a point where those schemas are very complex. NIEM attempted to solve the problem by using a multi-level model approach.  But then *specified* that domain element names **MUST** be terms from the Oxford English Dictionary. So that limits its usefulness to 5.4% of the global population.  To be fair, NIEM is designed and named to be used in the US.  But that is a bit of a short-sighted development approach considering the global world we live in today.
 
 In designing S3Model we had the aXdantage of being able to analyze HL7 v3.x, openEHR, ISO 13606 and other interoperability attempts and use these as lessons learned points. NIEM was started about the same time as S3Model.
 
@@ -106,15 +106,15 @@ With the reusability and structural simplicity out of the way we can now discuss
 
 **NOTE: This section is in active transition from RDF Semantics to OWL2 DL using the RL Profile.**
 
-If you are not familiar with RDF you may want to read more at `LinkedDataTools <http://www.linkeddatatools.com/>`_ or directly from the `W3C Specifications <http://www.w3.org/TR/rdf11-primer/>`_.
+If you are not familiar with RDF you may want to read more at `LinkedDataTools <https://www.linkeddatatools.com/>`_ or directly from the `W3C Specifications <https://www.w3.org/TR/rdf11-primer/>`_.
 
 The world of data exchange is composed of two primary players; *data providers* and *data consumers*. Whether those two parties are people or software applications they require this knowledge to turn *data* into useful *information*. We discussed approaches to transferring this information in the **Semantic Models vs. Semantic Markup** section of *Modeling Concepts*.
 
 Adding the semantics to the model allows all of the meaning of the data to be in one known location. Each data instance has a pointer to its parent DM. Example::
 
-    xsi:schemaLocation='http://www.S3Model.org/ns/S3Model/ http://www.DMgen.com/DMlib/DM-00605c3e-cd14-492e-9891-6ad3ad26230e.xsd'>
+    xsi:schemaLocation='https://www.S3Model.org/ns/S3Model/ https://www.DMgen.com/DMlib/DM-00605c3e-cd14-492e-9891-6ad3ad26230e.xsd'>
 
-this example from a data instance says that the schema in the namespace *http://www.S3Model.org/ns/S3Model/* is located on the DM-Gen and is named *DM-00605c3e-cd14-492e-9891-6ad3ad26230e.xsd*. Typically DMs are located locally and an XML Catalog is used to resolve these locations.
+this example from a data instance says that the schema in the namespace *https://www.S3Model.org/ns/S3Model/* is located on the DM-Gen and is named *DM-00605c3e-cd14-492e-9891-6ad3ad26230e.xsd*. Typically DMs are located locally and an XML Catalog is used to resolve these locations.
 
 The first part of the semantics describes the model itself. This is accomplished using the DCMI metadata elements. See the example above in Figure 2.
 
@@ -128,7 +128,7 @@ Taking a *simplistic* example DM (the sequence of appearance of the complexTypes
       <xs:appinfo>
         <rdf:Description rdf:about='S3Model:pcm-a05e8d88-a6dc-43d5-b1b8-723cdc9bf680'>
           <rdfs:subClassOf rdf:resource='&S3Model;XdLinkType'/>
-          <rdfs:isDefinedBy rdf:resource='http://www.S3Model.org/generic_PCMs'/>
+          <rdfs:isDefinedBy rdf:resource='https://www.S3Model.org/generic_PCMs'/>
           <rdfs:label>Test XdLink</rdfs:label>
         </rdf:Description>
       </xs:appinfo>
@@ -146,11 +146,11 @@ Notice that inside the xs:annotation there are two child elements; xs:documentat
 The first child of rdf:Description is a rdfs:subClassOf element. This element name is the *Predicate* component of the first RDF statement. This element has an attribute of rdf:resource and a URI of S3Model:XdLinkType which forms the *Object* component of this RDF statement.
 
 The second child of rdf:Description is a rdfs:isDefinedBy element. This element name is the *Predicate* component of the second RDF statement about the PCM. The rdf:resource attribute
-points to a resource on the S3Model website. `Give it a try <http://www.S3Model.org/generic_PCMs>`_. It is just a simple plain text document used as a resource for these examples. Note that it is not a requirement that all URI resources be resolvable URLs. But we think it is a good idea that they are whenever possible.
+points to a resource on the S3Model website. `Give it a try <https://www.S3Model.org/generic_PCMs>`_. It is just a simple plain text document used as a resource for these examples. Note that it is not a requirement that all URI resources be resolvable URLs. But we think it is a good idea that they are whenever possible.
 
 The third child of rdf:Description is a rdfs:label This element defines a fixed text label to this PCM. So the *Predicate* is rdfs:label and the *Object* is the string "Test XdLink".
 
-So now we have three statements about the unique subject called *S3Model:pcm-a05e8d88-a6dc-43d5-b1b8-723cdc9bf680*. We know it is a subtype of the S3Model XdLinkType that is defined in the S3Model Reference Model schema that is included (via xs:include) in this DM. We can also find a definition of this PCM in the resource at http://www.S3Model.org/generic_PCMs.
+So now we have three statements about the unique subject called *S3Model:pcm-a05e8d88-a6dc-43d5-b1b8-723cdc9bf680*. We know it is a subtype of the S3Model XdLinkType that is defined in the S3Model Reference Model schema that is included (via xs:include) in this DM. We can also find a definition of this PCM in the resource at https://www.S3Model.org/generic_PCMs.
 
 So now we have some machine processable semantics as well as some documentation. All available from the model. Also note that there is the *label* element. When a modeler defines a PCM they give it a fixed name as a human readable string. This is included in the data instance and even though the XML element is a UUID, this readable text is immediately below it and describes what the modeler defined for the name. The rdfs:label and the label **SHOULD** be the same string.
 
@@ -186,7 +186,7 @@ So (a snippet) like this::
             <!-- Use any subtype of ExceptionalValue here when a value is missing-->
             <valid-time-begin>2006-04-15T04:18:21Z</valid-time-begin>
             <valid-time-end>1981-12-10T19:35:00Z</valid-time-end>
-            <XdURI-Xd>http://www.DMgen.com</XdURI-Xd>
+            <XdURI-Xd>https://www.DMgen.com</XdURI-Xd>
             <relation>Party Associated with the record</relation>
           </S3Model:pcs-ab51a8c0-ba5c-4053-8201-ae29c1a534bb>
 
@@ -199,7 +199,7 @@ can be converted to::
               "label": "External Reference for Party",
               "valid-time-begin": "2006-04-15T04:18:21Z",
               "valid-time-end": "1981-12-10T19:35:00Z",
-              "XdURI-Xd": "http://www.DMgen.com",
+              "XdURI-Xd": "https://www.DMgen.com",
               "relation": "Party Associated with the record"
             },
 
