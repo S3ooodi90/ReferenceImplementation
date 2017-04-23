@@ -83,3 +83,6 @@ A set of data items that **DOES NOT** conform to the DM it represents **OR** it 
 Exception
 ---------
 Indicates that some data is outside of the parameters defined by the DM and provides some context as to the cause of the anomaly through defined subclasses. 
+
+These components are realized in an OWL ontology named s3model.owl and are documented `here <owl/index.html>`_ 
+
