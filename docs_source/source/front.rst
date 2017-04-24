@@ -19,7 +19,7 @@ The goal of S3Model is to be Minimalistic, Sustainable, Implementable AND Intero
 Acknowledgements
 ----------------
 
-We would like to thank all of the members of the MLHIM Advanced Technology Lab, UERJ as well as FAPERJ for multiple grants. 
+We would like to thank all of the members of the `MLHIM <https://mlhim.org>`_ Technology Development Unit at UERJ as well as `FAPERJ <http://www.faperj.br/>`_ for multiple direct and student grants in support of semantic interoperability efforts. 
 
 
 Error Reporting
