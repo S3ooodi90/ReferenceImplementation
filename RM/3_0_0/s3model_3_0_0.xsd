@@ -48,7 +48,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue">
+      <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ExceptionalValue">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">In an invalid instance, the application can indicate here why data is missing or invalid. The sub-types are based on ISO 21090 NULL Flavors entries, with additions noted from real-world usage.</xs:documentation>
         </xs:annotation>
@@ -164,9 +164,9 @@
   <xs:complexType name="XdBooleanType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">Items which represent boolean decisions, such as true/false or yes/no answers. Use for such data, it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false. The
-        possible choices for True or False are enumerations in the CCM. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. Potential Misuse: The XdBooleanType should not be used as a replacement for enumerated types such as
+        possible choices for True or False are enumerations in the CMC. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. Potential Misuse: The XdBooleanType should not be used as a replacement for enumerated types such as
         male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, 'true' and 'false' are contained in an xs:choice and only one or the other is instantiated in
-        the instance data with its value coming from the enumerations defined in a CCM.</xs:documentation>
+        the instance data with its value coming from the enumerations defined in a CMC.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdBooleanType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdBooleanType.html#XdBooleanType"/>
@@ -224,7 +224,7 @@
 
   <xs:complexType name="XdLinkType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM. Intended use is to provide a mechanism that can be used to link together Concept Models. The relation element allows for the use of a descriptive
+      <xs:documentation xml:lang="en-us">Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM. Intended use is to provide a mechanism that can be used to link together Data Models. The relation element allows for the use of a descriptive
         term for the link with an optional URI pointing to the source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute. Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 'link-value'.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType">
@@ -241,12 +241,12 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="1" name="link" type="xs:anyURI">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CCM or just the dm-{uuid}.</xs:documentation>
+              <xs:documentation xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CMC or just the dm-{uuid}.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType/link">
                   <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdLinkType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-                  <rdfs:comment xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CCM or just the dm-{uuid}.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CMC or just the dm-{uuid}.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -376,7 +376,7 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="encoding" type="xs:string">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Name of character encoding scheme in which this value is encoded. Coded from the IANA charcater set table: http://www.iana.org/assignments/character-sets Unicode is the default assumption in S3Model2, with UTF-8 being the assumed encoding. This
+              <xs:documentation xml:lang="en-us">Name of character encoding scheme in which this value is encoded. Coded from the IANA charcater set table: http://www.iana.org/assignments/character-sets Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This
                 attribute allows for variations from these assumptions.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/encoding">
@@ -389,12 +389,12 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdfile-language" type="xs:language">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Optional indicator of the localised language of the content. Typically reamins optional in the CCM and used at runtime when the content is in a different language from the enclosing CCM.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Optional indicator of the localised language of the content. Typically remains optional in the CMC and used at runtime when the content is in a different language from the enclosing CMC.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/xdfile-language">
                   <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#language"/>
-                  <rdfs:comment xml:lang="en-us">Optional indicator of the localised language of the content. Typically reamins optional in the CCM and used at runtime when the content is in a different language from the enclosing CCM.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Optional indicator of the localised language of the content. Typically reamins optional in the CMC and used at runtime when the content is in a different language from the enclosing CMC.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -418,7 +418,7 @@
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/media-type">
                   <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                  <rdfs:comment xml:lang="en-us">MIME type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Media (MIME) type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -486,24 +486,24 @@
             </xs:element>
             <xs:element name="media-content" type="xs:base64Binary">
               <xs:annotation>
-                <xs:documentation xml:lang="en-us">The content, if stored locally as binary content. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
+                <xs:documentation xml:lang="en-us">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
                 <xs:appinfo>
                   <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/media-content">
                     <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#base64Binary"/>
-                    <rdfs:comment xml:lang="en-us">The content, if stored locally as binary content. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
+                    <rdfs:comment xml:lang="en-us">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
                   </rdf:Description>
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
             <xs:element name="text-content" type="xs:string">
               <xs:annotation>
-                <xs:documentation xml:lang="en-us">The content, if stored locally as text content. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
+                <xs:documentation xml:lang="en-us">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
                 <xs:appinfo>
                   <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType/text-content">
                     <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFileType"/>
                     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                    <rdfs:comment xml:lang="en-us">The content, if stored locally as text content. The CCM modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
+                    <rdfs:comment xml:lang="en-us">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
                   </rdf:Description>
                 </xs:appinfo>
               </xs:annotation>
@@ -640,8 +640,7 @@
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType/symbol">
                   <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdOrdinalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                  <rdfs:comment xml:lang="en-us">Coded textual representation of this value in the enumeration, which may be strings made from “+” symbols, or other enumerations of terms such as “mild”, “moderate”, “severe”, or even the same number series as the values, e.g. “1”, “2”, “3”.
-                 </rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Coded textual representation of this value in the enumeration, which may be strings made from “+” symbols, or other enumerations of terms such as “mild”, “moderate”, “severe”, or even the same number series as the values, e.g. “1”, “2”, “3”.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1299,9 +1298,9 @@
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-        <!-- The assert doesn't need the value comparison if CCMs use the fixed attribute. 
+        <!-- The assert doesn't need the value comparison if CMCs use the fixed attribute. 
           But just in case we want to be sure the interval makes sense. 
-          Check upper and lower elements to see if the CCM restricted both to the same type. -->
+          Check upper and lower elements to see if the CMC restricted both to the same type. -->
         <xs:assert test="lower/*/name() = upper/*/name()"/>
       </xs:extension>
     </xs:complexContent>
@@ -1321,14 +1320,14 @@
   <xs:complexType name="InvlType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
-        boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CCM.</xs:documentation>
+        boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CMC.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#InvlType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_.InvlTypehtml#InvlType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">InvlType</rdfs:label>
           <rdfs:comment xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
-            boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CCM.</rdfs:comment>
+            boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CMC.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1346,12 +1345,12 @@
   <xs:complexType name="InvlUnits">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
-        temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</xs:documentation>
+        temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CMC has these values fixed by the modeler.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#IntervalUnits">
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:comment xml:lang="en-us">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
-            temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CCM has these values fixed by the modeler.</rdfs:comment>
+            temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CMC has these values fixed by the modeler.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1593,13 +1592,13 @@
 
   <xs:complexType name="AttestationType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which my be coded.</xs:documentation>
+      <xs:documentation xml:lang="en-us">Record an attestation by a party of the DM content. The type of attestation is recorded by the reason attribute, which my be coded.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">AttestationType</rdfs:label>
-          <rdfs:comment xml:lang="en-us">Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which my be coded.</rdfs:comment>
+          <rdfs:comment xml:lang="en-us">Record an attestation by a party of the DM content. The type of attestation is recorded by the reason attribute, which my be coded.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -1804,14 +1803,14 @@
   <xs:complexType abstract="true" name="ExceptionalValueType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be
-        useful in many instances. CCMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</xs:documentation>
+        useful in many instances. Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ExceptionalValueType">
           <rdfs:isDefinedBy rdf:resource="http://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
           <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/Exception"/>
           <rdfs:label xml:lang="en-us">ExceptionalValueType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be
-            useful in many instances. CCMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</rdfs:comment>
+            useful in many instances. Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
@@ -2397,12 +2396,12 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Descriptive subject line for this group of CCMs.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Descriptive subject line for this group of CMCs.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType/label">
                   <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ClusterType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                  <rdfs:comment xml:lang="en-us">Descriptive subject line for this group of CCMs.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Descriptive subject line for this group of CMCs.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -2505,12 +2504,12 @@
     <xs:sequence>
       <xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</xs:documentation>
+          <xs:documentation xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name, column name or class name in other modeling paradigms.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType/label">
               <rdfs:domain rdf:resource="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#EntryType"/>
               <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-              <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name or class name in conventional modeling.</rdfs:comment>
+              <rdfs:comment xml:lang="en-us">Descriptive name of this datatype model. Provides the semantic 'name' for the model. Replaces what would be XML element name, column name or class name in other modeling paradigms.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2623,7 +2622,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="audit" type="s3m:AuditType">
+      <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Audit">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Audit trail from the system of original commit of information forming the content of this node, or from a conversion gateway which has synthesised this node.</xs:documentation>
           <xs:appinfo>
