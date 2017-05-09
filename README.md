@@ -3,7 +3,7 @@ Shareable-Structured-Semantic Model (S3Model)
 See the Documentation 'https://github.com/DataInsightsInc/S3Model/docs/index.html'
 
 
-The S3Model Data Model (DM) XML Schema file is named using the UUID of the complexType restriction of ConceptType from the RM. The UUID is prepended with 'dm-' and has the file extension '.xsd'.
+A S3Model Data Model (DM) XML Schema file is named using the UUID of the complexType restriction of ConceptType from the RM. The UUID is prepended with 'dm-' and has the file extension '.xsd'.
 
 
 The rdf:about attribute of the rdf:Description defining the RDF/XML Subject prepends the file name with 'http://www.s3model.com/ns/s3m/'.  This rdf:Description then contains each Predicate/Object pair.
