@@ -30,3 +30,4 @@ RDF/tools/3_0_0/xml/
 
 # project files
 *.xpr
+.Rproj.user
