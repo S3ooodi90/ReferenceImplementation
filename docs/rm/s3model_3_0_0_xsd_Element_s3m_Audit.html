@@ -7,6 +7,7 @@
       <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
          <!--
         var propertiesBoxes= new Array('properties_Audit');
+var usedByBoxes= new Array('usedBy_Audit');
 var sourceBoxes= new Array('source_Audit');
 var instanceBoxes= new Array('instance_Audit');
 var diagramBoxes= new Array('diagram_Audit');
@@ -271,6 +272,9 @@ var modelBoxes= new Array('model_Audit');
                      <tr>
                         <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
                      </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
                   </table>
                   <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
                </td>
@@ -328,6 +332,22 @@ var modelBoxes= new Array('model_Audit');
                                  <tr>
                                     <td class="firstColumn" style="white-space: nowrap;">content</td>
                                     <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_Audit" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Audit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_Audit" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="s3model_3_0_0_xsd_Complex_Type_s3m_EntryType.html#EntryType" target="mainFrame" title="http://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:EntryType')">s3m:EntryType</a></b></td>
                                  </tr>
                               </table>
                            </div>
