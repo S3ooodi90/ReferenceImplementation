@@ -1127,7 +1127,7 @@ class DM(models.Model):
     coverage = models.CharField(_('coverage'), max_length=255, help_text=_(
         "Enter the demographic, geographical or political coverage."), default="Universal")
     dc_type = models.CharField(
-        _('type'), max_length=110, editable=False, default="MLHIM Data Model (DM)")
+        _('type'), max_length=110, editable=False, default="S3Model Data Model (DM)")
     # concat the uuid in the template
     identifier = models.CharField(
         _('identifier'), max_length=110, editable=False, default="ccd-")
