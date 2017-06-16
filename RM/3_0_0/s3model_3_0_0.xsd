@@ -4,7 +4,7 @@
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
   xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" 
   xmlns:s3m="https://www.s3model.com/ns/s3m/"
-  targetNamespace="https://www.s3model.com/ns/s3m/" vc:minVersion="1.1"> 
+  targetNamespace="https://www.s3model.com/ns/s3m/"> 
   <xs:annotation>
     <xs:documentation xml:lang="en-us">This work is Copyright 2016 Data Insights, Inc. All Rights Reserved. 
       This is the Shareable, Structured, Semantic Model (S3Model) reference model (RM) implementation in XML Schema 1.1. 
@@ -79,7 +79,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTimeStamp" nillable="true">
+      <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Time Recorded. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was recorded.</xs:documentation>
           <xs:appinfo>
@@ -92,7 +92,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>      
-      <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTimeStamp" nillable="true">
+      <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Time Modified. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was last changed.</xs:documentation>
           <xs:appinfo>
@@ -1068,14 +1068,14 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-datetime-stamp" type="xs:dateTimeStamp">
+          <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-datetime-stamp" type="xs:dateTime">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Derived from dateTime by giving the value required to its explicitTimezone facet. The result is that all values of dateTimeStamp are required to have explicit time zone offsets and the datatype is totally ordered.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Derived from dateTime by giving the value required to its explicitTimezone facet. The result is that all values of dateTime are required to have explicit time zone offsets and the datatype is totally ordered.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-datetime-stamp">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
-                  <rdfs:comment xml:lang="en-us">Derived from dateTime by giving the value required to its explicitTimezone facet. The result is that all values of dateTimeStamp are required to have explicit time zone offsets and the datatype is totally ordered.</rdfs:comment>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+                  <rdfs:comment xml:lang="en-us">Derived from dateTime by giving the value required to its explicitTimezone facet. The result is that all values of dateTime are required to have explicit time zone offsets and the datatype is totally ordered.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1152,30 +1152,6 @@
                   <rdfs:comment xml:lang="en-us">A datatype that represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, "15 days" (whose most common lexical representation in duration is
                     "'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs, and can be the result of
                     subtracting dateTime values.</rdfs:comment>
-                </rdf:Description>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-ymduration" type="xs:yearMonthDuration">
-            <xs:annotation>
-              <xs:documentation xml:lang="en-us">A datatype derived from duration by restricting its lexical representations to instances of yearMonthDurationLexicalRep. The value space of yearMonthDuration is therefore that of duration restricted to those whose seconds property is 0. This results in a duration datatype which is totally ordered.</xs:documentation>
-              <xs:appinfo>
-                <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-ymduration">
-                  <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#yearMonthDuration"/>
-                  <rdfs:comment xml:lang="en-us">A datatype derived from duration by restricting its lexical representations to instances of yearMonthDurationLexicalRep. The value space of yearMonthDuration is therefore that of duration restricted to those whose seconds property is 0. This results in a duration datatype which is totally ordered.</rdfs:comment>
-                </rdf:Description>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-dtduration" type="xs:dayTimeDuration">
-            <xs:annotation>
-              <xs:documentation xml:lang="en-us">A datatype derived from duration by restricting its lexical representations to instances of dayTimeDurationLexicalRep. The value space of dayTimeDuration is therefore that of duration restricted to those whose months property is 0. This results in a duration datatype which is totally ordered.</xs:documentation>
-              <xs:appinfo>
-                <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-dtduration">
-                  <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dayTimeDuration"/>
-                  <rdfs:comment xml:lang="en-us">A datatype derived from duration by restricting its lexical representations to instances of dayTimeDurationLexicalRep. The value space of dayTimeDuration is therefore that of duration restricted to those whose months property is 0. This results in a duration datatype which is totally ordered.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1298,10 +1274,6 @@
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-        <!-- The assert doesn't need the value comparison if CMCs use the fixed attribute. 
-          But just in case we want to be sure the interval makes sense. 
-          Check upper and lower elements to see if the CMC restricted both to the same type. -->
-        <xs:assert test="lower/*/name() = upper/*/name()"/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -1489,13 +1461,13 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="1" name="timestamp" type="xs:dateTimeStamp">
+      <xs:element maxOccurs="1" minOccurs="1" name="timestamp" type="xs:dateTime">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Timestamp of handling the item.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType/timestamp">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AuditType"/>
-              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
               <rdfs:comment xml:lang="en-us">Timestamp of handling the item.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
@@ -1663,13 +1635,13 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" name="committed" type="xs:dateTimeStamp">
+      <xs:element maxOccurs="1" minOccurs="0" name="committed" type="xs:dateTime">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Timestamp of committal of the item.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType/committed">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#AttestationType"/>
-              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
               <rdfs:comment xml:lang="en-us">Timestamp of committal of the item.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
@@ -1762,25 +1734,25 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" name="start" type="xs:dateTimeStamp">
+      <xs:element maxOccurs="1" minOccurs="0" name="start" type="xs:dateTime">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The beginning datetime when the participation took place.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType/start">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
-              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
               <rdfs:comment xml:lang="en-us">The beginning datetime when the participation took place.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="1" minOccurs="0" name="end" type="xs:dateTimeStamp">
+      <xs:element maxOccurs="1" minOccurs="0" name="end" type="xs:dateTime">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">The ending datetime when the participation took place.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType/end">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#ParticipationType"/>
-              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
               <rdfs:comment xml:lang="en-us">The ending datetime when the participation took place.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>

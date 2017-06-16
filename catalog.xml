@@ -6,8 +6,8 @@
   <uri name="http://www.s3model.com/ns/s3m/s3model_1_0_0.xsd" uri="/home/tim/DII/S3Model/RM/1_0_0/s3model_1_0_0.xsd"/>
 
   <!-- S3Model 3.0.0 RM Schema -->
-  <uri name="http://www.s3model.com/ns/s3m/s3model_3_0_0.xsd" uri="/home/tim/DII/S3Model/RM/3_0_0/s3model_3_0_0.xsd"/>
+  <uri name="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd" uri="/home/tim/DII/S3Model/RM/3_0_0/s3model_3_0_0.xsd"/>
   
   <!-- S3Model DMs -->
-  <rewriteSystem systemIdStartString="http://dmgen.s3model.com/dmlib/" rewritePrefix="/home/tim/DII/DM_Library/"/>
+  <rewriteSystem systemIdStartString="https://dmgen.s3model.com/dmlib/" rewritePrefix="/home/tim/DII/DM_Library/"/>
 </catalog>
