@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load staticfiles i18n %}
+{% load account %}
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <meta http-equiv="expires" content="Thu, 01 Jan 2015 11:12:01 GMT"/>
+    <meta name="google-site-verification" content="4e7WasArmoFJJP4-_acUT9txcKasTzw0cMwUT-j0gOM" />
+    <meta name="author" content="Tim" />
+    <meta name="keywords" content="Semantic Web, Healthcare, HIT, S3M, PHR, EMR, EHR, DM, PCM, DMGen"/>
+    <meta http-equiv="Cache-control" content="public", max-age="2592000" expires=/>
+    <title>DMGen</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'dmgen/css/main.css' %}" />
+    <link rel="shortcut icon" href="{% static 'dmgen/favicon.ico' %}" />
+  </head>
+  <body>
+  <div>
+   {% if user.is_authenticated %}
+      <span><h1>Welcome: {% user_display user %}</h1></span>
+   {% endif %}
+</div>
+    <div>
+      <h1>Model Generator Home</h1>
+      <ul>
+        {% if user.is_authenticated %}
+          {% if user.is_staff %}
+            <li id='admin_link'><a href="/admin">Admin</a></li>
+          {% endif %}
+          {% if user.is_superuser %}
+            <li id='api_link'><a href="/api/v1/">API</a></li>
+          {% endif %}
+          <li id='logout_link'><a href="/accounts/logout">Logout</a></li>
+        {% else %}
+        <li id='login_link'><a href="/accounts/login">Login</a></li>
+        <li id='signup_link'><a href="/accounts/signup">Register</a></li>
+        {% endif %}
+      </ul>
+    </div>
+{% block content %}
+
+<h2>Select one of the above items.</h2>
+
+{% endblock %}
+  <div id="footer">
+      <p>Please file Data Model Generator bug reports <a href="https://datainsights.tech" target='_blank'> here </a>.</p>
+      <p>© Copyright 2016-2017 <a href="https://datainsights.tech" target='_blank'>Data Insights, Inc.</a> · All Rights Reserved</p>
+  </div>
+  <p>This file is {{ view.template_name }}</p>
+  </body>
+</html>

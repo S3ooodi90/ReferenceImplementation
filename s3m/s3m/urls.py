@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from dmgen.views import IndexView
+
 from .api_v1 import v1_api
 
 admin.autodiscover()
@@ -31,5 +33,6 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', IndexView.as_view(), name='home'),    
     url(r'^api/', include(v1_api.urls)),
 ]
