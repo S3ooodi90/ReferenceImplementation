@@ -5,9 +5,10 @@ from uuid import uuid4
 from django.utils.translation import ugettext_lazy as _
 
 from django import forms
-from django.forms.widgets import *
+# from django.forms.widgets import *
 
-from .models import *
+from .models import XdBoolean, XdCount, XdFile, XdInterval, XdLink, XdOrdinal, XdQuantity, XdRatio, XdString, XdTemporal, Units, PredObj, \
+     Cluster, Entry, DM, Attestation, Audit, Participation, Party, ReferenceRange, SimpleReferenceRange
 
 # TODO: put this in a utils module.
 
@@ -26,7 +27,7 @@ def is_number(s):
     except (TypeError, ValueError):
         pass
 
-    return(False)
+    return False
 
 # dmgen forms
 
@@ -44,6 +45,8 @@ class XdBooleanAdminForm(forms.ModelForm):
         if instance.pk is not None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -71,6 +74,8 @@ class XdStringAdminForm(forms.ModelForm):
         if instance.pk is not None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -79,8 +84,7 @@ class XdStringAdminForm(forms.ModelForm):
         cleaned_data = super(XdStringAdminForm, self).clean()
         # are the number of enums and enums_Def correct?
         if cleaned_data['enums'] and not cleaned_data['definitions']:
-            raise forms.ValidationError(
-                "You have enumerations but your annotations seem to be missing.")
+            raise forms.ValidationError(_("You have enumerations but your annotations seem to be missing."))
         elif cleaned_data['enums'] and cleaned_data['definitions']:
             enums = cleaned_data['enums']
             definitions = cleaned_data['definitions']
@@ -89,10 +93,10 @@ class XdStringAdminForm(forms.ModelForm):
                 # allow one def to be replicated for all enums
                 if len(definitions.splitlines()) == 1:
                     ed = definitions.splitlines()[0]
-                    newDefs = []
+                    new_defs = []
                     for x in range(0, len(enums.splitlines())):
-                        newDefs.append(ed)
-                    cleaned_data['definitions'] = '\n'.join(newDefs)
+                        new_defs.append(ed)
+                    cleaned_data['definitions'] = '\n'.join(new_defs)
                 else:
                     raise forms.ValidationError(
                         "The number of 'Enumerations' and 'Enumeration Annotations' must be exactly the same. Check for empty lines.")
@@ -139,6 +143,8 @@ class UnitsAdminForm(forms.ModelForm):
         if instance.pk is not None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -157,10 +163,10 @@ class UnitsAdminForm(forms.ModelForm):
                 # allow one def to be replicated for all enums
                 if len(definitions.splitlines()) == 1:
                     ed = definitions.splitlines()[0]
-                    newDefs = []
+                    new_defs = []
                     for x in range(0, len(enums.splitlines())):
-                        newDefs.append(ed)
-                    cleaned_data['definitions'] = '\n'.join(newDefs)
+                        new_defs.append(ed)
+                    cleaned_data['definitions'] = '\n'.join(new_defs)
                 else:
                     raise forms.ValidationError(
                         "The number of 'Enumerations' and 'Enumeration Annotations' must be exactly the same. Check for empty lines.")
@@ -186,6 +192,9 @@ class XdTemporalAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['reference_ranges'].queryset = ReferenceRange.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
+            self.fields['reference_ranges'].queryset = ReferenceRange.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -227,6 +236,8 @@ class XdFileAdminForm(forms.ModelForm):
         if instance.pk is not None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -257,6 +268,8 @@ class XdLinkAdminForm(forms.ModelForm):
         if instance.pk is not None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -285,6 +298,9 @@ class XdOrdinalAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['reference_ranges'].queryset = ReferenceRange.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
+            self.fields['reference_ranges'].queryset = ReferenceRange.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -308,10 +324,10 @@ class XdOrdinalAdminForm(forms.ModelForm):
         if len(symbols.splitlines()) != len(sym_def.splitlines()):
             if len(sym_def.splitlines()) == 1:  # allow one def to be replicated for all enums
                 sd = sym_def.splitlines()[0]
-                newDefs = []
+                new_defs = []
                 for x in range(0, len(symbols.splitlines())):
-                    newDefs.append(sd)
-                cleaned_data['annotations'] = '\n'.join(newDefs)
+                    new_defs.append(sd)
+                cleaned_data['annotations'] = '\n'.join(new_defs)
             else:
                 raise forms.ValidationError(
                     "The number of 'Symbols' and 'Symbol definitions' must be exactly the same. Check for empty lines.")
@@ -335,6 +351,10 @@ class XdCountAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['units'].queryset = Units.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
+            self.fields['reference_ranges'].queryset = ReferenceRange.objects.all()
+            self.fields['units'].queryset = Units.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -370,6 +390,10 @@ class XdQuantityAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['units'].queryset = Units.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
+            self.fields['reference_ranges'].queryset = ReferenceRange.objects.all()
+            self.fields['units'].queryset = Units.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -409,6 +433,12 @@ class XdRatioAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['ratio_units'].queryset = Units.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()
+            self.fields['reference_ranges'].queryset = ReferenceRange.objects.all()
+            self.fields['num_units'].queryset = Units.objects.all()
+            self.fields['den_units'].queryset = Units.objects.all()
+            self.fields['ratio_units'].queryset = Units.objects.all()
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -459,6 +489,8 @@ class XdIntervalAdminForm(forms.ModelForm):
         if instance.pk is not None:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -534,11 +566,11 @@ class XdIntervalAdminForm(forms.ModelForm):
         cleaned_data['lower'] = l
 
         # if units are defined insure there is a URI as well.
-        if len(cleaned_data['units_name']) > 0:
+        if cleaned_data['units_name'] and len(cleaned_data['units_name']) > 0:
             if len(cleaned_data['units_uri']) == 0:
                 raise forms.ValidationError(
                     "The Units definition must have both a name and a URI.")
-        if len(cleaned_data['units_uri']) > 0:
+        if cleaned_data['units_uri'] and len(cleaned_data['units_uri']) > 0:
             if len(cleaned_data['units_name']) == 0:
                 raise forms.ValidationError(
                     "The Units definition must have both a name and a URI.")
@@ -563,6 +595,9 @@ class ReferenceRangeAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['interval'].queryset = XdInterval.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
+            self.fields['interval'].queryset = XdInterval.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -589,15 +624,13 @@ class SimpleRRAdminForm(forms.ModelForm):
                 self.fields[fld].widget.attrs['readonly'] = True
                 self.fields[fld].widget.attrs['disabled'] = True
         if instance.pk is not None:
-            if self.prj_filter:
-                self.fields['pred_obj'].queryset = PredObj.objects.filter(project=instance.project)
-            else:
-                self.fields['pred_obj'].queryset = PredObj.objects.all()
+            self.fields['pred_obj'].queryset = PredObj.objects.filter(
+                project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
         else:
-            if self.prj_filter:
-                self.fields['pred_obj'].queryset = PredObj.objects.filter(project=self.default_prj)
-            else:
-                self.fields['pred_obj'].queryset = PredObj.objects.all()
+            self.fields['pred_obj'].queryset = PredObj.objects.filter(
+                project=self.default_prj)
 
     def clean(self):
         cleaned_data = super(SimpleRRAdminForm, self).clean()
@@ -642,6 +675,18 @@ class ClusterAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['xdtemporal'].queryset = XdTemporal.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+                self.fields['pred_obj'].queryset = PredObj.objects.all()          
+                self.fields['clusters'].queryset = Cluster.objects.all()          
+                self.fields['xdboolean'].queryset = XdBoolean.objects.all()          
+                self.fields['xdlink'].queryset = XdLink.objects.all()          
+                self.fields['xdstring'].queryset = XdString.objects.all()          
+                self.fields['xdfile'].queryset = XdFile.objects.all()          
+                self.fields['xdordinal'].queryset = XdOrdinal.objects.all()          
+                self.fields['xdcount'].queryset = XdCount.objects.all()          
+                self.fields['xdquantity'].queryset = XdQuantity.objects.all()          
+                self.fields['xdratio'].queryset = XdRatio.objects.all()          
+                self.fields['xdtemporal'].queryset = XdTemporalj.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -710,6 +755,17 @@ class EntryAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['provider'].queryset = Party.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
+            self.fields['participations'].queryset = Participation.objects.all()          
+            self.fields['links'].queryset = XdLink.objects.all()          
+            self.fields['protocol'].queryset = XdString.objects.all()          
+            self.fields['workflow'].queryset = XdLink.objects.all()          
+            self.fields['attestation'].queryset = Attestation.objects.all()          
+            self.fields['audit'].queryset = Audit.objects.all()          
+            self.fields['data'].queryset = Cluster.objects.all()          
+            self.fields['subject'].queryset = Party.objects.all()          
+            self.fields['provider'].queryset = Party.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -756,6 +812,9 @@ class DMAdminForm(forms.ModelForm):
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=instance.project)
             self.fields['entry'].queryset = Entry.objects.filter(project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
+            self.fields['entry'].queryset = Entry.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -814,6 +873,11 @@ class AuditAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['location'].queryset = Cluster.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
+            self.fields['system_id'].queryset = XdString.objects.all()          
+            self.fields['system_user'].queryset = Party.objects.all()          
+            self.fields['location'].queryset = Cluster.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -853,6 +917,11 @@ class ParticipationAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['mode'].queryset = XdString.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
+            self.fields['performer'].queryset = Party.objects.all()          
+            self.fields['function'].queryset = XdString.objects.all()          
+            self.fields['mode'].queryset = XdString.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -890,6 +959,10 @@ class PartyAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['external_ref'].queryset = XdLink.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
+            self.fields['details'].queryset = Cluster.objects.all()          
+            self.fields['external_ref'].queryset = XdLink.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)
@@ -929,6 +1002,12 @@ class AttestationAdminForm(forms.ModelForm):
                 project=instance.project)
             self.fields['committer'].queryset = Party.objects.filter(
                 project=instance.project)
+        elif instance.pk is None and self.default_prj is None:
+            self.fields['pred_obj'].queryset = PredObj.objects.all()          
+            self.fields['view'].queryset = XdFile.objects.all()          
+            self.fields['proof'].queryset = XdFile.objects.all()          
+            self.fields['reason'].queryset = XdString.objects.all()          
+            self.fields['committer'].queryset = Party.objects.all()          
         else:
             self.fields['pred_obj'].queryset = PredObj.objects.filter(
                 project=self.default_prj)

@@ -1,21 +1,21 @@
 """
-Django model definitions
+DmGen model definitions
 """
-import os
+
 import uuid
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
-from django.contrib.auth.models import Group
 from django.conf.global_settings import LANGUAGES as DJANGO_LANG
 from django.utils.translation import ugettext_lazy as _
-
-from .exceptions import *
+from django.contrib import messages
 
 # import all of the publishers.
-from .publisher import *
+from .publisher import (publish_XdBoolean, publish_XdLink, publish_XdString, publish_XdFile, publish_XdInterval,
+                        publish_ReferenceRange, publish_SimpleReferenceRange, publish_XdOrdinal, publish_XdCount, publish_XdQuantity,
+                        publish_XdRatio, publish_XdTemporal, publish_Party, publish_Participation, publish_Audit, publish_Attestation,
+                        publish_Cluster, publish_Entry)
 from s3m.settings import AUTH_USER_MODEL
 
 LANGUAGES = [('en-US', 'US English'), ('pt-BR', 'Brazilian Portuguese')]
@@ -30,14 +30,13 @@ def no_delete_test(sender, instance, **kwargs):
     if sender in [Cluster, XdBoolean, XdString, XdCount, XdString, XdInterval, XdFile, XdOrdinal,
                   XdQuantity, XdRatio, XdString, XdTemporal, XdLink, Entry, Participation, Party, ReferenceRange, Units]:
         if instance.published:
-            pass
-            #raise PermissionDenied
+            raise PermissionDenied
 
 
 def dm_folder(instance, filename):
-    fldrTitle = ''.join(
+    fldr_title = ''.join(
         [c for c in instance.title if c.isalnum() and ord(c) <= 127])
-    return '/'.join([fldrTitle, filename])
+    return '/'.join([fldr_title, filename])
 
 
 def get_rcode(ctid):
@@ -194,6 +193,7 @@ class Predicate(models.Model):
         verbose_name = "Predicate"
         verbose_name_plural = "Predicates"
 
+
 class PredObj(models.Model):
     """
     Predicate - Object references.
@@ -201,7 +201,7 @@ class PredObj(models.Model):
     po_name = models.CharField(_("Name"), max_length=100,
                                help_text=_("Enter a human readable name for this Predicate/URI combination."
                                            " This is only used to aide selection, it is not part of the "
-                                           "PCM semantics."), blank=True, default='')
+                                           "MC semantics."), blank=True, default='')
     predicate = models.ForeignKey(Predicate, verbose_name=_("Predicate"),
                                   help_text=_("Select a predicate to define the RDF triple."), blank=True, null=True)
     object_uri = models.CharField(_("Object URI"), max_length=2000,
@@ -237,20 +237,21 @@ class Common(models.Model):
         "Published must be a green check icon in order to use this in a DM. This is not user editable. It is managed by the publication process."))
     description = models.TextField(_('description'), help_text=_(
         "Enter a free text description for this complexType. Include a usage statement and any possible misuses. This is used as the annotation for the MC."), null=True)
-    pred_obj = models.ManyToManyField(PredObj, verbose_name=_("Predicate - Object"), help_text=_(
-        "Select or create a new set of Predicate Object combinations as semantic links."))
+    pred_obj = models.ManyToManyField(PredObj, verbose_name=_("RDF Object"), help_text=_(
+        "Select or create a new set of RDF Objects as semantic links to define this item."))
     schema_code = models.TextField(
         _("Schema Code"), help_text="This is only writable from the DMGEN, not via user input. It contains the code required for each component to create an entry in a DM.", blank=True, null=True, default='')
+
+# TODO: Remove assert.
     asserts = models.TextField(
-        _("asserts"), help_text="Valid XPath 2.0 assert statements. See the documentation for details. One per line.", blank=True, null=True, default='')
+        _("asserts"), help_text="Valid XPath 2.0 assert constraint statements that muse evaluate to a boolean. See the documentation for details. One per line.", blank=True, null=True, default='')
+
     lang = models.CharField(_("language"), max_length=40, choices=LANGUAGES,
                             default='en-US', help_text=_('Choose the language of this MC.'))
     creator = models.ForeignKey(Modeler, verbose_name="Creator",
                                 blank=True, related_name='%(class)s_related_creator', default=1)
     edited_by = models.ForeignKey(Modeler, verbose_name="Last Edited By",
                                   blank=True, related_name='%(class)s_related_edited_by', default=1)
-    r_code = models.TextField(
-        _("R Code"), help_text="This is only writable from the DMGEN, not via user input. It contains the code required for each component to create a function for the R data analysis.", blank=True, null=True, default='')
 
     def __str__(self):
         return self.project.prj_name + ' : ' + self.label
@@ -320,7 +321,7 @@ class XdLink(XdAny):
     Used to specify a link to another resource such as another DM.
     """
     relation = models.CharField(_('relation'), max_length=110, help_text=_(
-        "The relationship describing the link. Usually constrained by an ontology such as <a href='http://www.obofoundry.org/cgi-bin/detail.cgi?id=ro'>OBO RO</a>."))
+        "The relationship describing the link. Usually constrained by an ontology such as <a href='https://github.com/oborel/obo-relations'>OBO RO</a>."))
     relation_uri = models.CharField(_('relation URI'), max_length=255, help_text=_(
         "The relationship URI. Points to the vocabulary, ontology, etc that provides the relation."))
 
@@ -359,7 +360,7 @@ class XdString(XdAny):
     enums = models.TextField(_('enumerations'), blank=True, help_text=_(
         "Enter the set of values of the string (e.g.Male,Female). One per line."))
     definitions = models.TextField(_('enumeration definitions'), blank=True, help_text=_(
-        "Enter a URI (prefereable a URL) defining each enumeration. One per line."))
+        "Enter a URI (prefereable a URL) defining each enumeration. One per line. If the URI is the same for each enumeration then just put it on the first line."))
     def_val = models.CharField(_('default value'), max_length=255, blank=True, help_text=_(
         "Enter a default value (up to 255 characters) for the string if desired. Cannot contain 'http://' nor 'https://'"))
 
@@ -436,7 +437,7 @@ class XdFile(XdAny):
     alt_txt = models.CharField(_("Alt. Text"), max_length=110, blank=True, help_text=_(
         'Default alternative text label to display when the content cannot be displayed.'))
     content_mode = models.CharField(_("Content Mode"), default='Select Mode:', help_text=_(
-        "Select how the content will referenced, either via a URL or included in the data instance. Example text is; XML, JSON, SQL, etc. Example binary is; MP#, MP4, PNG, etc."), choices=MODE_TYPES, max_length=6)
+        "Select how the content will referenced, either via a URL or included in the data instance. Example text is; XML, JSON, SQL, etc. Example binary is; MP3, MP4, PNG, etc."), choices=MODE_TYPES, max_length=6)
 
     def publish(self, request):
         if self.schema_code == '':
@@ -647,7 +648,7 @@ class XdOrdinal(XdOrdered):
     symbols = models.TextField(_('symbols'), help_text=_(
         "Enter the symbols or the text that represent the ordinal values, which may be strings made from '+' symbols, or other enumerations of terms such as 'mild', 'moderate', 'severe', or even the same number series used for the ordinal values, e.g. '1', '2', '3'.. One per line."))
     annotations = models.TextField(_('Symbols Definitions'), blank=True, help_text=_(
-        "Enter a URI for a definitions for each symbol. One per line."))
+        "Enter a URI for as a definition for each symbol. One per line. If the URI is the same for each symbol then just put it on the first line."))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -676,16 +677,22 @@ class XdQuantified(XdOrdered):
     """
     min_magnitude = models.DecimalField(_('minimum magnitude'), blank=True, null=True, max_digits=10, decimal_places=5, help_text=_(
         "The minimum allowed value for a magnitude. If there isn't a min. then leave blank."))
+
     max_magnitude = models.DecimalField(_('maximum magnitude'), blank=True, null=True, max_digits=10, decimal_places=5, help_text=_(
         "Any maximum allowed value. If there isn't a max. then leave blank."))
-    min_inclusive = models.IntegerField(_('minimum inclusive'), help_text=_(
+
+    min_inclusive = models.DecimalField(_('minimum inclusive'), max_digits=10, decimal_places=5, help_text=_(
         "Enter the minimum (inclusive) value for this concept."), null=True, blank=True)
-    max_inclusive = models.IntegerField(_('maximum inclusive'), help_text=_(
+
+    max_inclusive = models.DecimalField(_('maximum inclusive'), max_digits=10, decimal_places=5, help_text=_(
         "Enter the maximum (inclusive) value for this concept."), null=True, blank=True)
-    min_exclusive = models.IntegerField(_('minimum exclusive'), help_text=_(
+
+    min_exclusive = models.DecimalField(_('minimum exclusive'), max_digits=10, decimal_places=5, help_text=_(
         "Enter the minimum (exclusive) value for this concept."), null=True, blank=True)
-    max_exclusive = models.IntegerField(_('maximum exclusive'), help_text=_(
+
+    max_exclusive = models.DecimalField(_('maximum exclusive'), max_digits=10, decimal_places=5, help_text=_(
         "Enter the maximum (exclusive) value for this concept."), null=True, blank=True)
+
     total_digits = models.IntegerField(_('total digits'), help_text=_(
         "Enter the maximum number of digits for this concept, excluding the decimal separator and the decimal places."), null=True, blank=True)
 
@@ -823,10 +830,13 @@ class XdTemporal(XdOrdered):
     """
     allow_duration = models.BooleanField(_('allow duration'), default=False, help_text=_(
         "If Duration is allowed, no other types will be permitted."))
+
+# TODO: Remove these two duration types.
     allow_ymduration = models.BooleanField(_('allow yearMonthDuration'), default=False, help_text=_(
         "If yearMonthDuration is allowed, no other types will be permitted."))
     allow_dtduration = models.BooleanField(_('allow dayTimeDuration'), default=False, help_text=_(
         "If dayTimeDuration is allowed, no other types will be permitted."))
+
     allow_date = models.BooleanField(_('allow date'), default=False, help_text=_(
         'Check this box if complete date entry is allowed.'))
     allow_time = models.BooleanField(_('allow time'), default=False, help_text=_(
@@ -1063,12 +1073,9 @@ class Entry(Common):
         'Optional external identifier of protocol used to create this Entry.  This could be a clinical guideline, an operations protocol,etc.'))
     workflow = models.ForeignKey(XdLink, null=True, verbose_name=_('workflow id'), blank=True, help_text=_(
         'Identifier of externally held workflow engine (state machine) data for this workflow execution.'))
-    audit = models.ForeignKey('Audit', verbose_name=_('audit'), null=True, blank=True, help_text=_(
-        'Audit structure to provide audit trail tracking of information.'))
-    attestation = models.ForeignKey(Attestation, verbose_name=_(
-        'attestation'), null=True, blank=True, help_text=_('An attestation that this Entry is correct.'))
-    links = models.ManyToManyField(XdLink, verbose_name=_('links'), blank=True, related_name='%(class)s_related_links',
-                                   default=None, help_text=_('Can be used to establish ad-hoc links between concepts.'))
+    audit = models.ManyToManyField('Audit', verbose_name=_('audit'), blank=True, help_text=_('Audit structure to provide audit trail tracking of information.'))
+    attestation = models.ForeignKey(Attestation, verbose_name=_('attestation'), null=True, blank=True, help_text=_('An attestation that this Entry is correct.'))
+    links = models.ManyToManyField(XdLink, verbose_name=_('links'), blank=True, related_name='%(class)s_related_links', default=None, help_text=_('Can be used to establish ad-hoc links between concepts.'))
 
     def publish(self, request):
         if self.schema_code == '':
@@ -1109,7 +1116,7 @@ class DM(models.Model):
     project = models.ForeignKey(Project, verbose_name=_(
         "project name"), to_field="prj_name", help_text=_('Choose a Project for this Data Model (DM)'))
     about = models.CharField(_('about'), default="http://dmgen.s3model.com/dmlib/", max_length=255, help_text=_(
-        "The URL to the DM after publication. The DM ID will be added after the trailing slash in the format of 'ccd-{ccd_id}.xsd' This provides a full path and filename for the ccd as a unique identifier."))
+        "The URL to the DM after publication. The DM ID will be added after the trailing slash in the format of 'dm-{dm_id}.xsd' This provides a full path and filename for the dm as a unique identifier."))
     title = models.CharField(_('title'), unique=True, max_length=255, help_text=_(
         "Enter the name of this Data Model (DM)."))
     author = models.ForeignKey(Modeler, verbose_name=_("Author"), help_text=_(
@@ -1162,7 +1169,7 @@ class DM(models.Model):
     sha1_file = models.FileField(
         "DM SHA1", upload_to=dm_folder, max_length=2048, blank=True, null=True)
     zip_file = models.FileField(
-        "DM Zip", upload_to='/zips/', max_length=2048, blank=True, null=True)
+        "DM Zip", upload_to='zips/', max_length=2048, blank=True, null=True)
 
     def __init__(self, *args, **kwargs):
         super(DM, self).__init__(*args, **kwargs)
@@ -1171,21 +1178,6 @@ class DM(models.Model):
 
     def __str__(self):
         return self.project.prj_name + ' : ' + self.title
-
-    def publish(self, request):
-        if self.schema_code == '':
-            result = publish_DM(self)
-            if len(self.schema_code) > 100:
-                self.published = True
-                self.save()
-            else:
-                self.published = False
-                self.save()
-        else:
-            result = (self.title.strip(
-            ) + ' was not published because code already exists.', messages.ERROR)
-
-        return result
 
     class Meta:
         verbose_name = "DM"

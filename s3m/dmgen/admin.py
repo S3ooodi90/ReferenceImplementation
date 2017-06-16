@@ -1,20 +1,21 @@
 """
 Django Admin definitions.
 """
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
+from uuid import uuid4
 
-from dmgen.models import *
-from dmgen.forms import *
+from dmgen.models import Attestation, Audit, Modeler, Predicate, PredObj, NS, Project, Participation, ReferenceRange, SimpleReferenceRange, \
+     Party, XdBoolean, XdFile, XdInterval, XdLink, XdOrdinal, XdCount, XdQuantity, XdRatio, XdString, XdTemporal, Cluster, Entry, DM, Units
+from dmgen.forms import ParticipationAdminForm, AttestationAdminForm, AuditAdminForm, SimpleRRAdminForm, ReferenceRangeAdminForm, PartyAdminForm, \
+     ClusterAdminForm, XdTemporalAdminForm, XdRatioAdminForm, XdQuantityAdminForm, XdOrdinalAdminForm, XdFileAdminForm, XdIntervalAdminForm, \
+     XdCountAdminForm, XdStringAdminForm, UnitsAdminForm, XdLinkAdminForm, XdBooleanAdminForm, EntryAdminForm, DMAdminForm, DMAdminSUForm
 from dmgen.generator import generateDM
-
-from .exceptions import CodesImportError
 
 # disable Django's sitewide delete
 admin.site.disable_action('delete_selected')
 # now add our own that checks for creator
-
 
 def delete_mcs(modeladmin, request, queryset):
     # get the current users modeler id
@@ -47,6 +48,7 @@ def make_published(modeladmin, request, queryset):
             continue
         if not obj.published and obj.schema_code == '':  # publish and save code
             msg = obj.publish(request)
+
         else:
             msg = (obj.__str__() + " is already Published.", messages.WARNING)
 
@@ -60,39 +62,35 @@ def republish(modeladmin, request, queryset):
             if obj.published is True:  # re-publish and save code
                 obj.published = False
                 obj.schema_code = ''
-                obj.r_code = ''
                 obj.save()
                 msg = obj.publish(request)
                 modeladmin.message_user(request, msg[0], msg[1])
     else:
         msg = ("User: " + request.user.username +
                " is not authorized to unpublish items.", messages.ERROR)
+        modeladmin.message_user(request, msg[0], msg[1])
 
 republish.short_description = _("Re-Publish (Development Only!)")
 
 
-def republishAll(modeladmin, request, queryset):
+def republish_all(modeladmin, request, queryset):
     if request.user.is_superuser:
         q = XdBoolean.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " XdBooleans.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
                 print(obj.__str__() + " wasn't republished.")
             else:
                 print(obj.__str__() + " was republished.")
-
-
         q = Units.objects.filter(published=True)
         print("Re-publishing " + str(len(q)) + " Units.")
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -105,7 +103,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -118,7 +115,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -131,7 +127,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -144,7 +139,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -157,7 +151,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -170,7 +163,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -183,7 +175,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -196,7 +187,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -209,7 +199,6 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -222,7 +211,7 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
+
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -234,7 +223,7 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
+
             obj.save()
 
         q2 = []
@@ -268,7 +257,7 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
+
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -279,7 +268,7 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
+
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -290,7 +279,7 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
+
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -301,7 +290,7 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
+
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -312,7 +301,7 @@ def republishAll(modeladmin, request, queryset):
         for obj in q:
             obj.published = False
             obj.schema_code = ''
-            obj.r_code = ''
+
             obj.save()
             msg = obj.publish(request)
             if msg[1] != messages.SUCCESS:  # there was an error.
@@ -323,14 +312,14 @@ def republishAll(modeladmin, request, queryset):
         msg = ("User: " + request.user.username +
                " is not authorized to Republish items.", messages.ERROR)
 
-republishAll.short_description = _("Re-Publish ALL (Development Only!)")
+republish_all.short_description = _("Re-Publish ALL (Development Only!)")
 
 
 def unpublish(modeladmin, request, queryset):
     if request.user.is_superuser:
         for obj in queryset:
             obj.schema_code = ''
-            obj.r_code = ''
+
             obj.published = False
             msg = (obj.__str__() + " was Unpublished!", messages.SUCCESS)
             obj.save()
@@ -352,8 +341,8 @@ def copy_dt(modeladmin, request, queryset):
         new_obj.label = obj.label + " (***COPY***)"
         new_obj.published = False
         new_obj.schema_code = ''
-        new_obj.ct_id = None
-        new_obj.element_ctid = None
+        new_obj.ct_id = uuid4()
+        new_obj.adapter_ctid = uuid4()
         new_obj.save()
         msg = (obj.__str__() + " was Created!", messages.SUCCESS)
 
@@ -371,8 +360,8 @@ def copy_labeled(modeladmin, request, queryset):
         new_obj.label = obj.label + " (***COPY***)"
         new_obj.published = False
         new_obj.schema_code = ''
-        new_obj.ct_id = None
-        new_obj.element_ctid = None
+        new_obj.ct_id = uuid4()
+        new_obj.adapter_ctid = uuid4()
         new_obj.save()
         msg = (obj.__str__() + " was Created!", messages.SUCCESS)
 
@@ -390,8 +379,8 @@ def copy_cluster(modeladmin, request, queryset):
         new_obj.label = obj.label + " (***COPY***)"
         new_obj.published = False
         new_obj.schema_code = ''
-        new_obj.ct_id = None
-        new_obj.element_ctid = None
+        new_obj.ct_id = uuid4()
+        new_obj.adapter_ctid = uuid4()
         new_obj.save()
         msg = (obj.__str__() + " was Created!", messages.SUCCESS)
 
@@ -409,7 +398,7 @@ def copy_entry(modeladmin, request, queryset):
         new_obj.label = obj.label + " (***COPY***)"
         new_obj.published = False
         new_obj.schema_code = ''
-        new_obj.ct_id = None
+        new_obj.ct_id = uuid4()
         new_obj.save()
         msg = (obj.__str__() + " was Created!", messages.SUCCESS)
 
@@ -445,9 +434,9 @@ def generate_dm(modeladmin, request, queryset):
     elif queryset[0].published and request.user.is_superuser is False:
         msg = (_("This DM has been previously generated. Please make a copy and generate a new one."), messages.ERROR)
     else:
-        #new_id = str(uuid4())
+        # new_id = str(uuid4())
         obj = queryset[0]
-        #obj.ct_id = new_id
+        # obj.ct_id = new_id
         obj.identifier = 'dm-' + str(obj.ct_id)
         obj.save()
         modeladmin.message_user(
@@ -479,7 +468,7 @@ class DMAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     ordering = ['project', 'title']
     search_fields = ['title', 'ct_id']
-    actions = [copy_dm, generate_dm, republishAll, delete_mcs, ]
+    actions = [copy_dm, generate_dm, republish_all, delete_mcs, ]
     readonly_fields = ['published', 'schema_code', 'creator', 'edited_by', ]
     filter_horizontal = ['contrib', 'pred_obj', ]
 
@@ -490,7 +479,7 @@ class DMAdmin(admin.ModelAdmin):
                       'fields': ('entry',),
                       'description': _('Select one Entry for this DM.')}),
         ("Additional Information ", {'classes': ('wide',),
-                                     'fields': ('pred_obj', 'asserts',),
+                                     'fields': ('pred_obj', ),
                                      'description': _("")}),
         ("Metadata ", {'classes': ('wide',),
                        'fields': ('dc_language', 'about', 'description', 'author', 'contrib',
@@ -555,7 +544,7 @@ class EntryAdmin(admin.ModelAdmin):
                                                     'fields': ('links', 'audit', 'participations',
                                                                'protocol', 'workflow', 'state', 'attestation'),
                                                     'description': _('At least a generic item should be selected for each of these. This allows data to be entered at runtime.')}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
                        'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
@@ -576,9 +565,9 @@ class XdBooleanAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator', ]
     search_fields = ['label', 'ct_id', ]
     ordering = ['project', 'label', ]
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     form = XdBooleanAdminForm
     filter_horizontal = ['pred_obj', ]
 
@@ -594,9 +583,9 @@ class XdBooleanAdmin(admin.ModelAdmin):
                 'fields': ('published', ('label', 'project', 'lang'), 'require_vtb', 'require_vte', 'require_tr', 'require_mod', 'trues', 'falses')}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
 
     )
 
@@ -615,9 +604,9 @@ class XdLinkAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     form = XdLinkAdminForm
     filter_horizontal = ['pred_obj', ]
 
@@ -633,9 +622,9 @@ class XdLinkAdmin(admin.ModelAdmin):
                 'fields': ('published', ('label', 'project', 'lang'), 'require_vtb', 'require_vte', 'require_tr', 'require_mod', 'relation',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
 
     )
 
@@ -654,9 +643,9 @@ class XdStringAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     filter_horizontal = ['pred_obj', ]
     form = XdStringAdminForm
 
@@ -674,9 +663,9 @@ class XdStringAdmin(admin.ModelAdmin):
                       'fields': ('min_length', 'max_length', 'exact_length', 'enums', 'definitions', 'def_val',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
 
     )
 
@@ -695,9 +684,9 @@ class UnitsAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     form = UnitsAdminForm
     filter_horizontal = ['pred_obj', ]
 
@@ -713,9 +702,9 @@ class UnitsAdmin(admin.ModelAdmin):
                 'fields': ('published', ('label', 'project', 'lang'), 'require_vtb', 'require_vte', 'require_tr', 'require_mod', 'enums', 'definitions', 'def_val',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
 
     )
 
@@ -734,9 +723,9 @@ class XdCountAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     filter_horizontal = ['reference_ranges', 'pred_obj', ]
     form = XdCountAdminForm
 
@@ -758,9 +747,9 @@ class XdCountAdmin(admin.ModelAdmin):
         ("Optional", {'classes': ('collapse',),
                       'fields': ('normal_status', 'reference_ranges',
                                  'min_inclusive', 'max_inclusive', 'min_exclusive', 'max_exclusive', 'total_digits',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
 
     def save_model(self, request, obj, form, change):
@@ -778,9 +767,9 @@ class XdIntervalAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     form = XdIntervalAdminForm
     filter_horizontal = ['pred_obj', ]
 
@@ -800,9 +789,9 @@ class XdIntervalAdmin(admin.ModelAdmin):
                             'fields': ('units_name', 'units_uri',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
 
     def save_model(self, request, obj, form, change):
@@ -820,9 +809,9 @@ class XdFileAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     form = XdFileAdminForm
     filter_horizontal = ['pred_obj', ]
 
@@ -837,12 +826,12 @@ class XdFileAdmin(admin.ModelAdmin):
         (None, {'classes': ('wide',),
                 'fields': ('published', ('label', 'project', 'lang'), 'require_vtb', 'require_vte', 'require_tr', 'require_mod', )}),
         ("Additional Information ", {'classes': ('wide',),
-                                     'fields': ('description', 'pred_obj', 'content_mode',)}),
+                                     'fields': ('description', 'pred_obj', 'content_mode', 'encoding','language',)}),
         ("Optional", {'classes': ('collapse',),
-                      'fields': ('language', 'media_type', 'encoding', 'alt_txt',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+                      'fields': ('media_type', 'alt_txt',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
 
     def save_model(self, request, obj, form, change):
@@ -860,9 +849,9 @@ class XdOrdinalAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     filter_horizontal = ['reference_ranges', 'pred_obj', ]
     form = XdOrdinalAdminForm
 
@@ -880,9 +869,9 @@ class XdOrdinalAdmin(admin.ModelAdmin):
                       'fields': ('normal_status', 'reference_ranges',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
 
     def save_model(self, request, obj, form, change):
@@ -900,9 +889,9 @@ class XdQuantityAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     filter_horizontal = ['reference_ranges', 'pred_obj', ]
     form = XdQuantityAdminForm
 
@@ -924,9 +913,9 @@ class XdQuantityAdmin(admin.ModelAdmin):
                                  'min_inclusive', 'max_inclusive', 'min_exclusive', 'max_exclusive', 'total_digits', 'fraction_digits',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
 
     def save_model(self, request, obj, form, change):
@@ -944,9 +933,9 @@ class XdRatioAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     filter_horizontal = ['reference_ranges', 'pred_obj', ]
     form = XdRatioAdminForm
 
@@ -960,13 +949,13 @@ class XdRatioAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'classes': ('wide',),
                 'fields': ('published', ('label', 'project', 'lang'), 'require_vtb', 'require_vte', 'require_tr', 'require_mod', 'ratio_type',)}),
-        ("Numerator Units (Optional and CANNOT be the same PcT as the denominator or ratio.)", {'classes': ('collapse',),
+        ("Numerator Units (Optional and CANNOT be the same MC as the denominator or ratio.)", {'classes': ('collapse',),
                                                                                                 'fields': ('num_units',),
                                                                                                 'description': _('Select a units.')}),
-        ("Denominator Units (Optional and CANNOT be the same PcT as the numerator or ratio.)", {'classes': ('collapse',),
+        ("Denominator Units (Optional and CANNOT be the same MC as the numerator or ratio.)", {'classes': ('collapse',),
                                                                                                 'fields': ('den_units',),
                                                                                                 'description': _('Select a units.')}),
-        ("Ratio Units (Optional and CANNOT be the same PcT as the numerator or denominator.)", {'classes': ('collapse',),
+        ("Ratio Units (Optional and CANNOT be the same MC as the numerator or denominator.)", {'classes': ('collapse',),
                                                                                                 'fields': ('ratio_units',),
                                                                                                 'description': _('Select a units.')}),
         ("Optional Constraints", {'classes': ('collapse',),
@@ -976,9 +965,9 @@ class XdRatioAdmin(admin.ModelAdmin):
                                              'reference_ranges', 'min_magnitude', 'max_magnitude',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
 
     def save_model(self, request, obj, form, change):
@@ -996,9 +985,9 @@ class XdTemporalAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code',
-                       'r_code', 'creator', 'edited_by', ]
+                       'creator', 'edited_by', ]
     filter_horizontal = ['reference_ranges', 'pred_obj', ]
     form = XdTemporalAdminForm
 
@@ -1012,18 +1001,18 @@ class XdTemporalAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'classes': ('wide',),
                 'fields': ('published', ('label', 'project', 'lang'), 'require_vtb', 'require_vte', 'require_tr', 'require_mod', )}),
-        ("Allow Only One Duration Type", {'classes': ('wide',),
-                                          'fields': ('allow_duration', 'allow_ymduration', 'allow_dtduration',)}),
+        ("Allow Only Duration Type", {'classes': ('wide',),
+                                          'fields': ('allow_duration', )}),
         ("Allow Any Combination of these:", {'classes': ('wide',),
-                                             'fields': ('allow_date', 'allow_time', 'allow_datetime', 'allow_datetimestamp', 'allow_day', 'allow_month',
+                                             'fields': ('allow_date', 'allow_time', 'allow_datetime', 'allow_day', 'allow_month',
                                                         'allow_year', 'allow_year_month', 'allow_month_day',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
         ("Optional", {'classes': ('collapse',),
                       'fields': ('normal_status', 'reference_ranges',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
-                       'fields': ('creator', 'edited_by', 'schema_code', 'r_code',)}),
+                       'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
 
     def save_model(self, request, obj, form, change):
@@ -1041,7 +1030,7 @@ class ClusterAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_cluster, delete_mcs, ]
+    actions = [make_published, unpublish, copy_cluster, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code', 'creator', 'edited_by', ]
     filter_horizontal = ['xdboolean', 'xdlink', 'xdstring', 'clusters', 'xdfile',
                          'xdordinal', 'xdtemporal', 'xdcount', 'xdquantity', 'xdratio', 'pred_obj', ]
@@ -1067,7 +1056,7 @@ class ClusterAdmin(admin.ModelAdmin):
                           'fields': ('xdcount', 'xdquantity', 'xdratio',),
                           'description': _('Select one or more quantitative datatype(s) for this Cluster.')}),
 
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
                        'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
@@ -1087,8 +1076,7 @@ class PartyAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish,
-               copy_labeled, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_labeled, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code', 'creator', 'edited_by', ]
     filter_horizontal = ['external_ref', 'pred_obj', ]
     form = PartyAdminForm
@@ -1105,7 +1093,7 @@ class PartyAdmin(admin.ModelAdmin):
                 'fields': ('published', ('label', 'project', 'lang'), 'details', 'external_ref',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
                        'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
@@ -1125,7 +1113,7 @@ class ReferenceRangeAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code', 'creator', 'edited_by', ]
     form = ReferenceRangeAdminForm
     filter_horizontal = ['pred_obj', ]
@@ -1144,7 +1132,7 @@ class ReferenceRangeAdmin(admin.ModelAdmin):
                            'interval', 'is_normal',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
                        'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
@@ -1164,7 +1152,7 @@ class SimpleRRAdmin(admin.ModelAdmin):
     list_filter = ['published', 'project', 'creator']
     search_fields = ['label', 'ct_id']
     ordering = ['project', 'label']
-    actions = [make_published, unpublish, copy_dt, republish, delete_mcs, ]
+    actions = [make_published, unpublish, copy_dt, republish, delete_mcs,  ]
     readonly_fields = ['published', 'schema_code', 'creator', 'edited_by', ]
     form = SimpleRRAdminForm
     filter_horizontal = ['pred_obj', ]
@@ -1189,7 +1177,7 @@ class SimpleRRAdmin(admin.ModelAdmin):
 
         ("Additional Information ", {'classes': ('wide', ),
                                      'fields': ('description', 'pred_obj', )}),
-        ("Advanced", {'classes': ('collapse', ), 'fields': ('asserts', )}),
+        ("Advanced", {'classes': ('collapse', ), 'fields': ( )}),
         ("Read Only", {'classes': ('collapse', ),
                        'fields': ('creator', 'edited_by', 'schema_code', )}),
     )
@@ -1229,7 +1217,7 @@ class AuditAdmin(admin.ModelAdmin):
                                      'fields': ('description', 'pred_obj',)}),
         (None, {'classes': ('wide',),
                 'fields': ('system_id', 'system_user', 'location',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
                        'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
@@ -1267,7 +1255,7 @@ class AttestationAdmin(admin.ModelAdmin):
                 'fields': ('published', ('label', 'project', 'lang'), 'view', 'reason', 'proof', 'committer',)}),
         ("Additional Information", {'classes': ('wide',),
                                     'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
                        'fields': ('creator', 'edited_by', 'schema_code',)}),
     )
@@ -1305,7 +1293,7 @@ class ParticipationAdmin(admin.ModelAdmin):
                 'fields': ('published', ('label', 'project', 'lang'), 'performer', 'function', 'mode',)}),
         ("Additional Information ", {'classes': ('wide',),
                                      'fields': ('description', 'pred_obj',)}),
-        ("Advanced", {'classes': ('collapse',), 'fields': ('asserts',)}),
+        ("Advanced", {'classes': ('collapse',), 'fields': ()}),
         ("Read Only", {'classes': ('collapse',),
                        'fields': ('creator', 'edited_by', 'schema_code',)}),
     )

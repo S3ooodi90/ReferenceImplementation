@@ -19,15 +19,10 @@ except ImportError:
     from urllib.parse import quote
 
 from uuid import uuid4
-from collections import OrderedDict
 from xml.sax.saxutils import escape
 from django.contrib import messages
 
-from s3m.settings import RMVERSION, RM_URI
-
-from .exceptions import PublishingError, ModellingError
-from .r_code_gen import pct_rcode
-
+from s3m.settings import RM_URI
 
 def reset_publication(self):
     """
@@ -50,10 +45,6 @@ def publish_XdBoolean(self):
 
     self.ct_id = str(uuid4())
     self.published = False
-    self.save()
-
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdBoolean')
     self.save()
 
     # fix double quotes in label
@@ -91,7 +82,7 @@ def publish_XdBoolean(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdBooleanType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -121,9 +112,9 @@ def publish_XdBoolean(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdBoolean
     dt_str += padding.rjust(indent + 8) + \
         ("<xs:choice maxOccurs='1' minOccurs='1'>\n")
@@ -150,6 +141,8 @@ def publish_XdBoolean(self):
 
     dt_str += padding.rjust(indent + 8) + ("</xs:choice>\n")
     dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
+    
+    # TODO: Remove all assert tests when modifying the models. 
     if self.asserts:
         str1 = "<xs:assert test="
         str2 = "/>\n"
@@ -180,9 +173,6 @@ def publish_XdLink(self):
     self.ct_id = str(uuid4())
     self.published = False
     self.save()
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdLink')
-    self.save()
 
     # fix double quotes in label
     self.label.replace('"', '&quot;')
@@ -211,7 +201,7 @@ def publish_XdLink(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdLinkType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -241,9 +231,9 @@ def publish_XdLink(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdLink
     dt_str += padding.rjust(indent + 8) + (
         "<xs:element maxOccurs='1' minOccurs='1' name='link' type='xs:anyURI'/>\n")
@@ -282,9 +272,6 @@ def publish_XdString(self):
     self.ct_id = str(uuid4())
     self.published = False
     self.save()
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdString')
-    self.save()
 
     # fix double quotes in label
     self.label.replace('"', '&quot;')
@@ -295,9 +282,9 @@ def publish_XdString(self):
     dt_str = ''
 
     indent = 2
-    enumList = []
+    enum_list = []
     for e in self.enums.splitlines():
-        enumList.append(escape(e))
+        enum_list.append(escape(e))
 
     tips = []
     for t in self.definitions.splitlines():
@@ -326,7 +313,7 @@ def publish_XdString(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdStringType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -356,11 +343,11 @@ def publish_XdString(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdString
-    if enumList:
+    if enum_list:
         if default:
             dt_str += padding.rjust(indent + 8) + (
                 "<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' default='" + escape(default.strip()) + "'>\n")
@@ -376,10 +363,10 @@ def publish_XdString(self):
                 "<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>\n")
 
 # Enumerations
-    if enumList:
-        if len(tips) != len(enumList):
+    if enum_list:
+        if len(tips) != len(enum_list):
             if len(tips) == 0:
-                tips = enumList
+                tips = enum_list
             else:
                 reset_publication(self)
                 msg = ("Cannot publish: " + self.__str__() +
@@ -389,17 +376,17 @@ def publish_XdString(self):
         dt_str += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
         dt_str += padding.rjust(indent + 14) + \
             ("<xs:restriction base='xs:string'>\n")
-        for n in range(len(enumList)):
+        for n in range(len(enum_list)):
             dt_str += padding.rjust(indent + 16) + (
-                "<xs:enumeration value='" + escape(enumList[n].strip()) + "'>\n")
+                "<xs:enumeration value='" + escape(enum_list[n].strip()) + "'>\n")
             dt_str += padding.rjust(indent + 16) + ("<xs:annotation>\n")
             dt_str += padding.rjust(indent + 18) + ("<xs:appinfo>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdf:Description rdf:about='mc-" +
-                                                   self.ct_id + "/xdstring-value/" + quote(enumList[n].strip()) + "'>\n")
+                                                   self.ct_id + "/xdstring-value/" + quote(enum_list[n].strip()) + "'>\n")
             dt_str += padding.rjust(indent + 2) + (
                 "  <rdfs:subPropertyOf rdf:resource='mc-" + self.ct_id + "'/>\n")
             dt_str += padding.rjust(indent + 2) + ("  <rdfs:label>" +
-                                                   enumList[n].strip() + "</rdfs:label>\n")
+                                                   enum_list[n].strip() + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("  <rdfs:isDefinedBy>" +
                                                    tips[n].strip() + "</rdfs:isDefinedBy>\n")
             dt_str += padding.rjust(indent + 2) + ("</rdf:Description>\n")
@@ -443,10 +430,6 @@ def publish_XdFile(self):
     self.published = False
     self.save()
 
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdFile')
-    self.save()
-
     # encode double quotes in label
     self.label.replace('"', '&quot;')
     self.save()
@@ -454,8 +437,6 @@ def publish_XdFile(self):
     # default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
     dt_str = ''
-    mime_list = None
-    comp_list = None
     indent = 2
 
     media_list = []
@@ -481,7 +462,7 @@ def publish_XdFile(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdFileType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -511,9 +492,9 @@ def publish_XdFile(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdFile
     dt_str += padding.rjust(indent + 8) + (
         "<xs:element maxOccurs='1' minOccurs='1' name='size' type='xs:int'/>\n")
@@ -605,6 +586,8 @@ def publish_XdInterval(self):
     dt_str = ''
     indent = 2
     padding = ('').rjust(indent)
+    invl_units = ''
+
     # Convert the bools to XSD strings
     li, ui, lb, ub = 'false', 'false', 'false', 'false'
     if self.lower_included:
@@ -670,7 +653,7 @@ def publish_XdInterval(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdIntervalType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -700,9 +683,9 @@ def publish_XdInterval(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdInterval
     # create an UUIDs for the invl-type restrictions
     lower_id = str(uuid4())
@@ -719,12 +702,14 @@ def publish_XdInterval(self):
         "<xs:element maxOccurs='1' minOccurs='1' name='lower-bounded' type='xs:boolean' fixed='" + lb + "'/>\n")
     dt_str += padding.rjust(indent + 8) + (
         "<xs:element maxOccurs='1' minOccurs='1' name='upper-bounded' type='xs:boolean' fixed='" + ub + "'/>\n")
+
     # both must be present or they are both ignored.
     if self.units_name and self.units_uri:
+        units_id = str(uuid4())
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1' name='units-name' type='xs:string' fixed='" + self.units_name.strip() + "'/>\n")
-        dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='1' name='units-uri' type='xs:anyURI' fixed='" + self.units_uri.strip() + "'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='1' name='interval-units'  type='s3m:mc-" + units_id + "'/>\n")
+    else:
+        units_id = None
 
     dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -740,6 +725,12 @@ def publish_XdInterval(self):
     # lower value restriction
     dt_str += padding.rjust(indent + 2) + \
         ("<xs:complexType name='mc-" + lower_id + "'>\n")
+    dt_str += padding.rjust(indent + 2) + ("<xs:annotation>\n")
+    dt_str += padding.rjust(indent + 2) + ("<xs:documentation>\n")
+    dt_str += padding.rjust(indent + 4) + "Lower value restriction for " + (escape(self.label) + "\n")
+    dt_str += padding.rjust(indent + 2) + ("</xs:documentation>\n")    
+    dt_str += padding.rjust(indent + 2) + ("</xs:annotation>\n")
+    
     dt_str += padding.rjust(indent + 4) + ("<xs:complexContent>\n")
     dt_str += padding.rjust(indent + 6) + \
         ("<xs:restriction base='s3m:InvlType'>\n")
@@ -761,6 +752,12 @@ def publish_XdInterval(self):
     # upper value restriction
     dt_str += padding.rjust(indent + 2) + \
         ("<xs:complexType name='mc-" + upper_id + "'>\n")
+    dt_str += padding.rjust(indent + 2) + ("<xs:annotation>\n")
+    dt_str += padding.rjust(indent + 2) + ("<xs:documentation>\n")
+    dt_str += padding.rjust(indent + 4) + "Upper value restriction for " + (escape(self.label) + "\n")
+    dt_str += padding.rjust(indent + 2) + ("</xs:documentation>\n")
+    dt_str += padding.rjust(indent + 2) + ("</xs:annotation>\n")
+    
     dt_str += padding.rjust(indent + 4) + ("<xs:complexContent>\n")
     dt_str += padding.rjust(indent + 6) + \
         ("<xs:restriction base='s3m:InvlType'>\n")
@@ -778,6 +775,22 @@ def publish_XdInterval(self):
     dt_str += padding.rjust(indent + 6) + ("</xs:restriction>\n")
     dt_str += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
     dt_str += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+
+    # interval units
+    if units_id:
+        dt_str += padding.rjust(indent + 2) + ("<xs:complexType name='mc-" + units_id + "'>\n")
+        dt_str += padding.rjust(indent + 4) + ("<xs:complexContent>\n")
+        dt_str += padding.rjust(indent + 6) + ("<xs:restriction base='s3m:InvlUnits'>\n")
+        dt_str += padding.rjust(indent + 8) + ("<xs:sequence>\n")
+        dt_str += padding.rjust(indent + 8) + (
+            "<xs:element maxOccurs='1' minOccurs='1' name='units-name' type='xs:string' fixed='" + self.units_name.strip() + "'/>\n")
+        dt_str += padding.rjust(indent + 8) + (
+            "<xs:element maxOccurs='1' minOccurs='1' name='units-uri' type='xs:anyURI' fixed='" + self.units_uri.strip() + "'/>\n")
+        dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
+        dt_str += padding.rjust(indent + 6) + ("</xs:restriction>\n")
+        dt_str += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
+        dt_str += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+
 
     if msg[1] == messages.SUCCESS:
         self.schema_code = dt_str.encode("utf-8")
@@ -807,9 +820,7 @@ def publish_ReferenceRange(self):
     indent = 2
     rr_def = escape(self.definition)
 
-    # TODO - change interval to interval
-
-    Xdi_id = str(self.interval.ct_id)
+    xdi_id = str(self.interval.ct_id)
     if self.is_normal:
         normal = "true"
     else:
@@ -836,7 +847,7 @@ def publish_ReferenceRange(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -866,14 +877,14 @@ def publish_ReferenceRange(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # ReferenceRange
     dt_str += padding.rjust(indent + 8) + (
         "<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' fixed='" + rr_def.strip() + "'/>\n")
     dt_str += padding.rjust(indent + 8) + (
-        "<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-" + Xdi_id + "'/> \n")
+        "<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-" + xdi_id + "'/> \n")
     dt_str += padding.rjust(indent + 8) + (
         "<xs:element maxOccurs='1' minOccurs='1' name='is-normal' type='xs:boolean' fixed='" + normal + "'/>\n")
     dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
@@ -989,7 +1000,7 @@ def publish_SimpleReferenceRange(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ReferenceRangeType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1020,9 +1031,9 @@ def publish_SimpleReferenceRange(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # ReferenceRange
     dt_str += (padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' "
                                             "fixed='") + rr_def.strip() + "'/>\n")
@@ -1195,10 +1206,6 @@ def publish_XdOrdinal(self):
     self.published = False
     self.save()
 
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdOrdinal')
-    self.save()
-
     # fix double quotes in label
     self.label.replace('"', '&quot;')
     self.save()
@@ -1219,7 +1226,7 @@ def publish_XdOrdinal(self):
     # test that these are really numbers
     for n in o:
         try:
-            x = int(n)
+            int(n)
         except:
             msg = (escape(self.label.strip()) + ": You MUST use digits for the Ordinal indicators. It seems one or more in " +
                    self.label.strip() + " is a string.", messages.ERROR)
@@ -1254,7 +1261,7 @@ def publish_XdOrdinal(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdOrdinalType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1284,9 +1291,9 @@ def publish_XdOrdinal(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdOrdered
     if len(self.reference_ranges.all()) != 0:  # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1380,10 +1387,6 @@ def publish_XdCount(self):
     self.published = False
     self.save()
 
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdCount')
-    self.save()
-
     # fix double quotes in label
     self.label.replace('"', '&quot;')
     self.save()
@@ -1421,7 +1424,7 @@ def publish_XdCount(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdCountType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1452,9 +1455,9 @@ def publish_XdCount(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdOrdered
     if len(self.reference_ranges.all()) != 0:  # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1563,10 +1566,6 @@ def publish_XdQuantity(self):
     self.published = False
     self.save()
 
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdQuantity')
-    self.save()
-
     # fix double quotes in label
     self.label.replace('"', '&quot;')
     self.save()
@@ -1604,7 +1603,7 @@ def publish_XdQuantity(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdQuantityType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1635,9 +1634,9 @@ def publish_XdQuantity(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdOrdered
     if len(self.reference_ranges.all()) != 0:  # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -1648,7 +1647,7 @@ def publish_XdQuantity(self):
                 return msg
             else:
                 dt_str += padding.rjust(indent + 8) + \
-                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + rr.ct_id + "'/> \n"
+                    "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + str(rr.ct_id) + "'/> \n"
                 if rr.interval.ct_id not in used_ctid_list:
                     # track the used XdInterval IDs
                     used_ctid_list.append(rr.interval.ct_id)
@@ -1746,10 +1745,6 @@ def publish_XdRatio(self):
     self.published = False
     self.save()
 
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdRatio')
-    self.save()
-
     # fix double quotes in label
     self.label.replace('"', '&quot;')
     self.save()
@@ -1787,7 +1782,7 @@ def publish_XdRatio(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdRatioType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -1818,9 +1813,9 @@ def publish_XdRatio(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdOrdered
     if len(self.reference_ranges.all()) != 0:  # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -2011,10 +2006,6 @@ def publish_XdTemporal(self):
     self.published = False
     self.save()
 
-    # generate and save the code for a R function.
-    self.r_code = pct_rcode(self, 'XdTemporal')
-    self.save()
-
     # fix double quotes in label
     self.label.replace('"', '&quot;')
     self.save()
@@ -2045,7 +2036,7 @@ def publish_XdTemporal(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             dt_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "XdTemporalType'/>\n")
-            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            dt_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             dt_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             dt_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -2075,9 +2066,9 @@ def publish_XdTemporal(self):
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
                                            str(int(self.require_vte)) + "' name='vte' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTimeStamp'/>\n")
+                                           str(int(self.require_tr)) + "' name='tr' type='xs:dateTime'/>\n")
     dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(
-        int(self.require_mod)) + "' name='modified' type='xs:dateTimeStamp'/>\n")
+        int(self.require_mod)) + "' name='modified' type='xs:dateTime'/>\n")
     # XdOrdered
     if len(self.reference_ranges.all()) != 0:  # reference ranges defined
         for rr in self.reference_ranges.all():
@@ -2140,10 +2131,10 @@ def publish_XdTemporal(self):
 
     if self.allow_datetimestamp:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
+            "<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-datetime-stamp' type='xs:dateTime'/>\n")
     else:
         dt_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-datetime-stamp' type='xs:dateTimeStamp'/>\n")
+            "<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-datetime-stamp' type='xs:dateTime'/>\n")
 
     if self.allow_day:
         dt_str += padding.rjust(indent + 8) + (
@@ -2234,7 +2225,6 @@ def publish_Party(self):
     # default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
     party_str = ''
-    xref_id = None
 
     indent = 2
     padding = ('').rjust(indent)
@@ -2255,7 +2245,7 @@ def publish_Party(self):
                 "<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             party_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "PartyType'/>\n")
-            party_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            party_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             party_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                       escape(self.label.strip()) + "</rdfs:label>\n")
             party_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2353,7 +2343,7 @@ def publish_Audit(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             aud_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "AuditType'/>\n")
-            aud_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            aud_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             aud_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             aud_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2405,7 +2395,7 @@ def publish_Audit(self):
             "<xs:element maxOccurs='1' minOccurs='0' name='location' type='s3m:mc-" + str(self.location.ct_id) + "'/>\n")
 
     aud_str += padding.rjust(indent + 8) + (
-        "<xs:element maxOccurs='1' minOccurs='1' name='timestamp' type='xs:dateTimeStamp'/>\n")
+        "<xs:element maxOccurs='1' minOccurs='1' name='timestamp' type='xs:dateTime'/>\n")
 
     aud_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -2461,7 +2451,7 @@ def publish_Attestation(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             att_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "AttestationType'/>\n")
-            att_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            att_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             att_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             att_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2519,7 +2509,7 @@ def publish_Attestation(self):
             "<xs:element maxOccurs='1' minOccurs='0' name='committer' type='s3m:mc-" + str(self.committer.ct_id) + "'/>\n")
 
     att_str += padding.rjust(indent + 8) + (
-        "<xs:element maxOccurs='1' minOccurs='0' name='committed' type='xs:dateTimeStamp'/>\n")
+        "<xs:element maxOccurs='1' minOccurs='0' name='committed' type='xs:dateTime'/>\n")
     att_str += padding.rjust(indent + 8) + (
         "<xs:element maxOccurs='1' minOccurs='1' default='true' name='pending' type='xs:boolean'/>\n")
     att_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
@@ -2575,7 +2565,7 @@ def publish_Participation(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             ptn_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ParticipationType'/>\n")
-            ptn_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            ptn_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             ptn_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                     escape(self.label.strip()) + "</rdfs:label>\n")
             ptn_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -2640,9 +2630,9 @@ def publish_Participation(self):
         return msg
 
     ptn_str += padding.rjust(indent + 8) + (
-        "<xs:element maxOccurs='1' minOccurs='0' name='start' type='xs:dateTimeStamp'/>\n")
+        "<xs:element maxOccurs='1' minOccurs='0' name='start' type='xs:dateTime'/>\n")
     ptn_str += padding.rjust(indent + 8) + (
-        "<xs:element maxOccurs='1' minOccurs='0' name='end' type='xs:dateTimeStamp'/>\n")
+        "<xs:element maxOccurs='1' minOccurs='0' name='end' type='xs:dateTime'/>\n")
 
     ptn_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
     if self.asserts:
@@ -2678,7 +2668,6 @@ def publish_Cluster(self):
     # default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
     cl_str = ''
-    links_id = None
     has_content = False
 
     # fix double quotes in cluster-subject
@@ -2705,7 +2694,7 @@ def publish_Cluster(self):
                 ("<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             cl_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "ClusterType'/>\n")
-            cl_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            cl_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             cl_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                    escape(self.label.strip()) + "</rdfs:label>\n")
             cl_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" +
@@ -2876,8 +2865,6 @@ def publish_Entry(self):
     # default return message
     msg = (self.__str__().strip() + ' was Published.', messages.SUCCESS)
     entry_str = ''
-    links_id = None
-    op_id = None
 
     indent = 2
     padding = ('').rjust(indent)
@@ -2898,7 +2885,7 @@ def publish_Entry(self):
                 "<rdf:Description rdf:about='mc-" + self.ct_id + "'>\n")
             entry_str += padding.rjust(indent + 2) + \
                 ("<rdfs:subClassOf rdf:resource='" + RM_URI + "EntryType'/>\n")
-            entry_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='http://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
+            entry_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
             entry_str += padding.rjust(indent + 2) + ("<rdfs:label>" +
                                                       escape(self.label.strip()) + "</rdfs:label>\n")
             entry_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__(
@@ -3001,16 +2988,28 @@ def publish_Entry(self):
         entry_str += padding.rjust(indent + 8) + \
             ("<!-- No  workflow model -->\n")
 
-    if self.audit:
-        if not self.audit.published:
-            reset_publication(self)
-            msg = ("Audit " + self.audit.__str__().strip() +
-                   " has not been published.", messages.ERROR)
-            return msg
-        entry_str += padding.rjust(indent + 8) + (
-            "<xs:element maxOccurs='1' minOccurs='0' name='audit' type='s3m:mc-" + str(self.audit.ct_id) + "'/>\n")
-    else:
+    #if self.audit:
+        #if not self.audit.published:
+            #reset_publication(self)
+            #msg = ("Audit " + self.audit.__str__().strip() +
+                   #" has not been published.", messages.ERROR)
+            #return msg
+        #entry_str += padding.rjust(indent + 8) + (
+            #"<xs:element maxOccurs='1' minOccurs='0' name='audit' type='s3m:mc-" + str(self.audit.ct_id) + "'/>\n")
+    #else:
+        #entry_str += padding.rjust(indent + 8) + ("<!-- No  audit model -->\n")
+
+    if not self.audit.all():
         entry_str += padding.rjust(indent + 8) + ("<!-- No  audit model -->\n")
+    else:
+        for audit in self.audit.all():
+            if not audit.published:
+                reset_publication(self)
+                msg = ("Audit " + self.audit.__str__().strip() +
+                       " has not been published.", messages.ERROR)
+                return msg
+            entry_str += padding.rjust(indent + 8) + (
+                "<xs:element maxOccurs='1' minOccurs='0' name='audit' type='s3m:mc-" + str(self.audit.ct_id) + "'/>\n")
 
     if self.attestation:
         if not self.attestation.published:

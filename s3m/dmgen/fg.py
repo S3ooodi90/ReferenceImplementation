@@ -1,10 +1,9 @@
 """
 Return strings to build an HTML Form template
 """
-from datetime import timedelta, datetime, date
-from random import randint, choice, uniform
+from datetime import timedelta, datetime
+from random import randint, choice
 from xml.sax.saxutils import escape
-from decimal import Decimal, ROUND_DOWN, BasicContext
 
 import exrex
 
@@ -22,265 +21,266 @@ def random_dtstr(start=None, end=None):
     return rand_dts
 
 
-def buildHTML(dmPkg):
+def buildHTML(dm_pkg):
     """
     The CCD Package is sent from the generator, then returned after filling in the ccdPkg.html string.
     """
 
-    entry = dmPkg.dm.entry
+    entry = dm_pkg.dm.entry
 
-    dmPkg.html = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n<html>\n  <head>'
-    dmPkg.html += '    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">\n'
-    dmPkg.html += '    <title>' + dmPkg.dm.title + '</title>\n'
-    dmPkg.html += ' <style type="text/css">\n'
-    dmPkg.html += ' legend {\n'
-    dmPkg.html += '   font-size: 16px;\n'
-    dmPkg.html += '   font-weight: bold;\n'
-    dmPkg.html += ' }\n'
-    dmPkg.html += ' .label {\n'
-    dmPkg.html += '   font-size: 12px;\n'
-    dmPkg.html += '   font-weight: bold;\n'
-    dmPkg.html += ' }\n'
-    dmPkg.html += ' .mc {\n'
-    dmPkg.html += '  margin-top: 10px; \n'
-    dmPkg.html += '  margin-bottom: 10px; \n'
-    dmPkg.html += '  margin-left: 10px; \n'
-    dmPkg.html += '  margin-right: 10px; \n'
-    dmPkg.html += '  padding: 5px; \n'
-    dmPkg.html += '  border-style: dotted; \n'
-    dmPkg.html += '  border-size: 6px; \n'
-    dmPkg.html += '  border-color: #009999; \n'
-    dmPkg.html += '}\n'
-    dmPkg.html += '.button_bar {\n'
-    dmPkg.html += '  text-align: center;\n'
-    dmPkg.html += '  border-radius: 15px;\n'
-    dmPkg.html += '  background-color: #005566;\n'
-    dmPkg.html += '  margin: 10px;\n'
-    dmPkg.html += '  padding: 10px;\n'
-    dmPkg.html += '}\n'
-    dmPkg.html += '.button_row {\n'
-    dmPkg.html += '  margin: auto;\n'
-    dmPkg.html += '  width: 60%;\n'
-    dmPkg.html += '  padding: 5px;\n'
-    dmPkg.html += '}\n'
-    dmPkg.html += '.button {\n'
-    dmPkg.html += '   border-top: 1px solid #96d1f8;\n'
-    dmPkg.html += '   background: #65a9d7;\n'
-    dmPkg.html += '   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));\n'
-    dmPkg.html += '   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);\n'
-    dmPkg.html += '   background: -moz-linear-gradient(top, #3e779d, #65a9d7);\n'
-    dmPkg.html += '   background: -ms-linear-gradient(top, #3e779d, #65a9d7);\n'
-    dmPkg.html += '   background: -o-linear-gradient(top, #3e779d, #65a9d7);\n'
-    dmPkg.html += '   padding: 5px 10px;\n'
-    dmPkg.html += '   margin-left 10px;\n'
-    dmPkg.html += '   -webkit-border-radius: 8px;\n'
-    dmPkg.html += '   -moz-border-radius: 8px;\n'
-    dmPkg.html += '   border-radius: 8px;\n'
-    dmPkg.html += '   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
-    dmPkg.html += '   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
-    dmPkg.html += '   box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
-    dmPkg.html += '   text-shadow: rgba(0,0,0,.4) 0 1px 0;\n'
-    dmPkg.html += '   color: white;\n'
-    dmPkg.html += '   font-size: 14px;\n'
-    dmPkg.html += '   font-family: Georgia, serif;\n'
-    dmPkg.html += '   text-decoration: none;\n'
-    dmPkg.html += '   vertical-align: middle;\n'
-    dmPkg.html += '   }\n'
-    dmPkg.html += '.button:hover {\n'
-    dmPkg.html += '   border-top-color: #28597a;\n'
-    dmPkg.html += '   background: #28597a;\n'
-    dmPkg.html += '   color: #ccc;\n'
-    dmPkg.html += '   }\n'
-    dmPkg.html += '.button:active {\n'
-    dmPkg.html += '   border-top-color: #1b435e;\n'
-    dmPkg.html += '   background: #1b435e;\n'
-    dmPkg.html += '   }\n'
-    dmPkg.html += '.subpage {\n'
-    dmPkg.html += '  text-align: left;\n'
-    dmPkg.html += '}\n'
-    dmPkg.html += '\n'
-    dmPkg.html += ' </style>\n'
-    dmPkg.html += ' </head>\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '<body style="color: rgb(0, 0, 0); background-color: rgb(238, 239, 255);" alink="#349923" link="#000099" vlink="#990099">\n'
-    dmPkg.html += '<div class="" style="text-align: center;">\n'
-    dmPkg.html += '<h1 id="topOfPage">' + dmPkg.dm.title + '</h1>\n'
-    dmPkg.html += '<div style="text-align: left;">\n'
-    dmPkg.html += '<form  id="' + \
+    dm_pkg.html = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n<html>\n  <head>'
+    dm_pkg.html += '    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">\n'
+    dm_pkg.html += '    <title>' + dm_pkg.dm.title + '</title>\n'
+    dm_pkg.html += ' <style type="text/css">\n'
+    dm_pkg.html += ' legend {\n'
+    dm_pkg.html += '   font-size: 16px;\n'
+    dm_pkg.html += '   font-weight: bold;\n'
+    dm_pkg.html += ' }\n'
+    dm_pkg.html += ' .label {\n'
+    dm_pkg.html += '   font-size: 12px;\n'
+    dm_pkg.html += '   font-weight: bold;\n'
+    dm_pkg.html += ' }\n'
+    dm_pkg.html += ' .mc {\n'
+    dm_pkg.html += '  margin-top: 10px; \n'
+    dm_pkg.html += '  margin-bottom: 10px; \n'
+    dm_pkg.html += '  margin-left: 10px; \n'
+    dm_pkg.html += '  margin-right: 10px; \n'
+    dm_pkg.html += '  padding: 5px; \n'
+    dm_pkg.html += '  border-style: dotted; \n'
+    dm_pkg.html += '  border-size: 6px; \n'
+    dm_pkg.html += '  border-color: #009999; \n'
+    dm_pkg.html += '}\n'
+    dm_pkg.html += '.button_bar {\n'
+    dm_pkg.html += '  text-align: center;\n'
+    dm_pkg.html += '  border-radius: 15px;\n'
+    dm_pkg.html += '  background-color: #005566;\n'
+    dm_pkg.html += '  margin: 10px;\n'
+    dm_pkg.html += '  padding: 10px;\n'
+    dm_pkg.html += '}\n'
+    dm_pkg.html += '.button_row {\n'
+    dm_pkg.html += '  margin: auto;\n'
+    dm_pkg.html += '  width: 60%;\n'
+    dm_pkg.html += '  padding: 5px;\n'
+    dm_pkg.html += '}\n'
+    dm_pkg.html += '.button {\n'
+    dm_pkg.html += '   border-top: 1px solid #96d1f8;\n'
+    dm_pkg.html += '   background: #65a9d7;\n'
+    dm_pkg.html += '   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));\n'
+    dm_pkg.html += '   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);\n'
+    dm_pkg.html += '   background: -moz-linear-gradient(top, #3e779d, #65a9d7);\n'
+    dm_pkg.html += '   background: -ms-linear-gradient(top, #3e779d, #65a9d7);\n'
+    dm_pkg.html += '   background: -o-linear-gradient(top, #3e779d, #65a9d7);\n'
+    dm_pkg.html += '   padding: 5px 10px;\n'
+    dm_pkg.html += '   margin-left 10px;\n'
+    dm_pkg.html += '   -webkit-border-radius: 8px;\n'
+    dm_pkg.html += '   -moz-border-radius: 8px;\n'
+    dm_pkg.html += '   border-radius: 8px;\n'
+    dm_pkg.html += '   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
+    dm_pkg.html += '   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
+    dm_pkg.html += '   box-shadow: rgba(0,0,0,1) 0 1px 0;\n'
+    dm_pkg.html += '   text-shadow: rgba(0,0,0,.4) 0 1px 0;\n'
+    dm_pkg.html += '   color: white;\n'
+    dm_pkg.html += '   font-size: 14px;\n'
+    dm_pkg.html += '   font-family: Georgia, serif;\n'
+    dm_pkg.html += '   text-decoration: none;\n'
+    dm_pkg.html += '   vertical-align: middle;\n'
+    dm_pkg.html += '   }\n'
+    dm_pkg.html += '.button:hover {\n'
+    dm_pkg.html += '   border-top-color: #28597a;\n'
+    dm_pkg.html += '   background: #28597a;\n'
+    dm_pkg.html += '   color: #ccc;\n'
+    dm_pkg.html += '   }\n'
+    dm_pkg.html += '.button:active {\n'
+    dm_pkg.html += '   border-top-color: #1b435e;\n'
+    dm_pkg.html += '   background: #1b435e;\n'
+    dm_pkg.html += '   }\n'
+    dm_pkg.html += '.subpage {\n'
+    dm_pkg.html += '  text-align: left;\n'
+    dm_pkg.html += '}\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += ' </style>\n'
+    dm_pkg.html += ' </head>\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '<body style="color: rgb(0, 0, 0); background-color: rgb(238, 239, 255);" alink="#349923" link="#000099" vlink="#990099">\n'
+    dm_pkg.html += '<div class="" style="text-align: center;">\n'
+    dm_pkg.html += '<h1 id="topOfPage">' + dm_pkg.dm.title + '</h1>\n'
+    dm_pkg.html += '<div style="text-align: left;">\n'
+    dm_pkg.html += '<form  id="' + \
         str(entry.ct_id) + '" action="" method="post" name="' + \
         entry.label + '" target="" >\n'
-    dmPkg.html += '<div class="button_bar">\n'
-    dmPkg.html += '<span class="button_row">\n'
-    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#subject'"> """ + \
+    dm_pkg.html += '<div class="button_bar">\n'
+    dm_pkg.html += '<span class="button_row">\n'
+    dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#subject'"> """ + \
         entry.subject.label + """ </button>\n"""
-    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#provider'"> """ + \
+    dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#provider'"> """ + \
         entry.provider.label + """ </button>\n"""
     if entry.participations.all():
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#participants'"> """ + \
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#participants'"> """ + \
             'Other Participants' + """ </button>\n"""
     if entry.attestation:
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#attestation'"> """ + \
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#attestation'"> """ + \
             entry.attestation.label + """ </button>\n"""
-    if entry.audit:
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#audit'"> """ + \
+    if entry.audit.all():
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#audit'"> """ + \
             entry.audit.label + """ </button>\n"""
     if entry.links.all():
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#references'"> """ + \
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#references'"> """ + \
             'References' + """ </button>\n"""
     if entry.workflow:
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#workflow'">Workflow - """ + \
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#workflow'">Workflow - """ + \
             entry.workflow.label + """ </button>\n"""
     if entry.protocol:
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#protocol'">Protocol - """ + \
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#protocol'">Protocol - """ + \
             entry.protocol.label + """ </button>\n"""
-    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#other'"> """ + \
+    dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#other'"> """ + \
         'Other Info' + """ </button>\n"""
-    dmPkg.html += '</span>\n'
-    dmPkg.html += '</div>\n'
+    dm_pkg.html += '</span>\n'
+    dm_pkg.html += '</div>\n'
     # process the PCMs in a cluster then iterate through the cluster levels
     # one at a time, coming back to the top until completed.
-    dmPkg.html += fcluster(entry.data, '  ')
-    dmPkg.html += '\n'
-    dmPkg.html += '<div style="font-size: 10px; text-align: center;">\n'
-    dmPkg.html += '<button class="button" type="submit" form="' + \
+    dm_pkg.html += fcluster(entry.data, '  ')
+    dm_pkg.html += '\n'
+    dm_pkg.html += '<div style="font-size: 10px; text-align: center;">\n'
+    dm_pkg.html += '<button class="button" type="submit" form="' + \
         str(entry.ct_id) + '" > Submit </button> \n'
-    dmPkg.html += '<button class="button" type="cancel" form="' + \
+    dm_pkg.html += '<button class="button" type="cancel" form="' + \
         str(entry.ct_id) + '" > Cancel </button>\n'
-    dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '</form>\n'
-    dmPkg.html += '</div>\n'
-    dmPkg.html += '<div>\n'
-    dmPkg.html += '</div>\n'
-    dmPkg.html += '<div id="subject" class="subpage">\n'
-    dmPkg.html += '<hr/>\n'
-    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-    dmPkg.html += '<form  id="' + \
+    dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '</form>\n'
+    dm_pkg.html += '</div>\n'
+    dm_pkg.html += '<div>\n'
+    dm_pkg.html += '</div>\n'
+    dm_pkg.html += '<div id="subject" class="subpage">\n'
+    dm_pkg.html += '<hr/>\n'
+    dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+    dm_pkg.html += '<form  id="' + \
         str(entry.subject.ct_id) + '" action="" method="post" name="' + \
         entry.subject.label + '" target="" >\n'
-    dmPkg.html += fparty(entry.subject, '  ')
-    dmPkg.html += '</form>\n'
-    dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '<div id="provider" class="subpage">\n'
-    dmPkg.html += '<hr/>\n'
-    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-    dmPkg.html += '<form  id="' + \
+    dm_pkg.html += fparty(entry.subject, '  ')
+    dm_pkg.html += '</form>\n'
+    dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '<div id="provider" class="subpage">\n'
+    dm_pkg.html += '<hr/>\n'
+    dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+    dm_pkg.html += '<form  id="' + \
         str(entry.provider.ct_id) + '" action="" method="post" name="' + \
         entry.provider.label + '" target="" >\n'
-    dmPkg.html += fparty(entry.provider, '  ')
-    dmPkg.html += '</form>\n'
-    dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
+    dm_pkg.html += fparty(entry.provider, '  ')
+    dm_pkg.html += '</form>\n'
+    dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
     if entry.participations.all():
-        dmPkg.html += '<div id="participants" class="subpage">\n'
-        dmPkg.html += '<hr/>\n'
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dm_pkg.html += '<div id="participants" class="subpage">\n'
+        dm_pkg.html += '<hr/>\n'
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
         for p in entry.participations.all():
-            dmPkg.html += fparticipation(p, '  ')
-        dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
+            dm_pkg.html += fparticipation(p, '  ')
+        dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
     if entry.attestation:
-        dmPkg.html += '<div id="attestation" class="subpage">\n'
-        dmPkg.html += '<hr/>\n'
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        dmPkg.html += fattestation(entry.attestation, '  ')
-        dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
-    if entry.audit:
-        dmPkg.html += '<div id="audit" class="subpage">\n'
-        dmPkg.html += '<hr/>\n'
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        dmPkg.html += faudit(entry.audit, '  ')
-        dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
+        dm_pkg.html += '<div id="attestation" class="subpage">\n'
+        dm_pkg.html += '<hr/>\n'
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dm_pkg.html += fattestation(entry.attestation, '  ')
+        dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
+    if entry.audit.all():
+        dm_pkg.html += '<div id="audit" class="subpage">\n'
+        dm_pkg.html += '<hr/>\n'
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        for a in entry.audit.all():
+            dm_pkg.html += faudit(a, '  ')
+        dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
     if entry.links.all():
-        dmPkg.html += '<div id="references" class="subpage">\n'
-        dmPkg.html += '<hr/>\n'
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        dmPkg.html += 'Reference Links:\n'
+        dm_pkg.html += '<div id="references" class="subpage">\n'
+        dm_pkg.html += '<hr/>\n'
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dm_pkg.html += 'Reference Links:\n'
         for e in entry.links.all():
-            dmPkg.html += fXd_link(e, '  ')
-        dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
+            dm_pkg.html += fXd_link(e, '  ')
+        dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
     if entry.workflow:
-        dmPkg.html += '<div id="workflow" class="subpage">\n'
-        dmPkg.html += '<hr/>\n'
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        dmPkg.html += '<br/>Link to workflow engine:\n'
-        dmPkg.html += fXd_link(entry.workflow, '  ')
-        dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
+        dm_pkg.html += '<div id="workflow" class="subpage">\n'
+        dm_pkg.html += '<hr/>\n'
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dm_pkg.html += '<br/>Link to workflow engine:\n'
+        dm_pkg.html += fXd_link(entry.workflow, '  ')
+        dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
     if entry.protocol:
-        dmPkg.html += '<div id="protocol" class="subpage">\n'
-        dmPkg.html += '<hr/>\n'
-        dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-        dmPkg.html += '<br/>Protocol definition:\n'
-        dmPkg.html += fXd_string(entry.protocol, '  ')
-        dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '<div id="other" class="subpage">\n'
-    dmPkg.html += '<hr/>\n'
-    dmPkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
-    dmPkg.html += '<h3>Other Information</h3>\n'
-    dmPkg.html += 'Language: ' + entry.language + '<br/>\n'
-    dmPkg.html += 'Current State: ' + entry.state + '<br/>\n'
-    dmPkg.html += 'Encoding: ' + entry.encoding + '<br/>\n'
-    dmPkg.html += '<h3>Model Information</h3>\n'
-    dmPkg.html += '<p>Description: <br/> ' + dmPkg.dm.description + '</p>\n'
-    dmPkg.html += '<p>Author: ' + dmPkg.dm.author.__str__() + '</p>\n'
-    if dmPkg.dm.contrib.all():
-        dmPkg.html += '<p>Contributors: <br/>\n'
-        for c in dmPkg.dm.contrib.all():
-            dmPkg.html += c.__str__() + '<br/>\n'
-        dmPkg.html += '</p>\n'
-    dmPkg.html += '<p>Keywords: ' + dmPkg.dm.subject + '</p>\n'
-    dmPkg.html += '<p>Source Reference: ' + dmPkg.dm.source + '</p>\n'
-    dmPkg.html += '<p>Relation to another model: ' + dmPkg.dm.relation + '</p>\n'
-    dmPkg.html += '<p>Coverage: ' + dmPkg.dm.coverage + '</p>\n'
-    dmPkg.html += '<p>Publisher: ' + dmPkg.dm.publisher + '</p>\n'
-    dmPkg.html += '<p>License: ' + dmPkg.dm.rights + '</p>\n'
-    dmPkg.html += '<p>Publication Date: ' + str(dmPkg.dm.pub_date) + '</p>\n'
-    dmPkg.html += '<p>Language: ' + dmPkg.dm.dc_language + '</p>\n'
-    dmPkg.html += '<p>Top level RDF: <br/><code> <pre>&lt;rdf:Description rdf:about="http://www.mlhim.org/ns/s3m:mc-' + \
-        str(dmPkg.dm.ct_id) + '"/&gt;<br/>\n'
-    dmPkg.html += '  &lt;rdfs:subClassOf rdf:resource="s3m:CCDType"/&gt;<br/>\n'
-    dmPkg.html += '  &lt;rdfs:label&gt;' + \
-        dmPkg.dm.title + '&lt;/rdfs:label&gt;<br/>\n'
-    if len(dmPkg.dm.pred_obj.all()) != 0:
-        for po in dmPkg.dm.pred_obj.all():
-            dmPkg.html += "&lt;" + po.predicate.ns_abbrev.__str__() + ":" + po.predicate.class_name.strip() + \
+        dm_pkg.html += '<div id="protocol" class="subpage">\n'
+        dm_pkg.html += '<hr/>\n'
+        dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+        dm_pkg.html += '<br/>Protocol definition:\n'
+        dm_pkg.html += fXd_string(entry.protocol, '  ')
+        dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '<div id="other" class="subpage">\n'
+    dm_pkg.html += '<hr/>\n'
+    dm_pkg.html += """<button class="button" type="button" onClick="parent.location='#topOfPage'">Top</button>\n"""
+    dm_pkg.html += '<h3>Other Information</h3>\n'
+    dm_pkg.html += 'Language: ' + entry.language + '<br/>\n'
+    dm_pkg.html += 'Current State: ' + entry.state + '<br/>\n'
+    dm_pkg.html += 'Encoding: ' + entry.encoding + '<br/>\n'
+    dm_pkg.html += '<h3>Model Information</h3>\n'
+    dm_pkg.html += '<p>Description: <br/> ' + dm_pkg.dm.description + '</p>\n'
+    dm_pkg.html += '<p>Author: ' + dm_pkg.dm.author.__str__() + '</p>\n'
+    if dm_pkg.dm.contrib.all():
+        dm_pkg.html += '<p>Contributors: <br/>\n'
+        for c in dm_pkg.dm.contrib.all():
+            dm_pkg.html += c.__str__() + '<br/>\n'
+        dm_pkg.html += '</p>\n'
+    dm_pkg.html += '<p>Keywords: ' + dm_pkg.dm.subject + '</p>\n'
+    dm_pkg.html += '<p>Source Reference: ' + dm_pkg.dm.source + '</p>\n'
+    dm_pkg.html += '<p>Relation to another model: ' + dm_pkg.dm.relation + '</p>\n'
+    dm_pkg.html += '<p>Coverage: ' + dm_pkg.dm.coverage + '</p>\n'
+    dm_pkg.html += '<p>Publisher: ' + dm_pkg.dm.publisher + '</p>\n'
+    dm_pkg.html += '<p>License: ' + dm_pkg.dm.rights + '</p>\n'
+    dm_pkg.html += '<p>Publication Date: ' + str(dm_pkg.dm.pub_date) + '</p>\n'
+    dm_pkg.html += '<p>Language: ' + dm_pkg.dm.dc_language + '</p>\n'
+    dm_pkg.html += '<p>Top level RDF: <br/><code> <pre>&lt;rdf:Description rdf:about="https://www.s3model.com/ns/s3m/dm-' + \
+        str(dm_pkg.dm.ct_id) + '"/&gt;<br/>\n'
+    dm_pkg.html += '  &lt;rdfs:subClassOf rdf:resource="s3m:CCDType"/&gt;<br/>\n'
+    dm_pkg.html += '  &lt;rdfs:label&gt;' + \
+        dm_pkg.dm.title + '&lt;/rdfs:label&gt;<br/>\n'
+    if len(dm_pkg.dm.pred_obj.all()) != 0:
+        for po in dm_pkg.dm.pred_obj.all():
+            dm_pkg.html += "&lt;" + po.predicate.ns_abbrev.__str__() + ":" + po.predicate.class_name.strip() + \
                 " rdf:resource='" + po.object_uri + "'/&gt;<br/>\n"
-    dmPkg.html += '&lt;/rdf:Description&gt;</pre></code><br/>\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '</p>\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '</div>\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '\n'
-    dmPkg.html += '<span style="font-size: 10px; text-align: center;">\n'
-    dmPkg.html += 'Generated by the <a href="http://dmgen.s3model.com" target="_blank">DMGen</a> \n'
-    dmPkg.html += '</span>\n'
+    dm_pkg.html += '&lt;/rdf:Description&gt;</pre></code><br/>\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '</p>\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '</div>\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '\n'
+    dm_pkg.html += '<span style="font-size: 10px; text-align: center;">\n'
+    dm_pkg.html += 'Generated by the <a href="http://dmgen.s3model.com" target="_blank">DMGen</a> \n'
+    dm_pkg.html += '</span>\n'
 
-    dmPkg.html += '    </div>\n  </body>\n</html>'
+    dm_pkg.html += '    </div>\n  </body>\n</html>'
 
-    return(dmPkg)
+    return(dm_pkg)
 
 
 def fcluster(clu, indent):
     indent += '  '
-    if len(clu.pred_obj.all()) != 0:
-        link = clu.pred_obj.all()[0].object_uri
-    else:
-        link = "#"
+#     if len(clu.pred_obj.all()) != 0:
+#         link = clu.pred_obj.all()[0].object_uri
+#     else:
+#         link = "#"
 
     frmstr = ''
     frmstr += '<fieldset><legend>' + clu.label + '</legend><br/>\n'
@@ -334,51 +334,51 @@ def fcluster(clu, indent):
     return(frmstr)
 
 
-def fXd_boolean(Xd, indent):
+def fXd_boolean(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
     frmstr = ""
     frmstr += '<div class="mc">\n'
 
     choices = ['-------']
-    for c in Xd.trues.splitlines():
+    for c in xd.trues.splitlines():
         choices.append(c)
-    for c in Xd.falses.splitlines():
+    for c in xd.falses.splitlines():
         choices.append(c)
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
 
     frmstr += indent + " Choose  a value: <select name='mc-" + \
-        str(Xd.ct_id) + "'>\n"
+        str(xd.ct_id) + "'>\n"
     for c in choices:
         frmstr += indent + "  <option value='" + c + \
             "' label='" + c + "'>" + c + "</option><br />\n"
     frmstr += indent + "</select><br />\n"
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_link(Xd, indent):
+def fXd_link(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
     frmstr = ""
@@ -386,48 +386,47 @@ def fXd_link(Xd, indent):
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
 
     frmstr += indent + " Enter a URI: <input name='mc-" + \
-        str(Xd.ct_id) + ":XdURI' type='text' size='30' value=''/>\n"
-    frmstr += indent + " Relationship: <em>" + Xd.relation.strip() + "</em><br />\n"
+        str(xd.ct_id) + ":XdURI' type='text' size='30' value=''/>\n"
+    frmstr += indent + " Relationship: <em>" + xd.relation.strip() + "</em><br />\n"
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_string(Xd, indent):
+def fXd_string(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
     frmstr = ""
     frmstr += '<div class="mc">\n'
 
-    a = None
-    enumList = []
+    enum_list = []
 
     x = None
-    if Xd.def_val:
-        s = Xd.def_val
-    elif Xd.enums:
-        enumList = []
-        for e in Xd.enums.splitlines():
-            enumList.append(escape(e))
-        s = choice(enumList)
-    elif Xd.asserts:
+    if xd.def_val:
+        s = xd.def_val
+    elif xd.enums:
+        enum_list = []
+        for e in xd.enums.splitlines():
+            enum_list.append(escape(e))
+        s = choice(enum_list)
+    elif xd.asserts:
         # Example: matches(Xdstring-value, '^\d{5}([\-]?\d{3})$')
         try:
-            x = Xd.asserts.replace(
+            x = xd.asserts.replace(
                 "matches(Xdstring-value, '", '')[:-1].replace("'", '')
             s = exrex.getone(x)
         except:
@@ -435,89 +434,87 @@ def fXd_string(Xd, indent):
     else:
         s = 'DefaultString'
 
-    if Xd.enums:
-        for e in Xd.enums.splitlines():
-            enumList.append(escape(e))
+    if xd.enums:
+        for e in xd.enums.splitlines():
+            enum_list.append(escape(e))
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
 
-    if enumList:
+    if enum_list:
         frmstr += indent + " Choose a value: <select name='mc-" + \
-            str(Xd.ct_id) + ":Xdstring-value'>\n"
-        for c in enumList:
+            str(xd.ct_id) + ":Xdstring-value'>\n"
+        for c in enum_list:
             frmstr += indent + "  <option value='" + c + \
                 "' label='" + c + "'>" + c + "</option>\n"
         frmstr += indent + "</select><br />\n"
     else:
         frmstr += indent + " Enter a string: <input name='mc-" + \
-            str(Xd.ct_id) + ":XdString' type='text' size='30' value='" + s + "'/>"
+            str(xd.ct_id) + ":XdString' type='text' size='30' value='" + s + "'/>"
     if x:
         frmstr += indent + " Match (regex): " + x + "<br />\n"
     frmstr += indent + " Language: <input name='mc-" + \
-        str(Xd.ct_id) + ":language' type='text' size='6' value='" + \
-        Xd.lang + "'/><br />\n"
+        str(xd.ct_id) + ":language' type='text' size='6' value='" + \
+        xd.lang + "'/><br />\n"
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_count(Xd, indent):
+def fXd_count(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
     frmstr = ""
     frmstr += '<div class="mc">\n'
 
-    if Xd.normal_status:
-        ns = Xd.normal_status
+    if xd.normal_status:
+        ns = xd.normal_status
     else:
         ns = '(not defined)'
 
     rrstr = indent + ''
-    if Xd.reference_ranges:
+    if xd.reference_ranges:
         rrstr += 'Reference Ranges: <br />'
-        for rr in Xd.reference_ranges.all():
+        for rr in xd.reference_ranges.all():
             rrstr += indent + freferencerange(rr, indent)
 
     _min = None
     _max = None
 
-    if Xd.min_inclusive:
-        _min = Xd.min_inclusive
-    if Xd.min_exclusive:
-        _min = Xd.min_exclusive + 1
-    if Xd.max_inclusive:
-        _max = Xd.max_inclusive
-    if Xd.max_exclusive:
-        _max = Xd.max_exclusive - 1
+    if xd.min_inclusive:
+        _min = xd.min_inclusive
+    if xd.min_exclusive:
+        _min = xd.min_exclusive + 1
+    if xd.max_inclusive:
+        _max = xd.max_inclusive
+    if xd.max_exclusive:
+        _max = xd.max_exclusive - 1
 
     if not _max:
         _max = 999999
     if not _min:
         _min = -999999
 
-    mag = randint(_min, _max)
-
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
 
     frmstr += indent + " Enter Count:  <input name='mc-" + \
-        str(Xd.ct_id) + ":Xdcount-value' type='number' />\n"
+        str(xd.ct_id) + ":Xdcount-value' type='number' />\n"
     frmstr += indent + " Magnitude Status:  <select name='mc-" + \
-        str(Xd.ct_id) + ":magnitude-status'>\n"
+        str(xd.ct_id) + ":magnitude-status'>\n"
     frmstr += indent + "  <option value='='  label='Magnitude is exactly.'>=</option>\n"
     frmstr += indent + \
         "  <option value='<=' label='Magnitude is less than or equal to'><=</option>\n"
@@ -528,33 +525,33 @@ def fXd_count(Xd, indent):
     frmstr += indent + "  <option value='~'  label='Magnitude is approximately.'>~</option>\n"
     frmstr += indent + " </select><br />\n"
     frmstr += indent + " Error:  <input name='mc-" + \
-        str(Xd.ct_id) + ":error' type='number' value='0'/>\n"
+        str(xd.ct_id) + ":error' type='number' value='0'/>\n"
     frmstr += indent + " Accuracy:  <input name='mc-" + \
-        str(Xd.ct_id) + ":accuracy' type='number' value='0'/><br />\n"
+        str(xd.ct_id) + ":accuracy' type='number' value='0'/><br />\n"
     frmstr += indent + " Normal:  " + ns.strip() + "<br />\n"
     frmstr += rrstr
 
     frmstr += indent + " Units:<br />\n"
-    if Xd.units:
-        frmstr += fXd_string(Xd.units, indent) + '<br />'
+    if xd.units:
+        frmstr += fXd_string(xd.units, indent) + '<br />'
 
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_interval(Xd, indent):
+def fXd_interval(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
     frmstr = ""
@@ -562,32 +559,32 @@ def fXd_interval(Xd, indent):
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
     frmstr += indent + "Lower Value: " + \
-        str(Xd.lower) + " Upper Value: " + str(Xd.upper) + "<br />\n"
+        str(xd.lower) + " Upper Value: " + str(xd.upper) + "<br />\n"
     frmstr += indent + "Lower Included: " + \
-        str(Xd.lower_included) + " Upper Included: " + \
-        str(Xd.upper_included) + "<br />\n"
+        str(xd.lower_included) + " Upper Included: " + \
+        str(xd.upper_included) + "<br />\n"
     frmstr += indent + "Lower Bounded: " + \
-        str(Xd.lower_bounded) + " Upper Bounded: " + \
-        str(Xd.upper_bounded) + "<br />\n"
+        str(xd.lower_bounded) + " Upper Bounded: " + \
+        str(xd.upper_bounded) + "<br />\n"
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_file(Xd, indent):
+def fXd_file(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
     frmstr = ""
@@ -595,93 +592,91 @@ def fXd_file(Xd, indent):
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
     frmstr += indent + " Size (bytes):  <input name='mc-" + \
-        str(Xd.ct_id) + ":size' type='number' value='0'/>\n"
+        str(xd.ct_id) + ":size' type='number' value='0'/>\n"
     frmstr += indent + " Encoding: <input name='mc-" + \
-        str(Xd.ct_id) + ":encoding' type='text' value='utf-8'/>\n"
+        str(xd.ct_id) + ":encoding' type='text' value='utf-8'/>\n"
     frmstr += indent + " Language:  <input name='mc-" + \
-        str(Xd.ct_id) + ":language' type='text' value='" + \
-        Xd.lang + "'/><br />\n"
+        str(xd.ct_id) + ":language' type='text' value='" + \
+        xd.lang + "'/><br />\n"
     frmstr += indent + " MIME Type: <input name='mc-" + \
-        str(Xd.ct_id) + ":mime-type' type='text' value=''/>\n"
+        str(xd.ct_id) + ":mime-type' type='text' value=''/>\n"
     frmstr += indent + " Compression Type: <input name='mc-" + \
-        str(Xd.ct_id) + ":compression-type' type='text' value=''/><br />\n"
+        str(xd.ct_id) + ":compression-type' type='text' value=''/><br />\n"
     frmstr += indent + " HASH Result: <input name='mc-" + \
-        str(Xd.ct_id) + ":hash-result' type='text' value=''/>\n"
+        str(xd.ct_id) + ":hash-result' type='text' value=''/>\n"
     frmstr += indent + " HASH Function: <input name='mc-" + \
-        str(Xd.ct_id) + ":hash-function' type='text' value=''/><br />\n"
+        str(xd.ct_id) + ":hash-function' type='text' value=''/><br />\n"
     frmstr += indent + " Alt. Text: <input name='mc-" + \
-        str(Xd.ct_id) + ":alt-txt' type='text' value=''/><br />\n"
-    if Xd.content_mode == 'url':
+        str(xd.ct_id) + ":alt-txt' type='text' value=''/><br />\n"
+    if xd.content_mode == 'url':
         frmstr += indent + " URL: <input name='mc-" + \
-            str(Xd.ct_id) + ":uri' type='url' value=''/> (to content location)<br />\n"
-    elif Xd.content_mode == 'binary':
+            str(xd.ct_id) + ":uri' type='url' value=''/> (to content location)<br />\n"
+    elif xd.content_mode == 'binary':
         frmstr += indent + " Media Content: <br /><textarea name='mc-" + \
-            str(Xd.ct_id) + ":media-content' type='text' value=''/> (paste base64Binary encoded content here)</textarea>\n"
+            str(xd.ct_id) + ":media-content' type='text' value=''/> (paste base64Binary encoded content here)</textarea>\n"
         frmstr += "<b>OR</b> Select a file to upload: <input type='file' name='mc-" + \
-            str(Xd.ct_id) + ":media-content' size='40' /><br /><br />\n"
-    elif Xd.content_mode == 'text':
+            str(xd.ct_id) + ":media-content' size='40' /><br /><br />\n"
+    elif xd.content_mode == 'text':
         frmstr += indent + " Text Content: <br /><textarea name='mc-" + \
-            str(Xd.ct_id) + ":text-content' type='text' value=''/> (paste text content here)</textarea>\n"
+            str(xd.ct_id) + ":text-content' type='text' value=''/> (paste text content here)</textarea>\n"
         frmstr += "<b>OR</b> Select a file to upload: <input type='file' name='mc-" + \
-            str(Xd.ct_id) + ":text-content'  size='40' /><br /><br />\n"
+            str(xd.ct_id) + ":text-content'  size='40' /><br /><br />\n"
     else:
         frmstr += "<br /><b>An error in the model was detected and it doesn't allow a content mode.</b><br /><br />\n"
 
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_ordinal(Xd, indent):
+def fXd_ordinal(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
     frmstr = ""
     frmstr += '<div class="mc">\n'
 
-    if Xd.normal_status:
-        ns = Xd.normal_status
+    if xd.normal_status:
+        ns = xd.normal_status
     else:
         ns = '(not defined)'
 
     rrstr = indent + ''
-    if Xd.reference_ranges:
+    if xd.reference_ranges:
         rrstr += 'Reference Ranges: <br />'
-        for rr in Xd.reference_ranges.all():
+        for rr in xd.reference_ranges.all():
             rrstr += indent + freferencerange(rr, indent) + '<br />'
 
     o = []
-    for a in Xd.ordinals.splitlines():
+    for a in xd.ordinals.splitlines():
         o.append(escape(a).strip())
 
     s = []
-    for a in Xd.symbols.splitlines():
+    for a in xd.symbols.splitlines():
         s.append(escape(a).strip())
 
     ann = []
-    for x in Xd.annotations.splitlines():
+    for x in xd.annotations.splitlines():
         ann.append(escape(x).strip())
-
-    ri = randint(0, len(o) - 1)  # get a random index
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
     if s:
         frmstr += indent + " Choose a value: <select name='mc-" + \
-            str(Xd.ct_id) + ":symbol'>\n"
+            str(xd.ct_id) + ":symbol'>\n"
         for c in s:
             frmstr += indent + "  <option value='" + c + \
                 "' label='" + c + "'>" + c + "</option>\n"
@@ -691,76 +686,76 @@ def fXd_ordinal(Xd, indent):
     frmstr += rrstr
 
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_quantity(Xd, indent):
+def fXd_quantity(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
     frmstr = ""
     frmstr += '<div class="mc">\n'
 
-    if Xd.normal_status:
-        ns = Xd.normal_status
+    if xd.normal_status:
+        ns = xd.normal_status
     else:
         ns = '(not defined)'
 
     rrstr = indent + ''
-    if Xd.reference_ranges:
+    if xd.reference_ranges:
         rrstr += 'Reference Ranges:<br /> '
-        for rr in Xd.reference_ranges.all():
+        for rr in xd.reference_ranges.all():
             rrstr += indent + freferencerange(rr, indent)
 
-    ctx = BasicContext
+#     ctx = BasicContext
 
-    _min = None
-    _max = None
-
-    if Xd.total_digits:  # total digits
-        ctx.prec = int(Xd.total_digits)
-
-    if Xd.min_inclusive is not None:
-        _min = Xd.min_inclusive
-    if Xd.min_exclusive is not None:
-        _min = Xd.min_exclusive + 1
-
-    if Xd.max_inclusive is not None:
-        _max = Xd.max_inclusive
-    if Xd.max_exclusive is not None:
-        _max = Xd.max_exclusive - 1
-
-    if _max is None:
-        _max = 999999999999999999999999999999999999999999
-    if _min is None:
-        _min = -99999999999999999999999999999999999999999
-
-    f_min = float(_min)
-    f_max = float(_max)
-
-    fmag = uniform(f_min, f_max)  # random float between min and max
-
-    mag = ctx.create_decimal_from_float(fmag)
+#     _min = None
+#     _max = None
+#
+#     if Xd.total_digits:  # total digits
+#         ctx.prec = int(Xd.total_digits)
+#
+#     if Xd.min_inclusive is not None:
+#         _min = Xd.min_inclusive
+#     if Xd.min_exclusive is not None:
+#         _min = Xd.min_exclusive + 1
+#
+#     if Xd.max_inclusive is not None:
+#         _max = Xd.max_inclusive
+#     if Xd.max_exclusive is not None:
+#         _max = Xd.max_exclusive - 1
+#
+#     if _max is None:
+#         _max = 999999999999999999999999999999999999999999
+#     if _min is None:
+#         _min = -99999999999999999999999999999999999999999
+#
+#     f_min = float(_min)
+#     f_max = float(_max)
+#
+#     fmag = uniform(f_min, f_max)  # random float between min and max
+#
+#     mag = ctx.create_decimal_from_float(fmag)
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
 
     frmstr += indent + " Enter Quantity:  <input name='mc-" + \
-        str(Xd.ct_id) + ":magnitude' type='number' />\n"
+        str(xd.ct_id) + ":magnitude' type='number' />\n"
     frmstr += indent + " Magnitude Status:  <select name='mc-" + \
-        str(Xd.ct_id) + ":magnitude-status'>\n"
+        str(xd.ct_id) + ":magnitude-status'>\n"
     frmstr += indent + "  <option value='='  label='Magnitude is exactly.'>=</option>\n"
     frmstr += indent + \
         "  <option value='<=' label='Magnitude is less than or equal to'><=</option>\n"
@@ -771,99 +766,97 @@ def fXd_quantity(Xd, indent):
     frmstr += indent + "  <option value='~'  label='Magnitude is approximately.'>~</option>\n"
     frmstr += indent + " </select><br />\n"
     frmstr += indent + " Error:  <input name='mc-" + \
-        str(Xd.ct_id) + ":error' type='number' value='0'/>\n"
+        str(xd.ct_id) + ":error' type='number' value='0'/>\n"
     frmstr += indent + " Accuracy:  <input name='mc-" + \
-        str(Xd.ct_id) + ":accuracy' type='number' value='0'/><br />\n"
+        str(xd.ct_id) + ":accuracy' type='number' value='0'/><br />\n"
 
     frmstr += indent + " Units:<br />\n"
-    if Xd.units:
-        frmstr += fXd_string(Xd.units, indent) + '<br />'
+    if xd.units:
+        frmstr += fXd_string(xd.units, indent) + '<br />'
 
     frmstr += indent + " Normal:  " + ns.strip() + "<br />\n"
     frmstr += rrstr
 
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_ratio(Xd, indent):
+def fXd_ratio(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
 
     frmstr = ""
     frmstr += '<div class="mc">\n'
 
-    if Xd.normal_status:
-        ns = Xd.normal_status
+    if xd.normal_status:
+        ns = xd.normal_status
     else:
         ns = '(not defined)'
 
     rrstr = indent + ''
-    if Xd.reference_ranges:
+    if xd.reference_ranges:
         rrstr += 'Reference Ranges:<br /> '
-        for rr in Xd.reference_ranges.all():
+        for rr in xd.reference_ranges.all():
             rrstr += indent + freferencerange(rr, indent)
 
-    num_min = None
-    num_max = None
-
-    if Xd.num_min_inclusive:
-        num_min = Xd.num_min_inclusive
-    if Xd.num_min_exclusive:
-        num_min = Xd.num_min_exclusive + 1
-    if Xd.num_max_inclusive:
-        num_max = Xd.num_max_inclusive
-    if Xd.num_max_exclusive:
-        num_max = Xd.max_exclusive - 1
-
-    if not num_max:
-        num_max = 999999
-    if not num_min:
-        num_min = -999999
-
-    num = uniform(num_min, num_max)  # random float
-
-    den_min = None
-    den_max = None
-
-    if Xd.den_min_inclusive:
-        den_min = Xd.den_min_inclusive
-    if Xd.den_min_exclusive:
-        den_min = Xd.den_min_exclusive + 1
-    if Xd.den_max_inclusive:
-        den_max = Xd.den_max_inclusive
-    if Xd.den_max_exclusive:
-        den_max = Xd.den_max_exclusive - 1
-
-    if not den_max:
-        den_max = 999999
-    if not den_min:
-        den_min = -999999
-
-    den = uniform(den_min, den_max)  # random float
-
-    mag = num / den
+#     num_min = None
+#     num_max = None
+#
+#     if Xd.num_min_inclusive:
+#         num_min = Xd.num_min_inclusive
+#     if Xd.num_min_exclusive:
+#         num_min = Xd.num_min_exclusive + 1
+#     if Xd.num_max_inclusive:
+#         num_max = Xd.num_max_inclusive
+#     if Xd.num_max_exclusive:
+#         num_max = Xd.max_exclusive - 1
+#
+#     if not num_max:
+#         num_max = 999999
+#     if not num_min:
+#         num_min = -999999
+#
+#     num = uniform(num_min, num_max)  # random float
+#
+#     den_min = None
+#     den_max = None
+#
+#     if Xd.den_min_inclusive:
+#         den_min = Xd.den_min_inclusive
+#     if Xd.den_min_exclusive:
+#         den_min = Xd.den_min_exclusive + 1
+#     if Xd.den_max_inclusive:
+#         den_max = Xd.den_max_inclusive
+#     if Xd.den_max_exclusive:
+#         den_max = Xd.den_max_exclusive - 1
+#
+#     if not den_max:
+#         den_max = 999999
+#     if not den_min:
+#         den_min = -999999
+#
+#     den = uniform(den_min, den_max)  # random float
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
 
     frmstr += indent + " Enter Ratio (magnitude):  <input name='mc-" + \
-        str(Xd.ct_id) + ":magnitude' type='number' />\n"
+        str(xd.ct_id) + ":magnitude' type='number' />\n"
     frmstr += indent + " Magnitude Status:  <select name='mc-" + \
-        str(Xd.ct_id) + ":magnitude-status'>\n"
+        str(xd.ct_id) + ":magnitude-status'>\n"
     frmstr += indent + "  <option value='='  label='Magnitude is exactly.'>=</option>\n"
     frmstr += indent + \
         "  <option value='<=' label='Magnitude is less than or equal to'><=</option>\n"
@@ -874,131 +867,130 @@ def fXd_ratio(Xd, indent):
     frmstr += indent + "  <option value='~'  label='Magnitude is approximately.'>~</option>\n"
     frmstr += indent + " </select><br />\n"
     frmstr += indent + " Error:  <input name='mc-" + \
-        str(Xd.ct_id) + ":error' type='number' value='0'/>\n"
+        str(xd.ct_id) + ":error' type='number' value='0'/>\n"
     frmstr += indent + " Accuracy:  <input name='mc-" + \
-        str(Xd.ct_id) + ":accuracy' type='number' value='0'/><br />\n"
+        str(xd.ct_id) + ":accuracy' type='number' value='0'/><br />\n"
     frmstr += indent + " Ratio Type:  <select name='mc-" + \
-        str(Xd.ct_id) + ":ratio-type'>\n"
+        str(xd.ct_id) + ":ratio-type'>\n"
     frmstr += indent + "  <option value='ratio'  label='Ratio'>Ratio</option>\n"
     frmstr += indent + "  <option value='proportion' label='Proportion'>Proportion</option>\n"
     frmstr += indent + "  <option value='rate' label='Rate'>Rate</option>\n"
     frmstr += indent + " </select><br />\n"
     frmstr += indent + " Numerator:  <input name='mc-" + \
-        str(Xd.ct_id) + ":numerator' type='number' value='0'/>\n"
+        str(xd.ct_id) + ":numerator' type='number' value='0'/>\n"
     frmstr += indent + " Denominator:  <input name='mc-" + \
-        str(Xd.ct_id) + ":denominator' type='number' value='0'/><br />\n"
+        str(xd.ct_id) + ":denominator' type='number' value='0'/><br />\n"
 
     frmstr += indent + "  Numerator Units:<br />\n"
-    if Xd.num_units:
-        frmstr += fXd_string(Xd.num_units, indent)
+    if xd.num_units:
+        frmstr += fXd_string(xd.num_units, indent)
 
     frmstr += indent + "  Denominator Units:<br />\n"
-    if Xd.den_units:
-        frmstr += fXd_string(Xd.den_units, indent)
+    if xd.den_units:
+        frmstr += fXd_string(xd.den_units, indent)
 
     frmstr += indent + "  Ratio Units: <br />\n"
-    if Xd.ratio_units:
-        frmstr += fXd_string(Xd.ratio_units, indent)
+    if xd.ratio_units:
+        frmstr += fXd_string(xd.ratio_units, indent)
 
     frmstr += indent + " Normal:  " + ns.strip() + "<br />\n"
     frmstr += rrstr
 
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 
     return frmstr
 
 
-def fXd_temporal(Xd, indent):
+def fXd_temporal(xd, indent):
     vtb = random_dtstr()
     vte = random_dtstr(start=vtb)
 
-    tt = escape(Xd.description) + "\n\n"  # tooltip
-    if len(Xd.pred_obj.all()) != 0:
-        link = Xd.pred_obj.all()[0].object_uri
+    tt = escape(xd.description) + "\n\n"  # tooltip
+    if len(xd.pred_obj.all()) != 0:
+        link = xd.pred_obj.all()[0].object_uri
     else:
         link = "#"
 
     frmstr = ""
     frmstr += '<div class="mc">\n'
 
-    if Xd.normal_status:
-        ns = Xd.normal_status
+    if xd.normal_status:
+        ns = xd.normal_status
     else:
         ns = '(not defined)'
 
     rrstr = indent + ''
-    if Xd.reference_ranges:
+    if xd.reference_ranges:
         rrstr += 'Reference Ranges: <br />'
-        for rr in Xd.reference_ranges.all():
+        for rr in xd.reference_ranges.all():
             rrstr += indent + freferencerange(rr, indent)
 
-    start = datetime.strptime('1/1/1970', '%m/%d/%Y')
-    end = datetime.strptime('12/31/2020', '%m/%d/%Y')
-    rdt = start + \
-        timedelta(seconds=randint(0, int((end - start).total_seconds())))
-    rdt2 = start + \
-        timedelta(seconds=randint(0, int((end - start).total_seconds())))
-    dur = abs((rdt - rdt2).days)
+#     start = datetime.strptime('1/1/1970', '%m/%d/%Y')
+#     end = datetime.strptime('12/31/2020', '%m/%d/%Y')
+#     rdt = start + \
+#         timedelta(seconds=randint(0, int((end - start).total_seconds())))
+#     rdt2 = start + \
+#         timedelta(seconds=randint(0, int((end - start).total_seconds())))
 
     indent += '  '
     frmstr += indent + "<span class='label'><a href='" + link + "' title='" + \
-        tt + "' target='_blank'>" + Xd.label.strip() + "</a><br /></span>\n"
+        tt + "' target='_blank'>" + xd.label.strip() + "</a><br /></span>\n"
 
-    if Xd.allow_date:
+    if xd.allow_date:
         frmstr += indent + " Date:  <input name='mc-" + \
-            str(Xd.ct_id) + \
+            str(xd.ct_id) + \
             ":Xdtemporal-date' type='date' value=''/> (YYYY-MM-DD)<br />\n"
-    if Xd.allow_time:
+    if xd.allow_time:
         frmstr += indent + " Time:  <input name='mc-" + \
-            str(Xd.ct_id) + \
+            str(xd.ct_id) + \
             ":Xdtemporal-time' type='time' value=''/> (HH:MM:SS)<br />\n"
-    if Xd.allow_datetime:
+    if xd.allow_datetime:
         frmstr += indent + " Datetime:  <input name='mc-" + \
-            str(Xd.ct_id) + ":Xdtemporal-datetime' type='datetime-local' value=''/> (YYYY-MM-DDTHH:MM:SS)<br />\n"
-    if Xd.allow_datetimestamp:
+            str(xd.ct_id) + ":Xdtemporal-datetime' type='datetime-local' value=''/> (YYYY-MM-DDTHH:MM:SS)<br />\n"
+    if xd.allow_datetimestamp:
         frmstr += indent + " DatetimeStamp:  <input name='mc-" + \
-            str(Xd.ct_id) + ":Xdtemporal-datetime-stamp' type='datetimestamp' value=''/> (YYYY-MM-DDTHH:MM:SS)<br />\n"
-    if Xd.allow_day:
+            str(xd.ct_id) + ":Xdtemporal-datetime-stamp' type='datetimestamp' value=''/> (YYYY-MM-DDTHH:MM:SS)<br />\n"
+    if xd.allow_day:
         frmstr += indent + " Day:  <input name='mc-" + \
-            str(Xd.ct_id) + ":Xdtemporal-day' type='day' value=''/> (--DD)<br />\n"
-    if Xd.allow_month:
+            str(xd.ct_id) + ":Xdtemporal-day' type='day' value=''/> (--DD)<br />\n"
+    if xd.allow_month:
         frmstr += indent + " Month:  <input name='mc-" + \
-            str(Xd.ct_id) + ":Xdtemporal-month' type='month' value=''/> (-MM)<br />\n"
-    if Xd.allow_year:
+            str(xd.ct_id) + ":Xdtemporal-month' type='month' value=''/> (-MM)<br />\n"
+    if xd.allow_year:
         frmstr += indent + " Year:  <input name='mc-" + \
-            str(Xd.ct_id) + ":Xdtemporal-year' type='year' value=''/> (YYYY)<br />\n"
-    if Xd.allow_year_month:
+            str(xd.ct_id) + ":Xdtemporal-year' type='year' value=''/> (YYYY)<br />\n"
+    if xd.allow_year_month:
         frmstr += indent + " Year-Month:  <input name='mc-" + \
-            str(Xd.ct_id) + \
+            str(xd.ct_id) + \
             ":Xdtemporal-year-month' type='text' value=''/> (YYYY-MM)<br />\n"
-    if Xd.allow_month_day:
+    if xd.allow_month_day:
         frmstr += indent + " Month-Day:  <input name='mc-" + \
-            str(Xd.ct_id) + \
+            str(xd.ct_id) + \
             ":Xdtemporal-month-day' type='text' value=''/> (-MM-DD)<br />\n"
-    if Xd.allow_duration:
+    if xd.allow_duration:
         frmstr += indent + " Duration:  <input name='mc-" + \
-            str(Xd.ct_id) + ":Xdtemporal-duration' type='text' value='P'/> (PxxYxxMxxDTxxHxxMxxS)<br />\n"
-    if Xd.allow_ymduration:
+            str(xd.ct_id) + ":Xdtemporal-duration' type='text' value='P'/> (PxxYxxMxxDTxxHxxMxxS)<br />\n"
+    if xd.allow_ymduration:
         frmstr += indent + " Year-Month Duration:  <input name='mc-" + \
-            str(Xd.ct_id) + \
+            str(xd.ct_id) + \
             ":Xdtemporal-ymduration' type='text' value='P'/> (PxxYxxM)<br />\n"
-    if Xd.allow_dtduration:
+    if xd.allow_dtduration:
         frmstr += indent + " Day Time Duration:  <input name='mc-" + \
-            str(Xd.ct_id) + \
+            str(xd.ct_id) + \
             ":Xdtemporal-dtduration' type='text' value='P'/> (PxDTxxHxxMxxS)<br />\n"
 
     frmstr += indent + " Normal:  " + ns.strip() + "<br />\n"
     frmstr += rrstr
 
     frmstr += indent + "<span> Begin Valid Time:  <input name='mc-" + \
-        str(Xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
+        str(xd.ct_id) + ":vtb' type='datetime-local' value='" + vtb + "'/>\n"
     frmstr += indent + " End Valid Time: <input name='mc-" + \
-        str(Xd.ct_id) + ":vte' type='datetime-local' value='" + \
+        str(xd.ct_id) + ":vte' type='datetime-local' value='" + \
         vte + "'/><br /></span>\n"
     frmstr += '</div>\n'
 

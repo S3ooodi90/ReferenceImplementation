@@ -2,32 +2,20 @@
 The S3Model Reference Model code to write DM schemas.
 """
 import os
-import sys
-import time
-import codecs
-import re
-from datetime import datetime, date
+from datetime import date
 import hashlib
 import zipfile
 from shutil import copy, rmtree
-from uuid import uuid4
-from collections import OrderedDict
 from xml.sax.saxutils import escape
 from urllib.parse import quote
 import json
 import xmltodict
-import shortuuid
 from lxml import etree
 
-from django.http import HttpResponse
-# from django.core.servers.basehttp import FileWrapper
-from wsgiref.util import FileWrapper
-from django.core.files.base import ContentFile, File
+from django.core.files.base import ContentFile
 from django.contrib import messages
 
 from s3m.settings import DM_LIB, MEDIA_ROOT, RMVERSION, RM_URI
-
-from .exceptions import PublishingError, GenerationError
 
 from dmgen.models import NS, get_rcode
 
@@ -57,7 +45,7 @@ class DMPkg(object):
         self.xmlHead = self.xmlHeader()
         self.xmlTail = '</s3m:' + self.dm.identifier + '>\n'
         self.xsdMetadata = self.xsdMetadata()
-        self.rm = '<!-- Include the RM Schema -->\n  <xs:include schemaLocation="http://www.s3model.com/ns/s3m/s3model_' + \
+        self.rm = '<!-- Include the RM Schema -->\n  <xs:include schemaLocation="https://www.s3model.com/ns/s3m/s3model_' + \
             RMVERSION.replace('.', '_') + '.xsd"/>\n'
 
     def xmlHeader(self):
@@ -68,7 +56,7 @@ class DMPkg(object):
         hstr += '<s3m:' + self.dm.identifier + '\n'
         for ns in NS.objects.all():
             hstr += '  xmlns:' + ns.abbrev.strip() + '="' + ns.uri.strip() + '"\n'
-        hstr += 'xsi:schemaLocation="http://www.s3model.com/ns/s3m/ http://dmgen.s3model.com/dmlib/' + \
+        hstr += 'xsi:schemaLocation="https://www.s3model.com/ns/s3m/  http://dmgen.s3model.com/dmlib/' + \
             self.dm.identifier + '.xsd">\n'
         return(hstr)
 
@@ -77,12 +65,12 @@ class DMPkg(object):
         Build the header string for the XSD
         """
         hstr = '<?xml version="1.0" encoding="UTF-8"?>\n'
-        # hstr += '<?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>\n'
+        hstr += '<?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>\n'
         hstr += '<xs:schema\n'
         for ns in NS.objects.all():
             hstr += '  xmlns:' + ns.abbrev.strip() + '="' + ns.uri.strip() + '"\n'
-        hstr += '  targetNamespace="http://www.s3model.com/ns/s3m/"\n'
-        hstr += '  vc:minVersion="1.1" xml:lang="' + self.dm.dc_language.strip() + \
+        hstr += '  targetNamespace="https://www.s3model.com/ns/s3m/"\n'
+        hstr += '  xml:lang="' + self.dm.dc_language.strip() + \
             '">\n'
         return(hstr)
 
@@ -150,7 +138,7 @@ class DMPkg(object):
             self.xsd += '    <xs:appinfo>\n'
             self.xsd += '      <rdf:Description rdf:about="mc-' + str(self.dm.ct_id) + '">\n'
             self.xsd += '        <rdfs:subClassOf rdf:resource="' + RM_URI + 'DMType"/>\n'
-            self.xsd += '        <rdfs:subClassOf rdf:resource="http://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+            self.xsd += '        <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
             self.xsd += '        <rdfs:label>' + \
                 escape(self.dm.title.strip()) + '</rdfs:label>\n'
             if len(self.dm.pred_obj.all()) != 0:
@@ -277,7 +265,7 @@ class DMPkg(object):
                     self.xml += "</workflow>\n"
 
             # audit
-            if entry.audit:
+            if entry.audit.all():
                 if self.registerUUID(entry.audit.ct_id, 'AuditType'):
                     self.xsd += entry.audit.schema_code
                     msg = self.processAudit(entry.audit)
@@ -401,7 +389,7 @@ class DMPkg(object):
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             # len 10 was arbitrarily chosen as an obviously
                             # incorrect code length.
-                            if len(rr.schema_code ) < 10:
+                            if len(rr.schema_code) < 10:
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: " +
                                        rr.label + " is published.", messages.ERROR)
                                 return(msg)
@@ -409,7 +397,7 @@ class DMPkg(object):
                             if self.registerUUID(rr.interval.ct_id, 'XdIntervalType'):
                                 # len 10 was arbitrarily chosen as an obviously
                                 # incorrect code length.
-                                if len(rr.interval.schema_code ) < 10:
+                                if len(rr.interval.schema_code) < 10:
                                     msg = ("Something happened to your MC code. Check that XdInterval: " +
                                            rr.interval.label + " is published.", messages.ERROR)
                                     return(msg)
@@ -435,7 +423,7 @@ class DMPkg(object):
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
                             # len 10 was arbitrarily chosen as an obviously
                             # incorrect code length.
-                            if len(rr.schema_code ) < 10:
+                            if len(rr.schema_code) < 10:
                                 msg = ("Something happened to your MC code. Check that ReferenceRange: " +
                                        rr.label + " is published.", messages.ERROR)
                                 return(msg)
@@ -475,7 +463,7 @@ class DMPkg(object):
                     msg = ("Something happened to your MC code. Check that XdQuanitiy: " +
                            Xd.label + " is published.", messages.ERROR)
                     return(msg)
-                self.xsd += Xd.schema_code # get the Xd code
+                self.xsd += Xd.schema_code  # get the Xd code
                 if Xd.reference_ranges.all():
                     for rr in Xd.reference_ranges.all():
                         if self.registerUUID(rr.ct_id, 'ReferenceRangeType', 'ReferenceRange'):
@@ -752,7 +740,7 @@ class DMPkg(object):
 
         return(msg)
 
-    def makeXdAdapter(self, ct_id, adapter_id, Xdname):
+    def makeXdAdapter(self, ct_id, adapter_id, xd_name):
         """
         Create an Element adapter for a complexType when used in a Cluster.
         Requires the ct_id of the complexType and the pre-generated Element ID for that datatype.
@@ -768,13 +756,13 @@ class DMPkg(object):
         adr_str += padding.rjust(indent) + ("<xs:element name='ms-" + adapter_id +
                                             "' substitutionGroup='s3m:Items' type='s3m:mc-" + adapter_id + "'/>\n")
         adr_str += padding.rjust(indent) + ("<xs:complexType name='mc-" +
-                                            adapter_id + "'> <!-- Adapter for: " + escape(Xdname) + " -->\n")
+                                            adapter_id + "'> <!-- Adapter for: " + escape(xd_name) + " -->\n")
         adr_str += padding.rjust(indent + 2) + ("<xs:complexContent>\n")
         adr_str += padding.rjust(indent + 4) + \
             ("<xs:restriction base='s3m:XdAdapterType'>\n")
         adr_str += padding.rjust(indent + 6) + ("<xs:sequence>\n")
         adr_str += padding.rjust(indent + 8) + ("<xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-" +
-                                                ct_id + "'/> <!-- Reference to: " + escape(Xdname) + " -->\n")
+                                                ct_id + "'/> <!-- Reference to: " + escape(xd_name) + " -->\n")
         adr_str += padding.rjust(indent + 6) + ("</xs:sequence>\n")
         adr_str += padding.rjust(indent + 4) + ("</xs:restriction>\n")
         adr_str += padding.rjust(indent + 2) + ("</xs:complexContent>\n")
@@ -814,7 +802,6 @@ class DMPkg(object):
         self.xsd += "  </xs:annotation>\n"
 
         return(msg)
-
 
     def getXSD(self):
         """
@@ -873,8 +860,8 @@ def generateDM(dm, request):
 
     # create a unique directory based on the DM Title
     lib_dir = DM_LIB
-    fldrTitle = ''.join([c for c in dm.title if c.isalnum() and ord(c) <= 127])
-    dm_dir = lib_dir + "/" + fldrTitle
+    fldr_title = ''.join([c for c in dm.title if c.isalnum() and ord(c) <= 127])
+    dm_dir = lib_dir + "/" + fldr_title
     if os.path.exists(dm_dir):
         rmtree(dm_dir)
 
@@ -932,15 +919,15 @@ def generateDM(dm, request):
         namespaces = {}
         for ns in NS.objects.all():
             namespaces[ns.uri.strip()] = ns.abbrev.strip()
-        f = ContentFile(dmpkg.xml.encode("utf-8")) #this is the XML instance before conversion
+        f = ContentFile(dmpkg.xml.encode("utf-8"))  # this is the XML instance before conversion
         xmldict = xmltodict.parse(f, process_namespaces=True, namespaces=namespaces)
         j = json.dumps(xmldict, indent=2)
         jfile = ContentFile(j)
         jsonfile = dm.json_file
         jsonfile.save('dm-' + str(dm.ct_id) + '.json', jfile)
         jsonfile.close()
-        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) + '.json', os.O_RDWR|os.O_CREAT )
-        os.write(lf,j.encode("utf-8"))
+        lf = os.open(dm_dir + '/dm-' + str(dm.ct_id) + '.json', os.O_RDWR | os.O_CREAT)
+        os.write(lf, j.encode("utf-8"))
         os.close(lf)
         messages.add_message(request, messages.SUCCESS, "Wrote the JSON Instance file.")
 
@@ -967,18 +954,17 @@ def generateDM(dm, request):
         Generate the RDF from the semantics embeded in the XSD.
         """
 
-        rootdir = '.'
-        nsDict={'xs':'http://www.w3.org/2001/XMLSchema',
-                'rdf':'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-                'rdfs':'http://www.w3.org/2000/01/rdf-schema#',
-                'dct':'http://purl.org/dc/terms/',
-                'owl':'http://www.w3.org/2002/07/owl#',
-                'vc':'http://www.w3.org/2007/XMLSchema-versioning',
-                's3m':'http://www.s3model.com/ns/s3m/'}
+        ns_dict = {'xs': 'http://www.w3.org/2001/XMLSchema',
+                   'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+                   'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
+                   'dct': 'http://purl.org/dc/terms/',
+                   'owl': 'http://www.w3.org/2002/07/owl#',
+                   'vc': 'http://www.w3.org/2007/XMLSchema-versioning',
+                   's3m': 'https://www.s3model.com/ns/s3m/'}
 
         parser = etree.XMLParser(ns_clean=True, recover=True)
-        about = etree.XPath("//xs:annotation/xs:appinfo/rdf:Description", namespaces=nsDict)
-        md = etree.XPath("//rdf:RDF/rdf:Description", namespaces=nsDict)
+        about = etree.XPath("//xs:annotation/xs:appinfo/rdf:Description", namespaces=ns_dict)
+        md = etree.XPath("//rdf:RDF/rdf:Description", namespaces=ns_dict)
         rdf_file = os.open(dm_dir + '/dm-' + str(dm.ct_id) + '.rdf', os.O_RDWR | os.O_CREAT)
 
         rdfstr = """<?xml version="1.0" encoding="UTF-8"?>\n<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>\n"""
@@ -1000,121 +986,6 @@ def generateDM(dm, request):
                              "Wrote the RDF for the DM.")
 
         """
-        Create a subdirectory for the R project using the following string:
-        'dm': A prefix to help identifiy the module if it is included in the CRAN
-        dm.title: Collapse all white space and remove any non-alphanum characters
-        uuid segment: take the last segement from the DM UUID
-        """
-        # setup the project name
-        r_proj = 'dm'
-        r_proj += ''.join([c for c in dm.title if c.isalnum() and ord(c) <= 127])
-        r_proj += str(dm.ct_id).split('-')[-1]
-
-        r_projdir = dm_dir + '/' + r_proj
-        # create the project directory
-        os.makedirs(r_projdir, 0o777)
-        # create the required sub dirs
-        os.makedirs(r_projdir + '/R', 0o777)
-        os.makedirs(r_projdir + '/man', 0o777)
-        os.makedirs(r_projdir + '/inst/examples', 0o777)
-
-        # use the list of MC IDs used to get the R code and label.
-        exports = []
-        used_ctids = []
-        for n in dmpkg.used_uuids.keys():
-            used_ctids.append(n)
-
-        for n in range(0, len(used_ctids)):
-            rinfo = None
-            rinfo = get_rcode(used_ctids[n])
-            if rinfo:
-                # replace all special characters.
-                r_name = ''.join(e for e in rinfo[
-                                 0] if e.isalnum() and ord(e) <= 127)
-
-                r_filename = r_name + '.R'
-
-                r_code = rinfo[1]
-                # for writing to the NAMESPACE file
-                exports.append('get' + r_name)
-
-                # create the R code file
-                rf = open(r_projdir + '/R/' + r_filename, 'wb')
-                rf.write(r_code.encode("utf-8"))
-                rf.close()
-
-        # write the metadata.R file.
-        rf = open(r_projdir + '/R/metadata.R', 'wb')
-        rf.write(gen_metadataR(dm).encode("utf-8"))
-        rf.close()
-
-        # create the required NAMESPACE and DESCRIPTION files
-        r_nsfile = open(r_projdir + '/NAMESPACE', 'w')
-        for n in range(0, len(exports)):
-            r_nsfile.write('export(' + exports[n] + ')\n')
-        r_nsfile.close()
-
-        r_descfile = open(r_projdir + '/DESCRIPTION', 'wb')
-        r_descfile.write(('Package: ' + r_proj + '\n').encode("utf-8"))
-        r_descfile.write(('Type: Package' + '\n').encode("utf-8"))
-        r_descfile.write(('Title: ' + r_proj + '\n').encode("utf-8"))
-        r_descfile.write('Version: 1.0\n'.encode("utf-8"))
-        r_descfile.write(
-            ('Date: ' + dm.pub_date.strftime("%Y-%m-%d") + '\n').encode("utf-8"))
-        r_descfile.write(
-            'Author: Timothy W. Cook <tim@datainsights.tech>\n'.encode("utf-8"))
-        r_descfile.write(
-            'Maintainer: Timothy W. Cook <tim@datainsights.tech>\n'.encode("utf-8"))
-        r_descfile.write(('Description: Creates a data frame from instances of the S3Model DM for:\n  ' +
-                          dm.title + '\n  The DM ID is: dm-' + str(dm.ct_id) + '\n  ' + dm.description + '\n').encode("utf-8"))
-        r_descfile.write('License: Apache License 2.0\n'.encode("utf-8"))
-        r_descfile.write('Depends: \n'.encode("utf-8"))
-        r_descfile.write('  s3modelRM (>= 3.0.0),\n'.encode("utf-8"))
-        r_descfile.write('  data.table\n'.encode("utf-8"))
-        r_descfile.close()
-
-        # put the sample XML file in the R project as an example.
-        xmlfile = open(dm_dir + '/dm-' + str(dm.ct_id) +
-                       '.xml', 'r', encoding="utf-8")
-        xml = xmlfile.read()
-        xmlfile.close
-        xmlfile = open(r_projdir + '/inst/examples/example01.xml',
-                       'w', encoding="utf-8")
-        xmlfile.write(xml)
-        xmlfile.close
-        xmlfile = open(r_projdir + '/inst/examples/example02.xml',
-                       'w', encoding="utf-8")
-        xmlfile.write(xml)
-        xmlfile.close
-
-        # create a project file for RStudio
-        r_studiofile = open(r_projdir + '/' + r_proj +
-                            '.Rproj', 'w', encoding="utf-8")
-        r_studiofile.write('Version: 1.0\n')
-        r_studiofile.write('\n')
-        r_studiofile.write('RestoreWorkspace: Default\n')
-        r_studiofile.write('SaveWorkspace: Default\n')
-        r_studiofile.write('AlwaysSaveHistory: Default\n')
-        r_studiofile.write('\n')
-        r_studiofile.write('EnableCodeIndexing: Yes\n')
-        r_studiofile.write('UseSpacesForTab: Yes\n')
-        r_studiofile.write('NumSpacesForTab: 2\n')
-        r_studiofile.write('Encoding: UTF-8\n')
-        r_studiofile.write('\n')
-        r_studiofile.write('RnwWeave: Sweave\n')
-        r_studiofile.write('LaTeX: pdfLaTeX\n')
-        r_studiofile.write('\n')
-        r_studiofile.write('BuildType: Package\n')
-        r_studiofile.write(
-            'PackageInstallArgs: --no-multiarch --with-keep.source\n')
-        r_studiofile.write('PackageRoxygenize: rd\n')
-        r_studiofile.write('\n')
-        r_studiofile.close()
-
-        messages.add_message(request, messages.SUCCESS,
-                             "Wrote the R Studio project files.")
-
-        """
         create ZIP of the directory and the JSON, html, xsd, xml, sha1 files and the R project
         """
         zf = zipfile.ZipFile(MEDIA_ROOT + '/dm-' + str(dm.ct_id) + '.zip', 'w')
@@ -1127,63 +998,10 @@ def generateDM(dm, request):
         messages.add_message(request, messages.SUCCESS,
                              "Created a ZIP of all the files.")
 
-        newumask = os.umask(prevumask)  # reset the umask
+        os.umask(prevumask)  # reset the umask
 
         dm.published = True
         dm.save()
 
     return(msg)
 
-
-def gen_metadataR(self):
-    """
-    Create and return a string to build an R metadata file.
-    """
-    now = date.today()
-    year = str(now.timetuple()[0])
-
-    rstr = ''  # The string to write
-    rstr += "# Copyright 2013-" + year + \
-        ", Timothy W. Cook <timothywayne.cook@gmail.com>\n"
-    rstr += "# metadata.R for dm-" + str(self.ct_id) + ".xsd\n"
-    rstr += "# Licensed under the Apache License, Version 2.0 (the 'License');\n"
-    rstr += "# you may not use this file except in compliance with the License.\n"
-    rstr += "# You may obtain a copy of the License at\n"
-    rstr += "# http://www.apache.org/licenses/LICENSE-2.0\n"
-    rstr += "\n"
-    rstr += "# Unless required by applicable law or agreed to in writing, software\n"
-    rstr += "# distributed under the License is distributed on an 'AS IS' BASIS,\n"
-    rstr += "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n"
-    rstr += "# See the License for the specific language governing permissions and\n"
-    rstr += "# limitations under the License.\n"
-    rstr += "#' @title getMetadata\n"
-    rstr += "#'\n"
-    rstr += "#' The Data Model (DM) Metadata\n"
-    rstr += "#' @export\n"
-    rstr += "getMetadata <- data.frame(\n"
-    rstr += "  dc_title='" + self.title.strip() + "',\n"
-    rstr += "  dc_creator='" + self.author.__str__() + "',\n"
-    rstr += "  dc_contributors='None',\n"
-    rstr += "  dc_subject='" + self.subject + "',\n"
-    rstr += "  dc_source='" + self.source + "',\n"
-    rstr += "  dc_relation='" + self.relation + "',\n"
-    rstr += "  dc_coverage='" + self.coverage + "',\n"
-    rstr += "  dc_type='S3Model Data Model (DM)',\n"
-    rstr += "  dc_identifier='dm-" + str(self.ct_id) + "',\n"
-    rstr += "  dc_description='" + self.description + "',\n"
-    rstr += "  dc_publisher='" + self.publisher + "',\n"
-    pdstr = self.pub_date.strftime("%Y-%m-%d %H:%M%S")
-    rstr += "  dc_date=as.POSIXct(strptime('" + \
-        pdstr + "', '%Y-%m-%d %HH:%MM%SS')),\n"
-    rstr += "  dc_format='text/xml',\n"
-    rstr += "  dc_language='en-us',\n"
-    rstr += "  stringsAsFactors=FALSE)\n"
-    rstr += "  \n"
-
-    rstr += "dmuri <- function(){\n"
-    rstr += "    return('http://dmgen.s3model.com/dmlib/dm-" + \
-        str(self.ct_id) + ".xsd')\n"
-    rstr += "}\n"
-    rstr += "\n"
-
-    return(rstr)
