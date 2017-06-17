@@ -1,6 +1,6 @@
-==============================================================
-Shareable, Structured, Semantic Model (S3Model) Specifications
-==============================================================
+===============================================
+Shareable, Structured, Semantic Model (S3Model)
+===============================================
 
 **The Esperanto of Information Management.**
 
@@ -21,8 +21,8 @@ Contents:
    governance
    executive_summary
    introduction
-   abstract_model
    modeling_concepts
+   abstract_model
    rm
    linked_data
    S3Model_and_EA

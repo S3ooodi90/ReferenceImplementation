@@ -1,6 +1,6 @@
-======================
-S3Model Abstract Model
-======================
+==============
+Abstract Model
+==============
 
 S3Model is by name as well as by definition and design a constraint based multi-level modeling approach.  This means that there are multiple models with increasing specificity to get to the instance data point. S3Model is constraint based which provides a complete syntactic validation path back to the reference model for the instance data. The semantic model is designed around the concepts of this multi-level model approach. Extensions to the reference model concepts are not allowed.
 
