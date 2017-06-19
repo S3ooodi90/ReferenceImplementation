@@ -10,7 +10,13 @@ The Shareable, Structured, Semantic Model (S3Model) specifications are based on 
 
 The above paragraph describes the foundation of *data-centric, model driven, computable semantic interoperability* in S3Model implementations. To be successful with implementing and creating systems with the full value of S3Model based applications it is important to understand the core concepts as laid out in the :doc:`Modeling Concepts <./modeling_concepts>` document. 
 
+It is important to keep in mind that data modeling is your first step in data governance. If you do not know what you have you cannot possibly manage it nor use it for maximum effect. Data modeling has gotten a bad name because of an inflexible approach. But SQL is not *data modeling*; it is an implementation strategy. 
+
+A **data first** strategy based on thoughtful modeling for reuse in the future means more value for your efforts.
+
 We provide complete training and tooling to make your transition from a legacy application-centric business to modern data-centric, AI driven enterprise. 
+
+
   
 .. rubric:: Footnotes
 

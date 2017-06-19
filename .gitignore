@@ -5,17 +5,10 @@
 *.zip
 *.sh
 
-DMGEN.json
-
-#ModelTester
-S3ModelTester.log
-
 #Django
-settings.py
 dmlib/
 media/
 migrations/
-datalib/
 
 
 #Sphinx
@@ -30,4 +23,6 @@ RDF/tools/3_0_0/xml/
 
 # project files
 *.xpr
+s3m.wpr
+s3m.wpu
 .Rproj.user

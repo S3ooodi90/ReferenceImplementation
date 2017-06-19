@@ -1,5 +1,0 @@
-Backup:
-pg_dump dmgen -f ~/DII/S3M_Backup/dmgen_db.sql
-
-Restore:
- psql miansanon -f ~/DII/S3M_Backup/dmgen_db.sql

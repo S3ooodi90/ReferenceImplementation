@@ -6,7 +6,7 @@ Executive Summary
 
 **S3Model** is a foundation to build a **modern data-centric** information infrastructure across all domains. This capability is required in order to advance to the modern era of performing decision support services (DSS) and Big Data analysis across information coming from multiple points. These points of data creation are increasing every day as a result of more institutions bringing new digital capabilities to more functions, in addition to the plethora of new devices arriving in the Internet of Things (IoT) marketplace.
 
-Managing information across domains is too broad for one top-down, one-size-fits-all solution for information interoperability. S3Model *is built on* multiple, widely used standards.
+Managing information across domains is too broad for one top-down, one-size-fits-all, slow moving standards defined solution for information modeling and interoperability. S3Model *is built on* multiple, widely used standards.
 
 Data is produced by people that have a need to record that data. Often that data is useful to others. In domains like healthcare and bio-sciences this is certainly true. But to simply transfer raw data is not enough for the receiver to determine if the data is useful for their needs. They need to know much more about the contexts (ontological, spatial, temporal) in which the data was captured.
 
