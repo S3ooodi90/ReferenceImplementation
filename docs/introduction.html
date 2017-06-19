@@ -38,7 +38,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Shareable, Structured, Semantic Model" href="index.html"/>
-        <link rel="next" title="S3Model Abstract Model" href="abstract_model.html"/>
+        <link rel="next" title="Modeling Concepts" href="modeling_concepts.html"/>
         <link rel="prev" title="Executive Summary" href="executive_summary.html"/> 
 
   
@@ -99,12 +99,9 @@
 <li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Docs Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#history">History</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">S3Model Abstract Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">Abstract Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rm.html">The Reference Implementation - Reference Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linked_data.html">Linked Data Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
@@ -179,23 +176,14 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="history">
-<h2>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
 <p>The Shareable, Structured, Semantic Model (S3Model) specifications are based on years of research and development.</p>
-<p>Only the reference model is implemented in software where needed. In many implementations, the application can use XML Tools to validate against the DM and reference model using any SQL, NoSQL or other persistent storage. For devices or other small apps even the file system will suffice as a storage solution.</p>
-<p>The domain knowledge models are implemented in the XML Schema language and they represent constraints on the reference model implementation, also implemented in XML Schema.
-The domain knowledge models are called Data Models and the acronyms DM and DMs are used throughout S3Model documents to mean these XML Schema files. This means that, since DMs form a model that allows the creation of data instances from and according to a specific DM, it is ensured that the data instances will be valid, in perpetuity. DMs are immutable. This insures data validity for longitudinal records.</p>
-<p>However, any data instance should be able to be imported into any S3Model based application since the root data model, for any application is the S3Model reference model. But, the full semantics of that data will not be known unless and until the defining DM is available to the receiving application. The DM represents the structural syntax of a healthcare <a class="footnote-reference" href="#f1" id="id1">[1]</a> concept using XML Schema constraints and contains the semantics defined by the modeler in the form of RDF/XML or other XML based syntaxes within documentation and annotation segments of the DM. This enables applications to parse the DM and publish or compute using the semantics as needed on an application by application basis.</p>
-<p><strong>The S3Model approach allows systems developers to build the data model they need for their application and the shared DMs tell you how and what was captured. This sharable information model allows any other data consumer to determine if the data is correct for their needs.</strong></p>
-<p>The above paragraph describes the foundation of <em>computable semantic interoperability</em> in S3Model implementations. You must understand this and the implications it carries to be successful with implementing and creating systems with the full value of S3Model based applications. See the <a class="reference internal" href="modeling_concepts.html"><span class="doc">Modeling Concepts</span></a> document for further discussion of Data Models (DMs).</p>
+<p><strong>S3Model is the foundation for your modern, data-centric information management systems</strong>.</p>
+<p><strong>The S3Model approach allows domain experts to build the data model they need for their application and the shared models are the basis for a data-centric, model driven information management strategy. This sharable information model allows any data consumer to determine if the data is correct for their needs.</strong></p>
+<p>The above paragraph describes the foundation of <em>data-centric, model driven, computable semantic interoperability</em> in S3Model implementations. To be successful with implementing and creating systems with the full value of S3Model based applications it is important to understand the core concepts as laid out in the <a class="reference internal" href="modeling_concepts.html"><span class="doc">Modeling Concepts</span></a> document.</p>
+<p>It is important to keep in mind that data modeling is your first step in data governance. If you do not know what you have you cannot possibly manage it nor use it for maximum effect. Data modeling has gotten a bad name because of an inflexible approach. But SQL is not <em>data modeling</em>; it is an implementation strategy.</p>
+<p>A <strong>data first</strong> strategy based on thoughtful modeling for reuse in the future means more value for your efforts.</p>
+<p>We provide complete training and tooling to make your transition from a legacy application-centric business to modern data-centric, AI driven enterprise.</p>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Healthcare concepts include: (a) clinical concepts adopted in medicine for diagnostic and therapeutic decision making; (b) analogous concepts used for all healthcare professionals (e.g. nursing, dentistry, psychology, pharmacy); (c) public health concepts (e.g. epidemiology, social medicine, biostatistics); (d) demographic and (e) administrative concepts that concern healthcare</td></tr>
-</tbody>
-</table>
-</div>
 </div>
 
 
@@ -208,7 +196,7 @@ The domain knowledge models are called Data Models and the acronyms DM and DMs a
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="abstract_model.html" class="btn btn-neutral float-right" title="S3Model Abstract Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="modeling_concepts.html" class="btn btn-neutral float-right" title="Modeling Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="executive_summary.html" class="btn btn-neutral" title="Executive Summary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
