@@ -14,6 +14,8 @@ It is important to keep in mind that data modeling is your first step in data go
 
 A **data first** strategy based on thoughtful modeling for reuse in the future means more value for your efforts.
 
+In todays world where data warehouses and data marts are too slow and rigid and data lakes too permissive and messy; S3Model is the Goldilocks solution. It is just right. S3Model provides the ability to model, semantically, the data you know you need in a manner that will be useful in the future.  You'll know how and where it came from and be able to machine manage it instead of manaully cleaning and re-purposing something of dubious quality.
+
 We provide complete training and tooling to make your transition from a legacy application-centric business to modern data-centric, AI driven enterprise. 
 
 

@@ -5,7 +5,7 @@ Modeling Concepts
 Approach
 ========
 
-The S3Model Reference Model provides extended datatypes and a document-like structure capability to enhance interoperability across disparant systems. This is the foundation of the **modern data-centric information management** world. The reasons that being data-centric is important is detailed in other sections. 
+The S3Model Reference Model provides extended datatypes and a document-like structure capability to enhance interoperability across disparant systems. This is the foundation of the **modern data-centric information management** world. The business case for becoming *data-centric* is detailed in other sections. 
 
 The fundamental concepts, expressed in the reference model classes, are based on basic philosophical concepts of real world entities. These broad concepts can then be constrained to more specific concepts using models created by domain experts. These Data Models (DMs) created by domain experts provides the ability for their *tacit knowledge* to be directly encoded into a model-driven system. A trained domain expert can create **computable models** that are not available through any other methodology.
 
