@@ -21,6 +21,7 @@ Contents:
    governance
    executive_summary
    introduction
+   value_prop
    modeling_concepts
    abstract_model
    rm

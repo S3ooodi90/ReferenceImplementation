@@ -1,8 +1,9 @@
-=====================
-S3Model Docs Overview
-=====================
+==============================
+S3Model Documentation Overview
+==============================
 
-The Esperanto of Information Management.
+*Turning data into information*
+
 
 Status - **Draft 3.0.0** Released: N/A
 

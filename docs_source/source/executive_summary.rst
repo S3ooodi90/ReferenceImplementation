@@ -20,6 +20,8 @@ S3Model specifically addresses the need to communicate *syntactically* sound dat
 
 S3Model is the foundation for retro-fitting your current applications to inter-operate with your future applications using the modern data-centric (as opposed to legacy application-centric) approach, without requiring wholesale replacement.
 
+Information management *value propositions* are varied based on the needs of the industry and individual institutions. We have assembled some examples by use case :doc:`Value Propositions <./value_prop>` document.
+
 The research and development of S3Model is based on more than a decade of interation and implementation. There have been multiple graduate and under-graduate degrees awarded based on the underlying R&D as well as the pubication of a number of peer-reviewed publications. Academic project archives are at 
 
 .. raw:: html
