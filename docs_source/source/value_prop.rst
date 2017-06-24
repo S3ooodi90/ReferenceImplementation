@@ -32,7 +32,6 @@ Some reasons for poor data quality:
 
 - Weak or missing validation in the application and when transfering data between systems
 
-- 
 
 
 Solution(s)
