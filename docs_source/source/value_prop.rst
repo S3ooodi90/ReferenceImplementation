@@ -47,15 +47,26 @@ It is impractical to encode this context in every existing and future applicatio
 Use Case #2
 ===========
 
+*Coming Soon!*
+
+
 
 Use Case #3
 ===========
+
+*Coming Soon!*
+
 
 
 Use Case #4
 ===========
 
+*Coming Soon!*
+
+
 
 Use Case #5
 ===========
+
+*Coming Soon!*
 
