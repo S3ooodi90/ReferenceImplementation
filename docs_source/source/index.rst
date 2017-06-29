@@ -29,7 +29,6 @@ Contents:
    S3Model_and_EA
    ecosystem
    data_analysis
-   dmgen
    ecore
    glossary
    support

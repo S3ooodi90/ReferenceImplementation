@@ -12,7 +12,7 @@ The Reference Implementation - Reference Model
 Assumed Types
 =============
 
-There are several types that are assumed to be supported by the underlying implementation technology. These assumed types are based on XML Schema 1.1 Part 2 Datatypes. They should be available in your implementation language or add-on libraries. The names may or may not be exactly the same.
+There are several types that are assumed to be supported by the underlying implementation technology. These assumed types are based on XML Schema Part 2 Datatypes. They should be available in your implementation language or add-on libraries. The names may or may not be exactly the same.
 
 -----------------
 Non-Ordered Types

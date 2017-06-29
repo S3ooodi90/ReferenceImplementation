@@ -18,7 +18,7 @@ The S3Model specifications and reference implementation represent a foundation m
 
 TOGAF® Common System Architectures
 ----------------------------------
-The S3Model DMs are composed of multiple, reusable (pluggable) complexType restrictions of the reference model. These PCMs can be reused in many DMs and can represent a common group of components. Again from the broader perspective the use of XML Schema 1.1 as an easily transported model is of primary importance as a common architecture.
+The S3Model DMs are composed of multiple, reusable (pluggable) complexType restrictions of the reference model. These PCMs can be reused in many DMs and can represent a common group of components. Again from the broader perspective the use of XML Schema as an easily transported model is of primary importance as a common architecture.
 
 TOGAF® Industry Architectures
 ----------------------------------

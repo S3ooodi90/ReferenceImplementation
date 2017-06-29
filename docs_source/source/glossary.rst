@@ -12,9 +12,9 @@ Reference Model (RM)
 --------------------
 The RM is a small set of structural concept definitions that allow for building arbitrarily complex models without introducing domain semantics into the structure. Domain concepts are modeled as *restrictions* on these RM concepts. Then RM therefore defines a common set of concepts that allow for query and knowledge discovery across data without prior knowledge of the actual content. See DM below.
 
-Pluggable Concept Model (PCM)
------------------------------
-The name comes from the fact that it is a complete XML Schema complexType that represents a simple concept and that it can be reused or 'plugged in' to any DM. This is due to the use of UUIDs for the complexType name attribute. Since complexType names must begin with an alphabetic character all S3Model PCM names begin with the prefix 'pcm-' followed by the UUID. This also facilitates the association with public element names in instances since they reuse the UUID but are prefixed with 'pcs-' in place of the 'pcm-'. The use of a UUID allows the constraint on a reference model type to be reused many times in a DM with different parameters such as enumeration constraints. The semantics for a concept modeled as a PCM is represented using Semantic Web technologies. The PCM name is the subject in each of the *Subject, Predicate, Object* RDF statements.
+Model Component (MC)
+--------------------
+The name comes from the fact that it is a complete XML Schema complexType that represents a simple concept and that it can be reused in any DM. This is due to the use of UUIDs for the complexType name attribute. Since complexType names must begin with an alphabetic character all S3Model MC names begin with the prefix 'mc-' followed by the UUID. This also facilitates the association with public element names in instances since they reuse the UUID but are prefixed with 'ms-' (MOdel Symbol) in place of the 'mc-'. The use of a UUID allows the constraint on a reference model type to be reused many times in a DM with different parameters such as enumeration constraints. The semantics for a concept modeled as a MC is represented using Semantic Web technologies. The MC name is the subject in each of the *Subject, Predicate, Object* RDF statements.
 
 Data Model (DM)
 -----------------------------------
