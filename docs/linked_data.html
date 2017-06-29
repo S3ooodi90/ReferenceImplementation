@@ -96,10 +96,11 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Docs Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="abstract_model.html">Abstract Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rm.html">The Reference Implementation - Reference Model</a></li>
@@ -119,7 +120,6 @@
 <li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmgen.html">Data Model Generator (DM-Gen)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
@@ -192,12 +192,12 @@
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>Initial approaches to building ontologies for S3Model used the XML Schema to OWL approach that has been published several times in academic literature. However, it was learned over these attempts that this is a single level mindset and approach.  It simply does not express the richness of S3Model. The results of those approaches represent the reference implementation of S3Model and not the overall concept.</p>
 <p>When we began S3Model in 2009, we intended to use OWL as the basis on which to build the concepts. However, the Open World Assumption is in conflict with constraint based modeling at the S3Model core.</p>
-<p>As the Linked Data environment matures, graph based technologies are becomming mainstream for data discovery and analysis. By using both XML Schema 1.1 to model the structural and syntactic needs and RDF to model semantics we create the best of all worlds towards <strong>computable semantic interoperability</strong>.</p>
+<p>As the Linked Data environment matures, graph based technologies are becomming mainstream for data discovery and analysis. By using both XML Schema to model the structural and syntactic needs and RDF to model semantics we create the best of all worlds towards <strong>computable semantic interoperability</strong>.</p>
 <p>In this document, when we talk about S3Model we will use the term <em>S3Model</em>. When we talk about modeling concepts in an area of interest we use the term <em>domain</em>.  Though we are thinking primarily about the domain of healthcare and the information technology to support healthcare information exchange, S3Model concepts may be applied to any domain of interest.</p>
 </div>
 <div class="section" id="syntactic-modeling">
 <h2>Syntactic Modeling<a class="headerlink" href="#syntactic-modeling" title="Permalink to this headline">¶</a></h2>
-<p>The complex nature of healthcare concepts and query needs requires a rigourous yet flexible structural approach to modeling. Using a multi-level approach built on a solid data model fulfills this need. The Reference Model consists of a minimum of components required to construct robust models. Desgined around the ubiquitous XML Schema data model provides a solid, standardized, implementable infrastructure. The Reference Model reference implementation is realized in XML Schema 1.1.</p>
+<p>The complex nature of healthcare concepts and query needs requires a rigourous yet flexible structural approach to modeling. Using a multi-level approach built on a solid data model fulfills this need. The Reference Model consists of a minimum of components required to construct robust models. Desgined around the ubiquitous XML Schema data model provides a solid, standardized, implementable infrastructure. The Reference Model reference implementation is realized in XML Schema.</p>
 <p>Components of the Reference Model can be assembled in virtually any structure need to express any level of granularity of healthcare or other domain concepts. These components are assembled in an XML Schema that contains only constraints (restrictions) of the Reference Model components.  This constraint based approach guarantees that the structure and syntax of all domain concept models are valid against the Reference Model.</p>
 <p>This guarantee means that it is easier to build persistence and query infrastructure that can accomodate unforseen domain concept models. This greatly reduces application complexity and maintenance.</p>
 </div>
@@ -271,12 +271,10 @@
 </div>
 <div class="section" id="datatype-properties">
 <h2>Datatype Properties<a class="headerlink" href="#datatype-properties" title="Permalink to this headline">¶</a></h2>
-<p>Some tools (e.g. Protégé) do not support the full range of XML Schema 1.1 datatypes directly. We defined these in S3Model.rdf as well.</p>
+<p>Some tools (e.g. Protégé) do not support the full range of XML Schema datatypes directly. We defined these in S3Model.rdf as well.</p>
 <blockquote>
 <div><ul class="simple">
 <li>duration</li>
-<li>yearMonthDuration</li>
-<li>dayTimeDuration</li>
 <li>gDay</li>
 <li>gMonth</li>
 <li>gYear</li>

@@ -39,7 +39,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Shareable, Structured, Semantic Model" href="index.html"/>
         <link rel="next" title="Abstract Model" href="abstract_model.html"/>
-        <link rel="prev" title="Introduction" href="introduction.html"/> 
+        <link rel="prev" title="Value Proposition" href="value_prop.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -96,16 +96,17 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Docs Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Modeling Concepts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#approach">Approach</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#constraint-definitions">Constraint Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dm-identification">DM Identification</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dm-versioning">DM Versioning</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pluggable-concept-models-pcms">Pluggable Concept Models (PCMs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-components-mcs">Model Components (MCs)</a></li>
 </ul>
 </li>
 </ul>
@@ -116,7 +117,6 @@
 <li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmgen.html">Data Model Generator (DM-Gen)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
@@ -212,15 +212,15 @@ The S3Model community considers it a matter of good artifact management practice
 </div>
 <div class="section" id="dm-versioning">
 <h3>DM Versioning<a class="headerlink" href="#dm-versioning" title="Permalink to this headline">¶</a></h3>
-<p>Versioning of DMs is not supported by these specifications. Though XML Schema 1.1 does have supporting concepts for versioning of schemas, this is not desirable in DMs. The reasons for this decision focuses primarily around the ability to capture temporal and ontological semantics for data instances and maintain them for all time (future proof data).
+<p>Versioning of DMs is not supported by these specifications. Though XML Schema does have supporting concepts for versioning of schemas, this is not desirable in DMs. The reasons for this decision focuses primarily around the ability to capture temporal and ontological semantics for data instances and maintain them for all time (future proof data).
 A key feature of S3Model is the ability to guarantee the semantics for all future time, as intended by the original modeler. We determined that any change in the structure or semantics of a DM, constitutes a new DM. Since the complexTypes are re-usable (See the PCM description below), an approach that tools should use is to allow for copying a DM and assigning a new DM ID. The editing the required PCMs before publishing the new DM. Reusing PCMs across DMs improves the ability to perform data analysis across time.</p>
 <p>When a complexType is changed within this new DM, all ancestors (enclosing complexTypes) also must be assigned a new name along with its global element name. For example if the enumerations on a XdStringType restriction are changed, the XdStringType, the XdAdapterType, the parent ClusterType and any enclosing ClusterTypes, the EntryType and the DMType must all get new UUIDs. The DMGen is aware of these processes and makes this an easier task than manual editing.</p>
 </div>
-<div class="section" id="pluggable-concept-models-pcms">
-<h3>Pluggable Concept Models (PCMs)<a class="headerlink" href="#pluggable-concept-models-pcms" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="model-components-mcs">
+<h3>Model Components (MCs)<a class="headerlink" href="#model-components-mcs" title="Permalink to this headline">¶</a></h3>
 <p>S3Model DMs are made up of XML schema complexTypes composed by restriction of the Reference Model complexTypes. This is the foundation of interoperability.
-What is in the Reference Model is the superset of all DMs. The Pluggable part of the name is given to the fact that due to their unique identification the complexTypes can be seen as re-usable components. For example, a domain expert might model a complexType that is a restriction of XdStringType with the enumerations for selecting one of the three measurement systems for temperature; Fahrenheit, Kelvin and Celsius. This PCM as well as many others can be reused in many DMs without modification.
-For this reason, the semantic links for PCMs are directly expressed in an xs:appinfo section in each PCM. This approach lends itself very well to the creation of RDF triples from this information. For example:</p>
+What is in the Reference Model is the superset of all DMs. Because part of the name is a unique identification the complexTypes can be seen as re-usable components. For example, a domain expert might model a complexType that is a restriction of XdStringType with the enumerations for selecting one of the three measurement systems for temperature; Fahrenheit, Kelvin and Celsius. This MC as well as many others can be reused in many DMs without modification.
+For this reason, the semantic links for MCs are directly expressed in an xs:appinfo section in each MC. This approach lends itself very well to the creation of RDF triples from this information. For example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">appinfo</span><span class="o">&gt;</span>
  <span class="o">&lt;</span><span class="n">rdf</span><span class="p">:</span><span class="n">Description</span> <span class="n">rdf</span><span class="p">:</span><span class="n">about</span><span class="o">=</span><span class="s1">&#39;&amp;S3Model;mc-3a54417d-d1d6-4294-b868-e7a9ab28f8c4&#39;</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">rdfs</span><span class="p">:</span><span class="n">isDefinedBy</span> <span class="n">rdf</span><span class="p">:</span><span class="n">resource</span><span class="o">=</span><span class="s1">&#39;http%3A//purl.obolibrary.org/obo/RO_0002371&#39;</span><span class="o">/&gt;</span>
@@ -229,8 +229,8 @@ For this reason, the semantic links for PCMs are directly expressed in an xs:app
 </pre></div>
 </div>
 <p>In this example the subject is &amp;S3Model;mc-3a54417d-d1d6-4294-b868-e7a9ab28f8c4 the predicate is rdfs:isDefinedBy and the object is http%3A//purl.obolibrary.org/obo/RO_0002371</p>
-<p>Every xs:appinfo section must begin with the rdf:Description element and have the rdf:about attribute to define the subject, as the containing complexType. This is then followed by one or more predicate/object components. The predicates can be from any vocabulary/terminology. Just be certain that the namespace prefix is correctly defined in the DM header. The DM-Gen defines common namespaces by default but others may be added as needed. Also be certain that any URLs are properly encoded so that they will be valid inside the DM.
-RDF triples are a cornerstone of the semantic web. For more information see this tutorial. Of particular interest here is the section titled; Introducing RDF/XML. RDF/XML is one of the syntaxes used to describe semantic links and it is what we use in S3Model. Another popular syntax you may see is called Turtle.</p>
+<p>Every xs:appinfo section must begin with the rdf:Description element and have the rdf:about attribute to define the subject, as the containing complexType. This is then followed by one or more predicate/object components. The predicates can be from any vocabulary/terminology. Just be certain that the namespace prefix is correctly defined in the DM header. The S3Model Tools defines common namespaces by default but others may be added as needed. Also be certain that any URLs are properly encoded so that they will be valid inside the DM.
+RDF triples are a cornerstone of the semantic web. For more information see this tutorial. Of particular interest here is the section titled; Introducing RDF/XML. RDF/XML is one of the syntaxes used to describe semantic links and it is what we use in S3Model.</p>
 </div>
 </div>
 </div>
@@ -248,7 +248,7 @@ RDF triples are a cornerstone of the semantic web. For more information see this
         <a href="abstract_model.html" class="btn btn-neutral float-right" title="Abstract Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introduction.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="value_prop.html" class="btn btn-neutral" title="Value Proposition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
