@@ -13,7 +13,7 @@ import sys
 import re
 from lxml import etree
 
-def main():
+def main(rmfile):
     rootdir = '.'
     nsDict={'xs':'http://www.w3.org/2001/XMLSchema',
             'rdf':'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
@@ -26,12 +26,14 @@ def main():
     parser = etree.XMLParser(ns_clean=True, recover=True)
     #owl_info = etree.XPath("//xs:annotation/xs:appinfo/owl:Ontology", namespaces=nsDict)
     rdf_info = etree.XPath("//xs:annotation/xs:appinfo/rdf:Description", namespaces=nsDict)
-    dest = open('rdf/rm_semantics.rdf', 'w')
+    rdffile = rmfile[:-4] + '.rdf'
+    print(rdffile)
+    dest = open(rdffile, 'w')
 
     dest.write("""<?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>\n""")
 
-    src = open('rm/s3model_3_0_0.xsd', 'r')
+    src = open(rmfile, 'r')
     tree = etree.parse(src, parser)
     root = tree.getroot()
 
@@ -46,9 +48,15 @@ def main():
 
     dest.write('</rdf:RDF>\n')
     dest.close()
+    return(rdffile)
 
 
 if __name__ == '__main__':
-    main()
-    print("\n\nDone! \nCreated: rdf/rm_semantics.rdf\n\n")
+    if len(sys.argv) < 2:
+        print('\nYou must include a path and fiename to the RM on the commandline. \n\n')
+        sys.exit(1)
+    else:
+        rmfile = sys.argv[1:][0]    
+    rdffile = main(rmfile)
+    print("\n\nDone! \nCreated: " + rdffile + "\n\n")
     sys.exit(0)

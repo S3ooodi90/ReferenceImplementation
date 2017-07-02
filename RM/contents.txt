@@ -2,3 +2,11 @@ The published versions of the reference model are in subdirectories labeled with
 
 The schema filename is 's3model_' with the version number appended, e.g. s3model_1_0_0.xsd for the first RM release.
 
+A generated RDF file is also located in each subdirectory. 
+
+The core concepts of S3Model are expressed in the s3model.owl file located here. 
+
+A scripts directory contains python scripts that can be used to extract semantics from RM files or DM files as well as scripts for other example generation tasks.
+
+ 
+
