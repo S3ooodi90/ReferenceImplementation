@@ -62,7 +62,8 @@
 
     <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#gMonthDay"/>
     
-    
+
+
     <!-- http://www.w3.org/2001/XMLSchema#gYear -->
 
     <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#gYear"/>
@@ -241,7 +242,7 @@ A CMS represents a CMC in instance data. In practice, it is usually substituted 
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/Exception">
         <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
-        <s3m:description xml:lang="en">Exceptions indicate that a data instance may be invalid when validated against its model. However, the exceptional value may be explainable and provide valuable contextual information. A specific Excpetion subclass will provide that additional information.</s3m:description>
+        <s3m:description xml:lang="en">Exceptions indicate that a data instance may be invalid when validated against its model. However, the exceptional value may be explainable and provide valuable contextual information. A specific Exception subclass will provide that additional information.</s3m:description>
     </owl:Class>
     
 
