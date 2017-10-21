@@ -6,7 +6,7 @@ dm_semantics_extractor.py
 Extracts the semantics from S3Model DMs and creates RDF triples in RDF/XML
 This script must be executed before the data_semantics_extractor.py script.
 
-    Copyright (C) 2016 Data Insights, Inc., All Rights Reserved.
+    Copyright (C) 2016 - 2017 Data Insights, Inc., All Rights Reserved.
 
 """
 import os

@@ -3,9 +3,9 @@
 """
 rm_semantics_extractor.py
 
-Extracts the semantics from S3Model RM and creates RDF triples in RDF/XML
+Extracts the semantics from S3Model RM and creates RDF triples in RDF/XML named the same as the input file with a .rdf extension in place of the .xsd extension.
 
-    Copyright (C) 2016 Data Insights, Inc., All Rights Reserved.
+    Copyright (C) 2016 - 2017 Data Insights, Inc., All Rights Reserved.
 
 """
 import os
@@ -53,7 +53,7 @@ def main(rmfile):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print('\nYou must include a path and fiename to the RM on the commandline. \n\n')
+        print('\nYou must include a path and filename to the RM on the commandline. \n\n')
         sys.exit(1)
     else:
         rmfile = sys.argv[1:][0]    

@@ -4,9 +4,9 @@
 data_semantics_extractor.py
 
 Extracts S3Model 3.0.0 (and later) data and creates RDF triples in RDF/XML
-This script must be executed after the ccd_semantics_extractor.py script.
+This script must be executed after the dm_semantics_extractor.py script.
 
-Copyright (C) 2016 Data Insights, Inc., All Rights Reserved.
+Copyright (C) 2016 - 2017 Data Insights, Inc., All Rights Reserved.
 """
 import os
 import sys
@@ -16,12 +16,13 @@ from xml.sax.saxutils import escape
 
 from lxml import etree
 
-nsDict = {'rdf':'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-            'owl':'http://www.w3.org/2002/07/owl#',
-            'dc':'http://purl.org/dc/elements/1.1/',
-            'sawsdl':'http://www.w3.org/ns/sawsdl',
-            'sawsdlrdf':'http://www.w3.org/ns/sawsdl#',
-            'rdfs':'http://www.w3.org/2000/01/rdf-schema#'}
+nsDict={'xs':'http://www.w3.org/2001/XMLSchema',
+        'rdf':'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+        'rdfs':'http://www.w3.org/2000/01/rdf-schema#',
+        'dct':'http://purl.org/dc/terms/',
+        'owl':'http://www.w3.org/2002/07/owl#',
+        'vc':'http://www.w3.org/2007/XMLSchema-versioning',
+        's3m':'http://www.s3model.com/ns/s3m/'}
 
 dest = None
 filename = None
@@ -36,17 +37,17 @@ def parse_el(element):
     for child in element.getchildren():
         if child.tag is not etree.Comment:
             if 'el-' not in child.tag:
-                c_name = child.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
+                c_name = child.tag.replace('{http://www.s3model.com/ns/s3m/}','s3m:')
                 dest.write("<rdf:Description rdf:about='data/"+filename+tree.getpath(child)+"'>\n")
                 dest.write("  <rdfs:domain rdf:resource='data/"+filename+"'/>\n")
                 dest.write("  <rdf:subPropertyOf rdf:resource='"+tree.getpath(element)+"'/>\n")
                 dest.write("  <rdf:value>"+escape(child.text)+"</rdf:value>\n")
                 dest.write("</rdf:Description>\n\n")
             else:
-                c_name = child.tag.replace('{http://www.S3Model.org/xmlns/S3Model2}','S3Model2:')
+                c_name = child.tag.replace('{http://www.s3model.com/ns/s3m/}','s3m:')
                 dest.write("<rdf:Description rdf:about='data/"+filename+tree.getpath(child)+"'>\n")
                 dest.write("  <rdfs:domain rdf:resource='data/"+filename+"'/>\n")
-                dest.write("  <rdf:type rdf:resource='"+c_name.replace('el-','ct-')+"'/>\n")
+                dest.write("  <rdf:type rdf:resource='"+c_name.replace('ms-','mc-')+"'/>\n")
                 dest.write("</rdf:Description>\n\n")
 
                 parse_el(child)
@@ -68,7 +69,10 @@ def main():
     nsDict={'xs':'http://www.w3.org/2001/XMLSchema',
             'rdf':'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
             'rdfs':'http://www.w3.org/2000/01/rdf-schema#',
-            'dc':'http://purl.org/dc/elements/1.1/'}
+            'dct':'http://purl.org/dc/terms/',
+            'owl':'http://www.w3.org/2002/07/owl#',
+            'vc':'http://www.w3.org/2007/XMLSchema-versioning',
+            's3m':'http://www.s3model.com/ns/s3m/'}
 
     parser = etree.XMLParser(ns_clean=True, recover=True)
 
