@@ -873,6 +873,62 @@
     </xs:annotation>
   </xs:element>
 
+  <xs:complexType name="XdFloatType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en-us">Quantified type representing specific a value and optional units.</xs:documentation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType">
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdFloatType.html#XdFloatType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType"/>
+          <rdfs:label xml:lang="en-us">XdQuantityType</rdfs:label>
+          <rdfs:comment xml:lang="en-us">Quantified type representing specific a value and optional units.</rdfs:comment>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="s3m:XdQuantifiedType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="0" name="xdfloat-value" type="xs:float">
+            <xs:annotation>
+              <xs:documentation xml:lang="en-us">Float value.</xs:documentation>
+              <xs:appinfo>
+                <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType/xdfloat-value">
+                  <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                  <rdfs:comment xml:lang="en-us">Float value.</rdfs:comment>
+                </rdf:Description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="xdfloat-units" type="s3m:XdStringType">
+            <xs:annotation>
+              <xs:documentation xml:lang="en-us">The name or type of the float value.</xs:documentation>
+              <xs:appinfo>
+                <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType/xdfloat-units">
+                  <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType"/>
+                  <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
+                  <rdfs:comment xml:lang="en-us">The name or type of the float value.</rdfs:comment>
+                </rdf:Description>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="XdFloat" substitutionGroup="s3m:XdAny" type="s3m:XdFloatType">
+    <xs:annotation>
+      <xs:appinfo>
+        <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloat">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType"/>
+        </rdf:Description>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  
+
+
   <xs:complexType name="XdRatioType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
@@ -902,37 +958,37 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="numerator" type="xs:decimal">
+          <xs:element maxOccurs="1" minOccurs="0" name="numerator" type="xs:float">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Numerator of ratio.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/numerator">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                   <rdfs:comment xml:lang="en-us">Numerator of ratio.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="denominator" type="xs:decimal">
+          <xs:element maxOccurs="1" minOccurs="0" name="denominator" type="xs:float">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Denominator of ratio.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/denominator">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                   <rdfs:comment xml:lang="en-us">Denominator of ratio.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="xdratio-value" type="xs:decimal">
+          <xs:element maxOccurs="1" minOccurs="0" name="xdratio-value" type="xs:float">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Numeric value of the ratio.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/xdratio-value">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                   <rdfs:comment xml:lang="en-us">Numeric value of the ratio.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
@@ -1064,18 +1120,6 @@
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
                   <rdfs:comment xml:lang="en-us">Represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical.</rdfs:comment>
-                </rdf:Description>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="xdtemporal-datetime-stamp" type="xs:dateTime">
-            <xs:annotation>
-              <xs:documentation xml:lang="en-us">Derived from dateTime by giving the value required to its explicitTimezone facet. The result is that all values of dateTime are required to have explicit time zone offsets and the datatype is totally ordered.</xs:documentation>
-              <xs:appinfo>
-                <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType/xdtemporal-datetime-stamp">
-                  <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdTemporalType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-                  <rdfs:comment xml:lang="en-us">Derived from dateTime by giving the value required to its explicitTimezone facet. The result is that all values of dateTime are required to have explicit time zone offsets and the datatype is totally ordered.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -2443,7 +2487,7 @@
   <xs:element name="XdAdapter-value" type="s3m:XdAnyType">
     <xs:annotation>
       <xs:appinfo>
-        <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdAdapterType/XdAdapter-value">
+        <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0_xsd_Element_s3m_XdAdapter-value.html#XdAdapter-value">
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMS"/>
         </rdf:Description>
       </xs:appinfo>
