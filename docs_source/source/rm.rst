@@ -298,8 +298,7 @@ XdCountType
 
 **Abstract:** False
 
-**Description:** Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc.
-The *thing(s)* being counted must be represented in the units element.
+**Description:** Countable quantities. Used for countable types (integer) such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc. The *thing(s)* being counted must be represented in the units element.
 
 **Misuse:** Not used for amounts of physical entities (which all have standardized units).
 
@@ -310,7 +309,16 @@ XdQuantityType
 
 **Abstract:** False
 
-**Description:** Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.
+**Description:** Quantified type representing specific quantities, i.e. quantities expressed as a magnitude (decimal) and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.
+
+XdFloatType
+--------------
+
+**Derived from:** XdQuantifiedType by extension
+
+**Abstract:** False
+
+**Description:** Quantified type representing specific quantities as a magnitude (float) and optional units. 
 
 
 XdRatioType
@@ -320,7 +328,7 @@ XdRatioType
 
 **Abstract:** False
 
-**Description:** Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a forward slash ('/') character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
+**Description:** Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash ('/') character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
 
 
 XdTemporalType
