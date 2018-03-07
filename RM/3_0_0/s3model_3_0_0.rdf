@@ -337,6 +337,26 @@
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMS"/>
           <s3m:isCMSOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantityType"/>
         </rdf:Description>
+  <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType">
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdFloatType.html#XdFloatType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType"/>
+          <rdfs:label xml:lang="en-us">XdQuantityType</rdfs:label>
+          <rdfs:comment xml:lang="en-us">Quantified type representing specific a value and optional units.</rdfs:comment>
+        </rdf:Description>
+  <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType/xdfloat-value">
+                  <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                  <rdfs:comment xml:lang="en-us">Float value.</rdfs:comment>
+                </rdf:Description>
+  <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType/xdfloat-units">
+                  <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType"/>
+                  <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdStringType"/>
+                  <rdfs:comment xml:lang="en-us">The name or type of the float value.</rdfs:comment>
+                </rdf:Description>
+  <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloat">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMS"/>
+          <s3m:isCMSOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdFloatType"/>
+        </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType">
           <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_0_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdQuantifiedType"/>
@@ -351,17 +371,17 @@
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/numerator">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                   <rdfs:comment xml:lang="en-us">Numerator of ratio.</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/denominator">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                   <rdfs:comment xml:lang="en-us">Denominator of ratio.</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/xdratio-value">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                   <rdfs:comment xml:lang="en-us">Numeric value of the ratio.</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_0_0.xsd#XdRatioType/numerator-units">

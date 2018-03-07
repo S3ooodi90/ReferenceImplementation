@@ -8,7 +8,7 @@
   <xs:annotation>
     <xs:documentation xml:lang="en-us">This work is Copyright 2016 - 2017 Data Insights, Inc. All Rights Reserved. 
       This is the Shareable, Structured, Semantic Model (S3Model) reference model (RM) implementation in XML Schema. 
-      The S3Model RM consists of the core datatypes and structures for S3Model domain concept models, called Data Models (DMs). 
+      The S3Model RM consists of the core datatypes and structures for domain concept models, called Data Models (DMs). 
       The DMs are composed of Model Components (MCs) that are expressed as constraints on the RM components. 
       For the semantics see the accompanying file s3model.owl. 
       Further documentation and implementation instructions can be found at (or via links from) http://www.datainsights.tech/S3Model 
