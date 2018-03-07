@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <schemaSystemId>file:/home/tim/DII/S3Model/RM/3_1_0/tests/dm-test-for-3_1_0-rm.xsd</schemaSystemId>
+    <documentRoot>dm-0d4cbab9-7288-40e2-acaa-7651386a8430</documentRoot>
+    <outputFolder>/home/tim/DII/S3Model/RM/3_1_0/scripts/data</outputFolder>
+    <filenamePrefix>instance</filenamePrefix>
+    <filenameExtension>xml</filenameExtension>
+    <noOfInstances>3</noOfInstances>
+    <openFirstInstance>true</openFirstInstance>
+    <defaultNamespace>https://www.s3model.com/ns/s3m/</defaultNamespace>
+    <valuesMaxLength>30</valuesMaxLength>
+    <isUseIncrementalNamesForValues>true</isUseIncrementalNamesForValues>
+    <discardOptionalElementsAfterNestedLevel>6</discardOptionalElementsAfterNestedLevel>
+    <namespaceMapping ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" proxy="rdf"/>
+    <namespaceMapping ns="http://purl.org/dc/elements/1.1/" proxy="dc"/>
+    <namespaceMapping ns="http://www.w3.org/ns/sawsdl#" proxy="sawsdlrdf"/>
+    <namespaceMapping ns="http://www.w3.org/2002/07/owl#" proxy="owl"/>
+    <namespaceMapping ns="http://purl.oclc.org/dsdl/schematron" proxy="sch"/>
+    <namespaceMapping ns="http://www.w3.org/2001/XMLSchema-instance" proxy="xsi"/>
+    <namespaceMapping ns="http://www.w3.org/2004/02/skos/core#" proxy="skos"/>
+    <namespaceMapping ns="https://www.s3model.com/ns/s3m/" proxy="s3m"/>
+    <namespaceMapping ns="http://www.w3.org/2000/01/rdf-schema#" proxy="rdfs"/>
+    <namespaceMapping ns="http://www.w3.org/2007/XMLSchema-versioning" proxy="vc"/>
+    <element namespace="&lt;ANY>" name="&lt;ANY>">
+        <generateOptionalElements>true</generateOptionalElements>
+        <generateOptionalAttributes>true</generateOptionalAttributes>
+        <valuesForContentType>DEFAULT</valuesForContentType>
+        <preferredNumberOfRepetitions>2</preferredNumberOfRepetitions>
+        <maximumRecursivityLevel>1</maximumRecursivityLevel>
+        <alternativeStrategy>FIRST</alternativeStrategy>
+        <choicesAndSubstitutions strategy="RANDOM" generateOthersAsComments="false"/>
+        <attribute namespace="&lt;ANY>" name="&lt;ANY>">
+        </attribute>
+    </element>
+</settings>

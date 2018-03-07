@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>
+<xs:schema
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:s3m="https://www.s3model.com/ns/s3m/"
+  targetNamespace="https://www.s3model.com/ns/s3m/"
+  xml:lang="en-US">
+<!-- Include the RM Schema -->
+  <xs:include schemaLocation="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd"/>
+<!-- Metadata -->
+  <xs:annotation><xs:appinfo><rdf:RDF><rdf:Description
+    rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+    <dc:title>Pima Indians Diabetes Database</dc:title>
+    <dc:creator>admin</dc:creator>
+    <dc:subject></dc:subject>
+    <dc:rights>CC-BY http://creativecommons.org/licenses/by/3.0/</dc:rights>
+    <dc:relation>None</dc:relation>
+    <dc:coverage>Universal</dc:coverage>
+    <dc:type>S3Model Data Model (DM)</dc:type>
+    <dc:identifier>dm-0d4cbab9-7288-40e2-acaa-7651386a8430</dc:identifier>
+    <dc:description>1. Title: Pima Indians Diabetes Database
+
+2. Sources:
+   (a) Original owners: National Institute of Diabetes and Digestive and
+                        Kidney Diseases
+   (b) Donor of database: Vincent Sigillito (vgs@aplcen.apl.jhu.edu)
+                          Research Center, RMI Group Leader
+                          Applied Physics Laboratory
+                          The Johns Hopkins University
+                          Johns Hopkins Road
+                          Laurel, MD 20707
+                          (301) 953-6231
+   (c) Date received: 9 May 1990</dc:description>
+    <dc:publisher></dc:publisher>
+    <dc:date>2017-06-30 09:58:53.541076+00:00</dc:date>
+    <dc:format>text/xml</dc:format>
+    <dc:language>en-US</dc:language>
+  </rdf:Description></rdf:RDF></xs:appinfo></xs:annotation>
+<!-- Complex Type Definitions -->
+<xs:element name="dm-0d4cbab9-7288-40e2-acaa-7651386a8430" type="s3m:mc-0d4cbab9-7288-40e2-acaa-7651386a8430"/>
+<xs:complexType name="mc-0d4cbab9-7288-40e2-acaa-7651386a8430"> 
+  <xs:annotation>
+    <xs:appinfo>
+      <rdf:Description rdf:about="mc-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdDMType"/>
+        <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+        <rdfs:label>Pima Indians Diabetes Database</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+      </rdf:Description>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:complexContent>
+    <xs:restriction base="s3m:DMType">
+      <xs:sequence>
+        <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Pima Indians Diabetes Database - Entry"/>
+        <xs:element maxOccurs='1' minOccurs='1' name='dm-language' type='xs:language' fixed='en-US'/>
+        <xs:element maxOccurs='1' minOccurs='1' name='dm-encoding' type='xs:string' fixed='utf-8'/>
+        <xs:element maxOccurs='1' minOccurs='0' name='current-state' type='xs:string' default=''/>
+        <xs:element maxOccurs='1' minOccurs='1' ref='s3m:ms-454f3730-dbe4-4137-b13f-f1f9374a2156'/>
+        <xs:element maxOccurs='1' minOccurs='0' name='subject' type='s3m:mc-d24d6449-b8b8-40aa-88ca-bd2c8c7e0d46'/>
+        <xs:element maxOccurs='1' minOccurs='0' name='provider' type='s3m:mc-a939d0f5-b0af-4988-a047-1af942678336'/> 
+        <!-- No Participations -->
+        <!-- No protocol model -->
+        <!-- No  workflow model -->
+        <!-- No  audit model -->
+        <!-- No attestation model -->
+        <!-- No entry links -->
+      </xs:sequence>
+    </xs:restriction>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name='mc-454f3730-dbe4-4137-b13f-f1f9374a2156'> 
+    <xs:annotation>
+    <xs:documentation>
+      1. Title: Pima Indians Diabetes Database
+
+2. Sources:
+   (a) Original owners: National Institute of Diabetes and Digestive and
+                        Kidney Diseases
+   (b) Donor of database: Vincent Sigillito (vgs@aplcen.apl.jhu.edu)
+                          Research Center, RMI Group Leader
+                          Applied Physics Laboratory
+                          The Johns Hopkins University
+                          Johns Hopkins Road
+                          Laurel, MD 20707
+                          (301) 953-6231
+   (c) Date received: 9 May 1990
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-454f3730-dbe4-4137-b13f-f1f9374a2156'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdClusterType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Pima Indians Diabetes Database - Cluster</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:ClusterType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Pima Indians Diabetes Database - Cluster"/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-0ef9269c-0d76-42b3-a5ae-edb411d032b3'/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-6e38dee0-7979-449e-97dd-31dd204ceed0'/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-e50e0767-e8e1-4f76-9be2-ada9cd41fc7c'/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-18880242-acd2-4b46-b2f7-f3d7466afc43'/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-0a106c2e-9844-46b4-a696-1e87f8a16925'/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-d0d2df5a-9dae-46b2-9e91-05d66c2856fd'/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-53f65a93-68ee-432d-8936-f81ac416f0dc'/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-b39387e0-e02c-47d2-aa28-d862931a1ad6'/>
+      <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-857747bb-998a-4894-8dc6-7ff88864bf7b'/>
+        </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:complexType name='mc-d3477c5e-63a4-4b98-ac92-39b64665cd5e' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-d3477c5e-63a4-4b98-ac92-39b64665cd5e'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>2-Hour serum insulin (mu U/ml)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="2-Hour serum insulin (mu U/ml)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-0ef9269c-0d76-42b3-a5ae-edb411d032b3' substitutionGroup='s3m:Items' type='s3m:mc-0ef9269c-0d76-42b3-a5ae-edb411d032b3'/>
+  <xs:complexType name='mc-0ef9269c-0d76-42b3-a5ae-edb411d032b3'> <!-- Adapter for: 2-Hour serum insulin (mu U/ml) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e'/> <!-- Reference to: 2-Hour serum insulin (mu U/ml) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name='mc-99300957-9037-4465-af3e-4d720d19862e' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-99300957-9037-4465-af3e-4d720d19862e'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Age (years)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Age (years)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-6e38dee0-7979-449e-97dd-31dd204ceed0' substitutionGroup='s3m:Items' type='s3m:mc-6e38dee0-7979-449e-97dd-31dd204ceed0'/>
+  <xs:complexType name='mc-6e38dee0-7979-449e-97dd-31dd204ceed0'> <!-- Adapter for: Age (years) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-99300957-9037-4465-af3e-4d720d19862e'/> <!-- Reference to: Age (years) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name='mc-fe5d4902-f051-49ff-98ab-e22de92d5afe' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-fe5d4902-f051-49ff-98ab-e22de92d5afe'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Body mass index (weight in kg/(height in m)^2)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Body mass index (weight in kg/(height in m)^2)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-e50e0767-e8e1-4f76-9be2-ada9cd41fc7c' substitutionGroup='s3m:Items' type='s3m:mc-e50e0767-e8e1-4f76-9be2-ada9cd41fc7c'/>
+  <xs:complexType name='mc-e50e0767-e8e1-4f76-9be2-ada9cd41fc7c'> <!-- Adapter for: Body mass index (weight in kg/(height in m)^2) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-fe5d4902-f051-49ff-98ab-e22de92d5afe'/> <!-- Reference to: Body mass index (weight in kg/(height in m)^2) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name='mc-5b61bcd7-8c6d-49bb-9099-aaaae0493586' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-5b61bcd7-8c6d-49bb-9099-aaaae0493586'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Class variable (0 or 1)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Class variable (0 or 1)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-18880242-acd2-4b46-b2f7-f3d7466afc43' substitutionGroup='s3m:Items' type='s3m:mc-18880242-acd2-4b46-b2f7-f3d7466afc43'/>
+  <xs:complexType name='mc-18880242-acd2-4b46-b2f7-f3d7466afc43'> <!-- Adapter for: Class variable (0 or 1) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586'/> <!-- Reference to: Class variable (0 or 1) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name='mc-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Diabetes pedigree function</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Diabetes pedigree function"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-0a106c2e-9844-46b4-a696-1e87f8a16925' substitutionGroup='s3m:Items' type='s3m:mc-0a106c2e-9844-46b4-a696-1e87f8a16925'/>
+  <xs:complexType name='mc-0a106c2e-9844-46b4-a696-1e87f8a16925'> <!-- Adapter for: Diabetes pedigree function -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04'/> <!-- Reference to: Diabetes pedigree function -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name='mc-9e029d49-b0bc-47d0-ac33-8ac347f0d09e' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-9e029d49-b0bc-47d0-ac33-8ac347f0d09e'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Diastolic blood pressure (mm Hg)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Diastolic blood pressure (mm Hg)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-d0d2df5a-9dae-46b2-9e91-05d66c2856fd' substitutionGroup='s3m:Items' type='s3m:mc-d0d2df5a-9dae-46b2-9e91-05d66c2856fd'/>
+  <xs:complexType name='mc-d0d2df5a-9dae-46b2-9e91-05d66c2856fd'> <!-- Adapter for: Diastolic blood pressure (mm Hg) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e'/> <!-- Reference to: Diastolic blood pressure (mm Hg) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name='mc-aa6164d1-40be-4d1c-ac08-4ffcc2acc841' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-aa6164d1-40be-4d1c-ac08-4ffcc2acc841'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Number of times pregnant</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Number of times pregnant"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-53f65a93-68ee-432d-8936-f81ac416f0dc' substitutionGroup='s3m:Items' type='s3m:mc-53f65a93-68ee-432d-8936-f81ac416f0dc'/>
+  <xs:complexType name='mc-53f65a93-68ee-432d-8936-f81ac416f0dc'> <!-- Adapter for: Number of times pregnant -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841'/> <!-- Reference to: Number of times pregnant -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name='mc-e0acd605-b9ea-4a24-86d6-94ace64a2f46' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-e0acd605-b9ea-4a24-86d6-94ace64a2f46'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Plasma glucose concentration a 2 hours in an oral glucose tolerance test</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Plasma glucose concentration a 2 hours in an oral glucose tolerance test"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-b39387e0-e02c-47d2-aa28-d862931a1ad6' substitutionGroup='s3m:Items' type='s3m:mc-b39387e0-e02c-47d2-aa28-d862931a1ad6'/>
+  <xs:complexType name='mc-b39387e0-e02c-47d2-aa28-d862931a1ad6'> <!-- Adapter for: Plasma glucose concentration a 2 hours in an oral glucose tolerance test -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46'/> <!-- Reference to: Plasma glucose concentration a 2 hours in an oral glucose tolerance test -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name='mc-e7d068e5-392d-43cf-bd42-e73f803ee372' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      Created by the Data Insights, Inc. Data Translator.
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-e7d068e5-392d-43cf-bd42-e73f803ee372'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Triceps skin fold thickness (mm)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdStringType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Triceps skin fold thickness (mm)"/>
+          <xs:element maxOccurs='1' minOccurs='0' ref='s3m:ExceptionalValue'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vtb' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='vte' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='tr' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='modified' type='xs:dateTime'/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='en-US'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name='ms-857747bb-998a-4894-8dc6-7ff88864bf7b' substitutionGroup='s3m:Items' type='s3m:mc-857747bb-998a-4894-8dc6-7ff88864bf7b'/>
+  <xs:complexType name='mc-857747bb-998a-4894-8dc6-7ff88864bf7b'> <!-- Adapter for: Triceps skin fold thickness (mm) -->
+    <xs:complexContent>
+      <xs:restriction base='s3m:XdAdapterType'>
+        <xs:sequence>
+          <xs:element  maxOccurs='unbounded' minOccurs='0' ref='s3m:ms-e7d068e5-392d-43cf-bd42-e73f803ee372'/> <!-- Reference to: Triceps skin fold thickness (mm) -->
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:complexType name='mc-d24d6449-b8b8-40aa-88ca-bd2c8c7e0d46' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      1. Title: Pima Indians Diabetes Database
+
+2. Sources:
+   (a) Original owners: National Institute of Diabetes and Digestive and
+                        Kidney Diseases
+   (b) Donor of database: Vincent Sigillito (vgs@aplcen.apl.jhu.edu)
+                          Research Center, RMI Group Leader
+                          Applied Physics Laboratory
+                          The Johns Hopkins University
+                          Johns Hopkins Road
+                          Laurel, MD 20707
+                          (301) 953-6231
+   (c) Date received: 9 May 1990
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-d24d6449-b8b8-40aa-88ca-bd2c8c7e0d46'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdPartyType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Pima Indians Diabetes Database - Entry Subject</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:PartyType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Pima Indians Diabetes Database - Entry Subject"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='party-name' type='xs:string'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+
+  <xs:complexType name='mc-a939d0f5-b0af-4988-a047-1af942678336' xml:lang='en-US'> 
+    <xs:annotation>
+    <xs:documentation>
+      1. Title: Pima Indians Diabetes Database
+
+2. Sources:
+   (a) Original owners: National Institute of Diabetes and Digestive and
+                        Kidney Diseases
+   (b) Donor of database: Vincent Sigillito (vgs@aplcen.apl.jhu.edu)
+                          Research Center, RMI Group Leader
+                          Applied Physics Laboratory
+                          The Johns Hopkins University
+                          Johns Hopkins Road
+                          Laurel, MD 20707
+                          (301) 953-6231
+   (c) Date received: 9 May 1990
+    </xs:documentation>
+    <xs:appinfo>
+    <rdf:Description rdf:about='mc-a939d0f5-b0af-4988-a047-1af942678336'>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdPartyType'/>
+    <rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>
+    <rdfs:label>Pima Indians Diabetes Database - Entry Provider</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource='https%3A//www.niddk.nih.gov/health-information/health-statistics'/>
+    </rdf:Description>
+    </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base='s3m:PartyType'>
+        <xs:sequence>
+          <xs:element maxOccurs='1' minOccurs='1' name='label' type='xs:string' fixed="Pima Indians Diabetes Database - Entry Provider"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='party-name' type='xs:string'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+
+<!-- Substitution Groups -->
+  <xs:element name="ms-454f3730-dbe4-4137-b13f-f1f9374a2156" substitutionGroup="s3m:Item" type="s3m:mc-454f3730-dbe4-4137-b13f-f1f9374a2156"/>
+  <xs:element name="ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-d3477c5e-63a4-4b98-ac92-39b64665cd5e"/>
+  <xs:element name="ms-99300957-9037-4465-af3e-4d720d19862e" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-99300957-9037-4465-af3e-4d720d19862e"/>
+  <xs:element name="ms-fe5d4902-f051-49ff-98ab-e22de92d5afe" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-fe5d4902-f051-49ff-98ab-e22de92d5afe"/>
+  <xs:element name="ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-5b61bcd7-8c6d-49bb-9099-aaaae0493586"/>
+  <xs:element name="ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04"/>
+  <xs:element name="ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-9e029d49-b0bc-47d0-ac33-8ac347f0d09e"/>
+  <xs:element name="ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-aa6164d1-40be-4d1c-ac08-4ffcc2acc841"/>
+  <xs:element name="ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-e0acd605-b9ea-4a24-86d6-94ace64a2f46"/>
+  <xs:element name="ms-e7d068e5-392d-43cf-bd42-e73f803ee372" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-e7d068e5-392d-43cf-bd42-e73f803ee372"/>
+
+<!-- RDF for contained Reusable Model Components -->
+  <xs:annotation>
+  <xs:appinfo>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-c5aa762e-1998-4764-9347-854136235f7a"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-454f3730-dbe4-4137-b13f-f1f9374a2156"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-d3477c5e-63a4-4b98-ac92-39b64665cd5e"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-99300957-9037-4465-af3e-4d720d19862e"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-fe5d4902-f051-49ff-98ab-e22de92d5afe"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-5b61bcd7-8c6d-49bb-9099-aaaae0493586"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-9e029d49-b0bc-47d0-ac33-8ac347f0d09e"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-aa6164d1-40be-4d1c-ac08-4ffcc2acc841"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-e0acd605-b9ea-4a24-86d6-94ace64a2f46"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-e7d068e5-392d-43cf-bd42-e73f803ee372"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-d24d6449-b8b8-40aa-88ca-bd2c8c7e0d46"/>
+      </rdf:Description>
+      <rdf:Description rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-a939d0f5-b0af-4988-a047-1af942678336"/>
+      </rdf:Description>
+  </xs:appinfo>
+  </xs:annotation>
+
+</xs:schema>

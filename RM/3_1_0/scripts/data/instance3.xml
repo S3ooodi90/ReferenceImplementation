@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dm-0d4cbab9-7288-40e2-acaa-7651386a8430 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
+ xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+ xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+ xmlns="https://www.s3model.com/ns/s3m/"
+ xsi:schemaLocation="https://www.s3model.com/ns/s3m/ file:/home/tim/DII/S3Model/RM/3_1_0/tests/dm-test-for-3_1_0-rm.xsd">
+    <label xmlns="">Pima Indians Diabetes Database - Entry</label>
+    <dm-language xmlns="">en-US</dm-language>
+    <dm-encoding xmlns="">utf-8</dm-encoding>
+    <current-state xmlns=""></current-state>
+    <ms-454f3730-dbe4-4137-b13f-f1f9374a2156>
+        <label xmlns="">Pima Indians Diabetes Database - Cluster</label>
+        <ms-0ef9269c-0d76-42b3-a5ae-edb411d032b3>
+            <ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e>
+                <label xmlns="">2-Hour serum insulin (mu U/ml)</label>
+                <NINF>
+                    <ev-name xmlns="">Negative Infinity</ev-name>
+                </NINF>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value0</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e>
+            <ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e>
+                <label xmlns="">2-Hour serum insulin (mu U/ml)</label>
+                <ASKR>
+                    <ev-name xmlns="">Asked and Refused</ev-name>
+                </ASKR>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value1</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e>
+        </ms-0ef9269c-0d76-42b3-a5ae-edb411d032b3>
+        <ms-6e38dee0-7979-449e-97dd-31dd204ceed0>
+            <ms-99300957-9037-4465-af3e-4d720d19862e>
+                <label xmlns="">Age (years)</label>
+                <NAV>
+                    <ev-name xmlns="">Not Available</ev-name>
+                </NAV>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value2</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-99300957-9037-4465-af3e-4d720d19862e>
+            <ms-99300957-9037-4465-af3e-4d720d19862e>
+                <label xmlns="">Age (years)</label>
+                <NASK>
+                    <ev-name xmlns="">Not Asked</ev-name>
+                </NASK>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value3</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-99300957-9037-4465-af3e-4d720d19862e>
+        </ms-6e38dee0-7979-449e-97dd-31dd204ceed0>
+        <ms-e50e0767-e8e1-4f76-9be2-ada9cd41fc7c>
+            <ms-fe5d4902-f051-49ff-98ab-e22de92d5afe>
+                <label xmlns="">Body mass index (weight in kg/(height in m)^2)</label>
+                <DER>
+                    <ev-name xmlns="">Derived</ev-name>
+                </DER>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value4</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-fe5d4902-f051-49ff-98ab-e22de92d5afe>
+            <ms-fe5d4902-f051-49ff-98ab-e22de92d5afe>
+                <label xmlns="">Body mass index (weight in kg/(height in m)^2)</label>
+                <INV>
+                    <ev-name xmlns="">Invalid</ev-name>
+                </INV>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value5</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-fe5d4902-f051-49ff-98ab-e22de92d5afe>
+        </ms-e50e0767-e8e1-4f76-9be2-ada9cd41fc7c>
+        <ms-18880242-acd2-4b46-b2f7-f3d7466afc43>
+            <ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586>
+                <label xmlns="">Class variable (0 or 1)</label>
+                <NA>
+                    <ev-name xmlns="">Not Applicable</ev-name>
+                </NA>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value6</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586>
+            <ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586>
+                <label xmlns="">Class variable (0 or 1)</label>
+                <MSK>
+                    <ev-name xmlns="">Masked</ev-name>
+                </MSK>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value7</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586>
+        </ms-18880242-acd2-4b46-b2f7-f3d7466afc43>
+        <ms-0a106c2e-9844-46b4-a696-1e87f8a16925>
+            <ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04>
+                <label xmlns="">Diabetes pedigree function</label>
+                <TRC>
+                    <ev-name xmlns="">Trace</ev-name>
+                </TRC>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value8</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04>
+            <ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04>
+                <label xmlns="">Diabetes pedigree function</label>
+                <TRC>
+                    <ev-name xmlns="">Trace</ev-name>
+                </TRC>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value9</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04>
+        </ms-0a106c2e-9844-46b4-a696-1e87f8a16925>
+        <ms-d0d2df5a-9dae-46b2-9e91-05d66c2856fd>
+            <ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e>
+                <label xmlns="">Diastolic blood pressure (mm Hg)</label>
+                <NA>
+                    <ev-name xmlns="">Not Applicable</ev-name>
+                </NA>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value10</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e>
+            <ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e>
+                <label xmlns="">Diastolic blood pressure (mm Hg)</label>
+                <PINF>
+                    <ev-name xmlns="">Positive Infinity</ev-name>
+                </PINF>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value11</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e>
+        </ms-d0d2df5a-9dae-46b2-9e91-05d66c2856fd>
+        <ms-53f65a93-68ee-432d-8936-f81ac416f0dc>
+            <ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841>
+                <label xmlns="">Number of times pregnant</label>
+                <MSK>
+                    <ev-name xmlns="">Masked</ev-name>
+                </MSK>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value12</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841>
+            <ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841>
+                <label xmlns="">Number of times pregnant</label>
+                <NASK>
+                    <ev-name xmlns="">Not Asked</ev-name>
+                </NASK>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value13</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841>
+        </ms-53f65a93-68ee-432d-8936-f81ac416f0dc>
+        <ms-b39387e0-e02c-47d2-aa28-d862931a1ad6>
+            <ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46>
+                <label xmlns="">Plasma glucose concentration a 2 hours in an oral glucose tolerance test</label>
+                <PINF>
+                    <ev-name xmlns="">Positive Infinity</ev-name>
+                </PINF>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value14</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46>
+            <ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46>
+                <label xmlns="">Plasma glucose concentration a 2 hours in an oral glucose tolerance test</label>
+                <NASK>
+                    <ev-name xmlns="">Not Asked</ev-name>
+                </NASK>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value15</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46>
+        </ms-b39387e0-e02c-47d2-aa28-d862931a1ad6>
+        <ms-857747bb-998a-4894-8dc6-7ff88864bf7b>
+            <ms-e7d068e5-392d-43cf-bd42-e73f803ee372>
+                <label xmlns="">Triceps skin fold thickness (mm)</label>
+                <UNK>
+                    <ev-name xmlns="">Unknown</ev-name>
+                </UNK>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value16</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-e7d068e5-392d-43cf-bd42-e73f803ee372>
+            <ms-e7d068e5-392d-43cf-bd42-e73f803ee372>
+                <label xmlns="">Triceps skin fold thickness (mm)</label>
+                <MSK>
+                    <ev-name xmlns="">Masked</ev-name>
+                </MSK>
+                <vtb xmlns="">2006-05-04T18:13:51.0</vtb>
+                <vte xmlns="">2006-05-04T18:13:51.0</vte>
+                <tr xmlns="">2006-05-04T18:13:51.0</tr>
+                <modified xmlns="">2006-05-04T18:13:51.0</modified>
+                <xdstring-value xmlns="">xdstring-value17</xdstring-value>
+                <xdstring-language xmlns="">en-US</xdstring-language>
+            </ms-e7d068e5-392d-43cf-bd42-e73f803ee372>
+        </ms-857747bb-998a-4894-8dc6-7ff88864bf7b>
+    </ms-454f3730-dbe4-4137-b13f-f1f9374a2156>
+    <subject xmlns="">
+        <label>Pima Indians Diabetes Database - Entry Subject</label>
+        <party-name>party-name0</party-name>
+    </subject>
+    <provider xmlns="">
+        <label>Pima Indians Diabetes Database - Entry Provider</label>
+        <party-name>party-name1</party-name>
+    </provider>
+</dm-0d4cbab9-7288-40e2-acaa-7651386a8430>

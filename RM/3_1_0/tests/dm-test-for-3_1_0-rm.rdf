@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+            <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+            
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+    <dc:title>Pima Indians Diabetes Database</dc:title>
+    <dc:creator>admin</dc:creator>
+    <dc:subject/>
+    <dc:rights>CC-BY http://creativecommons.org/licenses/by/3.0/</dc:rights>
+    <dc:relation>None</dc:relation>
+    <dc:coverage>Universal</dc:coverage>
+    <dc:type>S3Model Data Model (DM)</dc:type>
+    <dc:identifier>dm-0d4cbab9-7288-40e2-acaa-7651386a8430</dc:identifier>
+    <dc:description>1. Title: Pima Indians Diabetes Database
+
+2. Sources:
+   (a) Original owners: National Institute of Diabetes and Digestive and
+                        Kidney Diseases
+   (b) Donor of database: Vincent Sigillito (vgs@aplcen.apl.jhu.edu)
+                          Research Center, RMI Group Leader
+                          Applied Physics Laboratory
+                          The Johns Hopkins University
+                          Johns Hopkins Road
+                          Laurel, MD 20707
+                          (301) 953-6231
+   (c) Date received: 9 May 1990</dc:description>
+    <dc:publisher/>
+    <dc:date>2017-06-30 09:58:53.541076+00:00</dc:date>
+    <dc:format>text/xml</dc:format>
+    <dc:language>en-US</dc:language>
+  </rdf:Description>
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdDMType"/>
+        <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+        <rdfs:label>Pima Indians Diabetes Database</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+      </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-454f3730-dbe4-4137-b13f-f1f9374a2156">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdClusterType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Pima Indians Diabetes Database - Cluster</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-d3477c5e-63a4-4b98-ac92-39b64665cd5e">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>2-Hour serum insulin (mu U/ml)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-99300957-9037-4465-af3e-4d720d19862e">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Age (years)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-fe5d4902-f051-49ff-98ab-e22de92d5afe">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Body mass index (weight in kg/(height in m)^2)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-5b61bcd7-8c6d-49bb-9099-aaaae0493586">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Class variable (0 or 1)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Diabetes pedigree function</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-9e029d49-b0bc-47d0-ac33-8ac347f0d09e">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Diastolic blood pressure (mm Hg)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-aa6164d1-40be-4d1c-ac08-4ffcc2acc841">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Number of times pregnant</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-e0acd605-b9ea-4a24-86d6-94ace64a2f46">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Plasma glucose concentration a 2 hours in an oral glucose tolerance test</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-e7d068e5-392d-43cf-bd42-e73f803ee372">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdXdStringType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Triceps skin fold thickness (mm)</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-d24d6449-b8b8-40aa-88ca-bd2c8c7e0d46">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdPartyType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Pima Indians Diabetes Database - Entry Subject</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="mc-a939d0f5-b0af-4988-a047-1af942678336">
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsdPartyType"/>
+    <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+    <rdfs:label>Pima Indians Diabetes Database - Entry Provider</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https%3A//www.niddk.nih.gov/health-information/health-statistics"/>
+    </rdf:Description>
+    
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-c5aa762e-1998-4764-9347-854136235f7a"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-454f3730-dbe4-4137-b13f-f1f9374a2156"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-d3477c5e-63a4-4b98-ac92-39b64665cd5e"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-99300957-9037-4465-af3e-4d720d19862e"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-fe5d4902-f051-49ff-98ab-e22de92d5afe"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-5b61bcd7-8c6d-49bb-9099-aaaae0493586"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-9e029d49-b0bc-47d0-ac33-8ac347f0d09e"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-aa6164d1-40be-4d1c-ac08-4ffcc2acc841"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-e0acd605-b9ea-4a24-86d6-94ace64a2f46"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-e7d068e5-392d-43cf-bd42-e73f803ee372"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-d24d6449-b8b8-40aa-88ca-bd2c8c7e0d46"/>
+      </rdf:Description>
+      
+    <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="dm-0d4cbab9-7288-40e2-acaa-7651386a8430">
+        <s3m:containsRMC rdf:resource="mc-a939d0f5-b0af-4988-a047-1af942678336"/>
+      </rdf:Description>
+  
+</rdf:RDF>
