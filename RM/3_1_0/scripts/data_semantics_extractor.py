@@ -94,8 +94,8 @@ def main():
             dmid = root.tag.replace('{https://www.s3model.com/ns/s3m/}','')
 
             # create triple for the file link to the DM
-            dest.write("\n<rdf:Description rdf:about='data/"+filename+"'> <!-- The document unique path/filename -->\n")
-            dest.write("  <rdf:domain rdf:resource='https://dmgen.s3model.com/dmlib/"+dmid+".xsd'/>\n")
+            dest.write("\n<rdf:Description rdf:about='data/" + filename + "'> <!-- The document unique path/filename -->\n")
+            dest.write("  <rdf:domain rdf:resource='https://dmgen.s3model.com/dmlib/" + dmid + ".xsd'/>\n")
             dest.write("</rdf:Description>\n\n")
 
             parse_el(root)
