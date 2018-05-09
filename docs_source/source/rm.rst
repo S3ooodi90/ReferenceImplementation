@@ -186,7 +186,7 @@ integer
 The integer data type is used to specify a numeric value without a fractional component.
 
 
-3.0.0 Reference Model Documentation
+3.1.0 Reference Model Documentation
 ===================================
 
 
