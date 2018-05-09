@@ -96,10 +96,11 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Docs Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Abstract Model</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#s3model">S3Model</a></li>
@@ -121,7 +122,6 @@
 <li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmgen.html">Data Model Generator (DM-Gen)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
@@ -190,48 +190,48 @@
             
   <div class="section" id="abstract-model">
 <h1>Abstract Model<a class="headerlink" href="#abstract-model" title="Permalink to this headline">¶</a></h1>
-<p>S3Model is by name as well as by definition and design a constraint based multi-level modeling approach.  This means that there are multiple models with increasing specificity to get to the instance data point. S3Model is constraint based which provides a complete syntactic validation path back to the reference model for the instance data. The semantic model is designed around the concepts of this multi-level model approach. Extensions to the reference model concepts are not allowed.</p>
+<p>S3Model is by name as well as by definition and design a constraint-based multi-level modeling approach.  This approach means that there are multiple models with increasing specificity to get to the instance data point. S3Model is constraint-based which provides a complete syntactic validation path back to the reference model for the instance data. The semantic model is designed using the concepts of this multi-level model approach. Extensions to the reference model concepts are not allowed.</p>
 <p>When answering the high-level question: <em>How do we elaborate the components required for a generic, implementation independent interoperability platform?</em> These few components were the answer.</p>
 <div class="section" id="s3model">
 <h2>S3Model<a class="headerlink" href="#s3model" title="Permalink to this headline">¶</a></h2>
 <p>Shareable, Structured, Semantic Model (S3Model)</p>
-<p>The root concept. The abstract idea of S3Model. All of the S3Model classes are subclasses of this class.</p>
+<p>The root concept. This concept is the abstract idea of S3Model. All of the S3Model classes are subclasses of this class.</p>
 </div>
 <div class="section" id="rm">
 <h2>RM<a class="headerlink" href="#rm" title="Permalink to this headline">¶</a></h2>
 <p>Reference Model</p>
-<p>A set of components called <em>Core Model Components</em> (CMCs) that provide structural integrity for a domain concept. Some CMCs are mandatory in DMs and some are optional. Optionality is defined in each RM implementation.</p>
+<p>A set of components called <em>Core Model Components</em> (CMCs) that provide structural integrity for a domain concept. Some CMCs are mandatory in DMs, and some are optional. Optionality is defined in each RM implementation.</p>
 </div>
 <div class="section" id="cmc">
 <h2>CMC<a class="headerlink" href="#cmc" title="Permalink to this headline">¶</a></h2>
 <p>Core Model Component</p>
-<p>A composable model contained in a reference model. A CMC represents a specific core type of component that further contains elements with base datatypes and/or other CMCs to define its structure.</p>
+<p>A composable model contained in a reference model. A CMC represents a specific core type of component that further contains elements with base datatypes and other CMCs to define its structure.</p>
 </div>
 <div class="section" id="cms">
 <h2>CMS<a class="headerlink" href="#cms" title="Permalink to this headline">¶</a></h2>
 <p>Core Model Symbol</p>
 <p>A CMS represents a CMC in instance data. In practice, it is usually substituted for by a Reusable Model Symbol (RMS).
-This substitution is due to the fact that constraints are expressed in a Reusable Model Component (RMC) which is then represented by a RMS.</p>
+This substitution is because constraints are expressed in a Reusable Model Component (RMC) which is then represented by a RMS.</p>
 </div>
 <div class="section" id="dm">
 <h2>DM<a class="headerlink" href="#dm" title="Permalink to this headline">¶</a></h2>
 <p>Data Model</p>
-<p>A set of selected RMCs that are constraints on the RM components (CMCs) in order to represent a domain concept.
-In the implementation language there may be additional syntactic conventions required. <em>Caution:</em> Not to be confused with Data Instance.</p>
+<p>A set of selected RMCs that are constraints on the RM components (CMCs) to represent a domain concept.
+In the implementation language, there may be additional syntactic conventions required. <em>Caution:</em> Not to be confused with Data Instance.</p>
 </div>
 <div class="section" id="rmc">
 <h2>RMC<a class="headerlink" href="#rmc" title="Permalink to this headline">¶</a></h2>
 <p>Reusable Model Component</p>
-<p>The name given to a CMC that has been constrained for use in a DM. Through the constraints, a RMC defines a single concept based on syntactic data constraints as well as specified semantics. It is <em>reusable</em> because it can be reused in multiple DMs.</p>
+<p>This name is given to a CMC that is constrained for use in a DM. Through the constraints, a RMC defines a single concept based on syntactic data constraints as well as specified semantics. It is <em>reusable</em> because it can be reused in multiple DMs.</p>
 </div>
 <div class="section" id="rms">
 <h2>RMS<a class="headerlink" href="#rms" title="Permalink to this headline">¶</a></h2>
 <p>Reusable Model Symbol
-Represents a RMC in instance data. Can be considered as a data container for the components of a RMC.</p>
+This name represents a RMC in instance data. Can be considered as a data container for the components of a RMC.</p>
 </div>
 <div class="section" id="datainstance">
 <h2>DataInstance<a class="headerlink" href="#datainstance" title="Permalink to this headline">¶</a></h2>
-<p>A set of data items that reports via <em>isInstanceOf</em> property that it conforms to a DM. In this state it has not been tested for validation.</p>
+<p>A set of data items that report via <em>isInstanceOf</em> property that it conforms to a DM. In this state, it has not been processed for validation.</p>
 </div>
 <div class="section" id="datainstancevalid">
 <h2>DataInstanceValid<a class="headerlink" href="#datainstancevalid" title="Permalink to this headline">¶</a></h2>
@@ -246,12 +246,12 @@ A set of data items that conforms to a DM to represent an instance of that conce
 <div class="section" id="datainstanceerror">
 <h2>DataInstanceError<a class="headerlink" href="#datainstanceerror" title="Permalink to this headline">¶</a></h2>
 <p>Subclass of DataInstance.
-A set of data items that <strong>DOES NOT</strong> conform to the DM it represents <strong>OR</strong> it contains invalid data and does not contain one or more children of an Exception. If there are no noted Exceptions in the Data Instance then it should be considered suspect and discarded.</p>
+A set of data items that <strong>DOES NOT</strong> conform to the DM it represents <strong>OR</strong> it contains invalid data and does not contain one or more children of an Exception. If there are no noted Exceptions in the Data Instance, then it should be considered suspect and discarded.</p>
 </div>
 <div class="section" id="exception">
 <h2>Exception<a class="headerlink" href="#exception" title="Permalink to this headline">¶</a></h2>
 <p>Indicates that some data is outside of the parameters defined by the DM and provides some context as to the cause of the anomaly through defined subclasses.</p>
-<p>These components are realized in an OWL ontology named s3model.owl and are documented <a class="reference external" href="owl/index.html">here</a></p>
+<p>These components are expressed in an OWL ontology named s3model.owl and are documented <a class="reference external" href="owl/index.html">here</a></p>
 </div>
 </div>
 

@@ -8,9 +8,9 @@ User & Reference Guide
 ======================
 
 
-Status - 3.0.0 Draft
+Status - 3.1.0 Draft
 
-*Copyright 2016 - 2017 Data Insights, Inc. - All Rights Reserved.*
+*Copyright 2009 - 2018 Data Insights, Inc. - All Rights Reserved.*
 
 Contents:
 

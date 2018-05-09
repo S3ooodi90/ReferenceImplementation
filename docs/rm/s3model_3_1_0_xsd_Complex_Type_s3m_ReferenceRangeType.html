@@ -1,0 +1,904 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component definition</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ReferenceRangeType_definition', 
+				'properties_ReferenceRangeType_interval', 
+				'properties_ReferenceRangeType_is-normal');
+var usedByBoxes= new Array('usedBy_ReferenceRangeType');
+var sourceBoxes= new Array('source_ReferenceRangeType_definition', 
+				'source_ReferenceRangeType_interval', 
+				'source_ReferenceRangeType_is-normal', 
+				'source_ReferenceRangeType');
+var instanceBoxes= new Array('instance_ReferenceRangeType_interval');
+var diagramBoxes= new Array('diagram_ReferenceRangeType_definition', 
+				'diagram_ReferenceRangeType_interval', 
+				'diagram_ReferenceRangeType_is-normal', 
+				'diagram_ReferenceRangeType');
+var annotationBoxes= new Array('annotations_ReferenceRangeType_definition', 
+				'annotations_ReferenceRangeType_interval', 
+				'annotations_ReferenceRangeType_is-normal', 
+				'annotations_ReferenceRangeType');
+var modelBoxes= new Array('model_ReferenceRangeType_interval', 
+				'model_ReferenceRangeType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ReferenceRangeType_definition"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRangeType')">s3m:ReferenceRangeType</a></b> / definition</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ReferenceRangeType_definition" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ReferenceRangeType_definition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ReferenceRangeType_definition" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Term whose value indicates the meaning of this range, e.g. 'normal', 'critical', 'therapeutic' etc.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ReferenceRangeType_definition" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ReferenceRangeType_definition');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ReferenceRangeType_definition" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_definition.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ReferenceRangeType_definition" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ReferenceRangeType_definition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ReferenceRangeType_definition" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ReferenceRangeType_definition" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ReferenceRangeType_definition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ReferenceRangeType_definition" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"definition"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Term whose value indicates the meaning of this range, e.g. 'normal', 'critical', 'therapeutic' etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType/definition"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Term whose value indicates the meaning of this range, e.g. 'normal', 'critical', 'therapeutic' etc.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ReferenceRangeType_interval"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRangeType')">s3m:ReferenceRangeType</a></b> / interval</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ReferenceRangeType_interval" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ReferenceRangeType_interval');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ReferenceRangeType_interval" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The data range for this reference range.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ReferenceRangeType_interval" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ReferenceRangeType_interval');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ReferenceRangeType_interval" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_interval.png" usemap="#s3model_3_1_0_xsd_Element_interval" /><map name="s3model_3_1_0_xsd_Element_interval" id="s3model_3_1_0_xsd_Element_interval">
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_label" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" coords="347,116,463,158" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="347,224,584,284" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vtb" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" coords="347,337,483,379" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vte" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" coords="347,432,483,474" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_tr" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" coords="347,527,483,569" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_modified" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" coords="347,622,483,664" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_latitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" coords="347,717,517,759" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_longitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" coords="347,799,527,841" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" coords="243,61,483,101" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.tmp#XdIntervalType_lower" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower" coords="311,918,452,960" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.tmp#XdIntervalType_upper" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper" coords="311,1000,452,1042" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.tmp#XdIntervalType_lower-included" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower-included" coords="311,1082,439,1124" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.tmp#XdIntervalType_upper-included" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper-included" coords="311,1164,439,1206" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.tmp#XdIntervalType_lower-bounded" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower-bounded" coords="311,1246,439,1288" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.tmp#XdIntervalType_upper-bounded" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper-bounded" coords="311,1328,439,1370" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.tmp#XdIntervalType_interval-units" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_interval-units" coords="311,1410,454,1452" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.tmp#XdIntervalType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType" coords="229,3,414,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdIntervalType')">s3m:XdIntervalType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdAnyType')">s3m:XdAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdIntervalType')">s3m:XdIntervalType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ReferenceRangeType_interval" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ReferenceRangeType_interval');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ReferenceRangeType_interval" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ReferenceRangeType_interval" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ReferenceRangeType_interval');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_ReferenceRangeType_interval" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component lower{0,1}')">lower{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component upper{0,1}')">upper{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower-included" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component lower-included')">lower-included</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper-included" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component upper-included')">upper-included</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower-bounded" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component lower-bounded')">lower-bounded</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper-bounded" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component upper-bounded')">upper-bounded</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_interval-units" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component interval-units{0,1}')">interval-units{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_interval-units" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component interval-units')">interval-units</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component lower')">lower</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower-bounded" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component lower-bounded')">lower-bounded</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_lower-included" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component lower-included')">lower-included</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component upper')">upper</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper-bounded" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component upper-bounded')">upper-bounded</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType_upper-included" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component upper-included')">upper-included</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ReferenceRangeType_interval" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ReferenceRangeType_interval');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ReferenceRangeType_interval" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;interval</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"https://www.s3model.com/ns/s3m/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;label</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/label&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;tr</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/tr&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;modified</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/modified&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;latitude</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/latitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;longitude</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/longitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;lower</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/lower&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;upper</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/upper&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;lower-included</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/lower-included&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;upper-included</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/upper-included&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;lower-bounded</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/lower-bounded&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;upper-bounded</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/upper-bounded&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;interval-units</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/interval-units&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/interval&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ReferenceRangeType_interval" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ReferenceRangeType_interval');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ReferenceRangeType_interval" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"interval"</span><span class="tAN"> type=</span><span class="tAV">"s3m:XdIntervalType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The data range for this reference range.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType/interval"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The data range for this reference range.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ReferenceRangeType_is-normal"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRangeType')">s3m:ReferenceRangeType</a></b> / is-normal</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ReferenceRangeType_is-normal" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ReferenceRangeType_is-normal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ReferenceRangeType_is-normal" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">True if this reference range defines values that are considered to be normal. In the context of the value in the definition element.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ReferenceRangeType_is-normal" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ReferenceRangeType_is-normal');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ReferenceRangeType_is-normal" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_is-normal.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ReferenceRangeType_is-normal" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ReferenceRangeType_is-normal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ReferenceRangeType_is-normal" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ReferenceRangeType_is-normal" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ReferenceRangeType_is-normal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ReferenceRangeType_is-normal" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"is-normal"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">True if this reference range defines values that are considered to be normal. In the context of the value in the definition element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType/is-normal"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#boolean"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">True if this reference range defines values that are considered to be normal. In the context of the value in the definition element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ReferenceRangeType"></a><div class="componentTitle">Complex Type <span class="qname">s3m:ReferenceRangeType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>https://www.s3model.com/ns/s3m/</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ReferenceRangeType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ReferenceRangeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ReferenceRangeType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Defines a named range to be associated with any ORDERED datum. Each such range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc.</span><span class="tI">
+</span><span class="tT">ranges that are constrained by an interval.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ReferenceRangeType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ReferenceRangeType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ReferenceRangeType" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.png" usemap="#s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType" /><map name="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType" id="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType">
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_label" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" coords="344,58,460,100" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="344,166,581,226" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vtb" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" coords="344,279,480,321" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vte" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" coords="344,374,480,416" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_tr" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" coords="344,469,480,511" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_modified" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" coords="344,564,480,606" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_latitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" coords="344,659,514,701" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_longitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" coords="344,741,524,783" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" coords="240,3,480,43" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.tmp#ReferenceRangeType_definition" href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_definition" coords="308,860,424,902" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.tmp#ReferenceRangeType_interval" href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_interval" coords="308,955,486,997" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.tmp#ReferenceRangeType_is-normal" href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_is-normal" coords="308,1037,436,1079" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdAnyType')">s3m:XdAnyType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdAnyType')">s3m:XdAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRangeType')">s3m:ReferenceRangeType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ReferenceRangeType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ReferenceRangeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ReferenceRangeType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.html#ReferenceRange" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRange')">s3m:ReferenceRange</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ReferenceRangeType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ReferenceRangeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_ReferenceRangeType" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_definition" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component definition')">definition</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_interval" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component interval')">interval</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_is-normal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-normal')">is-normal</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_definition" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component definition')">definition</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_interval" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component interval')">interval</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType_is-normal" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component is-normal')">is-normal</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ReferenceRangeType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ReferenceRangeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ReferenceRangeType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ReferenceRangeType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Defines a named range to be associated with any ORDERED datum. Each such range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ReferenceRangeType</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Defines a named range to be associated with any ORDERED datum. Each such range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"s3m:XdAnyType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"definition"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Term whose value indicates the meaning of this range, e.g. 'normal', 'critical', 'therapeutic' etc.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType/definition"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Term whose value indicates the meaning of this range, e.g. 'normal', 'critical', 'therapeutic' etc.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"interval"</span><span class="tAN"> type=</span><span class="tAV">"s3m:XdIntervalType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The data range for this reference range.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType/interval"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The data range for this reference range.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"is-normal"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">True if this reference range defines values that are considered to be normal. In the context of the value in the definition element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType/is-normal"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#boolean"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">True if this reference range defines values that are considered to be normal. In the context of the value in the definition element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

@@ -38,7 +38,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Shareable, Structured, Semantic Model" href="index.html"/>
-        <link rel="next" title="Data Model Generator (DM-Gen)" href="dmgen.html"/>
+        <link rel="next" title="Eclipse Ecore" href="ecore.html"/>
         <link rel="prev" title="The S3Model Eco-System" href="ecosystem.html"/> 
 
   
@@ -96,10 +96,11 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Docs Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="abstract_model.html">Abstract Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rm.html">The Reference Implementation - Reference Model</a></li>
@@ -111,7 +112,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#support-for-legacy-systems">Support for Legacy Systems</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dmgen.html">Data Model Generator (DM-Gen)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
@@ -180,30 +180,30 @@
             
   <div class="section" id="s3model-data-analysis">
 <h1>S3Model Data Analysis<a class="headerlink" href="#s3model-data-analysis" title="Permalink to this headline">¶</a></h1>
-<p>The real value in data and especially in <em>semantically computable data</em> is in how you can use it after it is captured. Each implementation will have different analysis requirements from static reports to dynamic dashboards and decision support. S3Model data is designed to accommodate all of these use cases.</p>
+<p>The real value in data and especially in <em>semantically computable data</em> is in how you can use it after it is recorded. Every implementation has different analysis requirements from static reports to dynamic dashboards and decision support. S3Model data is designed to accommodate all of these use cases.</p>
 <p>In many cases <a class="reference external" href="https://en.wikibooks.org/wiki/XQuery">XQuery</a> is a natural choice for analyzing data. However, there is excellent support in all major programming languages for XML data and implementers may choose to develop in their favorite programming language.</p>
 <p>The popular <a class="reference external" href="https://cran.r-project.org/">R</a> programming language is specifically designed for data analysis and supports XML data via an <a class="reference external" href="https://cran.r-project.org/web/packages/XML/index.html">XML package</a> using the commonly used <a class="reference external" href="https://xmlsoft.org/">libxml2 library</a> used by most of the other languages. Libxml2 includes complete XPath, Xpointer and Xinclude implementations. There is also a companion library called <a class="reference external" href="https://xmlsoft.org/XSLT/">libxslt</a> based on libxml2 that is used to provide support for <a class="reference external" href="https://www.w3.org/TR/xslt">XML transformations</a></p>
 <p>The DM-Gen provides example R code, automatically generated for each DM as an R project for use in <a class="reference external" href="https://www.rstudio.com/">R Studio</a> or at the R command line.</p>
 <div class="section" id="semantic-models-vs-semantic-markup">
 <h2>Semantic Models vs. Semantic Markup<a class="headerlink" href="#semantic-models-vs-semantic-markup" title="Permalink to this headline">¶</a></h2>
 <p>With the growing interest in <em>Big Data analytics</em>, various efforts are ongoing to improve the description of data and datasets. The various domains are attempting to use commonly developed vocabularies, such as the <a class="reference external" href="https://dublincore.org/">Dublin Core Metadata Initiative</a> terms, the <a class="reference external" href="https://www.w3.org/TR/vocab-dcat/">Data Catalog Vocabulary</a>, <a class="reference external" href="https://schema.org/">Schema.org</a> and others.</p>
-<p>The popular approach is to use the vocabularies to directly <em>annotate the data</em>. We call this the <em>direct markup approach</em>. While this approach will work, to some limited extent. There are several problems with this method. The glaringly obvious one is that, more often than not, high quality, precise metadata is often much larger than the actual data being represented. Every instance of data and every copy of the dataset, must carry all of its own metadata. While storage size, memory size, processing speed and network bandwidth have improved immensely over the past decade. They are not infinite and every byte still counts; affecting overall performance in an inverse relationship.</p>
-<p>In conservative testing with S3Model, we can see that the syntactic and semantic metadata for a data instance is typically about three times the size of the data instance itself. So including metadata with the data means a small 16kb data file is now 64kb. Not too bad when you look at it on that scale. However, the growth is linear with this <em>direct markup approach</em>.</p>
-<p>Let us say you record a time-series from some device and your data is 10MB. Now, for that one instance if it is marked up individually, the size blooms to 40MB. Even with today&#8217;s technology, this is a significant payload to transfer.</p>
-<p><a class="reference external" href="https://www.storagenewsletter.com/rubriques/market-reportsresearch/ibm-cmo-study/">Estimates are</a> that every day we create 2.5 quintillion (10 <sup>18</sup>) bytes of data.
-That linear expansion that resulted in a growth of 48kb is now a growth of <strong>7.5 quintillion bytes; every day</strong>.</p>
+<p>The conventional approach is to use the vocabularies to annotate the data directly. We call this the <em>direct markup approach</em>. While this approach does work, the extent is limited. There are several problems with this method. The glaringly obvious one is that, more often than not, high quality, accurate metadata is often much larger than the actual data represented. Every instance of data and every copy of the dataset must carry all of its metadata. While storage size, memory size, processing speed and network bandwidth have improved immensely over the past decade. They are not infinite, and every byte still counts; affecting overall performance in an inverse relationship.</p>
+<p>In conservative testing with S3Model, we can see that the syntactic and semantic metadata for a data instance is typically about three times the size of the data instance itself. So including metadata with the data means a small 16kb data file is now 64kb. This size increase is not too bad when you look at it on that scale. However, the growth is linear with this <em>direct markup approach</em>.</p>
+<p>Let us say you record a time-series from some device and your data is 10MB. Now, for that one instance, if the data file is marked up individually, the size blooms to 40MB. Even with today’s technology, this is a significant payload to transfer.</p>
+<p><a class="reference external" href="https://www.storagenewsletter.com/rubriques/market-reportsresearch/ibm-cmo-study/">Estimates are</a> that every day we create 2.5 quintillions (10 <sup>18</sup>) bytes of data.
+The linear expansion that resulted in a growth of 48kb of the 16kb sized file is now a growth of <strong>7.5 quintillion bytes</strong>. That is <strong>7.5 quintillion bytes</strong> every day.</p>
 <p>Regardless of any sustainability estimates. Is it even a smart thing to do?
-When the data instances are marked up with semantics and they are being exchanged between systems (as medical information should be), there is no single point of reference to insure that the syntax or semantics of the information wasn&#8217;t modified along the way.</p>
-<p>The S3Model approach to the computable semantic interoperability problem does not have these issues. The metadata is developed by the modeler and it is immutable. In other words, this is what the modeler intended for the data to mean at this time and in this context. The model can then be referred to by any required number of data instances. The multi-level modeling approach to development is what enables this level of efficiency in data management. S3Model uses the ubiquitous XML technology stack to accomplish this solution. Other multi-level modeling approaches may use a domain specific language that is not in common use and does not have tools widely available for management and analysis of the models and data.</p>
-<p>As stated earlier, the growth in size of the data is only one issue with the direct markup approach. An additional concern is the specific file format used for distribution. In the direct markup approach there may be differences in <a class="reference external" href="https://goo.gl/oSTC1g">semantics</a> or in the ability to even markup the data at all, using various syntaxes. In S3Model this is solved, as a result of the well known and proven approaches for transforming XML to and from other syntaxes. Because we are only transforming the data and not the metadata, it cannot be corrupted, misrepresented or misinterpreted.</p>
+When the data instances are marked up with semantics, and they are being exchanged between systems (such as medical and other information should be), there is no single point of reference to ensure that the syntax or semantics of the information was not modified along the way.</p>
+<p>The S3Model approach to the computable semantic interoperability problem does not have these issues. , and it is immutable. In other words, this is what the modeler intended for the data to mean at this time and in this context. The model can then be referred to by any required number of data instances. The multi-level modeling approach to development is what enables this level of efficiency in data management. S3Model uses the ubiquitous XML technology stack to accomplish this solution. Other multi-level modeling approaches may use a domain specific language that is not frequently used and does not have tools widely available for management and analysis of the models and data.</p>
+<p>As stated earlier, the growth in the size of the data is only one issue with the direct markup approach. An additional concern is the specific file format used for distribution. In the direct markup approach, there may be differences in <a class="reference external" href="https://goo.gl/oSTC1g">semantics</a> or in the ability to even markup the data at all, using various syntaxes. In S3Model this is solved, as a result of the well known and proven approaches for transforming XML to and from other syntaxes. Because we are only transforming the data and not the metadata, it cannot be corrupted, misrepresented or misinterpreted.</p>
 <p>We have provided open source examples of this transformation process, specifically to and from JSON without any loss of semantics or the ability to validate the data against the schema (DM). See the <a class="reference external" href="https://github.com/S3Model/mxic">MXIC project</a> for further details.</p>
 <p>One last comment on the issues with the <em>direct markup approach</em> is that is not robust enough for mission-critical data management; certainly not for your clinical healthcare data. This issue is widely recognized and is being addressed by <a class="reference external" href="https://www.w3.org/2012/12/rdf-val/report">W3C</a>. However, we know from previous experience that the W3C process is a slow one.</p>
-<p>In a few years, there may be widespread adoption and tools for validation of RDF syntaxes and/or the various levels of OWL. At that time it will be easy enough to migrate to S3Model 3.x using that approach. But we need solutions today and S3Model offers that solution now; with XML and RDF mix of technologies.</p>
+<p>In a few years, there may be widespread adoption and tools for validation of RDF syntaxes and the various levels of OWL. At that time it will be easy enough to migrate to a new version of S3Model using that approach. However, we need solutions today, and S3Model offers that solution now; with XML and RDF mix of technologies.</p>
 </div>
 <div class="section" id="support-for-legacy-systems">
 <h2>Support for Legacy Systems<a class="headerlink" href="#support-for-legacy-systems" title="Permalink to this headline">¶</a></h2>
-<p>S3Model is designed to provide semantic interoeperability for future systems. Based on small, granular models taht can be well defined. However, it is quite capable of supporting the transition of legacy data as well.  Several examples are available from the S3Model GitHub site.</p>
-<p>A capability often over looked is the ability to create models for CSV data in order to build Linked Data graphs. An often perplexing problem is how to support validation of data when that data may have come from a printed vocabulary or a terminology server. An example of this is in the TB demo where the Brazilian Death Certificate and Hospital Discharge data are modeled from CSV files. Of particular note are the XdStringType models that constrain the ICD 10 codes via an xs:assert for validation in the XML.  For Linked Data a vocabulary root is provided via S3Model:vocabRoot predicate and the resource is the URL to the WHO online repository. In cases where there is no online repsository (such as a published PDF) and the number of enumerations would be to large to be practical as constraints, we suggest creating a URI prefix for the link to the PDF and use a # plus the values found in the data.</p>
+<p>S3Model is designed to provide semantic interoperability for future systems. Based on small, granular models that can be well defined. However, it is quite capable of supporting the transition of legacy data as well.  Several examples are available from the S3Model GitHub site.</p>
+<p>A capability often overlooked is the ability to create models for CSV data to build Linked Data graphs. An often perplexing problem is how to support validation of data when that data may have come from a printed vocabulary or a terminology server. An example of this is in the TB demo where the Brazilian Death Certificate and Hospital Discharge data was modeled from CSV files. For Linked Data a vocabulary root is provided via S3Model:vocabRoot predicate and the resource is the URL to the WHO online repository. In cases where there is no online repository (such as a published PDF), and the number of enumerations would be too large to be practical as constraints, we suggest creating a URI prefix for the link to the PDF and use a # plus the values found in the data.</p>
 </div>
 </div>
 
@@ -217,7 +217,7 @@ When the data instances are marked up with semantics and they are being exchange
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dmgen.html" class="btn btn-neutral float-right" title="Data Model Generator (DM-Gen)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ecore.html" class="btn btn-neutral float-right" title="Eclipse Ecore" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ecosystem.html" class="btn btn-neutral" title="The S3Model Eco-System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

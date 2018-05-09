@@ -1,0 +1,1574 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component xdtemporal-date</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_XdTemporalType_xdtemporal-date', 
+				'properties_XdTemporalType_xdtemporal-time', 
+				'properties_XdTemporalType_xdtemporal-datetime', 
+				'properties_XdTemporalType_xdtemporal-day', 
+				'properties_XdTemporalType_xdtemporal-month', 
+				'properties_XdTemporalType_xdtemporal-year', 
+				'properties_XdTemporalType_xdtemporal-year-month', 
+				'properties_XdTemporalType_xdtemporal-month-day', 
+				'properties_XdTemporalType_xdtemporal-duration');
+var usedByBoxes= new Array('usedBy_XdTemporalType');
+var sourceBoxes= new Array('source_XdTemporalType_xdtemporal-date', 
+				'source_XdTemporalType_xdtemporal-time', 
+				'source_XdTemporalType_xdtemporal-datetime', 
+				'source_XdTemporalType_xdtemporal-day', 
+				'source_XdTemporalType_xdtemporal-month', 
+				'source_XdTemporalType_xdtemporal-year', 
+				'source_XdTemporalType_xdtemporal-year-month', 
+				'source_XdTemporalType_xdtemporal-month-day', 
+				'source_XdTemporalType_xdtemporal-duration', 
+				'source_XdTemporalType');
+var diagramBoxes= new Array('diagram_XdTemporalType_xdtemporal-date', 
+				'diagram_XdTemporalType_xdtemporal-time', 
+				'diagram_XdTemporalType_xdtemporal-datetime', 
+				'diagram_XdTemporalType_xdtemporal-day', 
+				'diagram_XdTemporalType_xdtemporal-month', 
+				'diagram_XdTemporalType_xdtemporal-year', 
+				'diagram_XdTemporalType_xdtemporal-year-month', 
+				'diagram_XdTemporalType_xdtemporal-month-day', 
+				'diagram_XdTemporalType_xdtemporal-duration', 
+				'diagram_XdTemporalType');
+var annotationBoxes= new Array('annotations_XdTemporalType_xdtemporal-date', 
+				'annotations_XdTemporalType_xdtemporal-time', 
+				'annotations_XdTemporalType_xdtemporal-datetime', 
+				'annotations_XdTemporalType_xdtemporal-day', 
+				'annotations_XdTemporalType_xdtemporal-month', 
+				'annotations_XdTemporalType_xdtemporal-year', 
+				'annotations_XdTemporalType_xdtemporal-year-month', 
+				'annotations_XdTemporalType_xdtemporal-month-day', 
+				'annotations_XdTemporalType_xdtemporal-duration', 
+				'annotations_XdTemporalType');
+var modelBoxes= new Array('model_XdTemporalType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="XdTemporalType_xdtemporal-date"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-date</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-date" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-date');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-date" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-date" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-date');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-date" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-date.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:date</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-date" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-date');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-date" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-date" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-date');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-date" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-date"</span><span class="tAN"> type=</span><span class="tAV">"xs:date"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-date"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#date"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType_xdtemporal-time"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-time</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-time" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-time');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-time" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-time" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-time');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-time" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-time.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:time</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-time" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-time');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-time" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-time" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-time');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-time" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-time"</span><span class="tAN"> type=</span><span class="tAV">"xs:time"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-time"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#time"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType_xdtemporal-datetime"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-datetime</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-datetime" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-datetime');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-datetime" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-datetime" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-datetime');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-datetime" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-datetime.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:dateTime</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-datetime" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-datetime');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-datetime" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-datetime" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-datetime');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-datetime" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-datetime"</span><span class="tAN"> type=</span><span class="tAV">"xs:dateTime"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-datetime"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#dateTime"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType_xdtemporal-day"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-day</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-day" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-day');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-day" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-day" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-day');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-day" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-day.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:gDay</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-day" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-day');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-day" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-day" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-day');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-day" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-day"</span><span class="tAN"> type=</span><span class="tAV">"xs:gDay"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-day"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gDay"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType_xdtemporal-month"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-month</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-month" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-month');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-month" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States, --10 in Canada, and possibly other months in other countries).</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-month" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-month');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-month" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-month.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:gMonth</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-month" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-month');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-month" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-month" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-month');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-month" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-month"</span><span class="tAN"> type=</span><span class="tAV">"xs:gMonth"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States, --10 in Canada, and possibly other months in other countries).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-month"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gMonth"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States, --10 in Canada, and possibly other months in other countries).</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType_xdtemporal-year"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-year</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-year" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-year" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Represents Gregorian calendar years.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-year" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-year');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-year" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-year.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:gYear</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-year" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-year" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-year" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-year" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-year"</span><span class="tAN"> type=</span><span class="tAV">"xs:gYear"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents Gregorian calendar years.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-year"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gYear"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents Gregorian calendar years.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType_xdtemporal-year-month"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-year-month</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-year-month" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-year-month');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-year-month" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Represents specific whole Gregorian months in specific Gregorian years.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-year-month" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-year-month');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-year-month" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-year-month.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:gYearMonth</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-year-month" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-year-month');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-year-month" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-year-month" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-year-month');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-year-month" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-year-month"</span><span class="tAN"> type=</span><span class="tAV">"xs:gYearMonth"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents specific whole Gregorian months in specific Gregorian years.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-year-month"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gYearMonth"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents specific whole Gregorian months in specific Gregorian years.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType_xdtemporal-month-day"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-month-day</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-month-day" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-month-day');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-month-day" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-month-day" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-month-day');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-month-day" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-month-day.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:gMonthDay</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-month-day" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-month-day');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-month-day" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-month-day" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-month-day');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-month-day" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-month-day"</span><span class="tAN"> type=</span><span class="tAV">"xs:gMonthDay"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-month-day"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gMonthDay"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType_xdtemporal-duration"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b> / xdtemporal-duration</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType_xdtemporal-duration" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType_xdtemporal-duration');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType_xdtemporal-duration" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">A datatype that represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, "15 days" (whose most common lexical representation in duration is</span><span class="tI">
+</span><span class="tT">"'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs, and can be the result of</span><span class="tI">
+</span><span class="tT">subtracting dateTime values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType_xdtemporal-duration" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType_xdtemporal-duration');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType_xdtemporal-duration" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdtemporal-duration.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:duration</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdTemporalType_xdtemporal-duration" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdTemporalType_xdtemporal-duration');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdTemporalType_xdtemporal-duration" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType_xdtemporal-duration" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType_xdtemporal-duration');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType_xdtemporal-duration" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-duration"</span><span class="tAN"> type=</span><span class="tAV">"xs:duration"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A datatype that represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, "15 days" (whose most common lexical representation in duration is "'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs, and can be the result of subtracting dateTime values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-duration"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#duration"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A datatype that represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, "15 days" (whose most common lexical representation in duration is "'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs, and can be the result of subtracting dateTime values.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdTemporalType"></a><div class="componentTitle">Complex Type <span class="qname">s3m:XdTemporalType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>https://www.s3model.com/ns/s3m/</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdTemporalType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdTemporalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdTemporalType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdTemporalType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdTemporalType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdTemporalType" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.png" usemap="#s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType" /><map name="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType" id="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType">
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_label" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" coords="385,134,501,176" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="385,242,622,302" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vtb" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" coords="385,355,521,397" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vte" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" coords="385,450,521,492" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_tr" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" coords="385,545,521,587" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_modified" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" coords="385,640,521,682" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_latitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" coords="385,735,555,777" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_longitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" coords="385,817,565,859" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" coords="281,79,521,119" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.tmp#ReferenceRange" href="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.html#ReferenceRange" coords="371,936,585,978" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.tmp#XdOrderedType_normal-status" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType_normal-status" coords="371,1031,487,1073" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.tmp#XdOrderedType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType" coords="267,3,534,61" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-date" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-date" coords="335,1163,459,1205" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-time" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-time" coords="335,1258,459,1300" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-datetime" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-datetime" coords="335,1353,484,1395" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-day" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-day" coords="335,1448,454,1490" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-month" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-month" coords="335,1556,470,1598" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-year" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-year" coords="335,1664,459,1706" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-year-month" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-year-month" coords="335,1746,499,1788" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-month-day" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-month-day" coords="335,1841,494,1883" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.tmp#XdTemporalType_xdtemporal-duration" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-duration" coords="335,1936,481,1978" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdOrderedType')">s3m:XdOrderedType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdAnyType')">s3m:XdAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdOrderedType')">s3m:XdOrderedType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporalType')">s3m:XdTemporalType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_XdTemporalType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_XdTemporalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_XdTemporalType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="s3model_3_1_0_xsd_Element_s3m_XdTemporal.html#XdTemporal" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdTemporal')">s3m:XdTemporal</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_XdTemporalType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_XdTemporalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_XdTemporalType" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.html#ReferenceRange" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRange*')">s3m:ReferenceRange*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType_normal-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component normal-status{0,1}')">normal-status{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-date" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-date{0,1}')">xdtemporal-date{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-time{0,1}')">xdtemporal-time{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-datetime" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-datetime{0,1}')">xdtemporal-datetime{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-day" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-day{0,1}')">xdtemporal-day{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-month" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-month{0,1}')">xdtemporal-month{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-year" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-year{0,1}')">xdtemporal-year{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-year-month" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-year-month{0,1}')">xdtemporal-year-month{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-month-day" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-month-day{0,1}')">xdtemporal-month-day{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-duration" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-duration{0,1}')">xdtemporal-duration{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType_normal-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component normal-status')">normal-status</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.html#ReferenceRange" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRange')">s3m:ReferenceRange</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-date" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-date')">xdtemporal-date</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-datetime" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-datetime')">xdtemporal-datetime</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-day" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-day')">xdtemporal-day</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-duration" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-duration')">xdtemporal-duration</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-month" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-month')">xdtemporal-month</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-month-day" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-month-day')">xdtemporal-month-day</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-time" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-time')">xdtemporal-time</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-year" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-year')">xdtemporal-year</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType_xdtemporal-year-month" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdtemporal-year-month')">xdtemporal-year-month</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdTemporalType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdTemporalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdTemporalType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"XdTemporalType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdOrderedType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">XdTemporalType</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"s3m:XdOrderedType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-date"</span><span class="tAN"> type=</span><span class="tAV">"xs:date"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-date"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#date"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-time"</span><span class="tAN"> type=</span><span class="tAV">"xs:time"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-time"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#time"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-datetime"</span><span class="tAN"> type=</span><span class="tAV">"xs:dateTime"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-datetime"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#dateTime"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-day"</span><span class="tAN"> type=</span><span class="tAV">"xs:gDay"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-day"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gDay"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-month"</span><span class="tAN"> type=</span><span class="tAV">"xs:gMonth"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States, --10 in Canada, and possibly other months in other countries).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-month"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gMonth"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. It might be used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States, --10 in Canada, and possibly other months in other countries).</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-year"</span><span class="tAN"> type=</span><span class="tAV">"xs:gYear"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents Gregorian calendar years.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-year"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gYear"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents Gregorian calendar years.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-year-month"</span><span class="tAN"> type=</span><span class="tAV">"xs:gYearMonth"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents specific whole Gregorian months in specific Gregorian years.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-year-month"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gYearMonth"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents specific whole Gregorian months in specific Gregorian years.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-month-day"</span><span class="tAN"> type=</span><span class="tAV">"xs:gMonthDay"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-month-day"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#gMonthDay"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdtemporal-duration"</span><span class="tAN"> type=</span><span class="tAV">"xs:duration"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A datatype that represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, "15 days" (whose most common lexical representation in duration is "'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs, and can be the result of subtracting dateTime values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType/xdtemporal-duration"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#duration"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A datatype that represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, "15 days" (whose most common lexical representation in duration is "'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs, and can be the result of subtracting dateTime values.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

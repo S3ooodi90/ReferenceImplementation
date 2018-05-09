@@ -136,6 +136,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdcounttype">XdCountType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdquantitytype">XdQuantityType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xdfloattype">XdFloatType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdratiotype">XdRatioType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdtemporaltype">XdTemporalType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdintervaltype">XdIntervalType</a></li>
@@ -275,7 +276,7 @@
 <div class="section" id="datetime">
 <h4>dateTime<a class="headerlink" href="#datetime" title="Permalink to this headline">¶</a></h4>
 <p>The dateTime data type is used to specify a date and a time.
-The dateTime is specified in the following form &#8220;YYYY-MM-DDThh:mm:ss&#8221; where:</p>
+The dateTime is specified in the following form “YYYY-MM-DDThh:mm:ss” where:</p>
 <ul class="simple">
 <li>YYYY indicates the year</li>
 <li>MM indicates the month</li>
@@ -298,7 +299,7 @@ The dateTime is specified in the following form &#8220;YYYY-MM-DDThh:mm:ss&#8221
 </pre></div>
 </div>
 <p><em>Time Zones</em></p>
-<p>To specify a time zone, you can either enter a dateTime in UTC time by adding a &#8220;Z&#8221; behind the time - like this:</p>
+<p>To specify a time zone, you can either enter a dateTime in UTC time by adding a “Z” behind the time - like this:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -311,7 +312,7 @@ The dateTime is specified in the following form &#8220;YYYY-MM-DDThh:mm:ss&#8221
 <div class="section" id="date">
 <h4>date<a class="headerlink" href="#date" title="Permalink to this headline">¶</a></h4>
 <p>The date data type is used to specify a date.</p>
-<p>The date is specified in the following form &#8220;YYYY-MM-DD&#8221; where:</p>
+<p>The date is specified in the following form “YYYY-MM-DD” where:</p>
 <ul class="simple">
 <li>YYYY indicates the year</li>
 <li>MM indicates the month</li>
@@ -325,7 +326,7 @@ The dateTime is specified in the following form &#8220;YYYY-MM-DDThh:mm:ss&#8221
 <div class="section" id="time">
 <h4>time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h4>
 <p>The time data type is used to specify a time.
-The time is specified in the following form &#8220;hh:mm:ss&#8221; where:</p>
+The time is specified in the following form “hh:mm:ss” where:</p>
 <ul class="simple">
 <li>hh indicates the hour</li>
 <li>mm indicates the minute</li>
@@ -344,7 +345,7 @@ The time is specified in the following form &#8220;hh:mm:ss&#8221; where:</p>
 </pre></div>
 </div>
 <p><em>Time Zones</em></p>
-<p>To specify a time zone, you can either enter a time in UTC time by adding a &#8220;Z&#8221; behind the time - like this:</p>
+<p>To specify a time zone, you can either enter a time in UTC time by adding a “Z” behind the time - like this:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -356,7 +357,7 @@ The time is specified in the following form &#8220;hh:mm:ss&#8221; where:</p>
 <div class="section" id="duration">
 <h4>duration<a class="headerlink" href="#duration" title="Permalink to this headline">¶</a></h4>
 <p>The duration data type is used to specify a time interval.
-The time interval is specified in the following form &#8220;PnYnMnDTnHnMnS&#8221; where:</p>
+The time interval is specified in the following form “PnYnMnDTnHnMnS” where:</p>
 <ul class="simple">
 <li>P indicates the period (required)</li>
 <li>nY indicates the number of years</li>
@@ -437,7 +438,7 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <h4>XdBooleanType<a class="headerlink" href="#xdbooleantype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdAnyType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines &#8216;true&#8217; and &#8216;false&#8217; in a choice so only one or the other may be present in the instance data. The XdBooleanType should not be used as a replacement for enumerated choice types such as male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, &#8216;true&#8217; and &#8216;false&#8217; are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a DM.</p>
+<p><strong>Description:</strong>  An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines ‘true’ and ‘false’ in a choice so only one or the other may be present in the instance data. The XdBooleanType should not be used as a replacement for enumerated choice types such as male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, ‘true’ and ‘false’ are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a DM.</p>
 </div>
 <div class="section" id="xdlinktype">
 <h4>XdLinkType<a class="headerlink" href="#xdlinktype" title="Permalink to this headline">¶</a></h4>
@@ -446,7 +447,7 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <p><strong>Description:</strong> Used to specify a Universal Resource Identifier.
 Set the pattern facet to accommodate your needs in the PCM.
 The primary use is to provide a mechanism that can be used to link together DMs.
-The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary. In most use cases the modeler will define all three of these using the &#8216;fixed&#8217; attribute. Other use cases will have the &#8216;relation&#8217; and &#8216;relation-uri&#8217; elements fixed and the application will provide the &#8216;link&#8217;.</p>
+The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary. In most use cases the modeler will define all three of these using the ‘fixed’ attribute. Other use cases will have the ‘relation’ and ‘relation-uri’ elements fixed and the application will provide the ‘link’.</p>
 </div>
 <div class="section" id="xdstringtype">
 <h4>XdStringType<a class="headerlink" href="#xdstringtype" title="Permalink to this headline">¶</a></h4>
@@ -465,7 +466,7 @@ and tab characters. The use cases are for any free form text entry or for any en
 <h4>XdOrderedType<a class="headerlink" href="#xdorderedtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdAnyType by extension</p>
 <p><strong>Abstract:</strong> True</p>
-<p><strong>Description:</strong>  Abstract class defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, &#8216;&gt;&#8217; and is_strictly_comparable_to (&#8216;==&#8217;).</p>
+<p><strong>Description:</strong>  Abstract class defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, ‘&gt;’ and is_strictly_comparable_to (‘==’).</p>
 </div>
 <div class="section" id="xdordinaltype">
 <h4>XdOrdinalType<a class="headerlink" href="#xdordinaltype" title="Permalink to this headline">¶</a></h4>
@@ -480,8 +481,8 @@ and tab characters. The use cases are for any free form text entry or for any en
 <p>Note that although the term ‘ordinal’ in mathematics means natural numbers only, here any decimal is allowed, since negative and zero values are often used by medical and other professionals for values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25</p>
 <p>Examples of sets of ordinal values;</p>
 <ul class="simple">
-<li>-3, -2, -1, 0, 1, 2, 3 &#8211; reflex response values</li>
-<li>0, 1, 2 &#8211; Apgar values</li>
+<li>-3, -2, -1, 0, 1, 2, 3 – reflex response values</li>
+<li>0, 1, 2 – Apgar values</li>
 </ul>
 <p>Also used for recording any clinical or other datum which is customarily recorded using symbolic values. Examples;</p>
 <ul class="simple">
@@ -501,21 +502,26 @@ and tab characters. The use cases are for any free form text entry or for any en
 <h4>XdCountType<a class="headerlink" href="#xdcounttype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc.
-The <em>thing(s)</em> being counted must be represented in the units element.</p>
+<p><strong>Description:</strong> Countable quantities. Used for countable types (integer) such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc. The <em>thing(s)</em> being counted must be represented in the units element.</p>
 <p><strong>Misuse:</strong> Not used for amounts of physical entities (which all have standardized units).</p>
 </div>
 <div class="section" id="xdquantitytype">
 <h4>XdQuantityType<a class="headerlink" href="#xdquantitytype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.</p>
+<p><strong>Description:</strong> Quantified type representing specific quantities, i.e. quantities expressed as a magnitude (decimal) and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.</p>
+</div>
+<div class="section" id="xdfloattype">
+<h4>XdFloatType<a class="headerlink" href="#xdfloattype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong> Quantified type representing specific quantities as a magnitude (float) and optional units.</p>
 </div>
 <div class="section" id="xdratiotype">
 <h4>XdRatioType<a class="headerlink" href="#xdratiotype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a forward slash (&#8216;/&#8217;) character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</p>
+<p><strong>Description:</strong> Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash (‘/’) character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</p>
 </div>
 <div class="section" id="xdtemporaltype">
 <h4>XdTemporalType<a class="headerlink" href="#xdtemporaltype" title="Permalink to this headline">¶</a></h4>
@@ -534,8 +540,8 @@ The <em>thing(s)</em> being counted must be represented in the units element.</p
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong> In the DM, the modeler creates two restrictions on this complexType.
-One for the &#8216;lower&#8217; value and one for the &#8216;upper&#8217; value.
-Both restrictions will have the same element choice and the value is &#8216;fixed&#8217; on each representing the lower and upper value range boundary. The value may be set to NULL (unbounded) by using the xsi:nil=&#8217;true&#8217; attribute. The maxOccurs and minOccurs attributes must be set to 1, in the DM.</p>
+One for the ‘lower’ value and one for the ‘upper’ value.
+Both restrictions will have the same element choice and the value is ‘fixed’ on each representing the lower and upper value range boundary. The value may be set to NULL (unbounded) by using the xsi:nil=’true’ attribute. The maxOccurs and minOccurs attributes must be set to 1, in the DM.</p>
 <p>For more information on using this approach <a class="reference external" href="https://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html">see these tips</a></p>
 </div>
 <div class="section" id="invlunits">

@@ -1,0 +1,1561 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component ratio-type</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_XdRatioType_ratio-type', 
+				'properties_XdRatioType_numerator', 
+				'properties_XdRatioType_denominator', 
+				'properties_XdRatioType_xdratio-value', 
+				'properties_XdRatioType_numerator-units', 
+				'properties_XdRatioType_denominator-units', 
+				'properties_XdRatioType_xdratio-units');
+var facetsBoxes= new Array('facets_XdRatioType_ratio-type');
+var usedByBoxes= new Array('usedBy_XdRatioType');
+var sourceBoxes= new Array('source_XdRatioType_ratio-type', 
+				'source_XdRatioType_numerator', 
+				'source_XdRatioType_denominator', 
+				'source_XdRatioType_xdratio-value', 
+				'source_XdRatioType_numerator-units', 
+				'source_XdRatioType_denominator-units', 
+				'source_XdRatioType_xdratio-units', 
+				'source_XdRatioType');
+var instanceBoxes= new Array('instance_XdRatioType_numerator-units', 
+				'instance_XdRatioType_denominator-units', 
+				'instance_XdRatioType_xdratio-units');
+var diagramBoxes= new Array('diagram_XdRatioType_ratio-type', 
+				'diagram_XdRatioType_numerator', 
+				'diagram_XdRatioType_denominator', 
+				'diagram_XdRatioType_xdratio-value', 
+				'diagram_XdRatioType_numerator-units', 
+				'diagram_XdRatioType_denominator-units', 
+				'diagram_XdRatioType_xdratio-units', 
+				'diagram_XdRatioType');
+var annotationBoxes= new Array('annotations_XdRatioType_ratio-type', 
+				'annotations_XdRatioType_numerator', 
+				'annotations_XdRatioType_denominator', 
+				'annotations_XdRatioType_xdratio-value', 
+				'annotations_XdRatioType_numerator-units', 
+				'annotations_XdRatioType_denominator-units', 
+				'annotations_XdRatioType_xdratio-units', 
+				'annotations_XdRatioType');
+var modelBoxes= new Array('model_XdRatioType_numerator-units', 
+				'model_XdRatioType_denominator-units', 
+				'model_XdRatioType_xdratio-units', 
+				'model_XdRatioType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="XdRatioType_ratio-type"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatioType')">s3m:XdRatioType</a></b> / ratio-type</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdRatioType_ratio-type" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdRatioType_ratio-type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdRatioType_ratio-type" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Indicates specific type of ratio modeled in the DM.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdRatioType_ratio-type" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdRatioType_ratio-type');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdRatioType_ratio-type" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_ratio-type.png" usemap="#s3model_3_1_0_xsd_Element_ratio-type" /><map name="s3model_3_1_0_xsd_Element_ratio-type" id="s3model_3_1_0_xsd_Element_ratio-type">
+                                 <area alt="s3model_3_1_0_xsd_Simple_Type_s3m_TypeOfRatio.tmp#TypeOfRatio" href="s3model_3_1_0_xsd_Simple_Type_s3m_TypeOfRatio.html#TypeOfRatio" coords="211,8,363,34" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Simple_Type_s3m_TypeOfRatio.html#TypeOfRatio" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:TypeOfRatio')">s3m:TypeOfRatio</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdRatioType_ratio-type" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdRatioType_ratio-type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdRatioType_ratio-type" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_XdRatioType_ratio-type" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_XdRatioType_ratio-type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_XdRatioType_ratio-type" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ratio</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>proportion</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>rate</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdRatioType_ratio-type" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdRatioType_ratio-type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdRatioType_ratio-type" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"ratio-type"</span><span class="tAN"> type=</span><span class="tAV">"s3m:TypeOfRatio"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Indicates specific type of ratio modeled in the DM.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/ratio-type"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#TypeOfRatio"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Indicates specific type of ratio modeled in the DM.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdRatioType_numerator"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatioType')">s3m:XdRatioType</a></b> / numerator</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdRatioType_numerator" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdRatioType_numerator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdRatioType_numerator" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Numerator of ratio.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdRatioType_numerator" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdRatioType_numerator');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdRatioType_numerator" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_numerator.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:float</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdRatioType_numerator" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdRatioType_numerator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdRatioType_numerator" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdRatioType_numerator" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdRatioType_numerator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdRatioType_numerator" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"numerator"</span><span class="tAN"> type=</span><span class="tAV">"xs:float"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numerator of ratio.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/numerator"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#float"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numerator of ratio.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdRatioType_denominator"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatioType')">s3m:XdRatioType</a></b> / denominator</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdRatioType_denominator" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdRatioType_denominator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdRatioType_denominator" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Denominator of ratio.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdRatioType_denominator" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdRatioType_denominator');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdRatioType_denominator" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_denominator.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:float</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdRatioType_denominator" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdRatioType_denominator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdRatioType_denominator" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdRatioType_denominator" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdRatioType_denominator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdRatioType_denominator" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"denominator"</span><span class="tAN"> type=</span><span class="tAV">"xs:float"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Denominator of ratio.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/denominator"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#float"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Denominator of ratio.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdRatioType_xdratio-value"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatioType')">s3m:XdRatioType</a></b> / xdratio-value</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdRatioType_xdratio-value" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdRatioType_xdratio-value');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdRatioType_xdratio-value" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Numeric value of the ratio.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdRatioType_xdratio-value" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdRatioType_xdratio-value');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdRatioType_xdratio-value" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdratio-value.png" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:float</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdRatioType_xdratio-value" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdRatioType_xdratio-value');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdRatioType_xdratio-value" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdRatioType_xdratio-value" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdRatioType_xdratio-value');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdRatioType_xdratio-value" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdratio-value"</span><span class="tAN"> type=</span><span class="tAV">"xs:float"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numeric value of the ratio.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/xdratio-value"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#float"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numeric value of the ratio.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdRatioType_numerator-units"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatioType')">s3m:XdRatioType</a></b> / numerator-units</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdRatioType_numerator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdRatioType_numerator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdRatioType_numerator-units" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdRatioType_numerator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdRatioType_numerator-units');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdRatioType_numerator-units" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_numerator-units.png" usemap="#s3model_3_1_0_xsd_Element_numerator-units" /><map name="s3model_3_1_0_xsd_Element_numerator-units" id="s3model_3_1_0_xsd_Element_numerator-units">
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_label" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" coords="339,116,455,158" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="339,224,576,284" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vtb" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" coords="339,337,475,379" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vte" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" coords="339,432,475,474" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_tr" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" coords="339,527,475,569" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_modified" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" coords="339,622,475,664" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_latitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" coords="339,717,509,759" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_longitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" coords="339,799,519,841" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" coords="235,61,475,101" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType_xdstring-value" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" coords="303,918,419,960" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType_xdstring-language" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" coords="303,1000,438,1042" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" coords="221,3,406,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdStringType')">s3m:XdStringType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdAnyType')">s3m:XdAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdStringType')">s3m:XdStringType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdRatioType_numerator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdRatioType_numerator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdRatioType_numerator-units" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_XdRatioType_numerator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('model_XdRatioType_numerator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_XdRatioType_numerator-units" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-value{0,1}')">xdstring-value{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-language{0,1}')">xdstring-language{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-language')">xdstring-language</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-value')">xdstring-value</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_XdRatioType_numerator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_XdRatioType_numerator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_XdRatioType_numerator-units" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;numerator-units</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"https://www.s3model.com/ns/s3m/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;label</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/label&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;tr</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/tr&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;modified</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/modified&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;latitude</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/latitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;longitude</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/longitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xdstring-value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/xdstring-value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xdstring-language</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/xdstring-language&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/numerator-units&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdRatioType_numerator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdRatioType_numerator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdRatioType_numerator-units" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"numerator-units"</span><span class="tAN"> type=</span><span class="tAV">"s3m:XdStringType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/numerator-units"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdRatioType_denominator-units"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatioType')">s3m:XdRatioType</a></b> / denominator-units</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdRatioType_denominator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdRatioType_denominator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdRatioType_denominator-units" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. May or may not come from a standard terminology.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdRatioType_denominator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdRatioType_denominator-units');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdRatioType_denominator-units" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_denominator-units.png" usemap="#s3model_3_1_0_xsd_Element_denominator-units" /><map name="s3model_3_1_0_xsd_Element_denominator-units" id="s3model_3_1_0_xsd_Element_denominator-units">
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_label" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" coords="339,116,455,158" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="339,224,576,284" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vtb" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" coords="339,337,475,379" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vte" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" coords="339,432,475,474" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_tr" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" coords="339,527,475,569" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_modified" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" coords="339,622,475,664" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_latitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" coords="339,717,509,759" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_longitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" coords="339,799,519,841" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" coords="235,61,475,101" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType_xdstring-value" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" coords="303,918,419,960" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType_xdstring-language" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" coords="303,1000,438,1042" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" coords="221,3,406,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdStringType')">s3m:XdStringType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdAnyType')">s3m:XdAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdStringType')">s3m:XdStringType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdRatioType_denominator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdRatioType_denominator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdRatioType_denominator-units" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_XdRatioType_denominator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('model_XdRatioType_denominator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_XdRatioType_denominator-units" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-value{0,1}')">xdstring-value{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-language{0,1}')">xdstring-language{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-language')">xdstring-language</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-value')">xdstring-value</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_XdRatioType_denominator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_XdRatioType_denominator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_XdRatioType_denominator-units" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;denominator-units</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"https://www.s3model.com/ns/s3m/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;label</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/label&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;tr</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/tr&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;modified</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/modified&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;latitude</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/latitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;longitude</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/longitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xdstring-value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/xdstring-value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xdstring-language</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/xdstring-language&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/denominator-units&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdRatioType_denominator-units" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdRatioType_denominator-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdRatioType_denominator-units" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"denominator-units"</span><span class="tAN"> type=</span><span class="tAV">"s3m:XdStringType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. May or may not come from a standard terminology.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/denominator-units"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. May or may not come from a standard terminology.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdRatioType_xdratio-units"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatioType')">s3m:XdRatioType</a></b> / xdratio-units</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdRatioType_xdratio-units" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdRatioType_xdratio-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdRatioType_xdratio-units" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdRatioType_xdratio-units" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdRatioType_xdratio-units');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdRatioType_xdratio-units" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_xdratio-units.png" usemap="#s3model_3_1_0_xsd_Element_xdratio-units" /><map name="s3model_3_1_0_xsd_Element_xdratio-units" id="s3model_3_1_0_xsd_Element_xdratio-units">
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_label" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" coords="339,116,455,158" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="339,224,576,284" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vtb" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" coords="339,337,475,379" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vte" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" coords="339,432,475,474" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_tr" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" coords="339,527,475,569" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_modified" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" coords="339,622,475,664" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_latitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" coords="339,717,509,759" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_longitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" coords="339,799,519,841" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" coords="235,61,475,101" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType_xdstring-value" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" coords="303,918,419,960" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType_xdstring-language" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" coords="303,1000,438,1042" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.tmp#XdStringType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" coords="221,3,406,43" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdStringType')">s3m:XdStringType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdAnyType')">s3m:XdAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdStringType')">s3m:XdStringType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_XdRatioType_xdratio-units" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdRatioType_xdratio-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_XdRatioType_xdratio-units" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_XdRatioType_xdratio-units" type="image" src="img/btM.gif" value="-" onclick="switchState('model_XdRatioType_xdratio-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_XdRatioType_xdratio-units" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-value{0,1}')">xdstring-value{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-language{0,1}')">xdstring-language{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-language')">xdstring-language</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType_xdstring-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdstring-value')">xdstring-value</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_XdRatioType_xdratio-units" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_XdRatioType_xdratio-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_XdRatioType_xdratio-units" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xdratio-units</span><span class="tT"> </span><span class="tAN">xmlns:s3m=</span><span class="tAV">"https://www.s3model.com/ns/s3m/"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;label</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/label&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;s3m:ExceptionalValue</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/s3m:ExceptionalValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vtb</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vtb&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;vte</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/vte&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;tr</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/tr&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;modified</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/modified&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;latitude</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/latitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;longitude</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/longitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xdstring-value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/xdstring-value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xdstring-language</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/xdstring-language&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xdratio-units&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdRatioType_xdratio-units" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdRatioType_xdratio-units');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdRatioType_xdratio-units" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdratio-units"</span><span class="tAN"> type=</span><span class="tAV">"s3m:XdStringType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/xdratio-units"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="XdRatioType"></a><div class="componentTitle">Complex Type <span class="qname">s3m:XdRatioType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>https://www.s3model.com/ns/s3m/</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_XdRatioType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdRatioType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_XdRatioType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,</span><span class="tI">
+</span><span class="tT">when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_XdRatioType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdRatioType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_XdRatioType" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.png" usemap="#s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType" /><map name="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType" id="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType">
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_label" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" coords="410,210,526,252" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.tmp#ExceptionalValue" href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" coords="410,318,647,378" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vtb" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" coords="410,431,546,473" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_vte" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" coords="410,526,546,568" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_tr" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" coords="410,621,546,663" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_modified" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" coords="410,716,546,758" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_latitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" coords="410,811,580,853" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_longitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" coords="410,893,590,935" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" coords="306,155,546,195" />
+                                 <area alt="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.tmp#ReferenceRange" href="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.html#ReferenceRange" coords="396,1012,610,1054" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.tmp#XdOrderedType_normal-status" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType_normal-status" coords="396,1107,512,1149" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.tmp#XdOrderedType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType" coords="292,79,559,137" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.tmp#XdQuantifiedType_magnitude-status" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_magnitude-status" coords="360,1239,550,1281" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.tmp#XdQuantifiedType_error" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_error" coords="360,1321,457,1363" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.tmp#XdQuantifiedType_accuracy" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_accuracy" coords="360,1429,487,1471" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.tmp#XdQuantifiedType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType" coords="278,3,556,61" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.tmp#XdRatioType_ratio-type" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_ratio-type" coords="346,1574,509,1616" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.tmp#XdRatioType_numerator" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_numerator" coords="346,1656,454,1698" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.tmp#XdRatioType_denominator" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_denominator" coords="346,1738,454,1780" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.tmp#XdRatioType_xdratio-value" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_xdratio-value" coords="346,1820,454,1862" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.tmp#XdRatioType_numerator-units" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_numerator-units" coords="346,1902,516,1944" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.tmp#XdRatioType_denominator-units" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_denominator-units" coords="346,1997,516,2039" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.tmp#XdRatioType_xdratio-units" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_xdratio-units" coords="346,2092,516,2134" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdQuantifiedType')">s3m:XdQuantifiedType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdAnyType')">s3m:XdAnyType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdOrderedType')">s3m:XdOrderedType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdQuantifiedType')">s3m:XdQuantifiedType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatioType')">s3m:XdRatioType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_XdRatioType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_XdRatioType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_XdRatioType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="s3model_3_1_0_xsd_Element_s3m_XdRatio.html#XdRatio" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdRatio')">s3m:XdRatio</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_XdRatioType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_XdRatioType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_XdRatioType" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.html#ReferenceRange" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRange*')">s3m:ReferenceRange*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType_normal-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component normal-status{0,1}')">normal-status{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_magnitude-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component magnitude-status{0,1}')">magnitude-status{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_error" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component error{0,1}')">error{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_accuracy" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component accuracy{0,1}')">accuracy{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_ratio-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ratio-type')">ratio-type</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_numerator" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component numerator{0,1}')">numerator{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_denominator" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component denominator{0,1}')">denominator{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_xdratio-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdratio-value{0,1}')">xdratio-value{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_numerator-units" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component numerator-units{0,1}')">numerator-units{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_denominator-units" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component denominator-units{0,1}')">denominator-units{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_xdratio-units" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdratio-units{0,1}')">xdratio-units{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_accuracy" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component accuracy')">accuracy</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_denominator" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component denominator')">denominator</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_denominator-units" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component denominator-units')">denominator-units</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_error" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component error')">error</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType_magnitude-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component magnitude-status')">magnitude-status</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType_normal-status" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component normal-status')">normal-status</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_numerator" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component numerator')">numerator</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_numerator-units" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component numerator-units')">numerator-units</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_ratio-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ratio-type')">ratio-type</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ReferenceRange.html#ReferenceRange" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ReferenceRange')">s3m:ReferenceRange</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_xdratio-units" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdratio-units')">xdratio-units</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType_xdratio-value" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdratio-value')">xdratio-value</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_XdRatioType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdRatioType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_XdRatioType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"XdRatioType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">XdRatioType</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"s3m:XdQuantifiedType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"ratio-type"</span><span class="tAN"> type=</span><span class="tAV">"s3m:TypeOfRatio"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Indicates specific type of ratio modeled in the DM.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/ratio-type"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#TypeOfRatio"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Indicates specific type of ratio modeled in the DM.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"numerator"</span><span class="tAN"> type=</span><span class="tAV">"xs:float"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numerator of ratio.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/numerator"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#float"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numerator of ratio.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"denominator"</span><span class="tAN"> type=</span><span class="tAV">"xs:float"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Denominator of ratio.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/denominator"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#float"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Denominator of ratio.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdratio-value"</span><span class="tAN"> type=</span><span class="tAV">"xs:float"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numeric value of the ratio.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/xdratio-value"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#float"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Numeric value of the ratio.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"numerator-units"</span><span class="tAN"> type=</span><span class="tAV">"s3m:XdStringType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/numerator-units"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, exercise periods, etc. May or may not come from a terminology.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"denominator-units"</span><span class="tAN"> type=</span><span class="tAV">"s3m:XdStringType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. May or may not come from a standard terminology.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/denominator-units"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. May or may not come from a standard terminology.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> name=</span><span class="tAV">"xdratio-units"</span><span class="tAN"> type=</span><span class="tAV">"s3m:XdStringType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType/xdratio-units"</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>
