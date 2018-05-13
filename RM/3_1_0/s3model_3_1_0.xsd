@@ -10,14 +10,15 @@
       This is the Shareable, Structured, Semantic Model (S3Model) reference model (RM) implementation in XML Schema. 
       The S3Model RM consists of the core datatypes and structures for domain concept models, called Data Models (DMs). 
       The DMs are composed of Model Components (MCs) that are expressed as constraints on the RM components. 
-      For the semantics see the accompanying file s3model.owl. 
+      For the core semantics see the accompanying file s3model.owl. The documentation for the component models are resolvable by replacing
+      the URL fragment "https://www.s3model.com/docs/" with "https://datainsights.tech/S3Model/rm/"
       Further documentation and implementation instructions can be found at (or via links from) http://www.datainsights.tech/S3Model 
    </xs:documentation>
     <xs:appinfo>
       <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd">
-        <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/index.html/"/>
+        <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/index.html/"/>
         <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RM"/>
-        <rdfs:label xml:lang="en-us">S3Model Release 3.1.0 Reference Model</rdfs:label>
+        <rdfs:label xml:lang="en-us">S3Model Release 3.1.0; Reference Model</rdfs:label>
       </rdf:Description>
     </xs:appinfo>
   </xs:annotation>
@@ -27,7 +28,7 @@
       <xs:documentation xml:lang="en-us">Serves as the common ancestor of all eXtended data-types (Xd*) in S3Model.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">XdAnyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Serves as a common ancestor of all eXtended data-types (Xd*) in S3Model.</rdfs:comment>
@@ -182,7 +183,7 @@
         the instance data with its value coming from the enumerations defined in a CMC.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdBooleanType.html#XdBooleanType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdBooleanType.html#XdBooleanType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdBooleanType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Items which represent boolean decisions, such as true/false or yes/no answers. Use for such data, it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false. The
@@ -241,7 +242,7 @@
         term for the link with an optional URI pointing to the source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute. Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 'link-value'.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdLinkType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdLinkType.html#XdLinkType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdLinkType.html#XdLinkType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdLinkType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM. Intended use is to provide a mechanism that can be used to link together Concept Models. The relation element allows for the use of a descriptive
@@ -310,7 +311,7 @@
         may be specified.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdStringType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The string data type can contain characters, line feeds, carriage returns, and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns  may be specified.</rdfs:comment>
@@ -365,7 +366,7 @@
       <xs:documentation xml:lang="en-us">A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdFileType</rdfs:label>
           <rdfs:comment xml:lang="en-us">A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.</rdfs:comment>
@@ -543,7 +544,7 @@
       <xs:documentation xml:lang="en-us">Abstract type defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, '&gt;' and is_strictly_comparable_to ('==').</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdOrderedType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
          <rdfs:label xml:lang="en-us">XdOrderedType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Abstract type defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, '&gt;' and is_strictly_comparable_to ('==').</rdfs:comment>
@@ -610,7 +611,7 @@
         Elements ordinal and symbol MUST have exactly the same number of enumerations.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdOrdinalType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdOrdinalType.html#XdOrdinalType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdOrdinalType.html#XdOrdinalType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdOrderedType"/>
           <rdfs:label xml:lang="en-us">XdOrdinalType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Models rankings and scores, e.g. pain, Apgar values, etc, where there is 
@@ -678,7 +679,7 @@
       <xs:documentation xml:lang="en-us">Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdOrderedType"/>
           <rdfs:label xml:lang="en-us">XdQuantifiedType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.</rdfs:comment>
@@ -783,7 +784,7 @@
       <xs:documentation xml:lang="en-us">Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc. The thing(s) being counted must be represented in the units element. Misuse:Not used for amounts of physical entities (which all have standardized units).</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_.XdCountTypehtml#XdCountType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_.XdCountTypehtml#XdCountType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType"/>
           <rdfs:label xml:lang="en-us">XdCountType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc. The thing(s) being counted must be represented in the units element. Misuse:Not used for amounts of physical entities (which all have standardized units).</rdfs:comment>
@@ -837,7 +838,7 @@
       <xs:documentation xml:lang="en-us">Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantityType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantityType.html#XdQuantityType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantityType.html#XdQuantityType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType"/>
           <rdfs:label xml:lang="en-us">XdQuantityType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.</rdfs:comment>
@@ -891,7 +892,7 @@
       <xs:documentation xml:lang="en-us">Quantified type representing specific a value as a floating point number and optional units.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFloatType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdFloatType.html#XdFloatType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdFloatType.html#XdFloatType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFloatType"/>
           <rdfs:label xml:lang="en-us">XdQuantityType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Quantified type representing specific a value and optional units.</rdfs:comment>
@@ -948,7 +949,7 @@
         when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType"/>
           <rdfs:label xml:lang="en-us">XdRatioType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
@@ -1091,7 +1092,7 @@
       <xs:documentation xml:lang="en-us">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdOrderedType"/>
           <rdfs:label xml:lang="en-us">XdTemporalType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.</rdfs:comment>
@@ -1235,7 +1236,7 @@
         primarily used in defining reference ranges.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdIntervalType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are
@@ -1352,7 +1353,7 @@
         boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CMC.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_.InvlTypehtml#InvlType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_.InvlTypehtml#InvlType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">InvlType</rdfs:label>
           <rdfs:comment xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
@@ -1395,7 +1396,7 @@
         ranges that are constrained by an interval.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">ReferenceRangeType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Defines a named range to be associated with any ORDERED datum. Each such range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc.
@@ -1462,7 +1463,7 @@
       <xs:documentation xml:lang="en-us">AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#AuditType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_AuditType.html#AuditType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">AuditType</rdfs:label>
           <rdfs:comment xml:lang="en-us">AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</rdfs:comment>
@@ -1549,7 +1550,7 @@
         information is to be anonymous then do not include the details element.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_PartyType.html#PartyType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">PartyType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
@@ -1624,7 +1625,7 @@
       <xs:documentation xml:lang="en-us">Record an attestation by a party of the DM content. The type of attestation is recorded by the reason attribute, which my be coded.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#AttestationType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">AttestationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Record an attestation by a party of the DM content. The type of attestation is recorded by the reason attribute, which my be coded.</rdfs:comment>
@@ -1735,7 +1736,7 @@
       <xs:documentation xml:lang="en-us">Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ParticipationType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">ParticipationType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.</rdfs:comment>
@@ -1835,7 +1836,7 @@
         useful in many instances. Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/Exception"/>
           <rdfs:label xml:lang="en-us">ExceptionalValueType</rdfs:label>
           <rdfs:comment xml:lang="en-us">Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be
@@ -1877,7 +1878,7 @@
           <xs:documentation xml:lang="en-us">No Information : The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#NIType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_NIType.html#NIType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_NIType.html#NIType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NIType</rdfs:label>
               <rdfs:comment xml:lang="en-us">No Information : The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</rdfs:comment>
@@ -1910,7 +1911,7 @@
             does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#MSKType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_MSKType.html#MSKType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_MSKType.html#MSKType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">MSKType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Masked : There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information. Warning: Using this exceptional value
@@ -1943,7 +1944,7 @@
           <xs:documentation xml:lang="en-us">Invalid : The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#INVType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_INVType.html#INVType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_INVType.html#INVType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">INVType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Invalid : The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</rdfs:comment>
@@ -1975,7 +1976,7 @@
           <xs:documentation xml:lang="en-us">Derived : An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="DERType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_DERType.html#DERType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_DERType.html#DERType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValue"/>
               <rdfs:label xml:lang="en-us">DERType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Derived : An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.</rdfs:comment>
@@ -2007,7 +2008,7 @@
           <xs:documentation xml:lang="en-us">Unencoded : No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#UNCType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_UNCType.html#UNCType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_UNCType.html#UNCType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">UNCType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Unencoded : No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</rdfs:comment>
@@ -2039,7 +2040,7 @@
           <xs:documentation xml:lang="en-us">Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#OTHType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_OTHType.html#OTHType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_OTHType.html#OTHType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">OTHType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</rdfs:comment>
@@ -2071,7 +2072,7 @@
           <xs:documentation xml:lang="en-us">Negative Infinity : Negative infinity of numbers</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#NINFType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_NINFType.html#NINFType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_NINFType.html#NINFType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NINFType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Negative Infinity : Negative infinity of numbers</rdfs:comment>
@@ -2103,7 +2104,7 @@
           <xs:documentation xml:lang="en-us">Positive Infinity : Positive infinity of numbers</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PINFType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_PINFType.html#PINFType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_PINFType.html#PINFType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">PINFType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Positive Infinity : Positive infinity of numbers</rdfs:comment>
@@ -2135,7 +2136,7 @@
           <xs:documentation xml:lang="en-us">Unknown : A proper value is applicable, but not known.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#UNKType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_UNKType.html#UNKType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_UNKType.html#UNKType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">UNKType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Unknown : A proper value is applicable, but not known.</rdfs:comment>
@@ -2167,7 +2168,7 @@
           <xs:documentation xml:lang="en-us">Asked and Refused : Information was sought but refused to be provided (e.g., patient was asked but refused to answer).</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ASKRType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_ASKRType.html#ASKRType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_ASKRType.html#ASKRType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">ASKRType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Asked and Refused : Information was sought but refused to be provided (e.g., patient was asked but refused to answer).</rdfs:comment>
@@ -2198,7 +2199,7 @@
           <xs:documentation xml:lang="en-us">Not Asked : This information has not been sought (e.g., patient was not asked)</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#NASKType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_NASKType.html#NASKType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_NASKType.html#NASKType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NASKType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Not Asked : This information has not been sought (e.g., patient was not asked)</rdfs:comment>
@@ -2230,7 +2231,7 @@
           <xs:documentation xml:lang="en-us">Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#QSType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_QSType.html#QSType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_QSType.html#QSType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">QSType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</rdfs:comment>
@@ -2262,7 +2263,7 @@
           <xs:documentation xml:lang="en-us">Trace : The content is greater or less than zero but too small to be quantified.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#TRCType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_TRCType.html#TRCType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_TRCType.html#TRCType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">TRCType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Trace : The content is greater or less than zero but too small to be quantified.</rdfs:comment>
@@ -2294,7 +2295,7 @@
           <xs:documentation xml:lang="en-us">Asked but Unknown : Information was sought but not found (e.g., patient was asked but did not know)</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ASKUType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_ASKUType.html#ASKUType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_ASKUType.html#ASKUType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">ASKUType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Asked but Unknown : Information was sought but not found (e.g., patient was asked but did not know)</rdfs:comment>
@@ -2326,7 +2327,7 @@
           <xs:documentation xml:lang="en-us">Not Available: This information is not available and the specific reason is not known.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#NAVType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_NAVType.html#NAVType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_NAVType.html#NAVType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NAVType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Not Available: This information is not available and the specific reason is not known.</rdfs:comment>
@@ -2358,7 +2359,7 @@
           <xs:documentation xml:lang="en-us">Not Applicable : No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#NAType">
-              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_NAType.html#NAType"/>
+              <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_NAType.html#NAType"/>
               <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ExceptionalValueType"/>
               <rdfs:label xml:lang="en-us">NAType</rdfs:label>
               <rdfs:comment xml:lang="en-us">Not Applicable : No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</rdfs:comment>
@@ -2388,7 +2389,7 @@
       <xs:documentation xml:lang="en-us">The abstract parent of ClusterType and XdAdapterType structural representation types.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ItemType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_ItemType.html#ItemType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">ItemType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The abstract parent of ClusterType and XdAdapterType structural representation types.</rdfs:comment>
@@ -2413,7 +2414,7 @@
       <xs:documentation xml:lang="en-us">The grouping component, which may contain further instances of itself or any eXtended datatype, in an ordered list. This can serve as the root component for arbitrarily complex structures.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ClusterType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ItemType"/>
           <rdfs:label xml:lang="en-us">ClusterType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The grouping component, which may contain further instances of itself or any eXtended datatype, in an ordered list. This can serve as the root component for arbitrarily complex structures.</rdfs:comment>
@@ -2470,7 +2471,7 @@
       <xs:documentation xml:lang="en-us">The leaf variant of Item, to which any XdAnyType subtype instance is attached for use in a Cluster.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAdapterType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdAdapterType.html#XdAdapterType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdAdapterType.html#XdAdapterType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ItemType"/>
           <rdfs:label xml:lang="en-us">XdAdapterType</rdfs:label>
           <rdfs:comment xml:lang="en-us">The leaf variant of Item, to which any XdAnyType subtype instance is attached for use in a Cluster.</rdfs:comment>
@@ -2523,7 +2524,7 @@
       <xs:documentation xml:lang="en-us">This is the root node of a Data Model (DM).</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_0_0/s3model_3_1_0_xsd_Complex_Type_s3m_DMType.html#DMType"/>
+          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_DMType.html#DMType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
           <rdfs:label xml:lang="en-us">DMType</rdfs:label>
           <rdfs:comment xml:lang="en-us">This is the root node of a Data Model.</rdfs:comment>
