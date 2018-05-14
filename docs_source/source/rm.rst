@@ -193,11 +193,11 @@ The integer data type is used to specify a numeric value without a fractional co
 ===================================
 
 
----------------
-RM complexTypes
----------------
+--------
+RM Types
+--------
 
-The reference implementation complexType descriptions.
+The reference implementation type descriptions.
 
 XdAnyType
 -----------
@@ -225,7 +225,7 @@ This datatype serves as the common ancestor of all eXtended data-types (Xd*) in 
 XdBooleanType
 --------------
 
-**Derived from:** XdAnyType by extension
+**Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
 
@@ -242,7 +242,7 @@ The elements, 'true-value' and 'false-value' are contained in an xs:choice and o
 XdLinkType
 ----------
 
-**Derived from:** XdAnyType by extension
+**Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
 
@@ -250,7 +250,7 @@ XdLinkType
 
 Used to specify a Universal Resource Identifier.
 
-Set the pattern facet to accommodate your needs in the Reusable Model Component.
+Set the pattern facet to accommodate your needs in the `Reusable Model Component <abstract_model.html#rmc>`_.
 
 The primary use is to provide a mechanism that can be used to link together Data Models or to link to external resources such as workflow and access control vocabularies.
 
@@ -263,7 +263,7 @@ Other use cases will have the *relation* and *relation-uri* elements *fixed* and
 XdStringType
 ------------
 
-**Derived from:** XdAnyType by extension
+**Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
 
@@ -280,7 +280,7 @@ In addition to the *xdstring-value* it includes a *xdstring-language* element fo
 XdFileType
 ----------
 
-**Derived from:** XdAnyType by extension
+**Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
 
@@ -291,13 +291,13 @@ A type to use for encapsulated content such as files for images, audio and other
 The following elements provide metadata information about the content:
 
 - *size* is an integer that represents the unencoded content in bytes
-- *encoding* is a string value from the IANA character set table found at http://www.iana.org/assignments/character-sets Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.
-- *xdfile-language* is an optional language code from https://www.ietf.org/rfc/rfc3066.txt It is used to indicate the language of the content.
+- *encoding* is a string value from the `IANA character set table <http://www.iana.org/assignments/character-sets>`_. Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.
+- *xdfile-language* is an optional language code from `RFC 3066 <https://www.ietf.org/rfc/rfc3066.txt>`_. It is used to indicate the language of the content.
 - *formalism* contains the name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', or other domain-specific language parser.
-- *media-type* optionally contains the MIME type from the IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml 
-- *compression-type* optionally contains the compression/archiving mime-type. If this element does not exist, then it means there is no compression/archiving. For a list of common mime-types for compression/archiving see http://en.wikipedia.org/wiki/List_of_archive_formats.
-- *hash-result* optionally contains a hash function result of the *media-content*. There must be a corresponding *hash-function* type listed for this to have any meaning. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
-- *hash-function* contains the hash function used to compute the content for *hash-result*. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
+- *media-type* optionally contains the MIME type from the `IANA registered types <http://www.iana.org/assignments/media-types/media-types.xhtml>`_ 
+- *compression-type* optionally contains the compression/archiving mime-type. If this element does not exist, then it means there is no compression/archiving. `Common mime-types for compression/archiving <http://en.wikipedia.org/wiki/List_of_archive_formats>`_.
+- *hash-result* optionally contains a hash function result of the *media-content*. There must be a corresponding *hash-function* type listed for this to have any meaning. `Candidate list <http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions>`_
+- *hash-function* contains the hash function used to compute the content for *hash-result*. `Candidate list <http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions>`_.
 - *alt-txt* optionally contains the text to display in place of multimedia display or execution.
 
 These two elements have a binary choice relationship. One and only one of them will appear in the model.
@@ -311,7 +311,7 @@ These two elements have a binary choice relationship. One and only one of them w
 XdOrderedType
 -------------
 
-**Derived from:** XdAnyType by extension
+**Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** True
 
@@ -327,7 +327,7 @@ A *normal-status* element provides for a string indicating the string for a norm
 XdOrdinalType
 -------------
 
-**Derived from:** XdOrderedType by extension
+**Derived from:** `XdOrderedType`_ by extension
 
 **Abstract:** False
 
@@ -352,14 +352,14 @@ Also used for recording any clinical or other data which is customarily recorded
 * for non-haemolysed blood {neg, trace, moderate};
 * for haemolysed blood {neg, trace, small, moderate, large}.
 
-Elements *ordinal* and *symbol* MUST have the same number of enumerations in the RMC.
+Elements *ordinal* and *symbol* MUST have the same number of enumerations in the `RMC <abstract_model.html#rmc>`_.
 
 ....
 
 XdQuantifiedType
 ----------------
 
-**Derived from:** XdOrderedType by extension
+**Derived from:** `XdOrderedType`_ by extension
 
 **Abstract:** True
 
@@ -376,7 +376,7 @@ The optional accuracy element represents the accuracy of the value in the magnit
 XdCountType
 -----------
 
-**Derived from:** XdQuantifiedType by extension
+**Derived from:** `XdQuantifiedType`_ by extension
 
 **Abstract:** False
 
@@ -391,7 +391,7 @@ Used for countable quantities as an integer such as pregnancies and steps (taken
 XdQuantityType
 --------------
 
-**Derived from:** XdQuantifiedType by extension
+**Derived from:** `XdQuantifiedType`_ by extension
 
 **Abstract:** False
 
@@ -404,7 +404,7 @@ A quantified type representing specific quantities, i.e., amounts expressed as m
 XdFloatType
 --------------
 
-**Derived from:** XdQuantifiedType by extension
+**Derived from:** `XdQuantifiedType`_ by extension
 
 **Abstract:** False
 
@@ -418,7 +418,7 @@ Quantified type representing specific quantities as a magnitude as a float value
 XdRatioType
 -----------
 
-**Derived from:** XdQuantifiedType by extension
+**Derived from:** `XdQuantifiedType`_ by extension
 
 **Abstract:** False
 
@@ -436,13 +436,13 @@ Models a ratio of values, i.e. where the numerator and denominator are both pure
 XdTemporalType
 --------------
 
-**Derived from:** XdOrderedType by extension
+**Derived from:** `XdOrderedType`_ by extension
 
 **Abstract:** False
 
 **Description:** 
 
-This type defines the concept of dates and times. It must be constrained in RMCs to be one or more of the below elements.  
+This type defines the concept of dates and times. It must be constrained in an `RMC <abstract_model.html#rmc>`_ to be one or more of the below elements.  
 
 This type gives the modeler the ability to allow full or partial dates at runtime. Each of the elements may be required, prohibited or allowed.
 
@@ -462,7 +462,7 @@ This type gives the modeler the ability to allow full or partial dates at runtim
 XdIntervalType
 --------------
 
-**Derived from:** XdAnyType by extension
+**Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
 
@@ -500,14 +500,14 @@ InvlUnits
 
 The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a reference range parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range of degrees Fahrenheit and one in degrees Celsius.
 
-The derived complexType in the Data Model has these values fixed by the modeler.
+The derived type in the Data Model has these values fixed by the modeler.
 
 ....
 
 ReferenceRangeType
 ------------------
 
-**Derived from:** XdAnyType by extension
+**Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
 
@@ -568,7 +568,7 @@ ParticipationType
 
 **Description:** 
 
-Model of participation of a Party (any Actor or Role) in an activity. Used to represent any involvement of a Party in some event, which is not explicitly in the model, e.g., assisting nurse. Can be used to record past or future participation.
+Model of participation of a Party (any Actor or Role) in an activity. Used to represent any involvement of a Party in some event, which is not explicitly in the model, e.g., assisting nurse, law clerk, accounting firm, etc. Can be used to record past or future participations.
 
 ....
 
@@ -581,9 +581,9 @@ ExceptionalValueType
 
 **Description:** 
 
-Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element named *ev-name* has its value fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances.
+Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element named *ev-name* has its value fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances. The original set of subtypes are based on Null Flavour types from `ISO 21090 <https://www.iso.org/standard/35646.html>`_. 
 
-Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.
+Data Models may contain additional `ExceptionalValueType`_ restrictions to allow for domain related reasons for errant or missing data.
 
 
 ....
@@ -591,26 +591,26 @@ Data Models may contain additional ExceptionalValueType restrictions to allow fo
 NIType
 ------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-No Information: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.
+*No Information*: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.
 
 ....
 
 MSKType
 -------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Masked: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
+*Masked*: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
 .. Warning:
 Using this exceptional value does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.
 
@@ -619,52 +619,52 @@ Using this exceptional value does provide information that may be a breach of co
 INVType
 -------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Invalid: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.
+*Invalid*: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.
 
 ....
 
 DERType
 -------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Derived: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.
+*Derived*: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.
 
 ....
 
 UNCType
 -------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Unencoded: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.
+*Unencoded*: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.
 
 ....
 
 OTHType
 -------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)
+*Other*: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)
 
 
 ....
@@ -672,13 +672,13 @@ Other: The actual value is not a member of the permitted data values in the vari
 NINFType
 --------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Negative Infinity: Negative infinity of numbers
+*Negative Infinity*: Negative infinity of numbers
 
 
 ....
@@ -686,52 +686,52 @@ Negative Infinity: Negative infinity of numbers
 PINFType
 --------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Positive Infinity: Positive infinity of numbers
+*Positive Infinity*: Positive infinity of numbers
 
 ....
 
 UNKType
 -------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Unknown: A proper value is applicable, but not known.
+*Unknown*: A proper value is applicable, but not known.
 
 ....
 
 ASKRType
 --------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Asked and Refused: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)
+*Asked and Refused*: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)
 
 ....
 
 NASKType
 --------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Not Asked: This information has not been sought (e.g., patient was not asked)
+*Not Asked*: This information has not been sought (e.g., patient was not asked)
 
 
 ....
@@ -739,39 +739,39 @@ Not Asked: This information has not been sought (e.g., patient was not asked)
 QSType
 ------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.
+*Sufficient Quantity*: The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.
 
 ....
 
 TRCType
 -------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Trace: The content is greater or less than zero but too small to be quantified.
+*Trace*: The content is greater or less than zero but too small to be quantified.
 
 ....
 
 ASKUType
 --------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Asked but Unknown: Information was sought but not found (e.g., patient was asked but did not know)
+*Asked but Unknown*: Information was sought but not found (e.g., patient was asked but did not know)
 
 
 ....
@@ -779,26 +779,26 @@ Asked but Unknown: Information was sought but not found (e.g., patient was asked
 NAVType
 -------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:** 
 
-Not Available: This information is not available and the specific reason is not known.
+*Not Available*: This information is not available and the specific reason is not known.
 
 ....
 
 NAType
 ------
 
-**Derived from:** ExceptionalValueType by restriction
+**Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
 
 **Description:**  
 
-Not Applicable: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.
+*Not Applicable*: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.
 
 ....
 
@@ -811,32 +811,34 @@ ItemType
 
 **Description:**  
 
-The abstract parent of ClusterType and XdAdapterType structural representation types.
+The abstract parent of `ClusterType`_ and `XdAdapterType`_ structural representation types.
 
 ....
 
 ClusterType
 -----------
 
-**Derived from:** ItemType by extension
+**Derived from:** `ItemType`_ by extension
 
 **Abstract:** False
 
-**Description:**  The grouping variant of Item, which may contain further instances of Item,
-in an ordered list. This can serve as the root component for arbitrarily complex structures.
+**Description:**  
+
+The grouping component of `ItemType`_, which may contain further instances of `ItemType`_,
+in an ordered list. This can serve as the root component for arbitrarily complex structures used to model data content as well as *data metadata* components.
 
 ....
 
 XdAdapterType
 -------------
 
-**Derived from:** ItemType by extension
+**Derived from:** `ItemType`_ by extension
 
 **Abstract:** False
 
 **Description:**  
 
-The leaf variant of Item, to which any *XdAnyType* subtype instance is attached for use in a Cluster.
+An adapter/container, to which any `XdAnyType`_ subtype instance is attached for use in a `ClusterType`_.
 
 
 ....
@@ -850,13 +852,50 @@ DMType
 
 **Description:**  
 
-This is the root, encapsulating node of a Data Model.
+This is the root, encapsulating node of a Data Model. The data model wraps the definitions for metadata about the model and it contains the metadata about the data. 
+
+**Model metadata** is based on Dublin Core definitons and includes:
+
+- *title* `A name given to the resource <http://purl.org/dc/terms/title>`_.
+- *creator* `An entity primarily responsible for making the resource <http://purl.org/dc/terms/creator>`_. 
+- *subject* `The topic of the resource <http://purl.org/dc/terms/subject>`_.
+- *rights* `Information about rights held in and over the resource <http://purl.org/dc/terms/rights>`_.
+- *relation* `A related resource <http://purl.org/dc/terms/relation>`_.
+- *coverage* `The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant <http://purl.org/dc/terms/coverage>`_.
+- *type* `The nature or genre of the resource <http://purl.org/dc/terms/type>`_.
+- *identifier* `An unambiguous reference to the resource within a given context <http://purl.org/dc/terms/identifier>`_.
+- *description* `An account of the resource <http://purl.org/dc/terms/description>`_.
+- *publisher* `An entity responsible for making the resource available <http://purl.org/dc/terms/publisher>`_.
+- *date* `A point or period of time associated with an event in the lifecycle of the resource <http://purl.org/dc/terms/date>`_. Here the date indicates date of publication.
+- *format* `The file format, physical medium, or dimensions of the resource <http://purl.org/dc/terms/format>`_.
+- *language* `A language of the resource <http://purl.org/dc/terms/language>`_.
+
+The precise structure and content of **Data Metadata** is designed by the data modeler within a generic framework of components. The components are:
+
+- An audit system based on the `AuditType`_ 
+- An attestation system based on the `AttestationType`_ 
+- The *subject* (person, role, organization, etc.) of the data activity based on the `PartyType`_
+- The *provider* (person, role, organization, etc.) of the activity based on the `PartyType`_
+- Other *participants* (persons, roles, organizations, etc.) of the activity based on the `ParticipationType`_ 
+- A link to a protocol, policy or guideline used to outline or define the structure of the data based on `XdStringType`_
+- A link to a workflow engine or vocabulary based on `XdLinkType`_
+- A *current-state* element to contain the current state of the data based on the workflow engine or vocabulary as a string value
+- A *label* string value element as a descriptive title for the model
+- A *dm-encoding* element used to record the character set encoding of the data. The default is *utf-8*
+- A *dm-language* element to indicate the primary langauge of the data.
+- An *acs* element to point to an external Access Control System such as a controlled vocabulary. This vocabulary informs the values available for the *act* element in all `XdAnyType`_ subtypes.
+- Optional external links based on `XdLinkType`_ may also be defined to expand information regarding the purpose, usage and relationships of this data. 
+
+The *data content* is modeled as a document composed of the subtypes of `XdAnyType`_ with the structure based on the `ItemType`_ subtypes. 
+
+The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.
+
 
 ---------------
 RM simpleTypes
 ---------------
 
-The reference implementation simpleType descriptions. These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a Data Model.
+The reference implementation simpleType descriptions. These types do not have global element definitions. They are used to define other element types within the `RM <abstract_model.html#rm>`_ and are used as restrictions on a Data Model.
 
 MagnitudeStatus
 ---------------
@@ -869,19 +908,19 @@ MagnitudeStatus
 
 Optional status of magnitude with values::
 
-        equal : magnitude is a point value
+        *equal* : magnitude is a point value
 
-        less_than : value is less than the magnitude
+        *less_than* : value is less than the magnitude
 
-        greater_than : value is greater than the magnitude
+        *greater_than* : value is greater than the magnitude
 
-        less_than_or_equal : value is less_than_or_equal to the magnitude
+        *less_than_or_equal* : value is less_than_or_equal to the magnitude
 
-        greater_than_or_equal : value is greater_than_or_equal to the magnitude
+        *greater_than_or_equal* : value is greater_than_or_equal to the magnitude
 
-        approximate : value is the approximately the magnitude
+        *approximate* : value is the approximately the magnitude
 
-These enumerations are used in they XdQuantifiedType subtypes.
+These enumerations are used in the *magnitude-status* element of the `XdQuantifiedType`_ subtypes.
 
 ....
 
@@ -894,8 +933,8 @@ TypeOfRatio
 
 **Description:** 
 
-Indicates semantic type of ratio.
+Indicates the semantics of a type of ratio. Used in the *ratio-type* element of `XdRatioType`_
 
-* ratio = a relationship between two numbers.
-* proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)
-* rate = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)
+- *ratio* = a relationship between two numbers.
+- *proportion* = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)
+- *rate* = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)

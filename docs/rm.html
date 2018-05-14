@@ -125,7 +125,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#reference-model-documentation">3.1.0 Reference Model Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#rm-complextypes">RM complexTypes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rm-types">RM Types</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#xdanytype">XdAnyType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdbooleantype">XdBooleanType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdlinktype">XdLinkType</a></li>
@@ -425,9 +425,9 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 </div>
 <div class="section" id="reference-model-documentation">
 <h2>3.1.0 Reference Model Documentation<a class="headerlink" href="#reference-model-documentation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="rm-complextypes">
-<h3>RM complexTypes<a class="headerlink" href="#rm-complextypes" title="Permalink to this headline">¶</a></h3>
-<p>The reference implementation complexType descriptions.</p>
+<div class="section" id="rm-types">
+<h3>RM Types<a class="headerlink" href="#rm-types" title="Permalink to this headline">¶</a></h3>
+<p>The reference implementation type descriptions.</p>
 <div class="section" id="xdanytype">
 <h4>XdAnyType<a class="headerlink" href="#xdanytype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong>  n/a</p>
@@ -452,7 +452,7 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <hr class="docutils" />
 <div class="section" id="xdbooleantype">
 <h4>XdBooleanType<a class="headerlink" href="#xdbooleantype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdanytype">XdAnyType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is essential to devise the meanings (often questions in subjective data) carefully so that the only allowed result values result in one the options; true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines ‘true-value’ and ‘false-value’ in an xs:choice so only one or the other may be present in the instance data.</p>
@@ -462,11 +462,11 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <hr class="docutils" />
 <div class="section" id="xdlinktype">
 <h4>XdLinkType<a class="headerlink" href="#xdlinktype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdanytype">XdAnyType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Used to specify a Universal Resource Identifier.</p>
-<p>Set the pattern facet to accommodate your needs in the Reusable Model Component.</p>
+<p>Set the pattern facet to accommodate your needs in the <a class="reference external" href="abstract_model.html#rmc">Reusable Model Component</a>.</p>
 <p>The primary use is to provide a mechanism that can be used to link together Data Models or to link to external resources such as workflow and access control vocabularies.</p>
 <p>The <em>relation</em> element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary. In most use cases the modeler will define all three of these using the <em>fixed</em> attribute.</p>
 <p>Other use cases will have the <em>relation</em> and <em>relation-uri</em> elements <em>fixed</em> and the application will provide the <em>link</em> data at runtime.</p>
@@ -474,7 +474,7 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <hr class="docutils" />
 <div class="section" id="xdstringtype">
 <h4>XdStringType<a class="headerlink" href="#xdstringtype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdanytype">XdAnyType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>The string data type can contain a string of characters or digits, line feeds, carriage returns, and tab characters.</p>
@@ -484,20 +484,20 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <hr class="docutils" />
 <div class="section" id="xdfiletype">
 <h4>XdFileType<a class="headerlink" href="#xdfiletype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdanytype">XdAnyType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>A type to use for encapsulated content such as files for images, audio and other media types with a defined MIME type. This type provides a choice of embedding the file content encoded in base64 or using a URL to point to the content.</p>
 <p>The following elements provide metadata information about the content:</p>
 <ul class="simple">
 <li><em>size</em> is an integer that represents the unencoded content in bytes</li>
-<li><em>encoding</em> is a string value from the IANA character set table found at <a class="reference external" href="http://www.iana.org/assignments/character-sets">http://www.iana.org/assignments/character-sets</a> Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.</li>
-<li><em>xdfile-language</em> is an optional language code from <a class="reference external" href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a> It is used to indicate the language of the content.</li>
+<li><em>encoding</em> is a string value from the <a class="reference external" href="http://www.iana.org/assignments/character-sets">IANA character set table</a>. Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.</li>
+<li><em>xdfile-language</em> is an optional language code from <a class="reference external" href="https://www.ietf.org/rfc/rfc3066.txt">RFC 3066</a>. It is used to indicate the language of the content.</li>
 <li><em>formalism</em> contains the name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: ‘ATL’, ‘MOLA’, ‘QVT’, ‘GDL’, ‘GLIF’, or other domain-specific language parser.</li>
-<li><em>media-type</em> optionally contains the MIME type from the IANA registered types: <a class="reference external" href="http://www.iana.org/assignments/media-types/media-types.xhtml">http://www.iana.org/assignments/media-types/media-types.xhtml</a></li>
-<li><em>compression-type</em> optionally contains the compression/archiving mime-type. If this element does not exist, then it means there is no compression/archiving. For a list of common mime-types for compression/archiving see <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_archive_formats">http://en.wikipedia.org/wiki/List_of_archive_formats</a>.</li>
-<li><em>hash-result</em> optionally contains a hash function result of the <em>media-content</em>. There must be a corresponding <em>hash-function</em> type listed for this to have any meaning. See: <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</a></li>
-<li><em>hash-function</em> contains the hash function used to compute the content for <em>hash-result</em>. See: <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</a></li>
+<li><em>media-type</em> optionally contains the MIME type from the <a class="reference external" href="http://www.iana.org/assignments/media-types/media-types.xhtml">IANA registered types</a></li>
+<li><em>compression-type</em> optionally contains the compression/archiving mime-type. If this element does not exist, then it means there is no compression/archiving. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_archive_formats">Common mime-types for compression/archiving</a>.</li>
+<li><em>hash-result</em> optionally contains a hash function result of the <em>media-content</em>. There must be a corresponding <em>hash-function</em> type listed for this to have any meaning. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">Candidate list</a></li>
+<li><em>hash-function</em> contains the hash function used to compute the content for <em>hash-result</em>. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">Candidate list</a>.</li>
 <li><em>alt-txt</em> optionally contains the text to display in place of multimedia display or execution.</li>
 </ul>
 <p>These two elements have a binary choice relationship. One and only one of them will appear in the model.</p>
@@ -509,7 +509,7 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <hr class="docutils" />
 <div class="section" id="xdorderedtype">
 <h4>XdOrderedType<a class="headerlink" href="#xdorderedtype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdanytype">XdAnyType</a> by extension</p>
 <p><strong>Abstract:</strong> True</p>
 <p><strong>Description:</strong></p>
 <p>An abstract class that defines the concept of ordered values, these items include ordinals as well as exact quantities.
@@ -519,7 +519,7 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <hr class="docutils" />
 <div class="section" id="xdordinaltype">
 <h4>XdOrdinalType<a class="headerlink" href="#xdordinaltype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdOrderedType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdorderedtype">XdOrderedType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Models rankings and scores, e.g., pain, Apgar values, educational level, and the Likert Scale where there is;</p>
@@ -540,12 +540,12 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <li>for non-haemolysed blood {neg, trace, moderate};</li>
 <li>for haemolysed blood {neg, trace, small, moderate, large}.</li>
 </ul>
-<p>Elements <em>ordinal</em> and <em>symbol</em> MUST have the same number of enumerations in the RMC.</p>
+<p>Elements <em>ordinal</em> and <em>symbol</em> MUST have the same number of enumerations in the <a class="reference external" href="abstract_model.html#rmc">RMC</a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdquantifiedtype">
 <h4>XdQuantifiedType<a class="headerlink" href="#xdquantifiedtype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdOrderedType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdorderedtype">XdOrderedType</a> by extension</p>
 <p><strong>Abstract:</strong> True</p>
 <p><strong>Description:</strong></p>
 <p>An abstract type used for defining the concept of actual quantified values, i.e., values which are not only ordered but which have a precise magnitude. This type provides for facilities to indicate a magnitude-status to give a general idea of the accuracy of the quantity expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.</p>
@@ -555,7 +555,7 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <hr class="docutils" />
 <div class="section" id="xdcounttype">
 <h4>XdCountType<a class="headerlink" href="#xdcounttype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Used for countable quantities as an integer such as pregnancies and steps (taken by a physiotherapy patient), the number of cigarettes smoked in a day, etc. The name of the thing being counted must be represented in the units element.</p>
@@ -564,7 +564,7 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <hr class="docutils" />
 <div class="section" id="xdquantitytype">
 <h4>XdQuantityType<a class="headerlink" href="#xdquantitytype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>A quantified type representing specific quantities, i.e., amounts expressed as magnitude as a decimal and units. This type can also be used for time durations where it is more convenient to treat these as some number of seconds, minutes, hours, days, months, years, etc. This use is only appropriate when the performance of temporal calculations is not required.</p>
@@ -572,7 +572,7 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <hr class="docutils" />
 <div class="section" id="xdfloattype">
 <h4>XdFloatType<a class="headerlink" href="#xdfloattype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Quantified type representing specific quantities as a magnitude as a float value and optional units.</p>
@@ -580,7 +580,7 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <hr class="docutils" />
 <div class="section" id="xdratiotype">
 <h4>XdRatioType<a class="headerlink" href="#xdratiotype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash (‘/’) character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</p>
@@ -593,10 +593,10 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <hr class="docutils" />
 <div class="section" id="xdtemporaltype">
 <h4>XdTemporalType<a class="headerlink" href="#xdtemporaltype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdOrderedType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdorderedtype">XdOrderedType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>This type defines the concept of dates and times. It must be constrained in RMCs to be one or more of the below elements.</p>
+<p>This type defines the concept of dates and times. It must be constrained in an <a class="reference external" href="abstract_model.html#rmc">RMC</a> to be one or more of the below elements.</p>
 <p>This type gives the modeler the ability to allow full or partial dates at runtime. Each of the elements may be required, prohibited or allowed.</p>
 <ul class="simple">
 <li><em>xdtemporal-date</em> represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For values that do not have a timezone, the top-open intervals disjointly cover the timeline, one per day. For values with a time zone, the intervals begin at every minute and therefore overlap</li>
@@ -613,7 +613,7 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <hr class="docutils" />
 <div class="section" id="xdintervaltype">
 <h4>XdIntervalType<a class="headerlink" href="#xdintervaltype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdanytype">XdAnyType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>This is a generic type that defines an interval (i.e., range) of a comparable nature. An interval is a contiguous subrange of an equivalent base type. Used to determine intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, this type is primarily used in defining an interval for reference ranges.</p>
@@ -635,12 +635,12 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a reference range parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range of degrees Fahrenheit and one in degrees Celsius.</p>
-<p>The derived complexType in the Data Model has these values fixed by the modeler.</p>
+<p>The derived type in the Data Model has these values fixed by the modeler.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="referencerangetype">
 <h4>ReferenceRangeType<a class="headerlink" href="#referencerangetype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> XdAnyType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#xdanytype">XdAnyType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>This type defines a named range associated with any ORDERED datum.</p>
@@ -676,7 +676,7 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Model of participation of a Party (any Actor or Role) in an activity. Used to represent any involvement of a Party in some event, which is not explicitly in the model, e.g., assisting nurse. Can be used to record past or future participation.</p>
+<p>Model of participation of a Party (any Actor or Role) in an activity. Used to represent any involvement of a Party in some event, which is not explicitly in the model, e.g., assisting nurse, law clerk, accounting firm, etc. Can be used to record past or future participations.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="exceptionalvaluetype">
@@ -684,138 +684,138 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> True</p>
 <p><strong>Description:</strong></p>
-<p>Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element named <em>ev-name</em> has its value fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances.</p>
-<p>Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</p>
+<p>Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element named <em>ev-name</em> has its value fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances. The original set of subtypes are based on Null Flavour types from <a class="reference external" href="https://www.iso.org/standard/35646.html">ISO 21090</a>.</p>
+<p>Data Models may contain additional <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> restrictions to allow for domain related reasons for errant or missing data.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="nitype">
 <h4>NIType<a class="headerlink" href="#nitype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>No Information: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</p>
+<p><em>No Information</em>: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="msktype">
 <h4>MSKType<a class="headerlink" href="#msktype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Masked: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
+<p><em>Masked</em>: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
 .. Warning:
 Using this exceptional value does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="invtype">
 <h4>INVType<a class="headerlink" href="#invtype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Invalid: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</p>
+<p><em>Invalid</em>: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="dertype">
 <h4>DERType<a class="headerlink" href="#dertype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Derived: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.</p>
+<p><em>Derived</em>: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="unctype">
 <h4>UNCType<a class="headerlink" href="#unctype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Unencoded: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</p>
+<p><em>Unencoded</em>: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="othtype">
 <h4>OTHType<a class="headerlink" href="#othtype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</p>
+<p><em>Other</em>: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="ninftype">
 <h4>NINFType<a class="headerlink" href="#ninftype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Negative Infinity: Negative infinity of numbers</p>
+<p><em>Negative Infinity</em>: Negative infinity of numbers</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="pinftype">
 <h4>PINFType<a class="headerlink" href="#pinftype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Positive Infinity: Positive infinity of numbers</p>
+<p><em>Positive Infinity</em>: Positive infinity of numbers</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="unktype">
 <h4>UNKType<a class="headerlink" href="#unktype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Unknown: A proper value is applicable, but not known.</p>
+<p><em>Unknown</em>: A proper value is applicable, but not known.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="askrtype">
 <h4>ASKRType<a class="headerlink" href="#askrtype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Asked and Refused: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)</p>
+<p><em>Asked and Refused</em>: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="nasktype">
 <h4>NASKType<a class="headerlink" href="#nasktype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Not Asked: This information has not been sought (e.g., patient was not asked)</p>
+<p><em>Not Asked</em>: This information has not been sought (e.g., patient was not asked)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="qstype">
 <h4>QSType<a class="headerlink" href="#qstype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</p>
+<p><em>Sufficient Quantity</em>: The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="trctype">
 <h4>TRCType<a class="headerlink" href="#trctype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Trace: The content is greater or less than zero but too small to be quantified.</p>
+<p><em>Trace</em>: The content is greater or less than zero but too small to be quantified.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="askutype">
 <h4>ASKUType<a class="headerlink" href="#askutype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Asked but Unknown: Information was sought but not found (e.g., patient was asked but did not know)</p>
+<p><em>Asked but Unknown</em>: Information was sought but not found (e.g., patient was asked but did not know)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="navtype">
 <h4>NAVType<a class="headerlink" href="#navtype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Not Available: This information is not available and the specific reason is not known.</p>
+<p><em>Not Available</em>: This information is not available and the specific reason is not known.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="natype">
 <h4>NAType<a class="headerlink" href="#natype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a> by restriction</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Not Applicable: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</p>
+<p><em>Not Applicable</em>: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="itemtype">
@@ -823,23 +823,24 @@ Using this exceptional value does provide information that may be a breach of co
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> True</p>
 <p><strong>Description:</strong></p>
-<p>The abstract parent of ClusterType and XdAdapterType structural representation types.</p>
+<p>The abstract parent of <a class="reference internal" href="#clustertype">ClusterType</a> and <a class="reference internal" href="#xdadaptertype">XdAdapterType</a> structural representation types.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="clustertype">
 <h4>ClusterType<a class="headerlink" href="#clustertype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ItemType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#itemtype">ItemType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  The grouping variant of Item, which may contain further instances of Item,
-in an ordered list. This can serve as the root component for arbitrarily complex structures.</p>
+<p><strong>Description:</strong></p>
+<p>The grouping component of <a class="reference internal" href="#itemtype">ItemType</a>, which may contain further instances of <a class="reference internal" href="#itemtype">ItemType</a>,
+in an ordered list. This can serve as the root component for arbitrarily complex structures used to model data content as well as <em>data metadata</em> components.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdadaptertype">
 <h4>XdAdapterType<a class="headerlink" href="#xdadaptertype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> ItemType by extension</p>
+<p><strong>Derived from:</strong> <a class="reference internal" href="#itemtype">ItemType</a> by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>The leaf variant of Item, to which any <em>XdAnyType</em> subtype instance is attached for use in a Cluster.</p>
+<p>An adapter/container, to which any <a class="reference internal" href="#xdanytype">XdAnyType</a> subtype instance is attached for use in a <a class="reference internal" href="#clustertype">ClusterType</a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="dmtype">
@@ -847,32 +848,66 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>This is the root, encapsulating node of a Data Model.</p>
+<p>This is the root, encapsulating node of a Data Model. The data model wraps the definitions for metadata about the model and it contains the metadata about the data.</p>
+<p><strong>Model metadata</strong> is based on Dublin Core definitons and includes:</p>
+<ul class="simple">
+<li><em>title</em> <a class="reference external" href="http://purl.org/dc/terms/title">A name given to the resource</a>.</li>
+<li><em>creator</em> <a class="reference external" href="http://purl.org/dc/terms/creator">An entity primarily responsible for making the resource</a>.</li>
+<li><em>subject</em> <a class="reference external" href="http://purl.org/dc/terms/subject">The topic of the resource</a>.</li>
+<li><em>rights</em> <a class="reference external" href="http://purl.org/dc/terms/rights">Information about rights held in and over the resource</a>.</li>
+<li><em>relation</em> <a class="reference external" href="http://purl.org/dc/terms/relation">A related resource</a>.</li>
+<li><em>coverage</em> <a class="reference external" href="http://purl.org/dc/terms/coverage">The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant</a>.</li>
+<li><em>type</em> <a class="reference external" href="http://purl.org/dc/terms/type">The nature or genre of the resource</a>.</li>
+<li><em>identifier</em> <a class="reference external" href="http://purl.org/dc/terms/identifier">An unambiguous reference to the resource within a given context</a>.</li>
+<li><em>description</em> <a class="reference external" href="http://purl.org/dc/terms/description">An account of the resource</a>.</li>
+<li><em>publisher</em> <a class="reference external" href="http://purl.org/dc/terms/publisher">An entity responsible for making the resource available</a>.</li>
+<li><em>date</em> <a class="reference external" href="http://purl.org/dc/terms/date">A point or period of time associated with an event in the lifecycle of the resource</a>. Here the date indicates date of publication.</li>
+<li><em>format</em> <a class="reference external" href="http://purl.org/dc/terms/format">The file format, physical medium, or dimensions of the resource</a>.</li>
+<li><em>language</em> <a class="reference external" href="http://purl.org/dc/terms/language">A language of the resource</a>.</li>
+</ul>
+<p>The precise structure and content of <strong>Data Metadata</strong> is designed by the data modeler within a generic framework of components. The components are:</p>
+<ul class="simple">
+<li>An audit system based on the <a class="reference internal" href="#audittype">AuditType</a></li>
+<li>An attestation system based on the <a class="reference internal" href="#attestationtype">AttestationType</a></li>
+<li>The <em>subject</em> (person, role, organization, etc.) of the data activity based on the <a class="reference internal" href="#partytype">PartyType</a></li>
+<li>The <em>provider</em> (person, role, organization, etc.) of the activity based on the <a class="reference internal" href="#partytype">PartyType</a></li>
+<li>Other <em>participants</em> (persons, roles, organizations, etc.) of the activity based on the <a class="reference internal" href="#participationtype">ParticipationType</a></li>
+<li>A link to a protocol, policy or guideline used to outline or define the structure of the data based on <a class="reference internal" href="#xdstringtype">XdStringType</a></li>
+<li>A link to a workflow engine or vocabulary based on <a class="reference internal" href="#xdlinktype">XdLinkType</a></li>
+<li>A <em>current-state</em> element to contain the current state of the data based on the workflow engine or vocabulary as a string value</li>
+<li>A <em>label</em> string value element as a descriptive title for the model</li>
+<li>A <em>dm-encoding</em> element used to record the character set encoding of the data. The default is <em>utf-8</em></li>
+<li>A <em>dm-language</em> element to indicate the primary langauge of the data.</li>
+<li>An <em>acs</em> element to point to an external Access Control System such as a controlled vocabulary. This vocabulary informs the values available for the <em>act</em> element in all <a class="reference internal" href="#xdanytype">XdAnyType</a> subtypes.</li>
+<li>Optional external links based on <a class="reference internal" href="#xdlinktype">XdLinkType</a> may also be defined to expand information regarding the purpose, usage and relationships of this data.</li>
+</ul>
+<p>The <em>data content</em> is modeled as a document composed of the subtypes of <a class="reference internal" href="#xdanytype">XdAnyType</a> with the structure based on the <a class="reference internal" href="#itemtype">ItemType</a> subtypes.</p>
+<p>The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.</p>
 </div>
 </div>
 <div class="section" id="rm-simpletypes">
 <h3>RM simpleTypes<a class="headerlink" href="#rm-simpletypes" title="Permalink to this headline">¶</a></h3>
-<p>The reference implementation simpleType descriptions. These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a Data Model.</p>
+<p>The reference implementation simpleType descriptions. These types do not have global element definitions. They are used to define other element types within the <a class="reference external" href="abstract_model.html#rm">RM</a> and are used as restrictions on a Data Model.</p>
 <div class="section" id="magnitudestatus">
 <h4>MagnitudeStatus<a class="headerlink" href="#magnitudestatus" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> xs:string</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Optional status of magnitude with values:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">equal</span> <span class="p">:</span> <span class="n">magnitude</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">point</span> <span class="n">value</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">equal</span><span class="o">*</span> <span class="p">:</span> <span class="n">magnitude</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">point</span> <span class="n">value</span>
 
-<span class="n">less_than</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
+<span class="o">*</span><span class="n">less_than</span><span class="o">*</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
 
-<span class="n">greater_than</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
+<span class="o">*</span><span class="n">greater_than</span><span class="o">*</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
 
-<span class="n">less_than_or_equal</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less_than_or_equal</span> <span class="n">to</span> <span class="n">the</span> <span class="n">magnitude</span>
+<span class="o">*</span><span class="n">less_than_or_equal</span><span class="o">*</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less_than_or_equal</span> <span class="n">to</span> <span class="n">the</span> <span class="n">magnitude</span>
 
-<span class="n">greater_than_or_equal</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">greater_than_or_equal</span> <span class="n">to</span> <span class="n">the</span> <span class="n">magnitude</span>
+<span class="o">*</span><span class="n">greater_than_or_equal</span><span class="o">*</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">greater_than_or_equal</span> <span class="n">to</span> <span class="n">the</span> <span class="n">magnitude</span>
 
-<span class="n">approximate</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">approximately</span> <span class="n">the</span> <span class="n">magnitude</span>
+<span class="o">*</span><span class="n">approximate</span><span class="o">*</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">approximately</span> <span class="n">the</span> <span class="n">magnitude</span>
 </pre></div>
 </div>
-<p>These enumerations are used in they XdQuantifiedType subtypes.</p>
+<p>These enumerations are used in the <em>magnitude-status</em> element of the <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> subtypes.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="typeofratio">
@@ -880,11 +915,11 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 <p><strong>Derived from:</strong> xs:string</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Indicates semantic type of ratio.</p>
+<p>Indicates the semantics of a type of ratio. Used in the <em>ratio-type</em> element of <a class="reference internal" href="#xdratiotype">XdRatioType</a></p>
 <ul class="simple">
-<li>ratio = a relationship between two numbers.</li>
-<li>proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)</li>
-<li>rate = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</li>
+<li><em>ratio</em> = a relationship between two numbers.</li>
+<li><em>proportion</em> = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)</li>
+<li><em>rate</em> = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</li>
 </ul>
 </div>
 </div>
