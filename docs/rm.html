@@ -476,47 +476,66 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <h4>XdStringType<a class="headerlink" href="#xdstringtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdAnyType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  The string data type can contain characters, line feeds, carriage returns,
-and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns may be specified.</p>
+<p><strong>Description:</strong></p>
+<p>The string data type can contain a string of characters or digits, line feeds, carriage returns, and tab characters.</p>
+<p>The use cases are for any free-form text entry, and for any enumerated lists. Additionally, the minimum, maximum and exact lengths may be set, and regular expression patterns may be specified to control the format of items such as ID numbers and telephone numbers.</p>
+<p>In addition to the <em>xdstring-value</em> it includes a <em>xdstring-language</em> element for indicating that a language code is specific to this content.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdfiletype">
 <h4>XdFileType<a class="headerlink" href="#xdfiletype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdAnyType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.</p>
+<p><strong>Description:</strong></p>
+<p>A type to use for encapsulated content such as files for images, audio and other media types with a defined MIME type. This type provides a choice of embedding the file content encoded in base64 or using a URL to point to the content.</p>
+<p>The following elements provide metadata information about the content:
+- <em>size</em> is an integer that represents the unencoded content in bytes
+- <em>encoding</em> is a string value from the IANA character set table found at <a class="reference external" href="http://www.iana.org/assignments/character-sets">http://www.iana.org/assignments/character-sets</a>
+Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.
+- <em>xdfile-language</em> is an optional language code from <a class="reference external" href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a> It is used to indicate the language of the content.
+- <em>formalism</em> contains the name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: ‘ATL’, ‘MOLA’, ‘QVT’, ‘GDL’, ‘GLIF’, or other domain-specific language parser.
+- <em>media-type</em> optionally contains the MIME type from the IANA registered types: <a class="reference external" href="http://www.iana.org/assignments/media-types/media-types.xhtml">http://www.iana.org/assignments/media-types/media-types.xhtml</a>
+- <em>compression-type</em> optionally contains the compression/archiving mime-type. If this element does not exist, then it means there is no compression/archiving. For a list of common mime-types for compression/archiving see <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_archive_formats">http://en.wikipedia.org/wiki/List_of_archive_formats</a>.
+- <em>hash-result</em> optionally contains a hash function result of the <em>media-content</em>. There must be a corresponding <em>hash-function</em> type listed for this to have any meaning. See: <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</a>
+- <em>hash-function</em> contains the hash function used to compute the content for <em>hash-result</em>. See: <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</a>
+- <em>alt-txt</em> optionally contains the text to display in place of multimedia display or execution.</p>
+<p>These two elements have a binary choice relationship. One and only one of them will appear in the model.
+- <em>uri</em> contains a URI reference to electronic information stored outside the record as a file, database entry or other persistence methods when the content is supplied as a reference.
+- <em>media-content</em> contains the file contents encoded using the base64Bianry algorithm.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdorderedtype">
 <h4>XdOrderedType<a class="headerlink" href="#xdorderedtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdAnyType by extension</p>
 <p><strong>Abstract:</strong> True</p>
-<p><strong>Description:</strong>  Abstract class defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘&lt;’, ‘&gt;’ and is_strictly_comparable_to (‘==’).</p>
+<p><strong>Description:</strong></p>
+<p>An abstract class that defines the concept of ordered values, these items include ordinals as well as exact quantities.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdordinaltype">
 <h4>XdOrdinalType<a class="headerlink" href="#xdordinaltype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdOrderedType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Models rankings and scores, e.g. pain, Apgar values, etc, where there is;</p>
+<p><strong>Description:</strong></p>
+<p>Models rankings and scores, e.g., pain, Apgar values, educational level, and the Likert Scale where there is;</p>
 <ul class="simple">
 <li>implied ordering,</li>
 <li>no implication that the distance between each value is constant, and</li>
 <li>the total number of values is finite.</li>
 </ul>
-<p>Note that although the term ‘ordinal’ in mathematics means natural numbers only, here any decimal is allowed, since negative and zero values are often used by medical and other professionals for values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25</p>
-<p>Examples of sets of ordinal values;</p>
+<p>Note that the term ‘ordinal’ in mathematics means natural numbers only. In this case, any decimal is allowed since negative, and zero values are used by medical and other professionals for centering values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25</p>
+<p>Examples of sets of ordinal values are;</p>
 <ul class="simple">
 <li>-3, -2, -1, 0, 1, 2, 3 – reflex response values</li>
 <li>0, 1, 2 – Apgar values</li>
 </ul>
-<p>Also used for recording any clinical or other datum which is customarily recorded using symbolic values. Examples;</p>
+<p>Also used for recording any clinical or other data which is customarily recorded using symbolic values. Examples;</p>
 <ul class="simple">
 <li>the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;</li>
 <li>for non-haemolysed blood {neg, trace, moderate};</li>
 <li>for haemolysed blood {neg, trace, small, moderate, large}.</li>
 </ul>
-<p>Elements ordinal and symbol MUST have exactly the same number of enumerations in the PCM.</p>
+<p>Elements <em>ordinal</em> and <em>symbol</em> MUST have the same number of enumerations in the PCM.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdquantifiedtype">
