@@ -581,28 +581,32 @@ This type provides for facilities to indicate a <em>magnitude-status</em> to ind
 <p><strong>Derived from:</strong> XdQuantifiedType by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash (‘/’) character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
-- The <em>ratio-type</em> element is used to specify a category of ratio. The optiona are ratio, proportion and rate.
-- Elements are available for the <em>numerator</em>, <em>denominator</em>, and <em>xdratio-value</em>.
-- Addtionaly there is an optional <em>???-units</em> element for each of the three elements <em>numerator</em>, <em>denominator</em>, and <em>xdratio-value</em>.</p>
+<p>Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash (‘/’) character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</p>
+<ul class="simple">
+<li>The <em>ratio-type</em> element is used to specify a category of ratio. The optiona are ratio, proportion and rate.</li>
+<li>Elements are available for the <em>numerator</em>, <em>denominator</em>, and <em>xdratio-value</em>.</li>
+<li>Addtionaly there is an optional <em>???-units</em> element for each of the three elements <em>numerator</em>, <em>denominator</em>, and <em>xdratio-value</em>.</li>
+</ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdtemporaltype">
 <h4>XdTemporalType<a class="headerlink" href="#xdtemporaltype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdOrderedType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>
-This type defines the concept of dates and times. It must be constrained in RMCs to be one or more of the below elements.
-This type gives the modeler the ability to allow full or partial dates at runtime. Each of the elements may be required, prohibited or allowed.
-- <em>xdtemporal-date</em> represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For values that do not have a timezone, the top-open intervals disjointly cover the timeline, one per day. For values with a time zone, the intervals begin at every minute and therefore overlap
-- <em>xdtemporal-time</em> represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.
-- <em>xdtemporal-datetime</em> represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical
-- <em>xdtemporal-day</em> represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)&lt;/xs:documentation&gt;
-- <em>xdtemporal-month</em> represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. This type is used, for example, to say what month annual Thanksgiving celebrations fall in different countries (–11 in the United States, –10 in Canada, and possibly other months in other countries).
-- <em>xdtemporal-year</em> represents Gregorian calendar years.
-- <em>xdtemporal-year-month</em> represents Gregorian calendar years.
-- <em>xdtemporal-month-day</em> represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)
-- <em>xdtemporal-duration</em> represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, “15 days” (whose most common lexical representation in duration is “‘P15D’”) is a duration value; “15 days beginning 12 July 1995” and “15 days ending 12 July 1995” are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs and can be the result of subtracting dateTime values.</p>
+<p><strong>Description:</strong></p>
+<p>This type defines the concept of dates and times. It must be constrained in RMCs to be one or more of the below elements.</p>
+<p>This type gives the modeler the ability to allow full or partial dates at runtime. Each of the elements may be required, prohibited or allowed.</p>
+<ul class="simple">
+<li><em>xdtemporal-date</em> represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For values that do not have a timezone, the top-open intervals disjointly cover the timeline, one per day. For values with a time zone, the intervals begin at every minute and therefore overlap</li>
+<li><em>xdtemporal-time</em> represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</li>
+<li><em>xdtemporal-datetime</em> represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical</li>
+<li><em>xdtemporal-day</em> represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)&lt;/xs:documentation&gt;</li>
+<li><em>xdtemporal-month</em> represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. This type is used, for example, to say what month annual Thanksgiving celebrations fall in different countries (–11 in the United States, –10 in Canada, and possibly other months in other countries).</li>
+<li><em>xdtemporal-year</em> represents Gregorian calendar years.</li>
+<li><em>xdtemporal-year-month</em> represents Gregorian calendar years.</li>
+<li><em>xdtemporal-month-day</em> represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</li>
+<li><em>xdtemporal-duration</em> represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, “15 days” (whose most common lexical representation in duration is “‘P15D’”) is a duration value; “15 days beginning 12 July 1995” and “15 days ending 12 July 1995” are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs and can be the result of subtracting dateTime values.</li>
+</ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdintervaltype">
@@ -610,16 +614,16 @@ This type gives the modeler the ability to allow full or partial dates at runtim
 <p><strong>Derived from:</strong> XdAnyType by extension</p>
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
-<p>Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are primarily used in defining reference ranges.</p>
+<p>This is a generic type that defines an interval (i.e., range) of a comparable nature. An interval is a contiguous subrange of an equivalent base type. Used to determine intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, this type is primarily used in defining an interval for reference ranges.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="invltype">
 <h4>InvlType<a class="headerlink" href="#invltype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> In the DM, the modeler creates two restrictions on this complexType.
-One for the ‘lower’ value and one for the ‘upper’ value.
-Both restrictions will have the same element choice and the value is ‘fixed’ on each representing the lower and upper value range boundary. The value may be set to NULL (unbounded) by using the xsi:nil=’true’ attribute. The maxOccurs and minOccurs attributes must be set to 1, in the DM.</p>
+<p><strong>Description:</strong></p>
+<p>In the Data Model, the modeler creates two restrictions on this complexType. One for the ‘lower’ value and one for the ‘upper’ value.</p>
+<p>Both restrictions will have the same element choice, and the value is ‘fixed’ on each representing the lower value and the upper value range boundaries. When the value is set to NULL by using the xsi:nil=’true’ attribute, the maxOccurs and minOccurs attributes must be set to 1, in the Data Model.</p>
 <p>For more information on using this approach <a class="reference external" href="https://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html">see these tips</a></p>
 </div>
 <hr class="docutils" />
@@ -627,66 +631,75 @@ Both restrictions will have the same element choice and the value is ‘fixed’
 <h4>InvlUnits<a class="headerlink" href="#invlunits" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range in degrees Fahrenheit and one in degrees Celsius.
-The derived complexType in the DM has these values fixed by the modeler.</p>
+<p><strong>Description:</strong></p>
+<p>The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a reference range parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range of degrees Fahrenheit and one in degrees Celsius.</p>
+<p>The derived complexType in the Data Model has these values fixed by the modeler.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="referencerangetype">
 <h4>ReferenceRangeType<a class="headerlink" href="#referencerangetype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> XdAnyType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Defines a named range to be associated with any ORDERED datum. Each such
-range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.</p>
+<p><strong>Description:</strong></p>
+<p>This type defines a named range associated with any ORDERED datum.</p>
+<p>Each such range is sensitive to the context, e.g., sex, age, location, and any other factor which affects ranges. May be used to representing high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="audittype">
 <h4>AuditType<a class="headerlink" href="#audittype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</p>
+<p><strong>Description:</strong></p>
+<p>The AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="partytype">
 <h4>PartyType<a class="headerlink" href="#partytype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party information is to be anonymous then do not include the details element.</p>
+<p><strong>Description:</strong></p>
+<p>Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party information is to be anonymous, then do not include the details element.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="attestationtype">
 <h4>AttestationType<a class="headerlink" href="#attestationtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which may be coded.</p>
+<p><strong>Description:</strong></p>
+<p>Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which may be coded.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="participationtype">
 <h4>ParticipationType<a class="headerlink" href="#participationtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.</p>
+<p><strong>Description:</strong></p>
+<p>Model of participation of a Party (any Actor or Role) in an activity. Used to represent any involvement of a Party in some event, which is not explicitly in the model, e.g., assisting nurse. Can be used to record past or future participation.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="exceptionalvaluetype">
 <h4>ExceptionalValueType<a class="headerlink" href="#exceptionalvaluetype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> True</p>
-<p><strong>Description:</strong> Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances.</p>
-<p>DMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</p>
+<p><strong>Description:</strong></p>
+<p>Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element named <em>ev-name</em> has its value fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances.</p>
+<p>Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="nitype">
 <h4>NIType<a class="headerlink" href="#nitype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  No Information: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</p>
+<p><strong>Description:</strong></p>
+<p>No Information: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="msktype">
 <h4>MSKType<a class="headerlink" href="#msktype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Masked: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
+<p><strong>Description:</strong></p>
+<p>Masked: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
 .. Warning:
 Using this exceptional value does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.</p>
 </div>
@@ -695,105 +708,120 @@ Using this exceptional value does provide information that may be a breach of co
 <h4>INVType<a class="headerlink" href="#invtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Invalid: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</p>
+<p><strong>Description:</strong></p>
+<p>Invalid: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="dertype">
 <h4>DERType<a class="headerlink" href="#dertype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Derived: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.</p>
+<p><strong>Description:</strong></p>
+<p>Derived: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="unctype">
 <h4>UNCType<a class="headerlink" href="#unctype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Unencoded: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</p>
+<p><strong>Description:</strong></p>
+<p>Unencoded: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="othtype">
 <h4>OTHType<a class="headerlink" href="#othtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</p>
+<p><strong>Description:</strong></p>
+<p>Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="ninftype">
 <h4>NINFType<a class="headerlink" href="#ninftype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Negative Infinity: Negative infinity of numbers</p>
+<p><strong>Description:</strong></p>
+<p>Negative Infinity: Negative infinity of numbers</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="pinftype">
 <h4>PINFType<a class="headerlink" href="#pinftype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Positive Infinity: Positive infinity of numbers</p>
+<p><strong>Description:</strong></p>
+<p>Positive Infinity: Positive infinity of numbers</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="unktype">
 <h4>UNKType<a class="headerlink" href="#unktype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Unknown: A proper value is applicable, but not known.</p>
+<p><strong>Description:</strong></p>
+<p>Unknown: A proper value is applicable, but not known.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="askrtype">
 <h4>ASKRType<a class="headerlink" href="#askrtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Asked and Refused: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)</p>
+<p><strong>Description:</strong></p>
+<p>Asked and Refused: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="nasktype">
 <h4>NASKType<a class="headerlink" href="#nasktype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Not Asked: This information has not been sought (e.g., patient was not asked)</p>
+<p><strong>Description:</strong></p>
+<p>Not Asked: This information has not been sought (e.g., patient was not asked)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="qstype">
 <h4>QSType<a class="headerlink" href="#qstype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</p>
+<p><strong>Description:</strong></p>
+<p>Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="trctype">
 <h4>TRCType<a class="headerlink" href="#trctype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Trace: The content is greater or less than zero but too small to be quantified.</p>
+<p><strong>Description:</strong></p>
+<p>Trace: The content is greater or less than zero but too small to be quantified.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="askutype">
 <h4>ASKUType<a class="headerlink" href="#askutype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Asked but Unknown: Information was sought but not found (e.g., patient was asked but did not know)</p>
+<p><strong>Description:</strong></p>
+<p>Asked but Unknown: Information was sought but not found (e.g., patient was asked but did not know)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="navtype">
 <h4>NAVType<a class="headerlink" href="#navtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Not Available: This information is not available and the specific reason is not known.</p>
+<p><strong>Description:</strong></p>
+<p>Not Available: This information is not available and the specific reason is not known.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="natype">
 <h4>NAType<a class="headerlink" href="#natype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ExceptionalValueType by restriction</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  Not Applicable: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</p>
+<p><strong>Description:</strong></p>
+<p>Not Applicable: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="itemtype">
 <h4>ItemType<a class="headerlink" href="#itemtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> True</p>
-<p><strong>Description:</strong>  The abstract parent of ClusterType and XdAdapterType structural representation types.</p>
+<p><strong>Description:</strong></p>
+<p>The abstract parent of ClusterType and XdAdapterType structural representation types.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="clustertype">
@@ -808,25 +836,27 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 <h4>XdAdapterType<a class="headerlink" href="#xdadaptertype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> ItemType by extension</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  The leaf variant of Item, to which any <em>XdAnyType</em> subtype instance is attached for use in a Cluster.</p>
+<p><strong>Description:</strong></p>
+<p>The leaf variant of Item, to which any <em>XdAnyType</em> subtype instance is attached for use in a Cluster.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="dmtype">
 <h4>DMType<a class="headerlink" href="#dmtype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> n/a</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong>  This is the root node of a Data Model.</p>
+<p><strong>Description:</strong></p>
+<p>This is the root, encapsulating node of a Data Model.</p>
 </div>
 </div>
 <div class="section" id="rm-simpletypes">
 <h3>RM simpleTypes<a class="headerlink" href="#rm-simpletypes" title="Permalink to this headline">¶</a></h3>
-<p>The reference implementation simpleType descriptions.
-These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a DM.</p>
+<p>The reference implementation simpleType descriptions. These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a Data Model.</p>
 <div class="section" id="magnitudestatus">
 <h4>MagnitudeStatus<a class="headerlink" href="#magnitudestatus" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> xs:string</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Optional status of magnitude with values:</p>
+<p><strong>Description:</strong></p>
+<p>Optional status of magnitude with values:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">equal</span> <span class="p">:</span> <span class="n">magnitude</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">point</span> <span class="n">value</span>
 
 <span class="n">less_than</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
@@ -847,7 +877,8 @@ These types do not have global element definitions. They are used to define othe
 <h4>TypeOfRatio<a class="headerlink" href="#typeofratio" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong> xs:string</p>
 <p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong> Indicates semantic type of ratio.</p>
+<p><strong>Description:</strong></p>
+<p>Indicates semantic type of ratio.</p>
 <ul class="simple">
 <li>ratio = a relationship between two numbers.</li>
 <li>proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)</li>

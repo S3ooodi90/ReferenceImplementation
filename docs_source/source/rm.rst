@@ -421,6 +421,7 @@ XdRatioType
 **Description:** 
 
 Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash ('/') character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
+
 - The *ratio-type* element is used to specify a category of ratio. The optiona are ratio, proportion and rate. 
 - Elements are available for the *numerator*, *denominator*, and *xdratio-value*.
 - Addtionaly there is an optional *???-units* element for each of the three elements *numerator*, *denominator*, and *xdratio-value*.
@@ -436,8 +437,11 @@ XdTemporalType
 **Abstract:** False
 
 **Description:** 
+
 This type defines the concept of dates and times. It must be constrained in RMCs to be one or more of the below elements.  
+
 This type gives the modeler the ability to allow full or partial dates at runtime. Each of the elements may be required, prohibited or allowed.
+
 - *xdtemporal-date* represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For values that do not have a timezone, the top-open intervals disjointly cover the timeline, one per day. For values with a time zone, the intervals begin at every minute and therefore overlap
 - *xdtemporal-time* represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.
 - *xdtemporal-datetime* represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical
@@ -460,8 +464,7 @@ XdIntervalType
 
 **Description:** 
 
-Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are primarily used in defining reference ranges.
-
+This is a generic type that defines an interval (i.e., range) of a comparable nature. An interval is a contiguous subrange of an equivalent base type. Used to determine intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, this type is primarily used in defining an interval for reference ranges.
 
 ....
 
@@ -472,9 +475,11 @@ InvlType
 
 **Abstract:** False
 
-**Description:** In the DM, the modeler creates two restrictions on this complexType.
-One for the 'lower' value and one for the 'upper' value.
-Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. The maxOccurs and minOccurs attributes must be set to 1, in the DM.
+**Description:** 
+
+In the Data Model, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value.
+
+Both restrictions will have the same element choice, and the value is 'fixed' on each representing the lower value and the upper value range boundaries. When the value is set to NULL by using the xsi:nil='true' attribute, the maxOccurs and minOccurs attributes must be set to 1, in the Data Model.
 
 For more information on using this approach `see these tips <https://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html>`_
 
@@ -487,8 +492,11 @@ InvlUnits
 
 **Abstract:** False
 
-**Description:** The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range in degrees Fahrenheit and one in degrees Celsius.
-The derived complexType in the DM has these values fixed by the modeler.
+**Description:** 
+
+The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a reference range parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range of degrees Fahrenheit and one in degrees Celsius.
+
+The derived complexType in the Data Model has these values fixed by the modeler.
 
 ....
 
@@ -499,8 +507,11 @@ ReferenceRangeType
 
 **Abstract:** False
 
-**Description:** Defines a named range to be associated with any ORDERED datum. Each such
-range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.
+**Description:** 
+
+This type defines a named range associated with any ORDERED datum. 
+
+Each such range is sensitive to the context, e.g., sex, age, location, and any other factor which affects ranges. May be used to representing high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.
 
 
 ....
@@ -512,7 +523,9 @@ AuditType
 
 **Abstract:** False
 
-**Description:** AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.
+**Description:** 
+
+The AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.
 
 ....
 
@@ -523,7 +536,9 @@ PartyType
 
 **Abstract:** False
 
-**Description:** Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party information is to be anonymous then do not include the details element.
+**Description:** 
+
+Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party information is to be anonymous, then do not include the details element.
 
 ....
 
@@ -534,7 +549,9 @@ AttestationType
 
 **Abstract:** False
 
-**Description:** Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which may be coded.
+**Description:** 
+
+Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which may be coded.
 
 ....
 
@@ -545,7 +562,9 @@ ParticipationType
 
 **Abstract:** False
 
-**Description:** Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.
+**Description:** 
+
+Model of participation of a Party (any Actor or Role) in an activity. Used to represent any involvement of a Party in some event, which is not explicitly in the model, e.g., assisting nurse. Can be used to record past or future participation.
 
 ....
 
@@ -556,9 +575,11 @@ ExceptionalValueType
 
 **Abstract:** True
 
-**Description:** Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances.
+**Description:** 
 
-DMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.
+Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range. The element named *ev-name* has its value fixed in restricted types to a descriptive string. The subtypes defined in the reference model are considered sufficiently generic to be useful in many instances.
+
+Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.
 
 
 ....
@@ -570,7 +591,9 @@ NIType
 
 **Abstract:** False
 
-**Description:**  No Information: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.
+**Description:**  
+
+No Information: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.
 
 ....
 
@@ -581,7 +604,9 @@ MSKType
 
 **Abstract:** False
 
-**Description:**  Masked: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
+**Description:**  
+
+Masked: There is information on this item available but it has not been provided by the sender due to security, privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
 .. Warning:
 Using this exceptional value does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.
 
@@ -594,7 +619,9 @@ INVType
 
 **Abstract:** False
 
-**Description:**  Invalid: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.
+**Description:**  
+
+Invalid: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.
 
 ....
 
@@ -605,7 +632,9 @@ DERType
 
 **Abstract:** False
 
-**Description:**  Derived: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.
+**Description:**  
+
+Derived: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.
 
 ....
 
@@ -616,7 +645,9 @@ UNCType
 
 **Abstract:** False
 
-**Description:**  Unencoded: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.
+**Description:**  
+
+Unencoded: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.
 
 ....
 
@@ -627,7 +658,9 @@ OTHType
 
 **Abstract:** False
 
-**Description:**  Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)
+**Description:**  
+
+Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)
 
 
 ....
@@ -639,7 +672,9 @@ NINFType
 
 **Abstract:** False
 
-**Description:**  Negative Infinity: Negative infinity of numbers
+**Description:**  
+
+Negative Infinity: Negative infinity of numbers
 
 
 ....
@@ -651,7 +686,9 @@ PINFType
 
 **Abstract:** False
 
-**Description:**  Positive Infinity: Positive infinity of numbers
+**Description:**  
+
+Positive Infinity: Positive infinity of numbers
 
 ....
 
@@ -662,7 +699,9 @@ UNKType
 
 **Abstract:** False
 
-**Description:**  Unknown: A proper value is applicable, but not known.
+**Description:**  
+
+Unknown: A proper value is applicable, but not known.
 
 ....
 
@@ -673,7 +712,9 @@ ASKRType
 
 **Abstract:** False
 
-**Description:**  Asked and Refused: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)
+**Description:**  
+
+Asked and Refused: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)
 
 ....
 
@@ -684,7 +725,9 @@ NASKType
 
 **Abstract:** False
 
-**Description:**  Not Asked: This information has not been sought (e.g., patient was not asked)
+**Description:**  
+
+Not Asked: This information has not been sought (e.g., patient was not asked)
 
 
 ....
@@ -696,7 +739,9 @@ QSType
 
 **Abstract:** False
 
-**Description:**  Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.
+**Description:**  
+
+Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.
 
 ....
 
@@ -707,7 +752,9 @@ TRCType
 
 **Abstract:** False
 
-**Description:**  Trace: The content is greater or less than zero but too small to be quantified.
+**Description:**  
+
+Trace: The content is greater or less than zero but too small to be quantified.
 
 ....
 
@@ -718,7 +765,9 @@ ASKUType
 
 **Abstract:** False
 
-**Description:**  Asked but Unknown: Information was sought but not found (e.g., patient was asked but did not know)
+**Description:**  
+
+Asked but Unknown: Information was sought but not found (e.g., patient was asked but did not know)
 
 
 ....
@@ -730,7 +779,9 @@ NAVType
 
 **Abstract:** False
 
-**Description:** Not Available: This information is not available and the specific reason is not known.
+**Description:** 
+
+Not Available: This information is not available and the specific reason is not known.
 
 ....
 
@@ -741,7 +792,9 @@ NAType
 
 **Abstract:** False
 
-**Description:**  Not Applicable: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.
+**Description:**  
+
+Not Applicable: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.
 
 ....
 
@@ -752,7 +805,9 @@ ItemType
 
 **Abstract:** True
 
-**Description:**  The abstract parent of ClusterType and XdAdapterType structural representation types.
+**Description:**  
+
+The abstract parent of ClusterType and XdAdapterType structural representation types.
 
 ....
 
@@ -775,7 +830,9 @@ XdAdapterType
 
 **Abstract:** False
 
-**Description:**  The leaf variant of Item, to which any *XdAnyType* subtype instance is attached for use in a Cluster.
+**Description:**  
+
+The leaf variant of Item, to which any *XdAnyType* subtype instance is attached for use in a Cluster.
 
 
 ....
@@ -787,14 +844,15 @@ DMType
 
 **Abstract:** False
 
-**Description:**  This is the root node of a Data Model.
+**Description:**  
+
+This is the root, encapsulating node of a Data Model.
 
 ---------------
 RM simpleTypes
 ---------------
 
-The reference implementation simpleType descriptions.
-These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a DM.
+The reference implementation simpleType descriptions. These types do not have global element definitions. They are used to define other element types within the RM and are used as restrictions on a Data Model.
 
 MagnitudeStatus
 ---------------
@@ -803,7 +861,9 @@ MagnitudeStatus
 
 **Abstract:** False
 
-**Description:** Optional status of magnitude with values::
+**Description:** 
+
+Optional status of magnitude with values::
 
         equal : magnitude is a point value
 
@@ -828,7 +888,9 @@ TypeOfRatio
 
 **Abstract:** False
 
-**Description:** Indicates semantic type of ratio.
+**Description:** 
+
+Indicates semantic type of ratio.
 
 * ratio = a relationship between two numbers.
 * proportion = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)
