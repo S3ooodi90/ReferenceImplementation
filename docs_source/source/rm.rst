@@ -854,7 +854,7 @@ DMType
 
 This is the root, encapsulating node of a Data Model. The data model wraps the definitions for metadata about the model and it contains the metadata about the data. 
 
-**Model metadata** is based on Dublin Core definitons and includes:
+**Model metadata** is based on `Dublin Core <http://dublincore.org/>`_ definitons and includes:
 
 - *title* `A name given to the resource <http://purl.org/dc/terms/title>`_.
 - *creator* `An entity primarily responsible for making the resource <http://purl.org/dc/terms/creator>`_. 
