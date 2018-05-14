@@ -289,9 +289,9 @@ XdFileType
 A type to use for encapsulated content such as files for images, audio and other media types with a defined MIME type. This type provides a choice of embedding the file content encoded in base64 or using a URL to point to the content. 
 
 The following elements provide metadata information about the content:
+
 - *size* is an integer that represents the unencoded content in bytes
-- *encoding* is a string value from the IANA character set table found at http://www.iana.org/assignments/character-sets 
-Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.
+- *encoding* is a string value from the IANA character set table found at http://www.iana.org/assignments/character-sets Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.
 - *xdfile-language* is an optional language code from https://www.ietf.org/rfc/rfc3066.txt It is used to indicate the language of the content.
 - *formalism* contains the name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', or other domain-specific language parser.
 - *media-type* optionally contains the MIME type from the IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml 
@@ -301,6 +301,7 @@ Unicode is the default assumption in S3Model, with UTF-8 being the assumed encod
 - *alt-txt* optionally contains the text to display in place of multimedia display or execution.
 
 These two elements have a binary choice relationship. One and only one of them will appear in the model.
+
 - *uri* contains a URI reference to electronic information stored outside the record as a file, database entry or other persistence methods when the content is supplied as a reference.
 - *media-content* contains the file contents encoded using the base64Bianry algorithm.
 
@@ -318,6 +319,7 @@ XdOrderedType
 
 An abstract class that defines the concept of ordered values, these items include ordinals as well as exact quantities. 
 This type includes facilities for an optional list of ReferenceRanges for this value in its particular measurement context.
+
 A *normal-status* element provides for a string indicating the string for a normal status in this context from range or interval of options.
 
 ....
@@ -363,10 +365,12 @@ XdQuantifiedType
 
 **Description:**  
 
-An abstract type used for defining the concept of actual quantified values, i.e., values which are not only ordered but which have a precise magnitude.
-This type provides for facilities to indicate a *magnitude-status* to indicate a general idea of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.
-- The optional element named *error* represents the error margin of measurement as an integer. This value indicates an error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e., no error.
-- The optional *accuracy* element represents the accuracy of the value in the magnitude attribute in the range 0% to (+/-)100%. A value of 0 means that the accuracy is unknown.
+An abstract type used for defining the concept of actual quantified values, i.e., values which are not only ordered but which have a precise magnitude. This type provides for facilities to indicate a magnitude-status to give a general idea of the accuracy of the quantity expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.
+
+The optional element named error represents the error margin of measurement as an integer. This value indicates an error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e., no error.
+
+The optional accuracy element represents the accuracy of the value in the magnitude attribute in the range 0% to (+/-)100%. A value of 0 means that the accuracy is unknown.
+
 ....
 
 XdCountType
