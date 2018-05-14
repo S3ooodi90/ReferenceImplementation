@@ -585,39 +585,53 @@
 
   <xs:complexType name="XdOrdinalType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Models rankings and scores, e.g. pain, Apgar values, etc, where there is:  
-        a) implied ordering, 
-        b) no implication that the distance between each value is constant, and 
-        c) the total number of values is finite. 
-        Note that although the term ‘ordinal’ in mathematics means natural numbers only, here any decimal is allowed, since negative and zero values are often used by medical and other professionals for values around a neutral point. 
-        Also, decimal values are sometimes used such as 0.5 or .25 
-        Examples of sets of ordinal values: 
-        -3, -2, -1, 0, 1, 2, 3 -- reflex response values 
-        0, 1, 2 -- Apgar values 
-        Also used for recording any clinical or other datum which is customarily recorded using symbolic values. 
-        Examples: the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites, etc; 
-        for non-haemolysed blood {neg, trace, moderate}; 
-        for haemolysed blood {neg, trace, small, moderate, large}. 
-        Elements ordinal and symbol MUST have exactly the same number of enumerations.</xs:documentation>
+      <xs:documentation xml:lang="en-us">Models rankings and scores, e.g., pain, Apgar values, educational level, and the Likert Scale where there is;
+        
+        * implied ordering,
+        * no implication that the distance between each value is constant, and
+        * the total number of values is finite.
+        
+        Note that the term ‘ordinal’ in mathematics means natural numbers only. In this case, any decimal is allowed since negative, and zero values are used by medical and other professionals for centering values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25
+        
+        Examples of sets of ordinal values are;
+        
+        * -3, -2, -1, 0, 1, 2, 3 -- reflex response values
+        * 0, 1, 2 -- Apgar values
+        
+        Also used for recording any clinical or other data which is customarily recorded using symbolic values. Examples;
+        
+        * the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;
+        * for non-haemolysed blood {neg, trace, moderate};
+        * for haemolysed blood {neg, trace, small, moderate, large}.
+        
+        Elements *ordinal* and *symbol* MUST have the same number of enumerations in the RMC.
+      </xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdOrdinalType">
           <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdOrdinalType.html#XdOrdinalType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdOrderedType"/>
           <rdfs:label xml:lang="en-us">XdOrdinalType</rdfs:label>
-          <rdfs:comment xml:lang="en-us">Models rankings and scores, e.g. pain, Apgar values, etc, where there is 
-            a) implied ordering, 
-            b) no implication that the distance between each value is constant, and 
-            c) the total number of values is finite. 
-            Note that although the term ‘ordinal’ in mathematics means natural numbers only, here any decimal is allowed, since negative and zero values are often used by medical and other professionals for values around a neutral point. 
-            Also, decimal values are sometimes used such as 0.5 or .25 
-            Examples of sets of ordinal values: 
-            -3, -2, -1, 0, 1, 2, 3 -- reflex response values 
-            0, 1, 2 -- Apgar values 
-            Also used for recording any clinical or other datum which is customarily recorded using symbolic values. 
-            Examples: the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites, etc; 
-            for non-haemolysed blood {neg, trace, moderate}; 
-            for haemolysed blood {neg, trace, small, moderate, large}. 
-            Elements ordinal and symbol MUST have exactly the same number of enumerations.
+          <rdfs:comment xml:lang="en-us">Models rankings and scores, e.g., pain, Apgar values, educational level, and the Likert Scale where there is;
+            
+            * implied ordering,
+            * no implication that the distance between each value is constant, and
+            * the total number of values is finite.
+            
+            Note that the term ‘ordinal’ in mathematics means natural numbers only. In this case, any decimal is allowed since negative, and zero values are used by medical and other professionals for centering values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25
+            
+            Examples of sets of ordinal values are;
+            
+            * -3, -2, -1, 0, 1, 2, 3 -- reflex response values
+            * 0, 1, 2 -- Apgar values
+            
+            Also used for recording any clinical or other data which is customarily recorded using symbolic values. Examples;
+            
+            * the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;
+            * for non-haemolysed blood {neg, trace, moderate};
+            * for haemolysed blood {neg, trace, small, moderate, large}.
+            
+            Elements *ordinal* and *symbol* MUST have the same number of enumerations in the RMC.
+            
           </rdfs:comment>
         </rdf:Description>
       </xs:appinfo>

@@ -317,6 +317,8 @@ XdOrderedType
 **Description:**  
 
 An abstract class that defines the concept of ordered values, these items include ordinals as well as exact quantities. 
+This type includes facilities for an optional list of ReferenceRanges for this value in its particular measurement context.
+A *normal-status* element provides for a string indicating the string for a normal status in this context from range or interval of options.
 
 ....
 
@@ -348,7 +350,7 @@ Also used for recording any clinical or other data which is customarily recorded
 * for non-haemolysed blood {neg, trace, moderate};
 * for haemolysed blood {neg, trace, small, moderate, large}.
 
-Elements *ordinal* and *symbol* MUST have the same number of enumerations in the PCM.
+Elements *ordinal* and *symbol* MUST have the same number of enumerations in the RMC.
 
 ....
 
@@ -359,8 +361,12 @@ XdQuantifiedType
 
 **Abstract:** True
 
-**Description:**  Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.
+**Description:**  
 
+An abstract type used for defining the concept of actual quantified values, i.e., values which are not only ordered but which have a precise magnitude.
+This type provides for facilities to indicate a *magnitude-status* to indicate a general idea of the accuracy of the magnitude expressed in the XdQuantified subtypes. Should be used to inform users and not for decision support uses.
+- The optional element named *error* represents the error margin of measurement as an integer. This value indicates an error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e., no error.
+- The optional *accuracy* element represents the accuracy of the value in the magnitude attribute in the range 0% to (+/-)100%. A value of 0 means that the accuracy is unknown.
 ....
 
 XdCountType
@@ -370,7 +376,9 @@ XdCountType
 
 **Abstract:** False
 
-**Description:** Countable quantities. Used for countable types (integer) such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc. The *thing(s)* being counted must be represented in the units element.
+**Description:** 
+
+Used for countable quantities as an integer such as pregnancies and steps (taken by a physiotherapy patient), the number of cigarettes smoked in a day, etc. The name of the thing being counted must be represented in the units element.
 
 **Misuse:** Not used for amounts of physical entities (which all have standardized units).
 
@@ -383,7 +391,9 @@ XdQuantityType
 
 **Abstract:** False
 
-**Description:** Quantified type representing specific quantities, i.e. quantities expressed as a magnitude (decimal) and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.
+**Description:** 
+
+A quantified type representing specific quantities, i.e., amounts expressed as magnitude as a decimal and units. This type can also be used for time durations where it is more convenient to treat these as some number of seconds, minutes, hours, days, months, years, etc. This use is only appropriate when the performance of temporal calculations is not required.
 
 ....
 
@@ -394,7 +404,9 @@ XdFloatType
 
 **Abstract:** False
 
-**Description:** Quantified type representing specific quantities as a magnitude (float) and optional units. 
+**Description:** 
+
+Quantified type representing specific quantities as a magnitude as a float value and optional units. 
 
 
 ....
@@ -406,7 +418,12 @@ XdRatioType
 
 **Abstract:** False
 
-**Description:** Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash ('/') character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
+**Description:** 
+
+Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash ('/') character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
+- The *ratio-type* element is used to specify a category of ratio. The optiona are ratio, proportion and rate. 
+- Elements are available for the *numerator*, *denominator*, and *xdratio-value*.
+- Addtionaly there is an optional *???-units* element for each of the three elements *numerator*, *denominator*, and *xdratio-value*.
 
 
 ....
@@ -418,7 +435,18 @@ XdTemporalType
 
 **Abstract:** False
 
-**Description:** Type defining the concept of date and time types. Must be constrained in PCMs to be one or more of the below elements.  This gives the modeler the ability to optionally allow full or partial dates at run time.  Setting both maxOccurs and minOccurs to zero causes the element to be prohibited.
+**Description:** 
+This type defines the concept of dates and times. It must be constrained in RMCs to be one or more of the below elements.  
+This type gives the modeler the ability to allow full or partial dates at runtime. Each of the elements may be required, prohibited or allowed.
+- *xdtemporal-date* represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For values that do not have a timezone, the top-open intervals disjointly cover the timeline, one per day. For values with a time zone, the intervals begin at every minute and therefore overlap
+- *xdtemporal-time* represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.
+- *xdtemporal-datetime* represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical
+- *xdtemporal-day* represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)</xs:documentation>
+- *xdtemporal-month* represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. This type is used, for example, to say what month annual Thanksgiving celebrations fall in different countries (--11 in the United States, --10 in Canada, and possibly other months in other countries).
+- *xdtemporal-year* represents Gregorian calendar years.
+- *xdtemporal-year-month* represents Gregorian calendar years.
+- *xdtemporal-month-day* represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)
+- *xdtemporal-duration* represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, "15 days" (whose most common lexical representation in duration is "'P15D'") is a duration value; "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs and can be the result of subtracting dateTime values.
 
 
 ....
@@ -430,7 +458,9 @@ XdIntervalType
 
 **Abstract:** False
 
-**Description:** Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are primarily used in defining reference ranges.
+**Description:** 
+
+Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are primarily used in defining reference ranges.
 
 
 ....
