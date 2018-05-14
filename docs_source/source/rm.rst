@@ -267,8 +267,13 @@ XdStringType
 
 **Abstract:** False
 
-**Description:**  The string data type can contain characters, line feeds, carriage returns,
-and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns may be specified.
+**Description:**  
+
+The string data type can contain a string of characters or digits, line feeds, carriage returns, and tab characters. 
+
+The use cases are for any free-form text entry, and for any enumerated lists. Additionally, the minimum, maximum and exact lengths may be set, and regular expression patterns may be specified to control the format of items such as ID numbers and telephone numbers.
+
+In addition to the *xdstring-value* it includes a *xdstring-language* element for indicating that a language code is specific to this content.
 
 ....
 
@@ -279,7 +284,26 @@ XdFileType
 
 **Abstract:** False
 
-**Description:** A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.
+**Description:** 
+
+A type to use for encapsulated content such as files for images, audio and other media types with a defined MIME type. This type provides a choice of embedding the file content encoded in base64 or using a URL to point to the content. 
+
+The following elements provide metadata information about the content:
+- *size* is an integer that represents the unencoded content in bytes
+- *encoding* is a string value from the IANA character set table found at http://www.iana.org/assignments/character-sets 
+Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.
+- *xdfile-language* is an optional language code from https://www.ietf.org/rfc/rfc3066.txt It is used to indicate the language of the content.
+- *formalism* contains the name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', or other domain-specific language parser.
+- *media-type* optionally contains the MIME type from the IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml 
+- *compression-type* optionally contains the compression/archiving mime-type. If this element does not exist, then it means there is no compression/archiving. For a list of common mime-types for compression/archiving see http://en.wikipedia.org/wiki/List_of_archive_formats.
+- *hash-result* optionally contains a hash function result of the *media-content*. There must be a corresponding *hash-function* type listed for this to have any meaning. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
+- *hash-function* contains the hash function used to compute the content for *hash-result*. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
+- *alt-txt* optionally contains the text to display in place of multimedia display or execution.
+
+These two elements have a binary choice relationship. One and only one of them will appear in the model.
+- *uri* contains a URI reference to electronic information stored outside the record as a file, database entry or other persistence methods when the content is supplied as a reference.
+- *media-content* contains the file contents encoded using the base64Bianry algorithm.
+
 
 ....
 
@@ -290,7 +314,9 @@ XdOrderedType
 
 **Abstract:** True
 
-**Description:**  Abstract class defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘<’, '>' and is_strictly_comparable_to ('==').
+**Description:**  
+
+An abstract class that defines the concept of ordered values, these items include ordinals as well as exact quantities. 
 
 ....
 
@@ -301,26 +327,28 @@ XdOrdinalType
 
 **Abstract:** False
 
-**Description:**  Models rankings and scores, e.g. pain, Apgar values, etc, where there is;
+**Description:**  
+
+Models rankings and scores, e.g., pain, Apgar values, educational level, and the Likert Scale where there is;
 
 * implied ordering,
 * no implication that the distance between each value is constant, and
 * the total number of values is finite.
 
-Note that although the term ‘ordinal’ in mathematics means natural numbers only, here any decimal is allowed, since negative and zero values are often used by medical and other professionals for values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25
+Note that the term ‘ordinal’ in mathematics means natural numbers only. In this case, any decimal is allowed since negative, and zero values are used by medical and other professionals for centering values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25
 
-Examples of sets of ordinal values;
+Examples of sets of ordinal values are;
 
 * -3, -2, -1, 0, 1, 2, 3 -- reflex response values
 * 0, 1, 2 -- Apgar values
 
-Also used for recording any clinical or other datum which is customarily recorded using symbolic values. Examples;
+Also used for recording any clinical or other data which is customarily recorded using symbolic values. Examples;
 
 * the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;
 * for non-haemolysed blood {neg, trace, moderate};
 * for haemolysed blood {neg, trace, small, moderate, large}.
 
-Elements ordinal and symbol MUST have exactly the same number of enumerations in the PCM.
+Elements *ordinal* and *symbol* MUST have the same number of enumerations in the PCM.
 
 ....
 

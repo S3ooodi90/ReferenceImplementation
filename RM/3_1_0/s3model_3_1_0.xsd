@@ -502,24 +502,12 @@
             </xs:element>
             <xs:element name="media-content" type="xs:base64Binary">
               <xs:annotation>
-                <xs:documentation xml:lang="en-us">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
+                <xs:documentation xml:lang="en-us">The content, if stored locally. The CMC modeler chooses either a uri or local content element.</xs:documentation>
                 <xs:appinfo>
                   <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/media-content">
                     <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"/>
                     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#base64Binary"/>
-                    <rdfs:comment xml:lang="en-us">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
-                  </rdf:Description>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="text-content" type="xs:string">
-              <xs:annotation>
-                <xs:documentation xml:lang="en-us">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</xs:documentation>
-                <xs:appinfo>
-                  <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/text-content">
-                    <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"/>
-                    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                    <rdfs:comment xml:lang="en-us">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</rdfs:comment>
+                    <rdfs:comment xml:lang="en-us">The content, if stored locally. The CMC modeler chooses either a uri or local content element.</rdfs:comment>
                   </rdf:Description>
                 </xs:appinfo>
               </xs:annotation>
