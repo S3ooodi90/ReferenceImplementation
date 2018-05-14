@@ -95,7 +95,7 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime" nillable="true">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us">Time Recorded. If present this must be a valid date-time stamp. It is used to indicate the the actual date and time the data was recorded.</xs:documentation>
+          <xs:documentation xml:lang="en-us">Time Recorded. If present this must be a valid date-time. It is used to indicate the the actual date and time the data was recorded.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType/tr">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
@@ -177,19 +177,21 @@
 
   <xs:complexType name="XdBooleanType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Items which represent boolean decisions, such as true/false or yes/no answers. Use for such data, it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false. The
-        possible choices for True or False are enumerations in the CMC. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. Potential Misuse: The XdBooleanType should not be used as a replacement for enumerated types such as
-        male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, 'true' and 'false' are contained in an xs:choice and only one or the other is instantiated in
-        the instance data with its value coming from the enumerations defined in a CMC.</xs:documentation>
+      <xs:documentation xml:lang="en-us">An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is essential to devise the meanings (often questions in subjective data) carefully so that the only allowed result values result in one the options; true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines 'true-value' and 'false-value' in an xs:choice so only one or the other may be present in the instance data. 
+        
+        The XdBooleanType should not be used as a replacement for enumerated choice types such as male/female, or similar choice sets. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case, the choice set often has more than two values. 
+        
+        The elements, 'true-value' and 'false-value' are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a Data Model.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType">
           <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdBooleanType.html#XdBooleanType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdBooleanType</rdfs:label>
-          <rdfs:comment xml:lang="en-us">Items which represent boolean decisions, such as true/false or yes/no answers. Use for such data, it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false. The
-            possible choices for True or False are enumerations in the CM. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. Potential Misuse: The XdBooleanType should not be used as a replacement for enumerated types such as
-            male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, 'true' and 'false' are contained in an xs:choice and only one or the other is instantiated
-            in the instance data with its value coming from the enumerations defined in a CM.</rdfs:comment>
+          <rdfs:comment xml:lang="en-us">An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is essential to devise the meanings (often questions in subjective data) carefully so that the only allowed result values result in one the options; true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines 'true-value' and 'false-value' in an xs:choice so only one or the other may be present in the instance data. 
+            
+            The XdBooleanType should not be used as a replacement for enumerated choice types such as male/female, or similar choice sets. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case, the choice set often has more than two values. 
+            
+            The elements, 'true-value' and 'false-value' are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a Data Model.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>

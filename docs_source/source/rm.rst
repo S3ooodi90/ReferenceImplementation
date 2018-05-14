@@ -2,7 +2,10 @@
 The Reference Implementation - Reference Model
 ==============================================
 
-**Note:**  Any discrepancies between this document and the XML Schema implementation is to be resolved by the XML Schema RM. The automatically generated XML Schema documentation is available at the link below.
+S3Model may be implemented in most (any?) programming or data definition language. This reference implementation provided here is in XML Schema due to the ubiquitous nature of XML Schema and the compatibility with RDF/XML. Virtually all programming and data analysis languages can manipulate and validate XML content.
+
+
+**Note:**  Any discrepancies between this document and the XML Schema implementation, as documented by the link below, is to be resolved by the XML Schema RM. The automatically generated XML Schema documentation is available at the link below.
 
 .. raw:: html
 
@@ -203,7 +206,21 @@ XdAnyType
 
 **Abstract:** True
 
-**Description:**  Serves as a common ancestor of all extended datatypes in S3Model models.
+**Description:**  
+
+This datatype serves as the common ancestor of all eXtended data-types (Xd*) in S3Model. This eXtended Datatype provides the components for;
+    - a *label* element with a language tag to provide a natural language meaningful name
+    - an *act* (access control tag) element to provide a means of testing for access control levels at the granularity of the data item
+    - one or more Exceptional Value Types (aka. NullFlavors) to add information regarding why a value may not validate with the data model schema but may still be useful data
+    - a *vtb* (valid time begin) element to indicate a datetime when this data starts to be valid
+    - a *vte* (valid time end) element to indicate a datetime when this data ceases to be valid
+    - a *tr* (time recorded) element to indicate a datetime when this data is initially recorded
+    - a *modified* element to indicate a datetime when this data was modified
+    - a *latitude* element to record a decimal latitude value in the range of 90.000000 to -90.000000 of where the data originated 
+    - a *longitude* element to record a decimal longitude value in the range of 180.000000 to -180.000000 of where the data originated
+
+
+....
 
 XdBooleanType
 --------------
@@ -212,7 +229,15 @@ XdBooleanType
 
 **Abstract:** False
 
-**Description:**  An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is important to devise the meanings (usually questions in subjective data) carefully, so that the only allowed results are in fact true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines 'true' and 'false' in a choice so only one or the other may be present in the instance data. The XdBooleanType should not be used as a replacement for enumerated choice types such as male/female, etc. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case the enumeration often has more than two values. The elements, 'true' and 'false' are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a DM.
+**Description:**  
+
+An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is essential to devise the meanings (often questions in subjective data) carefully so that the only allowed result values result in one the options; true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines 'true-value' and 'false-value' in an xs:choice so only one or the other may be present in the instance data. 
+
+The XdBooleanType should not be used as a replacement for enumerated choice types such as male/female, or similar choice sets. Such values should be modeled as XdStrings with enumerations and may reference a controlled vocabulary. In any case, the choice set often has more than two values. 
+
+The elements, 'true-value' and 'false-value' are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a Data Model.
+
+....
 
 XdLinkType
 ----------
@@ -221,10 +246,19 @@ XdLinkType
 
 **Abstract:** False
 
-**Description:** Used to specify a Universal Resource Identifier.
-Set the pattern facet to accommodate your needs in the PCM.
-The primary use is to provide a mechanism that can be used to link together DMs.
-The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary. In most use cases the modeler will define all three of these using the 'fixed' attribute. Other use cases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 'link'.
+**Description:** 
+
+Used to specify a Universal Resource Identifier.
+
+Set the pattern facet to accommodate your needs in the Reusable Model Component.
+
+The primary use is to provide a mechanism that can be used to link together Data Models or to link to external resources such as workflow and access control vocabularies.
+
+The *relation* element allows for the use of a descriptive term for the link with an optional URI pointing to the source vocabulary. In most use cases the modeler will define all three of these using the *fixed* attribute. 
+
+Other use cases will have the *relation* and *relation-uri* elements *fixed* and the application will provide the *link* data at runtime.
+
+....
 
 XdStringType
 ------------
@@ -236,6 +270,8 @@ XdStringType
 **Description:**  The string data type can contain characters, line feeds, carriage returns,
 and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns may be specified.
 
+....
+
 XdFileType
 ----------
 
@@ -245,6 +281,8 @@ XdFileType
 
 **Description:** A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.
 
+....
+
 XdOrderedType
 -------------
 
@@ -253,6 +291,8 @@ XdOrderedType
 **Abstract:** True
 
 **Description:**  Abstract class defining the concept of ordered values, which includes ordinals as well as true quantities. The implementations require the functions ‘<’, '>' and is_strictly_comparable_to ('==').
+
+....
 
 XdOrdinalType
 -------------
@@ -282,6 +322,8 @@ Also used for recording any clinical or other datum which is customarily recorde
 
 Elements ordinal and symbol MUST have exactly the same number of enumerations in the PCM.
 
+....
+
 XdQuantifiedType
 ----------------
 
@@ -290,6 +332,8 @@ XdQuantifiedType
 **Abstract:** True
 
 **Description:**  Abstract type defining the concept of true quantified values, i.e. values which are not only ordered, but which have a precise magnitude.
+
+....
 
 XdCountType
 -----------
@@ -302,6 +346,8 @@ XdCountType
 
 **Misuse:** Not used for amounts of physical entities (which all have standardized units).
 
+....
+
 XdQuantityType
 --------------
 
@@ -310,6 +356,8 @@ XdQuantityType
 **Abstract:** False
 
 **Description:** Quantified type representing specific quantities, i.e. quantities expressed as a magnitude (decimal) and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.
+
+....
 
 XdFloatType
 --------------
@@ -321,6 +369,8 @@ XdFloatType
 **Description:** Quantified type representing specific quantities as a magnitude (float) and optional units. 
 
 
+....
+
 XdRatioType
 -----------
 
@@ -330,6 +380,8 @@ XdRatioType
 
 **Description:** Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash ('/') character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
 
+
+....
 
 XdTemporalType
 --------------
@@ -341,6 +393,8 @@ XdTemporalType
 **Description:** Type defining the concept of date and time types. Must be constrained in PCMs to be one or more of the below elements.  This gives the modeler the ability to optionally allow full or partial dates at run time.  Setting both maxOccurs and minOccurs to zero causes the element to be prohibited.
 
 
+....
+
 XdIntervalType
 --------------
 
@@ -350,6 +404,8 @@ XdIntervalType
 
 **Description:** Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are primarily used in defining reference ranges.
 
+
+....
 
 InvlType
 --------
@@ -364,6 +420,8 @@ Both restrictions will have the same element choice and the value is 'fixed' on 
 
 For more information on using this approach `see these tips <https://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html>`_
 
+....
+
 InvlUnits
 ---------
 
@@ -373,6 +431,8 @@ InvlUnits
 
 **Description:** The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range in degrees Fahrenheit and one in degrees Celsius.
 The derived complexType in the DM has these values fixed by the modeler.
+
+....
 
 ReferenceRangeType
 ------------------
@@ -385,6 +445,8 @@ ReferenceRangeType
 range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.
 
 
+....
+
 AuditType
 ---------
 
@@ -393,6 +455,8 @@ AuditType
 **Abstract:** False
 
 **Description:** AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.
+
+....
 
 PartyType
 ---------
@@ -403,6 +467,8 @@ PartyType
 
 **Description:** Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party information is to be anonymous then do not include the details element.
 
+....
+
 AttestationType
 ---------------
 
@@ -412,6 +478,8 @@ AttestationType
 
 **Description:** Record an attestation by a party of item(s) of record content. The type of attestation is recorded by the reason attribute, which may be coded.
 
+....
+
 ParticipationType
 -----------------
 
@@ -420,6 +488,8 @@ ParticipationType
 **Abstract:** False
 
 **Description:** Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.
+
+....
 
 ExceptionalValueType
 --------------------
@@ -433,6 +503,8 @@ ExceptionalValueType
 DMs may contain additional ExceptionalValueType restrictions to allow for domain related reasons for errant or missing data.
 
 
+....
+
 NIType
 ------
 
@@ -441,6 +513,8 @@ NIType
 **Abstract:** False
 
 **Description:**  No Information: The value is exceptional (missing, omitted, incomplete, improper). No information as to the reason for being an exceptional value is provided. This is the most general exceptional value. It is also the default exceptional value.
+
+....
 
 MSKType
 -------
@@ -453,6 +527,8 @@ MSKType
 .. Warning:
 Using this exceptional value does provide information that may be a breach of confidentiality, even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to inform the receiver that the information does exist without providing any detail.
 
+....
+
 INVType
 -------
 
@@ -461,6 +537,8 @@ INVType
 **Abstract:** False
 
 **Description:**  Invalid: The value as represented in the instance is not a member of the set of permitted data values in the constrained value domain of a variable.
+
+....
 
 DERType
 -------
@@ -471,6 +549,8 @@ DERType
 
 **Description:**  Derived: An actual value may exist, but it must be derived from the provided information; usually an expression is provided directly.
 
+....
+
 UNCType
 -------
 
@@ -479,6 +559,8 @@ UNCType
 **Abstract:** False
 
 **Description:**  Unencoded: No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.
+
+....
 
 OTHType
 -------
@@ -490,6 +572,8 @@ OTHType
 **Description:**  Other: The actual value is not a member of the permitted data values in the variable. (e.g., when the value of the variable is not by the coding system)
 
 
+....
+
 NINFType
 --------
 
@@ -500,6 +584,8 @@ NINFType
 **Description:**  Negative Infinity: Negative infinity of numbers
 
 
+....
+
 PINFType
 --------
 
@@ -508,6 +594,8 @@ PINFType
 **Abstract:** False
 
 **Description:**  Positive Infinity: Positive infinity of numbers
+
+....
 
 UNKType
 -------
@@ -518,6 +606,8 @@ UNKType
 
 **Description:**  Unknown: A proper value is applicable, but not known.
 
+....
+
 ASKRType
 --------
 
@@ -526,6 +616,8 @@ ASKRType
 **Abstract:** False
 
 **Description:**  Asked and Refused: Information was sought but refused to be provided (e.g., patient was asked but refused to answer)
+
+....
 
 NASKType
 --------
@@ -537,6 +629,8 @@ NASKType
 **Description:**  Not Asked: This information has not been sought (e.g., patient was not asked)
 
 
+....
+
 QSType
 ------
 
@@ -546,6 +640,8 @@ QSType
 
 **Description:**  Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material; Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.
 
+....
+
 TRCType
 -------
 
@@ -554,6 +650,8 @@ TRCType
 **Abstract:** False
 
 **Description:**  Trace: The content is greater or less than zero but too small to be quantified.
+
+....
 
 ASKUType
 --------
@@ -565,6 +663,8 @@ ASKUType
 **Description:**  Asked but Unknown: Information was sought but not found (e.g., patient was asked but did not know)
 
 
+....
+
 NAVType
 -------
 
@@ -573,6 +673,8 @@ NAVType
 **Abstract:** False
 
 **Description:** Not Available: This information is not available and the specific reason is not known.
+
+....
 
 NAType
 ------
@@ -583,6 +685,8 @@ NAType
 
 **Description:**  Not Applicable: No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.
 
+....
+
 ItemType
 --------
 
@@ -591,6 +695,8 @@ ItemType
 **Abstract:** True
 
 **Description:**  The abstract parent of ClusterType and XdAdapterType structural representation types.
+
+....
 
 ClusterType
 -----------
@@ -602,6 +708,8 @@ ClusterType
 **Description:**  The grouping variant of Item, which may contain further instances of Item,
 in an ordered list. This can serve as the root component for arbitrarily complex structures.
 
+....
+
 XdAdapterType
 -------------
 
@@ -611,14 +719,8 @@ XdAdapterType
 
 **Description:**  The leaf variant of Item, to which any *XdAnyType* subtype instance is attached for use in a Cluster.
 
-EntryType
----------
 
-**Derived from:** n/a
-
-**Abstract:** False
-
-**Description:** An Entry is the root of a logical set of data items.
+....
 
 DMType
 -------
@@ -658,6 +760,8 @@ MagnitudeStatus
         approximate : value is the approximately the magnitude
 
 These enumerations are used in they XdQuantifiedType subtypes.
+
+....
 
 TypeOfRatio
 -----------
