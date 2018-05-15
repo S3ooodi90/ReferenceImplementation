@@ -188,19 +188,19 @@ integer
 -------
 The integer data type is used to specify a numeric value without a fractional component.
 
-
 3.1.0 Reference Model Documentation
 ===================================
 
+The reference implementation complexType descriptions. Click the word *Schema* to display a grahic representation of the type. 
 
---------
-RM Types
---------
+-----------------------------------
+ComplexTypes in the Reference Model
+-----------------------------------
 
-The reference implementation type descriptions.
+DMType 
+------
 
-DMType
--------
+`DMType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_DMType.html#DMType>`_
 
 **Derived from:** n/a
 
@@ -256,7 +256,9 @@ The components are:
 ....
 
 XdAnyType
------------
+---------
+
+`XdAnyType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType>`_
 
 **Derived from:**  n/a
 
@@ -281,6 +283,8 @@ This datatype serves as the common ancestor of all eXtended data-types (Xd*) in 
 XdBooleanType
 --------------
 
+`XdBooleanType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdBooleanType.html#XdBooleanType>`_
+
 **Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
@@ -297,6 +301,8 @@ The elements, 'true-value' and 'false-value' are contained in an xs:choice and o
 
 XdLinkType
 ----------
+
+`XdLinkType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdLinkType.html#XdLinkType>`_
 
 **Derived from:** `XdAnyType`_ by extension
 
@@ -319,6 +325,8 @@ Other use cases will have the *relation* and *relation-uri* elements *fixed* and
 XdStringType
 ------------
 
+`XdStringType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdStringType.html#XdStringType>`_
+
 **Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
@@ -335,6 +343,8 @@ In addition to the *xdstring-value* it includes a *xdstring-language* element fo
 
 XdFileType
 ----------
+
+`XdFileType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType>`_
 
 **Derived from:** `XdAnyType`_ by extension
 
@@ -367,6 +377,8 @@ These two elements have a binary choice relationship. One and only one of them w
 XdOrderedType
 -------------
 
+`XdOrderedType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdOrderedType.html#XdOrderedType>`_
+
 **Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** True
@@ -382,6 +394,8 @@ A *normal-status* element provides for a string indicating the string for a norm
 
 XdOrdinalType
 -------------
+
+`XdOrdinalType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdOrdinalType.html#XdOrdinalType>`_
 
 **Derived from:** `XdOrderedType`_ by extension
 
@@ -415,6 +429,8 @@ Elements *ordinal* and *symbol* MUST have the same number of enumerations in the
 XdQuantifiedType
 ----------------
 
+`XdQuantifiedType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantifiedType.html#XdQuantifiedType>`_
+
 **Derived from:** `XdOrderedType`_ by extension
 
 **Abstract:** True
@@ -432,6 +448,8 @@ The optional accuracy element represents the accuracy of the value in the magnit
 XdCountType
 -----------
 
+`XdCountType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdCountType.html#XdCountType>`_
+
 **Derived from:** `XdQuantifiedType`_ by extension
 
 **Abstract:** False
@@ -447,6 +465,8 @@ Used for countable quantities as an integer such as pregnancies and steps (taken
 XdQuantityType
 --------------
 
+`XdQuantityType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdQuantityType.html#XdQuantityType>`_
+
 **Derived from:** `XdQuantifiedType`_ by extension
 
 **Abstract:** False
@@ -459,6 +479,8 @@ A quantified type representing specific quantities, i.e., amounts expressed as m
 
 XdFloatType
 --------------
+
+`XdFloatType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdFloatType.html#XdFloatType>`_
 
 **Derived from:** `XdQuantifiedType`_ by extension
 
@@ -473,6 +495,8 @@ Quantified type representing specific quantities as a magnitude as a float value
 
 XdRatioType
 -----------
+
+`XdRatioType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType>`_
 
 **Derived from:** `XdQuantifiedType`_ by extension
 
@@ -491,6 +515,8 @@ Models a ratio of values, i.e. where the numerator and denominator are both pure
 
 XdTemporalType
 --------------
+
+`XdTemporalType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdTemporalType.html#XdTemporalType>`_
 
 **Derived from:** `XdOrderedType`_ by extension
 
@@ -518,6 +544,8 @@ This type gives the modeler the ability to allow full or partial dates at runtim
 XdIntervalType
 --------------
 
+`XdIntervalType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdIntervalType.html#XdIntervalType>`_
+
 **Derived from:** `XdAnyType`_ by extension
 
 **Abstract:** False
@@ -530,6 +558,8 @@ This is a generic type that defines an interval (i.e., range) of a comparable na
 
 InvlType
 --------
+
+`InvlType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_InvlType.html#InvlType>`_
 
 **Derived from:** n/a
 
@@ -548,6 +578,8 @@ For more information on using this approach `see these tips <https://www.ibm.com
 InvlUnits
 ---------
 
+`InvlUnits Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits.html#InvlUnits>`_
+
 **Derived from:** n/a
 
 **Abstract:** False
@@ -562,6 +594,8 @@ The derived type in the Data Model has these values fixed by the modeler.
 
 ReferenceRangeType
 ------------------
+
+`ReferenceRangeType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_ReferenceRangeType.html#ReferenceRangeType>`_
 
 **Derived from:** `XdAnyType`_ by extension
 
@@ -579,6 +613,8 @@ Each such range is sensitive to the context, e.g., sex, age, location, and any o
 AuditType
 ---------
 
+`AuditType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_AuditType.html#AuditType>`_
+
 **Derived from:** n/a
 
 **Abstract:** False
@@ -591,6 +627,8 @@ The AuditType provides a mechanism to identify the who/where/when tracking of in
 
 PartyType
 ---------
+
+`PartyType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_PartyType.html#PartyType>`_
 
 **Derived from:** n/a
 
@@ -605,6 +643,8 @@ Description of a party, including an optional external link to data for this par
 AttestationType
 ---------------
 
+`AttestationType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_AttestationType.html#AttestationType>`_
+
 **Derived from:** n/a
 
 **Abstract:** False
@@ -618,6 +658,8 @@ Record an attestation by a party of item(s) of record content. The type of attes
 ParticipationType
 -----------------
 
+`ParticipationType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_ParticipationType.html#ParticipationType>`_
+
 **Derived from:** n/a
 
 **Abstract:** False
@@ -630,6 +672,8 @@ Model of participation of a Party (any Actor or Role) in an activity. Used to re
 
 ExceptionalValueType
 --------------------
+
+`ExceptionalValueType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_ExceptionalValueType.html#ExceptionalValueType>`_
 
 **Derived from:** n/a
 
@@ -647,6 +691,8 @@ Data Models may contain additional `ExceptionalValueType`_ restrictions to allow
 NIType
 ------
 
+`NIType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_NIType.html#NIType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -659,6 +705,8 @@ NIType
 
 MSKType
 -------
+
+`MSKType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_MSKType.html#MSKType>`_
 
 **Derived from:** `ExceptionalValueType`_ by restriction
 
@@ -675,6 +723,8 @@ Using this exceptional value does provide information that may be a breach of co
 INVType
 -------
 
+`INVType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_INVType.html#INVType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -687,6 +737,8 @@ INVType
 
 DERType
 -------
+
+`DERType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_DERType.html#DERType>`_
 
 **Derived from:** `ExceptionalValueType`_ by restriction
 
@@ -701,6 +753,8 @@ DERType
 UNCType
 -------
 
+`UNCType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_UNCType.html#UNCType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -713,6 +767,8 @@ UNCType
 
 OTHType
 -------
+
+`OTHType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_OTHType.html#OTHType>`_
 
 **Derived from:** `ExceptionalValueType`_ by restriction
 
@@ -728,6 +784,8 @@ OTHType
 NINFType
 --------
 
+`NINFType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_NINFType.html#NINFType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -742,6 +800,8 @@ NINFType
 PINFType
 --------
 
+`PINFType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_PINFType.html#PINFType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -754,6 +814,8 @@ PINFType
 
 UNKType
 -------
+
+`UNKType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_UNKType.html#UNKType>`_
 
 **Derived from:** `ExceptionalValueType`_ by restriction
 
@@ -768,6 +830,8 @@ UNKType
 ASKRType
 --------
 
+`ASKRType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_ASKRType.html#ASKRType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -780,6 +844,8 @@ ASKRType
 
 NASKType
 --------
+
+`NASKType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_NASKType.html#NASKType>`_
 
 **Derived from:** `ExceptionalValueType`_ by restriction
 
@@ -795,6 +861,8 @@ NASKType
 QSType
 ------
 
+`QSType Schema </rm/s3model_3_1_0_xsd_Complex_Type_s3m_QSType.html#QSType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -808,6 +876,8 @@ QSType
 TRCType
 -------
 
+`TRCType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_TRCType.html#TRCType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -820,6 +890,8 @@ TRCType
 
 ASKUType
 --------
+
+`ASKUType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_ASKUType.html#ASKUType>`_
 
 **Derived from:** `ExceptionalValueType`_ by restriction
 
@@ -835,6 +907,8 @@ ASKUType
 NAVType
 -------
 
+`NAVType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_NAVType.html#NAVType>`_
+
 **Derived from:** `ExceptionalValueType`_ by restriction
 
 **Abstract:** False
@@ -847,6 +921,8 @@ NAVType
 
 NAType
 ------
+
+`NAType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_NAType.html#NAType>`_
 
 **Derived from:** `ExceptionalValueType`_ by restriction
 
@@ -861,6 +937,8 @@ NAType
 ItemType
 --------
 
+`ItemType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_ItemType.html#ItemType>`_
+
 **Derived from:** n/a
 
 **Abstract:** True
@@ -873,6 +951,8 @@ The abstract parent of `ClusterType`_ and `XdAdapterType`_ structural representa
 
 ClusterType
 -----------
+
+`ClusterType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_ClusterType.html#ClusterType>`_
 
 **Derived from:** `ItemType`_ by extension
 
@@ -887,6 +967,8 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 
 XdAdapterType
 -------------
+
+`XdAdapterType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdAdapterType.html#XdAdapterType>`_
 
 **Derived from:** `ItemType`_ by extension
 
@@ -908,6 +990,8 @@ The reference implementation simpleType descriptions. These types do not have gl
 
 MagnitudeStatus
 ---------------
+
+`MagnitudeStatus Schema <rm/s3model_3_1_0_xsd_Simple_Type_s3m_MagnitudeStatus.html#MagnitudeStatus>`_
 
 **Derived from:** xs:string
 
@@ -935,6 +1019,8 @@ These enumerations are used in the *magnitude-status* element of the `XdQuantifi
 
 TypeOfRatio
 -----------
+
+`TypeOfRatio Schema <rm/s3model_3_1_0_xsd_Simple_Type_s3m_TypeOfRatio.html#TypeOfRatio>`_
 
 **Derived from:** xs:string
 
