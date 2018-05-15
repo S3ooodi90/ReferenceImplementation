@@ -218,7 +218,7 @@ This is the root, encapsulating node of a Data Model. The data model wraps the d
 The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.
 
 
-**Model metadata** is based on `Dublin Core <http://dublincore.org/>`_ definitons and includes:
+**Model metadata** is information about the creation and usaeg of the data model. It is based on `Dublin Core <http://dublincore.org/>`_ definitons and includes:
 
 - *title* `A name given to the resource <http://purl.org/dc/terms/title>`_.
 - *creator* `An entity primarily responsible for making the resource <http://purl.org/dc/terms/creator>`_. 
@@ -234,7 +234,9 @@ The data content is generally quite flat and consistent when compared to other a
 - *format* `The file format, physical medium, or dimensions of the resource <http://purl.org/dc/terms/format>`_.
 - *language* `A language of the resource <http://purl.org/dc/terms/language>`_.
 
-The precise structure and content of **Data Metadata** is designed by the data modeler within a generic framework of components. The components are:
+The precise structure and content of **Data Metadata** is designed by the data modeler within a generic framework of components. This data metadata informs data consumers about what the data means. The many contextual aspects of the existence and life-cycle of the data may be recorded. 
+
+The components are:
 
 - An audit system based on the `AuditType`_ 
 - An attestation system based on the `AttestationType`_ 

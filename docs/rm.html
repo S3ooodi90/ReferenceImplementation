@@ -439,7 +439,7 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <p class="last">The <em>data content</em> is modeled as a document composed of the subtypes of <a class="reference internal" href="#xdanytype">XdAnyType</a> with the structure based on the <a class="reference internal" href="#itemtype">ItemType</a> subtypes.</p>
 </div>
 <p>The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.</p>
-<p><strong>Model metadata</strong> is based on <a class="reference external" href="http://dublincore.org/">Dublin Core</a> definitons and includes:</p>
+<p><strong>Model metadata</strong> is information about the creation and usaeg of the data model. It is based on <a class="reference external" href="http://dublincore.org/">Dublin Core</a> definitons and includes:</p>
 <ul class="simple">
 <li><em>title</em> <a class="reference external" href="http://purl.org/dc/terms/title">A name given to the resource</a>.</li>
 <li><em>creator</em> <a class="reference external" href="http://purl.org/dc/terms/creator">An entity primarily responsible for making the resource</a>.</li>
@@ -455,7 +455,8 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <li><em>format</em> <a class="reference external" href="http://purl.org/dc/terms/format">The file format, physical medium, or dimensions of the resource</a>.</li>
 <li><em>language</em> <a class="reference external" href="http://purl.org/dc/terms/language">A language of the resource</a>.</li>
 </ul>
-<p>The precise structure and content of <strong>Data Metadata</strong> is designed by the data modeler within a generic framework of components. The components are:</p>
+<p>The precise structure and content of <strong>Data Metadata</strong> is designed by the data modeler within a generic framework of components. This data metadata informs data consumers about what the data means. The many contextual aspects of the existence and life-cycle of the data may be recorded.</p>
+<p>The components are:</p>
 <ul class="simple">
 <li>An audit system based on the <a class="reference internal" href="#audittype">AuditType</a></li>
 <li>An attestation system based on the <a class="reference internal" href="#attestationtype">AttestationType</a></li>
