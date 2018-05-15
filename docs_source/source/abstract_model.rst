@@ -2,7 +2,7 @@
 Abstract Model
 ==============
 
-S3Model is by name as well as by definition and design a constraint-based multi-level modeling approach.  This approach means that there are multiple models with increasing specificity to get to the instance data point. S3Model is constraint-based which provides a complete syntactic validation path back to the reference model for the instance data. The semantic model is designed using the concepts of this multi-level model approach. Extensions to the reference model concepts are not allowed.
+S3Model is by name as well as by definition and design a constraint-based multi-level modeling approach.  This approach means that there are multiple models with increasing specificity to get to the instance data point. S3Model is constraint-based which provides a complete syntactic validation path back to the reference model for the instance data. The semantic model is designed using the concepts of this multi-level model approach. Extensions to the reference model concepts are not allowed. Click `here <owl/index.html>`_ to browse the S3Model upper ontology
 
 When answering the high-level question: *How do we elaborate the components required for a generic, implementation independent interoperability platform?* These few components were the answer.
 
@@ -86,5 +86,5 @@ Subclass of DataInstance. A set of data items that DOES NOT conform to the DM it
 ---------
 Exception
 ---------
-Exceptions indicate that a data instance may be invalid when validated against its model. However, the exceptional value may be explainable and provide valuable contextual information. A specific Exception subclass instance included in the data instance will provide that additional information. `here <owl/index.html>`_ 
+Exceptions indicate that a data instance may be invalid when validated against its model. However, the exceptional value may be explainable and provide valuable contextual information. A specific Exception subclass instance included in the data instance will provide that additional information. 
 

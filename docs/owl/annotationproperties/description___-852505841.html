@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='../classes/index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+Data Properties
+<a href='index.html' class='' >Annotation Properties</a>
+Individuals
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Annotation Property: description</h2>
+
+<div id='usage_(20)'>
+<h4>Usage (20)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../objectproperties/partOf___1322459511.html" class='Object Property' title="https://www.s3model.com/ns/s3m/s3model#partOf">partOf</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"This property relates the parts of the S3Model system to the abstract concept of S3Model."</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/CMC___-1977030286.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/CMC">CMC</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Core Model Component <br />A component model contained in a reference model. A CMC represents a specific core type of component that further contains elements with base datatypes and other CMCs to define its structure."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/CMS___-1977030270.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/CMS">CMS</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Core Model Symbol<br />A CMS represents a CMC in instance data. In practice, it is usually substituted for by a Replaceable Model Symbol (RMS). This substitution is because constraints are expressed in a Replaceable Model Component (RMC) which is then represented by an RMS."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DM___-1977094942.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/DM">DM</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Data Model<br /> A set of selected RMCs that are constraints on the RM components (CMCs) to represent a domain concept. In the implementation language, there may be additional syntactic conventions required. Caution: Not to be confused with Data Instance."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DataInstance___69588696.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/DataInstance">DataInstance</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"A set of data items that report via the isInstanceOf property that it conforms to a DM. In this state, it has not been tested for validation."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DataInstanceError___-1748333790.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/DataInstanceError">DataInstanceError</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Subclass of DataInstance. A set of data items that DOES NOT conform to the DM it represents, OR it contains invalid data and does not contain one or more children of an Exception. If there are no noted Exceptions in the Data Instance, then it should be considered suspect and discarded."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DataInstanceInvalid___-2035056943.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/DataInstanceInvalid">DataInstanceInvalid</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Subclass of DataInstance. A set of data items that conforms to a DM to represent an instance of that concept AND at least some of the data values are NOT valid according to the DM constraints. An Invalid Data Instance must contain one or more children of an Exception."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/DataInstanceValid___-1733146346.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/DataInstanceValid">DataInstanceValid</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Subclass of DataInstance. A set of data items that conforms to a DM to represent an instance of that concept AND the all of the data values are valid according to the DM constraints."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/Exception___1508496520.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/Exception">Exception</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Exceptions indicate that a data instance may be invalid when validated against its model. However, the exceptional value may be explainable and provide valuable contextual information. A specific Exception subclass instance included in the data instance will provide that additional information."</span> <span style='color: black;'>@en</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/RM___-1977094508.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/RM">RM</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Reference Model<br /><br />A set of components called Core Concept Models (CMCs) that provide structural integrity for a domain concept. Some CMCs are mandatory in DMs, and some are optional. Optionality is defined in each versioned, RM implementation."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/RMC___-1977015871.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/RMC">RMC</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Reusable Model Component <br />            <br />The name RMC is given to a CMC that has been constrained for use in a DM. Through the constraints, an RMC defines a single concept based on syntactic data constraints as well as specified semantics. It is reusable because it can be reused in multiple DMs."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/RMS___-1977015855.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/RMS">RMS</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Reusable Model Symbol <br /><br />The RMS represents an RMC in instance data. Can be considered as a data container for the components of an RMC. All of the RMSs are contained in a DataInstance when in transit."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../classes/S3Model___205868322.html" class='Class' title="https://www.s3model.com/ns/s3m/s3model/S3Model">S3Model</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"The root concept. The is the source of the abstract concept of S3Model. All of the S3Model classes are related to this class through partOf."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/basedOnRM___504968966.html" class='Object Property' title="https://www.s3model.com/ns/s3m/s3model/basedOnRM">basedOnRM</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Relates a Data Model to one Reference Model."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/containsCMC___-1769092365.html" class='Object Property' title="https://www.s3model.com/ns/s3m/s3model/containsCMC">containsCMC</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Defines the relation that a Reference Model contains a specific Core Model Component."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/containsRMC___-1769077950.html" class='Object Property' title="https://www.s3model.com/ns/s3m/s3model/containsRMC">containsRMC</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Defines the relation that a Data Model contains a specific Reuseable Model Component."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/hasException___-1581609170.html" class='Object Property' title="https://www.s3model.com/ns/s3m/s3model/hasException">hasException</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Relates an Exception subclass to an invalid data instance."</span> <span style='color: black;'>@en</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/isCMSOf___78113359.html" class='Object Property' title="https://www.s3model.com/ns/s3m/s3model/isCMSOf">isCMSOf</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Relates a symbol (CMS) to a core model component (CMC)."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/isInstanceOf___1096199791.html" class='Object Property' title="https://www.s3model.com/ns/s3m/s3model/isInstanceOf">isInstanceOf</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Relates a DataInstance to a Data Model (DM)."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+<li class="asserted"><a href="../objectproperties/isRMSOf___91966174.html" class='Object Property' title="https://www.s3model.com/ns/s3m/s3model/isRMSOf">isRMSOf</a>&nbsp;<span class='Annotation Property active-entity'>description</span> <span class='literal'>"Relates a symbol (RMS) to a reuseable model component (RMC)."</span> <span style='color: black;'>@en-us</span>&nbsp;</li>
+</ul>
+</div>
+</div><!-- usage (20) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>
