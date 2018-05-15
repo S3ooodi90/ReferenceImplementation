@@ -126,6 +126,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#reference-model-documentation">3.1.0 Reference Model Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#rm-types">RM Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dmtype">DMType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdanytype">XdAnyType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdbooleantype">XdBooleanType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdlinktype">XdLinkType</a></li>
@@ -167,7 +168,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#itemtype">ItemType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#clustertype">ClusterType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdadaptertype">XdAdapterType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dmtype">DMType</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#rm-simpletypes">RM simpleTypes</a><ul>
@@ -428,6 +428,51 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <div class="section" id="rm-types">
 <h3>RM Types<a class="headerlink" href="#rm-types" title="Permalink to this headline">¶</a></h3>
 <p>The reference implementation type descriptions.</p>
+<div class="section" id="dmtype">
+<h4>DMType<a class="headerlink" href="#dmtype" title="Permalink to this headline">¶</a></h4>
+<p><strong>Derived from:</strong> n/a</p>
+<p><strong>Abstract:</strong> False</p>
+<p><strong>Description:</strong></p>
+<p>This is the root, encapsulating node of a Data Model. The data model wraps the definitions for metadata about the model and it contains the metadata about the data.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <em>data content</em> is modeled as a document composed of the subtypes of <a class="reference internal" href="#xdanytype">XdAnyType</a> with the structure based on the <a class="reference internal" href="#itemtype">ItemType</a> subtypes.</p>
+</div>
+<p>The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.</p>
+<p><strong>Model metadata</strong> is based on <a class="reference external" href="http://dublincore.org/">Dublin Core</a> definitons and includes:</p>
+<ul class="simple">
+<li><em>title</em> <a class="reference external" href="http://purl.org/dc/terms/title">A name given to the resource</a>.</li>
+<li><em>creator</em> <a class="reference external" href="http://purl.org/dc/terms/creator">An entity primarily responsible for making the resource</a>.</li>
+<li><em>subject</em> <a class="reference external" href="http://purl.org/dc/terms/subject">The topic of the resource</a>.</li>
+<li><em>rights</em> <a class="reference external" href="http://purl.org/dc/terms/rights">Information about rights held in and over the resource</a>.</li>
+<li><em>relation</em> <a class="reference external" href="http://purl.org/dc/terms/relation">A related resource</a>.</li>
+<li><em>coverage</em> <a class="reference external" href="http://purl.org/dc/terms/coverage">The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant</a>.</li>
+<li><em>type</em> <a class="reference external" href="http://purl.org/dc/terms/type">The nature or genre of the resource</a>.</li>
+<li><em>identifier</em> <a class="reference external" href="http://purl.org/dc/terms/identifier">An unambiguous reference to the resource within a given context</a>.</li>
+<li><em>description</em> <a class="reference external" href="http://purl.org/dc/terms/description">An account of the resource</a>.</li>
+<li><em>publisher</em> <a class="reference external" href="http://purl.org/dc/terms/publisher">An entity responsible for making the resource available</a>.</li>
+<li><em>date</em> <a class="reference external" href="http://purl.org/dc/terms/date">A point or period of time associated with an event in the lifecycle of the resource</a>. Here the date indicates date of publication.</li>
+<li><em>format</em> <a class="reference external" href="http://purl.org/dc/terms/format">The file format, physical medium, or dimensions of the resource</a>.</li>
+<li><em>language</em> <a class="reference external" href="http://purl.org/dc/terms/language">A language of the resource</a>.</li>
+</ul>
+<p>The precise structure and content of <strong>Data Metadata</strong> is designed by the data modeler within a generic framework of components. The components are:</p>
+<ul class="simple">
+<li>An audit system based on the <a class="reference internal" href="#audittype">AuditType</a></li>
+<li>An attestation system based on the <a class="reference internal" href="#attestationtype">AttestationType</a></li>
+<li>The <em>subject</em> (person, role, organization, etc.) of the data activity based on the <a class="reference internal" href="#partytype">PartyType</a></li>
+<li>The <em>provider</em> (person, role, organization, etc.) of the activity based on the <a class="reference internal" href="#partytype">PartyType</a></li>
+<li>Other <em>participants</em> (persons, roles, organizations, etc.) of the activity based on the <a class="reference internal" href="#participationtype">ParticipationType</a></li>
+<li>A link to a protocol, policy or guideline used to outline or define the structure of the data based on <a class="reference internal" href="#xdstringtype">XdStringType</a></li>
+<li>A link to a workflow engine or vocabulary based on <a class="reference internal" href="#xdlinktype">XdLinkType</a></li>
+<li>A <em>current-state</em> element to contain the current state of the data based on the workflow engine or vocabulary as a string value</li>
+<li>A <em>label</em> string value element as a descriptive title for the model</li>
+<li>A <em>dm-encoding</em> element used to record the character set encoding of the data. The default is <em>utf-8</em></li>
+<li>A <em>dm-language</em> element to indicate the primary langauge of the data.</li>
+<li>An <em>acs</em> element to point to an external Access Control System such as a controlled vocabulary. This vocabulary informs the values available for the <em>act</em> element in all <a class="reference internal" href="#xdanytype">XdAnyType</a> subtypes.</li>
+<li>Optional external links based on <a class="reference internal" href="#xdlinktype">XdLinkType</a> may also be defined to expand information regarding the purpose, usage and relationships of this data.</li>
+</ul>
+</div>
+<hr class="docutils" />
 <div class="section" id="xdanytype">
 <h4>XdAnyType<a class="headerlink" href="#xdanytype" title="Permalink to this headline">¶</a></h4>
 <p><strong>Derived from:</strong>  n/a</p>
@@ -842,49 +887,8 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 <p><strong>Description:</strong></p>
 <p>An adapter/container, to which any <a class="reference internal" href="#xdanytype">XdAnyType</a> subtype instance is attached for use in a <a class="reference internal" href="#clustertype">ClusterType</a>.</p>
 </div>
+</div>
 <hr class="docutils" />
-<div class="section" id="dmtype">
-<h4>DMType<a class="headerlink" href="#dmtype" title="Permalink to this headline">¶</a></h4>
-<p><strong>Derived from:</strong> n/a</p>
-<p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong></p>
-<p>This is the root, encapsulating node of a Data Model. The data model wraps the definitions for metadata about the model and it contains the metadata about the data.</p>
-<p><strong>Model metadata</strong> is based on <a class="reference external" href="http://dublincore.org/">Dublin Core</a> definitons and includes:</p>
-<ul class="simple">
-<li><em>title</em> <a class="reference external" href="http://purl.org/dc/terms/title">A name given to the resource</a>.</li>
-<li><em>creator</em> <a class="reference external" href="http://purl.org/dc/terms/creator">An entity primarily responsible for making the resource</a>.</li>
-<li><em>subject</em> <a class="reference external" href="http://purl.org/dc/terms/subject">The topic of the resource</a>.</li>
-<li><em>rights</em> <a class="reference external" href="http://purl.org/dc/terms/rights">Information about rights held in and over the resource</a>.</li>
-<li><em>relation</em> <a class="reference external" href="http://purl.org/dc/terms/relation">A related resource</a>.</li>
-<li><em>coverage</em> <a class="reference external" href="http://purl.org/dc/terms/coverage">The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant</a>.</li>
-<li><em>type</em> <a class="reference external" href="http://purl.org/dc/terms/type">The nature or genre of the resource</a>.</li>
-<li><em>identifier</em> <a class="reference external" href="http://purl.org/dc/terms/identifier">An unambiguous reference to the resource within a given context</a>.</li>
-<li><em>description</em> <a class="reference external" href="http://purl.org/dc/terms/description">An account of the resource</a>.</li>
-<li><em>publisher</em> <a class="reference external" href="http://purl.org/dc/terms/publisher">An entity responsible for making the resource available</a>.</li>
-<li><em>date</em> <a class="reference external" href="http://purl.org/dc/terms/date">A point or period of time associated with an event in the lifecycle of the resource</a>. Here the date indicates date of publication.</li>
-<li><em>format</em> <a class="reference external" href="http://purl.org/dc/terms/format">The file format, physical medium, or dimensions of the resource</a>.</li>
-<li><em>language</em> <a class="reference external" href="http://purl.org/dc/terms/language">A language of the resource</a>.</li>
-</ul>
-<p>The precise structure and content of <strong>Data Metadata</strong> is designed by the data modeler within a generic framework of components. The components are:</p>
-<ul class="simple">
-<li>An audit system based on the <a class="reference internal" href="#audittype">AuditType</a></li>
-<li>An attestation system based on the <a class="reference internal" href="#attestationtype">AttestationType</a></li>
-<li>The <em>subject</em> (person, role, organization, etc.) of the data activity based on the <a class="reference internal" href="#partytype">PartyType</a></li>
-<li>The <em>provider</em> (person, role, organization, etc.) of the activity based on the <a class="reference internal" href="#partytype">PartyType</a></li>
-<li>Other <em>participants</em> (persons, roles, organizations, etc.) of the activity based on the <a class="reference internal" href="#participationtype">ParticipationType</a></li>
-<li>A link to a protocol, policy or guideline used to outline or define the structure of the data based on <a class="reference internal" href="#xdstringtype">XdStringType</a></li>
-<li>A link to a workflow engine or vocabulary based on <a class="reference internal" href="#xdlinktype">XdLinkType</a></li>
-<li>A <em>current-state</em> element to contain the current state of the data based on the workflow engine or vocabulary as a string value</li>
-<li>A <em>label</em> string value element as a descriptive title for the model</li>
-<li>A <em>dm-encoding</em> element used to record the character set encoding of the data. The default is <em>utf-8</em></li>
-<li>A <em>dm-language</em> element to indicate the primary langauge of the data.</li>
-<li>An <em>acs</em> element to point to an external Access Control System such as a controlled vocabulary. This vocabulary informs the values available for the <em>act</em> element in all <a class="reference internal" href="#xdanytype">XdAnyType</a> subtypes.</li>
-<li>Optional external links based on <a class="reference internal" href="#xdlinktype">XdLinkType</a> may also be defined to expand information regarding the purpose, usage and relationships of this data.</li>
-</ul>
-<p>The <em>data content</em> is modeled as a document composed of the subtypes of <a class="reference internal" href="#xdanytype">XdAnyType</a> with the structure based on the <a class="reference internal" href="#itemtype">ItemType</a> subtypes.</p>
-<p>The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.</p>
-</div>
-</div>
 <div class="section" id="rm-simpletypes">
 <h3>RM simpleTypes<a class="headerlink" href="#rm-simpletypes" title="Permalink to this headline">¶</a></h3>
 <p>The reference implementation simpleType descriptions. These types do not have global element definitions. They are used to define other element types within the <a class="reference external" href="abstract_model.html#rm">RM</a> and are used as restrictions on a Data Model.</p>

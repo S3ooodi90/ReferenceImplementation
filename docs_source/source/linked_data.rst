@@ -8,14 +8,14 @@ Initial approaches to building ontologies for S3Model used the XML Schema to OWL
 
 When we began S3Model in 2009, we intended to use the OWL language as the basis on which to build the concepts. However, the Open World Assumption conflicts with constraint-based modeling at the S3Model core.
 
-As the Linked Data environment matures, graph-based technologies are becoming mainstream for data discovery and analysis. By using both XML Schema to model the structural and syntactic needs and RDF to model semantics we create the best of all worlds towards **computable semantic interoperability**.
+As the Linked Data environment matures, graph-based technologies are becoming mainstream for data discovery and analysis. By using both XML Schema (to model the structural and syntactic needs) and RDF (to model semantics) we create the best of all worlds towards **computable semantic interoperability**.
 
 In this document, when we talk about S3Model, we use the term *S3Model*. When we talk about modeling concepts in an area of interest, we use the term *domain*. 
 
 Syntactic Modeling
 ==================
 
-The complex nature of healthcare concepts and query needs requires a rigorous yet flexible structural approach to modeling. Using a multi-level approach built on a robust data model fulfills this need. The Reference Model consists of a minimum of components required to construct robust models. Designed around the ubiquitous XML Schema data model provides a reliable, standardized, implementable infrastructure. The Reference Model reference implementation is expressed in XML Schema.
+The complex nature of interacting with cross-domain concepts and query needs requires a rigorous yet flexible structural approach to modeling. Using a multi-level approach built on a robust data model fulfills this need. The `Reference Model <rm.html>`_ consists of a minimum of components required to construct robust models. Designed around the ubiquitous XML Schema data model provides a reliable, standardized, implementable infrastructure. The Reference Model reference implementation is expressed in XML Schema.
 
 Components of the Reference Model can be assembled in virtually any structure need to express any level of granularity of healthcare or other domain concepts. These components are assembled in an XML Schema that contains only constraints (restrictions) of the Reference Model components.  This constraint-based approach guarantees that the structure and syntax of all domain concept models are valid against the Reference Model.
 

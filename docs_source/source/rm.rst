@@ -199,6 +199,60 @@ RM Types
 
 The reference implementation type descriptions.
 
+DMType
+-------
+
+**Derived from:** n/a
+
+**Abstract:** False
+
+**Description:**  
+
+This is the root, encapsulating node of a Data Model. The data model wraps the definitions for metadata about the model and it contains the metadata about the data. 
+
+.. note::
+
+    The *data content* is modeled as a document composed of the subtypes of `XdAnyType`_ with the structure based on the `ItemType`_ subtypes. 
+
+
+The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.
+
+
+**Model metadata** is based on `Dublin Core <http://dublincore.org/>`_ definitons and includes:
+
+- *title* `A name given to the resource <http://purl.org/dc/terms/title>`_.
+- *creator* `An entity primarily responsible for making the resource <http://purl.org/dc/terms/creator>`_. 
+- *subject* `The topic of the resource <http://purl.org/dc/terms/subject>`_.
+- *rights* `Information about rights held in and over the resource <http://purl.org/dc/terms/rights>`_.
+- *relation* `A related resource <http://purl.org/dc/terms/relation>`_.
+- *coverage* `The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant <http://purl.org/dc/terms/coverage>`_.
+- *type* `The nature or genre of the resource <http://purl.org/dc/terms/type>`_.
+- *identifier* `An unambiguous reference to the resource within a given context <http://purl.org/dc/terms/identifier>`_.
+- *description* `An account of the resource <http://purl.org/dc/terms/description>`_.
+- *publisher* `An entity responsible for making the resource available <http://purl.org/dc/terms/publisher>`_.
+- *date* `A point or period of time associated with an event in the lifecycle of the resource <http://purl.org/dc/terms/date>`_. Here the date indicates date of publication.
+- *format* `The file format, physical medium, or dimensions of the resource <http://purl.org/dc/terms/format>`_.
+- *language* `A language of the resource <http://purl.org/dc/terms/language>`_.
+
+The precise structure and content of **Data Metadata** is designed by the data modeler within a generic framework of components. The components are:
+
+- An audit system based on the `AuditType`_ 
+- An attestation system based on the `AttestationType`_ 
+- The *subject* (person, role, organization, etc.) of the data activity based on the `PartyType`_
+- The *provider* (person, role, organization, etc.) of the activity based on the `PartyType`_
+- Other *participants* (persons, roles, organizations, etc.) of the activity based on the `ParticipationType`_ 
+- A link to a protocol, policy or guideline used to outline or define the structure of the data based on `XdStringType`_
+- A link to a workflow engine or vocabulary based on `XdLinkType`_
+- A *current-state* element to contain the current state of the data based on the workflow engine or vocabulary as a string value
+- A *label* string value element as a descriptive title for the model
+- A *dm-encoding* element used to record the character set encoding of the data. The default is *utf-8*
+- A *dm-language* element to indicate the primary langauge of the data.
+- An *acs* element to point to an external Access Control System such as a controlled vocabulary. This vocabulary informs the values available for the *act* element in all `XdAnyType`_ subtypes.
+- Optional external links based on `XdLinkType`_ may also be defined to expand information regarding the purpose, usage and relationships of this data. 
+
+
+....
+
 XdAnyType
 -----------
 
@@ -842,53 +896,6 @@ An adapter/container, to which any `XdAnyType`_ subtype instance is attached for
 
 
 ....
-
-DMType
--------
-
-**Derived from:** n/a
-
-**Abstract:** False
-
-**Description:**  
-
-This is the root, encapsulating node of a Data Model. The data model wraps the definitions for metadata about the model and it contains the metadata about the data. 
-
-**Model metadata** is based on `Dublin Core <http://dublincore.org/>`_ definitons and includes:
-
-- *title* `A name given to the resource <http://purl.org/dc/terms/title>`_.
-- *creator* `An entity primarily responsible for making the resource <http://purl.org/dc/terms/creator>`_. 
-- *subject* `The topic of the resource <http://purl.org/dc/terms/subject>`_.
-- *rights* `Information about rights held in and over the resource <http://purl.org/dc/terms/rights>`_.
-- *relation* `A related resource <http://purl.org/dc/terms/relation>`_.
-- *coverage* `The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant <http://purl.org/dc/terms/coverage>`_.
-- *type* `The nature or genre of the resource <http://purl.org/dc/terms/type>`_.
-- *identifier* `An unambiguous reference to the resource within a given context <http://purl.org/dc/terms/identifier>`_.
-- *description* `An account of the resource <http://purl.org/dc/terms/description>`_.
-- *publisher* `An entity responsible for making the resource available <http://purl.org/dc/terms/publisher>`_.
-- *date* `A point or period of time associated with an event in the lifecycle of the resource <http://purl.org/dc/terms/date>`_. Here the date indicates date of publication.
-- *format* `The file format, physical medium, or dimensions of the resource <http://purl.org/dc/terms/format>`_.
-- *language* `A language of the resource <http://purl.org/dc/terms/language>`_.
-
-The precise structure and content of **Data Metadata** is designed by the data modeler within a generic framework of components. The components are:
-
-- An audit system based on the `AuditType`_ 
-- An attestation system based on the `AttestationType`_ 
-- The *subject* (person, role, organization, etc.) of the data activity based on the `PartyType`_
-- The *provider* (person, role, organization, etc.) of the activity based on the `PartyType`_
-- Other *participants* (persons, roles, organizations, etc.) of the activity based on the `ParticipationType`_ 
-- A link to a protocol, policy or guideline used to outline or define the structure of the data based on `XdStringType`_
-- A link to a workflow engine or vocabulary based on `XdLinkType`_
-- A *current-state* element to contain the current state of the data based on the workflow engine or vocabulary as a string value
-- A *label* string value element as a descriptive title for the model
-- A *dm-encoding* element used to record the character set encoding of the data. The default is *utf-8*
-- A *dm-language* element to indicate the primary langauge of the data.
-- An *acs* element to point to an external Access Control System such as a controlled vocabulary. This vocabulary informs the values available for the *act* element in all `XdAnyType`_ subtypes.
-- Optional external links based on `XdLinkType`_ may also be defined to expand information regarding the purpose, usage and relationships of this data. 
-
-The *data content* is modeled as a document composed of the subtypes of `XdAnyType`_ with the structure based on the `ItemType`_ subtypes. 
-
-The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.
 
 
 ---------------
