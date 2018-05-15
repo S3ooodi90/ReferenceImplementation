@@ -105,10 +105,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#solution-s">Solution(s)</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#use-case-1">Use Case #1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#use-case-2">Use Case #2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#use-case-3">Use Case #3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#use-case-4">Use Case #4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#use-case-5">Use Case #5</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
@@ -191,24 +191,28 @@
 <div class="section" id="data-errors">
 <h2>Data Errors<a class="headerlink" href="#data-errors" title="Permalink to this headline">¶</a></h2>
 <p>Bad data can <a class="reference external" href="http://www.schwabweb.de/Publikationen/z29.pdf">kill</a>.</p>
-<p>In most cases, though it just means that poor or incorrect decisions are made that do not kill people. However, what causes and what defines <em>poor quality data</em> in today’s electronic information-rich world?</p>
+<p>In most cases, it just means that poor or incorrect decisions are made that do not kill people. However, what causes and what defines <em>poor quality data</em> in today’s electronic information-rich world?</p>
 <p>During the height of application-centric, SQL database usage across enterprises data errors was <a class="reference external" href="https://goo.gl/qTVGvJ">being reported</a> as high as 30% and broader organizational databases <a class="reference external" href="https://goo.gl/WSaUPk">a study found</a> 50% - 80% of criminal records in the US were erroneous. This period was at a time we could easily measure data quality. In 2017, the trend is to dump everything into a data lake and sort it out later for decision making. We expect data quality has gotten worse instead of better.</p>
 <p>Some reasons for poor data quality:</p>
 <ul class="simple">
-<li>Excessive amounts collected; too much data to be collected leads to less time to do it, and “shortcuts” to finish reporting</li>
-<li>Many manual steps; moving figures, summing up, and other manual operations, between different paper forms</li>
-<li>Unclear definitions; wrong interpretation of the fields to be filled out</li>
-<li>Lack of use of information: no incentive to improve quality</li>
-<li>Fragmentation of information systems; can lead to duplication of reporting</li>
-<li>Missing or poorly thought out or poorly implemented constraints at data entry time</li>
-<li>Weak or missing validation in the application and when transferring data between systems</li>
+<li>Excessive amounts of data are collected leading to less time to do it, and “shortcuts” to finish reporting.</li>
+<li>Many manual steps moving figures, summing up, and other manual operations, between different paper forms.</li>
+<li>Unclear definitions and wrong interpretation of the fields to be filled out.</li>
+<li>Lack of use of information no incentive to improve quality.</li>
+<li>Fragmentation of information systems can lead to duplication of reporting.</li>
+<li>Missing or poorly thought out or poorly implemented constraints at data entry time.</li>
+<li>Weak or missing validation in the application and when transferring data between systems.</li>
 </ul>
 <div class="section" id="solution-s">
 <h3>Solution(s)<a class="headerlink" href="#solution-s" title="Permalink to this headline">¶</a></h3>
 <p>When determining that certain data should be captured for later re-use there are specific considerations that should be made. From the very small “what is the datatype of the data” to the very broad “what does this data mean in this context”? As well as why do we want to capture it now? What are the rules or guidelines in place that govern what this data means? Is this data captured at specific locations only? Is there a unit of measure from a possible set of units? As well as many other probing questions.</p>
 <p>When these questions are answered, the data becomes <em>information</em>. This information is what humans use to make decisions. Simple data points are not very useful without the surrounding context. Since we build computers to emulate our decision-making process, then we must be able to encode this context in a way that the computer can interpret and process.</p>
-<p>It is impractical to encode this context in every existing and future application that might need to process this information. S3Model provides the capability to encode and share this contextual information using standards-based technology.</p>
+<p>It is impractical to encode this context in every existing and future application that might need to process this information. S3Model provides the capability to record and share this contextual information using standards-based technology.</p>
 </div>
+</div>
+<div class="section" id="use-case-1">
+<h2>Use Case #1<a class="headerlink" href="#use-case-1" title="Permalink to this headline">¶</a></h2>
+<p><em>Coming Soon!</em></p>
 </div>
 <div class="section" id="use-case-2">
 <h2>Use Case #2<a class="headerlink" href="#use-case-2" title="Permalink to this headline">¶</a></h2>
@@ -220,10 +224,6 @@
 </div>
 <div class="section" id="use-case-4">
 <h2>Use Case #4<a class="headerlink" href="#use-case-4" title="Permalink to this headline">¶</a></h2>
-<p><em>Coming Soon!</em></p>
-</div>
-<div class="section" id="use-case-5">
-<h2>Use Case #5<a class="headerlink" href="#use-case-5" title="Permalink to this headline">¶</a></h2>
 <p><em>Coming Soon!</em></p>
 </div>
 </div>

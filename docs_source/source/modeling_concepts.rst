@@ -45,7 +45,7 @@ DM Versioning
 --------------
 These specifications do not support versioning of DMs. Though XML Schema does have supporting concepts for versioning of schemas, this is not desirable in DMs. The reasons for this decision focuses primarily on the ability to capture the original temporal and ontological semantics for data instances and maintain them for all time. We call this future proofing your data.
 
-A key feature of S3Model is the ability to guarantee the semantics are consistent for any given data instance, for all future time. We determined that any change in the structure or semantics of a DM constitutes a new DM. Since the complexTypes are re-usable (See the RMC description below), an approach that tools should use is to allow a modeler to copy an existing DM and assign a new DM ID to this new DM. Then, allow editing of the required RMCs to meet the new requirements, before publishing the new DM. Reusing RMCs across DMs improves the ability to perform cross-domain data analysis.
+A key feature of S3Model is the ability to guarantee the semantics are consistent for any given data instance, for all future time. We determined that any change in the structure or semantics of a DM constitute a new DM. Since the complexTypes are re-usable (See the RMC description below), an approach that tools should use is to allow a modeler to copy an existing DM and assign a new DM ID to this new DM. Then, allow editing of the required RMCs to meet the new requirements, before publishing the new DM. Reusing RMCs across DMs improves the ability to perform cross-domain data analysis.
 
 When a complexType is changed within this new DM, all of the ancestors in the document model must also be assigned a new name along with its global element name. For example, if the enumerations on an XdStringType restriction are modified, the XdStringType, the wrapper XdAdapterType, the parent ClusterType, any enclosing ClusterTypes,  and the DMType must all get new CUIDs. The DMGen is aware of these requirements and makes this an easier task than manual editing the XML Schema model.
 
@@ -61,11 +61,11 @@ For this reason, the semantic links for RMCs are directly expressed in an xs:app
 
 
 
-	<xs:appinfo>
-	  <rdf:Description rdf:about='&s3m;mc-3a54417d-d1d6-4294-b868-e7a9ab28f8c4'>
-	    <rdfs:isDefinedBy rdf:resource='http%3A//purl.obolibrary.org/obo/RO_0002371'/>
-	  </rdf:Description>
-	</xs:appinfo>
+    <xs:appinfo>
+      <rdf:Description rdf:about='&s3m;mc-3a54417d-d1d6-4294-b868-e7a9ab28f8c4'>
+        <rdfs:isDefinedBy rdf:resource='http%3A//purl.obolibrary.org/obo/RO_0002371'/>
+      </rdf:Description>
+    </xs:appinfo>
 
 
 In this example the subject is &s3m;mc-3a54417d-d1d6-4294-b868-e7a9ab28f8c4 the predicate is rdfs:isDefinedBy and the object is http%3A//purl.obolibrary.org/obo/RO_0002371

@@ -51,13 +51,15 @@ An LIS is in direct conformance to these specifications when;
 
 Compliance
 ----------
+
 These specifications;
-* Are in indirect conformance with ISO/DIS 21090/2008.
-* Comply with applicable sections of ISO 18308/2008.
-* Comply with applicable sections of ISO/TR 20514:2005.
-* Comply with applicable sections of ISO 13606-1:2007.
-* Are in conformance with W3C XML Schema Definition Language (XSD) 1.0
-* Are in conformance with W3C Resource Description Framework (RDF) 1.1
+
+- Are in indirect conformance with ISO/DIS 21090/2008.
+- Comply with applicable sections of ISO 18308/2008.
+- Comply with applicable sections of ISO/TR 20514:2005.
+- Comply with applicable sections of ISO 13606-1:2007.
+- Are in conformance with W3C XML Schema Definition Language (XSD) 1.0
+- Are in conformance with W3C Resource Description Framework (RDF) 1.1
 
 Availability
 ------------

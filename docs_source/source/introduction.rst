@@ -2,7 +2,7 @@
 Introduction
 ============
 
-The Shareable, Structured, Semantic Model (S3Model) specifications are based on more than 10 years of research and development on computable, semantic interoperability. 
+The Shareable, Structured, Semantic Model (S3Model) specifications are based on more than ten years of research and development on computable, semantic interoperability. 
 
 **S3Model is the foundation for your modern, data-centric information management systems**. 
 
