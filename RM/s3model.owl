@@ -87,6 +87,18 @@
     
 
 
+    <!-- https://www.s3model.com/ns/s3m/s3model#constrainsCMC -->
+
+    <owl:ObjectProperty rdf:about="https://www.s3model.com/ns/s3m/s3model#constrainsCMC"/>
+    
+
+
+    <!-- https://www.s3model.com/ns/s3m/s3model#isRMSOf -->
+
+    <owl:ObjectProperty rdf:about="https://www.s3model.com/ns/s3m/s3model#isRMSOf"/>
+    
+
+
     <!-- https://www.s3model.com/ns/s3m/s3model#partOf -->
 
     <owl:ObjectProperty rdf:about="https://www.s3model.com/ns/s3m/s3model#partOf">
@@ -95,9 +107,9 @@
     
 
 
-    <!-- https://www.s3model.com/ns/s3m/s3model/basedOnRM -->
+    <!-- https://www.s3model.com/ns/s3m/s3model/constrainsRM -->
 
-    <owl:ObjectProperty rdf:about="https://www.s3model.com/ns/s3m/s3model/basedOnRM">
+    <owl:ObjectProperty rdf:about="https://www.s3model.com/ns/s3m/s3model/constrainsRM">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model/DM"/>
         <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model/RM"/>
@@ -183,12 +195,12 @@
     <!-- https://www.s3model.com/ns/s3m/s3model/CMC -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/CMC">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#partOf"/>
-                <owl:allValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
+                <owl:someValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/RM"/>
             </owl:Restriction>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <s3m:description xml:lang="en-us">Core Model Component 
 A component model contained in a reference model. A CMC represents a specific core type of component that further contains elements with base datatypes and other CMCs to define its structure.</s3m:description>
     </owl:Class>
@@ -198,12 +210,12 @@ A component model contained in a reference model. A CMC represents a specific co
     <!-- https://www.s3model.com/ns/s3m/s3model/CMS -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/CMS">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#partOf"/>
-                <owl:allValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
+                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model/isCMSOf"/>
+                <owl:someValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
             </owl:Restriction>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <s3m:description xml:lang="en-us">Core Model Symbol
 A CMS represents a CMC in instance data. In practice, it is usually substituted for by a Replaceable Model Symbol (RMS). This substitution is because constraints are expressed in a Replaceable Model Component (RMC) which is then represented by an RMS.</s3m:description>
     </owl:Class>
@@ -213,12 +225,12 @@ A CMS represents a CMC in instance data. In practice, it is usually substituted 
     <!-- https://www.s3model.com/ns/s3m/s3model/DM -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/DM">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#partOf"/>
-                <owl:allValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
+                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model/constrainsRM"/>
+                <owl:someValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/RM"/>
             </owl:Restriction>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <s3m:description xml:lang="en-us">Data Model
  A set of selected RMCs that are constraints on the RM components (CMCs) to represent a domain concept. In the implementation language, there may be additional syntactic conventions required. Caution: Not to be confused with Data Instance.</s3m:description>
     </owl:Class>
@@ -228,12 +240,12 @@ A CMS represents a CMC in instance data. In practice, it is usually substituted 
     <!-- https://www.s3model.com/ns/s3m/s3model/DataInstance -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/DataInstance">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#partOf"/>
-                <owl:allValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
+                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model/isInstanceOf"/>
+                <owl:someValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/DM"/>
             </owl:Restriction>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <s3m:description xml:lang="en-us">A set of data items that report via the isInstanceOf property that it conforms to a DM. In this state, it has not been tested for validation.</s3m:description>
     </owl:Class>
     
@@ -269,12 +281,12 @@ A CMS represents a CMC in instance data. In practice, it is usually substituted 
     <!-- https://www.s3model.com/ns/s3m/s3model/Exception -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/Exception">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#partOf"/>
-                <owl:allValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
+                <owl:someValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/DataInstanceInvalid"/>
             </owl:Restriction>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <s3m:description xml:lang="en">Exceptions indicate that a data instance may be invalid when validated against its model. However, the exceptional value may be explainable and provide valuable contextual information. A specific Exception subclass instance included in the data instance will provide that additional information.</s3m:description>
     </owl:Class>
     
@@ -283,12 +295,12 @@ A CMS represents a CMC in instance data. In practice, it is usually substituted 
     <!-- https://www.s3model.com/ns/s3m/s3model/RM -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/RM">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#partOf"/>
-                <owl:allValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
+                <owl:someValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
             </owl:Restriction>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <s3m:description xml:lang="en-us">Reference Model
 
 A set of components called Core Concept Models (CMCs) that provide structural integrity for a domain concept. Some CMCs are mandatory in DMs, and some are optional. Optionality is defined in each versioned, RM implementation.</s3m:description>
@@ -299,12 +311,12 @@ A set of components called Core Concept Models (CMCs) that provide structural in
     <!-- https://www.s3model.com/ns/s3m/s3model/RMC -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/RMC">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#partOf"/>
-                <owl:allValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
+                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#constrainsCMC"/>
+                <owl:someValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>
             </owl:Restriction>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <s3m:description xml:lang="en-us">Reusable Model Component 
             
 The name RMC is given to a CMC that has been constrained for use in a DM. Through the constraints, an RMC defines a single concept based on syntactic data constraints as well as specified semantics. It is reusable because it can be reused in multiple DMs.</s3m:description>
@@ -315,12 +327,12 @@ The name RMC is given to a CMC that has been constrained for use in a DM. Throug
     <!-- https://www.s3model.com/ns/s3m/s3model/RMS -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/RMS">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#partOf"/>
-                <owl:allValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/S3Model"/>
+                <owl:onProperty rdf:resource="https://www.s3model.com/ns/s3m/s3model#isRMSOf"/>
+                <owl:someValuesFrom rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
             </owl:Restriction>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <s3m:description xml:lang="en-us">Reusable Model Symbol 
 
 The RMS represents an RMC in instance data. Can be considered as a data container for the components of an RMC. All of the RMSs are contained in a DataInstance when in transit.</s3m:description>
@@ -331,6 +343,7 @@ The RMS represents an RMC in instance data. Can be considered as a data containe
     <!-- https://www.s3model.com/ns/s3m/s3model/S3Model -->
 
     <owl:Class rdf:about="https://www.s3model.com/ns/s3m/s3model/S3Model">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <s3m:description xml:lang="en-us">The root concept. The is the source of the abstract concept of S3Model. All of the S3Model classes are related to this class through partOf.</s3m:description>
     </owl:Class>
 </rdf:RDF>
