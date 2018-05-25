@@ -169,9 +169,9 @@
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/size">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
                   <rdfs:label xml:lang="en-us">size</rdfs:label>                  
-                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>                  
+                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>                  
                   <rdfs:comment xml:lang="en-us">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/encoding">
@@ -338,9 +338,9 @@
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType/error">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
                   <rdfs:label xml:lang="en-us">error</rdfs:label>                  
-                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>                  
+                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>                  
                   <rdfs:comment xml:lang="en-us">Error margin of measurement, indicating error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e. no error.</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType/accuracy">
@@ -387,9 +387,9 @@
         </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType/xdcount-value">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
                   <rdfs:label xml:lang="en-us">xdcount-value</rdfs:label>                  
-                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>                  
+                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>                  
                   <rdfs:comment xml:lang="en-us">Integer value of the counted items.</rdfs:comment>
                 </rdf:Description>
   <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/" rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType/xdcount-units">
