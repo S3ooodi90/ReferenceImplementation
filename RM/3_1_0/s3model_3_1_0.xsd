@@ -406,15 +406,15 @@
     <xs:complexContent>
       <xs:extension base="s3m:XdAnyType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="1" name="size" type="xs:int">
+          <xs:element maxOccurs="1" minOccurs="1" name="size" type="xs:integer">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/size">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
                   <rdfs:label xml:lang="en-us">size</rdfs:label>                  
-                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>                  
+                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>                  
                   <rdfs:comment xml:lang="en-us">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
@@ -771,15 +771,15 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="error" type="xs:int">
+          <xs:element maxOccurs="1" minOccurs="0" name="error" type="xs:integer">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Error margin of measurement, indicating error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e. no error.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType/error">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
                   <rdfs:label xml:lang="en-us">error</rdfs:label>                  
-                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>                  
+                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>                  
                   <rdfs:comment xml:lang="en-us">Error margin of measurement, indicating error in the recording method or instrument (+/- %). A logical value of 0 indicates 100% accuracy, i.e. no error.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
@@ -871,15 +871,15 @@
     <xs:complexContent>
       <xs:extension base="s3m:XdQuantifiedType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="0" name="xdcount-value" type="xs:int">
+          <xs:element maxOccurs="1" minOccurs="0" name="xdcount-value" type="xs:integer">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Integer value of the counted items.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType/xdcount-value">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType"/>
-                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
                   <rdfs:label xml:lang="en-us">xdcount-value</rdfs:label>                  
-                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>                  
+                  <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>                  
                   <rdfs:comment xml:lang="en-us">Integer value of the counted items.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
@@ -1510,7 +1510,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:choice maxOccurs="1" minOccurs="1">
-      <xs:element name="invl-int" type="xs:int" nillable="true"/>
+      <xs:element name="invl-int" type="xs:integer" nillable="true"/>
       <xs:element name="invl-decimal" type="xs:decimal" nillable="true"/>
       <xs:element name="invl-float" type="xs:float" nillable="true"/>
       <xs:element name="invl-date" type="xs:date" nillable="true"/>
