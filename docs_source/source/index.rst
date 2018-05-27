@@ -8,7 +8,7 @@ User & Reference Guide
 ======================
 
 
-Status - 3.1.0 Draft
+Status - 3.1.0 Final (Released 2018-05-27)
 
 *Copyright 2009 - 2018 Data Insights, Inc. - All Rights Reserved.*
 

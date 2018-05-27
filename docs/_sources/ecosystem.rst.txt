@@ -53,12 +53,13 @@ A Valid DM Must:
 
 - publish a global element for each complexType where a substitutionGroup is required [#f3]_. The element **MUST** be defined using the same CUID as the complexType with the 'mc-' prefix replaced with 'ms-'.
 - Include the reference model schema from www.S3Model.org using the appropriately defined namespace. Example for release 3.0.0 and later releases, S3Model uses the namespace definition, xmlns:s3m="https://www.s3model.com/ns/s3m/" [#f4]_ ::
-- use the correct substitution group(s) as in this example ::
 
-            <xs:element name="ms-cjffhel02003rf3l37e9k3suc" substitutionGroup="s3m:Audit" type="s3m:mc-cjffhel02003rf3l37e9k3suc"/>
+  - use the correct substitution group(s) as in this example::
 
-- define the required namespaces used in the DM as in Figure 1.
-- identify the minimum `DCMI <https://dublincore.org/>`_ metadata items as shown in Figure 2.
+      <xs:element name="ms-cjffhel02003rf3l37e9k3suc" substitutionGroup="s3m:Audit" type="s3m:mc-cjffhel02003rf3l37e9k3suc"/>
+
+  - define the required namespaces used in the DM as in Figure 1.
+  - identify the minimum `DCMI <https://dublincore.org/>`_ metadata items as shown in Figure 2.
 
 .. image:: _static/dm_header.png
 

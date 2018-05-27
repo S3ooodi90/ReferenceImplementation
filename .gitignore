@@ -10,7 +10,6 @@ mindmaps/*
 #Sphinx
 build/
 
-
 # project files
 *.xpr
 s3m.wpr
