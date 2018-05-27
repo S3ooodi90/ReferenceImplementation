@@ -456,7 +456,7 @@ XdCountType
 
 **Description:** 
 
-Used for countable quantities as an integer such as pregnancies and steps (taken by a physiotherapy patient), the number of cigarettes smoked in a day, etc. The name of the thing being counted must be represented in the units element.
+Used for countable quantities as an integer and a units value such as pregnancies and steps (taken by a physiotherapy patient), the number of cigarettes smoked in a day, etc. The name of the thing being counted must be represented in the units element.
 
 **Misuse:** Not used for amounts of physical entities (which all have standardized units).
 
