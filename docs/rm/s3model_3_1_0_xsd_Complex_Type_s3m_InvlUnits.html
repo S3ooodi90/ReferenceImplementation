@@ -15,7 +15,9 @@ var sourceBoxes= new Array('source_InvlUnits_units-name',
 var diagramBoxes= new Array('diagram_InvlUnits_units-name', 
 				'diagram_InvlUnits_units-uri', 
 				'diagram_InvlUnits');
-var annotationBoxes= new Array('annotations_InvlUnits');
+var annotationBoxes= new Array('annotations_InvlUnits_units-name', 
+				'annotations_InvlUnits_units-uri', 
+				'annotations_InvlUnits');
 var modelBoxes= new Array('model_InvlUnits');
 
       
@@ -309,6 +311,23 @@ var modelBoxes= new Array('model_InvlUnits');
                      </tr>
                      <tr>
                         <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_InvlUnits_units-name" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_InvlUnits_units-name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_InvlUnits_units-name" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">A string representing the units of the interval.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
                            <div class="floatLeft"><b>Diagram</b></div>
                            <div class="floatRight"><input id="button_diagram_InvlUnits_units-name" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_InvlUnits_units-name');" class="control" /></div>
                         </td>
@@ -353,7 +372,18 @@ var modelBoxes= new Array('model_InvlUnits');
                            <div id="source_InvlUnits_units-name" style="display:block">
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"units-name"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span></pre></td>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"units-name"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A string representing the units of the interval.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlUnits/units-name"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">units-name</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A string representing the units of the interval.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -384,6 +414,23 @@ var modelBoxes= new Array('model_InvlUnits');
                      <tr>
                         <td class="firstColumn"><b>Namespace</b></td>
                         <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_InvlUnits_units-uri" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_InvlUnits_units-uri');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_InvlUnits_units-uri" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">A URI to the definition of the units value.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -431,7 +478,18 @@ var modelBoxes= new Array('model_InvlUnits');
                            <div id="source_InvlUnits_units-uri" style="display:block">
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"units-uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">/&gt;</span></pre></td>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"units-uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A URI to the definition of the units value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlUnits/units-uri"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">units-name</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#anyURI"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A URI to the definition of the units value.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
                                  </tr>
                               </table>
                            </div>
@@ -489,7 +547,7 @@ var modelBoxes= new Array('model_InvlUnits');
                         <td class="diagram">
                            <div id="diagram_InvlUnits" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits.png" usemap="#s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits" /><map name="s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits" id="s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits">
                                  <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits.tmp#InvlUnits_units-name" href="s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits.html#InvlUnits_units-name" coords="222,0,338,42" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits.tmp#InvlUnits_units-uri" href="s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits.html#InvlUnits_units-uri" coords="222,52,343,94" /></map></div>
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits.tmp#InvlUnits_units-uri" href="s3model_3_1_0_xsd_Complex_Type_s3m_InvlUnits.html#InvlUnits_units-uri" coords="222,82,343,124" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -532,15 +590,38 @@ var modelBoxes= new Array('model_InvlUnits');
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CMC has these values fixed by the modeler.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#IntervalUnits"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model/CMC"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlUnits"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">InvlUnits</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model/CMC"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CMC has these values fixed by the modeler.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"units-name"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"units-uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"units-name"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A string representing the units of the interval.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlUnits/units-name"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">units-name</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A string representing the units of the interval.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"units-uri"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A URI to the definition of the units value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlUnits/units-uri"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">units-name</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#anyURI"</span><span class="tEl">/&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A URI to the definition of the units value.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
 </span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
                                  </tr>

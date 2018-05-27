@@ -16,8 +16,7 @@
 				'properties_XdFileType_hash-function', 
 				'properties_XdFileType_alt-txt', 
 				'properties_XdFileType_uri', 
-				'properties_XdFileType_media-content', 
-				'properties_XdFileType_text-content');
+				'properties_XdFileType_media-content');
 var usedByBoxes= new Array('usedBy_XdFileType');
 var sourceBoxes= new Array('source_XdFileType_size', 
 				'source_XdFileType_encoding', 
@@ -30,7 +29,6 @@ var sourceBoxes= new Array('source_XdFileType_size',
 				'source_XdFileType_alt-txt', 
 				'source_XdFileType_uri', 
 				'source_XdFileType_media-content', 
-				'source_XdFileType_text-content', 
 				'source_XdFileType');
 var diagramBoxes= new Array('diagram_XdFileType_size', 
 				'diagram_XdFileType_encoding', 
@@ -43,7 +41,6 @@ var diagramBoxes= new Array('diagram_XdFileType_size',
 				'diagram_XdFileType_alt-txt', 
 				'diagram_XdFileType_uri', 
 				'diagram_XdFileType_media-content', 
-				'diagram_XdFileType_text-content', 
 				'diagram_XdFileType');
 var annotationBoxes= new Array('annotations_XdFileType_size', 
 				'annotations_XdFileType_encoding', 
@@ -56,7 +53,6 @@ var annotationBoxes= new Array('annotations_XdFileType_size',
 				'annotations_XdFileType_alt-txt', 
 				'annotations_XdFileType_uri', 
 				'annotations_XdFileType_media-content', 
-				'annotations_XdFileType_text-content', 
 				'annotations_XdFileType');
 var modelBoxes= new Array('model_XdFileType');
 
@@ -377,7 +373,7 @@ var modelBoxes= new Array('model_XdFileType');
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Type</b></td>
-                        <td><b>xs:int</b></td>
+                        <td><b>xs:integer</b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -412,13 +408,15 @@ var modelBoxes= new Array('model_XdFileType');
                            <div id="source_XdFileType_size" style="display:block">
                               <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                  <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"size"</span><span class="tAN"> type=</span><span class="tAV">"xs:int"</span><span class="tEl">&gt;</span><span class="tI">
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"size"</span><span class="tAN"> type=</span><span class="tAV">"xs:integer"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/size"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#int"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#integer"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">size</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#integer"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -526,6 +524,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/encoding"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">encoding</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Name of character encoding scheme in which this value is encoded. Coded from the IANA charcater set table. Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This attribute allows for variations from these assumptions.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -632,6 +632,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/xdfile-language"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#language"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">xdfile-language</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#language"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional indicator of the localised language of the content. Typically reamins optional in the CMC and used at runtime when the content is in a different language from the enclosing CMC.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -738,6 +740,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/formalism"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">formalism</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -844,6 +848,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/media-type"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">media-type</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Media (MIME) type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -950,6 +956,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/compression-type"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">compression-type</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Compression/archiving mime-type. If this elements does not exist then it means there is no compression/archiving. For a list of common mime-types for compression/archiving see: http://en.wikipedia.org/wiki/List_of_archive_formats.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1056,6 +1064,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/hash-result"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">hash-result</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Hash function result of the 'media-content'. There must be a corresponding hash function type listed for this to have any meaning. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1162,6 +1172,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/hash-function"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">hash-function</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Hash function used to compute hash-result. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1268,6 +1280,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/alt-txt"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">alt-txt</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Text to display in lieu of multimedia display or execution.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1366,6 +1380,8 @@ var modelBoxes= new Array('model_XdFileType');
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/uri"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#anyURI"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">uri</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#anyURI"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1412,7 +1428,7 @@ var modelBoxes= new Array('model_XdFileType');
                               <div class="annotation">
                                  <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
                                     <tr>
-                                       <td width="100%"><pre><span class="tT">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span></pre></td>
+                                       <td width="100%"><pre><span class="tT">The content, if stored locally. The CMC modeler chooses either a uri or local content element.</span></pre></td>
                                     </tr>
                                  </table>
                               </div>
@@ -1459,110 +1475,14 @@ var modelBoxes= new Array('model_XdFileType');
                                  <tr>
                                     <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"media-content"</span><span class="tAN"> type=</span><span class="tAV">"xs:base64Binary"</span><span class="tEl">&gt;</span><span class="tI">
   </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally. The CMC modeler chooses either a uri or local content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/media-content"</span><span class="tEl">&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#base64Binary"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
-            </td>
-            <td class="rt_lineRight"></td>
-         </tr>
-         <tr>
-            <td class="rt_cornerBottomLeft"></td>
-            <td class="rt_lineBottom"></td>
-            <td class="rt_cornerBottomRight"></td>
-         </tr>
-      </table><a id="XdFileType_text-content"></a><div class="componentTitle">Element <span class="qname"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:XdFileType')">s3m:XdFileType</a></b> / text-content</span></div>
-      <table class="rt">
-         <tr>
-            <td class="rt_cornerTopLeft"></td>
-            <td class="rt_lineTop"></td>
-            <td class="rt_cornerTopRight"></td>
-         </tr>
-         <tr>
-            <td class="rt_lineLeft"></td>
-            <td class="rt_content">
-               <table class="component">
-                  <tbody>
-                     <tr>
-                        <td class="firstColumn"><b>Namespace</b></td>
-                        <td>No namespace</td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Annotations</b></div>
-                           <div class="floatRight"><input id="button_annotations_XdFileType_text-content" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_XdFileType_text-content');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="annotations_XdFileType_text-content" style="display:block">
-                              <div class="annotation">
-                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                    <tr>
-                                       <td width="100%"><pre><span class="tT">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span></pre></td>
-                                    </tr>
-                                 </table>
-                              </div>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Diagram</b></div>
-                           <div class="floatRight"><input id="button_diagram_XdFileType_text-content" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_XdFileType_text-content');" class="control" /></div>
-                        </td>
-                        <td class="diagram">
-                           <div id="diagram_XdFileType_text-content" style="display:block"><img alt="Diagram" border="0" src="img/s3model_3_1_0_xsd_Element_text-content.png" /></div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn"><b>Type</b></td>
-                        <td><b>xs:string</b></td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Properties</b></div>
-                           <div class="floatRight"><input id="button_properties_XdFileType_text-content" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_XdFileType_text-content');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="properties_XdFileType_text-content" style="display:block">
-                              <table class="propertiesTable">
-                                 <tr>
-                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
-                                    <td><b>simple</b></td>
-                                 </tr>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="firstColumn">
-                           <div class="floatLeft"><b>Source</b></div>
-                           <div class="floatRight"><input id="button_source_XdFileType_text-content" type="image" src="img/btM.gif" value="-" onclick="switchState('source_XdFileType_text-content');" class="control" /></div>
-                        </td>
-                        <td>
-                           <div id="source_XdFileType_text-content" style="display:block">
-                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
-                                 <tr>
-                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"text-content"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-    </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-      </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/text-content"</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">media-content</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#base64Binary"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally. The CMC modeler chooses either a uri or local content element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
   </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
@@ -1632,18 +1552,17 @@ var modelBoxes= new Array('model_XdFileType');
                                  <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_latitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" coords="344,754,556,796" />
                                  <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType_longitude" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" coords="344,836,556,878" />
                                  <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.tmp#XdAnyType" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType" coords="240,3,480,43" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_size" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_size" coords="308,955,405,997" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_encoding" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_encoding" coords="308,1063,424,1105" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_xdfile-language" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_xdfile-language" coords="308,1158,443,1200" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_formalism" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_formalism" coords="308,1253,424,1295" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_media-type" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-type" coords="308,1361,424,1403" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_compression-type" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_compression-type" coords="308,1456,441,1498" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_hash-result" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-result" coords="308,1551,424,1593" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_hash-function" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-function" coords="308,1646,424,1688" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_alt-txt" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_alt-txt" coords="308,1728,424,1770" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_uri" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_uri" coords="379,1810,500,1852" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_media-content" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-content" coords="379,1905,540,1947" />
-                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_text-content" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_text-content" coords="379,2000,495,2042" /></map></div>
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_size" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_size" coords="308,955,431,997" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_encoding" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_encoding" coords="308,1050,424,1092" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_xdfile-language" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_xdfile-language" coords="308,1145,443,1187" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_formalism" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_formalism" coords="308,1240,424,1282" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_media-type" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-type" coords="308,1348,424,1390" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_compression-type" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_compression-type" coords="308,1443,441,1485" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_hash-result" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-result" coords="308,1538,424,1580" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_hash-function" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-function" coords="308,1633,424,1675" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_alt-txt" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_alt-txt" coords="308,1715,424,1757" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_uri" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_uri" coords="379,1797,500,1839" />
+                                 <area alt="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.tmp#XdFileType_media-content" href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-content" coords="379,1892,540,1934" /></map></div>
                         </td>
                      </tr>
                      <tr>
@@ -1681,13 +1600,13 @@ var modelBoxes= new Array('model_XdFileType');
                         <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_XdFileType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_XdFileType');" class="control" /></div>
                         </td>
                         <td>
-                           <div id="model_XdFileType" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_act" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component act{0,1}')">act{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding{0,1}')">encoding{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_xdfile-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdfile-language{0,1}')">xdfile-language{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_formalism" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component formalism{0,1}')">formalism{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-type{0,1}')">media-type{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_compression-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component compression-type{0,1}')">compression-type{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-result" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-result{0,1}')">hash-result{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-function{0,1}')">hash-function{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_alt-txt" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component alt-txt{0,1}')">alt-txt{0,1}</a></b> , (<b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component uri')">uri</a></b> | <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-content')">media-content</a></b> | <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_text-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component text-content')">text-content</a></b>)
+                           <div id="model_XdFileType" style="display:block"><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label{0,1}')">label{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_act" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component act{0,1}')">act{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue*')">s3m:ExceptionalValue*</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb{0,1}')">vtb{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte{0,1}')">vte{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr{0,1}')">tr{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified{0,1}')">modified{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude{0,1}')">latitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude{0,1}')">longitude{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding{0,1}')">encoding{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_xdfile-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdfile-language{0,1}')">xdfile-language{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_formalism" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component formalism{0,1}')">formalism{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-type{0,1}')">media-type{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_compression-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component compression-type{0,1}')">compression-type{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-result" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-result{0,1}')">hash-result{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-function{0,1}')">hash-function{0,1}</a></b> , <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_alt-txt" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component alt-txt{0,1}')">alt-txt{0,1}</a></b> , (<b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component uri')">uri</a></b> | <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-content')">media-content</a></b>)
                            </div>
                         </td>
                      </tr>
                      <tr>
                         <td class="firstColumn"><b>Children</b></td>
-                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_act" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component act')">act</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_alt-txt" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component alt-txt')">alt-txt</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_compression-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component compression-type')">compression-type</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_formalism" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component formalism')">formalism</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-function')">hash-function</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-result" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-result')">hash-result</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-content')">media-content</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-type')">media-type</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_text-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component text-content')">text-content</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component uri')">uri</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_xdfile-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdfile-language')">xdfile-language</a></b></td>
+                        <td><b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_act" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component act')">act</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_alt-txt" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component alt-txt')">alt-txt</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_compression-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component compression-type')">compression-type</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_encoding" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component encoding')">encoding</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_formalism" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component formalism')">formalism</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-function" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-function')">hash-function</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_hash-result" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hash-result')">hash-result</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_latitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component latitude')">latitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_longitude" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component longitude')">longitude</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-content" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-content')">media-content</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_media-type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component media-type')">media-type</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_modified" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component modified')">modified</a></b>, <b><a href="s3model_3_1_0_xsd_Element_s3m_ExceptionalValue.html#ExceptionalValue" target="mainFrame" title="https://www.s3model.com/ns/s3m/" onclick="updatePageTitle('Schema documentation for component s3m:ExceptionalValue')">s3m:ExceptionalValue</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_tr" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tr')">tr</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_uri" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component uri')">uri</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vtb" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vtb')">vtb</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdAnyType.html#XdAnyType_vte" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component vte')">vte</a></b>, <b><a href="s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType_xdfile-language" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xdfile-language')">xdfile-language</a></b></td>
                      </tr>
                      <tr>
                         <td class="firstColumn">
@@ -1706,6 +1625,7 @@ var modelBoxes= new Array('model_XdFileType');
         </span><span class="tEl">&lt;rdfs:isDefinedBy</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdFileType.html#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:subClassOf</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">XdFileType</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model/CMC"</span><span class="tEl">/&gt;</span><span class="tI">
         </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
       </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
     </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1713,13 +1633,15 @@ var modelBoxes= new Array('model_XdFileType');
   </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
     </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"s3m:XdAnyType"</span><span class="tEl">&gt;</span><span class="tI">
       </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
-        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"size"</span><span class="tAN"> type=</span><span class="tAV">"xs:int"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> name=</span><span class="tAV">"size"</span><span class="tAN"> type=</span><span class="tAV">"xs:integer"</span><span class="tEl">&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/size"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#int"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#integer"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">size</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#integer"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1732,6 +1654,8 @@ var modelBoxes= new Array('model_XdFileType');
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/encoding"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">encoding</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Name of character encoding scheme in which this value is encoded. Coded from the IANA charcater set table. Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This attribute allows for variations from these assumptions.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1744,6 +1668,8 @@ var modelBoxes= new Array('model_XdFileType');
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/xdfile-language"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#language"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">xdfile-language</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#language"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Optional indicator of the localised language of the content. Typically reamins optional in the CMC and used at runtime when the content is in a different language from the enclosing CMC.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1756,6 +1682,8 @@ var modelBoxes= new Array('model_XdFileType');
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/formalism"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">formalism</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1768,6 +1696,8 @@ var modelBoxes= new Array('model_XdFileType');
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/media-type"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">media-type</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Media (MIME) type of the original media-content w/o any compression. See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1780,6 +1710,8 @@ var modelBoxes= new Array('model_XdFileType');
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/compression-type"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">compression-type</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Compression/archiving mime-type. If this elements does not exist then it means there is no compression/archiving. For a list of common mime-types for compression/archiving see: http://en.wikipedia.org/wiki/List_of_archive_formats.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1792,6 +1724,8 @@ var modelBoxes= new Array('model_XdFileType');
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/hash-result"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">hash-result</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Hash function result of the 'media-content'. There must be a corresponding hash function type listed for this to have any meaning. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1804,6 +1738,8 @@ var modelBoxes= new Array('model_XdFileType');
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/hash-function"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">hash-function</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Hash function used to compute hash-result. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1816,6 +1752,8 @@ var modelBoxes= new Array('model_XdFileType');
               </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/alt-txt"</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">alt-txt</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Text to display in lieu of multimedia display or execution.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1829,6 +1767,8 @@ var modelBoxes= new Array('model_XdFileType');
                 </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/uri"</span><span class="tEl">&gt;</span><span class="tI">
                   </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                   </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#anyURI"</span><span class="tEl">/&gt;</span><span class="tI">
+                  </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">uri</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                  </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#anyURI"</span><span class="tEl">/&gt;</span><span class="tI">
                   </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
@@ -1836,24 +1776,14 @@ var modelBoxes= new Array('model_XdFileType');
           </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
           </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"media-content"</span><span class="tAN"> type=</span><span class="tAV">"xs:base64Binary"</span><span class="tEl">&gt;</span><span class="tI">
             </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally. The CMC modeler chooses either a uri or local content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
               </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/media-content"</span><span class="tEl">&gt;</span><span class="tI">
                   </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
                   </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#base64Binary"</span><span class="tEl">/&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally as binary content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
-          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"text-content"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
-            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
-              </span><span class="tEl">&lt;xs:appinfo</span><span class="tEl">&gt;</span><span class="tI">
-                </span><span class="tEl">&lt;rdf:Description</span><span class="tAN"> rdf:about=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType/text-content"</span><span class="tEl">&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;rdfs:domain</span><span class="tAN"> rdf:resource=</span><span class="tAV">"https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFileType"</span><span class="tEl">/&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;rdfs:range</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#string"</span><span class="tEl">/&gt;</span><span class="tI">
-                  </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally as text content. The CMC modeler chooses either a uri, a binary-content element or a text-content element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
+                  </span><span class="tEl">&lt;rdfs:label</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">media-content</span><span class="tEl">&lt;/rdfs:label&gt;</span><span class="tI">
+                  </span><span class="tEl">&lt;rdf:type</span><span class="tAN"> rdf:resource=</span><span class="tAV">"http://www.w3.org/2001/XMLSchema#base64Binary"</span><span class="tEl">/&gt;</span><span class="tI">
+                  </span><span class="tEl">&lt;rdfs:comment</span><span class="tAN"> xml:lang=</span><span class="tAV">"en-us"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The content, if stored locally. The CMC modeler chooses either a uri or local content element.</span><span class="tEl">&lt;/rdfs:comment&gt;</span><span class="tI">
                 </span><span class="tEl">&lt;/rdf:Description&gt;</span><span class="tI">
               </span><span class="tEl">&lt;/xs:appinfo&gt;</span><span class="tI">
             </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
