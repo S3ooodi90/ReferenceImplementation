@@ -2,10 +2,39 @@
 Defines the S3Model RM XSD reference model in Python 3.7
 """
 from datetime import datetime, date, time
-from dataclasses import dataclass, field
-from cuid import cuid
 from decimal import Decimal
+from collections import OrderedDict
+from dataclasses import dataclass, field
+from typing import Any
+
+from cuid import cuid
 import ontology
+
+
+def makeCluster():
+    return(ClusterType('New Cluster'))
+
+
+def genMD():
+    """
+    Create a metadata dictionary for the DM.
+    """
+    md = OrderedDict()
+    md['title'] = ''
+    md['creator'] = ''
+    md['subject'] = ''
+    md['rights'] = ''
+    md['relation'] = ''
+    md['coverage'] = ''
+    md['type'] = 'S3Model Data Model (DM)'
+    md['identifier'] = ''
+    md['description'] = ''
+    md['publisher'] = ''
+    md['date'] = '{0:%Y-%m-%dT%H:%M:%S}'.format(datetime.now())
+    md['format'] = ''
+    md['language'] = ''
+
+    return(md)
 
 
 @dataclass
@@ -17,7 +46,7 @@ class ExceptionalValue(object):
     Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for 
     errant or missing data.
     """
-    ev_name: str = field(default='', metadata={'min': 1, 'max': 1})
+    ev_name: str = field(default=None, metadata={'min': 1, 'max': 1})
 
 
 @dataclass
@@ -163,16 +192,16 @@ class XdAnyType(object):
     """
     Serves as an abstract common ancestor of all eXtended data-types (Xd*) in S3Model.
     """
-    mcuid: str = field(default_factory=cuid)
-    label: str = field(default='', metadata={'min': 1, 'max': 1, 'lang': 'en-US'})
-    act: str = field(default='', metadata={'min': 0, 'max': 1})
-    ev: ExceptionalValue = field(default=None, metadata={'min': 0, 'max': 1})
-    vtb: datetime = field(default=None, metadata={'min': 0, 'max': 1})
-    vte: datetime = field(default=None, metadata={'min': 0, 'max': 1})
-    tr: datetime = field(default=None, metadata={'min': 0, 'max': 1})
-    modified: datetime = field(default=None, metadata={'min': 0, 'max': 1})
-    latitude: Decimal = field(default=None, metadata={'min': 0, 'max': 1})
-    longitude: Decimal = field(default=None, metadata={'min': 0, 'max': 1})
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1, 'lang': 'en-US'})
+    act: str = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
+    ev: ExceptionalValue = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
+    vtb: datetime = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
+    vte: datetime = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
+    tr: datetime = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
+    modified: datetime = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
+    latitude: Decimal = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
+    longitude: Decimal = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
 
 
 @dataclass
@@ -181,8 +210,8 @@ class InvlUnits(XdAnyType):
     The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
     temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CMC has these values fixed by the modeler.
     """
-    units_name: str = field(default='', metadata={'min': 1, 'max': 1, 'lang': 'en-US'})
-    units_uri: str = field(default='', metadata={'min': 1, 'max': 1})
+    units_name: str = field(default=None, metadata={'min': 1, 'max': 1, 'lang': 'en-US'})
+    units_uri: str = field(default=None, metadata={'min': 1, 'max': 1})
 
 
 @dataclass
@@ -195,9 +224,9 @@ class XdIntervalType(XdAnyType):
     lower: Any = field(default=None, metadata={'min': 0, 'max': 1})
     upper: Any = field(default=None, metadata={'min': 0, 'max': 1})
     lower_included: bool = field(default=None, metadata={'min': 1, 'max': 1})
-    upper_included: boo1 = field(default=None, metadata={'min': 1, 'max': 1})
+    upper_included: bool = field(default=None, metadata={'min': 1, 'max': 1})
     lower_bounded: bool = field(default=None, metadata={'min': 1, 'max': 1})
-    upper_bounded: boo1 = field(default=None, metadata={'min': 1, 'max': 1})
+    upper_bounded: bool = field(default=None, metadata={'min': 1, 'max': 1})
     interval_units: InvlUnits = field(default=None, metadata={'min': 1, 'max': 1})
 
 
@@ -208,7 +237,7 @@ class ReferenceRangeType(XdAnyType):
     e.g. sex, age, location, and any other factor which affects ranges. 
     May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.
     """
-    definition: str = field(default='', metadata={'min': 1, 'max': 1})
+    definition: str = field(default=None, metadata={'min': 1, 'max': 1})
     interval: XdIntervalType = field(default=None, metadata={'min': 1, 'max': 1})
     is_normal: bool = field(default=None, metadata={'min': 1, 'max': 1})
 
@@ -221,8 +250,8 @@ class XdBooleanType(XdAnyType):
     The elements, 'true-value' and 'false-value' are contained in an xs:choice and only one or the other is instantiated in the instance data with its value coming from the enumerations defined in a Data Model.
     """
     # choice of true_value or false_value
-    true_value: str = field(default='', metadata={'min': 0, 'max': 1})
-    false_value: str = field(default='', metadata={'min': 0, 'max': 1})
+    true_value: str = field(default=None, metadata={'min': 0, 'max': 1})
+    false_value: str = field(default=None, metadata={'min': 0, 'max': 1})
 
 
 @dataclass
@@ -231,9 +260,9 @@ class XdLinkType(XdAnyType):
     Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM. Intended use is to provide a mechanism that can be used to link together Concept Models. The relation element allows for the use of a descriptive
     term for the link with an optional URI pointing to the source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute. Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 'link-value'.
     """
-    link: str = field(default='', metadata={'min': 1, 'max': 1})
-    relation: str = field(default='', metadata={'min': 1, 'max': 1})
-    relation_uri: str = field(default='', metadata={'min': 0, 'max': 1})
+    link: str = field(default=None, metadata={'min': 1, 'max': 1})
+    relation: str = field(default=None, metadata={'min': 1, 'max': 1})
+    relation_uri: str = field(default=None, metadata={'min': 0, 'max': 1})
 
 
 @dataclass
@@ -241,8 +270,8 @@ class XdStringType(XdAnyType):
     """
     The string data type can contain characters, line feeds, carriage returns, and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns  may be specified.
     """
-    xdstring_value: str = field(default='', metadata={'min': 0, 'max': 1})
-    xdstring_language: str = field(default='', metadata={'min': 0, 'max': 1})
+    xdstring_value: str = field(default=None, metadata={'min': 0, 'max': 1})
+    xdstring_language: str = field(default=None, metadata={'min': 0, 'max': 1})
 
 
 @dataclass
@@ -251,16 +280,16 @@ class XdFileType(XdAnyType):
     A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.
     """
     size: int = field(default=None, metadata={'min': 1, 'max': 1})
-    encoding: str = field(default='', metadata={'min': 0, 'max': 1})
-    xdfile_language: str = field(default='', metadata={'min': 0, 'max': 1})
-    formalism: str = field(default='', metadata={'min': 0, 'max': 1})
-    media_type: str = field(default='', metadata={'min': 0, 'max': 1})
-    compression_type: str = field(default='', metadata={'min': 0, 'max': 1})
-    hash_result: str = field(default='', metadata={'min': 0, 'max': 1})
-    hash_function: str = field(default='', metadata={'min': 0, 'max': 1})
-    alt_txt: str = field(default='', metadata={'min': 0, 'max': 1})
+    encoding: str = field(default=None, metadata={'min': 0, 'max': 1})
+    xdfile_language: str = field(default=None, metadata={'min': 0, 'max': 1})
+    formalism: str = field(default=None, metadata={'min': 0, 'max': 1})
+    media_type: str = field(default=None, metadata={'min': 0, 'max': 1})
+    compression_type: str = field(default=None, metadata={'min': 0, 'max': 1})
+    hash_result: str = field(default=None, metadata={'min': 0, 'max': 1})
+    hash_function: str = field(default=None, metadata={'min': 0, 'max': 1})
+    alt_txt: str = field(default=None, metadata={'min': 0, 'max': 1})
     # choice of uri or media_content
-    uri: str = field(default='', metadata={'min': 1, 'max': 1})
+    uri: str = field(default=None, metadata={'min': 1, 'max': 1})
     media_content: bytes = field(default=None, metadata={'min': 1, 'max': 1})
 
 
@@ -270,7 +299,7 @@ class XdOrderedType(XdAnyType):
     Serves as an abstract common ancestor of all ordered types
     """
     referencerange: ReferenceRangeType = field(default=None, metadata={'min': 0, 'max': 1})
-    normal_status: str = field(default='', metadata={'min': 0, 'max': 1})
+    normal_status: str = field(default=None, metadata={'min': 0, 'max': 1})
 
 
 @dataclass
@@ -377,7 +406,7 @@ class ItemType(object):
     """
     The abstract parent of ClusterType and XdAdapterType structural representation types. 
     """
-    pass
+    mcuid: str = field(default_factory=cuid, init=False)
 
 
 @dataclass
@@ -393,8 +422,8 @@ class ClusterType(ItemType):
     """
     The grouping component, which may contain further instances of itself or any eXtended datatype, in an ordered list. This can serve as the root component for arbitrarily complex structures.
     """
-    label: str = field(default='', metadata={'min': 1, 'max': 1})
-    items: ItemType = field(default=None, metadata={'min': 0, 'max': 100})  # max is technically unbounded however a proactical limit is well under 100
+    label: str = field(metadata={'min': 1, 'max': 1})
+    items: ItemType = field(default=None, metadata={'min': 0, 'max': 100}, repr=False)  # max is technically unbounded however a proactical limit is well under 100
 
 
 @dataclass
@@ -403,10 +432,11 @@ class PartyType(object):
     Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
     information is to be anonymous then do not include the details element.
     """
-    label: str = field(default='', metadata={'min': 1, 'max': 1})
-    party_name: str = field(default='', metadata={'min': 0, 'max': 1})
-    party_ref: XdLinkType = field(default='', metadata={'min': 0, 'max': 1})
-    party_details: ClusterType = field(default='', metadata={'min': 0, 'max': 1})
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
+    party_name: str = field(default=None, metadata={'min': 0, 'max': 1})
+    party_ref: XdLinkType = field(default=None, metadata={'min': 0, 'max': 1})
+    party_details: ClusterType = field(default=None, metadata={'min': 0, 'max': 1})
 
 
 @dataclass
@@ -414,7 +444,8 @@ class AuditType(object):
     """
     AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.
     """
-    label: str = field(default='', metadata={'min': 1, 'max': 1})
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
     system_id: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
     system_user: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
     location: ClusterType = field(default=None, metadata={'min': 0, 'max': 1})
@@ -426,7 +457,8 @@ class AttestationType(object):
     """
     Record an attestation by a party of the DM content. The type of attestation is recorded by the reason attribute, which my be coded.
     """
-    label: str = field(default='', metadata={'min': 1, 'max': 1})
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
     view: XdFileType = field(default=None, metadata={'min': 0, 'max': 1})
     proof: XdFileType = field(default=None, metadata={'min': 0, 'max': 1})
     reason: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
@@ -440,7 +472,8 @@ class ParticipationType(object):
     """
     Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.
     """
-    label: str = field(default='', metadata={'min': 1, 'max': 1})
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
     performer: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
     function: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
     mode: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
@@ -453,17 +486,26 @@ class DMType(object):
     """
     This is the root node of a Data Model (DM)
     """
-    label: str = field(default='', metadata={'min': 1, 'max': 1})
-    dm_language: str = field(default='', metadata={'min': 1, 'max': 1})
-    dm_encoding: str = field(default='', metadata={'min': 1, 'max': 1})
-    current_state: str = field(default='', metadata={'min': 1, 'max': 1})
-    data: ClusterType = field(default=None, metadata={'min': 1, 'max': 1})
-    subject: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
-    provider: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
-    participations: ParticipationType = field(default=None, metadata={'min': 0, 'max': 100})  # max is technically unbounded however a proactical limit is well under 100
-    protocol: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
-    workflow: XdLinkType = field(default=None, metadata={'min': 0, 'max': 1})
-    acs: XdLinkType = field(default=None, metadata={'min': 0, 'max': 1})
-    audits: AuditType = field(default=None, metadata={'min': 0, 'max': 100})  # max is technically unbounded however a proactical limit is well under 100
-    attestations: AttestationType = field(default=None, metadata={'min': 0, 'max': 100})  # max is technically unbounded however a proactical limit is well under 100
-    links: XdLinkType = field(default=None, metadata={'min': 0, 'max': 100})  # max is technically unbounded however a proactical limit is well under 100
+    mcuid: str = field(default_factory=cuid, init=False)
+    metadata: dict = field(default_factory=genMD)
+    data: ClusterType = field(default_factory=makeCluster, metadata={'min': 1, 'max': 1}, repr=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
+    dm_language: str = field(default=None, metadata={'min': 1, 'max': 1})
+    dm_encoding: str = field(default=None, metadata={'min': 1, 'max': 1}, repr=False)
+    current_state: str = field(default=None, metadata={'min': 1, 'max': 1}, repr=False)
+    subject: PartyType = field(default=None, metadata={'min': 0, 'max': 1}, repr=False)
+    provider: PartyType = field(default=None, metadata={'min': 0, 'max': 1}, repr=False)
+    participations: ParticipationType = field(default=None, metadata={'min': 0, 'max': 100}, repr=False)  # max is technically unbounded however a proactical limit is well under 100
+    protocol: XdStringType = field(default=None, metadata={'min': 0, 'max': 1}, repr=False)
+    workflow: XdLinkType = field(default=None, metadata={'min': 0, 'max': 1}, repr=False)
+    acs: XdLinkType = field(default=None, metadata={'min': 0, 'max': 1}, repr=False)
+    audits: AuditType = field(default=None, metadata={'min': 0, 'max': 100}, repr=False)  # max is technically unbounded however a proactical limit is well under 100
+    attestations: AttestationType = field(default=None, metadata={'min': 0, 'max': 100}, repr=False)  # max is technically unbounded however a proactical limit is well under 100
+    links: XdLinkType = field(default=None, metadata={'min': 0, 'max': 100}, repr=False)  # max is technically unbounded however a proactical limit is well under 100
+
+    def __repr__(self):
+        return(self.metadata['title'])
+
+    def __post_init__(self):
+        self.label = self.metadata['title']
+
