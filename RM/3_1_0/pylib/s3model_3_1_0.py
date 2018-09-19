@@ -203,6 +203,9 @@ class XdAnyType(object):
     latitude: Decimal = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
     longitude: Decimal = field(default=None, repr=False, metadata={'min': 0, 'max': 1})
 
+    def validate(self):
+        pass
+
 
 @dataclass
 class InvlUnits(XdAnyType):
@@ -504,8 +507,22 @@ class DMType(object):
     links: XdLinkType = field(default=None, metadata={'min': 0, 'max': 100}, repr=False)  # max is technically unbounded however a proactical limit is well under 100
 
     def __repr__(self):
-        return(self.metadata['title'])
+        return("S3Model Data Model\n" + "ID: " + self.mcuid + "\n" + self.showMetadata(self.metadata))
 
     def __post_init__(self):
-        self.label = self.metadata['title']
+        try:
+            assert self.mcuid and isinstance(self.mcuid, str)
+            assert self.metadata['title'] and isinstance(self.metadata['title'], str)
+            assert self.metadata['creator'] and isinstance(self.metadata['creator'], str)
+            assert self.metadata['description'] and isinstance(self.metadata['description'], str)
+        except AssertionError as error:
+            print(error)
 
+        self.label = self.metadata['title']
+        self.metadata['identifier'] = 'dm-' + self.mcuid
+
+    def showMetadata(self, md):
+        mdStr = ''
+        for k, v in md.items():
+            mdStr += k + ': ' + repr(v) + '\n'
+        return(mdStr)
