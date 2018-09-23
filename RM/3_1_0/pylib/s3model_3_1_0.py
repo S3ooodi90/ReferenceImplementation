@@ -4,20 +4,80 @@ Defines the S3Model RM XSD reference model in Python 3.7
 from datetime import datetime, date, time
 from decimal import Decimal
 from collections import OrderedDict
-
+from abc import ABC, abstractmethod
+from ab
 from cuid import cuid
+from validator_collection.checkers import is_url
+
 import ontology
 
 
-# class ExceptionalValue(object):
-# """
-# Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range.
-# The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model
-# are considered sufficiently generic to be useful in many instances.
-# Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for
-# errant or missing data.
-# """
-# ev_name: str = field(default=None, metadata={'min': 1, 'max': 1})
+def units(units, mcuid):
+    """
+    Create XdStringType model as a Units component.
+    units - a XdString object
+    mcuid - the id of the containing object.
+    """
+
+    indent = 2
+    padding = ('').rjust(indent)
+    xdstr = padding.rjust(indent) + '<xs:complexType name="mc-' + unitsid + '">\n'
+    xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+    xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+    xdstr += padding.rjust(indent + 6) + 'Unit constraint for: ' + xml_escape(mcuid.strip()) + '\n'
+    xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+    xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+    xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + unitsid + '">\n'
+    xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(data[10].strip()) + '"/>\n'
+    if data[11]:  # are there additional predicate-object definitions?
+        for po in data[11].splitlines():
+            pred = po.split()[0]
+            obj = po[len(pred):].strip()
+            xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+    xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+    xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+    xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+    xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+    xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdStringType">\n'
+    xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+    xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + data[1].strip() + ' Units"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1"  name="xdstring-value" type="xs:string" fixed="' + data[12].strip() + '"/>\n'
+    xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="xdstring-language" type="xs:language" default="en-US"/>\n'
+    xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+    xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+    xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+    xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+    return(xdstr)
+
+
+class ExceptionalValue(ABC):
+    """
+    Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range.
+    The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model
+    are considered sufficiently generic to be useful in many instances.
+    Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for
+    errant or missing data.
+    """
+
+    @abstractmethod
+    def __init__(self):
+        self._ev_name = ''
+
+    @property
+    @abstractmethod
+    def ev_name(self):
+        """
+        A short title or phase for the exceptional type value.
+        """
+        return self._ev_name
 
 
 # class NIType(ExceptionalValue):
@@ -142,11 +202,12 @@ import ontology
 # ev_name: str = field(default='Not Applicable', metadata={'min': 1, 'max': 1})
 
 
-class XdAnyType:
+class XdAnyType(ABC):
     """
     Serves as an abstract common ancestor of all eXtended data-types (Xd*) in S3Model.
     """
 
+    @abstractmethod
     def __init__(self, label):
         self.mcuid = cuid()  # model cuid
         self.acuid = cuid()  # adapter cuid
@@ -158,18 +219,203 @@ class XdAnyType:
         else:
             raise TypeError('"label" must be a string type. Not a ', type(label))
 
-        self.act = ''
-        self.ev = None
-        self.vtb = None
-        self.vte = None
-        self.tr = None
-        self.modified = None
-        self.latitude = None
-        self.longitude = None
-        self.docs = ''
-        self.definition_url = ''
-        self.pred_obj_list = []
-        self.adapter = True
+        self._adapter = True  # flag set to create an XdAdapter
+        self._docs = None
+        self._definition_url = None
+        self._pred_obj_list = None
+
+        # initially non-required elements are None until they are assigned.
+        self._act = None
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+    @property
+    @abstractmethod
+    def docs(self):
+        """
+        The documentation string.
+        """
+        return self._docs
+
+    @docs.setter
+    @abstractmethod
+    def doc(self, v):
+        if isinstance(v, str):
+            self._docs = v
+        else:
+            raise ValueError("the Documentation value must be a string.")
+
+    @property
+    @abstractmethod
+    def pred_obj_list(self):
+        """
+        A list of additional predicate object pairs to describe the component.
+        """
+        return self._pred_obj_list
+
+    @pred_obj_list.setter
+    @abstractmethod
+    def pred_obj_list(self, v):
+        if isinstance(v, list):
+            self._pred_obj_list = v
+        else:
+            raise ValueError("the Predicate Object List value must be a list of strings.")
+
+    @property
+    @abstractmethod
+    def definition_url(self):
+        """
+        The primary definition URL for the component.
+        """
+        return self._definition_url
+
+    @definition_url.setter
+    @abstractmethod
+    def definition_url(self, v):
+        if is_url(v):
+            self._definition_url = v
+        else:
+            raise ValueError("the Definition URL value must be a valid URL.")
+
+    @property
+    @abstractmethod
+    def act(self):
+        """
+        Access Control Tag. If this is used it must contain a valid term from the Access Control System linked 
+        to by the containing Data Model.
+        """
+        return self._act
+
+    @act.setter
+    @abstractmethod
+    def act(self, v):
+        if isinstance(v, str):
+            self._act = v
+        else:
+            raise ValueError("the Access Control Tag value must be a string.")
+
+    @property
+    @abstractmethod
+    def ev(self):
+        """
+        In an invalid instance, the application can indicate here why data is missing or invalid. 
+        The sub-types are based on ISO 21090 NULL Flavors entries, with additions noted from real-world usage.
+        """
+        return self._ev
+
+    @ev.setter
+    @abstractmethod
+    def ev(self, v):
+        if isinstance(v, ExceptionalValue):
+            self._ev = v
+        else:
+            raise ValueError("the ev value must be an ExceptionalValue.")
+
+    @property
+    @abstractmethod
+    def vtb(self):
+        """
+        Valid Time Begin. If present this must be a valid datetime including timezone. 
+        It is used to indicate the beginning time that information is considered valid.
+        """
+        return self._vtb
+
+    @vtb.setter
+    @abstractmethod
+    def vtb(self, v):
+        if isinstance(v, datetime):
+            self._vtb = v
+        else:
+            raise ValueError("the Valid Time Begin value must be a datetime.")
+
+    @property
+    @abstractmethod
+    def vte(self):
+        """
+        Valid Time End. If present this must be a valid date-time including timezone. 
+        It is used to indicate the ending time that information is considered valid or the time the information expired or 
+        will expire.
+        """
+        return self._vte
+
+    @vte.setter
+    @abstractmethod
+    def vte(self, v):
+        if isinstance(v, datetime):
+            self._vte = v
+        else:
+            raise ValueError("the Valid Time End value must be a datetime.")
+
+    @property
+    @abstractmethod
+    def tr(self):
+        """
+        Time Recorded. If present this must be a valid date-time. 
+        It is used to indicate the the actual date and time the data was recorded.
+        """
+        return self._tr
+
+    @tr.setter
+    @abstractmethod
+    def tr(self, v):
+        if isinstance(v, datetime):
+            self._tr = v
+        else:
+            raise ValueError("the Time Recorded value must be a datetime.")
+
+    @property
+    @abstractmethod
+    def modified(self):
+        """
+        Time Modified. If present this must be a valid date-time stamp. 
+        It is used to indicate the the actual date and time the data was last changed.
+        """
+        return self._modified
+
+    @modified.setter
+    @abstractmethod
+    def modified(self, v):
+        if isinstance(v, datetime):
+            self._modified = v
+        else:
+            raise ValueError("the Modified value must be a datetime.")
+
+    @property
+    @abstractmethod
+    def latitude(self):
+        """
+        Latitude in decimal format. Value range -90.000000 to 90.000000.
+        """
+        return self._latitude
+
+    @latitude.setter
+    @abstractmethod
+    def latitude(self, v):
+        if isinstance(v, Decimal) and (-90.00 >= v <= 90.00):
+            self._latitude = v
+        else:
+            raise ValueError("the Latitude value must be a decimal between -90.00 and 90.00.")
+
+    @property
+    @abstractmethod
+    def longitude(self):
+        """
+        Longitude in decimal format. Value range -180.000000 to 180.000000.
+        """
+        return self._longitude
+
+    @longitude.setter
+    @abstractmethod
+    def longitude(self, v):
+        if isinstance(v, Decimal) and (-180.00 >= v <= 180.00):
+            self._latitude = v
+        else:
+            raise ValueError("the Longitude value must be a decimal between -180.00 and 180.00.")
 
     def __str__(self):
         return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
@@ -303,8 +549,6 @@ class XdBooleanType(XdAnyType):
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
         xdstr += padding.rjust(indent) + '</xs:complexType>\n'
-
-        xdstr += units(unitsID, data)
 
         return(xdstr)
 
