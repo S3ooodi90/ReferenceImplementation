@@ -5,11 +5,28 @@ from datetime import datetime, date, time
 from decimal import Decimal
 from collections import OrderedDict
 from abc import ABC, abstractmethod
-from ab
+from xml.sax.saxutils import escape
+from urllib.parse import quote
+
 from cuid import cuid
-from validator_collection.checkers import is_url
+from validator_collection.checkers import is_url, is_string
 
 import ontology
+
+xml_escape_table = {
+    '"': "&quot;",
+    "'": "&apos;"
+}
+
+xml_unescape_table = {v: k for k, v in xml_escape_table.items()}
+
+
+def xml_escape(text):
+    return escape(text, xml_escape_table)
+
+
+def xml_unescape(text):
+    return unescape(text, xml_unescape_table)
 
 
 def units(units, mcuid):
@@ -219,13 +236,11 @@ class XdAnyType(ABC):
         else:
             raise TypeError('"label" must be a string type. Not a ', type(label))
 
-        self._adapter = True  # flag set to create an XdAdapter
-        self._docs = None
-        self._definition_url = None
-        self._pred_obj_list = None
-
-        # initially non-required elements are None until they are assigned.
-        self._act = None
+        self._adapter = True  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
         self._ev = None
         self._vtb = None
         self._vte = None
@@ -235,7 +250,6 @@ class XdAnyType(ABC):
         self._longitude = None
 
     @property
-    @abstractmethod
     def docs(self):
         """
         The documentation string.
@@ -243,7 +257,6 @@ class XdAnyType(ABC):
         return self._docs
 
     @docs.setter
-    @abstractmethod
     def doc(self, v):
         if isinstance(v, str):
             self._docs = v
@@ -251,7 +264,6 @@ class XdAnyType(ABC):
             raise ValueError("the Documentation value must be a string.")
 
     @property
-    @abstractmethod
     def pred_obj_list(self):
         """
         A list of additional predicate object pairs to describe the component.
@@ -259,7 +271,6 @@ class XdAnyType(ABC):
         return self._pred_obj_list
 
     @pred_obj_list.setter
-    @abstractmethod
     def pred_obj_list(self, v):
         if isinstance(v, list):
             self._pred_obj_list = v
@@ -267,7 +278,6 @@ class XdAnyType(ABC):
             raise ValueError("the Predicate Object List value must be a list of strings.")
 
     @property
-    @abstractmethod
     def definition_url(self):
         """
         The primary definition URL for the component.
@@ -275,7 +285,6 @@ class XdAnyType(ABC):
         return self._definition_url
 
     @definition_url.setter
-    @abstractmethod
     def definition_url(self, v):
         if is_url(v):
             self._definition_url = v
@@ -283,7 +292,6 @@ class XdAnyType(ABC):
             raise ValueError("the Definition URL value must be a valid URL.")
 
     @property
-    @abstractmethod
     def act(self):
         """
         Access Control Tag. If this is used it must contain a valid term from the Access Control System linked 
@@ -292,7 +300,6 @@ class XdAnyType(ABC):
         return self._act
 
     @act.setter
-    @abstractmethod
     def act(self, v):
         if isinstance(v, str):
             self._act = v
@@ -300,7 +307,6 @@ class XdAnyType(ABC):
             raise ValueError("the Access Control Tag value must be a string.")
 
     @property
-    @abstractmethod
     def ev(self):
         """
         In an invalid instance, the application can indicate here why data is missing or invalid. 
@@ -309,7 +315,6 @@ class XdAnyType(ABC):
         return self._ev
 
     @ev.setter
-    @abstractmethod
     def ev(self, v):
         if isinstance(v, ExceptionalValue):
             self._ev = v
@@ -317,7 +322,6 @@ class XdAnyType(ABC):
             raise ValueError("the ev value must be an ExceptionalValue.")
 
     @property
-    @abstractmethod
     def vtb(self):
         """
         Valid Time Begin. If present this must be a valid datetime including timezone. 
@@ -326,7 +330,6 @@ class XdAnyType(ABC):
         return self._vtb
 
     @vtb.setter
-    @abstractmethod
     def vtb(self, v):
         if isinstance(v, datetime):
             self._vtb = v
@@ -334,7 +337,6 @@ class XdAnyType(ABC):
             raise ValueError("the Valid Time Begin value must be a datetime.")
 
     @property
-    @abstractmethod
     def vte(self):
         """
         Valid Time End. If present this must be a valid date-time including timezone. 
@@ -344,7 +346,6 @@ class XdAnyType(ABC):
         return self._vte
 
     @vte.setter
-    @abstractmethod
     def vte(self, v):
         if isinstance(v, datetime):
             self._vte = v
@@ -352,7 +353,6 @@ class XdAnyType(ABC):
             raise ValueError("the Valid Time End value must be a datetime.")
 
     @property
-    @abstractmethod
     def tr(self):
         """
         Time Recorded. If present this must be a valid date-time. 
@@ -361,7 +361,6 @@ class XdAnyType(ABC):
         return self._tr
 
     @tr.setter
-    @abstractmethod
     def tr(self, v):
         if isinstance(v, datetime):
             self._tr = v
@@ -369,7 +368,6 @@ class XdAnyType(ABC):
             raise ValueError("the Time Recorded value must be a datetime.")
 
     @property
-    @abstractmethod
     def modified(self):
         """
         Time Modified. If present this must be a valid date-time stamp. 
@@ -378,7 +376,6 @@ class XdAnyType(ABC):
         return self._modified
 
     @modified.setter
-    @abstractmethod
     def modified(self, v):
         if isinstance(v, datetime):
             self._modified = v
@@ -386,7 +383,6 @@ class XdAnyType(ABC):
             raise ValueError("the Modified value must be a datetime.")
 
     @property
-    @abstractmethod
     def latitude(self):
         """
         Latitude in decimal format. Value range -90.000000 to 90.000000.
@@ -394,7 +390,6 @@ class XdAnyType(ABC):
         return self._latitude
 
     @latitude.setter
-    @abstractmethod
     def latitude(self, v):
         if isinstance(v, Decimal) and (-90.00 >= v <= 90.00):
             self._latitude = v
@@ -402,7 +397,6 @@ class XdAnyType(ABC):
             raise ValueError("the Latitude value must be a decimal between -90.00 and 90.00.")
 
     @property
-    @abstractmethod
     def longitude(self):
         """
         Longitude in decimal format. Value range -180.000000 to 180.000000.
@@ -410,7 +404,6 @@ class XdAnyType(ABC):
         return self._longitude
 
     @longitude.setter
-    @abstractmethod
     def longitude(self, v):
         if isinstance(v, Decimal) and (-180.00 >= v <= 180.00):
             self._latitude = v
@@ -420,40 +413,231 @@ class XdAnyType(ABC):
     def __str__(self):
         return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
 
-
-# class InvlUnits(XdAnyType):
-    # """
-    # The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
-    # temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CMC has these values fixed by the modeler.
-    # """
-    # units_name: str = field(default=None, metadata={'min': 1, 'max': 1, 'lang': 'en-US'})
-    # units_uri: str = field(default=None, metadata={'min': 1, 'max': 1})
+    @abstractmethod
+    def asXSD(self):
+        """
+        Must be implemented by all subtypes.
+        """
+        pass
 
 
-# class XdIntervalType(XdAnyType):
-    # """
-    # Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a
-    # comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and
-    # are ordered. In S3Model, they are primarily used in defining reference ranges. The type of upper and lower must be set in the DM.
-    # """
-    # lower: Any = field(default=None, metadata={'min': 0, 'max': 1})
-    # upper: Any = field(default=None, metadata={'min': 0, 'max': 1})
-    # lower_included: bool = field(default=None, metadata={'min': 1, 'max': 1})
-    # upper_included: bool = field(default=None, metadata={'min': 1, 'max': 1})
-    # lower_bounded: bool = field(default=None, metadata={'min': 1, 'max': 1})
-    # upper_bounded: bool = field(default=None, metadata={'min': 1, 'max': 1})
-    # interval_units: InvlUnits = field(default=None, metadata={'min': 1, 'max': 1})
+class InvlUnits:
+    """
+    The units designation for an Interval is slightly different than other complexTypes. This complexType is composed of a units name and a URI because in a ReferenceRange parent there can be different units for different ranges. Example: A XdQuantity of
+    temperature can have a range in degrees Fahrenheit and one in degrees Celsius. The derived complexType in the CMC has these values fixed by the modeler.
+    """
+
+    def __init__(self, units_name, units_uri):
+        self.mcuid = cuid()
+        if is_string(units_name, minimum_length=1):
+            self.units_name = units_name
+        else:
+            raise ValueError("The units_name must be a string of at least one character.")
+
+        if is_url(units_uri):
+            self.units_uri = units_uri
+        else:
+            raise ValueError("The units_uri must be a valid URL.")
 
 
-# class ReferenceRangeType(XdAnyType):
-    # """
-    # Defines a named range to be associated with any ORDERED datum. Each such range is sensitive to the context,
-    # e.g. sex, age, location, and any other factor which affects ranges.
-    # May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.
-    # """
-    # definition: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # interval: XdIntervalType = field(default=None, metadata={'min': 1, 'max': 1})
-    # is_normal: bool = field(default=None, metadata={'min': 1, 'max': 1})
+invlTypes = [int, Decimal, float, date, time, datetime]
+
+
+class XdIntervalType(XdAnyType):
+    """
+    Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a
+    comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and
+    are ordered. In S3Model, they are primarily used in defining reference ranges. The type of upper and lower must be set in the DM.
+    """
+
+    def __init__(self, label):
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        self._lower = None
+        self._upper = None
+        self._lower_included = None
+        self._upper_included = None
+        self._lower_bounded = None
+        self._upper_bounded = None
+        self._interval_units = None
+
+    @property
+    def lower(self):
+        """
+        Defines the lower value of the interval.
+        """
+        return self._lower
+
+    @lower.setter
+    def lower(self, v):
+        if type(self.v) in invlTypes:
+            if type(self._upper) is None:
+                self._lower = v
+            elif (type(self._upper) == type(self.v)):
+                self._lower = v
+            else:
+                raise ValueError("The lower and upper types must match")
+        else:
+            raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
+
+    @property
+    def upper(self):
+        """
+        Defines the upper value of the interval.
+        """
+        return self._upper
+
+    @upper.setter
+    def upper(self, v):
+        if type(self.v) in invlTypes:
+            if type(self._lower) is None:
+                self._upper = v
+            elif (type(self._lower) == type(self.v)):
+                self._upper = v
+            else:
+                raise ValueError("The lower and upper types must match")
+        else:
+            raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
+
+    @property
+    def lower_included(self):
+        """
+        Is the lower value of the interval inclusive?
+        """
+        return self._lower_included
+
+    @lower_included.setter
+    def lower_included(self, v):
+        if isinstance(v, bool):
+            self._lower_included = v
+        else:
+            raise ValueError("the lower_included value must be a Boolean.")
+
+    @property
+    def upper_included(self):
+        """
+        Is the upper value of the interval inclusive?
+        """
+        return self._upper_included
+
+    @upper_included.setter
+    def upper_included(self, v):
+        if isinstance(v, bool):
+            self._upper_included = v
+        else:
+            raise ValueError("the upper_included value must be a Boolean.")
+
+    @property
+    def lower_bounded(self):
+        """
+        Is the lower value of the interval bounded?
+        """
+        return self._lower_bounded
+
+    @lower_bounded.setter
+    def lower_bounded(self, v):
+        if isinstance(v, bool):
+            self._lower_bounded = v
+        else:
+            raise ValueError("the lower_bounded value must be a Boolean.")
+
+    @property
+    def upper_bounded(self):
+        """
+        Is the upper value of the interval bounded?
+        """
+        return self._upper_bounded
+
+    @upper_bounded.setter
+    def upper_bounded(self, v):
+        if isinstance(v, bool):
+            self._upper_bounded = v
+        else:
+            raise ValueError("the upper_bounded value must be a Boolean.")
+
+    @property
+    def interval_units(self):
+        """
+        Defines the the units for this Interval.
+        """
+        return self._interval_units
+
+    @interval_units.setter
+    def interval_units(self, v):
+        if isinstance(v, InvlUnits):
+            self._interval_units = v
+        else:
+            raise ValueError("the interval_units value must be a InvlUnits.")
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
+
+
+class ReferenceRangeType(XdAnyType):
+    """
+    Defines a named range to be associated with any ORDERED datum. Each such range is sensitive to the context,
+    e.g. sex, age, location, and any other factor which affects ranges.
+    May be used to represent high, low, normal, therapeutic, dangerous, critical, etc. ranges that are constrained by an interval.
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        self._definition = ''
+        self._interval = None
+        self._is_normal = False
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
 
 
 class XdBooleanType(XdAnyType):
@@ -475,6 +659,20 @@ class XdBooleanType(XdAnyType):
         super().__init__(label)
         self.true_value = None
         self.false_value = None
+
+        self._adapter = True  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
         if isinstance(options, dict):
             k = options.keys()
             if len(k) == 2 and 'trues' in k and 'falses' in k:
@@ -498,7 +696,7 @@ class XdBooleanType(XdAnyType):
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
-        if self.adapter:
+        if self._adapter:
             xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
             xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
             xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
@@ -553,264 +751,620 @@ class XdBooleanType(XdAnyType):
         return(xdstr)
 
 
-# class XdLinkType(XdAnyType):
-    # """
-    # Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM. Intended use is to provide a mechanism that can be used to link together Concept Models. The relation element allows for the use of a descriptive
-    # term for the link with an optional URI pointing to the source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute. Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 'link-value'.
-    # """
-    # link: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # relation: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # relation_uri: str = field(default=None, metadata={'min': 0, 'max': 1})
+class XdLinkType(XdAnyType):
+    """
+    Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM. 
+    Intended use is to provide a mechanism that can be used to link together Data Models. 
+    The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the 
+    source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute. 
+    Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 
+    'link-value'.
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        self._link = ''
+        self._relation = ''
+        self._relation_uri = ''
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
 
 
-# class XdStringType(XdAnyType):
-    # """
-    # The string data type can contain characters, line feeds, carriage returns, and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns  may be specified.
-    # """
-    # xdstring_value: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdstring_language: str = field(default=None, metadata={'min': 0, 'max': 1})
+class XdStringType(XdAnyType):
+    """
+    The string data type can contain characters, line feeds, carriage returns, and tab characters. The use cases are for any free form text entry or for any enumerated lists. Additionally the minimum and maximum lengths may be set and regular expression patterns  may be specified.
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        self._xdstring_value = ''
+        self._xdstring_language = ''
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
 
 
-# class XdFileType(XdAnyType):
-    # """
-    # A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.
-    # """
-    # size: int = field(default=None, metadata={'min': 1, 'max': 1})
-    # encoding: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdfile_language: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # formalism: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # media_type: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # compression_type: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # hash_result: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # hash_function: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # alt_txt: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # choice of uri or media_content
-    # uri: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # media_content: bytes = field(default=None, metadata={'min': 1, 'max': 1})
+class XdFileType(XdAnyType):
+    """
+    A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. This type provides a choice of embedding the content into the data or using a URL to point to the content.
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        self._size = None
+        self._encoding = ''
+        self._xdfile_language = ''
+        self._formalism = ''
+        self._media_type = ''
+        self._compression_type = ''
+        self._hash_result = ''
+        self._hash_function = ''
+        self._alt_txt = ''
+        # choice of uri or media_content
+        self._uri = ''
+        self._media_content = None
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
 
 
-# class XdOrderedType(XdAnyType):
-    # """
-    # Serves as an abstract common ancestor of all ordered types
-    # """
-    # referencerange: ReferenceRangeType = field(default=None, metadata={'min': 0, 'max': 1})
-    # normal_status: str = field(default=None, metadata={'min': 0, 'max': 1})
+class XdOrderedType(XdAnyType):
+    """
+    Serves as an abstract common ancestor of all ordered types
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        self._referencerange = None
+        self._normal_status = ''
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
 
 
-# class XdOrdinalType(XdOrderedType):
-    # """
-    # Models rankings and scores, e.g., pain, Apgar values, educational level, and the Likert Scale where there is;
+class XdOrdinalType(XdOrderedType):
+    """
+    Models rankings and scores, e.g., pain, Apgar values, educational level, and the Likert Scale where there is;
 
-        # * implied ordering,
-        # * no implication that the distance between each value is constant, and
-        # * the total number of values is finite.
+        * implied ordering,
+        * no implication that the distance between each value is constant, and
+        * the total number of values is finite.
 
-        # Note that the term ‘ordinal’ in mathematics means natural numbers only. In this case, any decimal is allowed since negative, and zero values are used by medical and other professionals for centering values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25
+        Note that the term ‘ordinal’ in mathematics means natural numbers only. In this case, any decimal is allowed since negative, and zero values are used by medical and other professionals for centering values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25
 
-        # Examples of sets of ordinal values are;
+        Examples of sets of ordinal values are;
 
-        # * -3, -2, -1, 0, 1, 2, 3 -- reflex response values
-        # * 0, 1, 2 -- Apgar values
+        * -3, -2, -1, 0, 1, 2, 3 -- reflex response values
+        * 0, 1, 2 -- Apgar values
 
-        # Also used for recording any clinical or other data which is customarily recorded using symbolic values. Examples;
+        Also used for recording any clinical or other data which is customarily recorded using symbolic values. Examples;
 
-        # * the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;
-        # * for non-haemolysed blood {neg, trace, moderate};
-        # * for haemolysed blood {neg, trace, small, moderate, large}.
+        * the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;
+        * for non-haemolysed blood {neg, trace, moderate};
+        * for haemolysed blood {neg, trace, small, moderate, large}.
 
-        # Elements *ordinal* and *symbol* MUST have the same number of enumerations in the RMC.
-    # """
-    # ordinal: Decimal = field(default=None, metadata={'min': 1, 'max': 1})
-    # symbol: str = field(default=None, metadata={'min': 1, 'max': 1})
+        Elements *ordinal* and *symbol* MUST have the same number of enumerations in the RMC.
+    """
 
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
 
-# class XdQuantifiedType(XdOrderedType):
-    # """
-    # Serves as an abstract common ancestor of all quantifiable types
-    # """
-    # constrained to list [None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate']
-    # magnitude_status: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # error: int = field(default=None, metadata={'min': 0, 'max': 1})
-    # accuracy: Decimal = field(default=None, metadata={'min': 0, 'max': 1})
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
 
+        self._ordinal = None
+        self._symbol = ''
 
-# class XdCountType(XdQuantifiedType):
-    # """
-    # Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc. The thing(s) being counted must be represented in the units element. Misuse:Not used for amounts of physical entities (which all have standardized units).
-    # """
-    # xdcount_value: int = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdcount_units: XdStringType = field(default=None, metadata={'min': 1, 'max': 1})
-
-
-# class XdQuantityType(XdQuantifiedType):
-    # """
-    # Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.
-    # """
-    # xdquantity_value: int = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdquantity_units: XdStringType = field(default=None, metadata={'min': 1, 'max': 1})
-
-
-# class XdFloatType(XdQuantifiedType):
-    # """
-    # Quantified type representing specific a value as a floating point number and optional units.
-    # """
-    # xdfloat_value: float = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdfloat_units: XdStringType = field(default=None, metadata={'min': 1, 'max': 1})
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
 
 
-# class XdRatioType(XdQuantifiedType):
-    # """
-    # Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
-    # when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.
-    # """
+class XdQuantifiedType(XdOrderedType):
+    """
+    Serves as an abstract common ancestor of all quantifiable types
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        # constrained to list [None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate']
+        self._magnitude_status = ''
+        self._error = None
+        self._accuracy = None
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
+
+
+class XdCountType(XdQuantifiedType):
+    """
+    Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc. The thing(s) being counted must be represented in the units element. Misuse:Not used for amounts of physical entities (which all have standardized units).
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        self._xdcount_value = None
+        self._xdcount_units = None
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
+
+
+class XdQuantityType(XdQuantifiedType):
+    """
+    Quantified type representing specific quantities, i.e. quantities expressed as a magnitude and units. Can also be used for time durations, where it is more convenient to treat these as simply a number of individual seconds, minutes, hours, days, months, years, etc. when no temporal calculation is to be performed.
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+        self._xdquantity_value = None
+        self._xdquantity_units = None
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
+
+
+class XdFloatType(XdQuantifiedType):
+    """
+    Quantified type representing specific a value as a floating point number and optional units.
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
+
+    xdfloat_value: float = field(default=None, metadata={'min': 0, 'max': 1})
+    xdfloat_units: XdStringType = field(default=None, metadata={'min': 1, 'max': 1})
+
+
+class XdRatioType(XdQuantifiedType):
+    """
+    Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
+    when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
+
     # constrained to list ['ratio','rate', 'proportion']
-    # ratio_type: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # numerator: float = field(default=None, metadata={'min': 0, 'max': 1})
-    # denominator: float = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdratio_value: float = field(default=None, metadata={'min': 0, 'max': 1})
-    # numerator_units: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
-    # denominator_units: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdratio_units: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
+    ratio_type: str = field(default=None, metadata={'min': 1, 'max': 1})
+    numerator: float = field(default=None, metadata={'min': 0, 'max': 1})
+    denominator: float = field(default=None, metadata={'min': 0, 'max': 1})
+    xdratio_value: float = field(default=None, metadata={'min': 0, 'max': 1})
+    numerator_units: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
+    denominator_units: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
+    xdratio_units: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
 
 
-# class XdTemporalType(XdOrderedType):
-    # """
-    # Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.
-    # """
+class XdTemporalType(XdOrderedType):
+    """
+    Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.
+    """
+
+    def __init__(self, label):
+        super().__init__(label)
+        self.mcuid = cuid()  # model cuid
+        self.acuid = cuid()  # adapter cuid
+        if isinstance(label, str):
+            if len(label) > 1:
+                self.label = label
+            else:
+                raise ValueError('label must be at least 2 characters in length')
+        else:
+            raise TypeError('"label" must be a string type. Not a ', type(label))
+
+        self._adapter = False  # flag set to create an XdAdapter for use in a Cluster
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
+        self._act = ''
+        self._ev = None
+        self._vtb = None
+        self._vte = None
+        self._tr = None
+        self._modified = None
+        self._latitude = None
+        self._longitude = None
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        return("\n Missing Implementation\n")
+
     # TODO: fix the types
-    # xdtemporal_date: date = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdtemporal_time: time = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdtemporal_datetime: datetime = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdtemporal_day: date = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdtemporal_month: date = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdtemporal_year: date = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdtemporal_year_month: date = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdtemporal_month_day: date = field(default=None, metadata={'min': 0, 'max': 1})
-    # xdtemporal_duration: date = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_date: date = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_time: time = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_datetime: datetime = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_day: date = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_month: date = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_year: date = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_year_month: date = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_month_day: date = field(default=None, metadata={'min': 0, 'max': 1})
+    xdtemporal_duration: date = field(default=None, metadata={'min': 0, 'max': 1})
 
 
-# class ItemType(object):
-    # """
-    # The abstract parent of ClusterType and XdAdapterType structural representation types.
-    # """
-    # mcuid: str = field(default_factory=cuid, init=False)
+class ItemType(ABC):
+    """
+    The abstract parent of ClusterType and XdAdapterType structural representation types.
+    """
+    mcuid: str = field(default_factory=cuid, init=False)
 
 
-# class XdAdapterType(ItemType):
-    # """
-    # The leaf variant of Item, to which any XdAnyType subtype instance is attached for use in a Cluster.
-    # """
-    # XdAdapter_value: XdAnyType = field(default=None, metadata={'min': 0, 'max': 100})  # max is technically unbounded however a proactical limit is well under 100
+class XdAdapterType(ItemType):
+    """
+    The leaf variant of Item, to which any XdAnyType subtype instance is attached for use in a Cluster.
+    """
+    XdAdapter_value: XdAnyType = field(default=None, metadata={'min': 0, 'max': 100})  # max is technically unbounded however a proactical limit is well under 100
 
 
-# class ClusterType(ItemType):
-    # """
-    # The grouping component, which may contain further instances of itself or any eXtended datatype, in an ordered list. This can serve as the root component for arbitrarily complex structures.
-    # """
-    # label: str = field(metadata={'min': 1, 'max': 1})
-    # items: ItemType = field(default=None, metadata={'min': 0, 'max': 100}, repr=False)  # max is technically unbounded however a proactical limit is well under 100
+class ClusterType(ItemType):
+    """
+    The grouping component, which may contain further instances of itself or any eXtended datatype, in an ordered list. This can serve as the root component for arbitrarily complex structures.
+    """
+    label: str = field(metadata={'min': 1, 'max': 1})
+    items: ItemType = field(default=None, metadata={'min': 0, 'max': 100}, repr=False)  # max is technically unbounded however a proactical limit is well under 100
 
 
-# class PartyType(object):
-    # """
-    # Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
-    # information is to be anonymous then do not include the details element.
-    # """
-    # mcuid: str = field(default_factory=cuid, init=False)
-    # label: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # party_name: str = field(default=None, metadata={'min': 0, 'max': 1})
-    # party_ref: XdLinkType = field(default=None, metadata={'min': 0, 'max': 1})
-    # party_details: ClusterType = field(default=None, metadata={'min': 0, 'max': 1})
+class PartyType:
+    """
+    Description of a party, including an optional external link to data for this party in a demographic or other identity management system. An additional details element provides for the inclusion of information related to this party directly. If the party
+    information is to be anonymous then do not include the details element.
+    """
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
+    party_name: str = field(default=None, metadata={'min': 0, 'max': 1})
+    party_ref: XdLinkType = field(default=None, metadata={'min': 0, 'max': 1})
+    party_details: ClusterType = field(default=None, metadata={'min': 0, 'max': 1})
 
 
-# class AuditType(object):
-    # """
-    # AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.
-    # """
-    # mcuid: str = field(default_factory=cuid, init=False)
-    # label: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # system_id: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
-    # system_user: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
-    # location: ClusterType = field(default=None, metadata={'min': 0, 'max': 1})
-    # timestamp: datetime = field(default=None, metadata={'min': 1, 'max': 1})
+class AuditType:
+    """
+    AuditType provides a mechanism to identify the who/where/when tracking of instances as they move from system to system.
+    """
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
+    system_id: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
+    system_user: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
+    location: ClusterType = field(default=None, metadata={'min': 0, 'max': 1})
+    timestamp: datetime = field(default=None, metadata={'min': 1, 'max': 1})
 
 
-# class AttestationType(object):
-    # """
-    # Record an attestation by a party of the DM content. The type of attestation is recorded by the reason attribute, which my be coded.
-    # """
-    # mcuid: str = field(default_factory=cuid, init=False)
-    # label: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # view: XdFileType = field(default=None, metadata={'min': 0, 'max': 1})
-    # proof: XdFileType = field(default=None, metadata={'min': 0, 'max': 1})
-    # reason: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
-    # committer: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
-    # committed: datetime = field(default=None, metadata={'min': 0, 'max': 1})
-    # pending: bool = field(default=None, metadata={'min': 1, 'max': 1})
+class AttestationType:
+    """
+    Record an attestation by a party of the DM content. The type of attestation is recorded by the reason attribute, which my be coded.
+    """
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
+    view: XdFileType = field(default=None, metadata={'min': 0, 'max': 1})
+    proof: XdFileType = field(default=None, metadata={'min': 0, 'max': 1})
+    reason: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
+    committer: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
+    committed: datetime = field(default=None, metadata={'min': 0, 'max': 1})
+    pending: bool = field(default=None, metadata={'min': 1, 'max': 1})
 
 
-# class ParticipationType(object):
-    # """
-    # Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.
-    # """
-    # mcuid: str = field(default_factory=cuid, init=False)
-    # label: str = field(default=None, metadata={'min': 1, 'max': 1})
-    # performer: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
-    # function: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
-    # mode: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
-    # start: datetime = field(default=None, metadata={'min': 0, 'max': 1})
-    # end: datetime = field(default=None, metadata={'min': 0, 'max': 1})
+class ParticipationType:
+    """
+    Model of a participation of a Party (any Actor or Role) in an activity. Used to represent any participation of a Party in some activity, which is not explicitly in the model, e.g. assisting nurse. Can be used to record past or future participations.
+    """
+    mcuid: str = field(default_factory=cuid, init=False)
+    label: str = field(default=None, metadata={'min': 1, 'max': 1})
+    performer: PartyType = field(default=None, metadata={'min': 0, 'max': 1})
+    function: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
+    mode: XdStringType = field(default=None, metadata={'min': 0, 'max': 1})
+    start: datetime = field(default=None, metadata={'min': 0, 'max': 1})
+    end: datetime = field(default=None, metadata={'min': 0, 'max': 1})
 
 
-# class DMType(object):
-    # """
-    # This is the root node of a Data Model (DM)
-    # """
+class DMType:
+    """
+    This is the root node of a Data Model (DM)
+    """
 
-    # def __init__(self):
-        #self.mcuid = cuid()
-        #self.metadata = self.genMD()
-        #self.data = ClusterType()
-        #self.label = self.metadata['title']
-        #self.dm_language = self.metadata['language']
-        #self.dm_encoding = 'utf-8'
-        #self.current_state = ''
-        #self.subject = None
-        #self.provider = None
-        #self.participations = list()
-        #self.protocol = None
-        #self.workflow = None
-        #self.acs = None
-        #self.audits = list()
-        #self.attestations = list()
-        #self.links = list()
+    def __init__(self):
+        self.mcuid = cuid()
+        self.metadata = self.genMD()
+        self.data = ClusterType()
+        self.label = self.metadata['title']
+        self.dm_language = self.metadata['language']
+        self.dm_encoding = 'utf-8'
+        self.current_state = ''
+        self.subject = None
+        self.provider = None
+        self.participations = list()
+        self.protocol = None
+        self.workflow = None
+        self.acs = None
+        self.audits = list()
+        self.attestations = list()
+        self.links = list()
 
-    # def __str__(self):
-        # return("S3Model Data Model\n" + "ID: " + self.mcuid + "\n" + self.showMetadata(self.metadata))
+    def __str__(self):
+        return("S3Model Data Model\n" + "ID: " + self.mcuid + "\n" + self.showMetadata(self.metadata))
 
-    # def showMetadata(self):
-        #mdStr = ''
-        # for k, v in self.metadata.items():
-        #mdStr += k + ': ' + repr(v) + '\n'
-        # return(mdStr)
+    def showMetadata(self):
+        mdStr = ''
+        for k, v in self.metadata.items():
+            mdStr += k + ': ' + repr(v) + '\n'
+        return(mdStr)
 
-    # def genMD(self):
-        # """
-        # Create a metadata dictionary for the DM if one isn't passed in.
-        # """
-        #md = OrderedDict()
-        #md['title'] = 'New Data Model'
-        #md['creator'] = 'Joe Smith'
-        #md['subject'] = 'S3M DM'
-        #md['rights'] = 'Creative Commons'
-        #md['relation'] = 'None'
-        #md['coverage'] = 'Global'
-        #md['type'] = 'S3Model Data Model (DM)'
-        #md['identifier'] = 'dm-' + self.mcuid
-        #md['description'] = 'Needs a description'
-        #md['publisher'] = 'Data Insights, Inc.'
-        #md['date'] = '{0:%Y-%m-%dT%H:%M:%S}'.format(datetime.now())
-        #md['format'] = 'text/xml'
-        #md['language'] = 'en-US'
+    def genMD(self):
+        """
+        Create a metadata dictionary for the DM if one isn't passed in.
+        """
+        md = OrderedDict()
+        md['title'] = 'New Data Model'
+        md['creator'] = 'Joe Smith'
+        md['subject'] = 'S3M DM'
+        md['rights'] = 'Creative Commons'
+        md['relation'] = 'None'
+        md['coverage'] = 'Global'
+        md['type'] = 'S3Model Data Model (DM)'
+        md['identifier'] = 'dm-' + self.mcuid
+        md['description'] = 'Needs a description'
+        md['publisher'] = 'Data Insights, Inc.'
+        md['date'] = '{0:%Y-%m-%dT%H:%M:%S}'.format(datetime.now())
+        md['format'] = 'text/xml'
+        md['language'] = 'en-US'
 
-        # return(md)
+        return(md)
