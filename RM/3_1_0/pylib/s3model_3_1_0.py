@@ -1,6 +1,8 @@
 """
 Defines the S3Model reference model in Python 3.7
 Version 3.1.0
+This implementation is not a strict model of the RM. It also contains functionality to manage constraints that are
+built into the XML Schema parsers. 
 """
 
 from datetime import datetime, date, time, timedelta
@@ -9,6 +11,8 @@ from collections import OrderedDict
 from abc import ABC, abstractmethod
 from xml.sax.saxutils import escape
 from urllib.parse import quote
+from base64 import b64encode
+from typing import ByteString
 
 from cuid import cuid
 from validator_collection import checkers
@@ -36,6 +40,9 @@ class ExceptionalValue(ABC):
         A short title or phase for the exceptional type value.
         """
         return self._ev_name
+
+    def __str__(self):
+        return(self.__class__.__name__ + ' : ' + self._ev_name)
 
 
 class NIType(ExceptionalValue):
@@ -220,6 +227,33 @@ class XdAnyType(ABC):
         self._modified = None
         self._latitude = None
         self._longitude = None
+        self._cardinality = {'act': (0, 1), 'ev': (0, None), 'vtb': (0, 1), 'vte': (0, 1), 'tr': (0, 1), 'modified': (0, 1), 'location': (0, 1)}
+
+    @property
+    def cardinality(self):
+        """
+        The cardinality status values. 
+        The setter method can be called by each subclass to add cardinality values for each element or change 
+        the defaults. Some elements cardinality is not changed. Ex: XdBoolean elements are not modifiable.
+        The dictionary uses a string representation of each property name and a tuple as the value.
+        The tuple passed into the setter is a tuple with v[0] as a string and v[1] as a tuple containing an
+        integer set representing the (minimum, maximum) values. Ex: ('vtb', (1,1)) would set the vtb value to be required.
+        The Python value of 'None' represents the 'unbounded' XML Schema value. 
+        NOTE: The cardinality for latitude and longitude are combined into one called 'location'.
+        """
+        return self._cardinality
+
+    @cardinality.setter
+    def cardinality(self, v):
+        if checkers.is_iterable(v) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], tuple):
+            if isinstance(v[1][0], (int, None)) and isinstance(v[1][1], (int, None)):
+                if isinstance(v[1][0], int) and isinstance(v[1][1], int) and v[1][0] > v[1][1]:
+                    raise ValueError("The minimum value must be less than or equal to the maximum value.")
+                self._cardinality[v[0]] = v[1]
+            else:
+                raise ValueError("The cardinality values must be integers or None.")
+        else:
+            raise ValueError("The cardinality value is malformed.")
 
     @property
     def mcuid(self):
@@ -260,15 +294,18 @@ class XdAnyType(ABC):
     def pred_obj_list(self):
         """
         A list of additional predicate object pairs to describe the component.
+        Each list item is a tuple where 0 is the predicate and 1 is the object.
+        Ex: ('rdf:resource','https://www.niddk.nih.gov/health-information/health-statistics')
+        The setter accepts the tuple and appends it to the list.
         """
         return self._pred_obj_list
 
     @pred_obj_list.setter
     def pred_obj_list(self, v):
-        if checkers.is_iterable(v):
-            self._pred_obj_list = v
+        if checkers.is_iterable(v) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
+            self._pred_obj_list.append(v)
         else:
-            raise ValueError("the Predicate Object List value must be a list of strings.")
+            raise ValueError("the Predicate Object List value must be a tuple of two strings.")
 
     @property
     def definition_url(self):
@@ -617,7 +654,7 @@ class ReferenceRangeType(XdAnyType):
             raise ValueError("the is_normal value must be a Boolean.")
 
     def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + '\n' + str(self._definition) + '\n')
+        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
 
 
 class XdBooleanType(XdAnyType):
@@ -691,9 +728,6 @@ class XdBooleanType(XdAnyType):
         else:
             raise ValueError("the false_value value must be in the options['falses'] list and the true_value must be None.")
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + '\n' + str(self.options) + '\n')
-
 
 class XdLinkType(XdAnyType):
     """
@@ -711,6 +745,7 @@ class XdLinkType(XdAnyType):
         self._link = ''
         self._relation = ''
         self._relation_uri = ''
+        self.cardinality = ('relation_uri', (0, 1))
 
     @property
     def link(self):
@@ -755,9 +790,6 @@ class XdLinkType(XdAnyType):
         else:
             raise ValueError("the relation_uri value must be a URL.")
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
-
 
 class XdStringType(XdAnyType):
     """
@@ -771,6 +803,12 @@ class XdStringType(XdAnyType):
 
         self._xdstring_value = ''
         self._xdstring_language = ''
+        self._enums = []
+        self._regex = None
+        self._default = None
+        self._length = None
+        self.cardinality = ('xdstring_value', (0, 1))
+        self.cardinality = ('xdstring_language', (0, 1))
 
     @property
     def xdstring_value(self):
@@ -801,8 +839,27 @@ class XdStringType(XdAnyType):
         else:
             raise ValueError("the xdstring_language value must be a string.")
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
+    @property
+    def length(self):
+        """
+        The length constraints on the xdstring_value.
+        The value can be an integer which will set the exact length constraint or it can be a tuple of the min/max length pair.
+        The values inside the tuple can be integers or the None value wich will cause the min or max value to not be set.
+        """
+        return self._length
+
+    @length.setter
+    def length(self, v):
+        if checkers.is_integer(v) and v >= 1:
+            self._length = v
+        elif checkers.is_iterable(v) and len(v) == 2:
+            if not isinstance(v[0], (int, None)) or not isinstance(v[1], (int, None)):
+                raise ValueError("The tuple must contain two values of either type, None or integers.")
+            elif isinstance(v[0], int) and isinstance(v[1], int) and v[0] > v[1]:
+                raise ValueError("Minimum length must be smaller or equal to maximum length.")
+            self._length = v
+        else:
+            raise ValueError("The length value must be an integer (exact length) or a tuple (min/max lengths).")
 
 
 class XdFileType(XdAnyType):
@@ -826,20 +883,222 @@ class XdFileType(XdAnyType):
         self._uri = ''
         self._media_content = None
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
+    @property
+    def size(self):
+        """
+        Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.
+        """
+        return self._size
+
+    @size.setter
+    def size(self, v):
+        if checkers.is_integer(v):
+            self._size = v
+        else:
+            raise ValueError("the size value must be an integer.")
+
+    @property
+    def encoding(self):
+        """
+        Name of character encoding scheme in which this value is encoded. 
+        Coded from the IANA charcater set table: http://www.iana.org/assignments/character-sets 
+        Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. 
+        This optional element allows for variations from these assumptions.
+        """
+        return self._encoding
+
+    @encoding.setter
+    def encoding(self, v):
+        if checkers.is_string(v):
+            self._encoding = v
+        else:
+            raise ValueError("the encoding value must be an string.")
+
+    @property
+    def xdfile_language(self):
+        """
+        Optional indicator of the localised language of the content. 
+        Typically remains optional in the CMC and used at runtime when the content is in a different language 
+        from the enclosing CMC.
+        """
+        return self._xdfile_language
+
+    @xdfile_language.setter
+    def xdfile_language(self, v):
+        if checkers.is_string(v):
+            self._xdfile_language = v
+        else:
+            raise ValueError("the xdfile_language value must be a string.")
+
+    @property
+    def formalism(self):
+        """
+        Name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. 
+        Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.
+        """
+        return self._formalism
+
+    @formalism.setter
+    def formalism(self, v):
+        if checkers.is_string(v):
+            self._formalism = v
+        else:
+            raise ValueError("the formalism value must be an string.")
+
+    @property
+    def media_type(self):
+        """
+        Media (MIME) type of the original media-content w/o any compression. 
+        See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml
+        """
+        return self._media_type
+
+    @media_type.setter
+    def media_type(self, v):
+        if checkers.is_string(v):
+            self._media_type = v
+        else:
+            raise ValueError("the media_type value must be an string.")
+
+    @property
+    def compression_type(self):
+        """
+        Compression/archiving mime-type. If this elements does not exist then it means there is no compression/archiving. 
+        For a list of common mime-types for compression/archiving see: http://en.wikipedia.org/wiki/List_of_archive_formats.
+        """
+        return self._compression_type
+
+    @compression_type.setter
+    def compression_type(self, v):
+        if checkers.is_string(v):
+            self._compression_type = v
+        else:
+            raise ValueError("the compression_type value must be an string.")
+
+    @property
+    def hash_result(self):
+        """
+        Hash function result of the 'media-content'. There must be a corresponding hash function type listed for this 
+        to have any meaning. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
+        """
+        return self._hash_result
+
+    @hash_result.setter
+    def hash_result(self, v):
+        if checkers.is_string(v):
+            self._hash_result = v
+        else:
+            raise ValueError("the hash_result value must be an string.")
+
+    @property
+    def hash_function(self):
+        """
+        Hash function used to compute hash-result. 
+        See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
+        """
+        return self._hash_function
+
+    @hash_function.setter
+    def hash_function(self, v):
+        if checkers.is_string(v):
+            self._hash_function = v
+        else:
+            raise ValueError("the hash_function value must be an string.")
+
+    @property
+    def alt_txt(self):
+        """
+        Text to display in lieu of multimedia display or execution.
+        """
+        return self._alt_txt
+
+    @alt_txt.setter
+    def alt_txt(self, v):
+        if checkers.is_string(v):
+            self._alt_txt = v
+        else:
+            raise ValueError("the alt_txt value must be an string.")
+
+    @property
+    def uri(self):
+        """
+        URI reference to electronic information stored outside the record as a file, database entry etc, 
+        if supplied as a reference.
+        """
+        return self._uri
+
+    @uri.setter
+    def uri(self, v):
+        if self._media_content == None and checkers.is_url(v):
+            self._uri = v
+        else:
+            raise ValueError("the uri value must be a URL and media_content must be None.")
+
+    @property
+    def media_content(self):
+        """
+        The content, if stored locally. The CMC modeler chooses either a uri or local content element.
+        If the passed value is a string it will be converted to bytes and base64 encoded. 
+        If it is already bytes then it is just encoded.
+        """
+        return self._media_content
+
+    @media_content.setter
+    def media_content(self, v):
+        if self._uri == None:
+            if checkers.is_string(v):
+                self._media_content = b64encode(bytes(v), 'utf-8')
+            elif isinstance(v, ByteString):
+                self._media_content = b64encode(v, 'utf-8')
+            else:
+                raise ValueError("the media_content value must be a string or bytes object that can be Base64 encoded.")
+        else:
+            raise ValueError("uri must be None.")
 
 
 class XdOrderedType(XdAnyType):
     """
     Serves as an abstract common ancestor of all ordered types
     """
-
+    @abstractmethod
     def __init__(self, label):
         super().__init__(label)
 
         self._referencerange = None
         self._normal_status = ''
+
+    @property
+    def referencerange(self):
+        """
+        Optional list of ReferenceRanges for this value in its particular measurement context.
+        """
+        return self._referencerange
+
+    @referencerange.setter
+    def referencerange(self, v):
+        if checkers.is_iterable(v):
+            for i in v:
+                if not checkers.is_type(i, "ReferenceRangeType"):
+                    raise ValueError("the referencerange value must be a list of ReferenceRangeType items.")
+            self._referencerange = v
+        else:
+            raise ValueError("the referencerange value must be a list of ReferenceRangeType items.")
+
+    @property
+    def normal_status(self):
+        """
+        Optional normal status indicator of value with respect to normal range for this value. 
+        Often included by lab, even if the normal range itself is not included. 
+        Coded by ordinals in series HHH, HH, H, (nothing), L, LL, LLL, etc.
+        """
+        return self._normal_status
+
+    @normal_status.setter
+    def normal_status(self, v):
+        if checkers.is_string(v):
+            self._normal_status = v
+        else:
+            raise ValueError("the normal_status value must be an string.")
 
 
 class XdOrdinalType(XdOrderedType):
@@ -870,10 +1129,55 @@ class XdOrdinalType(XdOrderedType):
         super().__init__(label)
 
         self._ordinal = None
-        self._symbol = ''
+        self._symbol = None
+        self._choices = None
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
+    @property
+    def ordinal(self):
+        """
+        Value in ordered enumeration of values. 
+        The base decimal is zero with any number of decimal values used to order the symbols. 
+        Example 1: 0 = Trace, 1 = +, 2 = ++, 3 = +++, etc. Example 2: 0 = Mild, 1 = Moderate, 2 = Severe
+        """
+        return self._ordinal
+
+    @ordinal.setter
+    def ordinal(self, v):
+        if checkers.is_decimal(v):
+            self._ordinal = v
+        else:
+            raise ValueError("the ordinal value must be a decimal.")
+
+    @property
+    def symbol(self):
+        """
+        Coded textual representation of this value in the enumeration, which may be strings made from “+” symbols, 
+        or other enumerations of terms such as “mild”, “moderate”, “severe”, or even the same number series as the 
+        values, e.g. “1”, “2”, “3”.
+        """
+        return self._symbol
+
+    @symbol.setter
+    def symbol(self, v):
+        if checkers.is_string(v):
+            self._symbol = v
+        else:
+            raise ValueError("the symbol value must be a decimal.")
+
+    @property
+    def choices(self):
+        """
+        The choices dictionary must have decimals (or integers) as keys to be used as the ordinals and the values as strings
+        to be used as the symbols.
+        """
+        return self._choices
+
+    @choices.setter
+    def choices(self, v):
+        if checkers.is_dict(v):
+            self._choices = v
+        else:
+            raise ValueError("the choices value must be a dictionary with the keys as decimals and the values as strings.")
 
 
 class XdQuantifiedType(XdOrderedType):
@@ -901,9 +1205,6 @@ class XdCountType(XdQuantifiedType):
         self._xdcount_value = None
         self._xdcount_units = None
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
-
 
 class XdQuantityType(XdQuantifiedType):
     """
@@ -916,9 +1217,6 @@ class XdQuantityType(XdQuantifiedType):
         self._xdquantity_value = None
         self._xdquantity_units = None
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
-
 
 class XdFloatType(XdQuantifiedType):
     """
@@ -930,9 +1228,6 @@ class XdFloatType(XdQuantifiedType):
 
         self._xdfloat_value = None
         self._xdfloat_units = None
-
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
 
 
 class XdRatioType(XdQuantifiedType):
@@ -953,9 +1248,6 @@ class XdRatioType(XdQuantifiedType):
         self._denominator_units = None
         self._xdratio_units = None
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
-
 
 class XdTemporalType(XdOrderedType):
     """
@@ -975,9 +1267,6 @@ class XdTemporalType(XdOrderedType):
         self._xdtemporal_year_month = None
         self._xdtemporal_month_day = None
         self._xdtemporal_duration = None
-
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
 
 
 class ItemType(ABC):
@@ -1002,6 +1291,9 @@ class ItemType(ABC):
         """
         return self._label
 
+    def __str__(self):
+        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
+
 
 class XdAdapterType(ItemType):
     """
@@ -1013,9 +1305,6 @@ class XdAdapterType(ItemType):
 
         self._XdAdapter_value = None
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
-
 
 class ClusterType(ItemType):
     """
@@ -1026,9 +1315,6 @@ class ClusterType(ItemType):
         super().__init__(label)
 
         self._items = None
-
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
 
 
 class PartyType:
