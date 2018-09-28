@@ -4,7 +4,7 @@ Version 3.1.0
 This implementation is not a strict model of the RM. It also contains functionality to manage constraints that are
 built into the XML Schema parsers. 
 """
-
+import re
 from datetime import datetime, date, time, timedelta
 from decimal import Decimal
 from collections import OrderedDict
@@ -861,6 +861,58 @@ class XdStringType(XdAnyType):
         else:
             raise ValueError("The length value must be an integer (exact length) or a tuple (min/max lengths).")
 
+    @property
+    def regex(self):
+        """
+        A regular expression to constrain the string value. The regualr expression must meet the constraints for XML Schema.
+        See: https://www.regular-expressions.info/xml.html 
+        """
+        return self._regex
+
+    @regex.setter
+    def regex(self, v):
+        if checkers.is_string(v):
+            if self._enums is not None:
+                raise ValueError("The elements 'enums' and 'regex' are mutally exclusive. Set one of them to 'None'.")
+            try:
+                re.compile(v)
+                self._regex = v
+            except re.error:
+                raise ValueError("The value is not a valid regular expression.")
+
+    @property
+    def enums(self):
+        """
+        A list of string values used to constrain the value of the item.
+        """
+        return self._enums
+
+    @enums.setter
+    def enums(self, v):
+        if self._regex is not None:
+            raise ValueError("The elements 'enums' and 'regex' are mutally exclusive. Set one of them to 'None'.")
+        if checkers.is_iterable(v):
+            for enum in v:
+                if not isinstance(enum, str):
+                    raise ValueError("The enumerations must be strings.")
+            self._enums = v
+        else:
+            raise ValueError("The enumerations must be a list of strings.")
+
+    @property
+    def default(self):
+        """
+        The default value for the string value of the item.
+        """
+        return self._default
+
+    @default.setter
+    def default(self, v):
+        if checkers.is_string(v):
+            self._default = v
+        else:
+            raise ValueError("The default value must be a string.")
+
 
 class XdFileType(XdAnyType):
     """
@@ -880,8 +932,17 @@ class XdFileType(XdAnyType):
         self._hash_function = ''
         self._alt_txt = ''
         # choice of uri or media_content
-        self._uri = ''
+        self._uri = None
         self._media_content = None
+        self.cardinality = ('size', (1, 1))
+        self.cardinality = ('encoding', (0, 1))
+        self.cardinality = ('xdfile_language', (0, 1))
+        self.cardinality = ('formalism', (0, 1))
+        self.cardinality = ('media_type', (0, 1))
+        self.cardinality = ('compression_type', (0, 1))
+        self.cardinality = ('hash_result', (0, 1))
+        self.cardinality = ('hash_function', (1, 1))
+        self.cardinality = ('alt_txt', (1, 1))
 
     @property
     def size(self):
@@ -895,7 +956,7 @@ class XdFileType(XdAnyType):
         if checkers.is_integer(v):
             self._size = v
         else:
-            raise ValueError("the size value must be an integer.")
+            raise ValueError("The size value must be an integer.")
 
     @property
     def encoding(self):
@@ -1065,7 +1126,9 @@ class XdOrderedType(XdAnyType):
         super().__init__(label)
 
         self._referencerange = None
-        self._normal_status = ''
+        self._normal_status = None
+        self.cardinality = ('referencerange', (0, None))
+        self.cardinality = ('normal_status', (0, 1))
 
     @property
     def referencerange(self):
@@ -1079,17 +1142,17 @@ class XdOrderedType(XdAnyType):
         if checkers.is_iterable(v):
             for i in v:
                 if not checkers.is_type(i, "ReferenceRangeType"):
-                    raise ValueError("the referencerange value must be a list of ReferenceRangeType items.")
+                    raise ValueError("The referencerange value must be a list of ReferenceRangeType items.")
             self._referencerange = v
         else:
-            raise ValueError("the referencerange value must be a list of ReferenceRangeType items.")
+            raise ValueError("The referencerange value must be a list of ReferenceRangeType items.")
 
     @property
     def normal_status(self):
         """
         Optional normal status indicator of value with respect to normal range for this value. 
-        Often included by lab, even if the normal range itself is not included. 
-        Coded by ordinals in series HHH, HH, H, (nothing), L, LL, LLL, etc.
+        Often used in situations such as medical lab results when coded by ordinals in series 
+        such as; HHH, HH, H, (nothing), L, LL, LLL, etc.
         """
         return self._normal_status
 
@@ -1131,6 +1194,8 @@ class XdOrdinalType(XdOrderedType):
         self._ordinal = None
         self._symbol = None
         self._choices = None
+        self.cardinality = ('ordinal', (1, 1))
+        self.cardinality = ('symbol', (1, 1))
 
     @property
     def ordinal(self):
@@ -1188,15 +1253,65 @@ class XdQuantifiedType(XdOrderedType):
     def __init__(self, label):
         super().__init__(label)
 
-        # constrained to list [None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate']
         self._magnitude_status = ''
         self._error = None
         self._accuracy = None
+        self.cardinality = ('magnitude_status', (0, 1))
+        self.cardinality = ('error', (0, 1))
+        self.cardinality = ('accuracy', (0, 1))
+
+    @property
+    def magnitude_status(self):
+        """
+        MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified 
+        subtypes. Should be used to inform users and not for decision support uses.
+        Must be one of: None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate'
+        """
+        return self._magnitude_status
+
+    @magnitude_status.setter
+    def magnitude_status(self, v):
+        if isinstance(v, (str, None)) and v in [None, 'equal', 'less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate']:
+            self._magnitude_status = v
+        else:
+            raise ValueError("The magnitude_status value must be one of: None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate'.")
+
+    @property
+    def error(self):
+        """
+        Error margin of measurement, as an integer indicating error in the recording method or instrument (+/- %). 
+        A logical value of 0 indicates 100% accuracy, i.e. no error.
+        """
+        return self._error
+
+    @error.setter
+    def error(self, v):
+        if isinstance(v, int) and 0 <= v <= 100:
+            self._error = v
+        else:
+            raise ValueError("The error value must be an integer 0 - 100.")
+
+    @property
+    def accuracy(self):
+        """
+        Accuracy of the value in the magnitude attribute in the range 0% to (+/-)100%. 
+        A value of 0 means that the accuracy is unknown.
+        """
+        return self._accuracy
+
+    @accuracy.setter
+    def accuracy(self, v):
+        if isinstance(v, int) and 0 <= v <= 100:
+            self._error = v
+        else:
+            raise ValueError("The accuracy value must be an integer 0 - 100.")
 
 
 class XdCountType(XdQuantifiedType):
     """
-    Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), number of cigarettes smoked in a day, etc. The thing(s) being counted must be represented in the units element. Misuse:Not used for amounts of physical entities (which all have standardized units).
+    Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), 
+    number of cigarettes smoked in a day, etc. The thing(s) being counted must be represented in the units element. 
+    Misuse: Not used for amounts of physical entities (which all have standardized units).
     """
 
     def __init__(self, label):
