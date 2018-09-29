@@ -14,11 +14,12 @@ from urllib.parse import quote
 from base64 import b64encode
 from typing import ByteString
 
+import pytz
 from cuid import cuid
 from validator_collection import checkers
 import ontology
 
-invlTypes = [int, Decimal, float, date, time, datetime, timedelta]
+invlTypes = [int, float, date, time, datetime, timedelta]
 
 
 class ExceptionalValue(ABC):
@@ -245,7 +246,7 @@ class XdAnyType(ABC):
 
     @cardinality.setter
     def cardinality(self, v):
-        if checkers.is_iterable(v) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], tuple):
+        if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], tuple):
             if isinstance(v[1][0], (int, None)) and isinstance(v[1][1], (int, None)):
                 if isinstance(v[1][0], int) and isinstance(v[1][1], int) and v[1][0] > v[1][1]:
                     raise ValueError("The minimum value must be less than or equal to the maximum value.")
@@ -302,7 +303,7 @@ class XdAnyType(ABC):
 
     @pred_obj_list.setter
     def pred_obj_list(self, v):
-        if checkers.is_iterable(v) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
+        if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
             self._pred_obj_list.append(v)
         else:
             raise ValueError("the Predicate Object List value must be a tuple of two strings.")
@@ -852,7 +853,7 @@ class XdStringType(XdAnyType):
     def length(self, v):
         if checkers.is_integer(v) and v >= 1:
             self._length = v
-        elif checkers.is_iterable(v) and len(v) == 2:
+        elif isinstance(v, tuple) and len(v) == 2:
             if not isinstance(v[0], (int, None)) or not isinstance(v[1], (int, None)):
                 raise ValueError("The tuple must contain two values of either type, None or integers.")
             elif isinstance(v[0], int) and isinstance(v[1], int) and v[0] > v[1]:
@@ -1374,7 +1375,7 @@ class XdQuantityType(XdQuantifiedType):
 
     @xdquantity_value.setter
     def xdquantity_value(self, v):
-        if isinstance(v, Decimal):
+        if isinstance(v, float):
             self._xdquantity_value = v
         else:
             raise ValueError("The xdquantity_value value must be a decimal.")
@@ -1570,12 +1571,11 @@ class XdTemporalType(XdOrderedType):
     Must be constrained in DMs to be one or more of the below elements. 
     This gives the modeler the ability to optionally allow one or more types of temporal content such as 
     full or partial dates at run time. 
-    Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.
+    Setting cardinality of both max and min to zero causes the element to be prohibited.
     """
 
     def __init__(self, label):
         super().__init__(label)
-
         self._xdtemporal_date = None
         self._xdtemporal_time = None
         self._xdtemporal_datetime = None
@@ -1616,9 +1616,8 @@ class XdTemporalType(XdOrderedType):
     @property
     def time(self):
         """
-        Represents instants of time that recur at the same point in each calendar day, or that occur in some 
+        Represents instants of time (with or without a timezone) that recur at the same point in each calendar day, or that occur in some 
         arbitrary calendar day.
-
         """
         return self._time
 
@@ -1628,6 +1627,129 @@ class XdTemporalType(XdOrderedType):
             self._time = v
         else:
             raise ValueError("The time value must be a time type.")
+
+    @property
+    def datetime(self):
+        """
+        Represents instants of time, optionally marked with a particular time zone offset. 
+        Values representing the same instant but having different time zone offsets are equal but not identical.
+        """
+        return self._datetime
+
+    @datetime.setter
+    def datetime(self, v):
+        if isinstance(v, datetime):
+            self._datetime = v
+        else:
+            raise ValueError("The datetime value must be a datetime type.")
+
+    @property
+    def day(self):
+        """
+        Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. 
+        This datatype is used to represent a specific day of the month as an integer. 
+        To indicate, for example, that an employee gets a paycheck on the 15th of each month. 
+        (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)        
+        """
+        return self._day
+
+    @day.setter
+    def day(self, v):
+        if isinstance(v, int) and 1 <= v <= 31:
+            self._day = v
+        else:
+            raise ValueError("The day value must be an integer type 1 - 31.")
+
+    @property
+    def month(self):
+        """
+        Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. 
+        It might be used, for example, to say what month annual Thanksgiving celebrations fall in different 
+        countries (11 in the United States, 10 in Canada, and possibly other months in other countries).
+        """
+        return self._month
+
+    @month.setter
+    def month(self, v):
+        if isinstance(v, int) and 1 <= v <= 12:
+            self._month = v
+        else:
+            raise ValueError("The month value must be an integer type 1 - 12.")
+
+    @property
+    def year(self):
+        """
+        Represents Gregorian calendar years.
+        """
+        return self._year
+
+    @year.setter
+    def year(self, v):
+        if isinstance(v, int) and 1 <= v <= 9999:
+            self._year = v
+        else:
+            raise ValueError("The year value must be an integer type 1 - 9999.")
+
+    @property
+    def year_month(self):
+        """
+        Represents specific whole Gregorian months in specific Gregorian years.
+        Represented as a tuple of integers (YYYY, MM).
+        """
+        return self._year_month
+
+    @year_month.setter
+    def year_month(self, v):
+        if isinstance(v, tuple):
+            if not 1 <= v[0] <= 9999 or not 1 <= v[1] <= 12:
+                raise ValueError("The year_month value must be a tuple of integers representing 1 <= yyyy <= 9999 and 1 <= dd <= 12.")
+            self._year_month = v
+        else:
+            raise ValueError("The year_month value must be a tuple of integers representing (yyyy,mm).")
+
+    @property
+    def month_day(self):
+        """
+        Represents whole calendar days that recur at the same point in each calendar year, or that occur in some 
+        arbitrary calendar year. 
+        (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted in February.)
+        """
+        return self._month_day
+
+    @month_day.setter
+    def month_day(self, v):
+        max_days = {1:31,2:29,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
+        if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], int) and isinstance(v[1], int):
+            if not max_days[v[0]] <= v[1]:
+                raise ValueError("The day value must be must be less than or equal to the number of days allowed in the month.")
+            self._month_day = v
+        else:
+            raise ValueError("The month_day value must be a tuple of integers representing (mm,dd).")
+
+    @property
+    def duration(self):
+        """
+        A datatype that represents durations of time. The concept of duration being captured is drawn from those of 
+        ISO-8601, specifically durations without fixed endpoints. 
+        For example, "15 days" (whose most common lexical representation in duration is "'P15D'") is a duration value. 
+        However, "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. 
+        This datatype can provide addition and subtraction operations between duration values and between 
+        duration/datetime value pairs, and can be the result of subtracting datetime values.
+        The tuple must include all values with a zero as a placeholder for unused positions.
+        Example: 2 years, 10 days and 2 hours = (2,0,10,2,0,0). 
+        """
+        return self._duration
+
+    @duration.setter
+    def duration(self, v):
+        if isinstance(v, tuple) and len(v) == 6:
+            if all(isinstance(n, int) for n in v[0:4]) and checkers.is_decimal(v[5]):
+                self._duration = v
+            else:
+                raise ValueError("Some members of the duration tuple are not the correct type.")
+        else:
+            raise ValueError("The duration value must be a 6 member tuple (yyyy,mm,dd,hh,MM,ss.ss) of integers except the seconds (last member) being a decimal.")
+
 
 
 class ItemType(ABC):
