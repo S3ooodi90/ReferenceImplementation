@@ -1311,7 +1311,7 @@ class XdCountType(XdQuantifiedType):
     """
     Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), 
     number of cigarettes smoked in a day, etc. The thing(s) being counted must be represented in the units element. 
-    Misuse: Not used for amounts of physical entities (which all have standardized units).
+    Misuse: Not used for amounts of physical entities which all have standardized units as opposed to physical things counted.
     """
 
     def __init__(self, label):
@@ -1319,6 +1319,37 @@ class XdCountType(XdQuantifiedType):
 
         self._xdcount_value = None
         self._xdcount_units = None
+        self.cardinality = ('xdcount_value', (0, 1))
+        self.cardinality = ('xdcount_units', (1, 1))
+
+    @property
+    def xdcount_value(self):
+        """
+        Integer value of the counted items.
+        """
+        return self._xdcount_value
+
+    @xdcount_value.setter
+    def xdcount_value(self, v):
+        if isinstance(v, int):
+            self._xdcount_value = v
+        else:
+            raise ValueError("The xdcount_value value must be an integer.")
+
+    @property
+    def xdcount_units(self):
+        """
+        The name or type of the items counted. Examples are cigarettes, drinks, pregnancies, episodes, etc. 
+        May or may not come from a standard terminology.
+        """
+        return self._xdcount_units
+
+    @xdcount_units.setter
+    def xdcount_units(self, v):
+        if isinstance(v, XdStringType):
+            self._xdcount_units = v
+        else:
+            raise ValueError("The xdcount_units value must be a XdStringType identifying the things to be counted.")
 
 
 class XdQuantityType(XdQuantifiedType):
@@ -1331,6 +1362,37 @@ class XdQuantityType(XdQuantifiedType):
 
         self._xdquantity_value = None
         self._xdquantity_units = None
+        self.cardinality = ('xdquantity_value', (0, 1))
+        self.cardinality = ('xdquantity_units', (1, 1))
+
+    @property
+    def xdquantity_value(self):
+        """
+        Numeric value of the quantity.
+        """
+        return self._xdquantity_value
+
+    @xdquantity_value.setter
+    def xdquantity_value(self, v):
+        if isinstance(v, Decimal):
+            self._xdquantity_value = v
+        else:
+            raise ValueError("The xdquantity_value value must be a decimal.")
+
+    @property
+    def xdquantity_units(self):
+        """
+        The name or type of the quantity. Examples are "kg/m2", “mmHg", "ms-1", "km/h". 
+        May or may not come from a standard terminology.
+        """
+        return self._xdquantity_units
+
+    @xdquantity_units.setter
+    def xdquantity_units(self, v):
+        if isinstance(v, XdStringType):
+            self._xdquantity_units = v
+        else:
+            raise ValueError("The xdquantity_units value must be a XdStringType identifying the things to be measured.")
 
 
 class XdFloatType(XdQuantifiedType):
@@ -1343,6 +1405,36 @@ class XdFloatType(XdQuantifiedType):
 
         self._xdfloat_value = None
         self._xdfloat_units = None
+        self.cardinality = ('xdfloat_value', (0, 1))
+        self.cardinality = ('xdfloat_units', (0, 1))
+
+    @property
+    def xdfloat_value(self):
+        """
+        Float value.
+        """
+        return self._xdfloat_value
+
+    @xdfloat_value.setter
+    def xdfloat_value(self, v):
+        if isinstance(v, float):
+            self._xdfloat_value = v
+        else:
+            raise ValueError("The xdfloat_value value must be a float.")
+
+    @property
+    def xdfloat_units(self):
+        """
+        The name or type of the float value.
+        """
+        return self._xdfloat_units
+
+    @xdfloat_units.setter
+    def xdfloat_units(self, v):
+        if isinstance(v, XdStringType):
+            self._xdfloat_units = v
+        else:
+            raise ValueError("The xdfloat_units value must be a XdStringType identifying the things to be measured.")
 
 
 class XdRatioType(XdQuantifiedType):
@@ -1363,16 +1455,127 @@ class XdRatioType(XdQuantifiedType):
         self._denominator_units = None
         self._xdratio_units = None
 
+        self.cardinality = ('ratio_type', (1, 1))
+        self.cardinality = ('numerator', (0, 1))
+        self.cardinality = ('denominator', (0, 1))
+        self.cardinality = ('xdratio_value', (0, 1))
+        self.cardinality = ('numerator_units', (0, 1))
+        self.cardinality = ('denominator_units', (0, 1))
+        self.cardinality = ('xdratio_units', (0, 1))
+
+    @property
+    def ratio_type(self):
+        """
+        Indicates specific type of ratio modeled in the DM as a 'ratio','rate', or 'proportion'.
+        """
+        return self._ratio_type
+
+    @ratio_type.setter
+    def ratio_type(self, v):
+        if isinstance(v, str) and v in ['ratio', 'rate', 'proportion']:
+            self._ratio_type = v
+        else:
+            raise ValueError("The ratio_type value must be a str and be one of; 'ratio','rate', or 'proportion'.")
+
+    @property
+    def numerator(self):
+        """
+        Numerator of ratio.
+        """
+        return self._numerator
+
+    @numerator.setter
+    def numerator(self, v):
+        if isinstance(v, float):
+            self._numerator = v
+        else:
+            raise ValueError("The numerator value must be a float.")
+
+    @property
+    def denominator(self):
+        """
+        Denominator of ratio.
+        """
+        return self._denominator
+
+    @denominator.setter
+    def denominator(self, v):
+        if isinstance(v, float):
+            self._denominator = v
+        else:
+            raise ValueError("The denominator value must be a float.")
+
+    @property
+    def xdratio_value(self):
+        """
+        Numeric value of the ratio.
+        """
+        return self._xdratio_value
+
+    @xdratio_value.setter
+    def xdratio_value(self, v):
+        if isinstance(v, float):
+            self._xdratio_value = v
+        else:
+            raise ValueError("The xdratio_value value must be a float.")
+
+    @property
+    def numerator_units(self):
+        """
+        Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, 
+        exercise periods, etc. May or may not come from a terminology.
+        """
+        return self._numerator_units
+
+    @numerator_units.setter
+    def numerator_units(self, v):
+        if isinstance(v, XdStringType):
+            self._numerator_units = v
+        else:
+            raise ValueError("The numerator_units value must be a XdStringType.")
+
+    @property
+    def denominator_units(self):
+        """
+        Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. 
+        May or may not come from a standard terminology.
+        """
+        return self._denominator_units
+
+    @denominator_units.setter
+    def denominator_units(self, v):
+        if isinstance(v, XdStringType):
+            self._denominator_units = v
+        else:
+            raise ValueError("The denominator_units value must be a XdStringType.")
+
+    @property
+    def xdratio_units(self):
+        """
+        Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.
+        """
+        return self._xdratio_units
+
+    @xdratio_units.setter
+    def xdratio_units(self, v):
+        if isinstance(v, XdStringType):
+            self._xdratio_units = v
+        else:
+            raise ValueError("The xdratio_units value must be a XdStringType.")
+
 
 class XdTemporalType(XdOrderedType):
     """
-    Type defining the concept of date and time types. Must be constrained in DMs to be one or more of the below elements. This gives the modeler the ability to optionally allow full or partial dates at run time. Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.
+    Type defining the concept of date and time types. 
+    Must be constrained in DMs to be one or more of the below elements. 
+    This gives the modeler the ability to optionally allow one or more types of temporal content such as 
+    full or partial dates at run time. 
+    Setting both maxOccurs and minOccurs to zero cause the element to be prohibited.
     """
 
     def __init__(self, label):
         super().__init__(label)
 
-        # TODO: fix the types
         self._xdtemporal_date = None
         self._xdtemporal_time = None
         self._xdtemporal_datetime = None
@@ -1382,6 +1585,49 @@ class XdTemporalType(XdOrderedType):
         self._xdtemporal_year_month = None
         self._xdtemporal_month_day = None
         self._xdtemporal_duration = None
+        self.cardinality = ('xdtemporal_date', (0, 1))
+        self.cardinality = ('xdtemporal_time', (0, 1))
+        self.cardinality = ('xdtemporal_datetime', (0, 1))
+        self.cardinality = ('xdtemporal_day', (0, 1))
+        self.cardinality = ('xdtemporal_month', (0, 1))
+        self.cardinality = ('xdtemporal_year', (0, 1))
+        self.cardinality = ('xdtemporal_year_month', (0, 1))
+        self.cardinality = ('xdtemporal_month_day', (0, 1))
+        self.cardinality = ('xdtemporal_duration', (0, 1))
+
+    @property
+    def date(self):
+        """
+        Represents top-open intervals of exactly one day in length on the timelines of dateTime, 
+        beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). 
+        For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. 
+        For timezoned values, the intervals begin at every minute and therefore overlap.
+        When serialized to XML or JSON the ISO format YYYY-MM-DD is used.
+        """
+        return self._date
+
+    @date.setter
+    def date(self, v):
+        if isinstance(v, date):
+            self._date = v
+        else:
+            raise ValueError("The date value must be a date type.")
+
+    @property
+    def time(self):
+        """
+        Represents instants of time that recur at the same point in each calendar day, or that occur in some 
+        arbitrary calendar day.
+
+        """
+        return self._time
+
+    @time.setter
+    def time(self, v):
+        if isinstance(v, time):
+            self._time = v
+        else:
+            raise ValueError("The time value must be a time type.")
 
 
 class ItemType(ABC):
