@@ -729,6 +729,66 @@ class XdBooleanType(XdAnyType):
         else:
             raise ValueError("the false_value value must be in the options['falses'] list and the true_value must be None.")
 
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
 
 class XdLinkType(XdAnyType):
     """
@@ -790,6 +850,67 @@ class XdLinkType(XdAnyType):
             self._relation_uri = v
         else:
             raise ValueError("the relation_uri value must be a URL.")
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
 
 
 class XdStringType(XdAnyType):
@@ -913,6 +1034,67 @@ class XdStringType(XdAnyType):
             self._default = v
         else:
             raise ValueError("The default value must be a string.")
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
 
 
 class XdFileType(XdAnyType):
@@ -1117,6 +1299,67 @@ class XdFileType(XdAnyType):
         else:
             raise ValueError("uri must be None.")
 
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
+
 
 class XdOrderedType(XdAnyType):
     """
@@ -1245,6 +1488,67 @@ class XdOrdinalType(XdOrderedType):
         else:
             raise ValueError("the choices value must be a dictionary with the keys as decimals and the values as strings.")
 
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
+
 
 class XdQuantifiedType(XdOrderedType):
     """
@@ -1352,6 +1656,67 @@ class XdCountType(XdQuantifiedType):
         else:
             raise ValueError("The xdcount_units value must be a XdStringType identifying the things to be counted.")
 
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
+
 
 class XdQuantityType(XdQuantifiedType):
     """
@@ -1395,6 +1760,67 @@ class XdQuantityType(XdQuantifiedType):
         else:
             raise ValueError("The xdquantity_units value must be a XdStringType identifying the things to be measured.")
 
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
+
 
 class XdFloatType(XdQuantifiedType):
     """
@@ -1436,6 +1862,67 @@ class XdFloatType(XdQuantifiedType):
             self._xdfloat_units = v
         else:
             raise ValueError("The xdfloat_units value must be a XdStringType identifying the things to be measured.")
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
 
 
 class XdRatioType(XdQuantifiedType):
@@ -1563,6 +2050,67 @@ class XdRatioType(XdQuantifiedType):
             self._xdratio_units = v
         else:
             raise ValueError("The xdratio_units value must be a XdStringType.")
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
 
 
 class XdTemporalType(XdOrderedType):
@@ -1751,6 +2299,67 @@ class XdTemporalType(XdOrderedType):
         else:
             raise ValueError("The duration value must be a 6 member tuple (yyyy,mm,dd,hh,MM,ss.ss) of integers except the seconds (last member) being a decimal.")
 
+
+    def asXSD(self):
+        """
+        Return a XML Schema complexType definition.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xdstr = ''
+        if self._adapter:
+            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
+            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
+            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
+            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
+            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + xml_escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
+        # XdAny
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['act'][0] + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vtb'][0] + '" name="vtb" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['vte'][0] + '" name="vte" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['tr'][0] + '" name="tr" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
+        # Xd
+        xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+
+        return(xdstr)
 
 
 class ItemType(ABC):
