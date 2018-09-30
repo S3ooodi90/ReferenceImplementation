@@ -724,7 +724,7 @@ class XdBooleanType(XdAnyType):
 
     @false_value.setter
     def false_value(self, v):
-        if v in self._options['falses'] and self._false_value == None:
+        if v in self._options['falses'] and self._true_value == None:
             self._false_value = v
         else:
             raise ValueError("the false_value value must be in the options['falses'] list and the true_value must be None.")
@@ -733,6 +733,8 @@ class XdBooleanType(XdAnyType):
         """
         Return a XML Schema complexType definition.
         """
+        trues = self.options['trues']
+        falses = self.options['falses']
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
@@ -782,7 +784,27 @@ class XdBooleanType(XdAnyType):
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
-        # Xd
+        # XdBooleanType
+        xdstr += padding.rjust(indent + 8) + ("<xs:choice maxOccurs='1' minOccurs='1'>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element name='true-value'>\n")
+        xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
+        xdstr += padding.rjust(indent + 12) + ("<xs:restriction base='xs:string'>\n")
+        for n in range(len(trues)):
+            xdstr += padding.rjust(indent + 16) + ("<xs:enumeration value='" + trues[n].strip() + "'/>\n")
+        xdstr += padding.rjust(indent + 12) + ("</xs:restriction>\n")
+        xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
+        xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element name='false-value'>\n")
+        xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
+        xdstr += padding.rjust(indent + 12) + ("<xs:restriction base='xs:string'>\n")
+        for n in range(len(falses)):
+            xdstr += padding.rjust(indent + 16) + ("<xs:enumeration value='" + falses[n].strip() + "'/>\n")
+        xdstr += padding.rjust(indent + 12) + ("</xs:restriction>\n")
+        xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
+        xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
+    
+        xdstr += padding.rjust(indent + 8) + ("</xs:choice>\n")
+        
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
@@ -803,9 +825,9 @@ class XdLinkType(XdAnyType):
     def __init__(self, label):
         super().__init__(label)
 
-        self._link = ''
-        self._relation = ''
-        self._relation_uri = ''
+        self._link = None
+        self._relation = None
+        self._relation_uri = None
         self.cardinality = ('relation_uri', (0, 1))
 
     @property
@@ -892,7 +914,7 @@ class XdLinkType(XdAnyType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdLinkType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
@@ -904,7 +926,19 @@ class XdLinkType(XdAnyType):
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
-        # Xd
+        # XdLinkType
+        if not self.link:
+            raise ValueError("You must create a link URI value.")
+        else:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='link' type='xs:anyURI'fixed='" + escape(self.link.strip()) + "'/>\n")
+        if not self.relation:
+            raise ValueError("You must add a relationship.")
+        else:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='relation' type='xs:string' fixed='" + escape(self.relation.strip()) + "'/>\n")
+        if not self.relation_uri:
+            raise ValueError("You must add a URI for the relationship location.")
+        else:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='relation-uri' type='xs:anyURI' fixed='" + escape(self.relation_uri.strip()) + "'/>\n")       
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
@@ -1005,7 +1039,10 @@ class XdStringType(XdAnyType):
     @property
     def enums(self):
         """
-        A list of string values used to constrain the value of the item.
+        A list of two member tuples (enumeration, URI semantics for the enumeration). 
+        The enumerations are string values used to constrain the value of the item.
+        The URI semantics for the enumeration provides a definition (preferable a URL) for the enumeration.
+        Example: ('Blue','http://www.color-wheel-pro.com/color-meaning.html#Blue')
         """
         return self._enums
 
@@ -1015,11 +1052,11 @@ class XdStringType(XdAnyType):
             raise ValueError("The elements 'enums' and 'regex' are mutally exclusive. Set one of them to 'None'.")
         if checkers.is_iterable(v):
             for enum in v:
-                if not isinstance(enum, str):
-                    raise ValueError("The enumerations must be strings.")
+                if isinstance(enum, tuple) or not isinstance(enum[0], str) or not isinstance(enum[1], str):
+                    raise ValueError("The enumerations and definitions must be strings.")
             self._enums = v
         else:
-            raise ValueError("The enumerations must be a list of strings.")
+            raise ValueError("The enumerations must be a list of tuples.")
 
     @property
     def default(self):
@@ -1076,7 +1113,7 @@ class XdStringType(XdAnyType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdStringType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
@@ -1088,7 +1125,58 @@ class XdStringType(XdAnyType):
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['modified'][0] + '" name="modified" type="xs:dateTime"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="latitude" type="xs:decimal"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + self.cardinality['location'][0] + '" name="longitude" type="xs:decimal"/>\n'
-        # Xd
+        # XdStringType
+        if len(self.enums) > 0:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value'>\n")
+        elif isinstance(self.length, int):
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value'>\n")
+            xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
+            xdstr += padding.rjust(indent + 14) + ("<xs:restriction base='xs:string'>\n")
+            xdstr += padding.rjust(indent + 16) + ("<xs:length value='" + str(self.length).strip() + "'/>\n")
+            xdstr += padding.rjust(indent + 14) + ("</xs:restriction>\n")
+            xdstr += padding.rjust(indent + 12) + ("</xs:simpleType>\n")
+            xdstr += padding.rjust(indent + 10) + ("</xs:element>\n")
+        elif isinstance(self.length, tuple) and isinstance(self.length[0], int) or isinstance(self.length[1], int):
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value'>\n")
+            xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
+            xdstr += padding.rjust(indent + 14) + ("<xs:restriction base='xs:string'>\n")
+            if isinstance(self.length[0], int):
+                xdstr += padding.rjust(indent + 16) + ("<xs:minLength value='" + str(self.length[0]).strip() + "'/>\n")
+            if isinstance(self.length[1], int):
+                xdstr += padding.rjust(indent + 16) + ("<xs:maxLength value='" + str(self.length[1]).strip() + "'/>\n")
+            if isinstance(self.regex, str):
+                xdstr += padding.rjust(indent + 16) + ("<xs:pattern value='" + str(self.str_fmt).strip() + "'/>\n")                
+            xdstr += padding.rjust(indent + 14) + ("</xs:restriction>\n")
+            xdstr += padding.rjust(indent + 12) + ("</xs:simpleType>\n")
+            xdstr += padding.rjust(indent + 10) + ("</xs:element>\n")            
+        else:
+            if self.default:
+                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string' default='" + escape(self.default) + "'/>\n")
+            else:
+                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>\n")
+    
+        # Process Enumerations
+        if len(self.enums) > 0:    
+            xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
+            xdstr += padding.rjust(indent + 14) + ("<xs:restriction base='xs:string'>\n")
+            for n in range(len(self.enums)):
+                xdstr += padding.rjust(indent + 16) + ("<xs:enumeration value='" + escape(self.enums[n][0].strip()) + "'>\n")
+                xdstr += padding.rjust(indent + 16) + ("<xs:annotation>\n")
+                xdstr += padding.rjust(indent + 18) + ("<xs:appinfo>\n")
+                xdstr += padding.rjust(indent + 2) + ("<rdfs:Class rdf:about='mc-" + self.mcuid + "/xdstring-value/" + quote(self.enums[n][0].strip()) + "'>\n")
+                xdstr += padding.rjust(indent + 2) + ("  <rdfs:subPropertyOf rdf:resource='mc-" + self.mcuid + "'/>\n")
+                xdstr += padding.rjust(indent + 2) + ("  <rdfs:label>" + self.enums[n][0].strip() + "</rdfs:label>\n")
+                xdstr += padding.rjust(indent + 2) + ("  <rdfs:isDefinedBy>" + self.enums[n][1].strip() + "</rdfs:isDefinedBy>\n")
+                xdstr += padding.rjust(indent + 2) + ("</rdfs:Class>\n")
+                xdstr += padding.rjust(indent + 18) + ("</xs:appinfo>\n")
+                xdstr += padding.rjust(indent + 16) + ("</xs:annotation>\n")
+                xdstr += padding.rjust(indent + 16) + ("</xs:enumeration>\n")
+            xdstr += padding.rjust(indent + 14) + ("</xs:restriction>\n")
+            xdstr += padding.rjust(indent + 12) + ("</xs:simpleType>\n")
+            xdstr += padding.rjust(indent + 10) + ("</xs:element>\n")
+    
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='" + self.lang + "'/>\n")
+        
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
@@ -1340,7 +1428,7 @@ class XdFileType(XdAnyType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdFileType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
@@ -1529,7 +1617,7 @@ class XdOrdinalType(XdOrderedType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdOrdinalType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
@@ -1697,7 +1785,7 @@ class XdCountType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdCountType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
@@ -1801,7 +1889,7 @@ class XdQuantityType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdQuantityType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
@@ -1904,7 +1992,7 @@ class XdFloatType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdFloatType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
@@ -2092,7 +2180,7 @@ class XdRatioType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdRatioType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
@@ -2341,7 +2429,7 @@ class XdTemporalType(XdOrderedType):
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdBooleanType">\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdTemporalType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
