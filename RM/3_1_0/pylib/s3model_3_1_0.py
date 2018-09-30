@@ -1737,6 +1737,7 @@ class XdTemporalType(XdOrderedType):
         duration/datetime value pairs, and can be the result of subtracting datetime values.
         The tuple must include all values with a zero as a placeholder for unused positions.
         Example: 2 years, 10 days and 2 hours = (2,0,10,2,0,0). 
+        Use these values in conjunction with the relativedelta type from the python-dateutil pkg.
         """
         return self._duration
 
