@@ -1,7 +1,8 @@
 """
 Defines the S3Model reference model in Python 3.7
 Version 3.1.0
-This implementation is not a strict model of the RM. It also contains functionality to manage constraints that are
+This implementation is not a strict model of the RM. 
+It also contains functionality to manage constraints that are
 built into the XML Schema parsers. 
 """
 import re
@@ -12,192 +13,15 @@ from abc import ABC, abstractmethod
 from xml.sax.saxutils import escape
 from urllib.parse import quote
 from base64 import b64encode
-from typing import ByteString, Dict, List, Tuple
+from typing import ByteString, Dict, List, Tuple, Iterable
 
 import pytz
 from cuid import cuid
 from validator_collection import checkers
 import ontology
+from ev import ExceptionalValue
 
 invlTypes = [int, float, date, time, datetime, timedelta]
-
-
-class ExceptionalValue(ABC):
-    """
-    Subtypes are used to indicate why a value is missing (Null) or is outside a measurable range.
-    The element ev-name is fixed in restricted types to a descriptive string. The subtypes defined in the reference model
-    are considered sufficiently generic to be useful in many instances.
-    Data Models may contain additional ExceptionalValueType restrictions to allow for domain related reasons for
-    errant or missing data.
-    """
-
-    @abstractmethod
-    def __init__(self):
-        self._ev_name = ''
-
-    @property
-    def ev_name(self):
-        """
-        A short title or phase for the exceptional type value.
-        """
-        return self._ev_name
-
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self._ev_name)
-
-
-class NIType(ExceptionalValue):
-    """
-    No Information : The value is exceptional (missing, omitted, incomplete, improper).
-    No information as to the reason for being an exceptional value is provided.
-    This is the most general exceptional value. It is also the default exceptional value implemented in tools.
-    """
-
-    def __init__(self):
-        self._ev_name = 'No Information'
-
-
-class MSKType(ExceptionalValue):
-    """
-    Masked : There is information on this item available but it has not been provided by the sender due to security,
-    privacy or other reasons. There may be an alternate mechanism for gaining access to this information.
-    Warning: Using this exceptional value does provide information that may be a breach of confidentiality,
-    even though no detail data is provided. Its primary purpose is for those circumstances where it is necessary to
-    inform the receiver that the information does exist without providing any detail.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Masked'
-
-
-class INVType(ExceptionalValue):
-    """
-    Invalid : The value as represented in the instance is not a member of the set of permitted data values in the
-    constrained value domain of a variable.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Invalid'
-
-
-class DERType(ExceptionalValue):
-    """
-    Derived : An actual value may exist, but it must be derived from the provided information;
-    usually an expression is provided directly.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Derived'
-
-
-class UNCType(ExceptionalValue):
-    """
-    Unencoded : No attempt has been made to encode the information correctly but the raw source information is represented, usually in free text.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Unencoded'
-
-
-class OTHType(ExceptionalValue):
-    """
-    Other: The actual value is not a member of the permitted data values in the variable.
-    (e.g., when the value of the variable is not by the coding system)
-    """
-
-    def __init__(self):
-        self._ev_name = 'Other'
-
-
-class NINFType(ExceptionalValue):
-    """
-    Negative Infinity : Negative infinity of numbers
-    """
-
-    def __init__(self):
-        self._ev_name = 'Negative Infinity'
-
-
-class PINFType(ExceptionalValue):
-    """
-    Positive Infinity : Positive infinity of numbers
-    """
-
-    def __init__(self):
-        self._ev_name = 'Positive Infinity'
-
-
-class UNKType(ExceptionalValue):
-    """
-    Unknown : A proper value is applicable, but not known.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Unknown'
-
-
-class ASKRType(ExceptionalValue):
-    """
-    Asked and Refused : Information was sought but refused to be provided (e.g., patient was asked but refused to answer).
-    """
-
-    def __init__(self):
-        self._ev_name = 'Asked and Refused'
-
-
-class NASKType(ExceptionalValue):
-    """
-    Not Asked : This information has not been sought (e.g., patient was not asked)
-    """
-
-    def __init__(self):
-        self._ev_name = 'Not Asked'
-
-
-class QSType(ExceptionalValue):
-    """
-    Sufficient Quantity : The specific quantity is not known, but is known to non-zero and it is not specified because it makes up the bulk of the material;
-    Add 10mg of ingredient X, 50mg of ingredient Y and sufficient quantity of water to 100mL.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Sufficient Quantity'
-
-
-class TRCType(ExceptionalValue):
-    """
-    Trace : The content is greater or less than zero but too small to be quantified.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Trace'
-
-
-class ASKUType(ExceptionalValue):
-    """
-    Asked but Unknown : Information was sought but not found (e.g., patient was asked but did not know)
-    """
-
-    def __init__(self):
-        self._ev_name = 'Asked but Unknown'
-
-
-class NAVType(ExceptionalValue):
-    """
-    Not Available: This information is not available and the specific reason is not known.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Not Available'
-
-
-class NAType(ExceptionalValue):
-    """
-    Not Applicable : No proper value is applicable in this context e.g.,the number of cigarettes smoked per day by a non-smoker subject.
-    """
-
-    def __init__(self):
-        self._ev_name = 'Not Applicable'
 
 
 class XdAnyType(ABC):
@@ -306,12 +130,13 @@ class XdAnyType(ABC):
     @property
     def docs(self):
         """
-        The human readable documentation string describing the purpose of the model.
+        The human readable documentation string describing the purpose of 
+        the model.
         """
         return self._docs
 
     @docs.setter
-    def doc(self, v):
+    def docs(self, v: str):
         if checkers.is_string(v):
             self._docs = v
         else:
@@ -322,17 +147,21 @@ class XdAnyType(ABC):
         """
         A list of additional predicate object pairs to describe the component.
         Each list item is a tuple where 0 is the predicate and 1 is the object.
-        Ex: ('rdf:resource','https://www.niddk.nih.gov/health-information/health-statistics')
+        Example: 
+        ('rdf:resource','https://www.niddk.nih.gov/health-information/health-statistics')
         The setter accepts the tuple and appends it to the list.
+        If an empty list is supplied it resets the value to the empty list.
         """
         return self._pred_obj_list
 
     @pred_obj_list.setter
-    def pred_obj_list(self, v):
-        if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
+    def pred_obj_list(self, v: Iterable):
+        if isinstance(v, list) and len(v) == 0:
+            self._pred_obj_list = []
+        elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
             self._pred_obj_list.append(v)
         else:
-            raise ValueError("the Predicate Object List value must be a tuple of two strings.")
+            raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
 
     @property
     def definition_url(self):
@@ -343,7 +172,7 @@ class XdAnyType(ABC):
         return self._definition_url
 
     @definition_url.setter
-    def definition_url(self, v):
+    def definition_url(self, v: str):
         if checkers.is_url(v):
             self._definition_url = v
         else:
@@ -352,13 +181,14 @@ class XdAnyType(ABC):
     @property
     def act(self):
         """
-        Access Control Tag. If this is used it must contain a valid term from the Access Control System linked 
-        to by the containing Data Model acs attribute.
+        Access Control Tag. If this is used it must contain a valid term from 
+        the Access Control System linked to by the containing Data Model 
+        'acs' attribute.
         """
         return self._act
 
     @act.setter
-    def act(self, v):
+    def act(self, v: str):
         if checkers.is_string(v):
             self._act = v
         else:
@@ -367,8 +197,10 @@ class XdAnyType(ABC):
     @property
     def ev(self):
         """
-        In an invalid instance, the application can indicate here why data is missing or invalid. 
-        The sub-types are based on ISO 21090 NULL Flavors entries, with additions noted from real-world usage.
+        In an invalid instance, the application can indicate here why data is 
+        missing or invalid. 
+        The sub-types are based on ISO 21090 NULL Flavors entries, with 
+        additions noted from real-world usage.
         """
         return self._ev
 
@@ -398,8 +230,8 @@ class XdAnyType(ABC):
     def vte(self):
         """
         Valid Time End. If present this must be a valid date-time including timezone. 
-        It is used to indicate the ending time that information is considered valid or the time the information expired or 
-        will expire.
+        It is used to indicate the ending time that information is considered valid 
+        or the time the information expired or will expire.
         """
         return self._vte
 
@@ -414,7 +246,7 @@ class XdAnyType(ABC):
     def tr(self):
         """
         Time Recorded. If present this must be a valid date-time. 
-        It is used to indicate the the actual date and time the data was recorded.
+        It is used to indicate the initial date and time the data was recorded.
         """
         return self._tr
 
@@ -429,7 +261,7 @@ class XdAnyType(ABC):
     def modified(self):
         """
         Time Modified. If present this must be a valid date-time stamp. 
-        It is used to indicate the the actual date and time the data was last changed.
+        It is used to indicate the date and time the data was last changed.
         """
         return self._modified
 

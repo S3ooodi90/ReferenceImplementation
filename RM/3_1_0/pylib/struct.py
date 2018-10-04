@@ -1,6 +1,7 @@
 """
 Structural items.
 """
+from abc import ABC, abstractmethod
 
 
 class ItemType(ABC):

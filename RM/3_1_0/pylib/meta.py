@@ -2,6 +2,7 @@
 Meta information classes used by a data model (DMType)
 
 """
+from abc import ABC, abstractmethod
 
 
 class PartyType:
