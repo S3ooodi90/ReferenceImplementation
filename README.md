@@ -21,7 +21,11 @@ There are tutorials included in the Jupyter notebooks. These are companions to t
 
 See the Getting Started notebook. 
 
-You will need to install Anaconda for your platform. Then create the S3Model environement with:
+You will need to install Anaconda for your platform. 
+https://www.anaconda.com/download/
 
-::code 
+
+Then create the S3Model environement with:
+::code bash
     $conda env create -f s3m_environment.yml 
+
