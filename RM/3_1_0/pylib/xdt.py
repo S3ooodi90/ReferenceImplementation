@@ -694,6 +694,57 @@ class XdBooleanType(XdAnyType):
     def asXML(self):
         """
         Return an example XML fragment for this model.
+        """
+        # randomly choose an option
+        tf = random.choice(list(self._options.keys()))
+        choice = random.choice(self._options[tf])
+        act = random.choice(ex_acs)
+        
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = ''
+        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
+        if self.cardinality['act'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
+        if self.cardinality['vtb'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
+        if self.cardinality['vte'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
+        if self.cardinality['tr'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
+        if self.cardinality['modified'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
+        if self.cardinality['location'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
+            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        if tf == 'trues':
+            xmlstr += padding.rjust(indent + 2) + '<true-value>' + choice + '</true-value>\n'
+        elif tf == 'falses':
+            xmlstr += padding.rjust(indent + 2) + '<false-value>' + choice + '</false-value>\n'
+        else:
+            xmlstr += padding.rjust(indent + 2) + '** ERROR GENERATING EXAMPLE **\n'
+            
+            
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+        
+        return(xmlstr)
+    
+    def asJSON(self):
+        """
+        Return an example JSON fragment for this model.
+        """
+        xml = self.asXML()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False)) 
+
+    def asXMLex(self):
+        """
+        Return an example XML fragment for this model.
         
         The core elements are included even though they may not be 
         required via cardinality. Therefore this example may be considerably 
@@ -735,11 +786,11 @@ class XdBooleanType(XdAnyType):
         
         return(xmlstr)
     
-    def asJSON(self):
+    def asJSONex(self):
         """
         Return an example JSON fragment for this model.
         """
-        xml = self.asXML()
+        xml = self.asXMLex()
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False)) 
 
@@ -898,16 +949,19 @@ class XdLinkType(XdAnyType):
         xmlstr = ''
         xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
         xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
-        xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
-        xmlstr += padding.rjust(indent + 2) + '<OTH>\n'
-        xmlstr += padding.rjust(indent + 4) + '<ev-name>Other</ev-name>  # example exceptional value\n'
-        xmlstr += padding.rjust(indent + 2) + '</OTH>\n'
-        xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
-        xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
-        xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
-        xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
-        xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
-        xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        if self.cardinality['act'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
+        if self.cardinality['vtb'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
+        if self.cardinality['vte'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
+        if self.cardinality['tr'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
+        if self.cardinality['modified'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
+        if self.cardinality['location'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
+            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
         xmlstr += padding.rjust(indent + 2) + '<link>' + self.link + '</link>\n'
         xmlstr += padding.rjust(indent + 2) + '<relation>' + self.relation + '</relation>\n'
         xmlstr += padding.rjust(indent + 2) + '<relation-uri>' + self.relation_uri + '</relation-uri>\n'
@@ -1203,7 +1257,10 @@ class XdStringType(XdAnyType):
         """
         
         if len(self.enums) > 0:
-            str_val = random.choice(self.enums)[0]
+            if self.default is not None:
+                str_val = self.default
+            else:
+                str_val = random.choice(self.enums)[0]
         elif isinstance(self.length, int):
             str_val = 'w' * self.length
         elif isinstance(self.length, tuple):
@@ -1225,16 +1282,19 @@ class XdStringType(XdAnyType):
         xmlstr = ''
         xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
         xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
-        xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
-        xmlstr += padding.rjust(indent + 2) + '<OTH>\n'
-        xmlstr += padding.rjust(indent + 4) + '<ev-name>Other</ev-name>  # example exceptional value\n'
-        xmlstr += padding.rjust(indent + 2) + '</OTH>\n'
-        xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
-        xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
-        xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
-        xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
-        xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
-        xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        if self.cardinality['act'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
+        if self.cardinality['vtb'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
+        if self.cardinality['vte'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
+        if self.cardinality['tr'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
+        if self.cardinality['modified'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
+        if self.cardinality['location'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
+            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
         xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + str_val + '</xdstring-value>\n'
         if self.xdstring_language:
             xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.xdstring_language + '</xdstring-language>\n'
