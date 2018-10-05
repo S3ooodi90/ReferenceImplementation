@@ -24,8 +24,8 @@ from lxml import etree
 from cuid import cuid
 from validator_collection import checkers
 
-import ontology
-from ev import ExceptionalValue
+import s3m_ontology
+from s3m_ev import ExceptionalValue
 
 ex_acs = ['Private', 'Public', 'Super Secret']  # example access control tags for instance examples
 
@@ -80,9 +80,9 @@ class XdAnyType(ABC):
         The cardinality dictionary uses a string representation of each 
         property name and a tuple as the value.
         
-        The value passed into the setter is a tuple with v[0] as a string and 
+        The value passed into the setter is a tuple with v[0] as a string (key) and 
         v[1] as a tuple containing an integer set representing the 
-        (minimum, maximum) values. 
+        (minimum, maximum) values. The entire tuple is replaced in the dictionary. 
         
         Examples
         --------
@@ -103,7 +103,7 @@ class XdAnyType(ABC):
         return self._cardinality
 
     @cardinality.setter
-    def cardinality(self, v: Tuple):
+    def cardinality(self, v):
         if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], tuple):
             if isinstance(v[1][0], (int, None)) and isinstance(v[1][1], (int, None)):
                 if isinstance(v[1][0], int) and isinstance(v[1][1], int) and v[1][0] > v[1][1]:
