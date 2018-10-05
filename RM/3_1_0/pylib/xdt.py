@@ -6,6 +6,8 @@ It also contains functionality to manage constraints that are
 built into the XML Schema parsers. 
 """
 import re
+import random
+import json
 from datetime import datetime, date, time, timedelta
 from decimal import Decimal
 from collections import OrderedDict
@@ -15,11 +17,17 @@ from urllib.parse import quote
 from base64 import b64encode
 from typing import ByteString, Dict, List, Tuple, Iterable
 
+import xmltodict
 import pytz
+import exrex
+from lxml import etree
 from cuid import cuid
 from validator_collection import checkers
+
 import ontology
 from ev import ExceptionalValue
+
+ex_acs = ['Private', 'Public', 'Super Secret']  # example access control tags for instance examples
 
 invlTypes = [int, float, date, time, datetime, timedelta]
 
@@ -146,7 +154,9 @@ class XdAnyType(ABC):
     def pred_obj_list(self):
         """
         A list of additional predicate object pairs to describe the component.
+        
         Each list item is a tuple where 0 is the predicate and 1 is the object.
+        
         Example: 
         ('rdf:resource','https://www.niddk.nih.gov/health-information/health-statistics')
         The setter accepts the tuple and appends it to the list.
@@ -175,6 +185,7 @@ class XdAnyType(ABC):
     def definition_url(self, v: str):
         if checkers.is_url(v):
             self._definition_url = v
+            self._docs += '\n\nDefinition: ' + quote(v)
         else:
             raise ValueError("the Definition URL value must be a valid URL.")
 
@@ -538,7 +549,7 @@ class XdBooleanType(XdAnyType):
     In any case, the choice set often has more than two values.   
     """
 
-    def __init__(self, label, opt):
+    def __init__(self, label: str, opt: dict):
         """
         Create an instance of a XdBooleanType.
         
@@ -554,7 +565,13 @@ class XdBooleanType(XdAnyType):
         super().__init__(label)
         self._true_value = None
         self._false_value = None
-        self._options = opt
+        if isinstance(opt, dict) and list(opt.keys()) == ['trues','falses']:
+            if isinstance(opt['trues'], list) and isinstance(opt['falses'], list):
+                self._options = opt
+            else:
+                raise ValueError("The values of 'trues' and 'falses' must be a list of strings.")
+        else:
+            raise ValueError("The the options value must be a dictionary with two keys; 'trues' and 'falses'. Their items must be a list of strings.")
 
 
     @property
@@ -566,7 +583,9 @@ class XdBooleanType(XdAnyType):
 
     @true_value.setter
     def true_value(self, v):
-        if v in self._options['trues'] and self._false_value == None:
+        if v == None:
+            self._true_value = None 
+        elif v in self._options['trues'] and self._false_value == None:
             self._true_value = v
         else:
             raise ValueError("the true_value value must be in the options['trues'] list and the false_value must be None.")
@@ -580,7 +599,9 @@ class XdBooleanType(XdAnyType):
 
     @false_value.setter
     def false_value(self, v):
-        if v in self._options['falses'] and self._true_value == None:
+        if v == None:
+            self._false_value = None 
+        elif v in self._options['falses'] and self._true_value == None:
             self._false_value = v
         else:
             raise ValueError("the false_value value must be in the options['falses'] list and the true_value must be None.")
@@ -589,8 +610,8 @@ class XdBooleanType(XdAnyType):
         """
         Return a XML Schema complexType definition.
         """
-        trues = self.options['trues']
-        falses = self.options['falses']
+        trues = self._options['trues']
+        falses = self._options['falses']
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
@@ -618,7 +639,9 @@ class XdBooleanType(XdAnyType):
         xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
         xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdBooleanType"/>\n'
         xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:label rdf:resource="' + self.label.strip() + '"/>\n'
         xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:comment rdf:resource="' + self.docs.strip() + '"/>\n'
         if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
             for po in self.pred_obj_list:
                 pred = po[0]
@@ -667,6 +690,59 @@ class XdBooleanType(XdAnyType):
         xdstr += padding.rjust(indent) + '</xs:complexType>\n'
 
         return(xdstr)
+    
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        
+        The core elements are included even though they may not be 
+        required via cardinality. Therefore this example may be considerably 
+        larger than an actual implementation. 
+        """
+        # randomly choose an option
+        tf = random.choice(list(self._options.keys()))
+        choice = random.choice(self._options[tf])
+        act = random.choice(ex_acs)
+        
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = ''
+        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
+        xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
+        xmlstr += padding.rjust(indent + 2) + '<OTH>\n'
+        xmlstr += padding.rjust(indent + 4) + '<ev-name>Other</ev-name>  # example exceptional value\n'
+        xmlstr += padding.rjust(indent + 2) + '</OTH>\n'
+        xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
+        xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
+        xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
+        xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
+        xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
+        xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        if tf == 'trues':
+            xmlstr += padding.rjust(indent + 2) + '<true-value>' + choice + '</true-value>\n'
+        elif tf == 'falses':
+            xmlstr += padding.rjust(indent + 2) + '<false-value>' + choice + '</false-value>\n'
+        else:
+            xmlstr += padding.rjust(indent + 2) + '** ERROR GENERATING EXAMPLE **\n'
+            
+            
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+        
+        return(xmlstr)
+    
+    def asJSON(self):
+        """
+        Return an example JSON fragment for this model.
+        """
+        xml = self.asXML()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False)) 
+
 
 class XdLinkType(XdAnyType):
     """
@@ -678,14 +754,14 @@ class XdLinkType(XdAnyType):
     'link-value'.
     """
 
-    def __init__(self, label):
+    def __init__(self, label: str, link: str, relation: str):
         """
         The semantic label (name of the model) is required.
         """
         super().__init__(label)
 
-        self._link = None
-        self._relation = None
+        self._link = link
+        self._relation = relation
         self._relation_uri = None
         self.cardinality = ('relation_uri', (0, 1))
 
@@ -804,6 +880,53 @@ class XdLinkType(XdAnyType):
         xdstr += padding.rjust(indent) + '</xs:complexType>\n'
 
         return(xdstr)
+    
+    
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        
+        The core elements are included even though they may not be 
+        required via cardinality. Therefore this example may be considerably 
+        larger than an actual implementation. 
+        """
+        
+        act = random.choice(ex_acs)
+        
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = ''
+        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
+        xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
+        xmlstr += padding.rjust(indent + 2) + '<OTH>\n'
+        xmlstr += padding.rjust(indent + 4) + '<ev-name>Other</ev-name>  # example exceptional value\n'
+        xmlstr += padding.rjust(indent + 2) + '</OTH>\n'
+        xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
+        xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
+        xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
+        xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
+        xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
+        xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        xmlstr += padding.rjust(indent + 2) + '<link>' + self.link + '</link>\n'
+        xmlstr += padding.rjust(indent + 2) + '<relation>' + self.relation + '</relation>\n'
+        xmlstr += padding.rjust(indent + 2) + '<relation-uri>' + self.relation_uri + '</relation-uri>\n'
+            
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+        
+        return(xmlstr)
+    
+    def asJSON(self):
+        """
+        Return an example JSON fragment for this model.
+        """
+        xml = self.asXML()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False)) 
 
 
 class XdStringType(XdAnyType):
@@ -909,6 +1032,7 @@ class XdStringType(XdAnyType):
     def enums(self):
         """
         A list of two member tuples (enumeration, URI semantics for the enumeration). 
+        
         The enumerations are string values used to constrain the value of the item.
         The URI semantics for the enumeration provides a definition (preferable a URL) for the enumeration.
         Example: ('Blue','http://www.color-wheel-pro.com/color-meaning.html#Blue')
@@ -919,16 +1043,20 @@ class XdStringType(XdAnyType):
     def enums(self, v):
         if v == []:
             self._enums = v
+            
         if self.regex is not None or self.length is not None:
             raise ValueError("The elements 'length', enums' and 'regex' are mutally exclusive. Set length and regex to 'None' or enums to '[]'.")
-        if checkers.is_iterable(v):
-            if len(v) == 0:
-                self._enums = v
-            else:    
-                for enum in v:
-                    if not isinstance(enum, tuple) or not isinstance(enum[0], str) or not isinstance(enum[1], str):
-                        raise ValueError("The enumerations and definitions must be strings.")
-                self._enums = v
+        
+        if isinstance(v, list):
+            for enum in v:
+                print(enum)
+                if not isinstance(enum, tuple):
+                    raise ValueError("The enumerations and definitions must be strings.")
+                
+                if not isinstance(enum[0], str) or not isinstance(enum[1], str):
+                    raise ValueError("The enumerations and definitions must be strings.")
+            
+            self._enums = v
         else:
             raise ValueError("The enumerations must be a list of tuples.")
 
@@ -1064,6 +1192,68 @@ class XdStringType(XdAnyType):
         xdstr += padding.rjust(indent) + '</xs:complexType>\n'
 
         return(xdstr)
+
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        
+        The core elements are included even though they may not be 
+        required via cardinality. Therefore this example may be considerably 
+        larger than an actual implementation. 
+        """
+        
+        if len(self.enums) > 0:
+            str_val = random.choice(self.enums)[0]
+        elif isinstance(self.length, int):
+            str_val = 'w' * self.length
+        elif isinstance(self.length, tuple):
+            str_val = 'd' * self.length[0]  # insure to meet the minimum
+        elif self.default is not None:
+            str_val = self.default
+        elif self.regex is not None:
+            try:
+                str_val = exrex.getone(self.regex)
+            except:
+                str_val = "Could not generate a valid example for the regex."
+        else:
+            str_val = 'Default String' # just a default
+        
+        act = random.choice(ex_acs)
+        
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = ''
+        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
+        xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
+        xmlstr += padding.rjust(indent + 2) + '<OTH>\n'
+        xmlstr += padding.rjust(indent + 4) + '<ev-name>Other</ev-name>  # example exceptional value\n'
+        xmlstr += padding.rjust(indent + 2) + '</OTH>\n'
+        xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
+        xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
+        xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
+        xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
+        xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
+        xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + str_val + '</xdstring-value>\n'
+        if self.xdstring_language:
+            xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.xdstring_language + '</xdstring-language>\n'
+            
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+        
+        return(xmlstr)
+    
+    def asJSON(self):
+        """
+        Return an example JSON fragment for this model.
+        """
+        xml = self.asXML()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False)) 
 
 
 class XdFileType(XdAnyType):
