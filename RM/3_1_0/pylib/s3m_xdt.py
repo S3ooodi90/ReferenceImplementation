@@ -577,7 +577,8 @@ class XdBooleanType(XdAnyType):
     @property
     def true_value(self):
         """
-        A string that represents a boolean True in the implementation. These are constrained by a set of enumerations.
+        A string that represents a boolean True in the implementation. 
+        These are constrained by a set of enumerations.
         """
         return self._true_value
 
@@ -593,7 +594,8 @@ class XdBooleanType(XdAnyType):
     @property
     def false_value(self):
         """
-        A string that represents a boolean False in the implementation. These are constrained by a set of enumerations.
+        A string that represents a boolean False in the implementation. 
+        These are constrained by a set of enumerations.
         """
         return self._false_value
 
@@ -788,7 +790,7 @@ class XdBooleanType(XdAnyType):
     
     def asJSONex(self):
         """
-        Return an example JSON fragment for this model.
+        Return an example JSON fragment for this model based on the asXMLex method.
         """
         xml = self.asXMLex()
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
@@ -936,10 +938,6 @@ class XdLinkType(XdAnyType):
     def asXML(self):
         """
         Return an example XML fragment for this model.
-        
-        The core elements are included even though they may not be 
-        required via cardinality. Therefore this example may be considerably 
-        larger than an actual implementation. 
         """
         
         act = random.choice(ex_acs)
@@ -1250,10 +1248,6 @@ class XdStringType(XdAnyType):
     def asXML(self):
         """
         Return an example XML fragment for this model.
-        
-        The core elements are included even though they may not be 
-        required via cardinality. Therefore this example may be considerably 
-        larger than an actual implementation. 
         """
         
         if len(self.enums) > 0:
@@ -1318,8 +1312,11 @@ class XdStringType(XdAnyType):
 
 class XdFileType(XdAnyType):
     """
-    A type to use for encapsulated content (aka. files) for image, audio and other media types with a defined MIME type. 
-    This type provides a choice of embedding the content into the data or using a URL to point to the content.
+    A type to use for encapsulated content (aka. files) for image, audio and 
+    other media types with a defined MIME type. 
+    
+    This type provides a choice of embedding the content into the data or using 
+    a URL to point to the content.
     """
 
     def __init__(self, label):
@@ -1347,13 +1344,14 @@ class XdFileType(XdAnyType):
         self.cardinality = ('media_type', (0, 1))
         self.cardinality = ('compression_type', (0, 1))
         self.cardinality = ('hash_result', (0, 1))
-        self.cardinality = ('hash_function', (1, 1))
-        self.cardinality = ('alt_txt', (1, 1))
+        self.cardinality = ('hash_function', (0, 1))
+        self.cardinality = ('alt_txt', (0, 1))
 
     @property
     def size(self):
         """
-        Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.
+        Original size in bytes of unencoded encapsulated data. I.e. encodings 
+        such as base64, hexadecimal, etc. 
         """
         return self._size
 
@@ -1368,8 +1366,12 @@ class XdFileType(XdAnyType):
     def encoding(self):
         """
         Name of character encoding scheme in which this value is encoded. 
-        Coded from the IANA charcater set table: http://www.iana.org/assignments/character-sets 
-        Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. 
+        
+        Coded from the IANA charcater set table: 
+        http://www.iana.org/assignments/character-sets 
+        
+        Unicode is the default assumption in S3Model, with UTF-8 being the 
+        assumed encoding. 
         This optional element allows for variations from these assumptions.
         """
         return self._encoding
@@ -1384,9 +1386,10 @@ class XdFileType(XdAnyType):
     @property
     def xdfile_language(self):
         """
-        Optional indicator of the localised language of the content. 
-        Typically remains optional in the CMC and used at runtime when the content is in a different language 
-        from the enclosing CMC.
+        Optional indicator of the localised language of the content.
+        
+        Typically remains optional in the CMC and used at runtime when the 
+        content is in a different language from the enclosing CMC.
         """
         return self._xdfile_language
 
@@ -1400,8 +1403,10 @@ class XdFileType(XdAnyType):
     @property
     def formalism(self):
         """
-        Name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. 
-        Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', etc.
+        Name of the formalism or syntax used to inform an application regarding 
+        a candidate parser to use on the content. 
+        
+        Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', 'XML', etc.
         """
         return self._formalism
 
@@ -1415,8 +1420,10 @@ class XdFileType(XdAnyType):
     @property
     def media_type(self):
         """
-        Media (MIME) type of the original media-content w/o any compression. 
-        See IANA registered types: http://www.iana.org/assignments/media-types/media-types.xhtml
+        Media (MIME) type of the original media-content w/o any compression.
+        
+        See IANA registered types: 
+        http://www.iana.org/assignments/media-types/media-types.xhtml
         """
         return self._media_type
 
@@ -1430,8 +1437,13 @@ class XdFileType(XdAnyType):
     @property
     def compression_type(self):
         """
-        Compression/archiving mime-type. If this elements does not exist then it means there is no compression/archiving. 
-        For a list of common mime-types for compression/archiving see: http://en.wikipedia.org/wiki/List_of_archive_formats.
+        Compression/archiving mime-type. 
+        
+        If this elements does not exist then it means there is no 
+        compression/archiving. 
+        
+        For a list of common mime-types for compression/archiving see: 
+        http://en.wikipedia.org/wiki/List_of_archive_formats.
         """
         return self._compression_type
 
@@ -1445,8 +1457,12 @@ class XdFileType(XdAnyType):
     @property
     def hash_result(self):
         """
-        Hash function result of the 'media-content'. There must be a corresponding hash function type listed for this 
-        to have any meaning. See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
+        Hash function result of the 'media-content'. 
+        
+        There must be a corresponding hash function type listed for this 
+        to have any meaning. 
+        
+        See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
         """
         return self._hash_result
 
@@ -1461,6 +1477,7 @@ class XdFileType(XdAnyType):
     def hash_function(self):
         """
         Hash function used to compute hash-result. 
+        
         See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
         """
         return self._hash_function
@@ -1489,8 +1506,8 @@ class XdFileType(XdAnyType):
     @property
     def uri(self):
         """
-        URI reference to electronic information stored outside the record as a file, database entry etc, 
-        if supplied as a reference.
+        URI reference to electronic information stored outside the record 
+        as a file, database entry etc.; if supplied as a reference.
         """
         return self._uri
 
@@ -1504,8 +1521,12 @@ class XdFileType(XdAnyType):
     @property
     def media_content(self):
         """
-        The content, if stored locally. The CMC modeler chooses either a uri or local content element.
-        If the passed value is a string it will be converted to bytes and base64 encoded. 
+        The content, if stored locally. 
+        
+        The CMC modeler chooses either a uri or local content element.
+        If the passed value is a string it will be converted to bytes and 
+        base64 encoded. 
+        
         If it is already bytes then it is just encoded.
         """
         return self._media_content
@@ -1575,7 +1596,19 @@ class XdFileType(XdAnyType):
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['modified'][0]) + '" name="modified" type="xs:dateTime"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['location'][0]) + '" name="latitude" type="xs:decimal"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['location'][0]) + '" name="longitude" type="xs:decimal"/>\n'
-        # Xd
+        # XdFile
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="size" type="xs:int"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['encoding'][0]) + '" name="encoding" type="xs:string"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['xdfile_language'][0]) + '" name="xdfile-language" type="xs:language"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['formalism'][0]) + '" name="formalism" type="xs:string"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['media_type'][0]) + '" name="media-type" type="xs:string"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['compression_type'][0]) + '" name="compression-type" type="xs:string"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['hash_result'][0]) + '" name="hash-result" type="xs:string"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['hash_function'][0]) + '" name="hash-function" type="xs:string"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['alt_txt'][0]) + '" name="alt-txt" type="xs:string"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="uri" type="xs:anyURI"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="media-content" type="xs:base64Binary"/>\n'
+        
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
@@ -1583,6 +1616,50 @@ class XdFileType(XdAnyType):
 
         return(xdstr)
 
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+        
+        act = random.choice(ex_acs)
+        
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = ''
+        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
+        if self.cardinality['act'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
+        if self.cardinality['vtb'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
+        if self.cardinality['vte'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
+        if self.cardinality['tr'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
+        if self.cardinality['modified'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
+        if self.cardinality['location'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
+            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + str_val + '</xdstring-value>\n'
+        if self.xdstring_language:
+            xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.xdstring_language + '</xdstring-language>\n'
+            
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+        
+        return(xmlstr)
+    
+    def asJSON(self):
+        """
+        Return an example JSON fragment for this model.
+        """
+        xml = self.asXML()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False)) 
 
 class XdOrderedType(XdAnyType):
     """
