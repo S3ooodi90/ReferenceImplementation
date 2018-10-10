@@ -1943,8 +1943,10 @@ class XdQuantifiedType(XdOrderedType):
         xmlstr = super().asXML()
         if self.cardinality['magnitude_status'][0] > 0:
             xmlstr += padding.rjust(indent) + '<magnitude-status>=</magnitude-status>\n'
-        xmlstr += padding.rjust(indent) + '<error>0</error>\n'
-        xmlstr += padding.rjust(indent) + '<accuracy>0</accuracy>\n'
+        if self.error is not None:
+            xmlstr += padding.rjust(indent) + '<error>' + str(self.error).strip() + '</error>\n'
+        if self.accuracy is not None:
+            xmlstr += padding.rjust(indent) + '<accuracy>' + str(self.accuracy).strip() + '</accuracy>\n'
 
         return(xmlstr)
 
@@ -2127,13 +2129,14 @@ class XdCountType(XdQuantifiedType):
         indent = 4
         padding = ('').rjust(indent)
         xmlstr = super().asXML()
-        xmlstr += padding.rjust(indent) + '<xdcount-value>0</xdcount-value>\n'
+        xmlstr += padding.rjust(indent) + '<xdcount-value>' + str(self.xdcount_value).strip() + '</xdcount-value>\n'
         xmlstr += padding.rjust(indent) + self.xdcount_units.asXML()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
         parser = etree.XMLParser()
         tree = etree.XML(xmlstr, parser)
+
         return(xmlstr)
 
 
@@ -2153,6 +2156,13 @@ class XdQuantityType(XdQuantifiedType):
         self._xdquantity_units = None
         self.cardinality = ('xdquantity_value', (0, 1))
         self.cardinality = ('xdquantity_units', (1, 1))
+        self._min_inclusive = None
+        self._max_inclusive = None
+        self._min_exclusive = None
+        self._max_exclusive = None
+        self._total_digits = None
+
+        self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive, self._total_digits])
 
     @property
     def xdquantity_value(self):
@@ -2183,6 +2193,76 @@ class XdQuantityType(XdQuantifiedType):
         else:
             raise ValueError("The xdquantity_units value must be a XdStringType identifying the things to be measured.")
 
+    @property
+    def min_inclusive(self):
+        """
+        An inclusive minimum value.
+        """
+        return self._min_inclusive
+
+    @min_inclusive.setter
+    def min_inclusive(self, v):
+        if isinstance(v, float):
+            self._min_inclusive = v
+        else:
+            raise ValueError("The min_inclusive value must be a float.")
+
+    @property
+    def max_inclusive(self):
+        """
+        An inclusive maximum value.
+        """
+        return self._max_inclusive
+
+    @max_inclusive.setter
+    def max_inclusive(self, v):
+        if isinstance(v, float):
+            self._max_inclusive = v
+        else:
+            raise ValueError("The max_inclusive value must be a float.")
+
+    @property
+    def min_exclusive(self):
+        """
+        An exclusive minimum value.
+        """
+        return self._min_exclusive
+
+    @min_exclusive.setter
+    def min_exclusive(self, v):
+        if isinstance(v, float):
+            self._min_exclusive = v
+        else:
+            raise ValueError("The min_exclusive value must be a float.")
+
+    @property
+    def max_exclusive(self):
+        """
+        An exclusive maximum value.
+        """
+        return self._max_exclusive
+
+    @max_exclusive.setter
+    def max_exclusive(self, v):
+        if isinstance(v, float):
+            self._max_exclusive = v
+        else:
+            raise ValueError("The max_exclusive value must be a float.")
+
+    @property
+    def total_digits(self):
+        """
+        A maximum total digits constraint.
+        """
+        return self._total_digits
+
+    @total_digits.setter
+    def total_digits(self, v):
+        if isinstance(v, float):
+            self._total_digits = v
+        else:
+            raise ValueError("The total_digits value must be a float.")
+
     def asXSD(self):
         """
         Return a XML Schema complexType definition.
@@ -2191,8 +2271,53 @@ class XdQuantityType(XdQuantifiedType):
         padding = ('').rjust(indent)
 
         xdstr = super().asXSD()
+        # XdQuantity
+        if not self._mag_constrained:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value' type='xs:float'/>\n")
+        else:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value'>\n")
+            xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
+            xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:float'>\n")
+            if self.min_inclusive is not None:
+                xdstr += padding.rjust(indent + 12) + ("<xs:minInclusive value='" + str(self.min_inclusive).strip() + "'/>\n")
+            if self.max_inclusive is not None:
+                xdstr += padding.rjust(indent + 12) + ("<xs:maxInclusive value='" + str(self.max_inclusive).strip() + "'/>\n")
+            if self.min_exclusive is not None:
+                xdstr += padding.rjust(indent + 12) + ("<xs:minExclusive value='" + str(self.min_exclusive).strip() + "'/>\n")
+            if self.max_exclusive is not None:
+                xdstr += padding.rjust(indent + 12) + ("<xs:maxExclusive value='" + str(self.max_exclusive).strip() + "'/>\n")
+            if (self.total_digits is not None and self.total_digits > 0):
+                xdstr += padding.rjust(indent + 12) + ("<xs:totalDigits value='" + str(self.total_digits).strip() + "'/>\n")
+            xdstr += padding.rjust(indent + 10) + ("</xs:restriction>\n")
+            xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
+            xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
+
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdquantity-units' type='s3m:mc-" + str(self.xdquantity_units.mcuid) + "'/> \n")
+        xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
+        xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
+        xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
+        xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        xdstr += self.xdcount_units.asXSD()
 
         return(xdstr)
+
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+
+        indent = 4
+        padding = ('').rjust(indent)
+        xmlstr = super().asXML()
+        xmlstr += padding.rjust(indent) + '<xdquantity-value>' + str(self.xdquantity_value).strip() + '</xdquantity-value>\n'
+        xmlstr += padding.rjust(indent) + self.xdquantity_units.asXML()
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+
+        return(xmlstr)
 
 
 class XdFloatType(XdQuantifiedType):
@@ -2240,6 +2365,76 @@ class XdFloatType(XdQuantifiedType):
         else:
             raise ValueError("The xdfloat_units value must be a XdStringType identifying the things to be measured.")
 
+    @property
+    def min_inclusive(self):
+        """
+        An inclusive minimum value.
+        """
+        return self._min_inclusive
+
+    @min_inclusive.setter
+    def min_inclusive(self, v):
+        if isinstance(v, float):
+            self._min_inclusive = v
+        else:
+            raise ValueError("The min_inclusive value must be a float.")
+
+    @property
+    def max_inclusive(self):
+        """
+        An inclusive maximum value.
+        """
+        return self._max_inclusive
+
+    @max_inclusive.setter
+    def max_inclusive(self, v):
+        if isinstance(v, float):
+            self._max_inclusive = v
+        else:
+            raise ValueError("The max_inclusive value must be a float.")
+
+    @property
+    def min_exclusive(self):
+        """
+        An exclusive minimum value.
+        """
+        return self._min_exclusive
+
+    @min_exclusive.setter
+    def min_exclusive(self, v):
+        if isinstance(v, float):
+            self._min_exclusive = v
+        else:
+            raise ValueError("The min_exclusive value must be a float.")
+
+    @property
+    def max_exclusive(self):
+        """
+        An exclusive maximum value.
+        """
+        return self._max_exclusive
+
+    @max_exclusive.setter
+    def max_exclusive(self, v):
+        if isinstance(v, float):
+            self._max_exclusive = v
+        else:
+            raise ValueError("The max_exclusive value must be a float.")
+
+    @property
+    def total_digits(self):
+        """
+        A maximum total digits constraint.
+        """
+        return self._total_digits
+
+    @total_digits.setter
+    def total_digits(self, v):
+        if isinstance(v, float):
+            self._total_digits = v
+        else:
+            raise ValueError("The total_digits value must be a float.")
+
     def asXSD(self):
         """
         Return a XML Schema complexType definition.
@@ -2248,39 +2443,53 @@ class XdFloatType(XdQuantifiedType):
         padding = ('').rjust(indent)
 
         xdstr = super().asXSD()
-        if not mag_constrained:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdfloat-value' type='xs:decimal'/>\n")
+        # XdQuantity
+        if not self._mag_constrained:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdfloat-value' type='xs:float'/>\n")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0'  name='xdfloat-value'>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdfloat-value'>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
-            xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:decimal'>\n")
+            xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:float'>\n")
             if self.min_inclusive is not None:
-                xdstr += padding.rjust(indent + 12) + ("<xs:minInclusive value='" + str('%.10g' % self.min_inclusive).strip() + "'/>\n")
+                xdstr += padding.rjust(indent + 12) + ("<xs:minInclusive value='" + str(self.min_inclusive).strip() + "'/>\n")
             if self.max_inclusive is not None:
-                xdstr += padding.rjust(indent + 12) + ("<xs:maxInclusive value='" + str('%.10g' % self.max_inclusive).strip().strip() + "'/>\n")
+                xdstr += padding.rjust(indent + 12) + ("<xs:maxInclusive value='" + str(self.max_inclusive).strip() + "'/>\n")
             if self.min_exclusive is not None:
-                xdstr += padding.rjust(indent + 12) + ("<xs:minExclusive value='" + str('%.10g' % self.min_exclusive).strip() + "'/>\n")
+                xdstr += padding.rjust(indent + 12) + ("<xs:minExclusive value='" + str(self.min_exclusive).strip() + "'/>\n")
             if self.max_exclusive is not None:
-                xdstr += padding.rjust(indent + 12) + ("<xs:maxExclusive value='" + str('%.10g' % self.max_exclusive).strip() + "'/>\n")
-            if (self.total_digits is not None and self.total_digits >= 0):
+                xdstr += padding.rjust(indent + 12) + ("<xs:maxExclusive value='" + str(self.max_exclusive).strip() + "'/>\n")
+            if (self.total_digits is not None and self.total_digits > 0):
                 xdstr += padding.rjust(indent + 12) + ("<xs:totalDigits value='" + str(self.total_digits).strip() + "'/>\n")
             xdstr += padding.rjust(indent + 10) + ("</xs:restriction>\n")
             xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
             xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
 
-        if self.units:
-            if not self.units.published:
-                reset_publication(self)
-                msg = ("Units: " + self.units.label + " hasn't been published. Please publish the object and retry.", messages.ERROR)
-                return(msg)
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdquantity-units' type='s3m:mc-" + str(self.units.ct_id) + "'/>\n")
-
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdquantity-units' type='s3m:mc-" + str(self.xdfloat_units.mcuid) + "'/> \n")
         xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        xdstr += self.xdcount_units.asXSD()
 
         return(xdstr)
+
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+
+        indent = 4
+        padding = ('').rjust(indent)
+        xmlstr = super().asXML()
+        xmlstr += padding.rjust(indent) + '<xdfloat-value>' + str(self.xdfloat_value).strip() + '</xdfloat-value>\n'
+        xmlstr += padding.rjust(indent) + self.xdfloat_units.asXML()
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+
+        return(xmlstr)
 
 
 class XdRatioType(XdQuantifiedType):

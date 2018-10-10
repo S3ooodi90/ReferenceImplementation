@@ -5,6 +5,8 @@
 *.zip
 *.sh
 
+*-checkpoint.ipynb
+
 mindmaps/*
 
 #Sphinx
