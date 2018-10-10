@@ -54,7 +54,7 @@ class XdAnyType(ABC):
             raise TypeError('"label" must be a string type of at least 2 characters. Not a ', type(label))
 
         self._xdtype = None
-        self._adapter = True  # flag set to create an XdAdapter for use in a Cluster
+        self._adapter = True  # flag set to create an XdAdapter for use in a Cluster, otherwise it is false
         self._docs = ''
         self._definition_url = ''
         self._pred_obj_list = []
@@ -135,6 +135,19 @@ class XdAnyType(ABC):
         The semantic name of the component.
         """
         return self._label
+
+    @property
+    def adapter(self):
+        """
+        """
+        return self._adapter
+
+    @adapter.setter
+    def adapter(self, v: bool):
+        if isinstance(v, bool):
+            self._adapter = v
+        else:
+            raise ValueError("the adapter value must be a boolean.")
 
     @property
     def docs(self):
@@ -333,8 +346,10 @@ class XdAnyType(ABC):
             xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
             xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
             xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+            xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
+        else:
+            xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" type="s3m:mc-' + self.mcuid + '"/>\n'
 
-        xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
         xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
         xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
         xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
@@ -1918,6 +1933,21 @@ class XdQuantifiedType(XdOrderedType):
 
         return(xdstr)
 
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+
+        indent = 4
+        padding = ('').rjust(indent)
+        xmlstr = super().asXML()
+        if self.cardinality['magnitude_status'][0] > 0:
+            xmlstr += padding.rjust(indent) + '<magnitude-status>=</magnitude-status>\n'
+        xmlstr += padding.rjust(indent) + '<error>0</error>\n'
+        xmlstr += padding.rjust(indent) + '<accuracy>0</accuracy>\n'
+
+        return(xmlstr)
+
 
 class XdCountType(XdQuantifiedType):
     """
@@ -1948,6 +1978,8 @@ class XdCountType(XdQuantifiedType):
         self._min_exclusive = None
         self._max_exclusive = None
         self._total_digits = None
+
+        self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive, self._total_digits])
 
     @property
     def xdcount_value(self):
@@ -2058,7 +2090,7 @@ class XdCountType(XdQuantifiedType):
 
         xdstr = super().asXSD()
         # XdCount
-        if not mag_constrained:
+        if not self._mag_constrained:
             xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdcount-value' type='xs:int'/>\n")
         else:
             xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdcount-value'>\n")
@@ -2086,6 +2118,23 @@ class XdCountType(XdQuantifiedType):
         xdstr += self.xdcount_units.asXSD()
 
         return(xdstr)
+
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+
+        indent = 4
+        padding = ('').rjust(indent)
+        xmlstr = super().asXML()
+        xmlstr += padding.rjust(indent) + '<xdcount-value>0</xdcount-value>\n'
+        xmlstr += padding.rjust(indent) + self.xdcount_units.asXML()
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+        return(xmlstr)
 
 
 class XdQuantityType(XdQuantifiedType):
