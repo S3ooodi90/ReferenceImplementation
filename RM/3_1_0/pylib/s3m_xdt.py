@@ -2161,7 +2161,7 @@ class XdQuantityType(XdQuantifiedType):
         self._min_exclusive = None
         self._max_exclusive = None
         self._total_digits = None
-
+        self._fraction_digits = None
         self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive, self._total_digits])
 
     @property
@@ -2173,7 +2173,7 @@ class XdQuantityType(XdQuantifiedType):
 
     @xdquantity_value.setter
     def xdquantity_value(self, v):
-        if isinstance(v, float):
+        if isinstance(v, Decimal):
             self._xdquantity_value = v
         else:
             raise ValueError("The xdquantity_value value must be a decimal.")
@@ -2202,10 +2202,11 @@ class XdQuantityType(XdQuantifiedType):
 
     @min_inclusive.setter
     def min_inclusive(self, v):
-        if isinstance(v, float):
+        v = Decimal(v)
+        if isinstance(v, Decimal):
             self._min_inclusive = v
         else:
-            raise ValueError("The min_inclusive value must be a float.")
+            raise ValueError("The min_inclusive value must be a Decimal.")
 
     @property
     def max_inclusive(self):
@@ -2216,10 +2217,11 @@ class XdQuantityType(XdQuantifiedType):
 
     @max_inclusive.setter
     def max_inclusive(self, v):
-        if isinstance(v, float):
+        v = Decimal(v)
+        if isinstance(v, Decimal):
             self._max_inclusive = v
         else:
-            raise ValueError("The max_inclusive value must be a float.")
+            raise ValueError("The max_inclusive value must be a Decimal.")
 
     @property
     def min_exclusive(self):
@@ -2230,10 +2232,11 @@ class XdQuantityType(XdQuantifiedType):
 
     @min_exclusive.setter
     def min_exclusive(self, v):
-        if isinstance(v, float):
+        v = Decimal(v)
+        if isinstance(v, Decimal):
             self._min_exclusive = v
         else:
-            raise ValueError("The min_exclusive value must be a float.")
+            raise ValueError("The min_exclusive value must be a Decimal.")
 
     @property
     def max_exclusive(self):
@@ -2244,10 +2247,11 @@ class XdQuantityType(XdQuantifiedType):
 
     @max_exclusive.setter
     def max_exclusive(self, v):
-        if isinstance(v, float):
+        v = Decimal(v)
+        if isinstance(v, Decimal):
             self._max_exclusive = v
         else:
-            raise ValueError("The max_exclusive value must be a float.")
+            raise ValueError("The max_exclusive value must be a Decimal.")
 
     @property
     def total_digits(self):
@@ -2258,10 +2262,24 @@ class XdQuantityType(XdQuantifiedType):
 
     @total_digits.setter
     def total_digits(self, v):
-        if isinstance(v, float):
+        if isinstance(v, int):
             self._total_digits = v
         else:
-            raise ValueError("The total_digits value must be a float.")
+            raise ValueError("The total_digits value must be a int.")
+
+    @property
+    def fraction_digits(self):
+        """
+        A maximum fraction digits constraint.
+        """
+        return self._fraction_digits
+
+    @fraction_digits.setter
+    def fraction_digits(self, v):
+        if isinstance(v, int):
+            self._fraction_digits = v
+        else:
+            raise ValueError("The fraction_digits value must be a int.")
 
     def asXSD(self):
         """
@@ -2273,11 +2291,11 @@ class XdQuantityType(XdQuantifiedType):
         xdstr = super().asXSD()
         # XdQuantity
         if not self._mag_constrained:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value' type='xs:float'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value' type='xs:decimal'/>\n")
         else:
             xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value'>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
-            xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:float'>\n")
+            xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:decimal'>\n")
             if self.min_inclusive is not None:
                 xdstr += padding.rjust(indent + 12) + ("<xs:minInclusive value='" + str(self.min_inclusive).strip() + "'/>\n")
             if self.max_inclusive is not None:
@@ -2288,6 +2306,8 @@ class XdQuantityType(XdQuantifiedType):
                 xdstr += padding.rjust(indent + 12) + ("<xs:maxExclusive value='" + str(self.max_exclusive).strip() + "'/>\n")
             if (self.total_digits is not None and self.total_digits > 0):
                 xdstr += padding.rjust(indent + 12) + ("<xs:totalDigits value='" + str(self.total_digits).strip() + "'/>\n")
+            if (self.fraction_digits is not None and self.fraction_digits >= 0):
+                xdstr += padding.rjust(indent + 12) + ("<xs:fractionDigits value='" + str(self.fraction_digits).strip() + "'/>\n")
             xdstr += padding.rjust(indent + 10) + ("</xs:restriction>\n")
             xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
             xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
@@ -2297,7 +2317,7 @@ class XdQuantityType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
-        xdstr += self.xdcount_units.asXSD()
+        xdstr += self.xdquantity_units.asXSD()
 
         return(xdstr)
 
@@ -2322,8 +2342,18 @@ class XdQuantityType(XdQuantifiedType):
 
 class XdFloatType(XdQuantifiedType):
     """
-    Quantified type representing specific a value as a floating point number and optional units.
+    Quantified type representing specific a value as a floating point,
+    64 bit or sometimes called a double, number and optional units.
+
+    This type accepts several "special" values: 
+    - positive zero (0)
+    - negative zero (-0) (which is greater than positive 0 but less than any negative value)
+    - infinity (INF) (which is greater than any value)
+    - negative infinity (-INF) (which is less than any float
+    - "not a number" (NaN) case-sensitive
     """
+
+    # TODO: Fully test the Python 3.x implementation vs. the XML Schema implementation
 
     def __init__(self, label):
         """
@@ -2374,6 +2404,7 @@ class XdFloatType(XdQuantifiedType):
 
     @min_inclusive.setter
     def min_inclusive(self, v):
+        v = float(v)
         if isinstance(v, float):
             self._min_inclusive = v
         else:
@@ -2388,6 +2419,7 @@ class XdFloatType(XdQuantifiedType):
 
     @max_inclusive.setter
     def max_inclusive(self, v):
+        v = float(v)
         if isinstance(v, float):
             self._max_inclusive = v
         else:
@@ -2402,6 +2434,7 @@ class XdFloatType(XdQuantifiedType):
 
     @min_exclusive.setter
     def min_exclusive(self, v):
+        v = float(v)
         if isinstance(v, float):
             self._min_exclusive = v
         else:
@@ -2416,6 +2449,7 @@ class XdFloatType(XdQuantifiedType):
 
     @max_exclusive.setter
     def max_exclusive(self, v):
+        v = float(v)
         if isinstance(v, float):
             self._max_exclusive = v
         else:
@@ -2430,10 +2464,10 @@ class XdFloatType(XdQuantifiedType):
 
     @total_digits.setter
     def total_digits(self, v):
-        if isinstance(v, float):
+        if isinstance(v, int):
             self._total_digits = v
         else:
-            raise ValueError("The total_digits value must be a float.")
+            raise ValueError("The total_digits value must be a int.")
 
     def asXSD(self):
         """
@@ -2469,7 +2503,7 @@ class XdFloatType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
-        xdstr += self.xdcount_units.asXSD()
+        xdstr += self.xdfloat_units.asXSD()
 
         return(xdstr)
 

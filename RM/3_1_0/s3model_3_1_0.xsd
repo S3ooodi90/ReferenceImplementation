@@ -979,21 +979,21 @@
 
   <xs:complexType name="XdFloatType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Quantified type representing specific a value as a floating point number and optional units.</xs:documentation>
+      <xs:documentation xml:lang="en-us">Quantified type representing specific a value as a floating point (64 bit) number and optional units.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFloatType">
           <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdFloatType.html#XdFloatType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType"/>
           <rdfs:label xml:lang="en-us">XdFloatType</rdfs:label>
           <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>          
-          <rdfs:comment xml:lang="en-us">Quantified type representing specific a value as a floating point number and optional units.</rdfs:comment>
+          <rdfs:comment xml:lang="en-us">Quantified type representing specific a value as a floating point (64 bit) number and optional units.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="s3m:XdQuantifiedType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="0" name="xdfloat-value" type="xs:float">
+          <xs:element maxOccurs="1" minOccurs="0" name="xdfloat-value" type="xs:double">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Float value.</xs:documentation>
               <xs:appinfo>
