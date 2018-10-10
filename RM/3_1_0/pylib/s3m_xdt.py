@@ -371,6 +371,42 @@ class XdAnyType(ABC):
 
         return(xdstr)
 
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+
+        act = random.choice(ex_acs)
+
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = ''
+        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
+        if self.cardinality['act'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
+        if self.cardinality['vtb'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
+        if self.cardinality['vte'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
+        if self.cardinality['tr'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
+        if self.cardinality['modified'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
+        if self.cardinality['location'][0] > 0:
+            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
+            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+
+        return(xmlstr)
+
+    def asJSON(self):
+        """
+        Return an example JSON fragment for this model.
+        """
+        xml = self.asXML()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False))
+
 
 class XdIntervalType(XdAnyType):
     """
@@ -497,7 +533,7 @@ class XdIntervalType(XdAnyType):
     @property
     def interval_units(self):
         """
-        Defines the the units for this Interval.
+        Defines the units for this Interval.
 
         A two member tuple consisting of the units name/abbreviation 
         and a URI used as a definition. 
@@ -563,6 +599,29 @@ class XdIntervalType(XdAnyType):
             xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
             xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
             xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        return(xdstr)
+
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = super().asXML()
+
+        xmlstr += padding.rjust(indent + 2) + '<lower>' + str(self._lower).strip() + '</lower>\n'
+        xmlstr += padding.rjust(indent + 2) + '<upper>' + str(self._upper).strip() + '</upper>\n'
+        xmlstr += padding.rjust(indent + 2) + '<lower-included>' + str(self._lower).strip() + '</lower-included>\n'
+        xmlstr += padding.rjust(indent + 2) + '<upper-included>' + str(self._upper).strip() + '</upper-included>\n'
+        xmlstr += padding.rjust(indent + 2) + '<lower-bounded>' + str(self._lower).strip() + '</lower-bounded>\n'
+        xmlstr += padding.rjust(indent + 2) + '<upper-bounded>' + str(self._upper).strip() + '</upper-bounded>\n'
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+
+        return(xmlstr)
 
 
 class ReferenceRangeType(XdAnyType):
@@ -621,15 +680,13 @@ class ReferenceRangeType(XdAnyType):
         else:
             raise ValueError("the is_normal value must be a Boolean.")
 
-    def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
-
     def asXSD(self):
         """
         Return a XML Schema complexType definition.
         """
         indent = 2
         padding = ('').rjust(indent)
+        normal = 'true' if self._is_normal else 'false'
 
         xdstr = super().asXSD()
         # ReferenceRange
@@ -640,6 +697,30 @@ class ReferenceRangeType(XdAnyType):
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        return(xdstr)
+
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+        normal = 'true' if self._is_normal else 'false'
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = super().asXML()
+
+        xmlstr += padding.rjust(indent + 2) + '<definition>' + self._definition.strip() + '</definition>\n'
+        xmlstr += padding.rjust(indent + 2) + '<interval>\n'
+        xmlstr += padding.rjust(indent + 2) + self._interval.asXML()
+        xmlstr += padding.rjust(indent + 2) + '</interval>\n'
+        xmlstr += padding.rjust(indent + 2) + '<is-normal>' + normal + '</is-normal>\n'
+
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+
+        return(xmlstr)
 
 
 class XdBooleanType(XdAnyType):
@@ -769,26 +850,11 @@ class XdBooleanType(XdAnyType):
         # randomly choose an option
         tf = random.choice(list(self._options.keys()))
         choice = random.choice(self._options[tf])
-        act = random.choice(ex_acs)
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = ''
-        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
-        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
-        if self.cardinality['act'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
-        if self.cardinality['vtb'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
-        if self.cardinality['vte'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
-        if self.cardinality['tr'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
-        if self.cardinality['modified'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
-        if self.cardinality['location'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
-            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        xmlstr = super().asXML()
+
         if tf == 'trues':
             xmlstr += padding.rjust(indent + 2) + '<true-value>' + choice + '</true-value>\n'
         elif tf == 'falses':
@@ -803,14 +869,6 @@ class XdBooleanType(XdAnyType):
         tree = etree.XML(xmlstr, parser)
 
         return(xmlstr)
-
-    def asJSON(self):
-        """
-        Return an example JSON fragment for this model.
-        """
-        xml = self.asXML()
-        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
-        return(json.dumps(parsed, indent=2, sort_keys=False))
 
     def asXMLex(self):
         """
@@ -962,26 +1020,10 @@ class XdLinkType(XdAnyType):
         Return an example XML fragment for this model.
         """
 
-        act = random.choice(ex_acs)
-
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = ''
-        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
-        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
-        if self.cardinality['act'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
-        if self.cardinality['vtb'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
-        if self.cardinality['vte'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
-        if self.cardinality['tr'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
-        if self.cardinality['modified'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
-        if self.cardinality['location'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
-            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        xmlstr = super().asXML()
+
         xmlstr += padding.rjust(indent + 2) + '<link>' + self.link + '</link>\n'
         xmlstr += padding.rjust(indent + 2) + '<relation>' + self.relation + '</relation>\n'
         xmlstr += padding.rjust(indent + 2) + '<relation-uri>' + self.relation_uri + '</relation-uri>\n'
@@ -993,14 +1035,6 @@ class XdLinkType(XdAnyType):
         tree = etree.XML(xmlstr, parser)
 
         return(xmlstr)
-
-    def asJSON(self):
-        """
-        Return an example JSON fragment for this model.
-        """
-        xml = self.asXML()
-        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
-        return(json.dumps(parsed, indent=2, sort_keys=False))
 
 
 class XdStringType(XdAnyType):
@@ -1247,26 +1281,10 @@ class XdStringType(XdAnyType):
         else:
             str_val = 'Default String'  # just a default
 
-        act = random.choice(ex_acs)
-
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = ''
-        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
-        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
-        if self.cardinality['act'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
-        if self.cardinality['vtb'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
-        if self.cardinality['vte'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
-        if self.cardinality['tr'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
-        if self.cardinality['modified'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
-        if self.cardinality['location'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
-            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        xmlstr = super().asXML()
+
         xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + str_val + '</xdstring-value>\n'
         if self.xdstring_language:
             xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.xdstring_language + '</xdstring-language>\n'
@@ -1278,14 +1296,6 @@ class XdStringType(XdAnyType):
         tree = etree.XML(xmlstr, parser)
 
         return(xmlstr)
-
-    def asJSON(self):
-        """
-        Return an example JSON fragment for this model.
-        """
-        xml = self.asXML()
-        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
-        return(json.dumps(parsed, indent=2, sort_keys=False))
 
 
 class XdFileType(XdAnyType):
@@ -1558,26 +1568,9 @@ class XdFileType(XdAnyType):
         Return an example XML fragment for this model.
         """
 
-        act = random.choice(ex_acs)
-
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = ''
-        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
-        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
-        if self.cardinality['act'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
-        if self.cardinality['vtb'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
-        if self.cardinality['vte'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
-        if self.cardinality['tr'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
-        if self.cardinality['modified'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
-        if self.cardinality['location'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
-            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        xmlstr = super().asXML()
 
         xmlstr += padding.rjust(indent + 2) + '<size>' + str(self.size) + '</size>\n'
         if self.encoding:
@@ -1608,14 +1601,6 @@ class XdFileType(XdAnyType):
         tree = etree.XML(xmlstr, parser)
 
         return(xmlstr)
-
-    def asJSON(self):
-        """
-        Return an example JSON fragment for this model.
-        """
-        xml = self.asXML()
-        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
-        return(json.dumps(parsed, indent=2, sort_keys=False))
 
 
 class XdOrderedType(XdAnyType):
@@ -1687,6 +1672,22 @@ class XdOrderedType(XdAnyType):
 
         return(xdstr)
 
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+
+        indent = 4
+        padding = ('').rjust(indent)
+        xmlstr = super().asXML()
+        if self._referenceranges is not None:
+            for rr in self._referenceranges:
+                xmlstr += rr.asXML()
+        if self._normal_status:
+            xmlstr += padding.rjust(indent) + '<normal-status>' + self._normal_status + '</normal-status>\n'
+
+        return(xmlstr)
+
 
 class XdOrdinalType(XdOrderedType):
     """
@@ -1715,8 +1716,7 @@ class XdOrdinalType(XdOrderedType):
         * for non-haemolysed blood {neg, trace, moderate};
         * for haemolysed blood {neg, trace, small, moderate, large}.
 
-        Elements *ordinal* and *symbol* MUST have the same number of 
-        enumerations in the RMC.
+    If a normal status is set it should be a member of the set of symbols.
     """
 
     def __init__(self, label: str, choices: Dict):
@@ -1765,14 +1765,15 @@ class XdOrdinalType(XdOrderedType):
         if checkers.is_string(v):
             self._symbol = v
         else:
-            raise ValueError("the symbol value must be a decimal.")
+            raise ValueError("the symbol value must be a string.")
 
     @property
     def choices(self):
         """
         The choices list contains a three member tuple for each choice.
 
-        (ordinal, symbol, )
+        Template:
+        (ordinal, symbol, URI)
         """
         return self._choices
 
@@ -1822,6 +1823,23 @@ class XdOrdinalType(XdOrderedType):
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
 
         return(xdstr)
+
+    def asXML(self):
+        """
+        Return an example XML fragment for this model.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = super().asXML()
+        c = random.choice(self._choices)
+        xmlstr += padding.rjust(indent + 2) + '<ordinal>' + str(c[0]) + '</ordinal>\n'
+        xmlstr += padding.rjust(indent + 2) + '<symbol>' + c[1] + '</symbol>\n'
+        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+
+        # check for well-formed XML
+        parser = etree.XMLParser()
+        tree = etree.XML(xmlstr, parser)
+        return(xmlstr)
 
 
 class XdQuantifiedType(XdOrderedType):
