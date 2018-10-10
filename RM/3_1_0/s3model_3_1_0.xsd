@@ -125,7 +125,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>      
-      <xs:element maxOccurs="1" minOccurs="0" name="latitude" nillable="true">
+      <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Latitude in decimal format. Value range -90.000000 to 90.000000.</xs:documentation>
           <xs:appinfo>
@@ -138,16 +138,8 @@
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
-        <xs:simpleType id="lattype">
-          <xs:restriction base="xs:decimal">
-            <xs:fractionDigits value="6"/>
-            <xs:totalDigits value="8"/>
-            <xs:maxInclusive value="90.000000"/>
-            <xs:minInclusive value="-90.000000"/>
-          </xs:restriction>
-        </xs:simpleType>
       </xs:element>      
-      <xs:element maxOccurs="1" minOccurs="0" name="longitude" nillable="true">
+      <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype" nillable="true">
         <xs:annotation>
           <xs:documentation xml:lang="en-us">Longitude in decimal format. Value range -180.000000 to 180.000000.</xs:documentation>
           <xs:appinfo>
@@ -160,14 +152,6 @@
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
-        <xs:simpleType id="lontype">
-          <xs:restriction base="xs:decimal">
-            <xs:fractionDigits value="6"/>
-            <xs:totalDigits value="9"/>
-            <xs:maxInclusive value="180.000000"/>
-            <xs:minInclusive value="-180.000000"/>
-          </xs:restriction>
-        </xs:simpleType>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -183,7 +167,25 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-
+  
+  <xs:simpleType name="lattype">
+    <xs:restriction base="xs:decimal">
+      <xs:fractionDigits value="6"/>
+      <xs:totalDigits value="8"/>
+      <xs:maxInclusive value="90.000000"/>
+      <xs:minInclusive value="-90.000000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="lontype">
+    <xs:restriction base="xs:decimal">
+      <xs:fractionDigits value="6"/>
+      <xs:totalDigits value="9"/>
+      <xs:maxInclusive value="180.000000"/>
+      <xs:minInclusive value="-180.000000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
   <xs:complexType name="XdBooleanType">
     <xs:annotation>
       <xs:documentation xml:lang="en-us">An enumerated type which represents boolean decisions. Such as true/false or yes/no answers. Useful where it is essential to devise the meanings (often questions in subjective data) carefully so that the only allowed result values result in one the options; true or false but are presented to the user as a list of options. The possible choices for True or False are enumerations in the DM. The reference model defines 'true-value' and 'false-value' in an xs:choice so only one or the other may be present in the instance data. 
@@ -406,7 +408,7 @@
     <xs:complexContent>
       <xs:extension base="s3m:XdAnyType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="1" name="size" type="xs:integer">
+          <xs:element maxOccurs="1" minOccurs="0" name="size" type="xs:integer">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Original size in bytes of unencoded encapsulated data. I.e. encodings such as base64, hexadecimal, etc. do not change the value of this element.</xs:documentation>
               <xs:appinfo>
@@ -1380,30 +1382,30 @@
     <xs:complexContent>
       <xs:extension base="s3m:XdAnyType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="0" name="lower" type="s3m:InvlType">
+          <xs:element maxOccurs="1" minOccurs="0" name="lower" type="xs:anyType">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Defines the lower value of the interval.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Defines the lower value of the interval. The type in defined in the model.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType/lower">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType"/>
                   <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlType"/>
                   <rdfs:label xml:lang="en-us">lower</rdfs:label>                  
                   <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlType"/>                  
-                  <rdfs:comment xml:lang="en-us">Defines the lower value of the interval.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Defines the lower value of the interval. The type in defined in the model.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="upper" type="s3m:InvlType">
+          <xs:element maxOccurs="1" minOccurs="0" name="upper" type="xs:anyType">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Defines the upper value of the interval.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Defines the upper value of the interval. The type in defined in the model.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType/upper">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType"/>
                   <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlType"/>
                   <rdfs:label xml:lang="en-us">upper</rdfs:label>                  
                   <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlType"/>                  
-                  <rdfs:comment xml:lang="en-us">Defines the upper value of the interval.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Defines the upper value of the interval. The type in defined in the model.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1494,31 +1496,6 @@
     </xs:annotation>
   </xs:element>
 
-  <!-- See: http://www.ibm.com/developerworks/webservices/library/ws-tip-null/index.html -->
-  <xs:complexType name="InvlType">
-    <xs:annotation>
-      <xs:documentation xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
-        boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CMC.</xs:documentation>
-      <xs:appinfo>
-        <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#InvlType">
-          <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_.InvlTypehtml#InvlType"/>
-          <rdfs:label xml:lang="en-us">InvlType</rdfs:label>
-          <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>                    
-          <rdfs:comment xml:lang="en-us">In the DM, the modeler creates two restrictions on this complexType. One for the 'lower' value and one for the 'upper' value. Both restrictions will have the same element choice and the value is 'fixed' on each representing the lower and upper value range
-            boundary. The value may be set to NULL (unbounded) by using the xsi:nil='true' attribute. maxOccurs and minOccurs must be set to 1, in the parent CMC.</rdfs:comment>
-        </rdf:Description>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:choice maxOccurs="1" minOccurs="1">
-      <xs:element name="invl-int" type="xs:integer" nillable="true"/>
-      <xs:element name="invl-decimal" type="xs:decimal" nillable="true"/>
-      <xs:element name="invl-float" type="xs:float" nillable="true"/>
-      <xs:element name="invl-date" type="xs:date" nillable="true"/>
-      <xs:element name="invl-time" type="xs:time" nillable="true"/>
-      <xs:element name="invl-dateTime" type="xs:dateTime" nillable="true"/>
-      <xs:element name="invl-duration" type="xs:duration" nillable="true"/>
-    </xs:choice>
-  </xs:complexType>
 
   <xs:complexType name="InvlUnits">
     <xs:annotation>

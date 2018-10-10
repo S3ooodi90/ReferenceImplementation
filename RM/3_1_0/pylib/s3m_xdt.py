@@ -1921,12 +1921,18 @@ class XdQuantifiedType(XdOrderedType):
 
 class XdCountType(XdQuantifiedType):
     """
-    Countable quantities. Used for countable types such as pregnancies and steps (taken by a physiotherapy patient), 
-    number of cigarettes smoked in a day, etc. The thing(s) being counted must be represented in the units element. 
-    Misuse: Not used for amounts of physical entities which all have standardized units as opposed to physical things counted.
+    Countable quantities as an integer. 
+
+    Used for countable types such as pregnancies or steps taken by a 
+    physiotherapy patient, number of cigarettes smoked in a day, etc. 
+
+    The thing(s) being counted must be represented in the units element.
+
+    Misuse: Not used for amounts of physical entities which all have 
+    standardized units as opposed to physical things counted.
     """
 
-    def __init__(self, label):
+    def __init__(self, label: str):
         """
         The semantic label (name of the model) is required.
         """
@@ -1937,6 +1943,11 @@ class XdCountType(XdQuantifiedType):
         self._xdcount_units = None
         self.cardinality = ('xdcount_value', (0, 1))
         self.cardinality = ('xdcount_units', (1, 1))
+        self._min_inclusive = None
+        self._max_inclusive = None
+        self._min_exclusive = None
+        self._max_exclusive = None
+        self._total_digits = None
 
     @property
     def xdcount_value(self):
@@ -1965,7 +1976,78 @@ class XdCountType(XdQuantifiedType):
         if isinstance(v, XdStringType):
             self._xdcount_units = v
         else:
+            self._xdcount_units = None
             raise ValueError("The xdcount_units value must be a XdStringType identifying the things to be counted.")
+
+    @property
+    def min_inclusive(self):
+        """
+        An inclusive minimum value.
+        """
+        return self._min_inclusive
+
+    @min_inclusive.setter
+    def min_inclusive(self, v):
+        if isinstance(v, int):
+            self._min_inclusive = v
+        else:
+            raise ValueError("The min_inclusive value must be an int.")
+
+    @property
+    def max_inclusive(self):
+        """
+        An inclusive maximum value.
+        """
+        return self._max_inclusive
+
+    @max_inclusive.setter
+    def max_inclusive(self, v):
+        if isinstance(v, int):
+            self._max_inclusive = v
+        else:
+            raise ValueError("The max_inclusive value must be an int.")
+
+    @property
+    def min_exclusive(self):
+        """
+        An exclusive minimum value.
+        """
+        return self._min_exclusive
+
+    @min_exclusive.setter
+    def min_exclusive(self, v):
+        if isinstance(v, int):
+            self._min_exclusive = v
+        else:
+            raise ValueError("The min_exclusive value must be an int.")
+
+    @property
+    def max_exclusive(self):
+        """
+        An exclusive maximum value.
+        """
+        return self._max_exclusive
+
+    @max_exclusive.setter
+    def max_exclusive(self, v):
+        if isinstance(v, int):
+            self._max_exclusive = v
+        else:
+            raise ValueError("The max_exclusive value must be an int.")
+
+    @property
+    def total_digits(self):
+        """
+        A maximum total digits constraint.
+        """
+        return self._total_digits
+
+    @total_digits.setter
+    def total_digits(self, v):
+        if isinstance(v, int):
+            self._total_digits = v
+        else:
+            raise ValueError("The total_digits value must be an int.")
 
     def asXSD(self):
         """
@@ -1996,23 +2078,12 @@ class XdCountType(XdQuantifiedType):
             xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
             xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
 
-        if not self.units:
-            reset_publication(self)
-            msg = ("XdCount " + self.__str__() + " MUST have a Units definition.", messages.ERROR)
-            return msg
-
-        else:
-            if not self.units.published:
-                reset_publication(self)
-                msg = ("Units: " + self.units.label + " hasn't been published. Please publish the object and retry.", messages.ERROR)
-                return msg
-
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdcount-units' type='s3m:mc-" + str(self.units.mcuid) + "'/> \n")
-
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdcount-units' type='s3m:mc-" + str(self.xdcount_units.mcuid) + "'/> \n")
         xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        xdstr += self.xdcount_units.asXSD()
 
         return(xdstr)
 
