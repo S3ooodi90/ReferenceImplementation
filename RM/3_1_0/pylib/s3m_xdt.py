@@ -1,9 +1,9 @@
 """
 Defines the S3Model reference model in Python 3.7
 Version 3.1.0
-This implementation is not a strict model of the RM. 
+This implementation is not a strict model of the RM.
 It also contains functionality to manage constraints that are
-built into the XML Schema parsers. 
+built into the XML Schema parsers.
 """
 import re
 import random
@@ -34,8 +34,11 @@ invlTypes = ['int', 'decimal', 'date', 'time', 'dateTime', 'float', 'duration']
 
 class XdAnyType(ABC):
     """
-    Serves as an abstract common ancestor of all eXtended data-types (Xd*) in S3Model.
+    Serves as an abstract common ancestor of all eXtended data-types (Xd*)
+    in S3Model.
     """
+
+    # TODO: Implement complete constraint checking.
 
     @abstractmethod
     def __init__(self, label: str):
@@ -71,19 +74,19 @@ class XdAnyType(ABC):
     @property
     def cardinality(self):
         """
-        The cardinality status values. 
+        The cardinality status values.
 
-        The setter method can be called by each subclass to add cardinality 
-        values for each element or change the defaults. 
-        Some elements cardinality may not be changed. 
+        The setter method can be called by each subclass to add cardinality
+        values for each element or change the defaults.
+        Some elements cardinality may not be changed.
         Ex: XdBoolean elements are not modifiable.
 
-        The cardinality dictionary uses a string representation of each 
+        The cardinality dictionary uses a string representation of each
         property name and a tuple as the value.
 
-        The value passed into the setter is a tuple with v[0] as a string (key) and 
-        v[1] as a tuple containing an integer set representing the 
-        (minimum, maximum) values. The entire tuple is replaced in the dictionary. 
+        The value passed into the setter is a tuple with v[0] as a string (key) and
+        v[1] as a tuple containing an integer set representing the
+        (minimum, maximum) values. The entire tuple is replaced in the dictionary.
 
         Examples
         --------
@@ -94,7 +97,7 @@ class XdAnyType(ABC):
         NOTES
         -----
 
-        The cardinality for latitude and longitude are combined into one 
+        The cardinality for latitude and longitude are combined into one
         setting called 'location'.
 
         The Python value of 'None' represents the 'unbounded' XML Schema value.
@@ -139,6 +142,7 @@ class XdAnyType(ABC):
     @property
     def adapter(self):
         """
+        When True, creates an XdAdapterType wrapper.
         """
         return self._adapter
 
@@ -152,7 +156,7 @@ class XdAnyType(ABC):
     @property
     def docs(self):
         """
-        The human readable documentation string describing the purpose of 
+        The human readable documentation string describing the purpose of
         the model.
         """
         return self._docs
@@ -171,7 +175,7 @@ class XdAnyType(ABC):
 
         Each list item is a tuple where 0 is the predicate and 1 is the object.
 
-        Example: 
+        Example:
         ('rdf:resource','https://www.niddk.nih.gov/health-information/health-statistics')
         The setter accepts the tuple and appends it to the list.
         If an empty list is supplied it resets the value to the empty list.
@@ -191,7 +195,7 @@ class XdAnyType(ABC):
     def definition_url(self):
         """
         The primary definition URL for the model.
-        Cannot be an IP address. 
+        Cannot be an IP address.
         """
         return self._definition_url
 
@@ -206,8 +210,8 @@ class XdAnyType(ABC):
     @property
     def act(self):
         """
-        Access Control Tag. If this is used it must contain a valid term from 
-        the Access Control System linked to by the containing Data Model 
+        Access Control Tag. If this is used it must contain a valid term from
+        the Access Control System linked to by the containing Data Model
         'acs' attribute.
         """
         return self._act
@@ -222,9 +226,9 @@ class XdAnyType(ABC):
     @property
     def ev(self):
         """
-        In an invalid instance, the application can indicate here why data is 
-        missing or invalid. 
-        The sub-types are based on ISO 21090 NULL Flavors entries, with 
+        In an invalid instance, the application can indicate here why data is
+        missing or invalid.
+        The sub-types are based on ISO 21090 NULL Flavors entries, with
         additions noted from real-world usage.
         """
         return self._ev
@@ -239,7 +243,7 @@ class XdAnyType(ABC):
     @property
     def vtb(self):
         """
-        Valid Time Begin. If present this must be a valid datetime including timezone. 
+        Valid Time Begin. If present this must be a valid datetime including timezone.
         It is used to indicate the beginning time that information is considered valid.
         """
         return self._vtb
@@ -254,8 +258,8 @@ class XdAnyType(ABC):
     @property
     def vte(self):
         """
-        Valid Time End. If present this must be a valid date-time including timezone. 
-        It is used to indicate the ending time that information is considered valid 
+        Valid Time End. If present this must be a valid date-time including timezone.
+        It is used to indicate the ending time that information is considered valid
         or the time the information expired or will expire.
         """
         return self._vte
@@ -270,7 +274,7 @@ class XdAnyType(ABC):
     @property
     def tr(self):
         """
-        Time Recorded. If present this must be a valid date-time. 
+        Time Recorded. If present this must be a valid date-time.
         It is used to indicate the initial date and time the data was recorded.
         """
         return self._tr
@@ -285,7 +289,7 @@ class XdAnyType(ABC):
     @property
     def modified(self):
         """
-        Time Modified. If present this must be a valid date-time stamp. 
+        Time Modified. If present this must be a valid date-time stamp.
         It is used to indicate the date and time the data was last changed.
         """
         return self._modified
@@ -425,13 +429,13 @@ class XdAnyType(ABC):
 
 class XdIntervalType(XdAnyType):
     """
-    Generic type defining an interval (i.e. range) of a comparable type. 
+    Generic type defining an interval (i.e. range) of a comparable type.
 
-    An interval is a contiguous subrange of a comparable base type. 
-    Used to define intervals of dates, times, quantities, etc. whose 
-    datatypes are the same and are ordered. 
+    An interval is a contiguous subrange of a comparable base type.
+    Used to define intervals of dates, times, quantities, etc. whose
+    datatypes are the same and are ordered.
 
-    In S3Model, they are primarily used in defining reference ranges. 
+    In S3Model, they are primarily used in defining reference ranges.
     The datatype of upper and lower must be set in the DM via the invltype
     attribute.
     """
@@ -550,8 +554,8 @@ class XdIntervalType(XdAnyType):
         """
         Defines the units for this Interval.
 
-        A two member tuple consisting of the units name/abbreviation 
-        and a URI used as a definition. 
+        A two member tuple consisting of the units name/abbreviation
+        and a URI used as a definition.
         Example:
         ('kg', 'https://www.ema.europa.eu/documents/scientific-guideline/ich-m-5-ewg-units-measurements-controlled-vocabulary-step-5_en.pdf#0074')
         """
@@ -740,24 +744,24 @@ class ReferenceRangeType(XdAnyType):
 
 class XdBooleanType(XdAnyType):
     """
-    An enumerated type which represents boolean decisions such as true/false 
-    or yes/no answers. 
+    An enumerated type which represents boolean decisions such as true/false
+    or yes/no answers.
 
-    Useful where it is essential to devise the meanings (often questions in 
-    subjective data) carefully so that the only allowed result values result 
-    in one of the options; true or false but are presented to the user as 
-    a list of options. 
+    Useful where it is essential to devise the meanings (often questions in
+    subjective data) carefully so that the only allowed result values result
+    in one of the options; true or false but are presented to the user as
+    a list of options.
 
-    The possible choices for True or False are values in a dictionary. 
-    The class defines 'true_value' and 'false_value'. 
-    The instance implementation is restricted to only have a value for one of 
+    The possible choices for True or False are values in a dictionary.
+    The class defines 'true_value' and 'false_value'.
+    The instance implementation is restricted to only have a value for one of
     them based on the user choice from the options dictionary.
 
-    The XdBooleanType should not be used as a replacement for enumerated choice 
-    types such as male/female, or similar choice sets. 
-    Such values should be modeled as XdStrings with enumerations and may reference 
-    a controlled vocabulary. 
-    In any case, the choice set often has more than two values.   
+    The XdBooleanType should not be used as a replacement for enumerated choice
+    types such as male/female, or similar choice sets.
+    Such values should be modeled as XdStrings with enumerations and may reference
+    a controlled vocabulary.
+    In any case, the choice set often has more than two values.
     """
 
     def __init__(self, label: str, opt: dict):
@@ -770,8 +774,8 @@ class XdBooleanType(XdAnyType):
             A human readable name lending semantics to the purpose of the model.
         opt: dictionary
             A dictionary where the two allowed keys are 'trues' and 'falses'.
-            The items associated with these keys are a list of options for the user to 
-            choose from.        
+            The items associated with these keys are a list of options for the user to
+            choose from.
         """
         super().__init__(label)
         self._true_value = None
@@ -789,7 +793,7 @@ class XdBooleanType(XdAnyType):
     @property
     def true_value(self):
         """
-        A string that represents a boolean True in the implementation. 
+        A string that represents a boolean True in the implementation.
         These are constrained by a set of enumerations.
         """
         return self._true_value
@@ -806,7 +810,7 @@ class XdBooleanType(XdAnyType):
     @property
     def false_value(self):
         """
-        A string that represents a boolean False in the implementation. 
+        A string that represents a boolean False in the implementation.
         These are constrained by a set of enumerations.
         """
         return self._false_value
@@ -889,9 +893,9 @@ class XdBooleanType(XdAnyType):
         """
         Return an example XML fragment for this model.
 
-        The core elements are included even though they may not be 
-        required via cardinality. Therefore this example may be considerably 
-        larger than an actual implementation. 
+        The core elements are included even though they may not be
+        required via cardinality. Therefore this example may be considerably
+        larger than an actual implementation.
         """
         # randomly choose an option
         tf = random.choice(list(self._options.keys()))
@@ -939,11 +943,11 @@ class XdBooleanType(XdAnyType):
 
 class XdLinkType(XdAnyType):
     """
-    Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM. 
-    Intended use is to provide a mechanism that can be used to link together Data Models. 
-    The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the 
-    source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute. 
-    Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the 
+    Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM.
+    Intended use is to provide a mechanism that can be used to link together Data Models.
+    The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the
+    source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute.
+    Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the
     'link-value'.
     """
 
@@ -990,7 +994,7 @@ class XdLinkType(XdAnyType):
     @property
     def relation_uri(self):
         """
-        A URI where the definition of the relation element term can be found. 
+        A URI where the definition of the relation element term can be found.
         Normally points to an ontology such as the OBO RO http://purl.obolibrary.org/obo/ro.owl
         """
         return self._relation_uri
@@ -1022,7 +1026,8 @@ class XdLinkType(XdAnyType):
         if not self.relation_uri:
             raise ValueError("You must add a URI for the relationship location.")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='relation-uri' type='xs:anyURI' fixed='" + escape(self.relation_uri.strip()) + "'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
+                                                  str(self.cardinality['relation_uri'][0]) + "' name='relation-uri' type='xs:anyURI' fixed='" + escape(self.relation_uri.strip()) + "'/>\n")
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
@@ -1054,8 +1059,8 @@ class XdLinkType(XdAnyType):
 
 class XdStringType(XdAnyType):
     """
-    The string data type can contain characters, line feeds, carriage returns, and tab characters. 
-    The use cases are for any free form text entry or for any enumerated lists. 
+    The string data type can contain characters, line feeds, carriage returns, and tab characters.
+    The use cases are for any free form text entry or for any enumerated lists.
     Additionally the minimum and maximum lengths may be set and regular expression patterns may be specified.
     """
 
@@ -1066,43 +1071,43 @@ class XdStringType(XdAnyType):
         super().__init__(label)
         self._xdtype = "XdStringType"
 
-        self._xdstring_value = ''
-        self._xdstring_language = ''
+        self._value = ''
+        self._language = ''
         self._enums = []
         self._regex = None
         self._default = None
         self._length = None
-        self.cardinality = ('xdstring_value', (0, 1))
-        self.cardinality = ('xdstring_language', (0, 1))
+        self.cardinality = ('value', (0, 1))
+        self.cardinality = ('language', (0, 1))
 
     @property
-    def xdstring_value(self):
+    def value(self):
         """
         The string value of the item.
         """
-        return self._xdstring_value
+        return self._value
 
-    @xdstring_value.setter
-    def xdstring_value(self, v):
+    @value.setter
+    def value(self, v):
         if checkers.is_string(v):
-            self._xdstring_value = v
+            self._value = v
         else:
-            raise ValueError("the xdstring_value value must be a string.")
+            raise ValueError("the value must be a string.")
 
     @property
-    def xdstring_language(self):
+    def language(self):
         """
-        Optional indicator of the localised language in which this data-type is written. 
+        Optional indicator of the localised language in which this data-type is written.
         Only required when the language used here is different from the enclosing Data Model.
         """
-        return self._xdstring_language
+        return self._language
 
-    @xdstring_language.setter
-    def xdstring_language(self, v):
+    @language.setter
+    def language(self, v):
         if checkers.is_string(v):
-            self._xdstring_language = v
+            self._language = v
         else:
-            raise ValueError("the xdstring_language value must be a string.")
+            raise ValueError("the language value must be a string.")
 
     @property
     def length(self):
@@ -1135,7 +1140,7 @@ class XdStringType(XdAnyType):
     def regex(self):
         """
         A regular expression to constrain the string value. The regualr expression must meet the constraints for XML Schema.
-        See: https://www.regular-expressions.info/xml.html 
+        See: https://www.regular-expressions.info/xml.html
         """
         return self._regex
 
@@ -1155,7 +1160,7 @@ class XdStringType(XdAnyType):
     @property
     def enums(self):
         """
-        A list of two member tuples (enumeration, URI semantics for the enumeration). 
+        A list of two member tuples (enumeration, URI semantics for the enumeration).
 
         The enumerations are string values used to constrain the value of the item.
         The URI semantics for the enumeration provides a definition (preferable a URL) for the enumeration.
@@ -1210,7 +1215,7 @@ class XdStringType(XdAnyType):
         xdstr = super().asXSD()
         # XdStringType
         if isinstance(self.regex, str):
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value'>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdstring-value'>\n")
             xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
             xdstr += padding.rjust(indent + 14) + ("<xs:restriction base='xs:string'>\n")
             xdstr += padding.rjust(indent + 16) + ("<xs:pattern value='" + self.regex.strip() + "'/>\n")
@@ -1219,7 +1224,7 @@ class XdStringType(XdAnyType):
             xdstr += padding.rjust(indent + 10) + ("</xs:element>\n")
         if not self.length == None:
             if isinstance(self.length, int):
-                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value'>\n")
+                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdstring-value'>\n")
                 xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
                 xdstr += padding.rjust(indent + 12) + ("<xs:restriction base='xs:string'>\n")
                 xdstr += padding.rjust(indent + 14) + ("<xs:length value='" + str(self.length).strip() + "'/>\n")
@@ -1227,7 +1232,7 @@ class XdStringType(XdAnyType):
                 xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
                 xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
             elif (self.length, tuple) and len(self.length) == 2:
-                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value'>\n")
+                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdstring-value'>\n")
                 xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
                 xdstr += padding.rjust(indent + 14) + ("<xs:restriction base='xs:string'>\n")
                 if isinstance(self.length[0], int):
@@ -1238,13 +1243,14 @@ class XdStringType(XdAnyType):
                 xdstr += padding.rjust(indent + 12) + ("</xs:simpleType>\n")
                 xdstr += padding.rjust(indent + 10) + ("</xs:element>\n")
         elif self.default is not None and self.regex == None:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string' default='" + escape(self.default) + "'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
+                                                  str(self.cardinality['value'][0]) + "' name='xdstring-value' type='xs:string' default='" + escape(self.default) + "'/>\n")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdstring-value' type='xs:string'/>\n")
 
         # Process Enumerations
         if len(self.enums) > 0:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdstring-value'>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdstring-value'>\n")
             xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
             xdstr += padding.rjust(indent + 14) + ("<xs:restriction base='xs:string'>\n")
             for n in range(len(self.enums)):
@@ -1263,7 +1269,7 @@ class XdStringType(XdAnyType):
             xdstr += padding.rjust(indent + 12) + ("</xs:simpleType>\n")
             xdstr += padding.rjust(indent + 10) + ("</xs:element>\n")
 
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdstring-language' type='xs:language' default='" + self.xdstring_language + "'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['language'][0]) + "' name='xdstring-language' type='xs:language' default='" + self.language + "'/>\n")
 
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
@@ -1301,8 +1307,8 @@ class XdStringType(XdAnyType):
         xmlstr = super().asXML()
 
         xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + str_val + '</xdstring-value>\n'
-        if self.xdstring_language:
-            xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.xdstring_language + '</xdstring-language>\n'
+        if self.language:
+            xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.language + '</xdstring-language>\n'
 
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
@@ -1315,10 +1321,10 @@ class XdStringType(XdAnyType):
 
 class XdFileType(XdAnyType):
     """
-    A type to use for encapsulated content (aka. files) for image, audio and 
-    other media types with a defined MIME type. 
+    A type to use for encapsulated content (aka. files) for image, audio and
+    other media types with a defined MIME type.
 
-    This type provides a choice of embedding the content into the data or using 
+    This type provides a choice of embedding the content into the data or using
     a URL to point to the content.
     """
 
@@ -1331,7 +1337,7 @@ class XdFileType(XdAnyType):
 
         self._size = None
         self._encoding = ''
-        self._xdfile_language = ''
+        self._language = ''
         self._formalism = ''
         self._media_type = ''
         self._compression_type = ''
@@ -1344,7 +1350,7 @@ class XdFileType(XdAnyType):
 
         self.cardinality = ('size', (0, 1))
         self.cardinality = ('encoding', (0, 1))
-        self.cardinality = ('xdfile_language', (0, 1))
+        self.cardinality = ('language', (0, 1))
         self.cardinality = ('formalism', (0, 1))
         self.cardinality = ('media_type', (0, 1))
         self.cardinality = ('compression_type', (0, 1))
@@ -1355,8 +1361,8 @@ class XdFileType(XdAnyType):
     @property
     def size(self):
         """
-        Original size in bytes of unencoded encapsulated data. I.e. encodings 
-        such as base64, hexadecimal, etc. 
+        Original size in bytes of unencoded encapsulated data. I.e. encodings
+        such as base64, hexadecimal, etc.
         """
         return self._size
 
@@ -1370,13 +1376,13 @@ class XdFileType(XdAnyType):
     @property
     def encoding(self):
         """
-        Name of character encoding scheme in which this value is encoded. 
+        Name of character encoding scheme in which this value is encoded.
 
-        Coded from the IANA charcater set table: 
-        http://www.iana.org/assignments/character-sets 
+        Coded from the IANA charcater set table:
+        http://www.iana.org/assignments/character-sets
 
-        Unicode is the default assumption in S3Model, with UTF-8 being the 
-        assumed encoding. 
+        Unicode is the default assumption in S3Model, with UTF-8 being the
+        assumed encoding.
         This optional element allows for variations from these assumptions.
         """
         return self._encoding
@@ -1389,27 +1395,27 @@ class XdFileType(XdAnyType):
             raise ValueError("the encoding value must be an string.")
 
     @property
-    def xdfile_language(self):
+    def language(self):
         """
         Optional indicator of the localised language of the content.
 
-        Typically remains optional in the CMC and used at runtime when the 
+        Typically remains optional in the CMC and used at runtime when the
         content is in a different language from the enclosing CMC.
         """
-        return self._xdfile_language
+        return self._language
 
-    @xdfile_language.setter
-    def xdfile_language(self, v):
+    @language.setter
+    def language(self, v):
         if checkers.is_string(v):
-            self._xdfile_language = v
+            self._language = v
         else:
-            raise ValueError("the xdfile_language value must be a string.")
+            raise ValueError("the language value must be a string.")
 
     @property
     def formalism(self):
         """
-        Name of the formalism or syntax used to inform an application regarding 
-        a candidate parser to use on the content. 
+        Name of the formalism or syntax used to inform an application regarding
+        a candidate parser to use on the content.
 
         Examples might include: 'ATL', 'MOLA', 'QVT', 'GDL', 'GLIF', 'XML', etc.
         """
@@ -1427,7 +1433,7 @@ class XdFileType(XdAnyType):
         """
         Media (MIME) type of the original media-content w/o any compression.
 
-        See IANA registered types: 
+        See IANA registered types:
         http://www.iana.org/assignments/media-types/media-types.xhtml
         """
         return self._media_type
@@ -1442,12 +1448,12 @@ class XdFileType(XdAnyType):
     @property
     def compression_type(self):
         """
-        Compression/archiving mime-type. 
+        Compression/archiving mime-type.
 
-        If this elements does not exist then it means there is no 
-        compression/archiving. 
+        If this elements does not exist then it means there is no
+        compression/archiving.
 
-        For a list of common mime-types for compression/archiving see: 
+        For a list of common mime-types for compression/archiving see:
         http://en.wikipedia.org/wiki/List_of_archive_formats.
         """
         return self._compression_type
@@ -1462,10 +1468,10 @@ class XdFileType(XdAnyType):
     @property
     def hash_result(self):
         """
-        Hash function result of the 'media-content'. 
+        Hash function result of the 'media-content'.
 
-        There must be a corresponding hash function type listed for this 
-        to have any meaning. 
+        There must be a corresponding hash function type listed for this
+        to have any meaning.
 
         See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
         """
@@ -1481,7 +1487,7 @@ class XdFileType(XdAnyType):
     @property
     def hash_function(self):
         """
-        Hash function used to compute hash-result. 
+        Hash function used to compute hash-result.
 
         See: http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions
         """
@@ -1511,7 +1517,7 @@ class XdFileType(XdAnyType):
     @property
     def uri(self):
         """
-        URI reference to electronic information stored outside the record 
+        URI reference to electronic information stored outside the record
         as a file, database entry etc.; if supplied as a reference.
         """
         return self._uri
@@ -1528,11 +1534,11 @@ class XdFileType(XdAnyType):
     @property
     def media_content(self):
         """
-        The content, if stored locally. 
+        The content, if stored locally.
 
         The CMC modeler chooses either a uri or local content element.
-        If the passed value is a string it will be converted to bytes and 
-        base64 encoded. 
+        If the passed value is a string it will be converted to bytes and
+        base64 encoded.
 
         If it is already bytes then it is just encoded.
         """
@@ -1558,7 +1564,7 @@ class XdFileType(XdAnyType):
         xdstr = super().asXSD()
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['size'][0]) + '" name="size" type="xs:int"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['encoding'][0]) + '" name="encoding" type="xs:string"/>\n'
-        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['xdfile_language'][0]) + '" name="xdfile-language" type="xs:language"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['language'][0]) + '" name="xdfile-language" type="xs:language"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['formalism'][0]) + '" name="formalism" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['media_type'][0]) + '" name="media-type" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['compression_type'][0]) + '" name="compression-type" type="xs:string"/>\n'
@@ -1590,8 +1596,8 @@ class XdFileType(XdAnyType):
         xmlstr += padding.rjust(indent + 2) + '<size>' + str(self.size) + '</size>\n'
         if self.encoding:
             xmlstr += padding.rjust(indent + 2) + '<encoding>' + self.encoding + '</encoding>\n'
-        if self.xdfile_language:
-            xmlstr += padding.rjust(indent + 2) + '<xdfile-language>' + self.xdfile_language + '</xdfile-language>\n'
+        if self.language:
+            xmlstr += padding.rjust(indent + 2) + '<xdfile-language>' + self.language + '</xdfile-language>\n'
         if self.formalism:
             xmlstr += padding.rjust(indent + 2) + '<formalism>' + self.formalism + '</formalism>\n'
         if self.media_type:
@@ -1634,7 +1640,7 @@ class XdOrderedType(XdAnyType):
     @property
     def referenceranges(self):
         """
-        Optional list of ReferenceRanges for this value in its 
+        Optional list of ReferenceRanges for this value in its
         particular measurement context.
         """
         return self._referenceranges
@@ -1652,10 +1658,10 @@ class XdOrderedType(XdAnyType):
     @property
     def normal_status(self):
         """
-        Optional normal status indicator of value with respect to normal range 
+        Optional normal status indicator of value with respect to normal range
         for this value.
 
-        Often used in situations such as medical lab results when coded by 
+        Often used in situations such as medical lab results when coded by
         ordinals in series such as; HHH, HH, H, (nothing), L, LL, LLL, etc.
         """
         return self._normal_status
@@ -1706,16 +1712,16 @@ class XdOrderedType(XdAnyType):
 
 class XdOrdinalType(XdOrderedType):
     """
-    Models rankings and scores, e.g., pain, Apgar values, educational level, 
+    Models rankings and scores, e.g., pain, Apgar values, educational level,
     and the Likert Scale where there is;
 
     * implied ordering,
     * no implication that the distance between each value is constant, and
     * the total number of values is finite.
 
-    Note that the term ‘ordinal’ in mathematics means natural numbers only. 
-    In this case, any decimal is allowed since negative, and zero values are 
-    used by medical and other professionals for centering values around a 
+    Note that the term ‘ordinal’ in mathematics means natural numbers only.
+    In this case, any decimal is allowed since negative, and zero values are
+    used by medical and other professionals for centering values around a
     neutral point. Also, decimal values are sometimes used such as 0.5 or .25
 
         Examples of sets of ordinal values are;
@@ -1723,10 +1729,10 @@ class XdOrdinalType(XdOrderedType):
         * -3, -2, -1, 0, 1, 2, 3 -- reflex response values
         * 0, 1, 2 -- Apgar values
 
-        Also used for recording any clinical or other data which is customarily 
+        Also used for recording any clinical or other data which is customarily
         recorded using symbolic values. Examples;
 
-        * the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are 
+        * the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are
           used for leukocytes, protein, nitrites etc;
         * for non-haemolysed blood {neg, trace, moderate};
         * for haemolysed blood {neg, trace, small, moderate, large}.
@@ -1736,7 +1742,7 @@ class XdOrdinalType(XdOrderedType):
 
     def __init__(self, label: str, choices: Dict):
         """
-        The semantic label (name of the model) and the choices dictionary 
+        The semantic label (name of the model) and the choices dictionary
         are required.
         """
         super().__init__(label)
@@ -1745,15 +1751,13 @@ class XdOrdinalType(XdOrderedType):
         self._ordinal = None
         self._symbol = None
         self._choices = choices
-        self.cardinality = ('ordinal', (1, 1))
-        self.cardinality = ('symbol', (1, 1))
 
     @property
     def ordinal(self):
         """
-        Value in ordered enumeration of values. 
+        Value in ordered enumeration of values.
 
-        The base decimal is zero with any number of decimal values used to order the symbols. 
+        The base decimal is zero with any number of decimal values used to order the symbols.
         Example 1: 0 = Trace, 1 = +, 2 = ++, 3 = +++, etc. Example 2: 0 = Mild, 1 = Moderate, 2 = Severe
         """
         return self._ordinal
@@ -1768,9 +1772,9 @@ class XdOrdinalType(XdOrderedType):
     @property
     def symbol(self):
         """
-        Coded textual representation of this value in the enumeration, 
-        which may be strings made from “+” symbols, or other enumerations 
-        of terms such as “mild”, “moderate”, “severe”, or even the same number 
+        Coded textual representation of this value in the enumeration,
+        which may be strings made from “+” symbols, or other enumerations
+        of terms such as “mild”, “moderate”, “severe”, or even the same number
         series as the values, e.g. “1”, “2”, “3”.
         """
         return self._symbol
@@ -1875,7 +1879,7 @@ class XdQuantifiedType(XdOrderedType):
     @property
     def magnitude_status(self):
         """
-        MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified 
+        MagnitudeStatus provides a general indication of the accuracy of the magnitude expressed in the XdQuantified
         subtypes. Should be used to inform users and not for decision support uses.
         Must be one of: None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate'
         """
@@ -1891,7 +1895,7 @@ class XdQuantifiedType(XdOrderedType):
     @property
     def error(self):
         """
-        Error margin of measurement, as an integer indicating error in the recording method or instrument (+/- %). 
+        Error margin of measurement, as an integer indicating error in the recording method or instrument (+/- %).
         A logical value of 0 indicates 100% accuracy, i.e. no error.
         """
         return self._error
@@ -1906,7 +1910,7 @@ class XdQuantifiedType(XdOrderedType):
     @property
     def accuracy(self):
         """
-        Accuracy of the value in the magnitude attribute in the range 0% to (+/-)100%. 
+        Accuracy of the value in the magnitude attribute in the range 0% to (+/-)100%.
         A value of 0 means that the accuracy is unknown.
         """
         return self._accuracy
@@ -1928,8 +1932,8 @@ class XdQuantifiedType(XdOrderedType):
         xdstr = super().asXSD()
         # XdQuantified
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='magnitude-status' type='s3m:MagnitudeStatus'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='error'  type='xs:int' default='0'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='accuracy' type='xs:int' default='0'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['error'][0]) + "' name='error'  type='xs:int' default='0'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['accuracy'][0]) + "' name='accuracy' type='xs:int' default='0'/>\n")
 
         return(xdstr)
 
@@ -1953,14 +1957,14 @@ class XdQuantifiedType(XdOrderedType):
 
 class XdCountType(XdQuantifiedType):
     """
-    Countable quantities as an integer. 
+    Countable quantities as an integer.
 
-    Used for countable types such as pregnancies or steps taken by a 
-    physiotherapy patient, number of cigarettes smoked in a day, etc. 
+    Used for countable types such as pregnancies or steps taken by a
+    physiotherapy patient, number of cigarettes smoked in a day, etc.
 
     The thing(s) being counted must be represented in the units element.
 
-    Misuse: Not used for amounts of physical entities which all have 
+    Misuse: Not used for amounts of physical entities which all have
     standardized units as opposed to physical things counted.
     """
 
@@ -1971,10 +1975,10 @@ class XdCountType(XdQuantifiedType):
         super().__init__(label)
         self._xdtype = "XdCountType"
 
-        self._xdcount_value = None
-        self._xdcount_units = None
-        self.cardinality = ('xdcount_value', (0, 1))
-        self.cardinality = ('xdcount_units', (1, 1))
+        self._value = None
+        self._units = None
+        self.cardinality = ('value', (0, 1))
+        self.cardinality = ('units', (1, 1))
         self._min_inclusive = None
         self._max_inclusive = None
         self._min_exclusive = None
@@ -1984,34 +1988,34 @@ class XdCountType(XdQuantifiedType):
         self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive, self._total_digits])
 
     @property
-    def xdcount_value(self):
+    def value(self):
         """
         Integer value of the counted items.
         """
-        return self._xdcount_value
+        return self._value
 
-    @xdcount_value.setter
-    def xdcount_value(self, v):
+    @value.setter
+    def value(self, v):
         if isinstance(v, int):
-            self._xdcount_value = v
+            self._value = v
         else:
-            raise ValueError("The xdcount_value value must be an integer.")
+            raise ValueError("The value value must be an integer.")
 
     @property
-    def xdcount_units(self):
+    def units(self):
         """
-        The name or type of the items counted. Examples are cigarettes, drinks, pregnancies, episodes, etc. 
+        The name or type of the items counted. Examples are cigarettes, drinks, pregnancies, episodes, etc.
         May or may not come from a standard terminology.
         """
-        return self._xdcount_units
+        return self._units
 
-    @xdcount_units.setter
-    def xdcount_units(self, v):
+    @units.setter
+    def units(self, v):
         if isinstance(v, XdStringType):
-            self._xdcount_units = v
+            self._units = v
         else:
-            self._xdcount_units = None
-            raise ValueError("The xdcount_units value must be a XdStringType identifying the things to be counted.")
+            self._units = None
+            raise ValueError("The units value must be a XdStringType identifying the things to be counted.")
 
     @property
     def min_inclusive(self):
@@ -2093,9 +2097,9 @@ class XdCountType(XdQuantifiedType):
         xdstr = super().asXSD()
         # XdCount
         if not self._mag_constrained:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdcount-value' type='xs:int'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdcount-value' type='xs:int'/>\n")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdcount-value'>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdcount-value'>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:int'>\n")
             if self.min_inclusive is not None:
@@ -2112,12 +2116,12 @@ class XdCountType(XdQuantifiedType):
             xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
             xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
 
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdcount-units' type='s3m:mc-" + str(self.xdcount_units.mcuid) + "'/> \n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdcount-units' type='s3m:mc-" + str(self.units.mcuid) + "'/> \n")
         xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
-        xdstr += self.xdcount_units.asXSD()
+        xdstr += self.units.asXSD()
 
         return(xdstr)
 
@@ -2129,8 +2133,8 @@ class XdCountType(XdQuantifiedType):
         indent = 4
         padding = ('').rjust(indent)
         xmlstr = super().asXML()
-        xmlstr += padding.rjust(indent) + '<xdcount-value>' + str(self.xdcount_value).strip() + '</xdcount-value>\n'
-        xmlstr += padding.rjust(indent) + self.xdcount_units.asXML()
+        xmlstr += padding.rjust(indent) + '<xdcount-value>' + str(self.value).strip() + '</xdcount-value>\n'
+        xmlstr += padding.rjust(indent) + self.units.asXML()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
@@ -2152,46 +2156,46 @@ class XdQuantityType(XdQuantifiedType):
         super().__init__(label)
         self._xdtype = "XdQuantityType"
 
-        self._xdquantity_value = None
-        self._xdquantity_units = None
-        self.cardinality = ('xdquantity_value', (0, 1))
-        self.cardinality = ('xdquantity_units', (1, 1))
+        self._value = None
+        self._units = None
+        self.cardinality = ('value', (0, 1))
+        self.cardinality = ('units', (1, 1))
         self._min_inclusive = None
         self._max_inclusive = None
         self._min_exclusive = None
         self._max_exclusive = None
         self._total_digits = None
         self._fraction_digits = None
-        self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive, self._total_digits])
+        self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive, self._total_digits, self._fraction_digits])
 
     @property
-    def xdquantity_value(self):
+    def value(self):
         """
         Numeric value of the quantity.
         """
-        return self._xdquantity_value
+        return self._value
 
-    @xdquantity_value.setter
-    def xdquantity_value(self, v):
+    @value.setter
+    def value(self, v):
         if isinstance(v, Decimal):
-            self._xdquantity_value = v
+            self._value = v
         else:
-            raise ValueError("The xdquantity_value value must be a decimal.")
+            raise ValueError("The value must be a decimal.")
 
     @property
-    def xdquantity_units(self):
+    def units(self):
         """
-        The name or type of the quantity. Examples are "kg/m2", “mmHg", "ms-1", "km/h". 
+        The name or type of the quantity. Examples are "kg/m2", “mmHg", "ms-1", "km/h".
         May or may not come from a standard terminology.
         """
-        return self._xdquantity_units
+        return self._units
 
-    @xdquantity_units.setter
-    def xdquantity_units(self, v):
+    @units.setter
+    def units(self, v):
         if isinstance(v, XdStringType):
-            self._xdquantity_units = v
+            self._units = v
         else:
-            raise ValueError("The xdquantity_units value must be a XdStringType identifying the things to be measured.")
+            raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
 
     @property
     def min_inclusive(self):
@@ -2291,9 +2295,9 @@ class XdQuantityType(XdQuantifiedType):
         xdstr = super().asXSD()
         # XdQuantity
         if not self._mag_constrained:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value' type='xs:decimal'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdquantity-value' type='xs:decimal'/>\n")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdquantity-value'>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdquantity-value'>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:decimal'>\n")
             if self.min_inclusive is not None:
@@ -2312,12 +2316,12 @@ class XdQuantityType(XdQuantifiedType):
             xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
             xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
 
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdquantity-units' type='s3m:mc-" + str(self.xdquantity_units.mcuid) + "'/> \n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdquantity-units' type='s3m:mc-" + str(self.units.mcuid) + "'/> \n")
         xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
-        xdstr += self.xdquantity_units.asXSD()
+        xdstr += self.units.asXSD()
 
         return(xdstr)
 
@@ -2329,8 +2333,8 @@ class XdQuantityType(XdQuantifiedType):
         indent = 4
         padding = ('').rjust(indent)
         xmlstr = super().asXML()
-        xmlstr += padding.rjust(indent) + '<xdquantity-value>' + str(self.xdquantity_value).strip() + '</xdquantity-value>\n'
-        xmlstr += padding.rjust(indent) + self.xdquantity_units.asXML()
+        xmlstr += padding.rjust(indent) + '<xdquantity-value>' + str(self.value).strip() + '</xdquantity-value>\n'
+        xmlstr += padding.rjust(indent) + self.units.asXML()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
@@ -2345,7 +2349,7 @@ class XdFloatType(XdQuantifiedType):
     Quantified type representing specific a value as a floating point,
     64 bit or sometimes called a double, number and optional units.
 
-    This type accepts several "special" values: 
+    This type accepts several "special" values:
     - positive zero (0)
     - negative zero (-0) (which is greater than positive 0 but less than any negative value)
     - infinity (INF) (which is greater than any value)
@@ -2362,38 +2366,45 @@ class XdFloatType(XdQuantifiedType):
         super().__init__(label)
         self._xdtype = "XdFloatType"
 
-        self._xdfloat_value = None
-        self._xdfloat_units = None
-        self.cardinality = ('xdfloat_value', (0, 1))
-        self.cardinality = ('xdfloat_units', (0, 1))
+        self._value = None
+        self._units = None
+        self.cardinality = ('value', (0, 1))
+        self.cardinality = ('units', (0, 1))
+        self._min_inclusive = None
+        self._max_inclusive = None
+        self._min_exclusive = None
+        self._max_exclusive = None
+        self._total_digits = None
+        self._fraction_digits = None
+        self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive, self._total_digits, self._fraction_digits])
 
     @property
-    def xdfloat_value(self):
+    def value(self):
         """
         Float value.
         """
-        return self._xdfloat_value
+        return self._value
 
-    @xdfloat_value.setter
-    def xdfloat_value(self, v):
+    @value.setter
+    def value(self, v):
         if isinstance(v, float):
-            self._xdfloat_value = v
+            self._value = v
         else:
-            raise ValueError("The xdfloat_value value must be a float.")
+            raise ValueError("The value must be a float.")
 
     @property
-    def xdfloat_units(self):
+    def units(self):
         """
         The name or type of the float value.
         """
-        return self._xdfloat_units
+        return self._units
 
-    @xdfloat_units.setter
-    def xdfloat_units(self, v):
+    @units.setter
+    def units(self, v):
         if isinstance(v, XdStringType):
-            self._xdfloat_units = v
+            self._units = v
         else:
-            raise ValueError("The xdfloat_units value must be a XdStringType identifying the things to be measured.")
+            raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
 
     @property
     def min_inclusive(self):
@@ -2477,11 +2488,11 @@ class XdFloatType(XdQuantifiedType):
         padding = ('').rjust(indent)
 
         xdstr = super().asXSD()
-        # XdQuantity
+        # XdFloat
         if not self._mag_constrained:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdfloat-value' type='xs:float'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdfloat-value' type='xs:float'/>\n")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1'  name='xdfloat-value'>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdfloat-value'>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:float'>\n")
             if self.min_inclusive is not None:
@@ -2498,12 +2509,14 @@ class XdFloatType(XdQuantifiedType):
             xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
             xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
 
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='xdquantity-units' type='s3m:mc-" + str(self.xdfloat_units.mcuid) + "'/> \n")
+        if self.units:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['units'][0]) + "' name='xdfloat-units' type='s3m:mc-" + str(self.units.mcuid) + "'/> \n")
         xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
-        xdstr += self.xdfloat_units.asXSD()
+        if self.units:
+            xdstr += self.units.asXSD()
 
         return(xdstr)
 
@@ -2516,7 +2529,8 @@ class XdFloatType(XdQuantifiedType):
         padding = ('').rjust(indent)
         xmlstr = super().asXML()
         xmlstr += padding.rjust(indent) + '<xdfloat-value>' + str(self.xdfloat_value).strip() + '</xdfloat-value>\n'
-        xmlstr += padding.rjust(indent) + self.xdfloat_units.asXML()
+        if self.units:
+            xmlstr += padding.rjust(indent) + self.units.asXML()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
@@ -2551,7 +2565,7 @@ class XdRatioType(XdQuantifiedType):
         self.cardinality = ('ratio_type', (1, 1))
         self.cardinality = ('numerator', (0, 1))
         self.cardinality = ('denominator', (0, 1))
-        self.cardinality = ('xdratio_value', (0, 1))
+        self.cardinality = ('value', (0, 1))
         self.cardinality = ('numerator_units', (0, 1))
         self.cardinality = ('denominator_units', (0, 1))
         self.cardinality = ('xdratio_units', (0, 1))
@@ -2615,7 +2629,7 @@ class XdRatioType(XdQuantifiedType):
     @property
     def numerator_units(self):
         """
-        Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks, 
+        Used to convey the meaning of the numerator. Typically countable units such as; cigarettes, drinks,
         exercise periods, etc. May or may not come from a terminology.
         """
         return self._numerator_units
@@ -2630,7 +2644,7 @@ class XdRatioType(XdQuantifiedType):
     @property
     def denominator_units(self):
         """
-        Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc. 
+        Used to convey the meaning of the denominator. Typically units such as; minutes, hours, days, years, months, etc.
         May or may not come from a standard terminology.
         """
         return self._denominator_units
@@ -2695,7 +2709,7 @@ class XdRatioType(XdQuantifiedType):
                 return msg
 
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='ratio-type' type='s3m:TypeOfRatio'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='numerator'>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['numerator'][0]) + "' name='numerator'>\n")
         xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
         xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:float'>\n")
         if self.num_min_inclusive:
@@ -2710,7 +2724,7 @@ class XdRatioType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
         xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
 
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='denominator'>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['denominator'][0]) + "' name='denominator'>\n")
         xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
         xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:float'>\n")
         if self.den_min_inclusive is not None:
@@ -2726,9 +2740,9 @@ class XdRatioType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
 
         if not mag_constrained:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdratio-value' type='xs:float'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdratio-value' type='xs:float'/>\n")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0'  name='xdratio-value'>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdratio-value'>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
             xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:float'>\n")
             if self.min_magnitude is not None:
@@ -2744,21 +2758,24 @@ class XdRatioType(XdQuantifiedType):
                 reset_publication(self)
                 msg = ("Units: " + self.num_units.label + " hasn't been published. Please publish the object and retry.", messages.ERROR)
             else:
-                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='numerator-units' type='s3m:mc-" + self.num_units.ct_id + "'/> \n")
+                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
+                                                      str(self.cardinality['numerator_units'][0]) + "' name='numerator-units' type='s3m:mc-" + self.num_units.ct_id + "'/> \n")
 
         if self.den_units:
             if not self.den_units.published:
                 reset_publication(self)
                 msg = ("Units: " + self.den_units.label + " hasn't been published. Please publish the object and retry.", messages.ERROR)
             else:
-                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='denominator-units' type='s3m:mc-" + self.den_units.ct_id + "'/>\n")
+                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
+                                                      str(self.cardinality['denominator_units'][0]) + "' name='denominator-units' type='s3m:mc-" + self.den_units.ct_id + "'/>\n")
 
         if self.ratio_units:
             if not self.ratio_units.published:
                 reset_publication(self)
                 msg = ("Units: " + self.ratio_units.label + " hasn't been published. Please publish the object and retry.", messages.ERROR)
             else:
-                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='ratio-units' type='s3m:mc-" + self.ratio_units.ct_id + "'/> \n")
+                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
+                                                      str(self.cardinality['ratio_units'][0]) + "' name='ratio-units' type='s3m:mc-" + self.ratio_units.ct_id + "'/> \n")
 
         xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
@@ -2770,10 +2787,10 @@ class XdRatioType(XdQuantifiedType):
 
 class XdTemporalType(XdOrderedType):
     """
-    Type defining the concept of date and time types. 
-    Must be constrained in DMs to be one or more of the below elements. 
-    This gives the modeler the ability to optionally allow one or more types of temporal content such as 
-    full or partial dates at run time. 
+    Type defining the concept of date and time types.
+    Must be constrained in DMs to be one or more of the below elements.
+    This gives the modeler the ability to optionally allow one or more types of temporal content such as
+    full or partial dates at run time.
     Setting cardinality of both max and min to zero causes the element to be prohibited.
     """
 
@@ -2793,22 +2810,24 @@ class XdTemporalType(XdOrderedType):
         self._xdtemporal_year_month = None
         self._xdtemporal_month_day = None
         self._xdtemporal_duration = None
-        self.cardinality = ('xdtemporal_date', (0, 1))
-        self.cardinality = ('xdtemporal_time', (0, 1))
-        self.cardinality = ('xdtemporal_datetime', (0, 1))
-        self.cardinality = ('xdtemporal_day', (0, 1))
-        self.cardinality = ('xdtemporal_month', (0, 1))
-        self.cardinality = ('xdtemporal_year', (0, 1))
-        self.cardinality = ('xdtemporal_year_month', (0, 1))
-        self.cardinality = ('xdtemporal_month_day', (0, 1))
-        self.cardinality = ('xdtemporal_duration', (0, 1))
+        self.cardinality = ('date', (0, 1))
+        self.cardinality = ('time', (0, 1))
+        self.cardinality = ('datetime', (0, 1))
+        self.cardinality = ('day', (0, 1))
+        self.cardinality = ('month', (0, 1))
+        self.cardinality = ('year', (0, 1))
+        self.cardinality = ('year_month', (0, 1))
+        self.cardinality = ('month_day', (0, 1))
+        self.cardinality = ('duration', (0, 1))
+
+        # self.allow_duration and (self.allow_date or self.allow_time or self.allow_datetime or self.allow_day or self.allow_month or self.allow_year or self.allow_year_month or self.allow_month_day):
 
     @property
     def date(self):
         """
-        Represents top-open intervals of exactly one day in length on the timelines of dateTime, 
-        beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). 
-        For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day. 
+        Represents top-open intervals of exactly one day in length on the timelines of dateTime,
+        beginning on the beginning moment of each day, up to but not including the beginning moment of the next day).
+        For non-timezoned values, the top-open intervals disjointly cover the non-timezoned timeline, one per day.
         For timezoned values, the intervals begin at every minute and therefore overlap.
         When serialized to XML or JSON the ISO format YYYY-MM-DD is used.
         """
@@ -2824,7 +2843,7 @@ class XdTemporalType(XdOrderedType):
     @property
     def time(self):
         """
-        Represents instants of time (with or without a timezone) that recur at the same point in each calendar day, or that occur in some 
+        Represents instants of time (with or without a timezone) that recur at the same point in each calendar day, or that occur in some
         arbitrary calendar day.
         """
         return self._time
@@ -2839,7 +2858,7 @@ class XdTemporalType(XdOrderedType):
     @property
     def datetime(self):
         """
-        Represents instants of time, optionally marked with a particular time zone offset. 
+        Represents instants of time, optionally marked with a particular time zone offset.
         Values representing the same instant but having different time zone offsets are equal but not identical.
         """
         return self._datetime
@@ -2854,10 +2873,10 @@ class XdTemporalType(XdOrderedType):
     @property
     def day(self):
         """
-        Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. 
-        This datatype is used to represent a specific day of the month as an integer. 
-        To indicate, for example, that an employee gets a paycheck on the 15th of each month. 
-        (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)        
+        Represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month.
+        This datatype is used to represent a specific day of the month as an integer.
+        To indicate, for example, that an employee gets a paycheck on the 15th of each month.
+        (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)
         """
         return self._day
 
@@ -2871,8 +2890,8 @@ class XdTemporalType(XdOrderedType):
     @property
     def month(self):
         """
-        Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. 
-        It might be used, for example, to say what month annual Thanksgiving celebrations fall in different 
+        Represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year.
+        It might be used, for example, to say what month annual Thanksgiving celebrations fall in different
         countries (11 in the United States, 10 in Canada, and possibly other months in other countries).
         """
         return self._month
@@ -2918,8 +2937,8 @@ class XdTemporalType(XdOrderedType):
     @property
     def month_day(self):
         """
-        Represents whole calendar days that recur at the same point in each calendar year, or that occur in some 
-        arbitrary calendar year. 
+        Represents whole calendar days that recur at the same point in each calendar year, or that occur in some
+        arbitrary calendar year.
         (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted in February.)
         """
         return self._month_day
@@ -2937,14 +2956,14 @@ class XdTemporalType(XdOrderedType):
     @property
     def duration(self):
         """
-        A datatype that represents durations of time. The concept of duration being captured is drawn from those of 
-        ISO-8601, specifically durations without fixed endpoints. 
-        For example, "15 days" (whose most common lexical representation in duration is "'P15D'") is a duration value. 
-        However, "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values. 
-        This datatype can provide addition and subtraction operations between duration values and between 
+        A datatype that represents durations of time. The concept of duration being captured is drawn from those of
+        ISO-8601, specifically durations without fixed endpoints.
+        For example, "15 days" (whose most common lexical representation in duration is "'P15D'") is a duration value.
+        However, "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values.
+        This datatype can provide addition and subtraction operations between duration values and between
         duration/datetime value pairs, and can be the result of subtracting datetime values.
         The tuple must include all values with a zero as a placeholder for unused positions.
-        Example: 2 years, 10 days and 2 hours = (2,0,10,2,0,0). 
+        Example: 2 years, 10 days and 2 hours = (2,0,10,2,0,0).
         Use these values in conjunction with the relativedelta type from the python-dateutil pkg.
         """
         return self._duration
@@ -2967,61 +2986,22 @@ class XdTemporalType(XdOrderedType):
         padding = ('').rjust(indent)
 
         xdstr = super().asXSD()
+
         # XdTemporal - every element must be included as either allowed or not allowed.
-        if self.allow_duration and (self.allow_date or self.allow_time or self.allow_datetime or self.allow_day or self.allow_month or self.allow_year or self.allow_year_month or self.allow_month_day):
-            reset_publication(self)
-            msg = (self.__str__() + ": You cannot have a duration mixed with other temporal types.", messages.ERROR)
-            return msg
 
-        if self.allow_date:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-date' type='xs:date'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-date' type='xs:date'/>\n")
-
-        if self.allow_time:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-time' type='xs:time'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-time' type='xs:time'/>\n")
-
-        if self.allow_datetime:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-datetime' type='xs:dateTime'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-datetime' type='xs:dateTime'/>\n")
-
-        if self.allow_day:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-day' type='xs:gDay'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-day' type='xs:gDay'/>\n")
-
-        if self.allow_month:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-month' type='xs:gMonth'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-month' type='xs:gMonth'/>\n")
-
-        if self.allow_year:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-year' type='xs:gYear'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-year' type='xs:gYear'/>\n")
-
-        if self.allow_year_month:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-year-month' type='xs:gYearMonth'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-year-month' type='xs:gYearMonth'/>\n")
-
-        if self.allow_month_day:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-month-day' type='xs:gMonthDay'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-month-day' type='xs:gMonthDay'/>\n")
-
-        if self.allow_duration:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-duration' type='xs:duration'/>\n")
-        else:
-            dt_str += padding.rjust(indent + 8) + ("<xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-duration' type='xs:duration'/>\n")
-
-        dt_str += padding.rjust(indent + 8) + ("</xs:sequence>\n")
-        dt_str += padding.rjust(indent + 6) + ("</xs:restriction>\n")
-        dt_str += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
-        dt_str += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['date'][1]) + "' minOccurs='" + str(self.cardinality['date'][0]) + "' name='xdtemporal-date' type='xs:date'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['time'][1]) + "' minOccurs='" + str(self.cardinality['time'][0]) + "' name='xdtemporal-time' type='xs:time'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['datetime'][1]) + "' minOccurs='" + str(self.cardinality['datetime'][0]) + "' name='xdtemporal-datetime' type='xs:dateTime'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['day'][1]) + "' minOccurs='" + str(self.cardinality['day'][0]) + "' name='xdtemporal-day' type='xs:gDay'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['month'][1]) + "' minOccurs='" + str(self.cardinality['month'][0]) + "' name='xdtemporal-month' type='xs:gMonth'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['year'][1]) + "' minOccurs='" + str(self.cardinality['year'][0]) + "' name='xdtemporal-year' type='xs:gYear'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['year_month'][1]) + "' minOccurs='" + str(self.cardinality['year_month'][0]) + "' name='xdtemporal-year-month' type='xs:gYearMonth'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['month_day'][1]) + "' minOccurs='" + str(self.cardinality['month_day'][0]) + "' name='xdtemporal-month-day' type='xs:gMonthDay'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='" + str(self.cardinality['duration'][1]) + "' minOccurs='" + str(self.cardinality['duration'][0]) + "' name='xdtemporal-duration' type='xs:duration'/>\n")
+        xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
+        xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
+        xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
+        xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
 
         return(xdstr)
 

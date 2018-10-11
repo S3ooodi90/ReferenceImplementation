@@ -3,6 +3,9 @@ Structural items.
 """
 from abc import ABC, abstractmethod
 
+from cuid import cuid
+from validator_collection import checkers
+
 
 class ItemType(ABC):
     """
@@ -27,7 +30,7 @@ class ItemType(ABC):
         return self._label
 
     def __str__(self):
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
+        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self._mcuid)
 
 
 class XdAdapterType(ItemType):

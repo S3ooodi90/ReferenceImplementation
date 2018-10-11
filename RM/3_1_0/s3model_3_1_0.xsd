@@ -995,7 +995,7 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="0" name="xdfloat-value" type="xs:double">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Float value.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Float value. This type accepts several "special" values: positive zero (0), negative zero (-0) (which is greater than positive 0 but less than any negative value), infinity (INF) (which is greater than any value), negative infinity (-INF) (which is less than any float, and "not a number" (NaN)</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFloatType/xdfloat-value">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFloatType"/>
