@@ -57,7 +57,7 @@ class XdAnyType(ABC):
             raise TypeError('"label" must be a string type of at least 2 characters. Not a ', type(label))
 
         self._xdtype = None
-        self._adapter = True  # flag set to create an XdAdapter for use in a Cluster, otherwise it is false
+        self._adapter = False  # flag is set True by a XdAdapter for use in a Cluster, otherwise it is false
         self._docs = ''
         self._definition_url = ''
         self._pred_obj_list = []
@@ -203,7 +203,7 @@ class XdAnyType(ABC):
     def definition_url(self, v: str):
         if checkers.is_url(v):
             self._definition_url = v
-            self._docs += '\n\nDefinition: ' + quote(v)
+            self._docs += '\n        Definition: ' + quote(v)
         else:
             raise ValueError("the Definition URL value must be a valid URL.")
 
@@ -340,16 +340,6 @@ class XdAnyType(ABC):
         padding = ('').rjust(indent)
         xdstr = ''
         if self._adapter:
-            xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.acuid + '"/>\n'
-            xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.acuid + '">\n'
-            xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
-            xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
-            xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
-            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-' + self.mcuid + '"/>\n'
-            xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
-            xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
-            xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
-            xdstr += padding.rjust(indent) + '</xs:complexType>\n'
             xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
         else:
             xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" type="s3m:mc-' + self.mcuid + '"/>\n'
@@ -1178,7 +1168,6 @@ class XdStringType(XdAnyType):
 
         if isinstance(v, list):
             for enum in v:
-                print(enum)
                 if not isinstance(enum, tuple):
                     raise ValueError("The enumerations and definitions must be strings.")
 
@@ -1243,10 +1232,11 @@ class XdStringType(XdAnyType):
                 xdstr += padding.rjust(indent + 12) + ("</xs:simpleType>\n")
                 xdstr += padding.rjust(indent + 10) + ("</xs:element>\n")
         elif self.default is not None and self.regex == None:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                                  str(self.cardinality['value'][0]) + "' name='xdstring-value' type='xs:string' default='" + escape(self.default) + "'/>\n")
-        else:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdstring-value' type='xs:string' default='" + escape(self.default) + "'/>\n")
+        elif self.default == None and self.regex == None:
             xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdstring-value' type='xs:string'/>\n")
+        else:
+            pass
 
         # Process Enumerations
         if len(self.enums) > 0:
