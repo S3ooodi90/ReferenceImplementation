@@ -1,0 +1,666 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>
+<xs:schema
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:s3m="https://www.s3model.com/ns/s3m/"
+  xmlns:sh="http://www.w3.org/ns/shacl"
+  targetNamespace="https://www.s3model.com/ns/s3m/"
+  xml:lang="en-US">
+  
+  <!-- Include the RM Schema -->
+  <xs:include schemaLocation="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd"/>
+    
+        
+  <!-- Dublin Core Metadata -->
+  <xs:annotation><xs:appinfo><rdf:RDF><rdf:Description
+    rdf:about='dm-cjn909l2f0000658py7p93o1z' >
+    <dc:title>Employee Record</dc:title>
+    <dc:creator>Unknown</dc:creator>
+    <dc:contributor>Unknown</dc:contributor>
+    <dc:contributor>Well Known</dc:contributor>
+    <dc:dc_subject>S3M DM</dc:dc_subject>
+    <dc:rights>Creative Commons</dc:rights>
+    <dc:relation>None</dc:relation>
+    <dc:coverage>Global</dc:coverage>
+    <dc:type>S3Model Data Model (DM)</dc:type>
+    <dc:identifier>dm-cjn909l2f0000658py7p93o1z</dc:identifier>
+    <dc:description>Needs a description</dc:description>
+    <dc:publisher>Data Insights, Inc.</dc:publisher>
+    <dc:date>2018-10-14T12:09:14</dc:date>
+    <dc:format>text/xml</dc:format>
+    <dc:language>en-US</dc:language>
+  </rdf:Description></rdf:RDF></xs:appinfo></xs:annotation>
+
+        <xs:element name="dm-cjn909l2f0000658py7p93o1z" substitutionGroup="s3m:DM" type="s3m:mc-cjn909l2f0000658py7p93o1z"/>
+<xs:complexType name="mc-cjn909l2f0000658py7p93o1z">
+  <xs:annotation>
+    <xs:documentation>
+      Needs a description
+    </xs:documentation>
+    <xs:appinfo>
+      <rdfs:Class rdf:about="mc-cjn909l2f0000658py7p93o1z">
+        <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType"/>
+        <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+      </rdfs:Class>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:complexContent>
+    <xs:restriction base="s3m:DMType">
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Employee Record"/>
+        <xs:element maxOccurs="1" minOccurs="1" name="dm-language" type="xs:language" fixed="en-US"/>
+        <xs:element maxOccurs="1" minOccurs="1" name="dm-encoding" type="xs:string" default="utf-8"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="current-state" type="xs:string"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-cjn909l4w0001658pwtce4orf"/>
+      </xs:sequence>
+    </xs:restriction>
+  </xs:complexContent>
+</xs:complexType>
+
+  
+<xs:element name="ms-cjn909l4w0001658pwtce4orf" substitutionGroup="s3m:Item" type="s3m:mc-cjn909l4w0001658pwtce4orf"/>
+  <xs:complexType name="mc-cjn909l4w0001658pwtce4orf">
+    <xs:complexContent>
+      <xs:restriction base="s3m:ClusterType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Employee Record Form"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909l4w0003658p71gx3y0i"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909l7c0005658p5p10lfpl"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909l9t0007658ph56rdrit"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909ldj0009658py0ygfbzv"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909lg9000b658pf1dja8em"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909liq000d658p3k8tmqcn"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909llg000f658p5d2qt1hu"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909lo7000h658pf7ulb1t5"/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ms-cjn909lrs000l658pyshm64xh"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  
+<xs:element name="ms-cjn909l4w0003658p71gx3y0i" substitutionGroup="s3m:Items" type="s3m:mc-cjn909l4w0003658p71gx3y0i"/>
+  <xs:complexType name="mc-cjn909l4w0003658p71gx3y0i">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909l4w0002658prnkmk91d"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909l4w0002658prnkmk91d" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909l4w0002658prnkmk91d"/>
+  <xs:complexType name="mc-cjn909l4w0002658prnkmk91d">
+    <xs:annotation>
+      <xs:documentation>
+        Select the action to perform.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909l4w0002658prnkmk91d">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource=""/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdStringType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Record Action"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-value'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Add New'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909l4w0002658prnkmk91d/xdstring-value/Add%20New'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909l4w0002658prnkmk91d'/>
+                        <rdfs:label>Add New</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/AddNewRecord</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='Modify'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909l4w0002658prnkmk91d/xdstring-value/Modify'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909l4w0002658prnkmk91d'/>
+                        <rdfs:label>Modify</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/ModifyRecord</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='Delete'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909l4w0002658prnkmk91d/xdstring-value/Delete'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909l4w0002658prnkmk91d'/>
+                        <rdfs:label>Delete</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/DeleteRecord</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+<xs:element name="ms-cjn909l7c0005658p5p10lfpl" substitutionGroup="s3m:Items" type="s3m:mc-cjn909l7c0005658p5p10lfpl"/>
+  <xs:complexType name="mc-cjn909l7c0005658p5p10lfpl">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909l7c0004658pbsh5mpyg"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909l7c0004658pbsh5mpyg" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909l7c0004658pbsh5mpyg"/>
+  <xs:complexType name="mc-cjn909l7c0004658pbsh5mpyg">
+    <xs:annotation>
+      <xs:documentation>
+        An employee number consists of a single character department code (A-E) and 5 digits (0-9).
+        Definition: https%3A//datainsights.tech/examples/EmployeeNumber
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909l7c0004658pbsh5mpyg">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource="https%3A//datainsights.tech/examples/EmployeeNumber"/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdStringType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Employee Number"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-value'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:pattern value='[A-E]{1}[0-9]{5}'/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+<xs:element name="ms-cjn909l9t0007658ph56rdrit" substitutionGroup="s3m:Items" type="s3m:mc-cjn909l9t0007658ph56rdrit"/>
+  <xs:complexType name="mc-cjn909l9t0007658ph56rdrit">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909l9t0006658pfc4yf6ov"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909l9t0006658pfc4yf6ov" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909l9t0006658pfc4yf6ov"/>
+  <xs:complexType name="mc-cjn909l9t0006658pfc4yf6ov">
+    <xs:annotation>
+      <xs:documentation>
+        Require a full date. Disallow all others.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909l9t0006658pfc4yf6ov">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource=""/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdTemporalType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Date of Joining"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdtemporal-date' type='xs:date'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-time' type='xs:time'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-datetime' type='xs:dateTime'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-day' type='xs:gDay'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-month' type='xs:gMonth'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-year' type='xs:gYear'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-year-month' type='xs:gYearMonth'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-month-day' type='xs:gMonthDay'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-duration' type='xs:duration'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  
+<xs:element name="ms-cjn909ldj0009658py0ygfbzv" substitutionGroup="s3m:Items" type="s3m:mc-cjn909ldj0009658py0ygfbzv"/>
+  <xs:complexType name="mc-cjn909ldj0009658py0ygfbzv">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909ldj0008658px364o6c8"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909ldj0008658px364o6c8" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909ldj0008658px364o6c8"/>
+  <xs:complexType name="mc-cjn909ldj0008658px364o6c8">
+    <xs:annotation>
+      <xs:documentation>
+        The employee's first name.
+        Definition: https%3A//datainsights.tech/examples/EmployeeFirstName
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909ldj0008658px364o6c8">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource="https%3A//datainsights.tech/examples/EmployeeFirstName"/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdStringType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="First Name"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+<xs:element name="ms-cjn909lg9000b658pf1dja8em" substitutionGroup="s3m:Items" type="s3m:mc-cjn909lg9000b658pf1dja8em"/>
+  <xs:complexType name="mc-cjn909lg9000b658pf1dja8em">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909lg9000a658p9yc0cjhy"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909lg9000a658p9yc0cjhy" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909lg9000a658p9yc0cjhy"/>
+  <xs:complexType name="mc-cjn909lg9000a658p9yc0cjhy">
+    <xs:annotation>
+      <xs:documentation>
+        The employee's last name.
+        Definition: https%3A//datainsights.tech/examples/EmployeeLastName
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909lg9000a658p9yc0cjhy">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource="https%3A//datainsights.tech/examples/EmployeeLastName"/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdStringType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Last Name"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdstring-value' type='xs:string'/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+<xs:element name="ms-cjn909liq000d658p3k8tmqcn" substitutionGroup="s3m:Items" type="s3m:mc-cjn909liq000d658p3k8tmqcn"/>
+  <xs:complexType name="mc-cjn909liq000d658p3k8tmqcn">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909liq000c658pq06dgn2s"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909liq000c658pq06dgn2s" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909liq000c658pq06dgn2s"/>
+  <xs:complexType name="mc-cjn909liq000c658pq06dgn2s">
+    <xs:annotation>
+      <xs:documentation>
+        The employee's designation.
+        Definition: https%3A//datainsights.tech/examples/EmployeeDesignation
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909liq000c658pq06dgn2s">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource="https%3A//datainsights.tech/examples/EmployeeDesignation"/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdStringType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Designation"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-value'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Manager'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909liq000c658pq06dgn2s/xdstring-value/Manager'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909liq000c658pq06dgn2s'/>
+                        <rdfs:label>Manager</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/EmployeeDesignation#Manager</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='Foreman'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909liq000c658pq06dgn2s/xdstring-value/Foreman'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909liq000c658pq06dgn2s'/>
+                        <rdfs:label>Foreman</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/EmployeeDesignation#Forman</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='LineWorker'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909liq000c658pq06dgn2s/xdstring-value/LineWorker'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909liq000c658pq06dgn2s'/>
+                        <rdfs:label>LineWorker</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/EmployeeDesignation#LineWorker</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+<xs:element name="ms-cjn909llg000f658p5d2qt1hu" substitutionGroup="s3m:Items" type="s3m:mc-cjn909llg000f658p5d2qt1hu"/>
+  <xs:complexType name="mc-cjn909llg000f658p5d2qt1hu">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909llg000e658p9cm7p5gs"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909llg000e658p9cm7p5gs" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909llg000e658p9cm7p5gs"/>
+  <xs:complexType name="mc-cjn909llg000e658p9cm7p5gs">
+    <xs:annotation>
+      <xs:documentation>
+        DOB allows a full date or just a month/year.
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909llg000e658p9cm7p5gs">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdTemporalType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource=""/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdTemporalType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Date of Birth"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-date' type='xs:date'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-time' type='xs:time'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-datetime' type='xs:dateTime'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-day' type='xs:gDay'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-month' type='xs:gMonth'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-year' type='xs:gYear'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdtemporal-year-month' type='xs:gYearMonth'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-month-day' type='xs:gMonthDay'/>
+          <xs:element maxOccurs='0' minOccurs='0' name='xdtemporal-duration' type='xs:duration'/>
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  
+<xs:element name="ms-cjn909lo7000h658pf7ulb1t5" substitutionGroup="s3m:Items" type="s3m:mc-cjn909lo7000h658pf7ulb1t5"/>
+  <xs:complexType name="mc-cjn909lo7000h658pf7ulb1t5">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909lo7000g658pduae5fhz"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909lo7000g658pduae5fhz" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909lo7000g658pduae5fhz"/>
+  <xs:complexType name="mc-cjn909lo7000g658pduae5fhz">
+    <xs:annotation>
+      <xs:documentation>
+        The employee's highest level of qualification.
+        Definition: https%3A//datainsights.tech/examples/EmployeeQualification
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909lo7000g658pduae5fhz">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource="https%3A//datainsights.tech/examples/EmployeeQualification"/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdStringType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Highest Qualification"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-value'>
+              <xs:simpleType>
+                <xs:restriction base='xs:string'>
+                  <xs:enumeration value='Level1'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909lo7000g658pduae5fhz/xdstring-value/Level1'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909lo7000g658pduae5fhz'/>
+                        <rdfs:label>Level1</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/EmployeeQualification#Level1</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='Level2'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909lo7000g658pduae5fhz/xdstring-value/Level2'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909lo7000g658pduae5fhz'/>
+                        <rdfs:label>Level2</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/EmployeeQualification#Level2</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value='Level3'>
+                  <xs:annotation>
+                    <xs:appinfo>
+                      <rdfs:Class rdf:about='mc-cjn909lo7000g658pduae5fhz/xdstring-value/Level3'>
+                        <rdfs:subPropertyOf rdf:resource='mc-cjn909lo7000g658pduae5fhz'/>
+                        <rdfs:label>Level3</rdfs:label>
+                        <rdfs:isDefinedBy>https://datainsights.tech/examples/EmployeeQualification#Level3</rdfs:isDefinedBy>
+                      </rdfs:Class>
+                    </xs:appinfo>
+                  </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+<xs:element name="ms-cjn909lrs000l658pyshm64xh" substitutionGroup="s3m:Items" type="s3m:mc-cjn909lrs000l658pyshm64xh"/>
+  <xs:complexType name="mc-cjn909lrs000l658pyshm64xh">
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdAdapterType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ms-cjn909lrs000k658pk1dbtryr"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ms-cjn909lrs000k658pk1dbtryr" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-cjn909lrs000k658pk1dbtryr"/>
+  <xs:complexType name="mc-cjn909lrs000k658pk1dbtryr">
+    <xs:annotation>
+      <xs:documentation>
+        Record the number of years of experience of the employee.
+        Definition: https%3A//datainsights.tech/examples/Experience%23Years
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909lrs000k658pk1dbtryr">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource="https%3A//datainsights.tech/examples/Experience%23Years"/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdCountType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Years of Experience"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='magnitude-status' type='s3m:MagnitudeStatus'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='error'  type='xs:int' default='0'/>
+          <xs:element maxOccurs='1' minOccurs='0' name='accuracy' type='xs:int' default='0'/>
+          <xs:element maxOccurs='1' minOccurs='0'  name='xdcount-value'>
+            <xs:simpleType>
+            <xs:restriction base='xs:int'>
+              <xs:minInclusive value='0'/>
+              <xs:maxInclusive value='99'/>
+            </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element maxOccurs='1' minOccurs='1' name='xdcount-units' type='s3m:mc-cjn909lrr000i658pjlgunx1w'/> 
+          </xs:sequence>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+
+  <xs:element name="ms-cjn909lrr000i658pjlgunx1w" type="s3m:mc-cjn909lrr000i658pjlgunx1w"/>
+  <xs:complexType name="mc-cjn909lrr000i658pjlgunx1w">
+    <xs:annotation>
+      <xs:documentation>
+        Count of the years of experience.
+        Definition: https%3A//datainsights.tech/examples/Experience
+      </xs:documentation>
+      <xs:appinfo>
+        <rdfs:Class rdf:about="mc-cjn909lrr000i658pjlgunx1w">
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
+          <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>
+          <rdfs:isDefinedBy rdf:resource="https%3A//datainsights.tech/examples/Experience"/>
+        </rdfs:Class>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="s3m:XdStringType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="Years"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="act" type="xs:string" default=""/>
+          <xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vtb" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="vte" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="tr" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="modified" type="xs:dateTime"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="s3m:lattype"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="s3m:lontype"/>
+          <xs:element maxOccurs='1' minOccurs='0' name='xdstring-value' type='xs:string'/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

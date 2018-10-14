@@ -1,6 +1,7 @@
 """
 Data Model 
 """
+import os
 from xml.sax.saxutils import escape
 from urllib.parse import quote
 
@@ -8,6 +9,7 @@ from datetime import datetime
 from collections import OrderedDict
 from cuid import cuid
 
+from settings import ACS, DM_LIB
 from s3m_struct import ClusterType
 
 
@@ -179,6 +181,9 @@ class DMType(object):
         xdstr += self.data.asXSD()
 
         xdstr += "</xs:schema>"
+
+        with open(os.path.join(DM_LIB, 'dm-' + self.mcuid + '.xsd'), 'w') as f:
+            f.write(xdstr)
 
         return(xdstr)
 

@@ -26,8 +26,8 @@ from validator_collection import checkers
 
 import s3m_ontology
 from s3m_ev import ExceptionalValue
+from settings import ACS
 
-ACS = []
 
 invlTypes = ['int', 'decimal', 'date', 'time', 'dateTime', 'float', 'duration']
 
