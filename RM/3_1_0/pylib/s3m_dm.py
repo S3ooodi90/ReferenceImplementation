@@ -185,14 +185,14 @@ class DMType(object):
         with open(os.path.join(DM_LIB, 'dm-' + self.mcuid + '.xsd'), 'w') as f:
             f.write(xdstr)
 
-        return(xdstr)
+        msg = "Wrote dm-" + self.mcuid + ".xsd (" + self.label + ") to the data model library."
+        return(msg)
 
     def _header(self):
         """
         Return the data model schema header.
         """
-        xsd = """
-<?xml version="1.0" encoding="UTF-8"?>
+        xsd = """<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="dm-description.xsl"?>
 <xs:schema
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
