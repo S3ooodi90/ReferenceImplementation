@@ -130,7 +130,7 @@ class ClusterType(ItemType):
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
-        xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:Item" type="s3m:mc-' + self.mcuid + '"/>\n'
         xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
         xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:ClusterType">\n'
