@@ -2754,8 +2754,8 @@ class XdRatioType(XdQuantifiedType):
 
     @ratio_type.setter
     def ratio_type(self, v):
-        if isinstance(v, str) and v in ['ratio', 'rate', 'proportion']:
-            self._ratio_type = v
+        if isinstance(v, str) and v.lower() in ['ratio', 'rate', 'proportion']:
+            self._ratio_type = v.lower()
         else:
             raise ValueError("The ratio_type value must be a str and be one of; 'ratio','rate', or 'proportion'.")
 
