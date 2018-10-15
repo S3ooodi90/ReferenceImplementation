@@ -2715,11 +2715,11 @@ class XdFloatType(XdQuantifiedType):
 
         return(xmlstr)
 
-
 class XdRatioType(XdQuantifiedType):
     """
-    Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
-    when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.
+    Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. 
+    
+    Should not be used for formulations. Used for modeling; ratios, rates or proportions.
     """
 
     def __init__(self, label):

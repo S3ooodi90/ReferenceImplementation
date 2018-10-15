@@ -1041,16 +1041,14 @@
 
   <xs:complexType name="XdRatioType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
-        when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.</xs:documentation>
+      <xs:documentation xml:lang="en-us">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used for formulations. Used for modeling; ratios, rates or proportions.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdRatioType">
           <rdfs:isDefinedBy rdf:resource="https://www.s3model.com/docs/3_1_0/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType"/>
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantifiedType"/>
           <rdfs:label xml:lang="en-us">XdRatioType</rdfs:label>
           <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>          
-          <rdfs:comment xml:lang="en-us">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used to represent things like blood pressure which are often written using a ‘/’ character, giving the misleading impression that the item is a ratio,
-            when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations. Used for modeling; ratios, rates or proportions.</rdfs:comment>
+          <rdfs:comment xml:lang="en-us">Models a ratio of values, i.e. where the numerator and denominator are both pure numbers. Should not be used for formulations. Used for modeling; ratios, rates or proportions.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
     </xs:annotation>

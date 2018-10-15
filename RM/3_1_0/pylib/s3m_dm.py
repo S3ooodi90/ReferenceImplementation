@@ -13,6 +13,10 @@ from settings import ACS, DM_LIB
 from s3m_struct import ClusterType
 
 
+class PublicationError(Exception):
+    pass
+
+
 class DMType(object):
     """
     This is the root node of a Data Model (DM)
@@ -38,6 +42,7 @@ class DMType(object):
         self._audits = list()
         self._attestations = list()
         self._links = list()
+        self._published = False
 
     def __str__(self):
         return("S3Model Data Model\n" + "ID: " + self.mcuid + "\n" + self.showMetadata(self.metadata))
@@ -50,20 +55,17 @@ class DMType(object):
 
     def genMD(self):
         """
-        Create a metadata dictionary for the DM if one isn't passed in.
+        Create a metadata dictionary for the DM. Each element has a default.
         """
         md = OrderedDict()
-        md['title'] = self._label
         md['creator'] = 'Unknown'
-        md['contribs'] = ['Unknown', 'Well Known']
-        md['subject'] = 'S3M DM'
+        md['contribs'] = []
+        md['subject'] = 'S3M Data Model Example'
         md['rights'] = 'Creative Commons'
         md['relation'] = 'None'
         md['coverage'] = 'Global'
-        md['identifier'] = 'dm-' + self.mcuid
         md['description'] = 'Needs a description'
         md['publisher'] = 'Data Insights, Inc.'
-        md['date'] = '{0:%Y-%m-%dT%H:%M:%S}'.format(datetime.now())
         md['language'] = 'en-US'
 
         return(md)
@@ -88,6 +90,186 @@ class DMType(object):
         The model metadata.
         """
         return self._metadata
+
+    @property
+    def creator(self):
+        """
+        An entity primarily responsible for making the content of the resource.
+
+        Examples of a Creator include a person, an organisation,
+        or a service. Typically, the name of a Creator should be used to
+        indicate the entity.
+        """
+        return self._metadata['creator']
+
+    @creator.setter
+    def creator(self, v):
+        if isinstance(v, str):
+            self._metadata['creator'] = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def contrib(self):
+        """
+        An entity responsible for making contributions to the content of the resource.
+        Examples of a Contributor include a person, an organisation, or a service.
+        Typically, the name of a Contributor should be used to indicate the entity.
+
+        Any number of contributors may be added.
+        """
+        return self._metadata['contribs']
+
+    @contrib.setter
+    def contrib(self, v):
+        if isinstance(v, str):
+            self._metadata['contribs'].append(v)
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def subject(self):
+        """
+        The topic of the content of the resource.
+
+        Typically, a Subject will be expressed as keywords,
+        key phrases or classification codes  (semi-colon separated)
+        that describe a topic of the resource.
+
+        Recommended best practice is to select a value from a
+        controlled vocabulary or formal classification scheme.
+        """
+        return self._metadata['subject']
+
+    @subject.setter
+    def subject(self, v):
+        if isinstance(v, str):
+            self._metadata['subject'] = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def rights(self):
+        """
+        Information about rights held in and over the resource.
+
+        Typically, a Rights element will contain a rights
+        management statement for the resource, or reference
+        a service providing such information. Rights information
+        often encompasses Intellectual Property Rights (IPR),
+        Copyright, and various Property Rights.
+        If the Rights element is absent, no assumptions can be made
+        about the status of these and other rights with respect to
+        the resource.
+        """
+        return self._metadata['rights']
+
+    @rights.setter
+    def rights(self, v):
+        if isinstance(v, str):
+            self._metadata['rights'] = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def relation(self):
+        """
+        A reference to a related resource.
+
+        In S3Model this would be the identifier of another data model.
+        """
+        return self._metadata['relation']
+
+    @relation.setter
+    def relation(self, v):
+        if isinstance(v, str):
+            self._metadata['relation'] = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def coverage(self):
+        """
+        The extent or scope of the content of the resource.
+
+        Coverage will typically include spatial location (a place name
+        or geographic coordinates), temporal period (a period label,
+        date, or date range) or jurisdiction (such as a named
+        administrative entity).
+
+        Recommended best practice is to select a value from a
+        controlled vocabulary (for example, the Thesaurus of Geographic
+        Names [TGN]) and that, where appropriate, named places or time
+        periods be used in preference to numeric identifiers such as
+        sets of coordinates or date ranges.
+        """
+        return self._metadata['coverage']
+
+    @coverage.setter
+    def coverage(self, v):
+        if isinstance(v, str):
+            self._metadata['coverage'] = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def description(self):
+        """
+        An account of the content of the resource.
+
+        Description may include but is not limited to: an abstract,
+        table of contents, reference to a graphical representation
+        of content or a free-text account of the content.
+        """
+        return self._metadata['description']
+
+    @description.setter
+    def description(self, v):
+        if isinstance(v, str):
+            self._metadata['description'] = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def publisher(self):
+        """
+        An entity responsible for making the resource available.
+
+        Examples of a Publisher include a person, an organisation,
+        or a service.
+        Typically, the name of a Publisher should be used to
+        indicate the entity.
+        """
+        return self._metadata['publisher']
+
+    @publisher.setter
+    def publisher(self, v):
+        if isinstance(v, str):
+            self._metadata['publisher'] = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def language(self):
+        """
+        A language of the intellectual content of the resource.
+
+        Recommended best practice for the values of the Language
+        element is defined by RFC 1766 [RFC1766] which includes
+        a two-letter Language Code (taken from the ISO 639
+        standard [ISO639]), followed optionally, by a two-letter
+        Country Code (taken from the ISO 3166 standard [ISO3166]).
+        For example, 'en' for English, 'fr' for French, or
+        'en-uk' for English used in the United Kingdom.
+        """
+        return self._metadata['language']
+
+    @language.setter
+    def language(self, v):
+        if isinstance(v, str):
+            self._metadata['language'] = v
+        else:
+            raise TypeError("the value must be a string.")
 
     @property
     def data(self):
@@ -132,6 +314,8 @@ class DMType(object):
         """
         Return a XML Schema for a complete Data Model.
         """
+        if self._published:
+            raise PublicationError(self.label + " - " + self.metadata['identifier'] + " -- This Data Model has already been published.")
         indent = 0
         padding = ('').rjust(indent)
         xdstr = ''
@@ -186,6 +370,7 @@ class DMType(object):
             f.write(xdstr)
 
         msg = "Wrote dm-" + self.mcuid + ".xsd (" + self.label + ") to the data model library."
+        self._published = True
         return(msg)
 
     def _header(self):
@@ -228,7 +413,7 @@ class DMType(object):
   <!-- Dublin Core Metadata -->
   <xs:annotation><xs:appinfo><rdf:RDF><rdf:Description
     rdf:about='dm-""" + self.mcuid + """' >
-    <dc:title>""" + self.metadata['title'] + """</dc:title>
+    <dc:title>""" + self.label.strip() + """</dc:title>
     <dc:creator>""" + self.metadata['creator'] + """</dc:creator>
     """ + contribs + """
     <dc:dc_subject>""" + self.metadata['subject'] + """</dc:dc_subject>
@@ -239,7 +424,7 @@ class DMType(object):
     <dc:identifier>dm-""" + self.mcuid + """</dc:identifier>
     <dc:description>""" + self.metadata['description'] + """</dc:description>
     <dc:publisher>""" + self.metadata['publisher'] + """</dc:publisher>
-    <dc:date>""" + self.metadata['date'] + """</dc:date>
+    <dc:date>""" + '{0:%Y-%m-%d}'.format(datetime.now()) + """</dc:date>
     <dc:format>text/xml</dc:format>
     <dc:language>""" + self.metadata['language'] + """</dc:language>
   </rdf:Description></rdf:RDF></xs:appinfo></xs:annotation>
