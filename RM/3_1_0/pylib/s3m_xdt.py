@@ -2729,11 +2729,22 @@ class XdRatioType(XdQuantifiedType):
         super().__init__(label)
         self._xdtype = "XdRatioType"
 
-        # constrained to list ['ratio','rate', 'proportion']
         self._ratio_type = None
+        
         self._numerator = None
+        self._num_min_inclusive = None
+        self._num_max_inclusive = None
+        self._num_min_exclusive = None
+        self._num_max_exclusive = None
+        
         self._denominator = None
+        self._den_min_inclusive = None
+        self._den_max_inclusive = None
+        self._den_min_exclusive = None
+        self._den_max_exclusive = None
+        
         self._xdratio_value = None
+
         self._numerator_units = None
         self._denominator_units = None
         self._xdratio_units = None
@@ -2772,6 +2783,70 @@ class XdRatioType(XdQuantifiedType):
             self._numerator = v
         else:
             raise ValueError("The numerator value must be a float.")
+    @property
+    def num_min_inclusive(self):
+        """
+        An inclusive minimum value.
+        """
+        return self._num_min_inclusive
+
+    @num_min_inclusive.setter
+    def num_min_inclusive(self, v):
+        if v is not None and isinstance(v, int):
+            v = Decimal(v)
+        if isinstance(v, (Decimal, type(None))):
+            self._num_min_inclusive = v
+        else:
+            raise ValueError("The min_inclusive value must be a Decimal.")
+
+    @property
+    def num_max_inclusive(self):
+        """
+        An inclusive maximum value.
+        """
+        return self._num_max_inclusive
+
+    @num_max_inclusive.setter
+    def num_max_inclusive(self, v):
+        if v is not None and isinstance(v, int):
+            v = Decimal(v)
+        if isinstance(v, (Decimal, type(None))):
+            self._num_max_inclusive = v
+        else:
+            raise ValueError("The max_inclusive value must be a Decimal.")
+
+    @property
+    def num_min_exclusive(self):
+        """
+        An exclusive minimum value.
+        """
+        return self._num_min_exclusive
+
+    @num_min_exclusive.setter
+    def num_min_exclusive(self, v):
+        if v is not None and isinstance(v, int):
+            v = Decimal(v)
+        if isinstance(v, (Decimal, type(None))):
+            self._num_min_exclusive = v
+        else:
+            raise ValueError("The min_exclusive value must be a Decimal.")
+
+    @property
+    def num_max_exclusive(self):
+        """
+        An exclusive maximum value.
+        """
+        return self._num_max_exclusive
+
+    @num_max_exclusive.setter
+    def num_max_exclusive(self, v):
+        if v is not None and isinstance(v, int):
+            v = Decimal(v)
+        if isinstance(v, (Decimal, type(None))):
+            self._num_max_exclusive = v
+        else:
+            raise ValueError("The max_exclusive value must be a Decimal.")
+
 
     @property
     def denominator(self):
@@ -2788,18 +2863,68 @@ class XdRatioType(XdQuantifiedType):
             raise ValueError("The denominator value must be a float.")
 
     @property
-    def xdratio_value(self):
+    def den_min_inclusive(self):
         """
-        Numeric value of the ratio.
+        An inclusive minimum value.
         """
-        return self._xdratio_value
+        return self._den_min_inclusive
 
-    @xdratio_value.setter
-    def xdratio_value(self, v):
-        if isinstance(v, float):
-            self._xdratio_value = v
+    @den_min_inclusive.setter
+    def den_min_inclusive(self, v):
+        if v is not None and isinstance(v, int):
+            v = Decimal(v)
+        if isinstance(v, (Decimal, type(None))):
+            self._den_min_inclusive = v
         else:
-            raise ValueError("The xdratio_value value must be a float.")
+            raise ValueError("The den_min_inclusive value must be a Decimal.")
+
+    @property
+    def den_max_inclusive(self):
+        """
+        An inclusive maximum value.
+        """
+        return self._den_max_inclusive
+
+    @den_max_inclusive.setter
+    def den_max_inclusive(self, v):
+        if v is not None and isinstance(v, int):
+            v = Decimal(v)
+        if isinstance(v, (Decimal, type(None))):
+            self._den_max_inclusive = v
+        else:
+            raise ValueError("The den_max_inclusive value must be a Decimal.")
+
+    @property
+    def den_min_exclusive(self):
+        """
+        An exclusive minimum value.
+        """
+        return self._den_min_exclusive
+
+    @den_min_exclusive.setter
+    def den_min_exclusive(self, v):
+        if v is not None and isinstance(v, int):
+            v = Decimal(v)
+        if isinstance(v, (Decimal, type(None))):
+            self._den_min_exclusive = v
+        else:
+            raise ValueError("The den_min_exclusive value must be a Decimal.")
+
+    @property
+    def den_max_exclusive(self):
+        """
+        An exclusive maximum value.
+        """
+        return self._den_max_exclusive
+
+    @den_max_exclusive.setter
+    def den_max_exclusive(self, v):
+        if v is not None and isinstance(v, int):
+            v = Decimal(v)
+        if isinstance(v, (Decimal, type(None))):
+            self._den_max_exclusive = v
+        else:
+            raise ValueError("The den_max_exclusive value must be a Decimal.")
 
     @property
     def numerator_units(self):
@@ -2831,20 +2956,6 @@ class XdRatioType(XdQuantifiedType):
         else:
             raise ValueError("The denominator_units value must be a XdStringType.")
 
-    @property
-    def xdratio_units(self):
-        """
-        Used to convey the meaning of the xdratio-value. May or may not come from a standard terminology.
-        """
-        return self._xdratio_units
-
-    @xdratio_units.setter
-    def xdratio_units(self, v):
-        if isinstance(v, XdStringType):
-            self._xdratio_units = v
-        else:
-            raise ValueError("The xdratio_units value must be a XdStringType.")
-
     def validate(self):
         """
         Every XdType must implement this method.
@@ -2864,31 +2975,11 @@ class XdRatioType(XdQuantifiedType):
 
         # tests for proper modelling
         if (self.num_min_inclusive and self.num_min_exclusive) or (self.num_max_inclusive and self.num_max_exclusive):
-            reset_publication(self)
-            msg = (self.__str__() + ": There is ambiguity in your numerator constraints for min/max. Please use EITHER minimum or maximum values, not both.", messages.ERROR)
-            return msg
+            raise ValueError(self.__str__() + ": There is ambiguity in your numerator constraints for min/max. Please use EITHER minimum or maximum values, not both.", messages.ERROR)
+            
         if (self.den_min_inclusive and self.den_min_exclusive) or (self.den_max_inclusive and self.den_max_exclusive):
-            reset_publication(self)
-            msg = (self.__str__() + ": There is ambiguity in your denominator constraints for min/max. Please use EITHER minimum or maximum values, not both.", messages.ERROR)
-            return msg
-        # tests for not reusing units PcT
-        if self.num_units is not None and self.den_units is not None:
-            if self.num_units.ct_id == self.den_units.ct_id:
-                reset_publication(self)
-                msg = (self.__str__() + ": Numerator and denominator units must use different MCs.", messages.ERROR)
-                return msg
-
-        if self.num_units is not None and self.ratio_units is not None:
-            if self.num_units.ct_id == self.ratio_units.ct_id:
-                reset_publication(self)
-                msg = (self.__str__() + ": Numerator and ratio units must use different MCs.", messages.ERROR)
-                return msg
-
-        if self.den_units is not None and self.ratio_units is not None:
-            if self.den_units.ct_id == self.ratio_units.ct_id:
-                reset_publication(self)
-                msg = (self.__str__() + ": Denominator and ratio units must use different MCs.", messages.ERROR)
-                return msg
+            raise ValueError(self.__str__() + ": There is ambiguity in your denominator constraints for min/max. Please use EITHER minimum or maximum values, not both.", messages.ERROR)
+    
 
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='ratio-type' type='s3m:TypeOfRatio'/>\n")
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['numerator'][0]) + "' name='numerator'>\n")
@@ -2921,48 +3012,20 @@ class XdRatioType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
         xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
 
-        if not mag_constrained:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdratio-value' type='xs:float'/>\n")
-        else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdratio-value'>\n")
-            xdstr += padding.rjust(indent + 10) + ("<xs:simpleType>\n")
-            xdstr += padding.rjust(indent + 10) + ("<xs:restriction base='xs:float'>\n")
-            if self.min_magnitude is not None:
-                xdstr += padding.rjust(indent + 12) + ("<xs:minInclusive value='" + str(self.min_magnitude).strip() + "'/>\n")
-            if self.max_magnitude is not None:
-                xdstr += padding.rjust(indent + 12) + ("<xs:maxInclusive value='" + str(self.max_magnitude).strip() + "'/>\n")
-            xdstr += padding.rjust(indent + 10) + ("</xs:restriction>\n")
-            xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
-            xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
+        if self.numerator_units:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['numerator_units'][0]) + "' name='numerator-units' type='s3m:mc-" + self.numerator_units.mcuid + "'/> \n")
 
-        if self.num_units:
-            if not self.num_units.published:
-                reset_publication(self)
-                msg = ("Units: " + self.num_units.label + " hasn't been published. Please publish the object and retry.", messages.ERROR)
-            else:
-                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                                      str(self.cardinality['numerator_units'][0]) + "' name='numerator-units' type='s3m:mc-" + self.num_units.ct_id + "'/> \n")
-
-        if self.den_units:
-            if not self.den_units.published:
-                reset_publication(self)
-                msg = ("Units: " + self.den_units.label + " hasn't been published. Please publish the object and retry.", messages.ERROR)
-            else:
-                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                                      str(self.cardinality['denominator_units'][0]) + "' name='denominator-units' type='s3m:mc-" + self.den_units.ct_id + "'/>\n")
-
-        if self.ratio_units:
-            if not self.ratio_units.published:
-                reset_publication(self)
-                msg = ("Units: " + self.ratio_units.label + " hasn't been published. Please publish the object and retry.", messages.ERROR)
-            else:
-                xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                                      str(self.cardinality['ratio_units'][0]) + "' name='ratio-units' type='s3m:mc-" + self.ratio_units.ct_id + "'/> \n")
-
+        if self.denominator_units:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['denominator_units'][0]) + "' name='denominator-units' type='s3m:mc-" + self.denominator_units.mcuid + "'/>\n")
         xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+
+        if self.numerator_units:
+            xdstr += self.numerator_units.asXSD()
+        if self.denominator_units:
+            xdstr += self.denominator_units.asXSD()
 
         return(xdstr)
 
