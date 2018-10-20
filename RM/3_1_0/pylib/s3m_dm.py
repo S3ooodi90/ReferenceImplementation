@@ -9,8 +9,9 @@ from datetime import datetime
 from collections import OrderedDict
 from cuid import cuid
 
-from settings import ACS, DM_LIB
+from s3m_settings import ACS, DM_LIB
 from s3m_struct import ClusterType
+from s3m_errors import ValidationError
 
 
 class PublicationError(Exception):
@@ -362,14 +363,14 @@ class DMType(object):
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
         xdstr += padding.rjust(indent) + '</xs:complexType>\n\n'
-        xdstr += self.data.asXSD()
+        xdstr += self.data.getModel()
 
         xdstr += "</xs:schema>"
 
         with open(os.path.join(DM_LIB, 'dm-' + self.mcuid + '.xsd'), 'w') as f:
             f.write(xdstr)
 
-        msg = "Wrote dm-" + self.mcuid + ".xsd (" + self.label + ") to the data model library."
+        msg = "Wrote " + os.path.join(DM_LIB, 'dm-' + self.mcuid + '.xsd')
         self._published = True
         return(msg)
 

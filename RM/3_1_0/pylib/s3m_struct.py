@@ -2,11 +2,15 @@
 Structural items.
 """
 from abc import ABC, abstractmethod
+from typing import ByteString, Dict, List, Tuple, Iterable
+from xml.sax.saxutils import escape
+from urllib.parse import quote
 
 from cuid import cuid
 from validator_collection import checkers
 
 from s3m_xdt import XdAnyType
+from s3m_errors import ValidationError
 
 
 class ItemType(ABC):
@@ -18,6 +22,10 @@ class ItemType(ABC):
     @abstractmethod
     def __init__(self):
         pass
+
+    @abstractmethod
+    def validate(self):
+        return(True)
 
 
 class XdAdapterType(ItemType):
@@ -46,13 +54,26 @@ class XdAdapterType(ItemType):
         else:
             raise ValueError("the value must be a XdAnyType subtype. A XdAdapter can only contain one XdType.")
 
+    def validate(self):
+        """
+        Every Type must implement this method.
+        """
+        if not super(XdAdapterType, self).validate():
+            return(False)
+        else:
+            return(True)
+
     def __str__(self):
+        if not self.validate():
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
         return(self.__class__.__name__ + ', ID: ' + self.value.acuid + ' contains ' + str(self.value))
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema stub for the adapter.
         """
+        if not self.validate():
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
@@ -66,7 +87,7 @@ class XdAdapterType(ItemType):
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
         xdstr += padding.rjust(indent) + '</xs:complexType>\n\n'
-        xdstr += self.value.asXSD()
+        xdstr += self.value.getModel()
         return(xdstr)
 
 
@@ -86,6 +107,9 @@ class ClusterType(ItemType):
         self._mcuid = cuid()  # model cuid
         self._label = ''
         self._items = []
+        self._docs = ''
+        self._definition_url = ''
+        self._pred_obj_list = []
 
         if checkers.is_string(label, 2):
             self._label = label
@@ -107,6 +131,75 @@ class ClusterType(ItemType):
         return self._mcuid
 
     @property
+    def docs(self):
+        """
+        The human readable documentation string describing the purpose of
+        the model.
+        """
+        return self._docs
+
+    @docs.setter
+    def docs(self, v: str):
+        if checkers.is_string(v):
+            self._docs = v
+        else:
+            raise ValueError("the Documentation value must be a string.")
+
+    @property
+    def docs(self):
+        """
+        The human readable documentation string describing the purpose of
+        the model.
+        """
+        return self._docs
+
+    @docs.setter
+    def docs(self, v: str):
+        if checkers.is_string(v):
+            self._docs = v
+        else:
+            raise ValueError("the Documentation value must be a string.")
+
+    @property
+    def pred_obj_list(self):
+        """
+        A list of additional predicate object pairs to describe the component.
+
+        Each list item is a tuple where 0 is the predicate and 1 is the object.
+
+        Example:
+        ('rdf:resource','https://www.niddk.nih.gov/health-information/health-statistics')
+        The setter accepts the tuple and appends it to the list.
+        If an empty list is supplied it resets the value to the empty list.
+        """
+        return self._pred_obj_list
+
+    @pred_obj_list.setter
+    def pred_obj_list(self, v: Iterable):
+        if isinstance(v, list) and len(v) == 0:
+            self._pred_obj_list = []
+        elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
+            self._pred_obj_list.append(v)
+        else:
+            raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
+
+    @property
+    def definition_url(self):
+        """
+        The primary definition URL for the model.
+        Cannot be an IP address.
+        """
+        return self._definition_url
+
+    @definition_url.setter
+    def definition_url(self, v: str):
+        if checkers.is_url(v):
+            self._definition_url = v
+            self._docs += '\n        Definition: ' + quote(v)
+        else:
+            raise ValueError("the Definition URL value must be a valid URL.")
+
+    @property
     def items(self):
         """
         The items contained in a Cluster.
@@ -118,20 +211,60 @@ class ClusterType(ItemType):
         if isinstance(v, ItemType):
             self._items.append(v)
         else:
-            raise ValueError("items in a ClusterType must be of type ItemType.")
+            if isinstance(v, XdAnyType):
+                raise TypeError("XdType items in a ClusterType must be wrapped in an XdAdapterType.")
+            else:
+                raise TypeError("items in a ClusterType must be of type ItemType.")
+
+    def validate(self):
+        """
+        Every Type must implement this method.
+        """
+        if not super(ClusterType, self).validate():
+            return(False)
+        elif not checkers.is_url(self.definition_url):
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + " failed validation: definition_url is invalid")
+        elif len(self.label) < 2:
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + " failed validation: missing or short label")
+        elif len(self.items) < 1:
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + " failed validation: missing items")
+        else:
+            return(True)
 
     def __str__(self):
+        if not self.validate():
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
         return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema stub for the Cluster.
         """
+        self.validate()
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
         xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:Item" type="s3m:mc-' + self.mcuid + '"/>\n'
         xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:documentation>\n'
+        xdstr += padding.rjust(indent + 6) + escape(self.docs.strip()) + '\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:documentation>\n'
+        xdstr += padding.rjust(indent + 4) + '<xs:appinfo>\n'
+
+        # add RDF
+        xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ClusterType"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
+            for po in self.pred_obj_list:
+                pred = po[0]
+                obj = po[1]
+                xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
+        xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
+        xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
         xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:ClusterType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
@@ -143,7 +276,7 @@ class ClusterType(ItemType):
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
         xdstr += padding.rjust(indent) + '</xs:complexType>\n\n'
         for item in self.items:
-            xdstr += item.asXSD()
+            xdstr += item.getModel()
 
         return(xdstr)
 

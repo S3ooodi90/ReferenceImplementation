@@ -26,14 +26,11 @@ from validator_collection import checkers
 
 import s3m_ontology
 from s3m_ev import ExceptionalValue
-from settings import ACS
+from s3m_settings import ACS
+from s3m_errors import ValidationError
 
 
 invlTypes = ['int', 'decimal', 'date', 'time', 'dateTime', 'float', 'duration']
-
-
-class ValidationError(Exception):
-    pass
 
 
 def valid_cardinality(self, v):
@@ -161,7 +158,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("The cardinality values must be integers or None.")
         else:
-            raise ValueError("The cardinality value is malformed.")
+            raise ValueError("The cardinality value is malformed. It must be a tuple of a string and a list of two integers.")
 
     @property
     def mcuid(self):
@@ -181,6 +178,8 @@ class XdAnyType(ABC):
     def label(self):
         """
         The semantic name of the component.
+        
+        REQUIRED
         """
         return self._label
 
@@ -238,9 +237,11 @@ class XdAnyType(ABC):
 
     @property
     def definition_url(self):
-        """
+        """    
         The primary definition URL for the model.
         Cannot be an IP address.
+        
+        REQUIRED
         """
         return self._definition_url
 
@@ -248,7 +249,6 @@ class XdAnyType(ABC):
     def definition_url(self, v: str):
         if checkers.is_url(v):
             self._definition_url = v
-            self._docs += '\n        Definition: ' + quote(v)
         else:
             raise ValueError("the Definition URL value must be a valid URL.")
 
@@ -384,18 +384,25 @@ class XdAnyType(ABC):
         if self.validate():
             return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
         else:
-            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + " failed validation.")
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not checkers.is_url(self.definition_url):
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + " - failed validation: definition_url is invalid\n" + str(self.definition_url))
+        elif not isinstance(self.label, str) or len(self.label) < 2:
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + " - failed validation: label is too short or missing\n" + str(self.label))
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
-        Return a XML Schema stub fo Xd Types.
+        Return a XML Schema stub for Xd Types.
         """
+        self.validate()
+        
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
@@ -430,7 +437,7 @@ class XdAnyType(ABC):
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['act'][0]) + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
-        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['vtb'][0]) + '" name="vtb" type="xs:dateTime"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['vte'][0]) + '" name="vte" type="xs:dateTime"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['tr'][0]) + '" name="tr" type="xs:dateTime"/>\n'
@@ -445,7 +452,7 @@ class XdAnyType(ABC):
         Return an example XML fragment for this model.
         """
 
-        act = random.choice(ex_acs)
+        act = random.choice(ACS)
 
         indent = 2
         padding = ('').rjust(indent)
@@ -622,9 +629,12 @@ class XdIntervalType(XdAnyType):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdIntervalType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -641,7 +651,7 @@ class XdIntervalType(XdAnyType):
         if self._upper_bounded:
             ub = 'true'
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
 
         # XdInterval
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='lower' type='xs:" + self._interval_type + "'/>\n")
@@ -753,13 +763,16 @@ class ReferenceRangeType(XdAnyType):
         if isinstance(v, bool):
             self._is_normal = v
         else:
-            raise ValueError("the is_normal value must be a Boolean.")
+            raise TypeError("the is_normal value must be a Boolean.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(ReferenceRangeType, self).validate():
+            return(False)
+        else:
+            return(True)
 
     def asXSD(self):
         """
@@ -769,7 +782,7 @@ class ReferenceRangeType(XdAnyType):
         padding = ('').rjust(indent)
         normal = 'true' if self._is_normal else 'false'
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # ReferenceRange
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' fixed='" + rr_def.strip() + "'/>\n")
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-" + xdi_id + "'/> \n")
@@ -849,7 +862,7 @@ class XdBooleanType(XdAnyType):
             if isinstance(opt['trues'], list) and isinstance(opt['falses'], list):
                 self._options = opt
             else:
-                raise ValueError("The values of 'trues' and 'falses' must be a list of strings.")
+                raise TypeError("The values of 'trues' and 'falses' must be a list of strings.")
         else:
             raise ValueError("The the options value must be a dictionary with two keys; 'trues' and 'falses'. Their items must be a list of strings.")
 
@@ -891,7 +904,9 @@ class XdBooleanType(XdAnyType):
         """
         Every XdType must implement this method.
         """
-        if self._options == None:
+        if not super(XdBooleanType, self).validate():
+            return(False)
+        elif self._options == None:
             raise ValidationError("Missing options dictionary.")
         elif not isinstance(self._options, dict) or not list(self._options.keys()) == ['trues', 'falses']:
             raise ValidationError("The options dictionary keys are invalid.")
@@ -902,13 +917,14 @@ class XdBooleanType(XdAnyType):
         else:
             return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
-        self.validate()
+        if not super(XdBooleanType, self).validate():
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + " failed validation.")
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
 
         trues = self._options['trues']
         falses = self._options['falses']
@@ -980,7 +996,7 @@ class XdBooleanType(XdAnyType):
         # randomly choose an option
         tf = random.choice(list(self._options.keys()))
         choice = random.choice(self._options[tf])
-        act = random.choice(ex_acs)
+        act = random.choice(ACS)
 
         indent = 2
         padding = ('').rjust(indent)
@@ -1055,7 +1071,7 @@ class XdLinkType(XdAnyType):
         if checkers.is_string(v):
             self._link = v
         else:
-            raise ValueError("the link value must be a string.")
+            raise TypeError("the link value must be a string.")
 
     @property
     def relation(self):
@@ -1069,7 +1085,7 @@ class XdLinkType(XdAnyType):
         if checkers.is_string(v):
             self._relation = v
         else:
-            raise ValueError("the relation value must be a string.")
+            raise TypeError("the relation value must be a string.")
 
     @property
     def relation_uri(self):
@@ -1084,18 +1100,20 @@ class XdLinkType(XdAnyType):
         if checkers.is_url(v):
             self._relation_uri = v
         else:
-            raise ValueError("the relation_uri value must be a URL.")
+            raise TypeError("the relation_uri value must be a URL.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        if self.cardinality['relation_uri'][0] not in [0, 1] or self.cardinality['relation_uri'][1] not in [0, 1]:
+        if not super(XdLinkType, self).validate():
+            return(False)
+        elif self.cardinality['relation_uri'][0] not in [0, 1] or self.cardinality['relation_uri'][1] not in [0, 1]:
             raise ValidationError("The cardinality of relation_uri is invalid: " + str(self.cardinality['relation_uri']))
         else:
             return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -1103,7 +1121,7 @@ class XdLinkType(XdAnyType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdLinkType
         if not self.link:
             raise ValueError("You must create a link URI value.")
@@ -1182,7 +1200,7 @@ class XdStringType(XdAnyType):
         if checkers.is_string(v):
             self._value = v
         else:
-            raise ValueError("the value must be a string.")
+            raise TypeError("the value must be a string.")
 
     @property
     def language(self):
@@ -1197,7 +1215,7 @@ class XdStringType(XdAnyType):
         if checkers.is_string(v):
             self._language = v
         else:
-            raise ValueError("the language value must be a string.")
+            raise TypeError("the language value must be a string.")
 
     @property
     def length(self):
@@ -1219,12 +1237,12 @@ class XdStringType(XdAnyType):
                 self._length = v
             elif isinstance(v, tuple) and len(v) == 2:
                 if not isinstance(v[0], (int, None)) or not isinstance(v[1], (int, None)):
-                    raise ValueError("The tuple must contain two values of either type, None or integers.")
+                    raise TypeError("The tuple must contain two values of either type, None or integers.")
                 elif isinstance(v[0], int) and isinstance(v[1], int) and v[0] > v[1]:
                     raise ValueError("Minimum length must be smaller or equal to maximum length.")
                 self._length = v
             else:
-                raise ValueError("The length value must be an integer (exact length) or a tuple (min/max lengths).")
+                raise TypeError("The length value must be an integer (exact length) or a tuple (min/max lengths).")
 
     @property
     def regex(self):
@@ -1269,14 +1287,14 @@ class XdStringType(XdAnyType):
         if isinstance(v, list):
             for enum in v:
                 if not isinstance(enum, tuple):
-                    raise ValueError("The enumerations and definitions must be strings.")
+                    raise TypeError("The enumerations and definitions must be strings.")
 
                 if not isinstance(enum[0], str) or not isinstance(enum[1], str):
-                    raise ValueError("The enumerations and definitions must be strings.")
+                    raise TypeError("The enumerations and definitions must be strings.")
 
             self._enums = v
         else:
-            raise ValueError("The enumerations must be a list of tuples.")
+            raise TypeError("The enumerations must be a list of tuples.")
 
     @property
     def default(self):
@@ -1292,23 +1310,29 @@ class XdStringType(XdAnyType):
         elif checkers.is_string(v):
             self._default = v
         else:
-            raise ValueError("The default value must be a string or None.")
+            raise TypeError("The default value must be a string or None.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdStringType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
-        self.validate()
+        if not super(XdStringType, self).validate():
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + " failed validation.")
+        
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdStringType
         if isinstance(self.regex, str):
             xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "' name='xdstring-value'>\n")
@@ -1469,7 +1493,7 @@ class XdFileType(XdAnyType):
         if checkers.is_integer(v):
             self._size = v
         else:
-            raise ValueError("The size value must be an integer.")
+            raise TypeError("The size value must be an integer.")
 
     @property
     def encoding(self):
@@ -1490,7 +1514,7 @@ class XdFileType(XdAnyType):
         if checkers.is_string(v):
             self._encoding = v
         else:
-            raise ValueError("the encoding value must be an string.")
+            raise TypeError("the encoding value must be a string.")
 
     @property
     def language(self):
@@ -1507,7 +1531,7 @@ class XdFileType(XdAnyType):
         if checkers.is_string(v):
             self._language = v
         else:
-            raise ValueError("the language value must be a string.")
+            raise TypeError("the language value must be a string.")
 
     @property
     def formalism(self):
@@ -1524,7 +1548,7 @@ class XdFileType(XdAnyType):
         if checkers.is_string(v):
             self._formalism = v
         else:
-            raise ValueError("the formalism value must be an string.")
+            raise TypeError("the formalism value must be a string.")
 
     @property
     def media_type(self):
@@ -1541,7 +1565,7 @@ class XdFileType(XdAnyType):
         if checkers.is_string(v):
             self._media_type = v
         else:
-            raise ValueError("the media_type value must be an string.")
+            raise TypeError("the media_type value must be a string.")
 
     @property
     def compression_type(self):
@@ -1561,7 +1585,7 @@ class XdFileType(XdAnyType):
         if checkers.is_string(v):
             self._compression_type = v
         else:
-            raise ValueError("the compression_type value must be an string.")
+            raise TypeError("the compression_type value must be a string.")
 
     @property
     def hash_result(self):
@@ -1580,7 +1604,7 @@ class XdFileType(XdAnyType):
         if checkers.is_string(v):
             self._hash_result = v
         else:
-            raise ValueError("the hash_result value must be an string.")
+            raise TypeError("the hash_result value must be a string.")
 
     @property
     def hash_function(self):
@@ -1596,7 +1620,7 @@ class XdFileType(XdAnyType):
         if checkers.is_string(v):
             self._hash_function = v
         else:
-            raise ValueError("the hash_function value must be an string.")
+            raise TypeError("the hash_function value must be a string.")
 
     @property
     def alt_txt(self):
@@ -1610,7 +1634,7 @@ class XdFileType(XdAnyType):
         if checkers.is_string(v):
             self._alt_txt = v
         else:
-            raise ValueError("the alt_txt value must be an string.")
+            raise TypeError("the alt_txt value must be a string.")
 
     @property
     def uri(self):
@@ -1627,7 +1651,7 @@ class XdFileType(XdAnyType):
         elif self._media_content == None and isinstance(v, (str)):
             self._uri = v
         else:
-            raise ValueError("the uri value must be a URL and media_content must be None.")
+            raise TypeError("the uri value must be a URL and media_content must be None.")
 
     @property
     def media_content(self):
@@ -1650,15 +1674,18 @@ class XdFileType(XdAnyType):
             else:
                 raise ValueError("the media_content value must be a bytes object that is Base64 encoded.")
         else:
-            raise ValueError("uri must be None.")
+            raise TypeError("uri must be None.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdFileType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -1666,7 +1693,7 @@ class XdFileType(XdAnyType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['size'][0]) + '" name="size" type="xs:int"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['encoding'][0]) + '" name="encoding" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['language'][0]) + '" name="xdfile-language" type="xs:language"/>\n'
@@ -1755,10 +1782,10 @@ class XdOrderedType(XdAnyType):
         if checkers.is_iterable(v):
             for i in v:
                 if not checkers.is_type(i, "ReferenceRangeType"):
-                    raise ValueError("The referencerange value must be a list of ReferenceRangeType items.")
+                    raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
             self._referenceranges = v
         else:
-            raise ValueError("The referencerange value must be a list of ReferenceRangeType items.")
+            raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
 
     @property
     def normal_status(self):
@@ -1776,15 +1803,18 @@ class XdOrderedType(XdAnyType):
         if checkers.is_string(v):
             self._normal_status = v
         else:
-            raise ValueError("the normal_status value must be an string.")
+            raise TypeError("the normal_status value must be a string.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdOrderedType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -1792,7 +1822,7 @@ class XdOrderedType(XdAnyType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdOrdered
         if self._referenceranges is not None:
             for rr in self._referenceranges:
@@ -1879,7 +1909,7 @@ class XdOrdinalType(XdOrderedType):
         if checkers.is_decimal(v):
             self._ordinal = v
         else:
-            raise ValueError("the ordinal value must be a decimal.")
+            raise TypeError("the ordinal value must be a decimal.")
 
     @property
     def symbol(self):
@@ -1896,7 +1926,7 @@ class XdOrdinalType(XdOrderedType):
         if checkers.is_string(v):
             self._symbol = v
         else:
-            raise ValueError("the symbol value must be a string.")
+            raise TypeError("the symbol value must be a string.")
 
     @property
     def choices(self):
@@ -1913,22 +1943,25 @@ class XdOrdinalType(XdOrderedType):
         if checkers.is_iterable(v):
             self._choices = v
         else:
-            raise ValueError("the choices value must be a list of tuples.")
+            raise TypeError("the choices value must be a list of tuples.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdOrdinalType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
         self.validate()
         indent = 2
         padding = ('').rjust(indent)
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdOrdinal
         xdstr += padding.rjust(indent + 10) + ("<xs:element maxOccurs='1' minOccurs='1' name='ordinal'>\n")
         xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
@@ -2024,7 +2057,7 @@ class XdQuantifiedType(XdOrderedType):
         if isinstance(v, int) and 0 <= v <= 100:
             self._error = v
         else:
-            raise ValueError("The error value must be an integer 0 - 100.")
+            raise TypeError("The error value must be an integer 0 - 100.")
 
     @property
     def accuracy(self):
@@ -2039,15 +2072,18 @@ class XdQuantifiedType(XdOrderedType):
         if isinstance(v, int) and 0 <= v <= 100:
             self._error = v
         else:
-            raise ValueError("The accuracy value must be an integer 0 - 100.")
+            raise TypeError("The accuracy value must be an integer 0 - 100.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdQuantifiedType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -2055,7 +2091,7 @@ class XdQuantifiedType(XdOrderedType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdQuantified
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='magnitude-status' type='s3m:MagnitudeStatus'/>\n")
         xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['error'][0]) + "' name='error'  type='xs:int' default='0'/>\n")
@@ -2136,7 +2172,7 @@ class XdCountType(XdQuantifiedType):
 
             self._value = v
         else:
-            raise ValueError("The value value must be an integer.")
+            raise TypeError("The value value must be an integer.")
 
     @property
     def units(self):
@@ -2152,7 +2188,7 @@ class XdCountType(XdQuantifiedType):
             self._units = v
         else:
             self._units = None
-            raise ValueError("The units value must be a XdStringType identifying the things to be counted.")
+            raise TypeError("The units value must be a XdStringType identifying the things to be counted.")
 
     @property
     def min_inclusive(self):
@@ -2166,7 +2202,7 @@ class XdCountType(XdQuantifiedType):
         if isinstance(v, (int, type(None))):
             self._min_inclusive = v
         else:
-            raise ValueError("The min_inclusive value must be an integer.")
+            raise TypeError("The min_inclusive value must be an integer.")
 
     @property
     def max_inclusive(self):
@@ -2180,7 +2216,7 @@ class XdCountType(XdQuantifiedType):
         if isinstance(v, (int, type(None))):
             self._max_inclusive = v
         else:
-            raise ValueError("The max_inclusive value must be an integer.")
+            raise TypeError("The max_inclusive value must be an integer.")
 
     @property
     def min_exclusive(self):
@@ -2194,7 +2230,7 @@ class XdCountType(XdQuantifiedType):
         if isinstance(v, (int, type(None))):
             self._min_exclusive = v
         else:
-            raise ValueError("The min_exclusive value must be an integer.")
+            raise TypeError("The min_exclusive value must be an integer.")
 
     @property
     def max_exclusive(self):
@@ -2208,7 +2244,7 @@ class XdCountType(XdQuantifiedType):
         if isinstance(v, (int, type(None))):
             self._max_exclusive = v
         else:
-            raise ValueError("The max_exclusive value must be an integer.")
+            raise TypeError("The max_exclusive value must be an integer.")
 
     @property
     def total_digits(self):
@@ -2222,15 +2258,18 @@ class XdCountType(XdQuantifiedType):
         if isinstance(v, (int, type(None))):
             self._total_digits = v
         else:
-            raise ValueError("The total_digits value must be an integer.")
+            raise TypeError("The total_digits value must be an integer.")
 
     def validate(self):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdCountType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -2238,7 +2277,7 @@ class XdCountType(XdQuantifiedType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdCount
         if not self._mag_constrained:
             xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdcount-value' type='xs:int'/>\n")
@@ -2265,7 +2304,7 @@ class XdCountType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
-        xdstr += self.units.asXSD()
+        xdstr += self.units.getModel()
 
         return(xdstr)
 
@@ -2451,9 +2490,12 @@ class XdQuantityType(XdQuantifiedType):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdQuantityType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -2461,7 +2503,7 @@ class XdQuantityType(XdQuantifiedType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdQuantity
         if not self._mag_constrained:
             xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdquantity-value' type='xs:decimal'/>\n")
@@ -2490,7 +2532,7 @@ class XdQuantityType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
-        xdstr += self.units.asXSD()
+        xdstr += self.units.getModel()
 
         return(xdstr)
 
@@ -2653,9 +2695,12 @@ class XdFloatType(XdQuantifiedType):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdFloatType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -2663,7 +2708,7 @@ class XdFloatType(XdQuantifiedType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdFloat
         if not self._mag_constrained:
             xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['value'][0]) + "'  name='xdfloat-value' type='xs:float'/>\n")
@@ -2692,7 +2737,7 @@ class XdFloatType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
         if self.units:
-            xdstr += self.units.asXSD()
+            xdstr += self.units.getModel()
 
         return(xdstr)
 
@@ -2960,9 +3005,12 @@ class XdRatioType(XdQuantifiedType):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdRatioType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -2970,7 +3018,7 @@ class XdRatioType(XdQuantifiedType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
         # XdRatio
 
         # tests for proper modelling
@@ -3023,9 +3071,9 @@ class XdRatioType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
 
         if self.numerator_units:
-            xdstr += self.numerator_units.asXSD()
+            xdstr += self.numerator_units.getModel()
         if self.denominator_units:
-            xdstr += self.denominator_units.asXSD()
+            xdstr += self.denominator_units.getModel()
 
         return(xdstr)
 
@@ -3227,9 +3275,12 @@ class XdTemporalType(XdOrderedType):
         """
         Every XdType must implement this method.
         """
-        return(True)
+        if not super(XdTemporalType, self).validate():
+            return(False)
+        else:
+            return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -3237,7 +3288,7 @@ class XdTemporalType(XdOrderedType):
         indent = 2
         padding = ('').rjust(indent)
 
-        xdstr = super().asXSD()
+        xdstr = super().getModel()
 
         # XdTemporal - every element must be included as either allowed or not allowed.
 
