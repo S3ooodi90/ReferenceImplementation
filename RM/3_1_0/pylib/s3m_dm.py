@@ -433,3 +433,14 @@ class DMType(object):
         """
 
         return(md)
+
+    def extractRDF(self):
+        """
+        Return the RDF/XML Triples for the Model.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+        
+        xmlstr = 'TODO: Write template.'
+        return(xmlstr)
+

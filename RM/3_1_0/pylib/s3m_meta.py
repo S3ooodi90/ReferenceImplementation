@@ -2,16 +2,20 @@
 Meta information classes used by a data model (DMType)
 
 """
+import json
 from datetime import datetime
 from abc import ABC, abstractmethod
 from xml.sax.saxutils import escape
 from urllib.parse import quote
 from typing import ByteString, Dict, List, Tuple, Iterable
+from decimal import Decimal
 
+
+import xmltodict
 from cuid import cuid
 from validator_collection import checkers
 
-from s3m_xdt import XdStringType, XdLinkType, XdFileType
+from s3m_xdt import XdStringType, XdLinkType, XdFileType, valid_cardinality
 from s3m_struct import ClusterType
 from s3m_errors import ValidationError
 
@@ -87,6 +91,28 @@ class MetaCommon(ABC):
                 raise ValueError("The cardinality values must be integers or None.")
         else:
             raise ValueError("The cardinality value is malformed. It must be a tuple of a string and a list of two integers.")
+
+    @property
+    def language(self):
+        """
+        A language of the intellectual content of the resource.
+
+        Recommended best practice for the values of the Language
+        element is defined by RFC 1766 [RFC1766] which includes
+        a two-letter Language Code (taken from the ISO 639
+        standard [ISO639]), followed optionally, by a two-letter
+        Country Code (taken from the ISO 3166 standard [ISO3166]).
+        For example, 'en' for English, 'fr' for French, or
+        'en-uk' for English used in the United Kingdom.
+        """
+        return self._language
+
+    @language.setter
+    def language(self, v):
+        if isinstance(v, str):
+            self._language = v
+        else:
+            raise TypeError("the value must be a string.")
 
     @property
     def label(self):
@@ -300,6 +326,24 @@ class PartyType(MetaCommon):
 
         return(party_str)
 
+    def getXMLInstance(self):
+        """
+        Return a XML instance for the Attestation.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+
+        xmlstr = '<TODO-Write-template./>'
+        return(xmlstr)
+
+    def getJSONInstance(self):
+        """
+        Return a JSON instance for the Attestation.
+        """
+        xml = self.getXMLInstance()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False))
+
 
 class AuditType(MetaCommon):
     """
@@ -449,8 +493,25 @@ class AuditType(MetaCommon):
         aud_str += self.location.getModel()
         return(aud_str)
 
+    def getXMLInstance(self):
+        """
+        Return a XML instance for the Attestation.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
 
-class AttestationType:
+        xmlstr = '<TODO-Write-template./>'
+        return(xmlstr)
+
+    def getJSONInstance(self):
+        """
+        Return a JSON instance for the Attestation.
+        """
+        xml = self.getXMLInstance()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False))
+
+class AttestationType(MetaCommon):
     """
     Record an attestation by a party of the DM content. 
     The type of attestation is recorded by the reason attribute, 
@@ -628,10 +689,36 @@ class AttestationType:
         att_str += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         att_str += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         att_str += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        if self.view is not None:
+            att_str += self.view.getModel()
+        if self.proof is not None:
+            att_str += self.proof.getModel()
+        if self.reason is not None:
+            att_str += self.reason.getModel()
+        if self.committer is not None:
+            att_str += self.committer.getModel()
+
         return(att_str)
 
-    
-class ParticipationType:
+    def getXMLInstance(self):
+        """
+        Return a XML instance for the Attestation.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+
+        xmlstr = '<TODO-Write-template./>'
+        return(xmlstr)
+
+    def getJSONInstance(self):
+        """
+        Return a JSON instance for the Attestation.
+        """
+        xml = self.getXMLInstance()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False))
+
+class ParticipationType(MetaCommon):
     """
     Model of a participation of a Party (any Actor or Role) in an activity. 
     Used to represent any participation of a Party in some activity, which is 
@@ -688,6 +775,7 @@ class ParticipationType:
             self._function = None
             raise TypeError("The function value must be a XdStringType.")
 
+    @property
     def mode(self):
         """
         The mode of the performer / activity interaction, e.g. present, by 
@@ -706,6 +794,7 @@ class ParticipationType:
             self._mode = None
             raise TypeError("The mode value must be a XdStringType.")
 
+    @property
     def start(self):
         """
         The beginning datetime when the participation took place.
@@ -720,6 +809,7 @@ class ParticipationType:
             self._start = None
             raise TypeError("The start value must be a datetime.")
         
+    @property
     def end(self):
         """
         The ending datetime when the participation took place.
@@ -797,3 +887,22 @@ class ParticipationType:
         ptn_str += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
 
         return(ptn_str)
+
+    def getXMLInstance(self):
+        """
+        Return a XML instance for the Attestation.
+        """
+        indent = 2
+        padding = ('').rjust(indent)
+
+        xmlstr = '<TODO-Write-template./>'
+        return(xmlstr)
+
+    def getJSONInstance(self):
+        """
+        Return a JSON instance for the Attestation.
+        """
+        xml = self.getXMLInstance()
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False))
+

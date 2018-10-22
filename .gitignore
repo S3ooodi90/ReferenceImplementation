@@ -8,7 +8,7 @@
 *-checkpoint.ipynb
 
 mindmaps/*
-notebooks/dmlib/*
+notebooks/dmlib/*.xsd
 #Sphinx
 build/
 

@@ -46,16 +46,20 @@ def valid_cardinality(self, v):
     
     A Python value of 'None' equates to 'unbounded' or 'unlimited'.
     """
-    c = {'act':((0,1),(0,1)), 'ev':((0,1),(0,1)), 'vtb':((0,1),(0,1)), 'vte':((0,1),(0,1)), 'tr':((0,1),(0,1)), \
-         'modified':((0,1),(0,1)), 'location':((0,1),(0,1)), 'relation_uri':((0,1),(0,1)), 'value':((0,1),(0,1)), \
-         'units':((0,1),(0,1)), 'size':((0,1),(0,1)), 'encoding':((0,1),(0,1)), 'language':((0,1),(0,1)), \
-         'formalism':((0,1),(0,1)), 'media_type':((0,1),(0,1)), 'compression_type':((0,1),(0,1)), \
-         'hash_result':((0,1),(0,1)), 'hash_function':((0,1),(0,1)), 'alt_txt':((0,1),(0,1)), 'referencerange':((0,1),(0,Decimal('Infinity'))), \
-         'normal_status':((0,1),(0,1)), 'magnitude_status':((0,1),(0,1)), 'error':((0,1),(0,1)), 'accuracy':((0,1),(0,1)), \
-         'numerator':((0,1),(0,1)), 'denominator':((0,1),(0,1)), 'numerator_units':((0,1),(0,1)), \
-         'denominator_units':((0,1),(0,1)), 'xdratio_units':((0,1),(0,1)), 'date':((0,1),(0,1)), 'time':((0,1),(0,1)), \
-         'datetime':((0,1),(0,1)), 'day':((0,1),(0,1)), 'month':((0,1),(0,1)), 'year':((0,1),(0,1)), 'year_month':((0,1),(0,1)), \
-         'month_day':((0,1),(0,1)), 'duration':((0,1),(0,1))}
+    c = {'act': ((0, 1), (0, 1)), 'ev': ((0, 1), (0, 1)), 'vtb': ((0, 1), (0, 1)), 'vte': ((0, 1), (0, 1)), 'tr': ((0, 1), (0, 1)),
+         'modified': ((0, 1), (0, 1)), 'location': ((0, 1), (0, 1)), 'relation_uri': ((0, 1), (0, 1)), 'value': ((0, 1), (0, 1)),
+         'units': ((0, 1), (0, 1)), 'size': ((0, 1), (0, 1)), 'encoding': ((0, 1), (0, 1)), 'language': ((0, 1), (0, 1)),
+         'formalism': ((0, 1), (0, 1)), 'media_type': ((0, 1), (0, 1)), 'compression_type': ((0, 1), (0, 1)),
+         'hash_result': ((0, 1), (0, 1)), 'hash_function': ((0, 1), (0, 1)), 'alt_txt': ((0, 1), (0, 1)), 'referencerange': ((0, 1), (0, Decimal('Infinity'))),
+         'normal_status': ((0, 1), (0, 1)), 'magnitude_status': ((0, 1), (0, 1)), 'error': ((0, 1), (0, 1)), 'accuracy': ((0, 1), (0, 1)),
+         'numerator': ((0, 1), (0, 1)), 'denominator': ((0, 1), (0, 1)), 'numerator_units': ((0, 1), (0, 1)),
+         'denominator_units': ((0, 1), (0, 1)), 'xdratio_units': ((0, 1), (0, 1)), 'date': ((0, 1), (0, 1)), 'time': ((0, 1), (0, 1)),
+         'datetime': ((0, 1), (0, 1)), 'day': ((0, 1), (0, 1)), 'month': ((0, 1), (0, 1)), 'year': ((0, 1), (0, 1)), 'year_month': ((0, 1), (0, 1)),
+         'month_day': ((0, 1), (0, 1)), 'duration': ((0, 1), (0, 1)), 'view': ((0, 1), (0, 1)), 'proof': ((0, 1), (0, 1)),
+         'reason': ((0, 1), (0, 1)), 'committer': ((0, 1), (0, 1)), 'committed': ((0, 1), (0, 1)), 'system_user': ((0, 1), (0, 1)),
+         'location': ((0, 1), (0, 1)), 'performer': ((0, 1), (0, 1)), 'function': ((0, 1), (0, 1)), 'mode': ((0, 1), (0, 1)),
+         'start': ((0, 1), (0, 1)), 'end': ((0, 1), (0, 1)), 'party_name': ((0, 1), (0, 1)), 'party_ref': ((0, 1), (0, 1)),
+         'party_details': ((0, 1), (0, 1))}
     
     key = c.get(v[0])
     
@@ -447,7 +451,7 @@ class XdAnyType(ABC):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
@@ -475,11 +479,11 @@ class XdAnyType(ABC):
 
         return(xmlstr)
 
-    def asJSON(self):
+    def getJSONInstance(self):
         """
         Return an example JSON fragment for this model.
         """
-        xml = self.asXML()
+        xml = self.getXMLInstance()
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False))
 
@@ -686,13 +690,13 @@ class XdIntervalType(XdAnyType):
             xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
 
         xmlstr += padding.rjust(indent + 2) + '<lower>' + str(self._lower).strip() + '</lower>\n'
         xmlstr += padding.rjust(indent + 2) + '<upper>' + str(self._upper).strip() + '</upper>\n'
@@ -793,18 +797,18 @@ class ReferenceRangeType(XdAnyType):
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
         normal = 'true' if self._is_normal else 'false'
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
 
         xmlstr += padding.rjust(indent + 2) + '<definition>' + self._definition.strip() + '</definition>\n'
         xmlstr += padding.rjust(indent + 2) + '<interval>\n'
-        xmlstr += padding.rjust(indent + 2) + self._interval.asXML()
+        xmlstr += padding.rjust(indent + 2) + self._interval.getXMLInstance()
         xmlstr += padding.rjust(indent + 2) + '</interval>\n'
         xmlstr += padding.rjust(indent + 2) + '<is-normal>' + normal + '</is-normal>\n'
 
@@ -958,7 +962,7 @@ class XdBooleanType(XdAnyType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
@@ -968,7 +972,7 @@ class XdBooleanType(XdAnyType):
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
 
         if tf == 'trues':
             xmlstr += padding.rjust(indent + 2) + '<true-value>' + choice + '</true-value>\n'
@@ -985,7 +989,7 @@ class XdBooleanType(XdAnyType):
 
         return(xmlstr)
 
-    def asXMLex(self):
+    def getXMLExample(self):
         """
         Return an example XML fragment for this model.
 
@@ -1028,11 +1032,11 @@ class XdBooleanType(XdAnyType):
 
         return(xmlstr)
 
-    def asJSONex(self):
+    def getJSONExample(self):
         """
-        Return an example JSON fragment for this model based on the asXMLex method.
+        Return an example JSON fragment for this model based on the getXMLInstanceex method.
         """
-        xml = self.asXMLex()
+        xml = self.getXMLExample()
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False))
 
@@ -1143,14 +1147,14 @@ class XdLinkType(XdAnyType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
 
         xmlstr += padding.rjust(indent + 2) + '<link>' + self.link + '</link>\n'
         xmlstr += padding.rjust(indent + 2) + '<relation>' + self.relation + '</relation>\n'
@@ -1400,7 +1404,7 @@ class XdStringType(XdAnyType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
@@ -1426,7 +1430,7 @@ class XdStringType(XdAnyType):
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
 
         xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + str_val + '</xdstring-value>\n'
         if self.language:
@@ -1469,7 +1473,8 @@ class XdFileType(XdAnyType):
         # choice of uri or media_content
         self._uri = None
         self._media_content = None
-
+        self._content_type = 'uri'
+        
         self.cardinality = ('size', [0, 1])
         self.cardinality = ('encoding', [0, 1])
         self.cardinality = ('language', [0, 1])
@@ -1479,6 +1484,22 @@ class XdFileType(XdAnyType):
         self.cardinality = ('hash_result', [0, 1])
         self.cardinality = ('hash_function', [0, 1])
         self.cardinality = ('alt_txt', [0, 1])
+
+    @property
+    def content_type(self):
+        """
+        The content_type determines if the model will require a URI pointer to 
+        the content or if it will be base64Binary encoded and embedded in the
+        data instance. The valid values are 'uri' or 'embed'. Default is 'uri'.
+        """
+        return self._content_type
+
+    @content_type.setter
+    def content_type(self, v: str):
+        if v.lower() in ('uri', 'embed'):
+            self._content_type = v.lower()
+        else:
+            raise TypError("The content_type value must be an a string and one of 'uri' or 'embed'.")
 
     @property
     def size(self):
@@ -1703,27 +1724,27 @@ class XdFileType(XdAnyType):
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['hash_result'][0]) + '" name="hash-result" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['hash_function'][0]) + '" name="hash-function" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['alt_txt'][0]) + '" name="alt-txt" type="xs:string"/>\n'
-        if self._uri is not None and self._media_content is None:
+        if self._content_type == 'uri':
             xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="uri" type="xs:anyURI"/>\n'
-        elif self._media_content is not None and self._uri is None:
+        elif self._content_type == 'embed':
             xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="media-content" type="xs:base64Binary"/>\n'
         else:
-            raise ValueError("One and only one of either the uri or media_content attributes are required.")
+            raise ValueError("The content_type for the model must be specified.")
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
-        xdstr += padding.rjust(indent) + '</xs:complexType>\n'
+        xdstr += padding.rjust(indent) + '</xs:complexType>\n\n'
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
 
         xmlstr += padding.rjust(indent + 2) + '<size>' + str(self.size) + '</size>\n'
         if self.encoding:
@@ -1835,17 +1856,17 @@ class XdOrderedType(XdAnyType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
         if self._referenceranges is not None:
             for rr in self._referenceranges:
-                xmlstr += rr.asXML()
+                xmlstr += rr.getXMLInstance()
         if self._normal_status:
             xmlstr += padding.rjust(indent) + '<normal-status>' + self._normal_status + '</normal-status>\n'
 
@@ -1995,13 +2016,13 @@ class XdOrdinalType(XdOrderedType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
         c = random.choice(self._choices)
         xmlstr += padding.rjust(indent + 2) + '<ordinal>' + str(c[0]) + '</ordinal>\n'
         xmlstr += padding.rjust(indent + 2) + '<symbol>' + c[1] + '</symbol>\n'
@@ -2099,14 +2120,14 @@ class XdQuantifiedType(XdOrderedType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
         if self.cardinality['magnitude_status'][0] > 0:
             xmlstr += padding.rjust(indent) + '<magnitude-status>=</magnitude-status>\n'
         if self.error is not None:
@@ -2308,16 +2329,16 @@ class XdCountType(XdQuantifiedType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
         xmlstr += padding.rjust(indent) + '<xdcount-value>' + str(self.value).strip() + '</xdcount-value>\n'
-        xmlstr += padding.rjust(indent) + self.units.asXML()
+        xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
@@ -2536,16 +2557,16 @@ class XdQuantityType(XdQuantifiedType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
         xmlstr += padding.rjust(indent) + '<xdquantity-value>' + str(self.value).strip() + '</xdquantity-value>\n'
-        xmlstr += padding.rjust(indent) + self.units.asXML()
+        xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
@@ -2741,17 +2762,17 @@ class XdFloatType(XdQuantifiedType):
 
         return(xdstr)
 
-    def asXML(self):
+    def getXMLInstance(self):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().asXML()
+        xmlstr = super().getXMLInstance()
         xmlstr += padding.rjust(indent) + '<xdfloat-value>' + str(self.xdfloat_value).strip() + '</xdfloat-value>\n'
         if self.units:
-            xmlstr += padding.rjust(indent) + self.units.asXML()
+            xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
