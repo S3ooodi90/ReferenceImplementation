@@ -29,6 +29,8 @@ class MetaCommon(ABC):
         """
         The semantic label (name of the model) is required.
         """
+
+        self._published = False        
         self._mcuid = cuid()  # model cuid
         self._label = ''
         self._language = ''
@@ -44,7 +46,25 @@ class MetaCommon(ABC):
                 raise ValueError('label must be at least 2 characters in length')
         else:
             raise TypeError('"label" must be a string type. Not a ', type(label))
+
         
+    @property
+    def published(self):
+        """
+        When True, prevents further model changes.
+        """
+        return self._published
+
+    @published.setter
+    def published(self, v: bool):
+        if isinstance(v, bool):
+            if self._published == False:
+                self._published = v
+            else:
+                raise ValueError("the published value cannot be changed once published.")
+        else:
+            raise TypeError("the published value must be a boolean.")
+
     @property
     def cardinality(self):
         """
@@ -78,19 +98,22 @@ class MetaCommon(ABC):
 
     @cardinality.setter
     def cardinality(self, v):
-        if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], list):
-            v[1][0] = Decimal('INF') if v[1][0] is None else v[1][0]
-            v[1][1] = Decimal('INF') if v[1][1] is None else v[1][1]
-            
-            if isinstance(v[1][0], (int, Decimal)) and isinstance(v[1][1], (int, Decimal)):
-                if isinstance(v[1][0], int) and isinstance(v[1][1], int) and v[1][0] > v[1][1]:
-                    raise ValueError("The minimum value must be less than or equal to the maximum value.")
-                if valid_cardinality(self, v):
-                    self._cardinality[v[0]] = v[1]
+        if not self.published:
+            if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], list):
+                v[1][0] = Decimal('INF') if v[1][0] is None else v[1][0]
+                v[1][1] = Decimal('INF') if v[1][1] is None else v[1][1]
+
+                if isinstance(v[1][0], (int, Decimal)) and isinstance(v[1][1], (int, Decimal)):
+                    if isinstance(v[1][0], int) and isinstance(v[1][1], int) and v[1][0] > v[1][1]:
+                        raise ValueError("The minimum value must be less than or equal to the maximum value.")
+                    if valid_cardinality(self, v):
+                        self._cardinality[v[0]] = v[1]
+                else:
+                    raise ValueError("The cardinality values must be integers or None.")
             else:
-                raise ValueError("The cardinality values must be integers or None.")
+                raise ValueError("The cardinality value is malformed. It must be a tuple of a string and a list of two integers.")
         else:
-            raise ValueError("The cardinality value is malformed. It must be a tuple of a string and a list of two integers.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def language(self):
@@ -109,10 +132,13 @@ class MetaCommon(ABC):
 
     @language.setter
     def language(self, v):
-        if isinstance(v, str):
-            self._language = v
+        if self.published:
+            if isinstance(v, str):
+                self._language = v
+            else:
+                raise TypeError("the value must be a string.")
         else:
-            raise TypeError("the value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def label(self):
@@ -144,12 +170,15 @@ class MetaCommon(ABC):
 
     @pred_obj_list.setter
     def pred_obj_list(self, v: Iterable):
-        if isinstance(v, list) and len(v) == 0:
-            self._pred_obj_list = []
-        elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
-            self._pred_obj_list.append(v)
+        if not self.published:
+            if isinstance(v, list) and len(v) == 0:
+                self._pred_obj_list = []
+            elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
+                self._pred_obj_list.append(v)
+            else:
+                raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
         else:
-            raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def definition_url(self):
@@ -161,11 +190,14 @@ class MetaCommon(ABC):
 
     @definition_url.setter
     def definition_url(self, v: str):
-        if checkers.is_url(v):
-            self._definition_url = v
-            self._docs += '\n        Definition: ' + quote(v)
+        if not self.published:
+            if checkers.is_url(v):
+                self._definition_url = v
+                self._docs += '\n        Definition: ' + quote(v)
+            else:
+                raise ValueError("the Definition URL value must be a valid URL.")
         else:
-            raise ValueError("the Definition URL value must be a valid URL.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def docs(self):
@@ -177,10 +209,13 @@ class MetaCommon(ABC):
 
     @docs.setter
     def docs(self, v: str):
-        if checkers.is_string(v):
-            self._docs = v
+        if not self.published:
+            if checkers.is_string(v):
+                self._docs = v
+            else:
+                raise ValueError("the Documentation value must be a string.")
         else:
-            raise ValueError("the Documentation value must be a string.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def __str__(self):
         if not self.validate():
@@ -231,10 +266,13 @@ class PartyType(MetaCommon):
 
     @party_name.setter
     def party_name(self, v):
-        if isinstance(v, str):
-            self._party_name = v.strip()
+        if self.published:
+            if isinstance(v, str):
+                self._party_name = v.strip()
+            else:
+                raise ValueError("the party_name value must be a string.")
         else:
-            raise ValueError("the party_name value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def party_ref(self):
@@ -246,10 +284,13 @@ class PartyType(MetaCommon):
 
     @party_ref.setter
     def party_ref(self, v):
-        if isinstance(v, XdLinkType):
-            self._party_ref = v
+        if not self.published:
+            if isinstance(v, XdLinkType):
+                self._party_ref = v
+            else:
+                raise ValueError("the party_ref value must be a XdLinkType.")
         else:
-            raise ValueError("the party_ref value must be a XdLinkType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def party_details(self):
@@ -260,10 +301,13 @@ class PartyType(MetaCommon):
 
     @party_details.setter
     def party_details(self, v):
-        if isinstance(v, ClusterType):
-            self._party_details = v
+        if not self.published:
+            if isinstance(v, ClusterType):
+                self._party_details = v
+            else:
+                raise ValueError("the party_details value must be a ClusterType.")
         else:
-            raise ValueError("the party_details value must be a ClusterType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -277,6 +321,9 @@ class PartyType(MetaCommon):
     def getModel(self):
         """
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         if not self.validate():
             raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
 
@@ -330,6 +377,9 @@ class PartyType(MetaCommon):
         """
         Return a XML instance for the Attestation.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         indent = 2
         padding = ('').rjust(indent)
 
@@ -374,10 +424,13 @@ class AuditType(MetaCommon):
 
     @system_id.setter
     def system_id(self, v):
-        if isinstance(v, XdStringType):
-            self._system_id = v
+        if not self.published:
+            if isinstance(v, XdStringType):
+                self._system_id = v
+            else:
+                raise ValueError("the system_id value must be a XdStringType.")
         else:
-            raise ValueError("the system_id value must be a XdStringType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def system_user(self):
@@ -388,10 +441,13 @@ class AuditType(MetaCommon):
 
     @system_user.setter
     def system_user(self, v):
-        if isinstance(v, PartyType):
-            self._system_user = v
+        if not self.published:
+            if isinstance(v, PartyType):
+                self._system_user = v
+            else:
+                raise ValueError("the system_user value must be a PartyType.")
         else:
-            raise ValueError("the system_user value must be a PartyType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def location(self):
@@ -402,10 +458,13 @@ class AuditType(MetaCommon):
 
     @location.setter
     def location(self, v):
-        if isinstance(v, ClusterType):
-            self._location = v
+        if not self.published:
+            if isinstance(v, ClusterType):
+                self._location = v
+            else:
+                raise ValueError("the location value must be a ClusterType.")
         else:
-            raise ValueError("the location value must be a ClusterType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def timestamp(self):
@@ -416,10 +475,13 @@ class AuditType(MetaCommon):
 
     @timestamp.setter
     def timestamp(self, v):
-        if isinstance(v, datetime):
-            self._timestamp = v
+        if self.published:
+            if isinstance(v, datetime):
+                self._timestamp = v
+            else:
+                raise ValueError("the timestamp value must be a datetime.")
         else:
-            raise ValueError("the timestamp value must be a datetime.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """
@@ -434,6 +496,9 @@ class AuditType(MetaCommon):
         """
         Return a XML Schema stub for the Audit.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         if not self.validate():
             raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
 
@@ -497,6 +562,9 @@ class AuditType(MetaCommon):
         """
         Return a XML instance for the Attestation.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         indent = 2
         padding = ('').rjust(indent)
 
@@ -545,12 +613,14 @@ class AttestationType(MetaCommon):
 
     @view.setter
     def view(self, v):
-        if isinstance(v, XdFileType):
-            self._view = v
+        if not self.published:
+            if isinstance(v, XdFileType):
+                self._view = v
+            else:
+                self._view = None
+                raise TypeError("The view value must be a XdFileType.")
         else:
-            self._view = None
-            raise TypeError("The view value must be a XdFileType.")
-
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def proof(self):
@@ -561,11 +631,14 @@ class AttestationType(MetaCommon):
 
     @proof.setter
     def proof(self, v):
-        if isinstance(v, XdFileType):
-            self._proof = v
+        if not self.published:
+            if isinstance(v, XdFileType):
+                self._proof = v
+            else:
+                self._proof = None
+                raise TypeError("The proof value must be a XdFileType.")
         else:
-            self._proof = None
-            raise TypeError("The proof value must be a XdFileType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def reason(self):
@@ -576,11 +649,14 @@ class AttestationType(MetaCommon):
 
     @reason.setter
     def reason(self, v):
-        if isinstance(v, XdFileType):
-            self._reason = v
+        if not self.published:
+            if isinstance(v, XdFileType):
+                self._reason = v
+            else:
+                self._reason = None
+                raise TypeError("The reason value must be a XdStringType.")
         else:
-            self._reason = None
-            raise TypeError("The reason value must be a XdStringType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def committer(self):
@@ -591,12 +667,15 @@ class AttestationType(MetaCommon):
 
     @committer.setter
     def committer(self, v):
-        if isinstance(v, PartyType):
-            self._committer = v
+        if not self.published:
+            if isinstance(v, PartyType):
+                self._committer = v
+            else:
+                self._committer = None
+                raise TypeError("The committer value must be a PartyType.")
         else:
-            self._committer = None
-            raise TypeError("The committer value must be a PartyType.")
-        
+            raise ValueError("The model has been published and cannot be edited.")
+
     @property
     def committed(self):
         """
@@ -606,12 +685,15 @@ class AttestationType(MetaCommon):
 
     @committed.setter
     def committed(self, v):
-        if isinstance(v, datetime):
-            self._committed = v
+        if self.published:
+            if isinstance(v, datetime):
+                self._committed = v
+            else:
+                self._committed = None
+                raise TypeError("The committed value must be a datetime.")
         else:
-            self._committed = None
-            raise TypeError("The committed value must be a datetime.")
-        
+            raise ValueError("The model has not been published.")
+
     @property
     def pending(self):
         """
@@ -621,11 +703,14 @@ class AttestationType(MetaCommon):
 
     @pending.setter
     def pending(self, v):
-        if isinstance(v, bool):
-            self._pending = v
+        if self.published:
+            if isinstance(v, bool):
+                self._pending = v
+            else:
+                self._pending = None
+                raise TypeError("The pending value must be a boolean.")
         else:
-            self._pending = None
-            raise TypeError("The pending value must be a boolean.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """
@@ -640,6 +725,9 @@ class AttestationType(MetaCommon):
         """
         Return a XML Schema stub for the Attestation.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         if not self.validate():
             raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
 
@@ -704,6 +792,9 @@ class AttestationType(MetaCommon):
         """
         Return a XML instance for the Attestation.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         indent = 2
         padding = ('').rjust(indent)
 
@@ -751,11 +842,14 @@ class ParticipationType(MetaCommon):
 
     @performer.setter
     def performer(self, v):
-        if isinstance(v, PartyType):
-            self._performer = v
+        if not self.published:
+            if isinstance(v, PartyType):
+                self._performer = v
+            else:
+                self._performer = None
+                raise TypeError("The performer value must be a PartyType.")
         else:
-            self._performer = None
-            raise TypeError("The performer value must be a PartyType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def function(self):
@@ -769,11 +863,14 @@ class ParticipationType(MetaCommon):
 
     @function.setter
     def function(self, v):
-        if isinstance(v, XdStringType):
-            self._function = v
+        if not self.published:
+            if isinstance(v, XdStringType):
+                self._function = v
+            else:
+                self._function = None
+                raise TypeError("The function value must be a XdStringType.")
         else:
-            self._function = None
-            raise TypeError("The function value must be a XdStringType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def mode(self):
@@ -788,11 +885,14 @@ class ParticipationType(MetaCommon):
 
     @mode.setter
     def mode(self, v):
-        if isinstance(v, XdStringType):
-            self._mode = v
+        if not self.published:
+            if isinstance(v, XdStringType):
+                self._mode = v
+            else:
+                self._mode = None
+                raise TypeError("The mode value must be a XdStringType.")
         else:
-            self._mode = None
-            raise TypeError("The mode value must be a XdStringType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def start(self):
@@ -803,12 +903,15 @@ class ParticipationType(MetaCommon):
 
     @start.setter
     def start(self, v):
-        if isinstance(v, datetime):
-            self._start = v
+        if self.published:
+            if isinstance(v, datetime):
+                self._start = v
+            else:
+                self._start = None
+                raise TypeError("The start value must be a datetime.")
         else:
-            self._start = None
-            raise TypeError("The start value must be a datetime.")
-        
+            raise ValueError("The model has not been published.")
+
     @property
     def end(self):
         """
@@ -818,11 +921,14 @@ class ParticipationType(MetaCommon):
 
     @end.setter
     def end(self, v):
-        if isinstance(v, datetime):
-            self._end = v
+        if self.published:
+            if isinstance(v, datetime):
+                self._end = v
+            else:
+                self._end = None
+                raise TypeError("The end value must be a datetime.")
         else:
-            self._end = None
-            raise TypeError("The end value must be a datetime.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """
@@ -837,6 +943,9 @@ class ParticipationType(MetaCommon):
         """
         Return a XML Schema stub for the Participation.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         if not self.validate():
             raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
 
@@ -892,6 +1001,9 @@ class ParticipationType(MetaCommon):
         """
         Return a XML instance for the Attestation.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         indent = 2
         padding = ('').rjust(indent)
 

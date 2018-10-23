@@ -91,11 +91,7 @@ class XdAnyType(ABC):
         self._acuid = cuid()  # adapter cuid
         self._label = ''
 
-        if checkers.is_string(label, minimum_length=2):
-            self._label = label
-        else:
-            raise TypeError('"label" must be a string type of at least 2 characters. Not a ', type(label))
-
+        self._published = False
         self._xdtype = None
         self._adapter = False  # flag is set True by a XdAdapter for use in a Cluster, otherwise it is false
         self._docs = ''
@@ -111,6 +107,11 @@ class XdAnyType(ABC):
         self._longitude = None
         self._cardinality = {'act': [0, 1], 'ev': [0, None], 'vtb': [0, 1], 'vte': [0, 1], \
                              'tr': [0, 1], 'modified': [0, 1], 'location': [0, 1]}
+
+        if checkers.is_string(label, minimum_length=2) and not self._published:
+            self._label = label
+        else:
+            raise TypeError('"label" must be a string type of at least 2 characters. Not a ', type(label))
 
     @property
     def cardinality(self):
@@ -150,20 +151,23 @@ class XdAnyType(ABC):
 
     @cardinality.setter
     def cardinality(self, v):
-        if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], list):
-            v[1][0] = Decimal('INF') if v[1][0] is None else v[1][0]
-            v[1][1] = Decimal('INF') if v[1][1] is None else v[1][1]
-            
-            if isinstance(v[1][0], (int, Decimal)) and isinstance(v[1][1], (int, Decimal)):
-                if isinstance(v[1][0], int) and isinstance(v[1][1], int) and v[1][0] > v[1][1]:
-                    raise ValueError("The minimum value must be less than or equal to the maximum value.")
-                if valid_cardinality(self, v):
-                    self._cardinality[v[0]] = v[1]
-            else:
-                raise ValueError("The cardinality values must be integers or None.")
-        else:
-            raise ValueError("The cardinality value is malformed. It must be a tuple of a string and a list of two integers.")
+        if not self.published:
+            if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], list):
+                v[1][0] = Decimal('INF') if v[1][0] is None else v[1][0]
+                v[1][1] = Decimal('INF') if v[1][1] is None else v[1][1]
 
+                if isinstance(v[1][0], (int, Decimal)) and isinstance(v[1][1], (int, Decimal)):
+                    if isinstance(v[1][0], int) and isinstance(v[1][1], int) and v[1][0] > v[1][1]:
+                        raise ValueError("The minimum value must be less than or equal to the maximum value.")
+                    if valid_cardinality(self, v):
+                        self._cardinality[v[0]] = v[1]
+                else:
+                    raise TypeError("The cardinality values must be integers or None.")
+            else:
+                raise ValueError("The cardinality value is malformed. It must be a tuple of a string and a list of two integers.")
+        else:
+            raise ValueError("The model has been published and cannot be edited.")
+            
     @property
     def mcuid(self):
         """
@@ -186,6 +190,23 @@ class XdAnyType(ABC):
         REQUIRED
         """
         return self._label
+
+    @property
+    def published(self):
+        """
+        When True, prevents further model changes.
+        """
+        return self._published
+
+    @published.setter
+    def published(self, v: bool):
+        if isinstance(v, bool):
+            if self._published == False:
+                self._published = v
+            else:
+                raise ValueError("the published value cannot be changed once published.")
+        else:
+            raise TypeError("the published value must be a boolean.")
 
     @property
     def adapter(self):
@@ -211,10 +232,13 @@ class XdAnyType(ABC):
 
     @docs.setter
     def docs(self, v: str):
-        if checkers.is_string(v):
-            self._docs = v
+        if not self.published:
+            if checkers.is_string(v):
+                self._docs = v
+            else:
+                raise ValueError("the Documentation value must be a string.")
         else:
-            raise ValueError("the Documentation value must be a string.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def pred_obj_list(self):
@@ -232,12 +256,15 @@ class XdAnyType(ABC):
 
     @pred_obj_list.setter
     def pred_obj_list(self, v: Iterable):
-        if isinstance(v, list) and len(v) == 0:
-            self._pred_obj_list = []
-        elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
-            self._pred_obj_list.append(v)
+        if not self.published:
+            if isinstance(v, list) and len(v) == 0:
+                self._pred_obj_list = []
+            elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
+                self._pred_obj_list.append(v)
+            else:
+                raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
         else:
-            raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def definition_url(self):
@@ -251,10 +278,13 @@ class XdAnyType(ABC):
 
     @definition_url.setter
     def definition_url(self, v: str):
-        if checkers.is_url(v):
-            self._definition_url = v
+        if not self.published:
+            if checkers.is_url(v):
+                self._definition_url = v
+            else:
+                raise ValueError("the Definition URL value must be a valid URL.")
         else:
-            raise ValueError("the Definition URL value must be a valid URL.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def act(self):
@@ -269,13 +299,16 @@ class XdAnyType(ABC):
 
     @act.setter
     def act(self, v: str):
-        if checkers.is_string(v):
-            if v in ACS:
-                self._act = v
+        if self.published:
+            if checkers.is_string(v):
+                if v in ACS:
+                    self._act = v
+                else:
+                    raise ValueError("The act value must be in the Access Control System list.")
             else:
-                raise ValueError("The act value must be in the Access Control System list.")
+                raise ValueError("the Access Control Tag value must be a string.")
         else:
-            raise ValueError("the Access Control Tag value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def ev(self):
@@ -290,10 +323,13 @@ class XdAnyType(ABC):
 
     @ev.setter
     def ev(self, v):
-        if checkers.is_type(v, 'ExceptionalValue'):
-            self._ev.append(v)
+        if self.published:
+            if checkers.is_type(v, 'ExceptionalValue'):
+                self._ev.append(v)
+            else:
+                raise ValueError("the ev value must be an ExceptionalValue.")
         else:
-            raise ValueError("the ev value must be an ExceptionalValue.")
+            raise ValueError("The model has not been published.")
 
     @property
     def vtb(self):
@@ -305,10 +341,13 @@ class XdAnyType(ABC):
 
     @vtb.setter
     def vtb(self, v):
-        if checkers.is_datetime(v):
-            self._vtb = v
+        if self.published:
+            if checkers.is_datetime(v):
+                self._vtb = v
+            else:
+                raise ValueError("the Valid Time Begin value must be a datetime.")
         else:
-            raise ValueError("the Valid Time Begin value must be a datetime.")
+            raise ValueError("The model has not been published.")
 
     @property
     def vte(self):
@@ -321,10 +360,13 @@ class XdAnyType(ABC):
 
     @vte.setter
     def vte(self, v):
-        if checkers.is_datetime(v):
-            self._vte = v
+        if self.published:
+            if checkers.is_datetime(v):
+                self._vte = v
+            else:
+                raise ValueError("the Valid Time End value must be a datetime.")
         else:
-            raise ValueError("the Valid Time End value must be a datetime.")
+            raise ValueError("The model has not been published.")
 
     @property
     def tr(self):
@@ -336,10 +378,13 @@ class XdAnyType(ABC):
 
     @tr.setter
     def tr(self, v):
-        if checkers.is_datetime(v):
-            self._tr = v
+        if self.published:
+            if checkers.is_datetime(v):
+                self._tr = v
+            else:
+                raise ValueError("the Time Recorded value must be a datetime.")
         else:
-            raise ValueError("the Time Recorded value must be a datetime.")
+            raise ValueError("The model has not been published.")
 
     @property
     def modified(self):
@@ -351,10 +396,13 @@ class XdAnyType(ABC):
 
     @modified.setter
     def modified(self, v):
-        if checkers.is_datetime(v):
-            self._modified = v
+        if self.published:
+            if checkers.is_datetime(v):
+                self._modified = v
+            else:
+                raise ValueError("the Modified value must be a datetime.")
         else:
-            raise ValueError("the Modified value must be a datetime.")
+            raise ValueError("The model has not been published.")
 
     @property
     def latitude(self):
@@ -365,10 +413,13 @@ class XdAnyType(ABC):
 
     @latitude.setter
     def latitude(self, v):
-        if checkers.is_decimal(v, minimum=-90.00, maximum=90.00):
-            self._latitude = v
+        if self.published:
+            if checkers.is_decimal(v, minimum=-90.00, maximum=90.00):
+                self._latitude = v
+            else:
+                raise ValueError("the Latitude value must be a decimal between -90.00 and 90.00.")
         else:
-            raise ValueError("the Latitude value must be a decimal between -90.00 and 90.00.")
+            raise ValueError("The model has not been published.")
 
     @property
     def longitude(self):
@@ -379,10 +430,13 @@ class XdAnyType(ABC):
 
     @longitude.setter
     def longitude(self, v):
-        if checkers.is_decimal(v, minimum=-180.00, maximum=180.00):
-            self._longitude = v
+        if self.published:
+            if checkers.is_decimal(v, minimum=-180.00, maximum=180.00):
+                self._longitude = v
+            else:
+                raise ValueError("the Longitude value must be a decimal between -180.00 and 180.00.")
         else:
-            raise ValueError("the Longitude value must be a decimal between -180.00 and 180.00.")
+            raise ValueError("The model has not been published.")
 
     def __str__(self):
         if self.validate():
@@ -405,6 +459,9 @@ class XdAnyType(ABC):
         """
         Return a XML Schema stub for Xd Types.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+        
         self.validate()
         
         indent = 2
@@ -455,6 +512,8 @@ class XdAnyType(ABC):
         """
         Return an example XML fragment for this model.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
 
         act = random.choice(ACS)
 
@@ -525,15 +584,18 @@ class XdIntervalType(XdAnyType):
 
     @lower.setter
     def lower(self, v):
-        if type(self.v) in invlTypes:
-            if type(self._upper) is None:
-                self._lower = v
-            elif (type(self._upper) == type(self.v)):
-                self._lower = v
+        if not self.published:
+            if type(self.v) in invlTypes:
+                if type(self._upper) is None:
+                    self._lower = v
+                elif (type(self._upper) == type(self.v)):
+                    self._lower = v
+                else:
+                    raise ValueError("The lower and upper types must match")
             else:
-                raise ValueError("The lower and upper types must match")
+                raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
         else:
-            raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def upper(self):
@@ -544,15 +606,18 @@ class XdIntervalType(XdAnyType):
 
     @upper.setter
     def upper(self, v):
-        if type(self.v) in invlTypes:
-            if type(self._lower) is None:
-                self._upper = v
-            elif (type(self._lower) == type(self.v)):
-                self._upper = v
+        if not self.published:
+            if type(self.v) in invlTypes:
+                if type(self._lower) is None:
+                    self._upper = v
+                elif (type(self._lower) == type(self.v)):
+                    self._upper = v
+                else:
+                    raise ValueError("The lower and upper types must match")
             else:
-                raise ValueError("The lower and upper types must match")
+                raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
         else:
-            raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def lower_included(self):
@@ -563,10 +628,13 @@ class XdIntervalType(XdAnyType):
 
     @lower_included.setter
     def lower_included(self, v):
-        if isinstance(v, bool):
-            self._lower_included = v
+        if not self.published:
+            if isinstance(v, bool):
+                self._lower_included = v
+            else:
+                raise ValueError("the lower_included value must be a Boolean.")
         else:
-            raise ValueError("the lower_included value must be a Boolean.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def upper_included(self):
@@ -577,10 +645,13 @@ class XdIntervalType(XdAnyType):
 
     @upper_included.setter
     def upper_included(self, v):
-        if isinstance(v, bool):
-            self._upper_included = v
+        if not self.published:
+            if isinstance(v, bool):
+                self._upper_included = v
+            else:
+                raise ValueError("the upper_included value must be a Boolean.")
         else:
-            raise ValueError("the upper_included value must be a Boolean.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def lower_bounded(self):
@@ -591,10 +662,13 @@ class XdIntervalType(XdAnyType):
 
     @lower_bounded.setter
     def lower_bounded(self, v):
-        if isinstance(v, bool):
-            self._lower_bounded = v
+        if not self.published:
+            if isinstance(v, bool):
+                self._lower_bounded = v
+            else:
+                raise ValueError("the lower_bounded value must be a Boolean.")
         else:
-            raise ValueError("the lower_bounded value must be a Boolean.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def upper_bounded(self):
@@ -605,10 +679,13 @@ class XdIntervalType(XdAnyType):
 
     @upper_bounded.setter
     def upper_bounded(self, v):
-        if isinstance(v, bool):
-            self._upper_bounded = v
+        if not self.published:
+            if isinstance(v, bool):
+                self._upper_bounded = v
+            else:
+                raise ValueError("the upper_bounded value must be a Boolean.")
         else:
-            raise ValueError("the upper_bounded value must be a Boolean.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def interval_units(self):
@@ -624,10 +701,13 @@ class XdIntervalType(XdAnyType):
 
     @interval_units.setter
     def interval_units(self, v):
-        if isinstance(v, tuple):
-            self._interval_units = v
+        if not self.published:
+            if isinstance(v, tuple):
+                self._interval_units = v
+            else:
+                raise ValueError("the interval_units value must be a tuple.")
         else:
-            raise ValueError("the interval_units value must be a tuple.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -642,6 +722,7 @@ class XdIntervalType(XdAnyType):
         """
         Return a XML Schema complexType definition.
         """
+
         indent = 2
         padding = ('').rjust(indent)
         # Convert the bools to XSD strings
@@ -694,6 +775,9 @@ class XdIntervalType(XdAnyType):
         """
         Return an example XML fragment for this model.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance()
@@ -736,10 +820,13 @@ class ReferenceRangeType(XdAnyType):
 
     @definition.setter
     def definition(self, v):
-        if checkers.is_string(v):
-            self._definition = v
+        if not self.published:
+            if checkers.is_string(v):
+                self._definition = v
+            else:
+                raise ValueError("the definition value must be a string.")
         else:
-            raise ValueError("the definition value must be a string.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def interval(self):
@@ -750,10 +837,13 @@ class ReferenceRangeType(XdAnyType):
 
     @interval.setter
     def interval(self, v):
-        if isinstance(v, XdIntervalType):
-            self._interval = v
+        if not self.published:
+            if isinstance(v, XdIntervalType):
+                self._interval = v
+            else:
+                raise ValueError("the interval value must be a XdIntervalType.")
         else:
-            raise ValueError("the interval value must be a XdIntervalType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def is_normal(self):
@@ -764,10 +854,13 @@ class ReferenceRangeType(XdAnyType):
 
     @is_normal.setter
     def is_normal(self, v):
-        if isinstance(v, bool):
-            self._is_normal = v
+        if not self.published:
+            if isinstance(v, bool):
+                self._is_normal = v
+            else:
+                raise TypeError("the is_normal value must be a Boolean.")
         else:
-            raise TypeError("the is_normal value must be a Boolean.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -778,7 +871,7 @@ class ReferenceRangeType(XdAnyType):
         else:
             return(True)
 
-    def asXSD(self):
+    def getModel(self):
         """
         Return a XML Schema complexType definition.
         """
@@ -880,12 +973,15 @@ class XdBooleanType(XdAnyType):
 
     @true_value.setter
     def true_value(self, v):
-        if v == None:
-            self._true_value = None
-        elif v in self._options['trues'] and self._false_value == None:
-            self._true_value = v
+        if self.published:
+            if v == None:
+                self._true_value = None
+            elif v in self._options['trues'] and self._false_value == None:
+                self._true_value = v
+            else:
+                raise ValueError("the true_value value must be in the options['trues'] list and the false_value must be None.")
         else:
-            raise ValueError("the true_value value must be in the options['trues'] list and the false_value must be None.")
+            raise ValueError("The model has not been published.")
 
     @property
     def false_value(self):
@@ -897,12 +993,15 @@ class XdBooleanType(XdAnyType):
 
     @false_value.setter
     def false_value(self, v):
-        if v == None:
-            self._false_value = None
-        elif v in self._options['falses'] and self._true_value == None:
-            self._false_value = v
+        if self.published:
+            if v == None:
+                self._false_value = None
+            elif v in self._options['falses'] and self._true_value == None:
+                self._false_value = v
+            else:
+                raise ValueError("the false_value value must be in the options['falses'] list and the true_value must be None.")
         else:
-            raise ValueError("the false_value value must be in the options['falses'] list and the true_value must be None.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """
@@ -1051,7 +1150,7 @@ class XdLinkType(XdAnyType):
     'link-value'.
     """
 
-    def __init__(self, label: str, link: str, relation: str):
+    def __init__(self, label: str):
         """
         The semantic label (name of the model) is required.
         """
@@ -1072,10 +1171,13 @@ class XdLinkType(XdAnyType):
 
     @link.setter
     def link(self, v):
-        if checkers.is_string(v):
-            self._link = v
+        if self.published:
+            if checkers.is_string(v):
+                self._link = v
+            else:
+                raise TypeError("the link value must be a string.")
         else:
-            raise TypeError("the link value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def relation(self):
@@ -1086,10 +1188,13 @@ class XdLinkType(XdAnyType):
 
     @relation.setter
     def relation(self, v):
-        if checkers.is_string(v):
-            self._relation = v
+        if not self.published:
+            if checkers.is_string(v):
+                self._relation = v
+            else:
+                raise TypeError("the relation value must be a string.")
         else:
-            raise TypeError("the relation value must be a string.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def relation_uri(self):
@@ -1101,10 +1206,13 @@ class XdLinkType(XdAnyType):
 
     @relation_uri.setter
     def relation_uri(self, v):
-        if checkers.is_url(v):
-            self._relation_uri = v
+        if not self.published:
+            if checkers.is_url(v):
+                self._relation_uri = v
+            else:
+                raise TypeError("the relation_uri value must be a URL.")
         else:
-            raise TypeError("the relation_uri value must be a URL.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -1201,10 +1309,13 @@ class XdStringType(XdAnyType):
 
     @value.setter
     def value(self, v):
-        if checkers.is_string(v):
-            self._value = v
+        if self.published:
+            if checkers.is_string(v):
+                self._value = v
+            else:
+                raise TypeError("the value must be a string.")
         else:
-            raise TypeError("the value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def language(self):
@@ -1216,10 +1327,13 @@ class XdStringType(XdAnyType):
 
     @language.setter
     def language(self, v):
-        if checkers.is_string(v):
-            self._language = v
+        if self.published:
+            if checkers.is_string(v):
+                self._language = v
+            else:
+                raise TypeError("the language value must be a string.")
         else:
-            raise TypeError("the language value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def length(self):
@@ -1232,21 +1346,24 @@ class XdStringType(XdAnyType):
 
     @length.setter
     def length(self, v):
-        if v == None:
-            self._length = v
-        else:
-            if len(self._enums) > 0 or self.regex is not None:
-                raise ValueError("The elements 'length', 'enums' and 'regex' are mutally exclusive.  Set length and regex to 'None' or enums to '[]'.")
-            if checkers.is_integer(v) and v >= 1:
-                self._length = v
-            elif isinstance(v, tuple) and len(v) == 2:
-                if not isinstance(v[0], (int, None)) or not isinstance(v[1], (int, None)):
-                    raise TypeError("The tuple must contain two values of either type, None or integers.")
-                elif isinstance(v[0], int) and isinstance(v[1], int) and v[0] > v[1]:
-                    raise ValueError("Minimum length must be smaller or equal to maximum length.")
+        if not self.published:
+            if v == None:
                 self._length = v
             else:
-                raise TypeError("The length value must be an integer (exact length) or a tuple (min/max lengths).")
+                if len(self._enums) > 0 or self.regex is not None:
+                    raise ValueError("The elements 'length', 'enums' and 'regex' are mutally exclusive.  Set length and regex to 'None' or enums to '[]'.")
+                if checkers.is_integer(v) and v >= 1:
+                    self._length = v
+                elif isinstance(v, tuple) and len(v) == 2:
+                    if not isinstance(v[0], (int, None)) or not isinstance(v[1], (int, None)):
+                        raise TypeError("The tuple must contain two values of either type, None or integers.")
+                    elif isinstance(v[0], int) and isinstance(v[1], int) and v[0] > v[1]:
+                        raise ValueError("Minimum length must be smaller or equal to maximum length.")
+                    self._length = v
+                else:
+                    raise TypeError("The length value must be an integer (exact length) or a tuple (min/max lengths).")
+        else:
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def regex(self):
@@ -1258,16 +1375,19 @@ class XdStringType(XdAnyType):
 
     @regex.setter
     def regex(self, v):
-        if v == None:
-            self._regex = v
-        elif checkers.is_string(v):
-            if len(self._enums) > 0 or self.length is not None:
-                raise ValueError("The elements 'length', 'enums' and 'regex' are mutally exclusive.  Set length and regex to 'None' or enums to '[]'.")
-            try:
-                re.compile(v)
+        if not self.published:
+            if v == None:
                 self._regex = v
-            except re.error:
-                raise ValueError("The value is not a valid regular expression.")
+            elif checkers.is_string(v):
+                if len(self._enums) > 0 or self.length is not None:
+                    raise ValueError("The elements 'length', 'enums' and 'regex' are mutally exclusive.  Set length and regex to 'None' or enums to '[]'.")
+                try:
+                    re.compile(v)
+                    self._regex = v
+                except re.error:
+                    raise ValueError("The value is not a valid regular expression.")
+        else:
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def enums(self):
@@ -1282,23 +1402,26 @@ class XdStringType(XdAnyType):
 
     @enums.setter
     def enums(self, v):
-        if v == []:
-            self._enums = v
+        if not self.published:
+            if v == []:
+                self._enums = v
 
-        if self.regex is not None or self.length is not None:
-            raise ValueError("The elements 'length', enums' and 'regex' are mutally exclusive. Set length and regex to 'None' or enums to '[]'.")
+            if self.regex is not None or self.length is not None:
+                raise ValueError("The elements 'length', enums' and 'regex' are mutally exclusive. Set length and regex to 'None' or enums to '[]'.")
 
-        if isinstance(v, list):
-            for enum in v:
-                if not isinstance(enum, tuple):
-                    raise TypeError("The enumerations and definitions must be strings.")
+            if isinstance(v, list):
+                for enum in v:
+                    if not isinstance(enum, tuple):
+                        raise TypeError("The enumerations and definitions must be strings.")
 
-                if not isinstance(enum[0], str) or not isinstance(enum[1], str):
-                    raise TypeError("The enumerations and definitions must be strings.")
+                    if not isinstance(enum[0], str) or not isinstance(enum[1], str):
+                        raise TypeError("The enumerations and definitions must be strings.")
 
-            self._enums = v
+                self._enums = v
+            else:
+                raise TypeError("The enumerations must be a list of tuples.")
         else:
-            raise TypeError("The enumerations must be a list of tuples.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def default(self):
@@ -1309,12 +1432,15 @@ class XdStringType(XdAnyType):
 
     @default.setter
     def default(self, v):
-        if v == None:
-            self._length = v
-        elif checkers.is_string(v):
-            self._default = v
+        if not self.published:
+            if v == None:
+                self._length = v
+            elif checkers.is_string(v):
+                self._default = v
+            else:
+                raise TypeError("The default value must be a string or None.")
         else:
-            raise TypeError("The default value must be a string or None.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -1496,10 +1622,13 @@ class XdFileType(XdAnyType):
 
     @content_type.setter
     def content_type(self, v: str):
-        if v.lower() in ('uri', 'embed'):
-            self._content_type = v.lower()
+        if not self.published:
+            if v.lower() in ('uri', 'embed'):
+                self._content_type = v.lower()
+            else:
+                raise TypError("The content_type value must be an a string and one of 'uri' or 'embed'.")
         else:
-            raise TypError("The content_type value must be an a string and one of 'uri' or 'embed'.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def size(self):
@@ -1511,10 +1640,13 @@ class XdFileType(XdAnyType):
 
     @size.setter
     def size(self, v):
-        if checkers.is_integer(v):
-            self._size = v
+        if self.published:
+            if checkers.is_integer(v):
+                self._size = v
+            else:
+                raise TypeError("The size value must be an integer.")
         else:
-            raise TypeError("The size value must be an integer.")
+            raise ValueError("The model has not been published.")
 
     @property
     def encoding(self):
@@ -1532,10 +1664,13 @@ class XdFileType(XdAnyType):
 
     @encoding.setter
     def encoding(self, v):
-        if checkers.is_string(v):
-            self._encoding = v
+        if self.published:
+            if checkers.is_string(v):
+                self._encoding = v
+            else:
+                raise TypeError("the encoding value must be a string.")
         else:
-            raise TypeError("the encoding value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def language(self):
@@ -1549,10 +1684,13 @@ class XdFileType(XdAnyType):
 
     @language.setter
     def language(self, v):
-        if checkers.is_string(v):
-            self._language = v
+        if self.published:
+            if checkers.is_string(v):
+                self._language = v
+            else:
+                raise TypeError("the language value must be a string.")
         else:
-            raise TypeError("the language value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def formalism(self):
@@ -1566,10 +1704,13 @@ class XdFileType(XdAnyType):
 
     @formalism.setter
     def formalism(self, v):
-        if checkers.is_string(v):
-            self._formalism = v
+        if self.published:
+            if checkers.is_string(v):
+                self._formalism = v
+            else:
+                raise TypeError("the formalism value must be a string.")
         else:
-            raise TypeError("the formalism value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def media_type(self):
@@ -1583,10 +1724,13 @@ class XdFileType(XdAnyType):
 
     @media_type.setter
     def media_type(self, v):
-        if checkers.is_string(v):
-            self._media_type = v
+        if self.published:
+            if checkers.is_string(v):
+                self._media_type = v
+            else:
+                raise TypeError("the media_type value must be a string.")
         else:
-            raise TypeError("the media_type value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def compression_type(self):
@@ -1603,10 +1747,13 @@ class XdFileType(XdAnyType):
 
     @compression_type.setter
     def compression_type(self, v):
-        if checkers.is_string(v):
-            self._compression_type = v
+        if self.published:
+            if checkers.is_string(v):
+                self._compression_type = v
+            else:
+                raise TypeError("the compression_type value must be a string.")
         else:
-            raise TypeError("the compression_type value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def hash_result(self):
@@ -1622,10 +1769,13 @@ class XdFileType(XdAnyType):
 
     @hash_result.setter
     def hash_result(self, v):
-        if checkers.is_string(v):
-            self._hash_result = v
+        if self.published:
+            if checkers.is_string(v):
+                self._hash_result = v
+            else:
+                raise TypeError("the hash_result value must be a string.")
         else:
-            raise TypeError("the hash_result value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def hash_function(self):
@@ -1638,10 +1788,13 @@ class XdFileType(XdAnyType):
 
     @hash_function.setter
     def hash_function(self, v):
-        if checkers.is_string(v):
-            self._hash_function = v
+        if self.published:
+            if checkers.is_string(v):
+                self._hash_function = v
+            else:
+                raise TypeError("the hash_function value must be a string.")
         else:
-            raise TypeError("the hash_function value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def alt_txt(self):
@@ -1652,10 +1805,13 @@ class XdFileType(XdAnyType):
 
     @alt_txt.setter
     def alt_txt(self, v):
-        if checkers.is_string(v):
-            self._alt_txt = v
+        if self.published:
+            if checkers.is_string(v):
+                self._alt_txt = v
+            else:
+                raise TypeError("the alt_txt value must be a string.")
         else:
-            raise TypeError("the alt_txt value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def uri(self):
@@ -1667,12 +1823,15 @@ class XdFileType(XdAnyType):
 
     @uri.setter
     def uri(self, v):
-        if v == None:
-            self._uri = v
-        elif self._media_content == None and isinstance(v, (str)):
-            self._uri = v
+        if self.published:
+            if v == None:
+                self._uri = v
+            elif self._media_content == None and isinstance(v, (str)):
+                self._uri = v
+            else:
+                raise TypeError("the uri value must be a URL and media_content must be None.")
         else:
-            raise TypeError("the uri value must be a URL and media_content must be None.")
+            raise ValueError("The model has not been published.")
 
     @property
     def media_content(self):
@@ -1689,13 +1848,16 @@ class XdFileType(XdAnyType):
 
     @media_content.setter
     def media_content(self, v):
-        if self._uri == None:
-            if isinstance(v, (bytes, type(None))):
-                self._media_content = v
+        if self.published:
+            if self._uri == None:
+                if isinstance(v, (bytes, type(None))):
+                    self._media_content = v
+                else:
+                    raise ValueError("the media_content value must be a bytes object that is Base64 encoded.")
             else:
-                raise ValueError("the media_content value must be a bytes object that is Base64 encoded.")
+                raise TypeError("uri must be None.")
         else:
-            raise TypeError("uri must be None.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """
@@ -1800,13 +1962,16 @@ class XdOrderedType(XdAnyType):
 
     @referenceranges.setter
     def referenceranges(self, v):
-        if checkers.is_iterable(v):
-            for i in v:
-                if not checkers.is_type(i, "ReferenceRangeType"):
-                    raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
-            self._referenceranges = v
+        if not self.published:
+            if checkers.is_iterable(v):
+                for i in v:
+                    if not checkers.is_type(i, "ReferenceRangeType"):
+                        raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
+                self._referenceranges = v
+            else:
+                raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
         else:
-            raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def normal_status(self):
@@ -1821,10 +1986,13 @@ class XdOrderedType(XdAnyType):
 
     @normal_status.setter
     def normal_status(self, v):
-        if checkers.is_string(v):
-            self._normal_status = v
+        if self.published:
+            if checkers.is_string(v):
+                self._normal_status = v
+            else:
+                raise TypeError("the normal_status value must be a string.")
         else:
-            raise TypeError("the normal_status value must be a string.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """
@@ -1927,10 +2095,13 @@ class XdOrdinalType(XdOrderedType):
 
     @ordinal.setter
     def ordinal(self, v):
-        if checkers.is_decimal(v):
-            self._ordinal = v
+        if self.published:
+            if checkers.is_decimal(v):
+                self._ordinal = v
+            else:
+                raise TypeError("the ordinal value must be a decimal.")
         else:
-            raise TypeError("the ordinal value must be a decimal.")
+            raise ValueError("The model has not been published.")
 
     @property
     def symbol(self):
@@ -1944,10 +2115,13 @@ class XdOrdinalType(XdOrderedType):
 
     @symbol.setter
     def symbol(self, v):
-        if checkers.is_string(v):
-            self._symbol = v
+        if self.published:
+            if checkers.is_string(v):
+                self._symbol = v
+            else:
+                raise TypeError("the symbol value must be a string.")
         else:
-            raise TypeError("the symbol value must be a string.")
+            raise ValueError("The model has not been published.")
 
     @property
     def choices(self):
@@ -1961,10 +2135,13 @@ class XdOrdinalType(XdOrderedType):
 
     @choices.setter
     def choices(self, v):
-        if checkers.is_iterable(v):
-            self._choices = v
+        if not self.published:
+            if checkers.is_iterable(v):
+                self._choices = v
+            else:
+                raise TypeError("the choices value must be a list of tuples.")
         else:
-            raise TypeError("the choices value must be a list of tuples.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -2060,10 +2237,13 @@ class XdQuantifiedType(XdOrderedType):
 
     @magnitude_status.setter
     def magnitude_status(self, v):
-        if isinstance(v, (str, None)) and v in [None, 'equal', 'less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate']:
-            self._magnitude_status = v
+        if self.published:
+            if isinstance(v, (str, None)) and v in [None, 'equal', 'less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate']:
+                self._magnitude_status = v
+            else:
+                raise ValueError("The magnitude_status value must be one of: None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate'.")
         else:
-            raise ValueError("The magnitude_status value must be one of: None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate'.")
+            raise ValueError("The model has not been published.")
 
     @property
     def error(self):
@@ -2075,10 +2255,13 @@ class XdQuantifiedType(XdOrderedType):
 
     @error.setter
     def error(self, v):
-        if isinstance(v, int) and 0 <= v <= 100:
-            self._error = v
+        if self.published:
+            if isinstance(v, int) and 0 <= v <= 100:
+                self._error = v
+            else:
+                raise TypeError("The error value must be an integer 0 - 100.")
         else:
-            raise TypeError("The error value must be an integer 0 - 100.")
+            raise ValueError("The model has not been published.")
 
     @property
     def accuracy(self):
@@ -2090,10 +2273,13 @@ class XdQuantifiedType(XdOrderedType):
 
     @accuracy.setter
     def accuracy(self, v):
-        if isinstance(v, int) and 0 <= v <= 100:
-            self._error = v
+        if self.published:
+            if isinstance(v, int) and 0 <= v <= 100:
+                self._error = v
+            else:
+                raise TypeError("The accuracy value must be an integer 0 - 100.")
         else:
-            raise TypeError("The accuracy value must be an integer 0 - 100.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """
@@ -2179,21 +2365,24 @@ class XdCountType(XdQuantifiedType):
 
     @value.setter
     def value(self, v):
-        if isinstance(v, (int, type(None))):
-            if self.min_inclusive is not None and v < self.min_inclusive:
-                raise ValueError("The value cannot be less than " + str(self.min_inclusive))
-            if self.max_inclusive is not None and v > self.max_inclusive:
-                raise ValueError("The value cannot exceed " + str(self.max_inclusive))
-            if self.min_exclusive is not None and v <= self.min_exclusive:
-                raise ValueError("The value cannot be equal to or less than " + str(self.min_exclusive))
-            if self.max_exclusive is not None and v >= self.max_exclusive:
-                raise ValueError("The value cannot be equal to or exceed " + str(self.max_exclusive))
-            if self.total_digits is not None and len(str(v)) > self.total_digits:
-                raise ValueError("The value length cannot exceed " + str(self.total_digits) + " total digits.")
+        if self.published:
+            if isinstance(v, (int, type(None))):
+                if self.min_inclusive is not None and v < self.min_inclusive:
+                    raise ValueError("The value cannot be less than " + str(self.min_inclusive))
+                if self.max_inclusive is not None and v > self.max_inclusive:
+                    raise ValueError("The value cannot exceed " + str(self.max_inclusive))
+                if self.min_exclusive is not None and v <= self.min_exclusive:
+                    raise ValueError("The value cannot be equal to or less than " + str(self.min_exclusive))
+                if self.max_exclusive is not None and v >= self.max_exclusive:
+                    raise ValueError("The value cannot be equal to or exceed " + str(self.max_exclusive))
+                if self.total_digits is not None and len(str(v)) > self.total_digits:
+                    raise ValueError("The value length cannot exceed " + str(self.total_digits) + " total digits.")
 
-            self._value = v
+                self._value = v
+            else:
+                raise TypeError("The value value must be an integer.")
         else:
-            raise TypeError("The value value must be an integer.")
+            raise ValueError("The model has not been published.")
 
     @property
     def units(self):
@@ -2205,11 +2394,14 @@ class XdCountType(XdQuantifiedType):
 
     @units.setter
     def units(self, v):
-        if isinstance(v, XdStringType):
-            self._units = v
+        if self.published:
+            if isinstance(v, XdStringType):
+                self._units = v
+            else:
+                self._units = None
+                raise TypeError("The units value must be a XdStringType identifying the things to be counted.")
         else:
-            self._units = None
-            raise TypeError("The units value must be a XdStringType identifying the things to be counted.")
+            raise ValueError("The model has not been published.")
 
     @property
     def min_inclusive(self):
@@ -2220,10 +2412,13 @@ class XdCountType(XdQuantifiedType):
 
     @min_inclusive.setter
     def min_inclusive(self, v):
-        if isinstance(v, (int, type(None))):
-            self._min_inclusive = v
+        if not self.published:
+            if isinstance(v, (int, type(None))):
+                self._min_inclusive = v
+            else:
+                raise TypeError("The min_inclusive value must be an integer.")
         else:
-            raise TypeError("The min_inclusive value must be an integer.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def max_inclusive(self):
@@ -2234,10 +2429,13 @@ class XdCountType(XdQuantifiedType):
 
     @max_inclusive.setter
     def max_inclusive(self, v):
-        if isinstance(v, (int, type(None))):
-            self._max_inclusive = v
+        if not self.published:
+            if isinstance(v, (int, type(None))):
+                self._max_inclusive = v
+            else:
+                raise TypeError("The max_inclusive value must be an integer.")
         else:
-            raise TypeError("The max_inclusive value must be an integer.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def min_exclusive(self):
@@ -2248,10 +2446,13 @@ class XdCountType(XdQuantifiedType):
 
     @min_exclusive.setter
     def min_exclusive(self, v):
-        if isinstance(v, (int, type(None))):
-            self._min_exclusive = v
+        if not self.published:
+            if isinstance(v, (int, type(None))):
+                self._min_exclusive = v
+            else:
+                raise TypeError("The min_exclusive value must be an integer.")
         else:
-            raise TypeError("The min_exclusive value must be an integer.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def max_exclusive(self):
@@ -2262,10 +2463,13 @@ class XdCountType(XdQuantifiedType):
 
     @max_exclusive.setter
     def max_exclusive(self, v):
-        if isinstance(v, (int, type(None))):
-            self._max_exclusive = v
+        if not self.published:
+            if isinstance(v, (int, type(None))):
+                self._max_exclusive = v
+            else:
+                raise TypeError("The max_exclusive value must be an integer.")
         else:
-            raise TypeError("The max_exclusive value must be an integer.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def total_digits(self):
@@ -2276,10 +2480,13 @@ class XdCountType(XdQuantifiedType):
 
     @total_digits.setter
     def total_digits(self, v):
-        if isinstance(v, (int, type(None))):
-            self._total_digits = v
+        if not self.published:
+            if isinstance(v, (int, type(None))):
+                self._total_digits = v
+            else:
+                raise TypeError("The total_digits value must be an integer.")
         else:
-            raise TypeError("The total_digits value must be an integer.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -2381,24 +2588,27 @@ class XdQuantityType(XdQuantifiedType):
 
     @value.setter
     def value(self, v):
-        if v is not None and isinstance(v, (int, float)):
-            v = Decimal(str(v))
-        if isinstance(v, (Decimal, type(None))):
-            if self.min_inclusive is not None and v < self.min_inclusive:
-                raise ValueError("The value cannot be less than " + str(self.min_inclusive))
-            if self.max_inclusive is not None and v > self.max_inclusive:
-                raise ValueError("The value cannot exceed " + str(self.max_inclusive))
-            if self.min_exclusive is not None and v <= self.min_exclusive:
-                raise ValueError("The value cannot be equal to or less than " + str(self.min_exclusive))
-            if self.max_exclusive is not None and v >= self.max_exclusive:
-                raise ValueError("The value cannot be equal to or exceed " + str(self.max_exclusive))
-            if self.total_digits is not None and len(str(v)) > self.total_digits:
-                raise ValueError("The value length cannot exceed " + str(self.total_digits) + " total digits.")
-            if self.fraction_digits is not None and len(str(v).split('.')[1]) > self.fraction_digits:
-                raise ValueError("The length of the decimal places in the value cannot exceed " + str(self.fraction_digits) + " fraction digits.")
-            self._value = v
+        if self.published:
+            if v is not None and isinstance(v, (int, float)):
+                v = Decimal(str(v))
+            if isinstance(v, (Decimal, type(None))):
+                if self.min_inclusive is not None and v < self.min_inclusive:
+                    raise ValueError("The value cannot be less than " + str(self.min_inclusive))
+                if self.max_inclusive is not None and v > self.max_inclusive:
+                    raise ValueError("The value cannot exceed " + str(self.max_inclusive))
+                if self.min_exclusive is not None and v <= self.min_exclusive:
+                    raise ValueError("The value cannot be equal to or less than " + str(self.min_exclusive))
+                if self.max_exclusive is not None and v >= self.max_exclusive:
+                    raise ValueError("The value cannot be equal to or exceed " + str(self.max_exclusive))
+                if self.total_digits is not None and len(str(v)) > self.total_digits:
+                    raise ValueError("The value length cannot exceed " + str(self.total_digits) + " total digits.")
+                if self.fraction_digits is not None and len(str(v).split('.')[1]) > self.fraction_digits:
+                    raise ValueError("The length of the decimal places in the value cannot exceed " + str(self.fraction_digits) + " fraction digits.")
+                self._value = v
+            else:
+                raise ValueError("The value must be a decimal.")
         else:
-            raise ValueError("The value must be a decimal.")
+            raise ValueError("The model has not been published.")
 
     @property
     def units(self):
@@ -2410,10 +2620,13 @@ class XdQuantityType(XdQuantifiedType):
 
     @units.setter
     def units(self, v):
-        if isinstance(v, XdStringType):
-            self._units = v
+        if self.published:
+            if isinstance(v, XdStringType):
+                self._units = v
+            else:
+                raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
         else:
-            raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
+            raise ValueError("The model has not been published.")
 
     @property
     def min_inclusive(self):
@@ -2424,12 +2637,15 @@ class XdQuantityType(XdQuantifiedType):
 
     @min_inclusive.setter
     def min_inclusive(self, v):
-        if v is not None and isinstance(v, int):
-            v = Decimal(v)
-        if isinstance(v, (Decimal, type(None))):
-            self._min_inclusive = v
+        if not self.published:
+            if v is not None and isinstance(v, int):
+                v = Decimal(v)
+            if isinstance(v, (Decimal, type(None))):
+                self._min_inclusive = v
+            else:
+                raise ValueError("The min_inclusive value must be a Decimal.")
         else:
-            raise ValueError("The min_inclusive value must be a Decimal.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def max_inclusive(self):
@@ -2440,12 +2656,15 @@ class XdQuantityType(XdQuantifiedType):
 
     @max_inclusive.setter
     def max_inclusive(self, v):
-        if v is not None and isinstance(v, int):
-            v = Decimal(v)
-        if isinstance(v, (Decimal, type(None))):
-            self._max_inclusive = v
+        if not self.published:
+            if v is not None and isinstance(v, int):
+                v = Decimal(v)
+            if isinstance(v, (Decimal, type(None))):
+                self._max_inclusive = v
+            else:
+                raise ValueError("The max_inclusive value must be a Decimal.")
         else:
-            raise ValueError("The max_inclusive value must be a Decimal.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def min_exclusive(self):
@@ -2456,12 +2675,15 @@ class XdQuantityType(XdQuantifiedType):
 
     @min_exclusive.setter
     def min_exclusive(self, v):
-        if v is not None and isinstance(v, int):
-            v = Decimal(v)
-        if isinstance(v, (Decimal, type(None))):
-            self._min_exclusive = v
+        if not self.published:
+            if v is not None and isinstance(v, int):
+                v = Decimal(v)
+            if isinstance(v, (Decimal, type(None))):
+                self._min_exclusive = v
+            else:
+                raise ValueError("The min_exclusive value must be a Decimal.")
         else:
-            raise ValueError("The min_exclusive value must be a Decimal.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def max_exclusive(self):
@@ -2472,12 +2694,15 @@ class XdQuantityType(XdQuantifiedType):
 
     @max_exclusive.setter
     def max_exclusive(self, v):
-        if v is not None and isinstance(v, int):
-            v = Decimal(v)
-        if isinstance(v, (Decimal, type(None))):
-            self._max_exclusive = v
+        if not self.published:
+            if v is not None and isinstance(v, int):
+                v = Decimal(v)
+            if isinstance(v, (Decimal, type(None))):
+                self._max_exclusive = v
+            else:
+                raise ValueError("The max_exclusive value must be a Decimal.")
         else:
-            raise ValueError("The max_exclusive value must be a Decimal.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def total_digits(self):
@@ -2488,10 +2713,13 @@ class XdQuantityType(XdQuantifiedType):
 
     @total_digits.setter
     def total_digits(self, v):
-        if isinstance(v, (int, type(None))):
-            self._total_digits = v
+        if not self.published:
+            if isinstance(v, (int, type(None))):
+                self._total_digits = v
+            else:
+                raise ValueError("The total_digits value must be a integer.")
         else:
-            raise ValueError("The total_digits value must be a integer.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def fraction_digits(self):
@@ -2502,10 +2730,13 @@ class XdQuantityType(XdQuantifiedType):
 
     @fraction_digits.setter
     def fraction_digits(self, v):
-        if isinstance(v, (int, type(None))):
-            self._fraction_digits = v
+        if not self.published:
+            if isinstance(v, (int, type(None))):
+                self._fraction_digits = v
+            else:
+                raise ValueError("The fraction_digits value must be a integer.")
         else:
-            raise ValueError("The fraction_digits value must be a integer.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -2619,10 +2850,13 @@ class XdFloatType(XdQuantifiedType):
 
     @value.setter
     def value(self, v):
-        if isinstance(v, float):
-            self._value = v
+        if self.published:
+            if isinstance(v, float):
+                self._value = v
+            else:
+                raise ValueError("The value must be a float.")
         else:
-            raise ValueError("The value must be a float.")
+            raise ValueError("The model has not been published.")
 
     @property
     def units(self):
@@ -2633,10 +2867,13 @@ class XdFloatType(XdQuantifiedType):
 
     @units.setter
     def units(self, v):
-        if isinstance(v, XdStringType):
-            self._units = v
+        if self.published:
+            if isinstance(v, XdStringType):
+                self._units = v
+            else:
+                raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
         else:
-            raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
+            raise ValueError("The model has not been published.")
 
     @property
     def min_inclusive(self):
@@ -2647,11 +2884,14 @@ class XdFloatType(XdQuantifiedType):
 
     @min_inclusive.setter
     def min_inclusive(self, v):
-        v = float(v)
-        if isinstance(v, float):
-            self._min_inclusive = v
+        if not self.published:
+            v = float(v)
+            if isinstance(v, float):
+                self._min_inclusive = v
+            else:
+                raise ValueError("The min_inclusive value must be a float.")
         else:
-            raise ValueError("The min_inclusive value must be a float.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def max_inclusive(self):
@@ -2662,11 +2902,14 @@ class XdFloatType(XdQuantifiedType):
 
     @max_inclusive.setter
     def max_inclusive(self, v):
-        v = float(v)
-        if isinstance(v, float):
-            self._max_inclusive = v
+        if not self.published:
+            v = float(v)
+            if isinstance(v, float):
+                self._max_inclusive = v
+            else:
+                raise ValueError("The max_inclusive value must be a float.")
         else:
-            raise ValueError("The max_inclusive value must be a float.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def min_exclusive(self):
@@ -2677,11 +2920,14 @@ class XdFloatType(XdQuantifiedType):
 
     @min_exclusive.setter
     def min_exclusive(self, v):
-        v = float(v)
-        if isinstance(v, float):
-            self._min_exclusive = v
+        if not self.published:
+            v = float(v)
+            if isinstance(v, float):
+                self._min_exclusive = v
+            else:
+                raise ValueError("The min_exclusive value must be a float.")
         else:
-            raise ValueError("The min_exclusive value must be a float.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def max_exclusive(self):
@@ -2692,11 +2938,14 @@ class XdFloatType(XdQuantifiedType):
 
     @max_exclusive.setter
     def max_exclusive(self, v):
-        v = float(v)
-        if isinstance(v, float):
-            self._max_exclusive = v
+        if not self.published:
+            v = float(v)
+            if isinstance(v, float):
+                self._max_exclusive = v
+            else:
+                raise ValueError("The max_exclusive value must be a float.")
         else:
-            raise ValueError("The max_exclusive value must be a float.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def total_digits(self):
@@ -2707,10 +2956,13 @@ class XdFloatType(XdQuantifiedType):
 
     @total_digits.setter
     def total_digits(self, v):
-        if isinstance(v, int):
-            self._total_digits = v
+        if not self.published:
+            if isinstance(v, int):
+                self._total_digits = v
+            else:
+                raise ValueError("The total_digits value must be a int.")
         else:
-            raise ValueError("The total_digits value must be a int.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -2831,10 +3083,13 @@ class XdRatioType(XdQuantifiedType):
 
     @ratio_type.setter
     def ratio_type(self, v):
-        if isinstance(v, str) and v.lower() in ['ratio', 'rate', 'proportion']:
-            self._ratio_type = v.lower()
+        if not self.published:
+            if isinstance(v, str) and v.lower() in ['ratio', 'rate', 'proportion']:
+                self._ratio_type = v.lower()
+            else:
+                raise ValueError("The ratio_type value must be a str and be one of; 'ratio','rate', or 'proportion'.")
         else:
-            raise ValueError("The ratio_type value must be a str and be one of; 'ratio','rate', or 'proportion'.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def numerator(self):
@@ -2845,10 +3100,14 @@ class XdRatioType(XdQuantifiedType):
 
     @numerator.setter
     def numerator(self, v):
-        if isinstance(v, float):
-            self._numerator = v
+        if self.published:
+            if isinstance(v, float):
+                self._numerator = v
+            else:
+                raise ValueError("The numerator value must be a float.")
         else:
-            raise ValueError("The numerator value must be a float.")
+            raise ValueError("The model has not been published.")
+
     @property
     def num_min_inclusive(self):
         """
@@ -2858,12 +3117,15 @@ class XdRatioType(XdQuantifiedType):
 
     @num_min_inclusive.setter
     def num_min_inclusive(self, v):
-        if v is not None and isinstance(v, int):
-            v = Decimal(v)
-        if isinstance(v, (Decimal, type(None))):
-            self._num_min_inclusive = v
+        if not self.published:
+            if v is not None and isinstance(v, int):
+                v = Decimal(v)
+            if isinstance(v, (Decimal, type(None))):
+                self._num_min_inclusive = v
+            else:
+                raise ValueError("The min_inclusive value must be a Decimal.")
         else:
-            raise ValueError("The min_inclusive value must be a Decimal.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def num_max_inclusive(self):
@@ -2874,12 +3136,15 @@ class XdRatioType(XdQuantifiedType):
 
     @num_max_inclusive.setter
     def num_max_inclusive(self, v):
-        if v is not None and isinstance(v, int):
-            v = Decimal(v)
-        if isinstance(v, (Decimal, type(None))):
-            self._num_max_inclusive = v
+        if not self.published:
+            if v is not None and isinstance(v, int):
+                v = Decimal(v)
+            if isinstance(v, (Decimal, type(None))):
+                self._num_max_inclusive = v
+            else:
+                raise ValueError("The max_inclusive value must be a Decimal.")
         else:
-            raise ValueError("The max_inclusive value must be a Decimal.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def num_min_exclusive(self):
@@ -2890,12 +3155,15 @@ class XdRatioType(XdQuantifiedType):
 
     @num_min_exclusive.setter
     def num_min_exclusive(self, v):
-        if v is not None and isinstance(v, int):
-            v = Decimal(v)
-        if isinstance(v, (Decimal, type(None))):
-            self._num_min_exclusive = v
+        if not self.published:
+            if v is not None and isinstance(v, int):
+                v = Decimal(v)
+            if isinstance(v, (Decimal, type(None))):
+                self._num_min_exclusive = v
+            else:
+                raise ValueError("The min_exclusive value must be a Decimal.")
         else:
-            raise ValueError("The min_exclusive value must be a Decimal.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def num_max_exclusive(self):
@@ -2906,13 +3174,15 @@ class XdRatioType(XdQuantifiedType):
 
     @num_max_exclusive.setter
     def num_max_exclusive(self, v):
-        if v is not None and isinstance(v, int):
-            v = Decimal(v)
-        if isinstance(v, (Decimal, type(None))):
-            self._num_max_exclusive = v
+        if not self.published:
+            if v is not None and isinstance(v, int):
+                v = Decimal(v)
+            if isinstance(v, (Decimal, type(None))):
+                self._num_max_exclusive = v
+            else:
+                raise ValueError("The max_exclusive value must be a Decimal.")
         else:
-            raise ValueError("The max_exclusive value must be a Decimal.")
-
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def denominator(self):
@@ -2923,10 +3193,13 @@ class XdRatioType(XdQuantifiedType):
 
     @denominator.setter
     def denominator(self, v):
-        if isinstance(v, float):
-            self._denominator = v
+        if self.published:
+            if isinstance(v, float):
+                self._denominator = v
+            else:
+                raise ValueError("The denominator value must be a float.")
         else:
-            raise ValueError("The denominator value must be a float.")
+            raise ValueError("The model has not been published.")
 
     @property
     def den_min_inclusive(self):
@@ -3002,10 +3275,13 @@ class XdRatioType(XdQuantifiedType):
 
     @numerator_units.setter
     def numerator_units(self, v):
-        if isinstance(v, XdStringType):
-            self._numerator_units = v
+        if self.published:
+            if isinstance(v, XdStringType):
+                self._numerator_units = v
+            else:
+                raise ValueError("The numerator_units value must be a XdStringType.")
         else:
-            raise ValueError("The numerator_units value must be a XdStringType.")
+            raise ValueError("The model has not been published.")
 
     @property
     def denominator_units(self):
@@ -3017,10 +3293,13 @@ class XdRatioType(XdQuantifiedType):
 
     @denominator_units.setter
     def denominator_units(self, v):
-        if isinstance(v, XdStringType):
-            self._denominator_units = v
+        if self.published:
+            if isinstance(v, XdStringType):
+                self._denominator_units = v
+            else:
+                raise ValueError("The denominator_units value must be a XdStringType.")
         else:
-            raise ValueError("The denominator_units value must be a XdStringType.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """
@@ -3149,10 +3428,13 @@ class XdTemporalType(XdOrderedType):
 
     @date.setter
     def date(self, v):
-        if isinstance(v, date):
-            self._date = v
+        if self.published:
+            if isinstance(v, date):
+                self._date = v
+            else:
+                raise ValueError("The date value must be a date type.")
         else:
-            raise ValueError("The date value must be a date type.")
+            raise ValueError("The model has not been published.")
 
     @property
     def time(self):
@@ -3164,10 +3446,13 @@ class XdTemporalType(XdOrderedType):
 
     @time.setter
     def time(self, v):
-        if isinstance(v, time):
-            self._time = v
+        if self.published:
+            if isinstance(v, time):
+                self._time = v
+            else:
+                raise ValueError("The time value must be a time type.")
         else:
-            raise ValueError("The time value must be a time type.")
+            raise ValueError("The model has not been published.")
 
     @property
     def datetime(self):
@@ -3179,10 +3464,13 @@ class XdTemporalType(XdOrderedType):
 
     @datetime.setter
     def datetime(self, v):
-        if isinstance(v, datetime):
-            self._datetime = v
+        if self.published:
+            if isinstance(v, datetime):
+                self._datetime = v
+            else:
+                raise ValueError("The datetime value must be a datetime type.")
         else:
-            raise ValueError("The datetime value must be a datetime type.")
+            raise ValueError("The model has not been published.")
 
     @property
     def day(self):
@@ -3196,10 +3484,13 @@ class XdTemporalType(XdOrderedType):
 
     @day.setter
     def day(self, v):
-        if isinstance(v, int) and 1 <= v <= 31:
-            self._day = v
+        if self.published:
+            if isinstance(v, int) and 1 <= v <= 31:
+                self._day = v
+            else:
+                raise ValueError("The day value must be an integer type 1 - 31.")
         else:
-            raise ValueError("The day value must be an integer type 1 - 31.")
+            raise ValueError("The model has not been published.")
 
     @property
     def month(self):
@@ -3212,10 +3503,13 @@ class XdTemporalType(XdOrderedType):
 
     @month.setter
     def month(self, v):
-        if isinstance(v, int) and 1 <= v <= 12:
-            self._month = v
+        if self.published:
+            if isinstance(v, int) and 1 <= v <= 12:
+                self._month = v
+            else:
+                raise ValueError("The month value must be an integer type 1 - 12.")
         else:
-            raise ValueError("The month value must be an integer type 1 - 12.")
+            raise ValueError("The model has not been published.")
 
     @property
     def year(self):
@@ -3226,10 +3520,13 @@ class XdTemporalType(XdOrderedType):
 
     @year.setter
     def year(self, v):
-        if isinstance(v, int) and 1 <= v <= 9999:
-            self._year = v
+        if self.published:
+            if isinstance(v, int) and 1 <= v <= 9999:
+                self._year = v
+            else:
+                raise ValueError("The year value must be an integer type 1 - 9999.")
         else:
-            raise ValueError("The year value must be an integer type 1 - 9999.")
+            raise ValueError("The model has not been published.")
 
     @property
     def year_month(self):
@@ -3241,12 +3538,15 @@ class XdTemporalType(XdOrderedType):
 
     @year_month.setter
     def year_month(self, v):
-        if isinstance(v, tuple):
-            if not 1 <= v[0] <= 9999 or not 1 <= v[1] <= 12:
-                raise ValueError("The year_month value must be a tuple of integers representing 1 <= yyyy <= 9999 and 1 <= dd <= 12.")
-            self._year_month = v
+        if self.published:
+            if isinstance(v, tuple):
+                if not 1 <= v[0] <= 9999 or not 1 <= v[1] <= 12:
+                    raise ValueError("The year_month value must be a tuple of integers representing 1 <= yyyy <= 9999 and 1 <= dd <= 12.")
+                self._year_month = v
+            else:
+                raise ValueError("The year_month value must be a tuple of integers representing (yyyy,mm).")
         else:
-            raise ValueError("The year_month value must be a tuple of integers representing (yyyy,mm).")
+            raise ValueError("The model has not been published.")
 
     @property
     def month_day(self):
@@ -3259,13 +3559,16 @@ class XdTemporalType(XdOrderedType):
 
     @month_day.setter
     def month_day(self, v):
-        max_days = {1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
-        if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], int) and isinstance(v[1], int):
-            if not max_days[v[0]] <= v[1]:
-                raise ValueError("The day value must be must be less than or equal to the number of days allowed in the month.")
-            self._month_day = v
+        if self.published:
+            max_days = {1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+            if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], int) and isinstance(v[1], int):
+                if not max_days[v[0]] <= v[1]:
+                    raise ValueError("The day value must be must be less than or equal to the number of days allowed in the month.")
+                self._month_day = v
+            else:
+                raise ValueError("The month_day value must be a tuple of integers representing (mm,dd).")
         else:
-            raise ValueError("The month_day value must be a tuple of integers representing (mm,dd).")
+            raise ValueError("The model has not been published.")
 
     @property
     def duration(self):
@@ -3284,13 +3587,16 @@ class XdTemporalType(XdOrderedType):
 
     @duration.setter
     def duration(self, v):
-        if isinstance(v, tuple) and len(v) == 6:
-            if all(isinstance(n, int) for n in v[0:4]) and checkers.is_decimal(v[5]):
-                self._duration = v
+        if self.published:
+            if isinstance(v, tuple) and len(v) == 6:
+                if all(isinstance(n, int) for n in v[0:4]) and checkers.is_decimal(v[5]):
+                    self._duration = v
+                else:
+                    raise ValueError("Some members of the duration tuple are not the correct type.")
             else:
-                raise ValueError("Some members of the duration tuple are not the correct type.")
+                raise ValueError("The duration value must be a 6 member tuple (yyyy,mm,dd,hh,MM,ss.ss) of integers except the seconds (last member) being a decimal.")
         else:
-            raise ValueError("The duration value must be a 6 member tuple (yyyy,mm,dd,hh,MM,ss.ss) of integers except the seconds (last member) being a decimal.")
+            raise ValueError("The model has not been published.")
 
     def validate(self):
         """

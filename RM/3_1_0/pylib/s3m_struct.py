@@ -21,7 +21,25 @@ class ItemType(ABC):
 
     @abstractmethod
     def __init__(self):
-        pass
+        self._published = False
+
+    @property
+    def published(self):
+        """
+        When True, prevents further model changes.
+        """
+        return self._published
+
+    @published.setter
+    def published(self, v: bool):
+        if isinstance(v, bool):
+            if self._published == False:
+                self._published = v
+            else:
+                raise ValueError("the published value cannot be changed once published.")
+        else:
+            raise TypeError("the published value must be a boolean.")
+        
 
     @abstractmethod
     def validate(self):
@@ -48,11 +66,15 @@ class XdAdapterType(ItemType):
 
     @value.setter
     def value(self, v):
-        if isinstance(v, XdAnyType) and self._value == None:
-            self._value = v
-            self._value.adapter = True
+        if not self.published:
+            if isinstance(v, XdAnyType) and self._value == None:
+                self._value = v
+                self._value.adapter = True
+                self._published = True
+            else:
+                raise ValueError("the value must be a XdAnyType subtype. A XdAdapter can only contain one XdType.")
         else:
-            raise ValueError("the value must be a XdAnyType subtype. A XdAdapter can only contain one XdType.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -72,6 +94,9 @@ class XdAdapterType(ItemType):
         """
         Return a XML Schema stub for the adapter.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         if not self.validate():
             raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
         indent = 2
@@ -140,25 +165,13 @@ class ClusterType(ItemType):
 
     @docs.setter
     def docs(self, v: str):
-        if checkers.is_string(v):
-            self._docs = v
+        if not self.published:
+            if checkers.is_string(v):
+                self._docs = v
+            else:
+                raise ValueError("the Documentation value must be a string.")
         else:
-            raise ValueError("the Documentation value must be a string.")
-
-    @property
-    def docs(self):
-        """
-        The human readable documentation string describing the purpose of
-        the model.
-        """
-        return self._docs
-
-    @docs.setter
-    def docs(self, v: str):
-        if checkers.is_string(v):
-            self._docs = v
-        else:
-            raise ValueError("the Documentation value must be a string.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def pred_obj_list(self):
@@ -176,12 +189,15 @@ class ClusterType(ItemType):
 
     @pred_obj_list.setter
     def pred_obj_list(self, v: Iterable):
-        if isinstance(v, list) and len(v) == 0:
-            self._pred_obj_list = []
-        elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
-            self._pred_obj_list.append(v)
+        if not self.published:
+            if isinstance(v, list) and len(v) == 0:
+                self._pred_obj_list = []
+            elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
+                self._pred_obj_list.append(v)
+            else:
+                raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
         else:
-            raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def definition_url(self):
@@ -193,11 +209,14 @@ class ClusterType(ItemType):
 
     @definition_url.setter
     def definition_url(self, v: str):
-        if checkers.is_url(v):
-            self._definition_url = v
-            self._docs += '\n        Definition: ' + quote(v)
+        if not self.published:
+            if checkers.is_url(v):
+                self._definition_url = v
+                self._docs += '\n        Definition: ' + quote(v)
+            else:
+                raise ValueError("the Definition URL value must be a valid URL.")
         else:
-            raise ValueError("the Definition URL value must be a valid URL.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def items(self):
@@ -208,13 +227,16 @@ class ClusterType(ItemType):
 
     @items.setter
     def items(self, v):
-        if isinstance(v, ItemType):
-            self._items.append(v)
-        else:
-            if isinstance(v, XdAnyType):
-                raise TypeError("XdType items in a ClusterType must be wrapped in an XdAdapterType.")
+        if not self.published:
+            if isinstance(v, ItemType):
+                self._items.append(v)
             else:
-                raise TypeError("items in a ClusterType must be of type ItemType.")
+                if isinstance(v, XdAnyType):
+                    raise TypeError("XdType items in a ClusterType must be wrapped in an XdAdapterType.")
+                else:
+                    raise TypeError("items in a ClusterType must be of type ItemType.")
+        else:
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -240,6 +262,9 @@ class ClusterType(ItemType):
         """
         Return a XML Schema stub for the Cluster.
         """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+
         self.validate()
         indent = 2
         padding = ('').rjust(indent)
