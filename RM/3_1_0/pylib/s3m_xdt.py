@@ -49,7 +49,7 @@ def valid_cardinality(self, v):
     c = {'act': ((0, 1), (0, 1)), 'ev': ((0, 1), (0, 1)), 'vtb': ((0, 1), (0, 1)), 'vte': ((0, 1), (0, 1)), 'tr': ((0, 1), (0, 1)),
          'modified': ((0, 1), (0, 1)), 'location': ((0, 1), (0, 1)), 'relation_uri': ((0, 1), (0, 1)), 'value': ((0, 1), (0, 1)),
          'units': ((0, 1), (0, 1)), 'size': ((0, 1), (0, 1)), 'encoding': ((0, 1), (0, 1)), 'language': ((0, 1), (0, 1)),
-         'formalism': ((0, 1), (0, 1)), 'media_type': ((0, 1), (0, 1)), 'compression_type': ((0, 1), (0, 1)),
+         'formalism': ((0, 1), (0, 1)), 'media_type': ((0, 1), (0, 1)), 'compression_type': ((0, 1), (0, 1)), 'link': ((0, 1), (0, 1)),
          'hash_result': ((0, 1), (0, 1)), 'hash_function': ((0, 1), (0, 1)), 'alt_txt': ((0, 1), (0, 1)), 'referencerange': ((0, 1), (0, Decimal('Infinity'))),
          'normal_status': ((0, 1), (0, 1)), 'magnitude_status': ((0, 1), (0, 1)), 'error': ((0, 1), (0, 1)), 'accuracy': ((0, 1), (0, 1)),
          'numerator': ((0, 1), (0, 1)), 'denominator': ((0, 1), (0, 1)), 'numerator_units': ((0, 1), (0, 1)),
@@ -60,9 +60,9 @@ def valid_cardinality(self, v):
          'location': ((0, 1), (0, 1)), 'performer': ((0, 1), (0, 1)), 'function': ((0, 1), (0, 1)), 'mode': ((0, 1), (0, 1)),
          'start': ((0, 1), (0, 1)), 'end': ((0, 1), (0, 1)), 'party_name': ((0, 1), (0, 1)), 'party_ref': ((0, 1), (0, 1)),
          'party_details': ((0, 1), (0, 1))}
-    
+
     key = c.get(v[0])
-    
+
     if key is None:
         raise ValueError("The requested setting; " + str(v[0]) + " is not a valid cardinality setting value.")
     else:
@@ -71,6 +71,7 @@ def valid_cardinality(self, v):
         if v[1][1] < c[v[0]][1][0] or v[1][1] > c[v[0]][1][1]:
             raise ValueError("The maximum occurences value for " + str(v) + "is out of range. The allowed values are " + str(c[v[0]][1]))
         return(True)
+
 
 class XdAnyType(ABC):
     """
@@ -1143,11 +1144,15 @@ class XdBooleanType(XdAnyType):
 class XdLinkType(XdAnyType):
     """
     Used to specify a Universal Resource Identifier. Set the pattern facet to accommodate your needs in the DM.
-    Intended use is to provide a mechanism that can be used to link together Data Models.
-    The relation element allows for the use of a descriptive term for the link with an optional URI pointing to the
-    source vocabulary. In most usecases the modeler will define all three of these using the 'fixed' attribute.
+    Primary intended use is to provide a mechanism that can be used to link together S3M Data Models. Can also 
+    be used to link to other resources.
+    
+    The relation element requires the use of a descriptive term for the link with an optional URI pointing to the
+    source vocabulary. 
+    
+    In most usecases the modeler will define all three of these using the 'fixed' attribute.
     Other usecases will have the 'relation' and 'relation-uri' elements fixed and the application will provide the
-    'link-value'.
+    'link'.
     """
 
     def __init__(self, label: str):
@@ -1156,11 +1161,32 @@ class XdLinkType(XdAnyType):
         """
         super().__init__(label)
         self._xdtype = "XdLinkType"
-
-        self._link = link
-        self._relation = relation
+        self._fixed = False
+        self._link = ''
+        self._relation = None
         self._relation_uri = None
         self.cardinality = ('relation_uri', [0, 1])
+        self.cardinality = ('link', [0, 1])
+
+    @property
+    def fixed(self):
+        """
+        The modeler determines if this is a fixed pointer and has included the 
+        hardcoded 'link' if it is fixed. In case fo a fixed pointer it must
+        be provided after the 'fixed' attribute is set True and before 
+        'published' is set to True.
+        """
+        return self._fixed
+
+    @fixed.setter
+    def fixed(self, v):
+        if not self.published:
+            if isinstance(v, bool):
+                self._fixed = v
+            else:
+                raise TypeError("the fixed value must be a boolean.")
+        else:
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def link(self):
@@ -1171,13 +1197,15 @@ class XdLinkType(XdAnyType):
 
     @link.setter
     def link(self, v):
-        if self.published:
-            if checkers.is_string(v):
+        if checkers.is_string(v):
+            if self.published and not self.fixed:
+                self._link = v
+            elif not self.published and self.fixed:
                 self._link = v
             else:
-                raise TypeError("the link value must be a string.")
+                raise ValueError("Cannot add the link. Published: " + str(self.published) + " Fixed: " + str(self.fixed))
         else:
-            raise ValueError("The model has not been published.")
+            raise TypeError("the link value must be a string.")
 
     @property
     def relation(self):
@@ -1235,10 +1263,10 @@ class XdLinkType(XdAnyType):
 
         xdstr = super().getModel()
         # XdLinkType
-        if not self.link:
-            raise ValueError("You must create a link URI value.")
+        if not self.fixed:
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['link'][0]) + "' name='link' type='xs:anyURI'/>\n")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='link' type='xs:anyURI'fixed='" + escape(self.link.strip()) + "'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='link' type='xs:anyURI' fixed='" + escape(self.link.strip()) + "'/>\n")
         if not self.relation:
             raise ValueError("You must add a relationship.")
         else:
@@ -1246,8 +1274,7 @@ class XdLinkType(XdAnyType):
         if not self.relation_uri:
             raise ValueError("You must add a URI for the relationship location.")
         else:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" +
-                                                  str(self.cardinality['relation_uri'][0]) + "' name='relation-uri' type='xs:anyURI' fixed='" + escape(self.relation_uri.strip()) + "'/>\n")
+            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['relation_uri'][0]) + "' name='relation-uri' type='xs:anyURI' fixed='" + escape(self.relation_uri.strip()) + "'/>\n")
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
@@ -1886,9 +1913,9 @@ class XdFileType(XdAnyType):
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['hash_result'][0]) + '" name="hash-result" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['hash_function'][0]) + '" name="hash-function" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['alt_txt'][0]) + '" name="alt-txt" type="xs:string"/>\n'
-        if self._content_type == 'uri':
+        if self.content_type == 'uri':
             xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="uri" type="xs:anyURI"/>\n'
-        elif self._content_type == 'embed':
+        elif self.content_type == 'embed':
             xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="media-content" type="xs:base64Binary"/>\n'
         else:
             raise ValueError("The content_type for the model must be specified.")
