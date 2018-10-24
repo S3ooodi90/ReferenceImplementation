@@ -1913,12 +1913,14 @@ class XdFileType(XdAnyType):
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['hash_result'][0]) + '" name="hash-result" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['hash_function'][0]) + '" name="hash-function" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['alt_txt'][0]) + '" name="alt-txt" type="xs:string"/>\n'
+
         if self.content_type == 'uri':
             xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="uri" type="xs:anyURI"/>\n'
         elif self.content_type == 'embed':
             xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="media-content" type="xs:base64Binary"/>\n'
         else:
             raise ValueError("The content_type for the model must be specified.")
+
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
@@ -2098,10 +2100,10 @@ class XdOrdinalType(XdOrderedType):
     If a normal status is set it should be a member of the set of symbols.
     """
 
-    def __init__(self, label: str, choices: Dict):
+    def __init__(self, label: str, choices):
         """
-        The semantic label (name of the model) and the choices dictionary
-        are required.
+        The semantic label (name of the model) and the 
+        choices list are required.
         """
         super().__init__(label)
         self._xdtype = "XdOrdinalType"
@@ -2421,14 +2423,14 @@ class XdCountType(XdQuantifiedType):
 
     @units.setter
     def units(self, v):
-        if self.published:
+        if not self.published:
             if isinstance(v, XdStringType):
                 self._units = v
             else:
                 self._units = None
                 raise TypeError("The units value must be a XdStringType identifying the things to be counted.")
         else:
-            raise ValueError("The model has not been published.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def min_inclusive(self):
@@ -2647,13 +2649,13 @@ class XdQuantityType(XdQuantifiedType):
 
     @units.setter
     def units(self, v):
-        if self.published:
+        if not self.published:
             if isinstance(v, XdStringType):
                 self._units = v
             else:
                 raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
         else:
-            raise ValueError("The model has not been published.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def min_inclusive(self):
@@ -2874,7 +2876,8 @@ class XdFloatType(XdQuantifiedType):
         Float value.
         """
         return self._value
-
+    
+# TODO: fix the decimal places to follow the fractions digits
     @value.setter
     def value(self, v):
         if self.published:
@@ -2894,13 +2897,13 @@ class XdFloatType(XdQuantifiedType):
 
     @units.setter
     def units(self, v):
-        if self.published:
+        if not self.published:
             if isinstance(v, XdStringType):
                 self._units = v
             else:
                 raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
         else:
-            raise ValueError("The model has not been published.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def min_inclusive(self):
@@ -3302,13 +3305,13 @@ class XdRatioType(XdQuantifiedType):
 
     @numerator_units.setter
     def numerator_units(self, v):
-        if self.published:
+        if not self.published:
             if isinstance(v, XdStringType):
                 self._numerator_units = v
             else:
                 raise ValueError("The numerator_units value must be a XdStringType.")
         else:
-            raise ValueError("The model has not been published.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     @property
     def denominator_units(self):
@@ -3320,13 +3323,13 @@ class XdRatioType(XdQuantifiedType):
 
     @denominator_units.setter
     def denominator_units(self, v):
-        if self.published:
+        if not self.published:
             if isinstance(v, XdStringType):
                 self._denominator_units = v
             else:
                 raise ValueError("The denominator_units value must be a XdStringType.")
         else:
-            raise ValueError("The model has not been published.")
+            raise ValueError("The model has been published and cannot be edited.")
 
     def validate(self):
         """

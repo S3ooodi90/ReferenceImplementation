@@ -193,7 +193,6 @@ class MetaCommon(ABC):
         if not self.published:
             if checkers.is_url(v):
                 self._definition_url = v
-                self._docs += '\n        Definition: ' + quote(v)
             else:
                 raise ValueError("the Definition URL value must be a valid URL.")
         else:
@@ -797,8 +796,8 @@ class AttestationType(MetaCommon):
 
         indent = 2
         padding = ('').rjust(indent)
+        xmlstr = ''
 
-        xmlstr = '<TODO-Write-template./>'
         return(xmlstr)
 
     def getJSONInstance(self):

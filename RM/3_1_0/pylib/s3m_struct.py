@@ -56,6 +56,7 @@ class XdAdapterType(ItemType):
 
     def __init__(self):
         self._value = None
+        self._published = False
 
     @property
     def value(self):
@@ -67,14 +68,17 @@ class XdAdapterType(ItemType):
     @value.setter
     def value(self, v):
         if not self.published:
-            if isinstance(v, XdAnyType) and self._value == None:
-                self._value = v
-                self._value.adapter = True
-                self._published = True
+            if v.published:
+                if isinstance(v, XdAnyType) and self._value == None:
+                    self._value = v
+                    self._value.adapter = True
+                    self._published = True  # automatically publish the adapter when an item is added
+                else:
+                    raise ValueError("the value must be a XdAnyType subtype. A XdAdapter can only contain one XdType.")
             else:
-                raise ValueError("the value must be a XdAnyType subtype. A XdAdapter can only contain one XdType.")
+                raise ValueError("The model has been published and cannot be edited.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise ValueError(v.__str__() + " has not been published and therefore cannot be wrapped in a XdAdapter.")
 
     def validate(self):
         """
@@ -99,6 +103,7 @@ class XdAdapterType(ItemType):
 
         if not self.validate():
             raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
+
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
@@ -129,6 +134,7 @@ class ClusterType(ItemType):
         """
         The semantic label (name of the model) is required.
         """
+        self._published = False        
         self._mcuid = cuid()  # model cuid
         self._label = ''
         self._items = []
