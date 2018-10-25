@@ -15,9 +15,10 @@ import xmltodict
 from cuid import cuid
 from validator_collection import checkers
 
-from s3m_xdt import XdStringType, XdLinkType, XdFileType, valid_cardinality
+from s3m_xdt import XdStringType, XdLinkType, XdFileType
 from s3m_struct import ClusterType
 from s3m_errors import ValidationError
+from s3m_utils import valid_cardinality
 
 class MetaCommon(ABC):
     """

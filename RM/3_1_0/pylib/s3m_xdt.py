@@ -6,7 +6,7 @@ It also contains functionality to manage constraints that are
 built into the XML Schema parsers.
 """
 import re
-import random
+from random import randint, choice, uniform, randrange
 import json
 from datetime import datetime, date, time, timedelta
 from decimal import Decimal
@@ -27,50 +27,10 @@ from validator_collection import checkers
 import s3m_ontology
 from s3m_ev import ExceptionalValue
 from s3m_settings import ACS
-from s3m_errors import ValidationError
-
+from s3m_errors import ValidationError, PublicationError
+from s3m_utils import get_latlon, random_dtstr, valid_cardinality
 
 invlTypes = ['int', 'decimal', 'date', 'time', 'dateTime', 'float', 'duration']
-
-
-def valid_cardinality(self, v):
-    """
-    A dictionary of valid cardinality values and the lower and upper values of the minimum and maximum 
-    occurrences allowed.
-    
-    The requested setting is then tested for a valid setting.
-    Example:
-    
-                 minOccurs      maxOccurs
-    'setting':((lower,upper),(lower,upper))
-    
-    A Python value of 'None' equates to 'unbounded' or 'unlimited'.
-    """
-    c = {'act': ((0, 1), (0, 1)), 'ev': ((0, 1), (0, 1)), 'vtb': ((0, 1), (0, 1)), 'vte': ((0, 1), (0, 1)), 'tr': ((0, 1), (0, 1)),
-         'modified': ((0, 1), (0, 1)), 'location': ((0, 1), (0, 1)), 'relation_uri': ((0, 1), (0, 1)), 'value': ((0, 1), (0, 1)),
-         'units': ((0, 1), (0, 1)), 'size': ((0, 1), (0, 1)), 'encoding': ((0, 1), (0, 1)), 'language': ((0, 1), (0, 1)),
-         'formalism': ((0, 1), (0, 1)), 'media_type': ((0, 1), (0, 1)), 'compression_type': ((0, 1), (0, 1)), 'link': ((0, 1), (0, 1)),
-         'hash_result': ((0, 1), (0, 1)), 'hash_function': ((0, 1), (0, 1)), 'alt_txt': ((0, 1), (0, 1)), 'referencerange': ((0, 1), (0, Decimal('Infinity'))),
-         'normal_status': ((0, 1), (0, 1)), 'magnitude_status': ((0, 1), (0, 1)), 'error': ((0, 1), (0, 1)), 'accuracy': ((0, 1), (0, 1)),
-         'numerator': ((0, 1), (0, 1)), 'denominator': ((0, 1), (0, 1)), 'numerator_units': ((0, 1), (0, 1)),
-         'denominator_units': ((0, 1), (0, 1)), 'xdratio_units': ((0, 1), (0, 1)), 'date': ((0, 1), (0, 1)), 'time': ((0, 1), (0, 1)),
-         'datetime': ((0, 1), (0, 1)), 'day': ((0, 1), (0, 1)), 'month': ((0, 1), (0, 1)), 'year': ((0, 1), (0, 1)), 'year_month': ((0, 1), (0, 1)),
-         'month_day': ((0, 1), (0, 1)), 'duration': ((0, 1), (0, 1)), 'view': ((0, 1), (0, 1)), 'proof': ((0, 1), (0, 1)),
-         'reason': ((0, 1), (0, 1)), 'committer': ((0, 1), (0, 1)), 'committed': ((0, 1), (0, 1)), 'system_user': ((0, 1), (0, 1)),
-         'location': ((0, 1), (0, 1)), 'performer': ((0, 1), (0, 1)), 'function': ((0, 1), (0, 1)), 'mode': ((0, 1), (0, 1)),
-         'start': ((0, 1), (0, 1)), 'end': ((0, 1), (0, 1)), 'party_name': ((0, 1), (0, 1)), 'party_ref': ((0, 1), (0, 1)),
-         'party_details': ((0, 1), (0, 1))}
-
-    key = c.get(v[0])
-
-    if key is None:
-        raise ValueError("The requested setting; " + str(v[0]) + " is not a valid cardinality setting value.")
-    else:
-        if v[1][0] < c[v[0]][0][0] or v[1][0] > c[v[0]][0][1]:
-            raise ValueError("The minimum occurences value for " + str(v) + "is out of range. The allowed values are " + str(c[v[0]][0]))
-        if v[1][1] < c[v[0]][1][0] or v[1][1] > c[v[0]][1][1]:
-            raise ValueError("The maximum occurences value for " + str(v) + "is out of range. The allowed values are " + str(c[v[0]][1]))
-        return(True)
 
 
 class XdAnyType(ABC):
@@ -98,7 +58,7 @@ class XdAnyType(ABC):
         self._docs = ''
         self._definition_url = ''
         self._pred_obj_list = []
-        self._act = ''
+        self._act = None
         self._ev = []
         self._vtb = None
         self._vte = None
@@ -106,7 +66,7 @@ class XdAnyType(ABC):
         self._modified = None
         self._latitude = None
         self._longitude = None
-        self._cardinality = {'act': [0, 1], 'ev': [0, None], 'vtb': [0, 1], 'vte': [0, 1], \
+        self._cardinality = {'act': [0, 1], 'ev': [0, None], 'vtb': [0, 1], 'vte': [0, 1],
                              'tr': [0, 1], 'modified': [0, 1], 'location': [0, 1]}
 
         if checkers.is_string(label, minimum_length=2) and not self._published:
@@ -167,7 +127,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("The cardinality value is malformed. It must be a tuple of a string and a list of two integers.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
             
     @property
     def mcuid(self):
@@ -239,7 +199,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Documentation value must be a string.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def pred_obj_list(self):
@@ -265,7 +225,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def definition_url(self):
@@ -285,7 +245,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Definition URL value must be a valid URL.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def act(self):
@@ -309,7 +269,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Access Control Tag value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def ev(self):
@@ -330,7 +290,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the ev value must be an ExceptionalValue.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def vtb(self):
@@ -348,7 +308,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Valid Time Begin value must be a datetime.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def vte(self):
@@ -367,7 +327,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Valid Time End value must be a datetime.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def tr(self):
@@ -385,7 +345,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Time Recorded value must be a datetime.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def modified(self):
@@ -403,7 +363,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Modified value must be a datetime.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def latitude(self):
@@ -420,7 +380,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Latitude value must be a decimal between -90.00 and 90.00.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def longitude(self):
@@ -437,7 +397,7 @@ class XdAnyType(ABC):
             else:
                 raise ValueError("the Longitude value must be a decimal between -180.00 and 180.00.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     def __str__(self):
         if self.validate():
@@ -461,7 +421,7 @@ class XdAnyType(ABC):
         Return a XML Schema stub for Xd Types.
         """
         if not self.published:
-            raise ValueError("The model must first be published.")
+            raise PublicationError("The model must first be published.")
         
         self.validate()
         
@@ -498,7 +458,7 @@ class XdAnyType(ABC):
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         # XdAny
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
-        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['act'][0]) + '" name="act" type="xs:string" default="' + self.act.strip() + '"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['act'][0]) + '" name="act" type="xs:string"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:ExceptionalValue"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['vtb'][0]) + '" name="vtb" type="xs:dateTime"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="' + str(self.cardinality['vte'][0]) + '" name="vte" type="xs:dateTime"/>\n'
@@ -509,41 +469,50 @@ class XdAnyType(ABC):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
-        Return an example XML fragment for this model.
+        Return an XML fragment for this model.
         """
         if not self.published:
-            raise ValueError("The model must first be published.")
-
-        act = random.choice(ACS)
+            raise PublicationError("The model must first be published.")
+        
+        # set some values for use in examples when actual data hasn't been assigned
+        if example == True:
+            self.act = choice(ACS)
+            self.vtb = random_dtstr()
+            self.vte = random_dtstr()
+            self.tr = random_dtstr()
+            self.modified = random_dtstr()
+            loc = get_latlon()
+            self.latitude = str(loc[0])
+            self.longitude = str(loc[1])
 
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = ''
         xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
         xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
-        if self.cardinality['act'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
-        if self.cardinality['vtb'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
-        if self.cardinality['vte'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
-        if self.cardinality['tr'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
-        if self.cardinality['modified'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
-        if self.cardinality['location'][0] > 0:
-            xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
-            xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
+        if self.cardinality['act'][0] > 0 or self.act is not None:
+            xmlstr += padding.rjust(indent + 2) + '<act>' + self.act + '</act>\n'
+        if self.cardinality['vtb'][0] > 0 or self.vtb is not None:
+            xmlstr += padding.rjust(indent + 2) + '<vtb>' + self.vtb + '</vtb>\n'
+        if self.cardinality['vte'][0] > 0 or self.vte is not None:
+            xmlstr += padding.rjust(indent + 2) + '<vte>' + self.vte + '</vte>\n'
+        if self.cardinality['tr'][0] > 0 or self.tr is not None:
+            xmlstr += padding.rjust(indent + 2) + '<tr>' + self.tr + '</tr>\n'
+        if self.cardinality['modified'][0] > 0 or self.modified is not None:
+            xmlstr += padding.rjust(indent + 2) + '<modified>' + self.modified + '</modified>\n'
+        if self.cardinality['location'][0] > 0 or self.latitude is not None or self.longitude is not None:
+            xmlstr += padding.rjust(indent + 2) + '<latitude>' + self.latitude + '</latitude>\n'
+            xmlstr += padding.rjust(indent + 2) + '<longitude>' + self.longitude + '</longitude>\n'
 
         return(xmlstr)
 
-    def getJSONInstance(self):
+    def getJSONInstance(self, example=False):
         """
         Return an example JSON fragment for this model.
         """
-        xml = self.getXMLInstance()
+        xml = self.getXMLInstance(example)
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False))
 
@@ -596,7 +565,7 @@ class XdIntervalType(XdAnyType):
             else:
                 raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def upper(self):
@@ -618,7 +587,7 @@ class XdIntervalType(XdAnyType):
             else:
                 raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def lower_included(self):
@@ -635,7 +604,7 @@ class XdIntervalType(XdAnyType):
             else:
                 raise ValueError("the lower_included value must be a Boolean.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def upper_included(self):
@@ -652,7 +621,7 @@ class XdIntervalType(XdAnyType):
             else:
                 raise ValueError("the upper_included value must be a Boolean.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def lower_bounded(self):
@@ -669,7 +638,7 @@ class XdIntervalType(XdAnyType):
             else:
                 raise ValueError("the lower_bounded value must be a Boolean.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def upper_bounded(self):
@@ -686,7 +655,7 @@ class XdIntervalType(XdAnyType):
             else:
                 raise ValueError("the upper_bounded value must be a Boolean.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def interval_units(self):
@@ -708,7 +677,7 @@ class XdIntervalType(XdAnyType):
             else:
                 raise ValueError("the interval_units value must be a tuple.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -772,16 +741,16 @@ class XdIntervalType(XdAnyType):
             xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
         if not self.published:
-            raise ValueError("The model must first be published.")
+            raise PublicationError("The model must first be published.")
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
 
         xmlstr += padding.rjust(indent + 2) + '<lower>' + str(self._lower).strip() + '</lower>\n'
         xmlstr += padding.rjust(indent + 2) + '<upper>' + str(self._upper).strip() + '</upper>\n'
@@ -827,7 +796,7 @@ class ReferenceRangeType(XdAnyType):
             else:
                 raise ValueError("the definition value must be a string.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def interval(self):
@@ -844,7 +813,7 @@ class ReferenceRangeType(XdAnyType):
             else:
                 raise ValueError("the interval value must be a XdIntervalType.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def is_normal(self):
@@ -861,7 +830,7 @@ class ReferenceRangeType(XdAnyType):
             else:
                 raise TypeError("the is_normal value must be a Boolean.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -891,14 +860,14 @@ class ReferenceRangeType(XdAnyType):
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
         normal = 'true' if self._is_normal else 'false'
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
 
         xmlstr += padding.rjust(indent + 2) + '<definition>' + self._definition.strip() + '</definition>\n'
         xmlstr += padding.rjust(indent + 2) + '<interval>\n'
@@ -982,7 +951,7 @@ class XdBooleanType(XdAnyType):
             else:
                 raise ValueError("the true_value value must be in the options['trues'] list and the false_value must be None.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def false_value(self):
@@ -1002,7 +971,7 @@ class XdBooleanType(XdAnyType):
             else:
                 raise ValueError("the false_value value must be in the options['falses'] list and the true_value must be None.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     def validate(self):
         """
@@ -1062,24 +1031,30 @@ class XdBooleanType(XdAnyType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
-        Return an example XML fragment for this model.
+        Return an XML fragment for this model.
         """
-        # randomly choose an option
-        tf = random.choice(list(self._options.keys()))
-        choice = random.choice(self._options[tf])
+        if example:
+            # randomly choose an option
+            tf = choice(list(self._options.keys()))
+            if tf == 'trues':
+                self.true_value = choice(self._options[tf])
+            elif tf == 'falses':
+                self.false_value = choice(self._options[tf])
+            else:
+                raise ValueError("Something bad happened selecting an example value.")
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
 
-        if tf == 'trues':
-            xmlstr += padding.rjust(indent + 2) + '<true-value>' + choice + '</true-value>\n'
-        elif tf == 'falses':
-            xmlstr += padding.rjust(indent + 2) + '<false-value>' + choice + '</false-value>\n'
+        if self.true_value is not None:
+            xmlstr += padding.rjust(indent + 2) + '<true-value>' + self.true_value + '</true-value>\n'
+        elif self.false_value is not None:
+            xmlstr += padding.rjust(indent + 2) + '<false-value>' + self.false_value + '</false-value>\n'
         else:
-            xmlstr += padding.rjust(indent + 2) + '** ERROR GENERATING EXAMPLE **\n'
+            xmlstr += padding.rjust(indent + 2) + '<!-- ** Missing required instance data. ** -->\n'
 
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
@@ -1088,57 +1063,6 @@ class XdBooleanType(XdAnyType):
         tree = etree.XML(xmlstr, parser)
 
         return(xmlstr)
-
-    def getXMLExample(self):
-        """
-        Return an example XML fragment for this model.
-
-        The core elements are included even though they may not be
-        required via cardinality. Therefore this example may be considerably
-        larger than an actual implementation.
-        """
-        # randomly choose an option
-        tf = random.choice(list(self._options.keys()))
-        choice = random.choice(self._options[tf])
-        act = random.choice(ACS)
-
-        indent = 2
-        padding = ('').rjust(indent)
-        xmlstr = ''
-        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
-        xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
-        xmlstr += padding.rjust(indent + 2) + '<act>' + act + '</act>\n'
-        xmlstr += padding.rjust(indent + 2) + '<OTH>\n'
-        xmlstr += padding.rjust(indent + 4) + '<ev-name>Other</ev-name>  # example exceptional value\n'
-        xmlstr += padding.rjust(indent + 2) + '</OTH>\n'
-        xmlstr += padding.rjust(indent + 2) + '<vtb>2006-06-04T18:13:51.0</vtb>\n'
-        xmlstr += padding.rjust(indent + 2) + '<vte>2026-05-04T18:13:51.0</vte>\n'
-        xmlstr += padding.rjust(indent + 2) + '<tr>2006-05-04T18:13:51.0</tr>\n'
-        xmlstr += padding.rjust(indent + 2) + '<modified>2006-05-04T18:13:51.0</modified>\n'
-        xmlstr += padding.rjust(indent + 2) + '<latitude>-22.456</latitude>\n'
-        xmlstr += padding.rjust(indent + 2) + '<longitude>123.654</longitude>\n'
-        if tf == 'trues':
-            xmlstr += padding.rjust(indent + 2) + '<true-value>' + choice + '</true-value>\n'
-        elif tf == 'falses':
-            xmlstr += padding.rjust(indent + 2) + '<false-value>' + choice + '</false-value>\n'
-        else:
-            xmlstr += padding.rjust(indent + 2) + '** ERROR GENERATING EXAMPLE **\n'
-
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
-
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
-
-        return(xmlstr)
-
-    def getJSONExample(self):
-        """
-        Return an example JSON fragment for this model based on the getXMLInstanceex method.
-        """
-        xml = self.getXMLExample()
-        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
-        return(json.dumps(parsed, indent=2, sort_keys=False))
 
 
 class XdLinkType(XdAnyType):
@@ -1186,7 +1110,7 @@ class XdLinkType(XdAnyType):
             else:
                 raise TypeError("the fixed value must be a boolean.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def link(self):
@@ -1222,7 +1146,7 @@ class XdLinkType(XdAnyType):
             else:
                 raise TypeError("the relation value must be a string.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def relation_uri(self):
@@ -1240,7 +1164,7 @@ class XdLinkType(XdAnyType):
             else:
                 raise TypeError("the relation_uri value must be a URL.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -1282,14 +1206,18 @@ class XdLinkType(XdAnyType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
-
+        if example == True:
+            self.link = 'https://s3model.com/dmlib/dm-cjmuxu61q0000z98p91fewlhm'
+            self.relation = 'Related Data Model'
+            self.relation_uri = 'https://s3model.com/examples/related'
+            
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
 
         xmlstr += padding.rjust(indent + 2) + '<link>' + self.link + '</link>\n'
         xmlstr += padding.rjust(indent + 2) + '<relation>' + self.relation + '</relation>\n'
@@ -1318,7 +1246,7 @@ class XdStringType(XdAnyType):
         super().__init__(label)
         self._xdtype = "XdStringType"
 
-        self._value = ''
+        self._value = None
         self._language = None
         self._enums = []
         self._regex = None
@@ -1342,7 +1270,7 @@ class XdStringType(XdAnyType):
             else:
                 raise TypeError("the value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def language(self):
@@ -1360,7 +1288,7 @@ class XdStringType(XdAnyType):
             else:
                 raise TypeError("the language value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def length(self):
@@ -1390,7 +1318,7 @@ class XdStringType(XdAnyType):
                 else:
                     raise TypeError("The length value must be an integer (exact length) or a tuple (min/max lengths).")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def regex(self):
@@ -1414,7 +1342,7 @@ class XdStringType(XdAnyType):
                 except re.error:
                     raise ValueError("The value is not a valid regular expression.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def enums(self):
@@ -1448,7 +1376,7 @@ class XdStringType(XdAnyType):
             else:
                 raise TypeError("The enumerations must be a list of tuples.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def default(self):
@@ -1467,7 +1395,7 @@ class XdStringType(XdAnyType):
             else:
                 raise TypeError("The default value must be a string or None.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -1557,36 +1485,36 @@ class XdStringType(XdAnyType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
-
-        if len(self.enums) > 0:
-            if self.default is not None:
-                str_val = self.default
+        if self.value == None and example == True:
+            if len(self.enums) > 0:
+                if self.default is not None:
+                    self.value = self.default
+                else:
+                    self.value = choice(self.enums)[0]
+            elif isinstance(self.length, int):
+                self.value = 'w' * self.length
+            elif isinstance(self.length, tuple):
+                self.value = 'd' * self.length[0]  # insure to meet the minimum
+            elif self.default is not None:
+                self.value = self.default
+            elif self.regex is not None:
+                try:
+                    self.value = exrex.getone(self.regex)
+                except:
+                    self.value = "Could not generate a valid example for the regex."
             else:
-                str_val = random.choice(self.enums)[0]
-        elif isinstance(self.length, int):
-            str_val = 'w' * self.length
-        elif isinstance(self.length, tuple):
-            str_val = 'd' * self.length[0]  # insure to meet the minimum
-        elif self.default is not None:
-            str_val = self.default
-        elif self.regex is not None:
-            try:
-                str_val = exrex.getone(self.regex)
-            except:
-                str_val = "Could not generate a valid example for the regex."
-        else:
-            str_val = 'Default String'  # just a default
+                self.value = 'Generated Default String'  # just a default
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
 
-        xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + str_val + '</xdstring-value>\n'
-        if self.language:
+        xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + self.value + '</xdstring-value>\n'
+        if self.language is not None:
             xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.language + '</xdstring-language>\n'
 
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
@@ -1655,7 +1583,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypError("The content_type value must be an a string and one of 'uri' or 'embed'.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def size(self):
@@ -1673,7 +1601,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("The size value must be an integer.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def encoding(self):
@@ -1697,7 +1625,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the encoding value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def language(self):
@@ -1717,7 +1645,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the language value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def formalism(self):
@@ -1737,7 +1665,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the formalism value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def media_type(self):
@@ -1757,7 +1685,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the media_type value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def compression_type(self):
@@ -1780,7 +1708,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the compression_type value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def hash_result(self):
@@ -1802,7 +1730,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the hash_result value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def hash_function(self):
@@ -1821,7 +1749,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the hash_function value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def alt_txt(self):
@@ -1838,7 +1766,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the alt_txt value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def uri(self):
@@ -1858,7 +1786,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("the uri value must be a URL and media_content must be None.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def media_content(self):
@@ -1884,7 +1812,7 @@ class XdFileType(XdAnyType):
             else:
                 raise TypeError("uri must be None.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     def validate(self):
         """
@@ -1928,14 +1856,14 @@ class XdFileType(XdAnyType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
 
         xmlstr += padding.rjust(indent + 2) + '<size>' + str(self.size) + '</size>\n'
         if self.encoding:
@@ -2000,7 +1928,7 @@ class XdOrderedType(XdAnyType):
             else:
                 raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def normal_status(self):
@@ -2021,7 +1949,7 @@ class XdOrderedType(XdAnyType):
             else:
                 raise TypeError("the normal_status value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     def validate(self):
         """
@@ -2053,14 +1981,14 @@ class XdOrderedType(XdAnyType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
         if self._referenceranges is not None:
             for rr in self._referenceranges:
                 xmlstr += rr.getXMLInstance()
@@ -2130,7 +2058,7 @@ class XdOrdinalType(XdOrderedType):
             else:
                 raise TypeError("the ordinal value must be a decimal.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def symbol(self):
@@ -2150,7 +2078,7 @@ class XdOrdinalType(XdOrderedType):
             else:
                 raise TypeError("the symbol value must be a string.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def choices(self):
@@ -2170,7 +2098,7 @@ class XdOrdinalType(XdOrderedType):
             else:
                 raise TypeError("the choices value must be a list of tuples.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -2222,14 +2150,14 @@ class XdOrdinalType(XdOrderedType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
         indent = 2
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
-        c = random.choice(self._choices)
+        xmlstr = super().getXMLInstance(example)
+        c = choice(self._choices)
         xmlstr += padding.rjust(indent + 2) + '<ordinal>' + str(c[0]) + '</ordinal>\n'
         xmlstr += padding.rjust(indent + 2) + '<symbol>' + c[1] + '</symbol>\n'
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
@@ -2272,7 +2200,7 @@ class XdQuantifiedType(XdOrderedType):
             else:
                 raise ValueError("The magnitude_status value must be one of: None,'equal','less_than', 'greater_than', 'less_than_or_equal', 'greater_than_or_equal', 'approximate'.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def error(self):
@@ -2290,7 +2218,7 @@ class XdQuantifiedType(XdOrderedType):
             else:
                 raise TypeError("The error value must be an integer 0 - 100.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def accuracy(self):
@@ -2308,7 +2236,7 @@ class XdQuantifiedType(XdOrderedType):
             else:
                 raise TypeError("The accuracy value must be an integer 0 - 100.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     def validate(self):
         """
@@ -2335,14 +2263,14 @@ class XdQuantifiedType(XdOrderedType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
         if self.cardinality['magnitude_status'][0] > 0:
             xmlstr += padding.rjust(indent) + '<magnitude-status>=</magnitude-status>\n'
         if self.error is not None:
@@ -2411,7 +2339,7 @@ class XdCountType(XdQuantifiedType):
             else:
                 raise TypeError("The value value must be an integer.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def units(self):
@@ -2430,7 +2358,7 @@ class XdCountType(XdQuantifiedType):
                 self._units = None
                 raise TypeError("The units value must be a XdStringType identifying the things to be counted.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def min_inclusive(self):
@@ -2447,7 +2375,7 @@ class XdCountType(XdQuantifiedType):
             else:
                 raise TypeError("The min_inclusive value must be an integer.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def max_inclusive(self):
@@ -2464,7 +2392,7 @@ class XdCountType(XdQuantifiedType):
             else:
                 raise TypeError("The max_inclusive value must be an integer.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def min_exclusive(self):
@@ -2481,7 +2409,7 @@ class XdCountType(XdQuantifiedType):
             else:
                 raise TypeError("The min_exclusive value must be an integer.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def max_exclusive(self):
@@ -2498,7 +2426,7 @@ class XdCountType(XdQuantifiedType):
             else:
                 raise TypeError("The max_exclusive value must be an integer.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def total_digits(self):
@@ -2515,7 +2443,7 @@ class XdCountType(XdQuantifiedType):
             else:
                 raise TypeError("The total_digits value must be an integer.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -2565,14 +2493,14 @@ class XdCountType(XdQuantifiedType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
         xmlstr += padding.rjust(indent) + '<xdcount-value>' + str(self.value).strip() + '</xdcount-value>\n'
         xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
@@ -2637,7 +2565,7 @@ class XdQuantityType(XdQuantifiedType):
             else:
                 raise ValueError("The value must be a decimal.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def units(self):
@@ -2655,7 +2583,7 @@ class XdQuantityType(XdQuantifiedType):
             else:
                 raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def min_inclusive(self):
@@ -2674,7 +2602,7 @@ class XdQuantityType(XdQuantifiedType):
             else:
                 raise ValueError("The min_inclusive value must be a Decimal.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def max_inclusive(self):
@@ -2693,7 +2621,7 @@ class XdQuantityType(XdQuantifiedType):
             else:
                 raise ValueError("The max_inclusive value must be a Decimal.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def min_exclusive(self):
@@ -2712,7 +2640,7 @@ class XdQuantityType(XdQuantifiedType):
             else:
                 raise ValueError("The min_exclusive value must be a Decimal.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def max_exclusive(self):
@@ -2731,7 +2659,7 @@ class XdQuantityType(XdQuantifiedType):
             else:
                 raise ValueError("The max_exclusive value must be a Decimal.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def total_digits(self):
@@ -2748,7 +2676,7 @@ class XdQuantityType(XdQuantifiedType):
             else:
                 raise ValueError("The total_digits value must be a integer.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def fraction_digits(self):
@@ -2765,7 +2693,7 @@ class XdQuantityType(XdQuantifiedType):
             else:
                 raise ValueError("The fraction_digits value must be a integer.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -2817,14 +2745,14 @@ class XdQuantityType(XdQuantifiedType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
         xmlstr += padding.rjust(indent) + '<xdquantity-value>' + str(self.value).strip() + '</xdquantity-value>\n'
         xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
@@ -2886,7 +2814,7 @@ class XdFloatType(XdQuantifiedType):
             else:
                 raise ValueError("The value must be a float.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def units(self):
@@ -2903,7 +2831,7 @@ class XdFloatType(XdQuantifiedType):
             else:
                 raise ValueError("The units value must be a XdStringType identifying the things to be measured.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def min_inclusive(self):
@@ -2921,7 +2849,7 @@ class XdFloatType(XdQuantifiedType):
             else:
                 raise ValueError("The min_inclusive value must be a float.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def max_inclusive(self):
@@ -2939,7 +2867,7 @@ class XdFloatType(XdQuantifiedType):
             else:
                 raise ValueError("The max_inclusive value must be a float.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def min_exclusive(self):
@@ -2957,7 +2885,7 @@ class XdFloatType(XdQuantifiedType):
             else:
                 raise ValueError("The min_exclusive value must be a float.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def max_exclusive(self):
@@ -2975,7 +2903,7 @@ class XdFloatType(XdQuantifiedType):
             else:
                 raise ValueError("The max_exclusive value must be a float.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def total_digits(self):
@@ -2992,7 +2920,7 @@ class XdFloatType(XdQuantifiedType):
             else:
                 raise ValueError("The total_digits value must be a int.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -3044,14 +2972,14 @@ class XdFloatType(XdQuantifiedType):
 
         return(xdstr)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example=False):
         """
         Return an example XML fragment for this model.
         """
 
         indent = 4
         padding = ('').rjust(indent)
-        xmlstr = super().getXMLInstance()
+        xmlstr = super().getXMLInstance(example)
         xmlstr += padding.rjust(indent) + '<xdfloat-value>' + str(self.xdfloat_value).strip() + '</xdfloat-value>\n'
         if self.units:
             xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
@@ -3119,7 +3047,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The ratio_type value must be a str and be one of; 'ratio','rate', or 'proportion'.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def numerator(self):
@@ -3136,7 +3064,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The numerator value must be a float.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def num_min_inclusive(self):
@@ -3155,7 +3083,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The min_inclusive value must be a Decimal.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def num_max_inclusive(self):
@@ -3174,7 +3102,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The max_inclusive value must be a Decimal.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def num_min_exclusive(self):
@@ -3193,7 +3121,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The min_exclusive value must be a Decimal.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def num_max_exclusive(self):
@@ -3212,7 +3140,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The max_exclusive value must be a Decimal.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def denominator(self):
@@ -3229,7 +3157,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The denominator value must be a float.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def den_min_inclusive(self):
@@ -3311,7 +3239,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The numerator_units value must be a XdStringType.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     @property
     def denominator_units(self):
@@ -3329,7 +3257,7 @@ class XdRatioType(XdQuantifiedType):
             else:
                 raise ValueError("The denominator_units value must be a XdStringType.")
         else:
-            raise ValueError("The model has been published and cannot be edited.")
+            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -3407,6 +3335,18 @@ class XdRatioType(XdQuantifiedType):
 
         return(xdstr)
 
+    def getXMLInstance(self, example=False):
+        """
+        Return an XML fragment for this model.
+        """
+        if example:
+            # randomly choose an option
+            pass
+        
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = super().getXMLInstance(example)
+        return(xmlstr)
 
 class XdTemporalType(XdOrderedType):
     """
@@ -3464,7 +3404,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The date value must be a date type.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def time(self):
@@ -3482,7 +3422,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The time value must be a time type.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def datetime(self):
@@ -3500,7 +3440,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The datetime value must be a datetime type.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def day(self):
@@ -3520,7 +3460,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The day value must be an integer type 1 - 31.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def month(self):
@@ -3539,7 +3479,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The month value must be an integer type 1 - 12.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def year(self):
@@ -3556,7 +3496,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The year value must be an integer type 1 - 9999.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def year_month(self):
@@ -3576,7 +3516,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The year_month value must be a tuple of integers representing (yyyy,mm).")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def month_day(self):
@@ -3598,7 +3538,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The month_day value must be a tuple of integers representing (mm,dd).")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     @property
     def duration(self):
@@ -3626,7 +3566,7 @@ class XdTemporalType(XdOrderedType):
             else:
                 raise ValueError("The duration value must be a 6 member tuple (yyyy,mm,dd,hh,MM,ss.ss) of integers except the seconds (last member) being a decimal.")
         else:
-            raise ValueError("The model has not been published.")
+            raise PublicationError("The model has not been published.")
 
     def validate(self):
         """
@@ -3665,3 +3605,15 @@ class XdTemporalType(XdOrderedType):
 
         return(xdstr)
 
+    def getXMLInstance(self, example=False):
+        """
+        Return an XML fragment for this model.
+        """
+        if example:
+            # randomly choose an option
+            pass
+        
+        indent = 2
+        padding = ('').rjust(indent)
+        xmlstr = super().getXMLInstance(example)
+        return(xmlstr)
