@@ -1491,6 +1491,7 @@ class XdStringType(XdAnyType):
         Return an example XML fragment for this model.
         """
         if self.value == None and example == True:
+            self.value = 'Generated Default String'  # just a default
             if len(self.enums) > 0:
                 if self.default is not None:
                     self.value = self.default
@@ -2100,30 +2101,32 @@ class XdOrdinalType(XdOrderedType):
     @property
     def choices(self):
         """
-        The choices list contains a three member tuple for each choice.
+        The choices dictionary uses a number for a key and a two member tuple 
+        for each choice item. The key is the 'ordinal', the first tuple member
+        is the 'symbol' and the second member is a definition URL.
 
         Template:
-        (ordinal, symbol, URI)
+        ordinal:(symbol, URI)
         """
         return self._choices
 
     @choices.setter
     def choices(self, v):
         if not self.published:
-            if isinstance(v, list):
-                for c in v:
-                    if not isinstance(c, tuple) or len(c) != 3:
-                        raise TypeError("the choice must be a 3 member tuple.")
-                    if not isinstance(c[0], numbers.Number):
-                        raise TypeError("the first member must be a number.")
-                    if not isinstance(c[1], str):
-                        raise TypeError("the second member must be a string.")
-                    if not isinstance(c[2], str):
-                        raise TypeError("the third member must be a string (URI/URL).")
+            if isinstance(v, dict):
+                for k in v.keys():
+                    if not isinstance(v[k], tuple) or len(v[k]) != 2:
+                        raise TypeError("the item must be a 2 member tuple.")
+                    if not isinstance(k, numbers.Number):
+                        raise TypeError("the key must be a number.")
+                    if not isinstance(v[k][1], str):
+                        raise TypeError("the first member must be a string.")
+                    if not isinstance(v[k][2], str):
+                        raise TypeError("the second member must be a string (URI/URL).")
                         
                 self._choices = v
             else:
-                raise TypeError("the choices value must be a list of tuples.")
+                raise TypeError("the choices value must be a dictionary.")
         else:
             raise PublicationError("The model has been published and cannot be edited.")
 
@@ -2144,12 +2147,16 @@ class XdOrdinalType(XdOrderedType):
         indent = 2
         padding = ('').rjust(indent)
         xdstr = super().getModel()
+
+        ords = list(self._choices.keys())
+        ords.sort()
+        
         # XdOrdinal
         xdstr += padding.rjust(indent + 10) + ("<xs:element maxOccurs='1' minOccurs='1' name='ordinal'>\n")
         xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
         xdstr += padding.rjust(indent + 12) + ("<xs:restriction base='xs:decimal'>\n")
-        for value in self._choices:
-            xdstr += padding.rjust(indent + 14) + ("<xs:enumeration value='" + str(value[0]).strip() + "'/>\n")
+        for k in ords:
+            xdstr += padding.rjust(indent + 14) + ("<xs:enumeration value='" + str(k).strip() + "'/>\n")
         xdstr += padding.rjust(indent + 12) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 12) + ("</xs:simpleType>\n")
         xdstr += padding.rjust(indent + 10) + ("</xs:element>\n")
@@ -2157,12 +2164,12 @@ class XdOrdinalType(XdOrderedType):
         xdstr += padding.rjust(indent + 10) + ("<xs:element maxOccurs='1' minOccurs='1' name='symbol'>\n")
         xdstr += padding.rjust(indent + 12) + ("<xs:simpleType>\n")
         xdstr += padding.rjust(indent + 14) + ("<xs:restriction base='xs:string'>\n")
-        for value in self._choices:
-            xdstr += padding.rjust(indent + 16) + ("<xs:enumeration value='" + str(value[1]).strip() + "'>\n")
+        for k in ords:
+            xdstr += padding.rjust(indent + 16) + ("<xs:enumeration value='" + str(self.choices[k][0]).strip() + "'>\n")
             xdstr += padding.rjust(indent + 16) + ("<xs:annotation>\n")
             xdstr += padding.rjust(indent + 18) + ("<xs:appinfo>\n")
-            xdstr += padding.rjust(indent + 18) + ("<rdfs:Class rdf:about='mc-" + self.mcuid + "/symbol/" + quote(str(value[1]).strip()) + "'>\n")
-            xdstr += padding.rjust(indent + 20) + ("<rdfs:isDefinedBy rdf:resource='" + quote(str(value[2]).strip()) + "'/>\n")
+            xdstr += padding.rjust(indent + 18) + ("<rdfs:Class rdf:about='mc-" + self.mcuid + "/symbol/" + quote(str(self.choices[k][0]).strip()) + "'>\n")
+            xdstr += padding.rjust(indent + 20) + ("<rdfs:isDefinedBy rdf:resource='" + quote(str(self.choices[k][1]).strip()) + "'/>\n")
             xdstr += padding.rjust(indent + 18) + ("</rdfs:Class>\n")
             xdstr += padding.rjust(indent + 18) + ("</xs:appinfo>\n")
             xdstr += padding.rjust(indent + 16) + ("</xs:annotation>\n")
@@ -2182,14 +2189,19 @@ class XdOrdinalType(XdOrderedType):
         Return an example XML fragment for this model.
         """
         if example == True:
-            c = choice(self._choices)
-            self.ordinal = str(c[0])
-            self.symbol = c[1]
-            
+            c = choice(list(self._choices.keys()))
+            self.ordinal = str(c)
+            self.symbol = self._choices[c][0]
+        else:
+            if self.ordinal in list(self._choices.keys()):
+                self.symbol = self._choices[self.ordinal][0]
+            else:
+                raise ValueError(str(self.ordinal) + " is not a valid ordinal.")
+
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
-        xmlstr += padding.rjust(indent + 2) + '<ordinal>' + self.ordinal + '</ordinal>\n'
+        xmlstr += padding.rjust(indent + 2) + '<ordinal>' + str(self.ordinal) + '</ordinal>\n'
         xmlstr += padding.rjust(indent + 2) + '<symbol>' + self.symbol + '</symbol>\n'
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
@@ -2483,6 +2495,9 @@ class XdCountType(XdQuantifiedType):
         if not super(XdCountType, self).validate():
             return(False)
         else:
+            if not isinstance(self.units, XdStringType):
+                raise ValueError("Missing XdStringType for units.")
+            
             return(True)
 
     def getModel(self):
@@ -2528,7 +2543,9 @@ class XdCountType(XdQuantifiedType):
         """
         Return an example XML fragment for this model.
         """
-
+        if example == True and not isinstance(self.value, int):
+            self.value = randint(1, 1000000000)
+            
         indent = 4
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
@@ -2733,6 +2750,8 @@ class XdQuantityType(XdQuantifiedType):
         if not super(XdQuantityType, self).validate():
             return(False)
         else:
+            if not isinstance(self.units, XdStringType):
+                raise ValueError("Missing XdStringType for units.")
             return(True)
 
     def getModel(self):
@@ -2960,6 +2979,8 @@ class XdFloatType(XdQuantifiedType):
         if not super(XdFloatType, self).validate():
             return(False)
         else:
+            if not isinstance(self.units, XdStringType):
+                raise ValueError("Missing XdStringType for units.")
             return(True)
 
     def getModel(self):
