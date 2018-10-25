@@ -6,8 +6,9 @@ It also contains functionality to manage constraints that are
 built into the XML Schema parsers.
 """
 import re
-from random import randint, choice, uniform, randrange
 import json
+import numbers
+from random import randint, choice, uniform, randrange
 from datetime import datetime, date, time, timedelta
 from decimal import Decimal
 from collections import OrderedDict
@@ -1543,14 +1544,14 @@ class XdFileType(XdAnyType):
         self._xdtype = "XdFileType"
 
         self._size = None
-        self._encoding = ''
-        self._language = ''
-        self._formalism = ''
-        self._media_type = ''
-        self._compression_type = ''
-        self._hash_result = ''
-        self._hash_function = ''
-        self._alt_txt = ''
+        self._encoding = None
+        self._language = None
+        self._formalism = None
+        self._media_type = None
+        self._compression_type = None
+        self._hash_result = None
+        self._hash_function = None
+        self._alt_txt = None
         # choice of uri or media_content
         self._uri = None
         self._media_content = None
@@ -1861,30 +1862,43 @@ class XdFileType(XdAnyType):
         Return an example XML fragment for this model.
         """
 
+        if example == True:
+            self.size = randint(1, 1000000000)
+            self.encoding = 'UTF-8'
+            self.language = 'en-US'
+            self.formalism = 'ADL'
+            self.media_type = 'text/example'
+            self.compression_type = 'tar.gz'
+            self.hash_result = '8c11e544038c03a86d4da378199cf897'
+            self.hash_function = 'MD5'
+            self.alt_txt = 'Example file model'
+            self.uri = 'https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd'
+            self.media_content = None
+            
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
-
-        xmlstr += padding.rjust(indent + 2) + '<size>' + str(self.size) + '</size>\n'
-        if self.encoding:
-            xmlstr += padding.rjust(indent + 2) + '<encoding>' + self.encoding + '</encoding>\n'
-        if self.language:
-            xmlstr += padding.rjust(indent + 2) + '<xdfile-language>' + self.language + '</xdfile-language>\n'
-        if self.formalism:
-            xmlstr += padding.rjust(indent + 2) + '<formalism>' + self.formalism + '</formalism>\n'
-        if self.media_type:
-            xmlstr += padding.rjust(indent + 2) + '<media-type>' + self.media_type + '</media-type>\n'
-        if self.compression_type:
-            xmlstr += padding.rjust(indent + 2) + '<compression-type>' + self.compression_type + '</compression-type>\n'
-        if self.hash_result:
-            xmlstr += padding.rjust(indent + 2) + '<hash-result>' + self.hash_result + '</hash-result>\n'
-        if self.hash_function:
-            xmlstr += padding.rjust(indent + 2) + '<hash-function>' + self.hash_function + '</hash-function>\n'
-        if self.alt_txt:
-            xmlstr += padding.rjust(indent + 2) + '<alt-txt>' + self.alt_txt + '</alt-txt>\n'
-        if self.uri:
-            xmlstr += padding.rjust(indent + 2) + '<uri>' + self.uri + '</uri>\n'
-        elif self.media_content:
+        if self.size is not None:
+            xmlstr += padding.rjust(indent + 2) + '<size>' + str(self.size) + '</size>\n'
+        if self.encoding is not None:
+            xmlstr += padding.rjust(indent + 2) + '<encoding>' + self.encoding.strip() + '</encoding>\n'
+        if self.language is not None:
+            xmlstr += padding.rjust(indent + 2) + '<xdfile-language>' + self.language.strip() + '</xdfile-language>\n'
+        if self.formalism is not None:
+            xmlstr += padding.rjust(indent + 2) + '<formalism>' + self.formalism.strip() + '</formalism>\n'
+        if self.media_type is not None:
+            xmlstr += padding.rjust(indent + 2) + '<media-type>' + self.media_type.strip() + '</media-type>\n'
+        if self.compression_type is not None:
+            xmlstr += padding.rjust(indent + 2) + '<compression-type>' + self.compression_type.strip() + '</compression-type>\n'
+        if self.hash_result is not None:
+            xmlstr += padding.rjust(indent + 2) + '<hash-result>' + self.hash_result.strip() + '</hash-result>\n'
+        if self.hash_function is not None:
+            xmlstr += padding.rjust(indent + 2) + '<hash-function>' + self.hash_function.strip() + '</hash-function>\n'
+        if self.alt_txt is not None:
+            xmlstr += padding.rjust(indent + 2) + '<alt-txt>' + self.alt_txt.strip() + '</alt-txt>\n'
+        if self.uri is not None:
+            xmlstr += padding.rjust(indent + 2) + '<uri>' + self.uri.strip() + '</uri>\n'
+        elif self.media_content is not None:
             xmlstr += padding.rjust(indent + 2) + '<media-content>' + str(self.media_content) + '</media-content>\n'
 
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
@@ -1985,6 +1999,9 @@ class XdOrderedType(XdAnyType):
         """
         Return an example XML fragment for this model.
         """
+        if example == True:
+            self._referenceranges = None  # TODO: Build a reference range
+            self.normal_status = 'normal'
 
         indent = 4
         padding = ('').rjust(indent)
@@ -1993,7 +2010,7 @@ class XdOrderedType(XdAnyType):
             for rr in self._referenceranges:
                 xmlstr += rr.getXMLInstance()
         if self._normal_status:
-            xmlstr += padding.rjust(indent) + '<normal-status>' + self._normal_status + '</normal-status>\n'
+            xmlstr += padding.rjust(indent) + '<normal-status>' + self.normal_status + '</normal-status>\n'
 
         return(xmlstr)
 
@@ -2093,7 +2110,17 @@ class XdOrdinalType(XdOrderedType):
     @choices.setter
     def choices(self, v):
         if not self.published:
-            if checkers.is_iterable(v):
+            if isinstance(v, list):
+                for c in v:
+                    if not isinstance(c, tuple) or len(c) != 3:
+                        raise TypeError("the choice must be a 3 member tuple.")
+                    if not isinstance(c[0], numbers.Number):
+                        raise TypeError("the first member must be a number.")
+                    if not isinstance(c[1], str):
+                        raise TypeError("the second member must be a string.")
+                    if not isinstance(c[2], str):
+                        raise TypeError("the third member must be a string (URI/URL).")
+                        
                 self._choices = v
             else:
                 raise TypeError("the choices value must be a list of tuples.")
@@ -2154,12 +2181,16 @@ class XdOrdinalType(XdOrderedType):
         """
         Return an example XML fragment for this model.
         """
+        if example == True:
+            c = choice(self._choices)
+            self.ordinal = str(c[0])
+            self.symbol = c[1]
+            
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
-        c = choice(self._choices)
-        xmlstr += padding.rjust(indent + 2) + '<ordinal>' + str(c[0]) + '</ordinal>\n'
-        xmlstr += padding.rjust(indent + 2) + '<symbol>' + c[1] + '</symbol>\n'
+        xmlstr += padding.rjust(indent + 2) + '<ordinal>' + self.ordinal + '</ordinal>\n'
+        xmlstr += padding.rjust(indent + 2) + '<symbol>' + self.symbol + '</symbol>\n'
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
