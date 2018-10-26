@@ -8,7 +8,7 @@ built into the XML Schema parsers.
 import re
 import json
 import numbers
-from random import randint, choice, uniform, randrange
+from random import randint, choice, uniform, randrange, random
 from datetime import datetime, date, time, timedelta
 from decimal import Decimal
 from collections import OrderedDict
@@ -527,7 +527,7 @@ class XdIntervalType(XdAnyType):
     datatypes are the same and are ordered.
 
     In S3Model, they are primarily used in defining reference ranges.
-    The datatype of upper and lower must be set in the DM via the invltype
+    The datatype of upper and lower must be set in the model via the invltype
     attribute.
     """
 
@@ -536,10 +536,10 @@ class XdIntervalType(XdAnyType):
 
         self._lower = None
         self._upper = None
-        self._lower_included = None
-        self._upper_included = None
-        self._lower_bounded = None
-        self._upper_bounded = None
+        self._lower_included = True
+        self._upper_included = True
+        self._lower_bounded = False
+        self._upper_bounded = False
         self._interval_units = None
         if invltype in invlTypes:
             self._interval_type = invltype
@@ -746,6 +746,7 @@ class XdIntervalType(XdAnyType):
         """
         Return an example XML fragment for this model.
         """
+        
         if not self.published:
             raise PublicationError("The model must first be published.")
 
@@ -1490,8 +1491,8 @@ class XdStringType(XdAnyType):
         """
         Return an example XML fragment for this model.
         """
+
         if self.value == None and example == True:
-            self.value = 'Generated Default String'  # just a default
             if len(self.enums) > 0:
                 if self.default is not None:
                     self.value = self.default
@@ -1514,7 +1515,8 @@ class XdStringType(XdAnyType):
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
-
+        if self.value == None:
+            self.value = ''
         xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + self.value + '</xdstring-value>\n'
         if self.language is not None:
             xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.language + '</xdstring-language>\n'
@@ -2010,7 +2012,7 @@ class XdOrderedType(XdAnyType):
         if self._referenceranges is not None:
             for rr in self._referenceranges:
                 xmlstr += rr.getXMLInstance()
-        if self._normal_status:
+        if self.normal_status is not None:
             xmlstr += padding.rjust(indent) + '<normal-status>' + self.normal_status + '</normal-status>\n'
 
         return(xmlstr)
@@ -2606,9 +2608,9 @@ class XdQuantityType(XdQuantifiedType):
                 if self.max_exclusive is not None and v >= self.max_exclusive:
                     raise ValueError("The value cannot be equal to or exceed " + str(self.max_exclusive))
                 if self.total_digits is not None and len(str(v)) > self.total_digits:
-                    raise ValueError("The value length cannot exceed " + str(self.total_digits) + " total digits.")
+                    raise ValueError("The value length cannot exceed " + str(self.total_digits) + " total digits. Value = " + str(self.value))
                 if self.fraction_digits is not None and len(str(v).split('.')[1]) > self.fraction_digits:
-                    raise ValueError("The length of the decimal places in the value cannot exceed " + str(self.fraction_digits) + " fraction digits.")
+                    raise ValueError("The length of the decimal places in the value cannot exceed " + str(self.fraction_digits) + " fraction digits. Value = " + str(self.value))
                 self._value = v
             else:
                 raise ValueError("The value must be a decimal.")
@@ -2799,6 +2801,23 @@ class XdQuantityType(XdQuantifiedType):
         """
         Return an example XML fragment for this model.
         """
+        
+        if example == True and self.value == None:
+            start = 1 if self.min_inclusive == None else self.min_inclusive
+            end = 1000 if self.max_inclusive == None else self.max_inclusive
+            val = str(uniform(float(start), float(end)))
+
+            if isinstance(self.fraction_digits, int):
+                ipart = val.split('.')[0]
+                fpart = val.split('.')[1][:self.fraction_digits]
+                val = ipart + '.' + fpart
+
+            if isinstance(self.total_digits, int):
+                if len(val) > self.total_digits:
+                    val = val[self.total_digits:]
+
+            self.value = Decimal(val)
+
 
         indent = 4
         padding = ('').rjust(indent)
@@ -2817,7 +2836,7 @@ class XdQuantityType(XdQuantifiedType):
 class XdFloatType(XdQuantifiedType):
     """
     Quantified type representing specific a value as a floating point,
-    64 bit or sometimes called a double, number and optional units.
+    64 bit or sometimes called a double (XML Schema), number and optional units.
 
     This type accepts several "special" values:
     - positive zero (0)
@@ -2844,9 +2863,7 @@ class XdFloatType(XdQuantifiedType):
         self._max_inclusive = None
         self._min_exclusive = None
         self._max_exclusive = None
-        self._total_digits = None
-        self._fraction_digits = None
-        self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive, self._total_digits, self._fraction_digits])
+        self._mag_constrained = not all([self._min_inclusive, self._max_inclusive, self._min_exclusive, self._max_exclusive])
 
     @property
     def value(self):
@@ -2955,22 +2972,6 @@ class XdFloatType(XdQuantifiedType):
         else:
             raise PublicationError("The model has been published and cannot be edited.")
 
-    @property
-    def total_digits(self):
-        """
-        A maximum total digits constraint.
-        """
-        return self._total_digits
-
-    @total_digits.setter
-    def total_digits(self, v):
-        if not self.published:
-            if isinstance(v, int):
-                self._total_digits = v
-            else:
-                raise ValueError("The total_digits value must be a int.")
-        else:
-            raise PublicationError("The model has been published and cannot be edited.")
 
     def validate(self):
         """
@@ -2979,8 +2980,8 @@ class XdFloatType(XdQuantifiedType):
         if not super(XdFloatType, self).validate():
             return(False)
         else:
-            if not isinstance(self.units, XdStringType):
-                raise ValueError("Missing XdStringType for units.")
+            if self.units is not None and not isinstance(self.units, XdStringType):
+                raise TypeError("Incorrect units definition.")
             return(True)
 
     def getModel(self):
@@ -3007,8 +3008,6 @@ class XdFloatType(XdQuantifiedType):
                 xdstr += padding.rjust(indent + 12) + ("<xs:minExclusive value='" + str(self.min_exclusive).strip() + "'/>\n")
             if self.max_exclusive is not None:
                 xdstr += padding.rjust(indent + 12) + ("<xs:maxExclusive value='" + str(self.max_exclusive).strip() + "'/>\n")
-            if (self.total_digits is not None and self.total_digits > 0):
-                xdstr += padding.rjust(indent + 12) + ("<xs:totalDigits value='" + str(self.total_digits).strip() + "'/>\n")
             xdstr += padding.rjust(indent + 10) + ("</xs:restriction>\n")
             xdstr += padding.rjust(indent + 10) + ("</xs:simpleType>\n")
             xdstr += padding.rjust(indent + 8) + ("</xs:element>\n")
@@ -3028,11 +3027,19 @@ class XdFloatType(XdQuantifiedType):
         """
         Return an example XML fragment for this model.
         """
+        # TODO: Improve sample generation using other facets
+        if example == True and self.value == None:
+            start = 1 if self.min_inclusive == None else self.min_inclusive
+            end = 1000 if self.max_inclusive == None else self.max_inclusive
+            val = uniform(float(start), float(end))
+            self.value = val
+            
+        self.value = float("NaN") if self.value == None else self.value
 
         indent = 4
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
-        xmlstr += padding.rjust(indent) + '<xdfloat-value>' + str(self.xdfloat_value).strip() + '</xdfloat-value>\n'
+        xmlstr += padding.rjust(indent) + '<xdfloat-value>' + str(self.value).strip() + '</xdfloat-value>\n'
         if self.units:
             xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
@@ -3391,13 +3398,45 @@ class XdRatioType(XdQuantifiedType):
         """
         Return an XML fragment for this model.
         """
-        if example:
+        if example == True:
             # randomly choose an option
             pass
         
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
+        
+        if self.referenceranges is not None:
+            for rr in self.referenceranges:
+                xmlstr += indent + rr.getXMLInstance(example)
+                
+        if self.normal_status is not None:
+            xmlstr += indent + """  <normal-status>""" + self.normal_status.strip() + """</normal-status>\n"""
+        xmlstr += indent + """  <magnitude-status>equal</magnitude-status>\n"""
+        xmlstr += indent + """  <error>0</error>\n"""
+        xmlstr += indent + """  <accuracy>0</accuracy>\n"""
+        xmlstr += indent + """  <ratio-type>""" + self.ratio_type + """</ratio-type>\n"""
+        xmlstr += indent + """  <numerator>""" + str(num) + """</numerator>\n"""
+        xmlstr += indent + """  <denominator>""" + str(den) + """</denominator>\n"""
+        xmlstr += indent + """    <xdratio-value>""" + str(mag) + """</xdratio-value>\n"""
+        if self.num_units:
+            for e in self.num_units.enums.splitlines():
+                enum_list.append(escape(e))
+            unit = choice(enum_list)
+            xmlstr += indent + """<numerator-units>\n<label>""" + escape(self.num_units.label.strip()) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </numerator-units>\n"""
+        if self.den_units:
+            for e in self.den_units.enums.splitlines():
+                enum_list.append(escape(e))
+            unit = choice(enum_list)
+            xmlstr += indent + """<denominator-units>\n<label>""" + escape(self.den_units.label.strip()) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </denominator-units>\n"""
+        if self.ratio_units:
+            for e in self.ratio_units.enums.splitlines():
+                enum_list.append(escape(e))
+            unit = choice(enum_list)
+            xmlstr += indent + """<ratio-units>\n<label>""" + escape(self.ratio_units.label.strip()) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </ratio-units>\n"""
+    
+        xmlstr += indent + """</s3m:ms-""" + str(self.ct_id) + """>\n"""
+        
         return(xmlstr)
 
 class XdTemporalType(XdOrderedType):
