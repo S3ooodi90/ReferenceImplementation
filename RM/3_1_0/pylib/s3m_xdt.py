@@ -31,7 +31,6 @@ from s3m_settings import ACS
 from s3m_errors import ValidationError, PublicationError
 from s3m_utils import get_latlon, random_dtstr, valid_cardinality
 
-invlTypes = ['int', 'decimal', 'date', 'time', 'dateTime', 'float', 'duration']
 
 
 class XdAnyType(ABC):
@@ -531,6 +530,8 @@ class XdIntervalType(XdAnyType):
     attribute.
     """
 
+    invlTypes = (int, Decimal, date, time, datetime, float)  # TODO: Add duration
+
     def __init__(self, label: str, invltype: str):
         super().__init__(label)
 
@@ -541,10 +542,10 @@ class XdIntervalType(XdAnyType):
         self._lower_bounded = False
         self._upper_bounded = False
         self._interval_units = None
-        if invltype in invlTypes:
+        if invltype in XdIntervalType.invlTypes:
             self._interval_type = invltype
         else:
-            raise ValueError("The Interval type must be one of; 'int', 'decimal', 'date', 'time', 'dateTime', 'float' or 'duration'")
+            raise ValueError("The Interval type must be one of; int, Decimal, date, time, datetime or float")
 
     @property
     def lower(self):
@@ -556,15 +557,15 @@ class XdIntervalType(XdAnyType):
     @lower.setter
     def lower(self, v):
         if not self.published:
-            if type(self.v) in invlTypes:
+            if isinstance(v, XdIntervalType.invlTypes):
                 if type(self._upper) is None:
                     self._lower = v
-                elif (type(self._upper) == type(self.v)):
+                elif (type(self._upper) == type(v)):
                     self._lower = v
                 else:
                     raise ValueError("The lower and upper types must match")
             else:
-                raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
+                raise ValueError("The data type of " + str(v) + " must be a valid interval type not " + str(type(v)))
         else:
             raise PublicationError("The model has been published and cannot be edited.")
 
@@ -578,7 +579,7 @@ class XdIntervalType(XdAnyType):
     @upper.setter
     def upper(self, v):
         if not self.published:
-            if type(self.v) in invlTypes:
+            if isinstance(v, XdIntervalType.invlTypes):
                 if type(self._lower) is None:
                     self._upper = v
                 elif (type(self._lower) == type(self.v)):
@@ -586,7 +587,7 @@ class XdIntervalType(XdAnyType):
                 else:
                     raise ValueError("The lower and upper types must match")
             else:
-                raise ValueError("The data type of " + str(v) + " must be a valid interval type.")
+                raise ValueError("The data type of " + str(v) + " must be a valid interval type not " + str(type(v)))
         else:
             raise PublicationError("The model has been published and cannot be edited.")
 
