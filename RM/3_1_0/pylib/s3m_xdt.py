@@ -401,7 +401,7 @@ class XdAnyType(ABC):
 
     def __str__(self):
         if self.validate():
-            return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
+            return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " Published: " + str(self._published))
         else:
             raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
 
@@ -431,7 +431,9 @@ class XdAnyType(ABC):
         if self._adapter:
             xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
         else:
-            xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" type="s3m:mc-' + self.mcuid + '"/>\n'
+            sg = str(type(self)).replace("<class 's3m_xdt.","")
+            sg = sg.replace("Type'>",'')
+            xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:' + sg + '" type="s3m:mc-' + self.mcuid + '"/>\n'
 
         xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
         xdstr += padding.rjust(indent + 2) + '<xs:annotation>\n'
@@ -515,8 +517,8 @@ class XdAnyType(ABC):
         xml = self.getXMLInstance(example)
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False))
-
-
+   
+    
 class XdIntervalType(XdAnyType):
     """
     Generic type defining an interval (i.e. range) of a comparable type.
@@ -534,6 +536,7 @@ class XdIntervalType(XdAnyType):
 
     def __init__(self, label: str, invltype: str):
         super().__init__(label)
+        self._xdtype = "XdIntervalType"
 
         self._lower = None
         self._upper = None
@@ -542,6 +545,8 @@ class XdIntervalType(XdAnyType):
         self._lower_bounded = False
         self._upper_bounded = False
         self._interval_units = None
+        self._units_id = None
+        
         if invltype in XdIntervalType.invlTypes:
             self._interval_type = invltype
         else:
@@ -557,15 +562,11 @@ class XdIntervalType(XdAnyType):
     @lower.setter
     def lower(self, v):
         if not self.published:
-            if isinstance(v, XdIntervalType.invlTypes):
-                if type(self._upper) is None:
-                    self._lower = v
-                elif (type(self._upper) == type(v)):
-                    self._lower = v
-                else:
-                    raise ValueError("The lower and upper types must match")
+            v = self._interval_type(v)
+            if isinstance(v, self._interval_type):
+                self._lower = v
             else:
-                raise ValueError("The data type of " + str(v) + " must be a valid interval type not " + str(type(v)))
+                raise ValueError("The value couldn't be coerced to the Interval type. v = " + str(type(v)) + " interval_type = " + str(self._interval_type))
         else:
             raise PublicationError("The model has been published and cannot be edited.")
 
@@ -579,15 +580,11 @@ class XdIntervalType(XdAnyType):
     @upper.setter
     def upper(self, v):
         if not self.published:
-            if isinstance(v, XdIntervalType.invlTypes):
-                if type(self._lower) is None:
-                    self._upper = v
-                elif (type(self._lower) == type(self.v)):
-                    self._upper = v
-                else:
-                    raise ValueError("The lower and upper types must match")
+            v = self._interval_type(v)
+            if isinstance(v, self._interval_type):
+                self._upper = v
             else:
-                raise ValueError("The data type of " + str(v) + " must be a valid interval type not " + str(type(v)))
+                raise ValueError("The value couldn't be coerced to the Interval type. v = " + str(type(v)) + " interval_type = " + str(self._interval_type))
         else:
             raise PublicationError("The model has been published and cannot be edited.")
 
@@ -695,7 +692,7 @@ class XdIntervalType(XdAnyType):
         Return a XML Schema complexType definition.
         """
 
-        indent = 2
+        indent = 6
         padding = ('').rjust(indent)
         # Convert the bools to XSD strings
         li, ui, lb, ub = 'false', 'false', 'false', 'false'
@@ -707,31 +704,31 @@ class XdIntervalType(XdAnyType):
             lb = 'true'
         if self._upper_bounded:
             ub = 'true'
-
+        type_transpose = {int:'int', Decimal:'decimal', float:'float'}
         xdstr = super().getModel()
 
         # XdInterval
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='lower' type='xs:" + self._interval_type + "'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='0' name='upper' type='xs:" + self._interval_type + "'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='lower-included' type='xs:boolean' fixed='" + li + "'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='upper-included' type='xs:boolean' fixed='" + ui + "'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='lower-bounded' type='xs:boolean' fixed='" + lb + "'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='upper-bounded' type='xs:boolean' fixed='" + ub + "'/>\n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='0' name='lower' type='xs:" + type_transpose[self._interval_type] + "'/>\n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='0' name='upper' type='xs:" + type_transpose[self._interval_type] + "'/>\n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='1' name='lower-included' type='xs:boolean' fixed='" + li + "'/>\n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='1' name='upper-included' type='xs:boolean' fixed='" + ui + "'/>\n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='1' name='lower-bounded' type='xs:boolean' fixed='" + lb + "'/>\n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='1' name='upper-bounded' type='xs:boolean' fixed='" + ub + "'/>\n")
 
         if self._interval_units:
-            units_id = cuid()
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval-units'  type='s3m:mc-" + units_id + "'/>\n")
+            self._units_id = cuid()
+            xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval-units'  type='s3m:mc-" + self._units_id + "'/>\n")
         else:
-            units_id = None
+            self._units_id = None
 
-        xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
-        xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
-        xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
+        xdstr += padding.rjust(indent + 4) + ("</xs:sequence>\n")
+        xdstr += padding.rjust(indent + 4) + ("</xs:restriction>\n")
+        xdstr += padding.rjust(indent + 2) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
 
         # interval units
-        if units_id:
-            xdstr += padding.rjust(indent + 2) + ("<xs:complexType name='mc-" + units_id + "'>\n")
+        if self._units_id:
+            xdstr += padding.rjust(indent + 2) + ("<xs:complexType name='mc-" + self._units_id + "'>\n")
             xdstr += padding.rjust(indent + 4) + ("<xs:complexContent>\n")
             xdstr += padding.rjust(indent + 6) + ("<xs:restriction base='s3m:InvlUnits'>\n")
             xdstr += padding.rjust(indent + 8) + ("<xs:sequence>\n")
@@ -753,14 +750,31 @@ class XdIntervalType(XdAnyType):
 
         indent = 2
         padding = ('').rjust(indent)
+        
+        # Convert the bools to XSD strings
+        li, ui, lb, ub = 'false', 'false', 'false', 'false'
+        if self._lower_included:
+            li = 'true'
+        if self._upper_included:
+            ui = 'true'
+        if self._lower_bounded:
+            lb = 'true'
+        if self._upper_bounded:
+            ub = 'true'
+        
         xmlstr = super().getXMLInstance(example)
 
         xmlstr += padding.rjust(indent + 2) + '<lower>' + str(self._lower).strip() + '</lower>\n'
         xmlstr += padding.rjust(indent + 2) + '<upper>' + str(self._upper).strip() + '</upper>\n'
-        xmlstr += padding.rjust(indent + 2) + '<lower-included>' + str(self._lower).strip() + '</lower-included>\n'
-        xmlstr += padding.rjust(indent + 2) + '<upper-included>' + str(self._upper).strip() + '</upper-included>\n'
-        xmlstr += padding.rjust(indent + 2) + '<lower-bounded>' + str(self._lower).strip() + '</lower-bounded>\n'
-        xmlstr += padding.rjust(indent + 2) + '<upper-bounded>' + str(self._upper).strip() + '</upper-bounded>\n'
+        xmlstr += padding.rjust(indent + 2) + '<lower-included>' + li + '</lower-included>\n'
+        xmlstr += padding.rjust(indent + 2) + '<upper-included>' + ui + '</upper-included>\n'
+        xmlstr += padding.rjust(indent + 2) + '<lower-bounded>' + lb + '</lower-bounded>\n'
+        xmlstr += padding.rjust(indent + 2) + '<upper-bounded>' + ub + '</upper-bounded>\n'
+        if self._units_id is not None:
+            xmlstr += padding.rjust(indent + 2) + '<ms-' + self._units_id + '>\n'
+            xmlstr += padding.rjust(indent + 4) + '<units-name>' + self._interval_units[0].strip() + '</units-name>\n'
+            xmlstr += padding.rjust(indent + 4) + '<units-uri>' + self._interval_units[1].strip() + '</units-uri>\n'
+            xmlstr += padding.rjust(indent + 2) + '</ms-' + self._units_id + '>\n'
         xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
 
         # check for well-formed XML
@@ -780,6 +794,7 @@ class ReferenceRangeType(XdAnyType):
     def __init__(self, label):
         super().__init__(label)
 
+        self._xdtype = "ReferenceRangeType"
         self._definition = ''
         self._interval = None
         self._is_normal = False
@@ -848,19 +863,21 @@ class ReferenceRangeType(XdAnyType):
         """
         Return a XML Schema complexType definition.
         """
-        indent = 2
+        indent = 6
         padding = ('').rjust(indent)
         normal = 'true' if self._is_normal else 'false'
 
         xdstr = super().getModel()
         # ReferenceRange
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' fixed='" + rr_def.strip() + "'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-" + xdi_id + "'/> \n")
-        xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='is-normal' type='xs:boolean' fixed='" + normal + "'/>\n")
-        xdstr += padding.rjust(indent + 8) + ("</xs:sequence>\n")
-        xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='1' name='definition' type='xs:string' fixed='" + self.definition.strip() + "'/>\n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='1' name='interval' type='s3m:mc-" + self.interval.mcuid + "'/> \n")
+        xdstr += padding.rjust(indent + 4) + ("<xs:element maxOccurs='1' minOccurs='1' name='is-normal' type='xs:boolean' fixed='" + str(self.is_normal).lower() + "'/>\n")
+        xdstr += padding.rjust(indent + 4) + ("</xs:sequence>\n")
+        xdstr += padding.rjust(indent + 4) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        xdstr += self.interval.getModel()
+        
         return(xdstr)
 
     def getXMLInstance(self, example=False):
@@ -868,7 +885,7 @@ class ReferenceRangeType(XdAnyType):
         Return an example XML fragment for this model.
         """
         normal = 'true' if self._is_normal else 'false'
-        indent = 2
+        indent = 6
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
 
@@ -1922,7 +1939,7 @@ class XdOrderedType(XdAnyType):
     def __init__(self, label):
         super().__init__(label)
 
-        self._referenceranges = None
+        self._referenceranges = []
         self._normal_status = None
         self.cardinality = ('referencerange', [0, None])
         self.cardinality = ('normal_status', [0, 1])
@@ -1938,13 +1955,9 @@ class XdOrderedType(XdAnyType):
     @referenceranges.setter
     def referenceranges(self, v):
         if not self.published:
-            if checkers.is_iterable(v):
-                for i in v:
-                    if not checkers.is_type(i, "ReferenceRangeType"):
-                        raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
-                self._referenceranges = v
-            else:
-                raise TypeError("The referencerange value must be a list of ReferenceRangeType items.")
+            if not checkers.is_type(v, "ReferenceRangeType"):
+                raise TypeError("The referencerange value must be a ReferenceRangeType.")
+            self.referenceranges.append(v)
         else:
             raise PublicationError("The model has been published and cannot be edited.")
 
@@ -1983,20 +1996,18 @@ class XdOrderedType(XdAnyType):
         Return a XML Schema complexType definition.
         """
         self.validate()
-        indent = 2
+        indent = 4
         padding = ('').rjust(indent)
 
         xdstr = super().getModel()
         # XdOrdered
-        if self._referenceranges is not None:
-            for rr in self._referenceranges:
-                xdstr += padding.rjust(indent + 8) + "<xs:element maxOccurs='1' minOccurs='0' ref='s3m:ms-" + rr.mcuid + "'/> \n"
+        if len(self.referenceranges) > 0:
+            for rr in self.referenceranges:
+                xdstr += padding.rjust(indent + 6) + "<xs:element maxOccurs='1' minOccurs='1' ref='s3m:ms-" + rr.mcuid + "'/> \n"
 
-        if self.normal_status:
-            xdstr += padding.rjust(indent + 8) + ("<xs:element maxOccurs='1' minOccurs='1' name='normal-status' type='xs:string' fixed='" + escape(self.normal_status.strip()) + "'/> \n")
-        else:
-            self.normal_status = ''
-
+        if self.normal_status is not None:
+            xdstr += padding.rjust(indent + 6) + ("<xs:element maxOccurs='1' minOccurs='1' name='normal-status' type='xs:string' fixed='" + escape(self.normal_status.strip()) + "'/> \n")
+                
         return(xdstr)
 
     def getXMLInstance(self, example=False):
@@ -2004,14 +2015,14 @@ class XdOrderedType(XdAnyType):
         Return an example XML fragment for this model.
         """
         if example == True:
-            self._referenceranges = None  # TODO: Build a reference range
+            self._referenceranges = [] # TODO: Build a reference range
             self.normal_status = 'normal'
 
         indent = 4
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
-        if self._referenceranges is not None:
-            for rr in self._referenceranges:
+        if len(self.referenceranges) > 0:
+            for rr in self.referenceranges:
                 xmlstr += rr.getXMLInstance()
         if self.normal_status is not None:
             xmlstr += padding.rjust(indent) + '<normal-status>' + self.normal_status + '</normal-status>\n'
@@ -2794,6 +2805,11 @@ class XdQuantityType(XdQuantifiedType):
         xdstr += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         xdstr += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         xdstr += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        
+        if len(self.referenceranges) > 0:
+            for rr in self.referenceranges:
+                xdstr += rr.getModel()
+        
         xdstr += self.units.getModel()
 
         return(xdstr)
