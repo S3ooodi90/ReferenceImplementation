@@ -12,6 +12,9 @@ notebooks/dmlib/*.xsd
 #Sphinx
 build/
 
+stub.xml
+stub.xsd
+
 # project files
 *.xpr
 s3m.wpr
