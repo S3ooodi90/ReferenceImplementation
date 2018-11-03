@@ -6,6 +6,31 @@ from random import randint, choice, uniform, randrange
 from datetime import datetime, date, time, timedelta
 from decimal import Decimal
 
+
+def reg_ns():
+    """
+    Return an etree object with registered namespaces
+    """
+   
+    ns_dict = {}
+    ns_dict['vc']="http://www.w3.org/2007/XMLSchema-versioning"
+    ns_dict['xsi']="http://www.w3.org/2001/XMLSchema-instance"
+    ns_dict['rdfs']="http://www.w3.org/2000/01/rdf-schema#"
+    ns_dict['rdf']="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    ns_dict['owl']="http://www.w3.org/2002/07/owl#"
+    ns_dict['xs']="http://www.w3.org/2001/XMLSchema"
+    ns_dict['xsd']="http://www.w3.org/2001/XMLSchema#"
+    ns_dict['dc']="http://purl.org/dc/elements/1.1/"
+    ns_dict['dct']="http://purl.org/dc/terms/"
+    ns_dict['skos']="http://www.w3.org/2004/02/skos/core#"
+    ns_dict['foaf']="http://xmlns.com/foaf/0.1/"
+    ns_dict['schema']="http://schema.org/"
+    ns_dict['sioc']="http://rdfs.org/sioc/ns#"
+    ns_dict['sh']="http://www.w3.org/ns/shacl#"
+    ns_dict['s3m']="https://www.s3model.com/ns/s3m/"
+
+    return(ns_dict)
+
 def get_latlon():
     """
     Return a random pair of [latitude, longitude] values.
@@ -52,7 +77,7 @@ def valid_cardinality(self, v):
          'hash_result': ((0, 1), (0, 1)), 'hash_function': ((0, 1), (0, 1)), 'alt_txt': ((0, 1), (0, 1)), 'referencerange': ((0, 1), (0, Decimal('Infinity'))),
          'normal_status': ((0, 1), (0, 1)), 'magnitude_status': ((0, 1), (0, 1)), 'error': ((0, 1), (0, 1)), 'accuracy': ((0, 1), (0, 1)),
          'numerator': ((0, 1), (0, 1)), 'denominator': ((0, 1), (0, 1)), 'numerator_units': ((0, 1), (0, 1)),
-         'denominator_units': ((0, 1), (0, 1)), 'xdratio_units': ((0, 1), (0, 1)), 'date': ((0, 1), (0, 1)), 'time': ((0, 1), (0, 1)),
+         'denominator_units': ((0, 1), (0, 1)), 'ratio_units': ((0, 1), (0, 1)), 'date': ((0, 1), (0, 1)), 'time': ((0, 1), (0, 1)),
          'datetime': ((0, 1), (0, 1)), 'day': ((0, 1), (0, 1)), 'month': ((0, 1), (0, 1)), 'year': ((0, 1), (0, 1)), 'year_month': ((0, 1), (0, 1)),
          'month_day': ((0, 1), (0, 1)), 'duration': ((0, 1), (0, 1)), 'view': ((0, 1), (0, 1)), 'proof': ((0, 1), (0, 1)),
          'reason': ((0, 1), (0, 1)), 'committer': ((0, 1), (0, 1)), 'committed': ((0, 1), (0, 1)), 'system_user': ((0, 1), (0, 1)),
@@ -71,3 +96,46 @@ def valid_cardinality(self, v):
             raise ValueError("The maximum occurences value for " + str(v) + "is out of range. The allowed values are " + str(c[v[0]][1]))
         return(True)
 
+def xsdstub(model):
+    """
+    Write the model to a XML Schema file wrapped with a root element and 
+    namespace declarations.
+    """
+    print('Writing model for ', model, ' to stub.xsd')
+    with open('stub.xsd', 'w') as f:
+        f.write("""<?xml version='1.0' encoding='UTF-8'?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:s3m="https://www.s3model.com/ns/s3m/"
+      targetNamespace="https://www.s3model.com/ns/s3m/">
+      <xs:include schemaLocation="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd"/>
+     
+    <xs:element name="root"/> <!-- This is a wrapper for the stub instance. It is not part of S3Model. -->
+    
+      """)
+      
+        f.write(model.getModel())
+        f.write("</xs:schema>\n")    
+        
+def xmlstub(model, example=False):
+    """
+    Write the model to a XML file wrapped with a root element and 
+    namespace declarations. 
+    """
+    print('Writing data instance for ', model, ' to stub.xml')
+    with open('stub.xml', 'w') as f:
+        f.write("""<?xml version='1.0' encoding='UTF-8'?>
+    <s3m:root xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+      xmlns:s3m="https://www.s3model.com/ns/s3m/"
+      targetNamespace="https://www.s3model.com/ns/s3m/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation='https://www.s3model.com/ns/s3m/ stub.xsd'
+    >
+    
+    """)
+      
+        f.write(model.getXMLInstance(example))
+        f.write("</s3m:root>\n")
+    
+    

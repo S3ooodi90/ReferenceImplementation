@@ -312,3 +312,16 @@ class ClusterType(ItemType):
         return(xdstr)
 
 
+    def getXMLInstance(self, example):
+        """
+        Return an XML fragment for this model.
+        """
+        indent = '  '
+        clustr = ''
+ 
+        clustr += indent + """<s3m:ms-""" + str(self.mcuid) + """>\n"""
+        clustr += indent + """  <label>""" + escape(self.label.strip()) + """</label>\n"""
+        for adapter in self.items:
+            clustr += adapter.value.getXMLInstance(example)
+        clustr += indent + """</s3m:ms-""" + str(self.mcuid) + """>\n"""
+        return(clustr)

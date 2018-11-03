@@ -21,19 +21,22 @@ from typing import ByteString, Dict, List, Tuple, Iterable
 import xmltodict
 import pytz
 import exrex
-from lxml import etree
 from cuid import cuid
 from validator_collection import checkers
+from lxml import etree as ET
 
 import s3m_ontology
 from s3m_ev import ExceptionalValue
 from s3m_settings import ACS
 from s3m_errors import ValidationError, PublicationError
-from s3m_utils import get_latlon, random_dtstr, valid_cardinality
+from s3m_utils import get_latlon, random_dtstr, valid_cardinality, reg_ns
 
+# globally register namespaces
+ns_dict = reg_ns()
+for abbrev in ns_dict.keys():
+    ET.register_namespace(abbrev, ns_dict[abbrev])
 
-
-class XdAnyType(ABC):
+class XdAnyType(ABC): 
     """
     Serves as an abstract common ancestor of all eXtended data-types (Xd*)
     in S3Model.
@@ -428,7 +431,7 @@ class XdAnyType(ABC):
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
-        if self._adapter:
+        if self.adapter:
             xdstr += padding.rjust(indent) + '<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:XdAdapter-value" type="s3m:mc-' + self.mcuid + '"/>\n'
         else:
             sg = str(type(self)).replace("<class 's3m_xdt.","")
@@ -492,7 +495,9 @@ class XdAnyType(ABC):
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = ''
-        xmlstr += padding.rjust(indent) + '<ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '<s3m:ms-' + self.acuid + '>\n'            
+        xmlstr += padding.rjust(indent) + '<s3m:ms-' + self.mcuid + '>\n'
         xmlstr += padding.rjust(indent + 2) + '<label>' + self.label + '</label>\n'
         if self.cardinality['act'][0] > 0 or self.act is not None:
             xmlstr += padding.rjust(indent + 2) + '<act>' + self.act + '</act>\n'
@@ -542,8 +547,8 @@ class XdIntervalType(XdAnyType):
         self._upper = None
         self._lower_included = True
         self._upper_included = True
-        self._lower_bounded = False
-        self._upper_bounded = False
+        self._lower_bounded = True
+        self._upper_bounded = True
         self._interval_units = None
         self._units_id = None
         
@@ -592,6 +597,7 @@ class XdIntervalType(XdAnyType):
     def lower_included(self):
         """
         Is the lower value of the interval inclusive?
+        Default is True.
         """
         return self._lower_included
 
@@ -609,6 +615,7 @@ class XdIntervalType(XdAnyType):
     def upper_included(self):
         """
         Is the upper value of the interval inclusive?
+        Default is True.
         """
         return self._upper_included
 
@@ -626,6 +633,7 @@ class XdIntervalType(XdAnyType):
     def lower_bounded(self):
         """
         Is the lower value of the interval bounded?
+        Default is True.
         """
         return self._lower_bounded
 
@@ -643,6 +651,7 @@ class XdIntervalType(XdAnyType):
     def upper_bounded(self):
         """
         Is the upper value of the interval bounded?
+        Default is True.
         """
         return self._upper_bounded
 
@@ -752,34 +761,33 @@ class XdIntervalType(XdAnyType):
         padding = ('').rjust(indent)
         
         # Convert the bools to XSD strings
-        li, ui, lb, ub = 'false', 'false', 'false', 'false'
-        if self._lower_included:
-            li = 'true'
-        if self._upper_included:
-            ui = 'true'
-        if self._lower_bounded:
-            lb = 'true'
-        if self._upper_bounded:
-            ub = 'true'
+        li, ui, lb, ub = 'true', 'true', 'true', 'true'
+        if not self.lower_included:
+            li = 'false'
+        if not self.upper_included:
+            ui = 'false'
+        if not self.lower_bounded:
+            lb = 'false'
+        if not self.upper_bounded:
+            ub = 'false'
         
         xmlstr = super().getXMLInstance(example)
-
-        xmlstr += padding.rjust(indent + 2) + '<lower>' + str(self._lower).strip() + '</lower>\n'
-        xmlstr += padding.rjust(indent + 2) + '<upper>' + str(self._upper).strip() + '</upper>\n'
+        if self.lower is not None:
+            xmlstr += padding.rjust(indent + 2) + '<lower>' + str(self.lower).strip() + '</lower>\n'
+        if self.upper is not None:
+            xmlstr += padding.rjust(indent + 2) + '<upper>' + str(self.upper).strip() + '</upper>\n'
         xmlstr += padding.rjust(indent + 2) + '<lower-included>' + li + '</lower-included>\n'
         xmlstr += padding.rjust(indent + 2) + '<upper-included>' + ui + '</upper-included>\n'
         xmlstr += padding.rjust(indent + 2) + '<lower-bounded>' + lb + '</lower-bounded>\n'
         xmlstr += padding.rjust(indent + 2) + '<upper-bounded>' + ub + '</upper-bounded>\n'
-        if self._units_id is not None:
-            xmlstr += padding.rjust(indent + 2) + '<ms-' + self._units_id + '>\n'
-            xmlstr += padding.rjust(indent + 4) + '<units-name>' + self._interval_units[0].strip() + '</units-name>\n'
-            xmlstr += padding.rjust(indent + 4) + '<units-uri>' + self._interval_units[1].strip() + '</units-uri>\n'
-            xmlstr += padding.rjust(indent + 2) + '</ms-' + self._units_id + '>\n'
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
-
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
+        if self.interval_units is not None:
+            xmlstr += padding.rjust(indent + 2) + '<interval-units>\n'
+            xmlstr += padding.rjust(indent + 4) + '  <units-name>' + self.interval_units[0].strip() + '</units-name>\n'
+            xmlstr += padding.rjust(indent + 4) + '  <units-uri>' + self.interval_units[1].strip() + '</units-uri>\n'
+            xmlstr += padding.rjust(indent + 2) + '</interval-units>\n'
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
         return(xmlstr)
 
@@ -884,23 +892,53 @@ class ReferenceRangeType(XdAnyType):
         """
         Return an example XML fragment for this model.
         """
+        if example:
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
+            # TODO: Create example
+
+        # Convert the interval bools to XSD strings
+        li, ui, lb, ub = 'true', 'true', 'true', 'true'
+        if not self.interval.lower_included:
+            li = 'false'
+        if not self.interval.upper_included:
+            ui = 'false'
+        if not self.interval.lower_bounded:
+            lb = 'false'
+        if not self.interval.upper_bounded:
+            ub = 'false'
+            
         normal = 'true' if self._is_normal else 'false'
+
         indent = 6
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
 
-        xmlstr += padding.rjust(indent + 2) + '<definition>' + self._definition.strip() + '</definition>\n'
+        xmlstr += padding.rjust(indent + 2) + '<definition>' + self.definition.strip() + '</definition>\n'
         xmlstr += padding.rjust(indent + 2) + '<interval>\n'
-        xmlstr += padding.rjust(indent + 2) + self._interval.getXMLInstance()
+        xmlstr += padding.rjust(indent + 4) + '<label>' + self.interval.label + '</label>\n'
+        if self.interval.lower is not None:
+            xmlstr += padding.rjust(indent + 4) + '<lower>' + str(self.interval.lower).strip() + '</lower>\n'
+        if self.interval.upper is not None:
+            xmlstr += padding.rjust(indent + 4) + '<upper>' + str(self.interval.upper).strip() + '</upper>\n'
+        xmlstr += padding.rjust(indent + 4) + '<lower-included>' + li + '</lower-included>\n'
+        xmlstr += padding.rjust(indent + 4) + '<upper-included>' + ui + '</upper-included>\n'
+        xmlstr += padding.rjust(indent + 4) + '<lower-bounded>' + lb + '</lower-bounded>\n'
+        xmlstr += padding.rjust(indent + 4) + '<upper-bounded>' + ub + '</upper-bounded>\n'
+        if self.interval.interval_units is not None:
+            xmlstr += padding.rjust(indent + 4) + '<interval-units>\n'
+            xmlstr += padding.rjust(indent + 6) + '<units-name>' + self.interval.interval_units[0].strip() + '</units-name>\n'
+            xmlstr += padding.rjust(indent + 6) + '<units-uri>' + self.interval.interval_units[1].strip() + '</units-uri>\n'
+            xmlstr += padding.rjust(indent + 4) + '</interval-units>\n'
         xmlstr += padding.rjust(indent + 2) + '</interval>\n'
+
         xmlstr += padding.rjust(indent + 2) + '<is-normal>' + normal + '</is-normal>\n'
 
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
-
+ 
         return(xmlstr)
 
 
@@ -1056,6 +1094,8 @@ class XdBooleanType(XdAnyType):
         Return an XML fragment for this model.
         """
         if example:
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
             # randomly choose an option
             tf = choice(list(self._options.keys()))
             if tf == 'trues':
@@ -1076,12 +1116,11 @@ class XdBooleanType(XdAnyType):
         else:
             xmlstr += padding.rjust(indent + 2) + '<!-- ** Missing required instance data. ** -->\n'
 
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'          
 
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
-
+ 
         return(xmlstr)
 
 
@@ -1231,6 +1270,8 @@ class XdLinkType(XdAnyType):
         Return an example XML fragment for this model.
         """
         if example == True:
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
             self.link = 'https://s3model.com/dmlib/dm-cjmuxu61q0000z98p91fewlhm'
             self.relation = 'Related Data Model'
             self.relation_uri = 'https://s3model.com/examples/related'
@@ -1243,11 +1284,9 @@ class XdLinkType(XdAnyType):
         xmlstr += padding.rjust(indent + 2) + '<relation>' + self.relation + '</relation>\n'
         xmlstr += padding.rjust(indent + 2) + '<relation-uri>' + self.relation_uri + '</relation-uri>\n'
 
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
-
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
         return(xmlstr)
 
@@ -1511,6 +1550,8 @@ class XdStringType(XdAnyType):
         """
 
         if self.value == None and example == True:
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
             if len(self.enums) > 0:
                 if self.default is not None:
                     self.value = self.default
@@ -1539,12 +1580,11 @@ class XdStringType(XdAnyType):
         if self.language is not None:
             xmlstr += padding.rjust(indent + 2) + '<xdstring-language>' + self.language + '</xdstring-language>\n'
 
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
-
+ 
         return(xmlstr)
 
 
@@ -1884,6 +1924,8 @@ class XdFileType(XdAnyType):
         """
 
         if example == True:
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
             self.size = randint(1, 1000000000)
             self.encoding = 'UTF-8'
             self.language = 'en-US'
@@ -1922,11 +1964,9 @@ class XdFileType(XdAnyType):
         elif self.media_content is not None:
             xmlstr += padding.rjust(indent + 2) + '<media-content>' + str(self.media_content) + '</media-content>\n'
 
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
-
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
         return(xmlstr)
 
@@ -2004,10 +2044,11 @@ class XdOrderedType(XdAnyType):
         if len(self.referenceranges) > 0:
             for rr in self.referenceranges:
                 xdstr += padding.rjust(indent + 6) + "<xs:element maxOccurs='1' minOccurs='1' ref='s3m:ms-" + rr.mcuid + "'/> \n"
-
         if self.normal_status is not None:
-            xdstr += padding.rjust(indent + 6) + ("<xs:element maxOccurs='1' minOccurs='1' name='normal-status' type='xs:string' fixed='" + escape(self.normal_status.strip()) + "'/> \n")
-                
+            xdstr += padding.rjust(indent + 6) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['normal_status'][0]) + "' name='normal-status' type='xs:string' fixed='" + escape(self.normal_status.strip()) + "'/> \n")
+        else:
+            xdstr += padding.rjust(indent + 6) + ("<xs:element maxOccurs='1' minOccurs='" + str(self.cardinality['normal_status'][0]) + "' name='normal-status' type='xs:string'/> \n")
+            
         return(xdstr)
 
     def getXMLInstance(self, example=False):
@@ -2203,6 +2244,8 @@ class XdOrdinalType(XdOrderedType):
         Return an example XML fragment for this model.
         """
         if example == True:
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
             c = choice(list(self._choices.keys()))
             self.ordinal = str(c)
             self.symbol = self._choices[c][0]
@@ -2217,11 +2260,10 @@ class XdOrdinalType(XdOrderedType):
         xmlstr = super().getXMLInstance(example)
         xmlstr += padding.rjust(indent + 2) + '<ordinal>' + str(self.ordinal) + '</ordinal>\n'
         xmlstr += padding.rjust(indent + 2) + '<symbol>' + self.symbol + '</symbol>\n'
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
         return(xmlstr)
 
 
@@ -2558,18 +2600,48 @@ class XdCountType(XdQuantifiedType):
         Return an example XML fragment for this model.
         """
         if example == True and not isinstance(self.value, int):
-            self.value = randint(1, 1000000000)
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
+            if self.min_exclusive is not None:
+                min = self.min_exclusive + 1
+            elif self.min_inclusive is not None:
+                min = self.min_inclusive
+            else:
+                min = 1
+                
+            if self.max_exclusive is not None:
+                max = self.max_exclusive - 1
+            elif self.max_inclusive is not None:
+                max = self.max_inclusive
+            else:
+                max = 1000000000
+                
+            self.value = randint(min, max)
+
+            if self.total_digits is not None:
+                lenval = len(str(self.value))
+                if lenval > self.total_digits:
+                    self.value = int(str(self.value))[self.total_digits:]
+            if self.units.value is None:
+                if self.units.default is not None:
+                    self.units.value = self.units.default
+                elif len(self.units.enums) > 0:
+                    self.units.value = choice(self.units.enums)
+                else:
+                    self.units.value = "Example Units"
+                
             
         indent = 4
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
         xmlstr += padding.rjust(indent) + '<xdcount-value>' + str(self.value).strip() + '</xdcount-value>\n'
-        xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
-
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
+        xmlstr += padding.rjust(indent) + '<xdcount-units>\n'       
+        xmlstr += padding.rjust(indent + 2) + '<label>' + self.units.label + '</label>\n'
+        xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + self.units.value + '</xdstring-value>\n'
+        xmlstr += padding.rjust(indent) + '</xdcount-units>\n'
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
         return(xmlstr)
 
@@ -2820,8 +2892,10 @@ class XdQuantityType(XdQuantifiedType):
         """
         
         if example == True and self.value == None:
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
             start = 1 if self.min_inclusive == None else self.min_inclusive
-            end = 1000 if self.max_inclusive == None else self.max_inclusive
+            end = 100000 if self.max_inclusive == None else self.max_inclusive
             val = str(uniform(float(start), float(end)))
 
             if isinstance(self.fraction_digits, int):
@@ -2834,19 +2908,29 @@ class XdQuantityType(XdQuantifiedType):
                     val = val[self.total_digits:]
 
             self.value = Decimal(val)
+            
+            if self.units.value is None:
+                if self.units.default is not None:
+                    self.units.value = self.units.default
+                elif len(self.units.enums) > 0:
+                    self.units.value = choice(self.units.enums)
+                else:
+                    self.units.value = "Example Units"
 
 
         indent = 4
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
         xmlstr += padding.rjust(indent) + '<xdquantity-value>' + str(self.value).strip() + '</xdquantity-value>\n'
-        xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+        xmlstr += padding.rjust(indent) + '<xdquantity-units>\n'       
+        xmlstr += padding.rjust(indent + 2) + '<label>' + self.units.label + '</label>\n'
+        xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + self.units.value + '</xdstring-value>\n'
+        xmlstr += padding.rjust(indent) + '</xdquantity-units>\n'
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
-
+ 
         return(xmlstr)
 
 
@@ -3046,10 +3130,20 @@ class XdFloatType(XdQuantifiedType):
         """
         # TODO: Improve sample generation using other facets
         if example == True and self.value == None:
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
             start = 1 if self.min_inclusive == None else self.min_inclusive
             end = 1000 if self.max_inclusive == None else self.max_inclusive
             val = uniform(float(start), float(end))
             self.value = val
+            
+            if self.units.value is None:
+                if self.units.default is not None:
+                    self.units.value = self.units.default
+                elif len(self.units.enums) > 0:
+                    self.units.value = choice(self.units.enums)
+                else:
+                    self.units.value = "Example Units"
             
         self.value = float("NaN") if self.value == None else self.value
 
@@ -3058,13 +3152,15 @@ class XdFloatType(XdQuantifiedType):
         xmlstr = super().getXMLInstance(example)
         xmlstr += padding.rjust(indent) + '<xdfloat-value>' + str(self.value).strip() + '</xdfloat-value>\n'
         if self.units:
-            xmlstr += padding.rjust(indent) + self.units.getXMLInstance()
-        xmlstr += padding.rjust(indent) + '</ms-' + self.mcuid + '>\n'
+            xmlstr += padding.rjust(indent) + '<xdfloat-units>\n'       
+            xmlstr += padding.rjust(indent + 2) + '<label>' + self.units.label + '</label>\n'
+            xmlstr += padding.rjust(indent + 2) + '<xdstring-value>' + self.units.value + '</xdstring-value>\n'
+            xmlstr += padding.rjust(indent) + '</xdfloat-units>\n'
+        xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.mcuid + '>\n'
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
 
-        # check for well-formed XML
-        parser = etree.XMLParser()
-        tree = etree.XML(xmlstr, parser)
-
+ 
         return(xmlstr)
 
 class XdRatioType(XdQuantifiedType):
@@ -3095,18 +3191,18 @@ class XdRatioType(XdQuantifiedType):
         self._den_min_exclusive = None
         self._den_max_exclusive = None
         
-        self._xdratio_value = None
+        self._ratio_value = None
 
         self._numerator_units = None
         self._denominator_units = None
-        self._xdratio_units = None
+        self._ratio_units = None
 
         self.cardinality = ('numerator', [0, 1])
         self.cardinality = ('denominator', [0, 1])
         self.cardinality = ('value', [0, 1])
         self.cardinality = ('numerator_units', [0, 1])
         self.cardinality = ('denominator_units', [0, 1])
-        self.cardinality = ('xdratio_units', [0, 1])
+        self.cardinality = ('ratio_units', [0, 1])
 
     @property
     def ratio_type(self):
@@ -3124,6 +3220,23 @@ class XdRatioType(XdQuantifiedType):
                 raise ValueError("The ratio_type value must be a str and be one of; 'ratio','rate', or 'proportion'.")
         else:
             raise PublicationError("The model has been published and cannot be edited.")
+
+    @property
+    def ratio(self):
+        """
+        Numerator of ratio.
+        """
+        return self._ratio_value
+
+    @ratio.setter
+    def ratio(self, v):
+        if self.published:
+            if isinstance(v, float):
+                self._ratio_value = v
+            else:
+                raise ValueError("The ratio value must be a float.")
+        else:
+            raise PublicationError("The model has not been published.")
 
     @property
     def numerator(self):
@@ -3335,6 +3448,23 @@ class XdRatioType(XdQuantifiedType):
         else:
             raise PublicationError("The model has been published and cannot be edited.")
 
+    @property
+    def ratio_units(self):
+        """
+        Used to convey the meaning of the ratio. 
+        """
+        return self._ratio_units
+
+    @ratio_units.setter
+    def ratio_units(self, v):
+        if not self.published:
+            if isinstance(v, XdStringType):
+                self._ratio_units = v
+            else:
+                raise ValueError("The ratio_units value must be a XdStringType.")
+        else:
+            raise PublicationError("The model has been published and cannot be edited.")
+
     def validate(self):
         """
         Every XdType must implement this method.
@@ -3416,43 +3546,58 @@ class XdRatioType(XdQuantifiedType):
         Return an XML fragment for this model.
         """
         if example == True:
-            # randomly choose an option
-            pass
-        
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
+            start = 1 if self.num_min_inclusive == None else self.num_min_inclusive
+            end = 100000 if self.num_max_inclusive == None else self.num_max_inclusive
+            self.numerator = uniform(float(start), float(end))
+            start = 1 if self.den_min_inclusive == None else self.den_min_inclusive
+            end = 100000 if self.den_max_inclusive == None else self.den_max_inclusive
+            self.denominator = uniform(float(start), float(end))
+            self.ratio = float(self.numerator / self.denominator)
+
+            if self.numerator_units.value is None:
+                if self.numerator_units.default is not None:
+                    self.numerator_units.value = self.numerator_units.default
+                elif len(self.numerator_units.enums) > 0:
+                    self.numerator_units.value = choice(self.numerator_units.enums)[0]
+                else:
+                    self.numerator_units.value = "Numerator Units"
+            if self.denominator_units.value is None:
+                if self.denominator_units.default is not None:
+                    self.denominator_units.value = self.denominator_units.default
+                elif len(self.denominator_units.enums) > 0:
+                    self.denominator_units.value = choice(self.denominator_units.enums)[0]
+                else:
+                    self.denominator_units.value = "Denominator Units"
+            
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
         
-        if self.referenceranges is not None:
-            for rr in self.referenceranges:
-                xmlstr += indent + rr.getXMLInstance(example)
-                
-        if self.normal_status is not None:
-            xmlstr += indent + """  <normal-status>""" + self.normal_status.strip() + """</normal-status>\n"""
-        xmlstr += indent + """  <magnitude-status>equal</magnitude-status>\n"""
-        xmlstr += indent + """  <error>0</error>\n"""
-        xmlstr += indent + """  <accuracy>0</accuracy>\n"""
-        xmlstr += indent + """  <ratio-type>""" + self.ratio_type + """</ratio-type>\n"""
-        xmlstr += indent + """  <numerator>""" + str(num) + """</numerator>\n"""
-        xmlstr += indent + """  <denominator>""" + str(den) + """</denominator>\n"""
-        xmlstr += indent + """    <xdratio-value>""" + str(mag) + """</xdratio-value>\n"""
-        if self.num_units:
-            for e in self.num_units.enums.splitlines():
-                enum_list.append(escape(e))
-            unit = choice(enum_list)
-            xmlstr += indent + """<numerator-units>\n<label>""" + escape(self.num_units.label.strip()) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </numerator-units>\n"""
-        if self.den_units:
-            for e in self.den_units.enums.splitlines():
-                enum_list.append(escape(e))
-            unit = choice(enum_list)
-            xmlstr += indent + """<denominator-units>\n<label>""" + escape(self.den_units.label.strip()) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </denominator-units>\n"""
-        if self.ratio_units:
-            for e in self.ratio_units.enums.splitlines():
-                enum_list.append(escape(e))
-            unit = choice(enum_list)
-            xmlstr += indent + """<ratio-units>\n<label>""" + escape(self.ratio_units.label.strip()) + """</label>\n    <xdstring-value>""" + unit + """</xdstring-value>\n  </ratio-units>\n"""
+        xmlstr += padding + "<ratio-type>" + self.ratio_type + "</ratio-type>\n"
+        xmlstr += padding + "<numerator>" + str(self.numerator) + "</numerator>\n"
+        xmlstr += padding + "<denominator>" + str(self.denominator) + "</denominator>\n"
+        xmlstr += padding + "<xdratio-value>" + str(self.ratio) + "</xdratio-value>\n"
+        if self.numerator_units is not None:
+            xmlstr += padding + "<numerator-units>\n"
+            xmlstr += padding + "  <label>" + escape(self.numerator_units.label) + "</label>\n"    
+            xmlstr += padding + "  <xdstring-value>" + self.numerator_units.value + "</xdstring-value>\n"
+            xmlstr += padding + "</numerator-units>\n"
+        if self.denominator_units is not None:
+            xmlstr += padding + "<denominator-units>\n"
+            xmlstr += padding + "  <label>" + escape(self.denominator_units.label) + "</label>\n"    
+            xmlstr += padding + "  <xdstring-value>" + self.denominator_units.value + "</xdstring-value>\n"
+            xmlstr += padding + "</denominator-units>\n"
+        if self.ratio_units is not None:
+            xmlstr += padding + "<xdratio-units>\n"
+            xmlstr += padding + "  <label>" + escape(self.ratio_units.label) + "</label>\n"    
+            xmlstr += padding + "  <xdstring-value>" + self.ratio_units.value + "</xdstring-value>\n"
+            xmlstr += padding + "</xdratio-units>\n"
     
-        xmlstr += indent + """</s3m:ms-""" + str(self.ct_id) + """>\n"""
+        xmlstr += padding + "</s3m:ms-" + str(self.mcuid) + ">\n"
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
         
         return(xmlstr)
 
@@ -3472,15 +3617,15 @@ class XdTemporalType(XdOrderedType):
         super().__init__(label)
         self._xdtype = "XdTemporalType"
 
-        self._xdtemporal_date = None
-        self._xdtemporal_time = None
-        self._xdtemporal_datetime = None
-        self._xdtemporal_day = None
-        self._xdtemporal_month = None
-        self._xdtemporal_year = None
-        self._xdtemporal_year_month = None
-        self._xdtemporal_month_day = None
-        self._xdtemporal_duration = None
+        self._date = None
+        self._time = None
+        self._datetime = None
+        self._day = None
+        self._month = None
+        self._year = None
+        self._year_month = None
+        self._month_day = None
+        self._duration = None
         self.cardinality = ('date', [0, 1])
         self.cardinality = ('time', [0, 1])
         self.cardinality = ('datetime', [0, 1])
@@ -3507,7 +3652,7 @@ class XdTemporalType(XdOrderedType):
     @date.setter
     def date(self, v):
         if self.published:
-            if isinstance(v, date):
+            if isinstance(v, (date, type(None))):
                 self._date = v
             else:
                 raise ValueError("The date value must be a date type.")
@@ -3525,7 +3670,7 @@ class XdTemporalType(XdOrderedType):
     @time.setter
     def time(self, v):
         if self.published:
-            if isinstance(v, time):
+            if isinstance(v, (time, type(None))):
                 self._time = v
             else:
                 raise ValueError("The time value must be a time type.")
@@ -3543,7 +3688,7 @@ class XdTemporalType(XdOrderedType):
     @datetime.setter
     def datetime(self, v):
         if self.published:
-            if isinstance(v, datetime):
+            if isinstance(v, (datetime, type(None))):
                 self._datetime = v
             else:
                 raise ValueError("The datetime value must be a datetime type.")
@@ -3563,7 +3708,7 @@ class XdTemporalType(XdOrderedType):
     @day.setter
     def day(self, v):
         if self.published:
-            if isinstance(v, int) and 1 <= v <= 31:
+            if isinstance(v, type(None)) or isinstance(v, int) and 1 <= v <= 31:
                 self._day = v
             else:
                 raise ValueError("The day value must be an integer type 1 - 31.")
@@ -3582,7 +3727,7 @@ class XdTemporalType(XdOrderedType):
     @month.setter
     def month(self, v):
         if self.published:
-            if isinstance(v, int) and 1 <= v <= 12:
+            if isinstance(v, type(None)) or isinstance(v, int) and 1 <= v <= 12:
                 self._month = v
             else:
                 raise ValueError("The month value must be an integer type 1 - 12.")
@@ -3599,7 +3744,7 @@ class XdTemporalType(XdOrderedType):
     @year.setter
     def year(self, v):
         if self.published:
-            if isinstance(v, int) and 1 <= v <= 9999:
+            if isinstance(v, type(None)) or isinstance(v, int) and 1 <= v <= 9999:
                 self._year = v
             else:
                 raise ValueError("The year value must be an integer type 1 - 9999.")
@@ -3617,7 +3762,9 @@ class XdTemporalType(XdOrderedType):
     @year_month.setter
     def year_month(self, v):
         if self.published:
-            if isinstance(v, tuple):
+            if isinstance(v, type(None)):
+                self._year_month = v                
+            elif isinstance(v, tuple):
                 if not 1 <= v[0] <= 9999 or not 1 <= v[1] <= 12:
                     raise ValueError("The year_month value must be a tuple of integers representing 1 <= yyyy <= 9999 and 1 <= dd <= 12.")
                 self._year_month = v
@@ -3639,8 +3786,10 @@ class XdTemporalType(XdOrderedType):
     def month_day(self, v):
         if self.published:
             max_days = {1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
-            if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], int) and isinstance(v[1], int):
-                if not max_days[v[0]] <= v[1]:
+            if isinstance(v, type(None)):
+                self._month_day = v                
+            elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], int) and isinstance(v[1], int):
+                if v[1] > max_days[v[0]]:
                     raise ValueError("The day value must be must be less than or equal to the number of days allowed in the month.")
                 self._month_day = v
             else:
@@ -3657,7 +3806,9 @@ class XdTemporalType(XdOrderedType):
         However, "15 days beginning 12 July 1995" and "15 days ending 12 July 1995" are not duration values.
         This datatype can provide addition and subtraction operations between duration values and between
         duration/datetime value pairs, and can be the result of subtracting datetime values.
+        
         The tuple must include all values with a zero as a placeholder for unused positions.
+        (yyyy,mm,dd,hh,MM,ss.ss) all members are integers except the seconds (last member) being a decimal.
         Example: 2 years, 10 days and 2 hours = (2,0,10,2,0,0).
         Use these values in conjunction with the relativedelta type from the python-dateutil pkg.
         """
@@ -3666,7 +3817,9 @@ class XdTemporalType(XdOrderedType):
     @duration.setter
     def duration(self, v):
         if self.published:
-            if isinstance(v, tuple) and len(v) == 6:
+            if isinstance(v, type(None)):
+                self._duration = v
+            elif isinstance(v, tuple) and len(v) == 6:
                 if all(isinstance(n, int) for n in v[0:4]) and checkers.is_decimal(v[5]):
                     self._duration = v
                 else:
@@ -3718,10 +3871,48 @@ class XdTemporalType(XdOrderedType):
         Return an XML fragment for this model.
         """
         if example:
-            # randomly choose an option
-            pass
+            if not self.published:
+                raise PublicationError("Cannot create an example unless the model is published.")
+            dt = datetime.now()
+            self.date = date.today()
+            self.time = datetime.time(dt)
+            self.datetime = dt
+            self.day = self.date.day
+            self.month = self.date.month
+            self.year = self.date.year
+            self.year_month = (self.date.year,self.date.month)
+            self.month_day = (self.date.month,self.date.day)
+            # Build a duration
+            start = datetime.strptime('1/1/1970', '%m/%d/%Y')
+            end = datetime.strptime('12/31/2030', '%m/%d/%Y')
+            rdt = start + timedelta(seconds=randint(0, int((end - start).total_seconds())))
+            rdt2 = start + timedelta(seconds=randint(0, int((end - start).total_seconds())))
+            dur = abs((rdt - rdt2).days)
         
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = super().getXMLInstance(example)
+
+        if self.cardinality['date'][1] == 1 and self.date is not None:
+            xmlstr += padding + """  <xdtemporal-date>""" + datetime.strftime(self.date, '%Y-%m-%d') + """</xdtemporal-date>\n"""
+        if self.cardinality['time'][1] == 1 and self.time is not None:
+            xmlstr += padding + """  <xdtemporal-time>""" + datetime.strftime(self.time, '%H:%M:%S') + """</xdtemporal-time>\n"""
+        if self.cardinality['datetime'][1] == 1 and self.datetime is not None:
+            xmlstr += padding + """  <xdtemporal-datetime>""" + datetime.strftime(self.datetime, '%Y-%m-%dT%H:%M:%S') + """</xdtemporal-datetime>\n"""
+        if self.cardinality['day'][1] == 1 and self.day is not None:
+            xmlstr += padding + """  <xdtemporal-day>---""" + str(self.day) + """</xdtemporal-day>\n"""
+        if self.cardinality['month'][1] == 1 and self.month is not None:
+            xmlstr += padding + """  <xdtemporal-month>--""" + str(self.month) + """</xdtemporal-month>\n"""
+        if self.cardinality['year'][1] == 1 and self.year is not None:
+            xmlstr += padding + """  <xdtemporal-year>""" + str(self.year) + """</xdtemporal-year>\n"""
+        if self.cardinality['year_month'][1] == 1 and self.year_month is not None:
+            xmlstr += padding + """  <xdtemporal-year-month>""" + str(self.year_month[0]) + '-' + str(self.year_month[1]) + """</xdtemporal-year-month>\n"""
+        if self.cardinality['month_day'][1] == 1 and self.month_day is not None:
+            xmlstr += padding + """  <xdtemporal-month-day>--""" + str(self.month_day[0]) + '-' + str(self.month_day[1]) + """</xdtemporal-month-day>\n"""
+        if self.cardinality['duration'][1] == 1 and self.duration is not None:
+            xmlstr += padding + """  <xdtemporal-duration>""" + 'P' + ''.join(map(str, self.duration)) + 'D' + """</xdtemporal-duration>\n"""
+        xmlstr += padding + """</s3m:ms-""" + str(self.mcuid) + """>\n"""
+        if self.adapter:
+            xmlstr += padding.rjust(indent) + '</s3m:ms-' + self.acuid + '>\n'
+        
         return(xmlstr)

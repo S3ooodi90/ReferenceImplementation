@@ -1036,8 +1036,6 @@
       </xs:appinfo>
     </xs:annotation>
   </xs:element>
-  
-
 
   <xs:complexType name="XdRatioType">
     <xs:annotation>

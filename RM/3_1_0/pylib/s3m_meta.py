@@ -375,7 +375,7 @@ class PartyType(MetaCommon):
 
     def getXMLInstance(self):
         """
-        Return a XML instance for the Attestation.
+        Return a XML instance for the Party.
         """
         if not self.published:
             raise ValueError("The model must first be published.")
@@ -388,7 +388,7 @@ class PartyType(MetaCommon):
 
     def getJSONInstance(self):
         """
-        Return a JSON instance for the Attestation.
+        Return a JSON instance for the Party.
         """
         xml = self.getXMLInstance()
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
@@ -560,7 +560,7 @@ class AuditType(MetaCommon):
 
     def getXMLInstance(self):
         """
-        Return a XML instance for the Attestation.
+        Return a XML instance for the Audit.
         """
         if not self.published:
             raise ValueError("The model must first be published.")
@@ -573,7 +573,7 @@ class AuditType(MetaCommon):
 
     def getJSONInstance(self):
         """
-        Return a JSON instance for the Attestation.
+        Return a JSON instance for the Audit.
         """
         xml = self.getXMLInstance()
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
@@ -999,7 +999,7 @@ class ParticipationType(MetaCommon):
 
     def getXMLInstance(self):
         """
-        Return a XML instance for the Attestation.
+        Return a XML instance for the Participation.
         """
         if not self.published:
             raise ValueError("The model must first be published.")
@@ -1012,7 +1012,7 @@ class ParticipationType(MetaCommon):
 
     def getJSONInstance(self):
         """
-        Return a JSON instance for the Attestation.
+        Return a JSON instance for the Participation.
         """
         xml = self.getXMLInstance()
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
