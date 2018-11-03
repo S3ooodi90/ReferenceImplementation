@@ -1,187 +1,38 @@
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Modeling Concepts &mdash; Shareable, Structured, Semantic Model</title>
-  
-
-  
-  
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Modeling Concepts &#8212; Shareable, Structured, Semantic Model</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Shareable, Structured, Semantic Model" href="index.html"/>
-        <link rel="next" title="Abstract Model" href="abstract_model.html"/>
-        <link rel="prev" title="Value Proposition" href="value_prop.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Abstract Model" href="abstract_model.html" />
+    <link rel="prev" title="Value Proposition" href="value_prop.html" />
    
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          
-            <a href="index.html" class="icon icon-home"> S3Model
-          
-
-          
-            
-            <img src="_static/SmallLogo.png" class="logo" />
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                3.1.0
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Modeling Concepts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#approach">Approach</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#constraint-definitions">Constraint Definitions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dm-identification">DM Identification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dm-versioning">DM Versioning</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#model-components-mcs">Model Components (MCs)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">Abstract Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rm.html">The Reference Implementation - Reference Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linked_data.html">Linked Data Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">S3Model</a>
-        
-      </nav>
-
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>Modeling Concepts</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/modeling_concepts.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
             
   <div class="section" id="modeling-concepts">
 <h1>Modeling Concepts<a class="headerlink" href="#modeling-concepts" title="Permalink to this headline">¶</a></h1>
@@ -223,7 +74,7 @@ The filename of a DM may use any format specified by the DM author. The DM autho
 <p>What is in the Reference Model is the superset of all DMs. Because a unique identifier is used for the complexType names, they are reusable components.</p>
 <p>For example, a domain expert might model a complexType that is a restriction of XdStringType with the enumerations for selecting one of the three measurement systems for temperature; Fahrenheit, Kelvin, and Celsius. This RMC, as well as many others, can be reused in many DMs without modification.</p>
 <p>For this reason, the semantic links for RMCs are directly expressed in an xs:appinfo section in each MC. This approach lends itself very well to the creation of RDF triples from this information. For example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">appinfo</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">appinfo</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">rdf</span><span class="p">:</span><span class="n">Description</span> <span class="n">rdf</span><span class="p">:</span><span class="n">about</span><span class="o">=</span><span class="s1">&#39;&amp;s3m;mc-3a54417d-d1d6-4294-b868-e7a9ab28f8c4&#39;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">rdfs</span><span class="p">:</span><span class="n">isDefinedBy</span> <span class="n">rdf</span><span class="p">:</span><span class="n">resource</span><span class="o">=</span><span class="s1">&#39;http%3A//purl.obolibrary.org/obo/RO_0002371&#39;</span><span class="o">/&gt;</span>
   <span class="o">&lt;/</span><span class="n">rdf</span><span class="p">:</span><span class="n">Description</span><span class="o">&gt;</span>
@@ -238,75 +89,91 @@ RDF triples are a cornerstone of the semantic web and linked data processing. Fo
 </div>
 
 
-           </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="abstract_model.html" class="btn btn-neutral float-right" title="Abstract Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="value_prop.html" class="btn btn-neutral" title="Value Proposition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2009 - 2018, Data Insights, Inc. https://datainsights.tech  .
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
+          
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/SmallLogo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">S3Model</a></h1>
 
-    </section>
-
-  </div>
-  
 
 
-  
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
 
-  
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
 
-  
-  
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
-      });
-  </script>
-   
 
-</body>
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modeling Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#approach">Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constraint-definitions">Constraint Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dm-identification">DM Identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dm-versioning">DM Versioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-components-mcs">Model Components (MCs)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">Abstract Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rm.html">The Reference Implementation - Reference Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linked_data.html">Linked Data Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="value_prop.html" title="previous chapter">Value Proposition</a></li>
+      <li>Next: <a href="abstract_model.html" title="next chapter">Abstract Model</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009 - 2018, Data Insights, Inc. https://datainsights.tech  .
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/modeling_concepts.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
 </html>

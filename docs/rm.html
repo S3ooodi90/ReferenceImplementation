@@ -1,253 +1,38 @@
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>The Reference Implementation - Reference Model &mdash; Shareable, Structured, Semantic Model</title>
-  
-
-  
-  
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The Reference Implementation - Reference Model &#8212; Shareable, Structured, Semantic Model</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Shareable, Structured, Semantic Model" href="index.html"/>
-        <link rel="next" title="Linked Data Modeling" href="linked_data.html"/>
-        <link rel="prev" title="Abstract Model" href="abstract_model.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Linked Data Modeling" href="linked_data.html" />
+    <link rel="prev" title="Abstract Model" href="abstract_model.html" />
    
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          
-            <a href="index.html" class="icon icon-home"> S3Model
-          
-
-          
-            
-            <img src="_static/SmallLogo.png" class="logo" />
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                3.1.0
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">Abstract Model</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">The Reference Implementation - Reference Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#assumed-types">Assumed Types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#non-ordered-types">Non-Ordered Types</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#boolean">boolean</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#string">string</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#anyuri">anyURI</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#ordered-types">Ordered types</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#datetime">dateTime</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#date">date</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#time">time</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#duration">duration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#negative-duration">Negative Duration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#partial-date-types">Partial Date Types</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#real">real</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#integer">integer</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#reference-model-documentation">3.1.0 Reference Model Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#complextypes-in-the-reference-model">ComplexTypes in the Reference Model</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#dmtype">DMType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdanytype">XdAnyType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdbooleantype">XdBooleanType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdlinktype">XdLinkType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdstringtype">XdStringType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdfiletype">XdFileType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdorderedtype">XdOrderedType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdordinaltype">XdOrdinalType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdcounttype">XdCountType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdquantitytype">XdQuantityType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdfloattype">XdFloatType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdratiotype">XdRatioType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdtemporaltype">XdTemporalType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdintervaltype">XdIntervalType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#invltype">InvlType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#invlunits">InvlUnits</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#referencerangetype">ReferenceRangeType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#audittype">AuditType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#partytype">PartyType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#attestationtype">AttestationType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#participationtype">ParticipationType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#exceptionalvaluetype">ExceptionalValueType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nitype">NIType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#msktype">MSKType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#invtype">INVType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dertype">DERType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#unctype">UNCType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#othtype">OTHType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ninftype">NINFType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pinftype">PINFType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#unktype">UNKType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#askrtype">ASKRType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nasktype">NASKType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#qstype">QSType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#trctype">TRCType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#askutype">ASKUType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#navtype">NAVType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#natype">NAType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#itemtype">ItemType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#clustertype">ClusterType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdadaptertype">XdAdapterType</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#rm-simpletypes">RM simpleTypes</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#magnitudestatus">MagnitudeStatus</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#typeofratio">TypeOfRatio</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="linked_data.html">Linked Data Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">S3Model</a>
-        
-      </nav>
-
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>The Reference Implementation - Reference Model</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/rm.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
             
   <div class="section" id="the-reference-implementation-reference-model">
 <h1>The Reference Implementation - Reference Model<a class="headerlink" href="#the-reference-implementation-reference-model" title="Permalink to this headline">¶</a></h1>
@@ -287,24 +72,24 @@ The dateTime is specified in the following form “YYYY-MM-DDThh:mm:ss” where:
 <li>ss indicates the second</li>
 </ul>
 <p>The following is an example of a dateTime declaration in a schema:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;startdate&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:dateTime&quot;</span><span class="o">/&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;startdate&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:dateTime&quot;</span><span class="o">/&gt;</span>
 </pre></div>
 </div>
 <p>An element in your document might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><em>Time Zones</em></p>
 <p>To specify a time zone, you can either enter a dateTime in UTC time by adding a “Z” behind the time - like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>or you can specify an offset from the UTC time by adding a positive or negative time behind the time - like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span> <span class="ow">or</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span> <span class="ow">or</span>
 <span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -319,7 +104,7 @@ The dateTime is specified in the following form “YYYY-MM-DDThh:mm:ss” where:
 <li>DD indicates the day</li>
 </ul>
 <p>An element in an XML Document  might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">24</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">24</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -333,24 +118,24 @@ The time is specified in the following form “hh:mm:ss” where:</p>
 <li>ss indicates the second</li>
 </ul>
 <p>The following is an example of a time declaration in a schema:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;start&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:time&quot;</span><span class="o">/&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;start&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:time&quot;</span><span class="o">/&gt;</span>
 </pre></div>
 </div>
 <p>An element in your document might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><em>Time Zones</em></p>
 <p>To specify a time zone, you can either enter a time in UTC time by adding a “Z” behind the time - like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>or you can specify an offset from the UTC time by adding a positive or negative time behind the time - like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>  <span class="ow">or</span>  <span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>  <span class="ow">or</span>  <span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -369,26 +154,26 @@ The time interval is specified in the following form “PnYnMnDTnHnMnS” where:
 <li>nS indicates the number of seconds</li>
 </ul>
 <p>The following is an example of a duration declaration in a schema:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;period&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:duration&quot;</span><span class="o">/&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;period&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:duration&quot;</span><span class="o">/&gt;</span>
 </pre></div>
 </div>
 <p>An element in your document might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of five years.
 Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of five years, two months, and 10 days.
 Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10DT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10DT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of five years, two months, 10 days, and 15 hours.
 Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">PT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">PT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of 15 hours.</p>
@@ -396,7 +181,7 @@ Or it might look like this:</p>
 <div class="section" id="negative-duration">
 <h4>Negative Duration<a class="headerlink" href="#negative-duration" title="Permalink to this headline">¶</a></h4>
 <p>To specify a negative duration, enter a minus sign before the P:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;-</span><span class="n">P10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;-</span><span class="n">P10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of minus 10 days.</p>
@@ -634,20 +419,6 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Quantified type representing specific quantities as a magnitude as a float value and optional units.</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="xdratiotype">
-<h4>XdRatioType<a class="headerlink" href="#xdratiotype" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType">XdRatioType Schema</a></p>
-<p><strong>Derived from:</strong> <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> by extension</p>
-<p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong></p>
-<p>Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash (‘/’) character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</p>
-<ul class="simple">
-<li>The <em>ratio-type</em> element is used to specify a category of ratio. The optiona are ratio, proportion and rate.</li>
-<li>Elements are available for the <em>numerator</em>, <em>denominator</em>, and <em>xdratio-value</em>.</li>
-<li>Addtionaly there is an optional <em>???-units</em> element for each of the three elements <em>numerator</em>, <em>denominator</em>, and <em>xdratio-value</em>.</li>
-</ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdtemporaltype">
@@ -942,7 +713,7 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Optional status of magnitude with values:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">equal</span><span class="o">*</span> <span class="p">:</span> <span class="n">magnitude</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">point</span> <span class="n">value</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">equal</span><span class="o">*</span> <span class="p">:</span> <span class="n">magnitude</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">point</span> <span class="n">value</span>
 
 <span class="o">*</span><span class="n">less_than</span><span class="o">*</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
 
@@ -957,94 +728,99 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 </div>
 <p>These enumerations are used in the <em>magnitude-status</em> element of the <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> subtypes.</p>
 </div>
-<hr class="docutils" />
-<div class="section" id="typeofratio">
-<h4>TypeOfRatio<a class="headerlink" href="#typeofratio" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="rm/s3model_3_1_0_xsd_Simple_Type_s3m_TypeOfRatio.html#TypeOfRatio">TypeOfRatio Schema</a></p>
-<p><strong>Derived from:</strong> xs:string</p>
-<p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong></p>
-<p>Indicates the semantics of a type of ratio. Used in the <em>ratio-type</em> element of <a class="reference internal" href="#xdratiotype">XdRatioType</a></p>
-<ul class="simple">
-<li><em>ratio</em> = a relationship between two numbers.</li>
-<li><em>proportion</em> = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)</li>
-<li><em>rate</em> = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</li>
-</ul>
-</div>
 </div>
 </div>
 </div>
 
 
-           </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="linked_data.html" class="btn btn-neutral float-right" title="Linked Data Modeling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="abstract_model.html" class="btn btn-neutral" title="Abstract Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2009 - 2018, Data Insights, Inc. https://datainsights.tech  .
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
+          
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/SmallLogo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">S3Model</a></h1>
 
-    </section>
-
-  </div>
-  
 
 
-  
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
 
-  
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
 
-  
-  
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
-      });
-  </script>
-   
 
-</body>
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">Abstract Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The Reference Implementation - Reference Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assumed-types">Assumed Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#non-ordered-types">Non-Ordered Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ordered-types">Ordered types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-model-documentation">3.1.0 Reference Model Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#complextypes-in-the-reference-model">ComplexTypes in the Reference Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rm-simpletypes">RM simpleTypes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linked_data.html">Linked Data Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecore.html">Eclipse Ecore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="abstract_model.html" title="previous chapter">Abstract Model</a></li>
+      <li>Next: <a href="linked_data.html" title="next chapter">Linked Data Modeling</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009 - 2018, Data Insights, Inc. https://datainsights.tech  .
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/rm.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
 </html>

@@ -493,25 +493,6 @@ Quantified type representing specific quantities as a magnitude as a float value
 
 ....
 
-XdRatioType
------------
-
-`XdRatioType Schema <rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType>`_
-
-**Derived from:** `XdQuantifiedType`_ by extension
-
-**Abstract:** False
-
-**Description:** 
-
-Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash ('/') character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.
-
-- The *ratio-type* element is used to specify a category of ratio. The optiona are ratio, proportion and rate. 
-- Elements are available for the *numerator*, *denominator*, and *xdratio-value*.
-- Addtionaly there is an optional *???-units* element for each of the three elements *numerator*, *denominator*, and *xdratio-value*.
-
-
-....
 
 XdTemporalType
 --------------
@@ -1015,21 +996,3 @@ Optional status of magnitude with values::
 
 These enumerations are used in the *magnitude-status* element of the `XdQuantifiedType`_ subtypes.
 
-....
-
-TypeOfRatio
------------
-
-`TypeOfRatio Schema <rm/s3model_3_1_0_xsd_Simple_Type_s3m_TypeOfRatio.html#TypeOfRatio>`_
-
-**Derived from:** xs:string
-
-**Abstract:** False
-
-**Description:** 
-
-Indicates the semantics of a type of ratio. Used in the *ratio-type* element of `XdRatioType`_
-
-- *ratio* = a relationship between two numbers.
-- *proportion* = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)
-- *rate* = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)
