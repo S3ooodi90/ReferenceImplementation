@@ -392,6 +392,7 @@ class PartyType(MetaCommon):
             xmlstr += padding + "  <party-name>" + escape(self.party_name) + "</party-name>\n"
         if self.party_ref is not None:
             xmlstr += padding + "  <party-ref>\n"
+            xmlstr += padding + '    <label>' + self.party_ref.label + '</label>\n'
             xmlstr += padding + '    <link>' + self.party_ref.link + '</link>\n'
             xmlstr += padding + '    <relation>' + self.party_ref.relation + '</relation>\n'
             xmlstr += padding + '    <relation-uri>' + self.party_ref.relation_uri + '</relation-uri>\n'
@@ -586,11 +587,33 @@ class AuditType(MetaCommon):
         """
         if not self.published:
             raise ValueError("The model must first be published.")
+        if example:
+            self.timestamp = datetime.now()
 
         indent = 2
         padding = ('').rjust(indent)
-
-        xmlstr = '<TODO-Write-template./>'
+ 
+        xmlstr = ''
+        xmlstr = padding + "<s3m:ms-" + str(self.mcuid) + ">\n"
+        xmlstr += padding + "  <label>" + escape(self.label.strip()) + "</label>\n"
+        if self.system_id is not None:
+            xmlstr += padding + "  <system-id>\n"
+            xmlstr += padding + self.system_id.getXMLInstance(example)
+            xmlstr += padding + "  </system-id>\n"
+    
+        if self.system_user is not None:
+            xmlstr += padding + "  <system-user>\n"
+            xmlstr += padding + self.system_user.getXMLInstance(example)
+            xmlstr += padding + "  </system-user>\n"
+    
+        if self.location is not None:
+            xmlstr += padding + "  <location>\n"
+            xmlstr += padding + self.location.getXMLInstance(example)
+            xmlstr += padding + "  </location>\n"
+        if self.timestamp is not None:
+            xmlstr += padding + "  <timestamp>" + self.timestamp.isoformat() + "</timestamp>\n"
+        xmlstr += padding + "</s3m:ms-" + str(self.mcuid) + ">\n"
+        
         return(xmlstr)
 
     def getJSONInstance(self, example):
@@ -619,7 +642,7 @@ class AttestationType(MetaCommon):
         self._reason = None
         self._committer = None
         self._committed = None
-        self._pending = None
+        self._pending = True
         self.cardinality = ('view', [0, 1])
         self.cardinality = ('proof', [0, 1])
         self.cardinality = ('reason', [0, 1])
@@ -672,7 +695,7 @@ class AttestationType(MetaCommon):
     @reason.setter
     def reason(self, v):
         if not self.published:
-            if isinstance(v, XdFileType):
+            if isinstance(v, XdStringType):
                 self._reason = v
             else:
                 self._reason = None
@@ -816,10 +839,34 @@ class AttestationType(MetaCommon):
         """
         if not self.published:
             raise ValueError("The model must first be published.")
-
+        if example:
+            self.committed = datetime.now()
+            
         indent = 2
         padding = ('').rjust(indent)
         xmlstr = ''
+        xmlstr += padding + "<s3m:ms-" + self.mcuid + ">\n"
+        xmlstr += "<label>" + escape(self.label.strip()) + "</label>\n"
+        if self.view is not None:
+            xmlstr += padding + "<view>\n"
+            xmlstr += padding + self.view.getXMLInstance(example)
+            xmlstr += padding + "</view>\n"
+        if self.proof is not None:
+            xmlstr += padding + "<proof>\n"
+            xmlstr += padding + self.proof.getXMLInstance(example)
+            xmlstr += padding + "</proof>\n"
+        if self.reason is not None:
+            xmlstr += padding + "<reason>\n"
+            xmlstr += padding + self.reason.getXMLInstance(example)
+            xmlstr += padding + "</reason>\n"
+        if self.committer is not None:
+            xmlstr += padding + "<committer>\n"
+            xmlstr += padding + self.committer.getXMLInstance(example)
+            xmlstr += padding + "</committer>\n"
+        if self.committed is not None:
+            xmlstr += padding + "  <committed>" + self.committed.isoformat() + "</committed>\n"
+        xmlstr += padding + "  <pending>" + str(self.pending).lower() + "</pending>\n"
+        xmlstr += padding + "</s3m:ms-" + self.mcuid + ">\n"
 
         return(xmlstr)
 
@@ -979,7 +1026,7 @@ class ParticipationType(MetaCommon):
         ptn_str += '\n\n' + padding.rjust(indent) + ("<xs:complexType name='mc-" + self.mcuid + "' xml:lang='" + self.language + "'> \n")
         ptn_str += padding.rjust(indent + 2) + ("<xs:annotation>\n")
         ptn_str += padding.rjust(indent + 2) + ("<xs:documentation>\n")
-        ptn_str += padding.rjust(indent + 4) + (escape(self.description) + "\n")
+        ptn_str += padding.rjust(indent + 4) + (escape(self.docs) + "\n")
         ptn_str += padding.rjust(indent + 2) + ("</xs:documentation>\n")
         # Write the semantic links. There must be the same number of attributes
         # and links or none will be written.
@@ -988,9 +1035,11 @@ class ParticipationType(MetaCommon):
         ptn_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ParticipationType'/>\n")
         ptn_str += padding.rjust(indent + 2) + ("<rdfs:subClassOf rdf:resource='https://www.s3model.com/ns/s3m/s3model/RMC'/>\n")
         ptn_str += padding.rjust(indent + 2) + ("<rdfs:label>" + escape(self.label.strip()) + "</rdfs:label>\n")
-        if len(self.pred_obj_list) != 0:
+        if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
             for po in self.pred_obj_list:
-                ptn_str += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" + po.predicate.class_name.strip() + " rdf:resource='" + quote(po.object_uri) + "'/>\n")
+                pred = po[0]
+                obj = po[1]
+                ptn_str += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
         ptn_str += padding.rjust(indent + 2) + ("</rdfs:Class>\n")
         ptn_str += padding.rjust(indent + 2) + ('</xs:appinfo>\n')
         ptn_str += padding.rjust(indent + 2) + ("</xs:annotation>\n")
@@ -1016,6 +1065,13 @@ class ParticipationType(MetaCommon):
         ptn_str += padding.rjust(indent + 6) + ("</xs:restriction>\n")
         ptn_str += padding.rjust(indent + 4) + ("</xs:complexContent>\n")
         ptn_str += padding.rjust(indent + 2) + ("</xs:complexType>\n\n")
+        
+        if self.performer is not None:
+            ptn_str += self.performer.getModel()
+        if self.function is not None:
+            ptn_str += self.function.getModel()
+        if self.mode is not None:
+            ptn_str += self.mode.getModel()
 
         return(ptn_str)
 
@@ -1033,10 +1089,48 @@ class ParticipationType(MetaCommon):
         padding = ('').rjust(indent)
 
         xmlstr = ''
-        xmlstr += indent + "<s3m:ms-" + self.mcuid + ">\n"
-        xmlstr = indent + "  <label>" + escape(self.label.strip()) + "</label>\n"
+        xmlstr += "<s3m:ms-" + self.mcuid + ">\n"
+        xmlstr += padding + "  <label>" + escape(self.label.strip()) + "</label>\n"
         
-        xmlstr += indent + "</s3m:ms-" + self.mcuid + ">\n"
+        if self.performer is not None:
+            xmlstr += padding + "<performer>\n"
+            xmlstr += padding + "  <label>" + escape(self.performer.label) + "</label>\n"
+            if self.performer.party_name is not None:
+                xmlstr += padding + "  <party-name>" + escape(self.performer.party_name) + "</party-name>\n"
+            if self.performer.party_ref is not None:
+                xmlstr += padding + "  <party-ref>\n"
+                xmlstr += padding + '    <label>' + self.performer.party_ref.label + '</label>\n'
+                xmlstr += padding + '    <link>' + self.performer.party_ref.link + '</link>\n'
+                xmlstr += padding + '    <relation>' + self.performer.party_ref.relation + '</relation>\n'
+                xmlstr += padding + '    <relation-uri>' + self.performer.party_ref.relation_uri + '</relation-uri>\n'
+                xmlstr += padding + "  </party-ref>\n"
+        
+            if self.performer.party_details is not None:
+                xmlstr += padding + "  <party-details>\n"
+                xmlstr += padding + "    <label>" + escape(self.performer.party_details.label.strip()) + "</label>\n"
+                for adapter in self.performer.party_details.items:
+                    xmlstr += padding + adapter.value.getXMLInstance(example)
+    
+                xmlstr += padding + "  </party-details>\n"
+            
+            xmlstr += padding + "</performer>\n"
+    
+        if self.function is not None:
+            xmlstr += padding + "<function>\n"
+            xmlstr += padding + self.function.getXMLInstance(example)
+            xmlstr += padding + "</function>\n"
+    
+        if self.mode is not None:
+            xmlstr += padding + "<mode>\n"
+            xmlstr += padding + self.mode.getXMLInstance(example)
+            xmlstr += padding + "</mode>\n"
+    
+        if self.start is not None:
+            xmlstr += padding + "  <start>" + str(self.start) + "</start>\n"
+        if self.end is not None:
+            xmlstr += padding + "  <end>" + str(self.end) + "</end>\n"
+        
+        xmlstr += padding + "</s3m:ms-" + self.mcuid + ">\n"
         return(xmlstr)
 
     def getJSONInstance(self, example):

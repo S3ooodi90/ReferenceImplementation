@@ -120,7 +120,7 @@ def xsdstub(model):
         
 def xmlstub(model, example=False):
     """
-    Write the model to a XML file wrapped with a root element and 
+    Write the model data to a XML file wrapped with a root element and 
     namespace declarations. 
     """
     print('Writing data instance for ', model, ' to stub.xml')
@@ -138,4 +138,11 @@ def xmlstub(model, example=False):
         f.write(model.getXMLInstance(example))
         f.write("</s3m:root>\n")
     
+def jsonstub(model, example=False):
+    """
+    Write the model data to a JSON file. 
+    """
+    print('Writing JSON data instance for ', model, ' to stub.json')
+    with open('stub.json', 'w') as f:      
+        f.write(model.getJSONInstance(example))
     

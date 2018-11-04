@@ -1872,7 +1872,7 @@ class XdFileType(XdAnyType):
                 else:
                     raise ValueError("the media_content value must be a bytes object that is Base64 encoded.")
             else:
-                raise TypeError("uri must be None.")
+                raise TypeError("uri must be None to assign media_content.")
         else:
             raise PublicationError("The model has not been published.")
 
@@ -1936,7 +1936,6 @@ class XdFileType(XdAnyType):
             self.hash_function = 'MD5'
             self.alt_txt = 'Example file model'
             self.uri = 'https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd'
-            self.media_content = None
             
         indent = 2
         padding = ('').rjust(indent)

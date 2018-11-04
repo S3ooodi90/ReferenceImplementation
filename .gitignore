@@ -8,12 +8,13 @@
 *-checkpoint.ipynb
 
 mindmaps/*
-notebooks/dmlib/*.xsd
+RM/3_1_0/notebooks/dmlib/*
 #Sphinx
 build/
 
 stub.xml
 stub.xsd
+stub.json
 
 # project files
 *.xpr
