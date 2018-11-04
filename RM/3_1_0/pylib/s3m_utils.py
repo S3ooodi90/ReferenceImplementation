@@ -113,7 +113,7 @@ def xsdstub(model):
      
     <xs:element name="root"/> <!-- This is a wrapper for the stub instance. It is not part of S3Model. -->
     
-      """)
+    """)
       
         f.write(model.getModel())
         f.write("</xs:schema>\n")    

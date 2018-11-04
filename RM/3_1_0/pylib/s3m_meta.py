@@ -250,7 +250,7 @@ class PartyType(MetaCommon):
         """
         super().__init__(label)
 
-        self._party_name = ''
+        self._party_name = None
         self._party_ref = None
         self._party_details = None
         self.cardinality = ('party_name', [0, 1])
@@ -373,24 +373,46 @@ class PartyType(MetaCommon):
 
         return(party_str)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example):
         """
         Return a XML instance for the Party.
         """
         if not self.published:
             raise ValueError("The model must first be published.")
+        if example:
+            self.party_name = "A. Sample Name"
 
         indent = 2
         padding = ('').rjust(indent)
 
-        xmlstr = '<TODO-Write-template./>'
+        xmlstr = ''
+        xmlstr += padding + "<s3m:ms-" + self.mcuid + ">\n"
+        xmlstr += padding + "  <label>" + escape(self.label) + "</label>\n"
+        if self.party_name is not None:
+            xmlstr += padding + "  <party-name>" + escape(self.party_name) + "</party-name>\n"
+        if self.party_ref is not None:
+            xmlstr += padding + "  <party-ref>\n"
+            xmlstr += padding + '    <link>' + self.party_ref.link + '</link>\n'
+            xmlstr += padding + '    <relation>' + self.party_ref.relation + '</relation>\n'
+            xmlstr += padding + '    <relation-uri>' + self.party_ref.relation_uri + '</relation-uri>\n'
+            xmlstr += padding + "  </party-ref>\n"
+    
+        if self.party_details is not None:
+            xmlstr += padding + "  <party-details>\n"
+            xmlstr += padding + "    <label>" + escape(self.party_details.label.strip()) + "</label>\n"
+            for adapter in self.party_details.items:
+                xmlstr += adapter.value.getXMLInstance(example)
+
+            xmlstr += padding + "  </party-details>\n"
+        
+        xmlstr += padding + "</s3m:ms-" + self.mcuid + ">\n"
         return(xmlstr)
 
-    def getJSONInstance(self):
+    def getJSONInstance(self, example):
         """
         Return a JSON instance for the Party.
         """
-        xml = self.getXMLInstance()
+        xml = self.getXMLInstance(example)
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False))
 
@@ -558,7 +580,7 @@ class AuditType(MetaCommon):
         aud_str += self.location.getModel()
         return(aud_str)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example):
         """
         Return a XML instance for the Audit.
         """
@@ -571,11 +593,11 @@ class AuditType(MetaCommon):
         xmlstr = '<TODO-Write-template./>'
         return(xmlstr)
 
-    def getJSONInstance(self):
+    def getJSONInstance(self, example):
         """
         Return a JSON instance for the Audit.
         """
-        xml = self.getXMLInstance()
+        xml = self.getXMLInstance(example)
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False))
 
@@ -788,7 +810,7 @@ class AttestationType(MetaCommon):
 
         return(att_str)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example):
         """
         Return a XML instance for the Attestation.
         """
@@ -801,11 +823,11 @@ class AttestationType(MetaCommon):
 
         return(xmlstr)
 
-    def getJSONInstance(self):
+    def getJSONInstance(self, example):
         """
         Return a JSON instance for the Attestation.
         """
-        xml = self.getXMLInstance()
+        xml = self.getXMLInstance(example)
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False))
 
@@ -997,24 +1019,31 @@ class ParticipationType(MetaCommon):
 
         return(ptn_str)
 
-    def getXMLInstance(self):
+    def getXMLInstance(self, example):
         """
         Return a XML instance for the Participation.
         """
         if not self.published:
             raise ValueError("The model must first be published.")
+        if example:
+            pass
+        
 
         indent = 2
         padding = ('').rjust(indent)
 
-        xmlstr = '<TODO-Write-template./>'
+        xmlstr = ''
+        xmlstr += indent + "<s3m:ms-" + self.mcuid + ">\n"
+        xmlstr = indent + "  <label>" + escape(self.label.strip()) + "</label>\n"
+        
+        xmlstr += indent + "</s3m:ms-" + self.mcuid + ">\n"
         return(xmlstr)
 
-    def getJSONInstance(self):
+    def getJSONInstance(self, example):
         """
         Return a JSON instance for the Participation.
         """
-        xml = self.getXMLInstance()
+        xml = self.getXMLInstance(example)
         parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
         return(json.dumps(parsed, indent=2, sort_keys=False))
 

@@ -5,7 +5,9 @@ from abc import ABC, abstractmethod
 from typing import ByteString, Dict, List, Tuple, Iterable
 from xml.sax.saxutils import escape
 from urllib.parse import quote
+import json
 
+import xmltodict
 from cuid import cuid
 from validator_collection import checkers
 
@@ -317,11 +319,20 @@ class ClusterType(ItemType):
         Return an XML fragment for this model.
         """
         indent = '  '
-        clustr = ''
+        xmlstr = ''
  
-        clustr += indent + """<s3m:ms-""" + str(self.mcuid) + """>\n"""
-        clustr += indent + """  <label>""" + escape(self.label.strip()) + """</label>\n"""
+        xmlstr += indent + "<s3m:ms-" + self.mcuid + ">\n"
+        xmlstr += indent + "  <label>" + escape(self.label.strip()) + "</label>\n"
         for adapter in self.items:
-            clustr += adapter.value.getXMLInstance(example)
-        clustr += indent + """</s3m:ms-""" + str(self.mcuid) + """>\n"""
-        return(clustr)
+            xmlstr += adapter.value.getXMLInstance(example)
+        xmlstr += indent + "</s3m:ms-" + self.mcuid + ">\n"
+        return(xmlstr)
+    
+    def getJSONInstance(self, example):
+        """
+        Return a JSON instance for the Participation.
+        """
+        xml = self.getXMLInstance(example)
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False))
+    

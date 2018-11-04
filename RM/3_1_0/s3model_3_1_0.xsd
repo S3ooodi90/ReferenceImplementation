@@ -271,16 +271,16 @@
     <xs:complexContent>
       <xs:extension base="s3m:XdAnyType">
         <xs:sequence>
-          <xs:element maxOccurs="1" minOccurs="1" name="link" type="xs:anyURI">
+          <xs:element maxOccurs="1" minOccurs="0" name="link" type="xs:anyURI">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CMC or just the dm-{uuid}.</xs:documentation>
+              <xs:documentation xml:lang="en-us">A dereferenceable (or not) URL to another CMC or just the dm-{uuid}.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdLinkType/link">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdLinkType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
                   <rdfs:label xml:lang="en-us">link</rdfs:label>                  
                   <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-                  <rdfs:comment xml:lang="en-us">A required URI. A dereferenceable (or not) URL to another CMC or just the dm-{uuid}.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">A dereferenceable (or not) URL to another CMC or just the dm-{uuid}.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
