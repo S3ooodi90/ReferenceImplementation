@@ -9,6 +9,7 @@
 
 mindmaps/*
 RM/3_1_0/notebooks/dmlib/*
+
 #Sphinx
 build/
 

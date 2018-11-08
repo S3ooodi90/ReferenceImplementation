@@ -5,6 +5,27 @@ Utility functions to support data generation etc.
 from random import randint, choice, uniform, randrange
 from datetime import datetime, date, time, timedelta
 from decimal import Decimal
+from urllib.request import urlopen
+
+def get_acs(link):
+    """
+    Return an access control list from a link.
+    The file must be a plain text file. 
+    Each access control tag must be on a separate line.
+    
+    """
+    acslist = []
+    try:
+        acslnk = urlopen(link)
+        with open(acslnk, 'r') as f:
+            for line in f:
+                acslist.append(line)
+    except:
+        raise IOError("Could not get the access control list from " + str(link))
+    
+    return(acslist)        
+        
+
 
 
 def reg_ns():

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s3m:dm-0d4cbab9-7288-40e2-acaa-7651386a8430 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:s3m="https://www.s3model.com/ns/s3m/"
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:sawsdlrdf="http://www.w3.org/ns/sawsdl#"
+ xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+ xsi:schemaLocation="https://www.s3model.com/ns/s3m/ file:/home/tim/DII/S3Model/RM/3_1_0/tests/dm-test-for-3_1_0-rm.xsd">
+    <label>Pima Indians Diabetes Database - Entry</label>
+    <dm-language>en-US</dm-language>
+    <dm-encoding>utf-8</dm-encoding>
+    <current-state></current-state>
+    <s3m:ms-454f3730-dbe4-4137-b13f-f1f9374a2156>
+        <label>Pima Indians Diabetes Database - Cluster</label>
+        <s3m:ms-0ef9269c-0d76-42b3-a5ae-edb411d032b3>
+            <s3m:ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e>
+                <label>2-Hour serum insulin (mu U/ml)</label>
+                <s3m:NAV>
+                    <ev-name>Not Available</ev-name>
+                </s3m:NAV>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value0</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e>
+            <s3m:ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e>
+                <label>2-Hour serum insulin (mu U/ml)</label>
+                <s3m:PINF>
+                    <ev-name>Positive Infinity</ev-name>
+                </s3m:PINF>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value1</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-d3477c5e-63a4-4b98-ac92-39b64665cd5e>
+        </s3m:ms-0ef9269c-0d76-42b3-a5ae-edb411d032b3>
+        <s3m:ms-6e38dee0-7979-449e-97dd-31dd204ceed0>
+            <s3m:ms-99300957-9037-4465-af3e-4d720d19862e>
+                <label>Age (years)</label>
+                <s3m:TRC>
+                    <ev-name>Trace</ev-name>
+                </s3m:TRC>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value2</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-99300957-9037-4465-af3e-4d720d19862e>
+            <s3m:ms-99300957-9037-4465-af3e-4d720d19862e>
+                <label>Age (years)</label>
+                <s3m:ASKR>
+                    <ev-name>Asked and Refused</ev-name>
+                </s3m:ASKR>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value3</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-99300957-9037-4465-af3e-4d720d19862e>
+        </s3m:ms-6e38dee0-7979-449e-97dd-31dd204ceed0>
+        <s3m:ms-e50e0767-e8e1-4f76-9be2-ada9cd41fc7c>
+            <s3m:ms-fe5d4902-f051-49ff-98ab-e22de92d5afe>
+                <label>Body mass index (weight in kg/(height in m)^2)</label>
+                <s3m:NASK>
+                    <ev-name>Not Asked</ev-name>
+                </s3m:NASK>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value4</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-fe5d4902-f051-49ff-98ab-e22de92d5afe>
+            <s3m:ms-fe5d4902-f051-49ff-98ab-e22de92d5afe>
+                <label>Body mass index (weight in kg/(height in m)^2)</label>
+                <s3m:NA>
+                    <ev-name>Not Applicable</ev-name>
+                </s3m:NA>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value5</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-fe5d4902-f051-49ff-98ab-e22de92d5afe>
+        </s3m:ms-e50e0767-e8e1-4f76-9be2-ada9cd41fc7c>
+        <s3m:ms-18880242-acd2-4b46-b2f7-f3d7466afc43>
+            <s3m:ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586>
+                <label>Class variable (0 or 1)</label>
+                <s3m:MSK>
+                    <ev-name>Masked</ev-name>
+                </s3m:MSK>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value6</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586>
+            <s3m:ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586>
+                <label>Class variable (0 or 1)</label>
+                <s3m:NA>
+                    <ev-name>Not Applicable</ev-name>
+                </s3m:NA>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value7</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-5b61bcd7-8c6d-49bb-9099-aaaae0493586>
+        </s3m:ms-18880242-acd2-4b46-b2f7-f3d7466afc43>
+        <s3m:ms-0a106c2e-9844-46b4-a696-1e87f8a16925>
+            <s3m:ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04>
+                <label>Diabetes pedigree function</label>
+                <s3m:QS>
+                    <ev-name>Sufficient Quantity</ev-name>
+                </s3m:QS>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value8</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04>
+            <s3m:ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04>
+                <label>Diabetes pedigree function</label>
+                <s3m:DER>
+                    <ev-name>Derived</ev-name>
+                </s3m:DER>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value9</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-e474d4db-1d6d-42e3-9cd0-5ac3251a0d04>
+        </s3m:ms-0a106c2e-9844-46b4-a696-1e87f8a16925>
+        <s3m:ms-d0d2df5a-9dae-46b2-9e91-05d66c2856fd>
+            <s3m:ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e>
+                <label>Diastolic blood pressure (mm Hg)</label>
+                <s3m:PINF>
+                    <ev-name>Positive Infinity</ev-name>
+                </s3m:PINF>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value10</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e>
+            <s3m:ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e>
+                <label>Diastolic blood pressure (mm Hg)</label>
+                <s3m:INV>
+                    <ev-name>Invalid</ev-name>
+                </s3m:INV>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value11</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-9e029d49-b0bc-47d0-ac33-8ac347f0d09e>
+        </s3m:ms-d0d2df5a-9dae-46b2-9e91-05d66c2856fd>
+        <s3m:ms-53f65a93-68ee-432d-8936-f81ac416f0dc>
+            <s3m:ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841>
+                <label>Number of times pregnant</label>
+                <s3m:NASK>
+                    <ev-name>Not Asked</ev-name>
+                </s3m:NASK>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value12</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841>
+            <s3m:ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841>
+                <label>Number of times pregnant</label>
+                <s3m:PINF>
+                    <ev-name>Positive Infinity</ev-name>
+                </s3m:PINF>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value13</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-aa6164d1-40be-4d1c-ac08-4ffcc2acc841>
+        </s3m:ms-53f65a93-68ee-432d-8936-f81ac416f0dc>
+        <s3m:ms-b39387e0-e02c-47d2-aa28-d862931a1ad6>
+            <s3m:ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46>
+                <label>Plasma glucose concentration a 2 hours in an oral glucose tolerance test</label>
+                <s3m:QS>
+                    <ev-name>Sufficient Quantity</ev-name>
+                </s3m:QS>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value14</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46>
+            <s3m:ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46>
+                <label>Plasma glucose concentration a 2 hours in an oral glucose tolerance test</label>
+                <s3m:UNK>
+                    <ev-name>Unknown</ev-name>
+                </s3m:UNK>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value15</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-e0acd605-b9ea-4a24-86d6-94ace64a2f46>
+        </s3m:ms-b39387e0-e02c-47d2-aa28-d862931a1ad6>
+        <s3m:ms-857747bb-998a-4894-8dc6-7ff88864bf7b>
+            <s3m:ms-e7d068e5-392d-43cf-bd42-e73f803ee372>
+                <label>Triceps skin fold thickness (mm)</label>
+                <s3m:QS>
+                    <ev-name>Sufficient Quantity</ev-name>
+                </s3m:QS>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value16</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-e7d068e5-392d-43cf-bd42-e73f803ee372>
+            <s3m:ms-e7d068e5-392d-43cf-bd42-e73f803ee372>
+                <label>Triceps skin fold thickness (mm)</label>
+                <s3m:NASK>
+                    <ev-name>Not Asked</ev-name>
+                </s3m:NASK>
+                <vtb>2006-05-04T18:13:51.0</vtb>
+                <vte>2006-05-04T18:13:51.0</vte>
+                <tr>2006-05-04T18:13:51.0</tr>
+                <modified>2006-05-04T18:13:51.0</modified>
+                <xdstring-value>xdstring-value17</xdstring-value>
+                <xdstring-language>en-US</xdstring-language>
+            </s3m:ms-e7d068e5-392d-43cf-bd42-e73f803ee372>
+        </s3m:ms-857747bb-998a-4894-8dc6-7ff88864bf7b>
+    </s3m:ms-454f3730-dbe4-4137-b13f-f1f9374a2156>
+    <subject>
+        <label>Pima Indians Diabetes Database - Entry Subject</label>
+        <party-name>party-name0</party-name>
+    </subject>
+    <provider>
+        <label>Pima Indians Diabetes Database - Entry Provider</label>
+        <party-name>party-name1</party-name>
+    </provider>
+</s3m:dm-0d4cbab9-7288-40e2-acaa-7651386a8430>

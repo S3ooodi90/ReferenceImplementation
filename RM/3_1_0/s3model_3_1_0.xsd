@@ -2692,28 +2692,28 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="subject" type="s3m:PartyType">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us">Id of human subject of the data, e.g.: • subject of record (patient, etc.) • organ donor • foetus • a family member • another clinically relevant person.</xs:documentation>
+          <xs:documentation xml:lang="en-us">Id of human subject of the data, e.g.: • subject of record (patient, customer, etc.) • a family member • another clinically relevant person.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType/subject">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType"/>
               <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType"/>
               <rdfs:label xml:lang="en-us">subject</rdfs:label>                  
               <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType"/>                  
-              <rdfs:comment xml:lang="en-us">Id of human subject of the data, e.g.: • subject of record (patient, etc.) • organ donor • foetus • a family member • another clinically relevant person.</rdfs:comment>
+              <rdfs:comment xml:lang="en-us">Id of human subject of the data, e.g.: • subject of record (patient, customer, etc.) • a family member • another clinically relevant person.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="provider" type="s3m:PartyType">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us">Optional identification of the source of the information, which might be: • the patient • a patient agent, e.g. parent, guardian • the clinician • a device or software</xs:documentation>
+          <xs:documentation xml:lang="en-us">Optional identification of the source of the information, which might be: • a patient • a patient agent, e.g. parent, guardian • a clinician • a technician • a device or software</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType/provider">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType"/>
               <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType"/>
               <rdfs:label xml:lang="en-us">provider</rdfs:label>                  
               <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType"/>                  
-              <rdfs:comment xml:lang="en-us">Optional identification of the source of the information, which might be: • the patient • a patient agent, e.g. parent, guardian • the clinician • a device or software</rdfs:comment>
+              <rdfs:comment xml:lang="en-us">Optional identification of the source of the information, which might be: • a patient • a patient agent, e.g. parent, guardian • a clinician • a technician • a device or software</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>

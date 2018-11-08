@@ -9,14 +9,14 @@ from datetime import datetime
 from collections import OrderedDict
 from cuid import cuid
 
-from s3m_settings import ACS, DM_LIB
+from s3m_settings import DM_LIB
+from s3m_utils import get_acs
+from s3m_xdt import XdStringType, XdLinkType
 from s3m_struct import ClusterType
-from s3m_errors import ValidationError
+from s3m_meta import ParticipationType, PartyType, AuditType, AttestationType
+from s3m_errors import ValidationError, PublicationError
 
-
-class PublicationError(Exception):
-    pass
-
+ACS = []
 
 class DMType(object):
     """
@@ -31,18 +31,19 @@ class DMType(object):
         self._mcuid = cuid()
         self._label = title
         self._metadata = self.genMD()
+        self._pred_obj_list = []
         self._data = None
         self._dm_language = self.metadata['language']
         self._dm_encoding = 'utf-8'
         self._current_state = ''
         self._subject = None
         self._provider = None
-        self._participations = list()
+        self._participations = []
         self._protocol = None
         self._workflow = None
-        self._audits = list()
-        self._attestations = list()
-        self._links = list()
+        self._audits = []
+        self._attestations = []
+        self._links = []
         self._published = False
 
     def __str__(self):
@@ -65,7 +66,7 @@ class DMType(object):
         md['rights'] = 'Creative Commons'
         md['relation'] = 'None'
         md['coverage'] = 'Global'
-        md['description'] = 'Needs a description'
+        md['description'] = 'Needs a description.'
         md['publisher'] = 'Data Insights, Inc.'
         md['language'] = 'en-US'
 
@@ -93,7 +94,34 @@ class DMType(object):
         return self._metadata
 
     @property
-    def creator(self):
+    def pred_obj_list(self):
+        """
+        A list of additional predicate object pairs to describe the model.
+
+        Each list item is a tuple where 0 is the predicate and 1 is the object.
+
+        Example:
+        ('rdf:resource','https://www.niddk.nih.gov/health-information/health-statistics')
+        The setter accepts the tuple and appends it to the list.
+        If an empty list is supplied it resets the value to the empty list.
+        """
+        return self._pred_obj_list
+
+    @pred_obj_list.setter
+    def pred_obj_list(self, v: Iterable):
+        if not self.published:
+            if isinstance(v, list) and len(v) == 0:
+                self._pred_obj_list = []
+            elif isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) and isinstance(v[1], str):
+                self._pred_obj_list.append(v)
+            else:
+                raise ValueError("the Predicate Object List value must be a tuple of two strings or an empty list.")
+        else:
+            raise ValueError("The model has been published and cannot be edited.")
+
+
+    @property
+    def md_creator(self):
         """
         An entity primarily responsible for making the content of the resource.
 
@@ -104,14 +132,14 @@ class DMType(object):
         return self._metadata['creator']
 
     @creator.setter
-    def creator(self, v):
+    def md_creator(self, v):
         if isinstance(v, str):
             self._metadata['creator'] = v
         else:
             raise TypeError("the value must be a string.")
 
     @property
-    def contrib(self):
+    def md_contrib(self):
         """
         An entity responsible for making contributions to the content of the resource.
         Examples of a Contributor include a person, an organisation, or a service.
@@ -122,14 +150,14 @@ class DMType(object):
         return self._metadata['contribs']
 
     @contrib.setter
-    def contrib(self, v):
+    def md_contrib(self, v):
         if isinstance(v, str):
-            self._metadata['contribs'].append(v)
+            self._metadata['contribs'].append(v.strip())
         else:
             raise TypeError("the value must be a string.")
 
     @property
-    def subject(self):
+    def md_subject(self):
         """
         The topic of the content of the resource.
 
@@ -143,14 +171,14 @@ class DMType(object):
         return self._metadata['subject']
 
     @subject.setter
-    def subject(self, v):
+    def md_subject(self, v):
         if isinstance(v, str):
             self._metadata['subject'] = v
         else:
             raise TypeError("the value must be a string.")
 
     @property
-    def rights(self):
+    def md_rights(self):
         """
         Information about rights held in and over the resource.
 
@@ -166,14 +194,14 @@ class DMType(object):
         return self._metadata['rights']
 
     @rights.setter
-    def rights(self, v):
+    def md_rights(self, v):
         if isinstance(v, str):
             self._metadata['rights'] = v
         else:
             raise TypeError("the value must be a string.")
 
     @property
-    def relation(self):
+    def md_relation(self):
         """
         A reference to a related resource.
 
@@ -182,14 +210,14 @@ class DMType(object):
         return self._metadata['relation']
 
     @relation.setter
-    def relation(self, v):
+    def md_relation(self, v):
         if isinstance(v, str):
             self._metadata['relation'] = v
         else:
             raise TypeError("the value must be a string.")
 
     @property
-    def coverage(self):
+    def md_coverage(self):
         """
         The extent or scope of the content of the resource.
 
@@ -207,14 +235,14 @@ class DMType(object):
         return self._metadata['coverage']
 
     @coverage.setter
-    def coverage(self, v):
+    def md_coverage(self, v):
         if isinstance(v, str):
             self._metadata['coverage'] = v
         else:
             raise TypeError("the value must be a string.")
 
     @property
-    def description(self):
+    def md_description(self):
         """
         An account of the content of the resource.
 
@@ -225,14 +253,14 @@ class DMType(object):
         return self._metadata['description']
 
     @description.setter
-    def description(self, v):
+    def md_description(self, v):
         if isinstance(v, str):
             self._metadata['description'] = v
         else:
             raise TypeError("the value must be a string.")
 
     @property
-    def publisher(self):
+    def md_publisher(self):
         """
         An entity responsible for making the resource available.
 
@@ -244,14 +272,14 @@ class DMType(object):
         return self._metadata['publisher']
 
     @publisher.setter
-    def publisher(self, v):
+    def md_publisher(self, v):
         if isinstance(v, str):
             self._metadata['publisher'] = v
         else:
             raise TypeError("the value must be a string.")
 
     @property
-    def language(self):
+    def md_language(self):
         """
         A language of the intellectual content of the resource.
 
@@ -266,9 +294,40 @@ class DMType(object):
         return self._metadata['language']
 
     @language.setter
-    def language(self, v):
+    def md_language(self, v):
         if isinstance(v, str):
             self._metadata['language'] = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def encoding(self):
+        """
+        Name of character set encoding in which text values in this DM are encoded. 
+        
+        Default is utf-8.
+        """
+        return self._dm_encoding
+
+    @encoding.setter
+    def encoding(self, v):
+        if isinstance(v, str):
+            self._dm_encoding = v
+        else:
+            raise TypeError("the value must be a string.")
+
+    @property
+    def state(self):
+        """
+        The current state according to the state machine / workflow engine 
+        identified in the workflow element.
+        """
+        return self._current_state
+
+    @state.setter
+    def state(self, v):
+        if isinstance(v, str):
+            self._current_state = v
         else:
             raise TypeError("the value must be a string.")
 
@@ -287,6 +346,87 @@ class DMType(object):
             raise TypeError("the data attribute must be empty and the value passed must be a ClusterType.")
 
     @property
+    def subject(self):
+        """
+        Id of human subject of the data, e.g.: 
+        • subject of record (patient, customer, etc.) 
+        • a family member 
+        • another relevant person.
+        """
+        return self._subject
+
+    @subject.setter
+    def subject(self, v):
+        if isinstance(v, PartyType):
+            self._subject = v
+        else:
+            raise TypeError("the value must be a PartyType.")
+
+    @property
+    def provider(self):
+        """
+        Optional identification of the source of the information, which might be: 
+        • a patient 
+        • a patient agent, e.g. parent, guardian 
+        • a clinician
+        • a technician
+        • a device or software
+        """
+        return self._provider
+
+    @provider.setter
+    def provider(self, v):
+        if isinstance(v, PartyType):
+            self._provider = v
+        else:
+            raise TypeError("the value must be a PartyType.")
+
+    @property
+    def participations(self):
+        """
+        List of other participations in the data.
+        """
+        return self._participations
+
+    @participations.setter
+    def participations(self, v):
+        if isinstance(v, ParticipationType):
+            self._provider.append(v)
+        else:
+            raise TypeError("the value must be a ParticipationType.")
+
+    @property
+    def protocol(self):
+        """
+        Optional external identifier of protocol used when collecting the data. 
+        This could be a clinical guideline, an operations protocol, etc.
+        """
+        return self._protocol
+
+    @protocol.setter
+    def protocol(self, v):
+        if isinstance(v, XdStringType):
+            self._protocol = v
+        else:
+            raise TypeError("the value must be a XdStringType.")
+
+    @property
+    def workflow(self):
+        """
+        Identifier of externally held workflow engine (state machine) data for this 
+        workflow execution.
+        """
+        return self._workflow
+
+    @workflow.setter
+    def workflow(self, v):
+        if isinstance(v, XdLinkType):
+            self._workflow = v
+        else:
+            raise TypeError("the value must be a XdLinkType.")
+
+
+    @property
     def acs(self):
         """
         Access Control System. 
@@ -294,10 +434,14 @@ class DMType(object):
         return self._acs
 
     @acs.setter
-    def acs(self, v: list):
-        self._acs = v
+    def acs(self, v):
+        if isinstance(v, XdLinkType):
+            self._acs = v
+        else:
+            raise TypeError("the value must be a XdLinkType.")
+        
         global ACS
-        ACS = v
+        ACS = get_acs(acs.link)
 
     def __str__(self):
         if self.validate():
@@ -335,12 +479,9 @@ class DMType(object):
         xdstr += padding.rjust(indent + 6) + '<rdfs:Class rdf:about="mc-' + self.mcuid + '">\n'
         xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType"/>\n'
         xdstr += padding.rjust(indent + 8) + '<rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model/RMC"/>\n'
-        #xdstr += padding.rjust(indent + 8) + '<rdfs:isDefinedBy rdf:resource="' + quote(self.definition_url.strip()) + '"/>\n'
-        # if len(self.pred_obj_list) > 0:  # are there additional predicate-object definitions?
-        # for po in self.pred_obj_list:
-        #pred = po[0]
-        #obj = po[1]
-        #xdstr += padding.rjust(indent + 8) + '<' + pred.strip() + ' rdf:resource="' + quote(obj.strip()) + '"/>\n'
+        if len(self.pred_obj_list) != 0:
+            for po in self.pred_obj_list:
+                xdstr += padding.rjust(indent + 2) + ("<" + po.predicate.ns_abbrev.__str__() + ":" + po.predicate.class_name.strip() + " rdf:resource='" + quote(po.object_uri) + "'/>\n")
         xdstr += padding.rjust(indent + 6) + '</rdfs:Class>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:appinfo>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:annotation>\n'
@@ -348,17 +489,14 @@ class DMType(object):
         xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:DMType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="label" type="xs:string" fixed="' + self.label.strip() + '"/>\n'
-        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="dm-language" type="xs:language" fixed="en-US"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="dm-language" type="xs:language" default="en-US"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="dm-encoding" type="xs:string" default="utf-8"/>\n'
-        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="current-state" type="xs:string"/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="current-state" type="xs:string" default=""/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-' + self.data.mcuid + '"/>\n'
-        #xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="" type=""/>\n'
-        #xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="" type=""/>\n'
-        #xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="" type=""/>\n'
-        #xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="" type=""/>\n'
-        #xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="" type=""/>\n'
-        #xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="" type=""/>\n'
-        #xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="" type=""/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="subject" type="s3m:mc-"' + self.subject.mcuid + '/>\n'
+        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="provider" type="s3m:mc-"' + self.provider.mcuid + '/>\n'
+
+
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
@@ -403,12 +541,12 @@ class DMType(object):
 
     def _metaxsd(self):
         """
-        Return the daa model metadata.
+        Return the data model metadata.
         """
         contribs = ''
         for contrib in self.metadata['contribs']:
             contribs += "<dc:contributor>" + contrib + "</dc:contributor>\n    "
-        contribs = contribs.strip('\n    ')
+        contribs = contribs.strip('\n    ') # remove the last newline
         md = """
         
   <!-- Dublin Core Metadata -->
@@ -433,6 +571,38 @@ class DMType(object):
         """
 
         return(md)
+
+    def exportXML(self, example):
+        """
+        Export a XML instance for the Data Model.
+        """
+        if not self.published:
+            raise ValueError("The model must first be published.")
+        if example:
+            self.party_name = "A. Sample Name"
+
+        indent = 2
+        padding = ('').rjust(indent)
+
+        xmlstr = ''
+        xmlstr += padding + "<s3m:dm-" + self.mcuid + ">\n"
+        xmlstr += padding + "  <label>" + escape(self.label) + "</label>\n"
+        xmlstr += padding + "  <dm-language>" + escape(self.language) + "</dm-language>\n"
+        xmlstr += padding + "  <dm-encoding>" + escape(self.encoding) + "</dm-encoding>\n"
+        xmlstr += padding + "  <current-state>" + escape(self.state) + "</current-state>\n"
+        
+        xmlstr += padding + "</s3m:dm-" + self.mcuid + ">\n"
+        return(xmlstr)
+
+    def exportJSON(self, example):
+        """
+        Export a JSON instance for the Data Model.
+        """
+        xml = self.exportXML(example)
+        parsed = xmltodict.parse(xml, encoding='UTF-8', process_namespaces=False)
+        return(json.dumps(parsed, indent=2, sort_keys=False))
+
+
 
     def extractRDF(self):
         """
