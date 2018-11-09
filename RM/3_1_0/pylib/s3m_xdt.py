@@ -27,9 +27,11 @@ from lxml import etree as ET
 
 import s3m_ontology
 from s3m_ev import ExceptionalValue
-from s3m_settings import ACS
 from s3m_errors import ValidationError, PublicationError
 from s3m_utils import get_latlon, random_dtstr, valid_cardinality, reg_ns
+
+# Global Access Control System
+ACS = []
 
 # globally register namespaces
 ns_dict = reg_ns()

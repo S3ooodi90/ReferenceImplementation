@@ -7,7 +7,7 @@ from datetime import datetime, date, time, timedelta
 from decimal import Decimal
 from urllib.request import urlopen
 
-def get_acs(link):
+def fetch_acs(link):
     """
     Return an access control list from a link.
     The file must be a plain text file. 
@@ -25,8 +25,6 @@ def get_acs(link):
     
     return(acslist)        
         
-
-
 
 def reg_ns():
     """

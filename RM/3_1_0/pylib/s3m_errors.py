@@ -5,3 +5,6 @@ class ValidationError(Exception):
 
 class PublicationError(Exception):
     pass
+
+class ModelingError(Exception):
+    pass

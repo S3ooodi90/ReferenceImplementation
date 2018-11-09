@@ -7,14 +7,16 @@ from urllib.parse import quote
 
 from datetime import datetime
 from collections import OrderedDict
+from typing import ByteString, Dict, List, Tuple, Iterable
+
 from cuid import cuid
 
 from s3m_settings import DM_LIB
-from s3m_utils import get_acs
+from s3m_utils import fetch_acs
 from s3m_xdt import XdStringType, XdLinkType
 from s3m_struct import ClusterType
 from s3m_meta import ParticipationType, PartyType, AuditType, AttestationType
-from s3m_errors import ValidationError, PublicationError
+from s3m_errors import ValidationError, PublicationError, ModelingError
 
 ACS = []
 
@@ -27,7 +29,7 @@ class DMType(object):
         """
         The Data Model is the wrapper for all of the data components as well as the semantics.
         """
-        self._acs = []
+        self._acs = None
         self._mcuid = cuid()
         self._label = title
         self._metadata = self.genMD()
@@ -42,7 +44,7 @@ class DMType(object):
         self._protocol = None
         self._workflow = None
         self._audits = []
-        self._attestations = []
+        self._attestation = None
         self._links = []
         self._published = False
 
@@ -52,7 +54,7 @@ class DMType(object):
     def showMetadata(self):
         mdStr = ''
         for k, v in self.metadata.items():
-            mdStr += k + ': ' + repr(v) + '\n'
+            mdStr += '    ' + k + ': ' + repr(v) + '\n'
         return(mdStr)
 
     def genMD(self):
@@ -131,7 +133,7 @@ class DMType(object):
         """
         return self._metadata['creator']
 
-    @creator.setter
+    @md_creator.setter
     def md_creator(self, v):
         if isinstance(v, str):
             self._metadata['creator'] = v
@@ -149,7 +151,7 @@ class DMType(object):
         """
         return self._metadata['contribs']
 
-    @contrib.setter
+    @md_contrib.setter
     def md_contrib(self, v):
         if isinstance(v, str):
             self._metadata['contribs'].append(v.strip())
@@ -170,7 +172,7 @@ class DMType(object):
         """
         return self._metadata['subject']
 
-    @subject.setter
+    @md_subject.setter
     def md_subject(self, v):
         if isinstance(v, str):
             self._metadata['subject'] = v
@@ -193,7 +195,7 @@ class DMType(object):
         """
         return self._metadata['rights']
 
-    @rights.setter
+    @md_rights.setter
     def md_rights(self, v):
         if isinstance(v, str):
             self._metadata['rights'] = v
@@ -209,7 +211,7 @@ class DMType(object):
         """
         return self._metadata['relation']
 
-    @relation.setter
+    @md_relation.setter
     def md_relation(self, v):
         if isinstance(v, str):
             self._metadata['relation'] = v
@@ -234,7 +236,7 @@ class DMType(object):
         """
         return self._metadata['coverage']
 
-    @coverage.setter
+    @md_coverage.setter
     def md_coverage(self, v):
         if isinstance(v, str):
             self._metadata['coverage'] = v
@@ -252,7 +254,7 @@ class DMType(object):
         """
         return self._metadata['description']
 
-    @description.setter
+    @md_description.setter
     def md_description(self, v):
         if isinstance(v, str):
             self._metadata['description'] = v
@@ -271,7 +273,7 @@ class DMType(object):
         """
         return self._metadata['publisher']
 
-    @publisher.setter
+    @md_publisher.setter
     def md_publisher(self, v):
         if isinstance(v, str):
             self._metadata['publisher'] = v
@@ -293,7 +295,7 @@ class DMType(object):
         """
         return self._metadata['language']
 
-    @language.setter
+    @md_language.setter
     def md_language(self, v):
         if isinstance(v, str):
             self._metadata['language'] = v
@@ -391,7 +393,7 @@ class DMType(object):
     @participations.setter
     def participations(self, v):
         if isinstance(v, ParticipationType):
-            self._provider.append(v)
+            self._participations.append(v)
         else:
             raise TypeError("the value must be a ParticipationType.")
 
@@ -441,7 +443,51 @@ class DMType(object):
             raise TypeError("the value must be a XdLinkType.")
         
         global ACS
-        ACS = get_acs(acs.link)
+        ACS = fetch_acs(acs.link)
+
+    @property
+    def audits(self):
+        """
+        List of audits in the data.
+        """
+        return self._audits
+
+    @audits.setter
+    def audits(self, v):
+        if isinstance(v, AuditType):
+            self._audits.append(v)
+        else:
+            raise TypeError("the value must be an AuditType.")
+
+    @property
+    def attestation(self):
+        """
+        Attestation record of an instance of data.
+        """
+        return self._attestation
+
+    @attestation.setter
+    def attestation(self, v):
+        if isinstance(v, AttestationType):
+            self._attestation = v
+        else:
+            raise TypeError("the value must be a AttestationType.")
+
+    @property
+    def links(self):
+        """
+        List of links.
+        """
+        return self._links
+
+    @links.setter
+    def links(self, v):
+        if isinstance(v, XdLinkType):
+            self._links.append(v)
+        else:
+            raise TypeError("the value must be an XdLinkType.")
+
+
 
     def __str__(self):
         if self.validate():
@@ -492,17 +538,60 @@ class DMType(object):
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="dm-language" type="xs:language" default="en-US"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" name="dm-encoding" type="xs:string" default="utf-8"/>\n'
         xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="current-state" type="xs:string" default=""/>\n'
-        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-' + self.data.mcuid + '"/>\n'
-        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="subject" type="s3m:mc-"' + self.subject.mcuid + '/>\n'
-        xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="provider" type="s3m:mc-"' + self.provider.mcuid + '/>\n'
+        if self.data is None:
+            raise ModelingError("You must have a data cluster assigned.")
+        else:
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-' + self.data.mcuid + '"/>\n'
+        if self.subject is not None:
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="subject" type="s3m:mc-"' + self.subject.mcuid + '/>\n'
+        if self.provider is not None:
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="provider" type="s3m:mc-"' + self.provider.mcuid + '/>\n'
+        if len(self.participations) > 0:
+            for part in self.participations:
+                xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-' + part.mcuid + '"/>\n'
+        if self.protocol is not None:
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="protocol" type="s3m:mc-"' + self.protocol.mcuid + '/>\n'
+        if self.workflow is not None:
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="workflow" type="s3m:mc-"' + self.workflow.mcuid + '/>\n'
+        if self.acs is not None:
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="acs" type="s3m:mc-"' + self.acs.mcuid + '/>\n'
+        if len(self.audits) > 0:
+            for audit in self.audits:
+                xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-' + audit.mcuid + '"/>\n'
+        if self.attestation is not None:
+            xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="0" name="attestation" type="s3m:mc-"' + self.attestation.mcuid + '/>\n'
+        if len(self.links) > 0:
+            for link in self.links:
+                xdstr += padding.rjust(indent + 8) + '<xs:element maxOccurs="1" minOccurs="1" ref="s3m:ms-' + link.mcuid + '"/>\n'
 
 
         xdstr += padding.rjust(indent + 6) + '</xs:sequence>\n'
         xdstr += padding.rjust(indent + 4) + '</xs:restriction>\n'
         xdstr += padding.rjust(indent + 2) + '</xs:complexContent>\n'
         xdstr += padding.rjust(indent) + '</xs:complexType>\n\n'
+        # get the available models 
         xdstr += self.data.getModel()
-
+        if self.subject is not None:
+            xdstr += self.subject.getModel()
+        if self.provider is not None:
+            xdstr += self.provider.getModel()
+        if len(self.participations) > 0:
+            for part in self.participations:
+                xdstr += self.part.getModel()
+        if self.protocol is not None:
+            xdstr += self.protocol.getModel()
+        if self.workflow is not None:
+            xdstr += self.workflow.getModel()
+        if self.acs is not None:
+            xdstr += self.acs.getModel()
+        if len(self.audits) > 0:
+            for audit in self.audits:
+                xdstr += self.audit.getModel()
+        if self.attestation is not None:
+            xdstr += self.attestation.getModel()
+        if len(self.links) > 0:
+            for link in self.links:
+                xdstr += self.link.getModel()
         xdstr += "</xs:schema>"
 
         with open(os.path.join(DM_LIB, 'dm-' + self.mcuid + '.xsd'), 'w') as f:
