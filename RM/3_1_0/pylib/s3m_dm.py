@@ -35,7 +35,7 @@ class DMType(object):
         self._metadata = self.genMD()
         self._pred_obj_list = []
         self._data = None
-        self._dm_language = self.metadata['language']
+        self._dm_language = 'en-US'
         self._dm_encoding = 'utf-8'
         self._current_state = ''
         self._subject = None
@@ -71,7 +71,7 @@ class DMType(object):
         md['description'] = 'Needs a description.'
         md['publisher'] = 'Data Insights, Inc.'
         md['language'] = 'en-US'
-
+        md['identifier'] = 'dm-' + self.mcuid
         return(md)
 
     @property
