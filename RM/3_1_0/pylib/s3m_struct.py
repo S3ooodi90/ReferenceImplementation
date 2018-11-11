@@ -12,7 +12,7 @@ from cuid import cuid
 from validator_collection import checkers
 
 from s3m_xdt import XdAnyType
-from s3m_errors import ValidationError
+from s3m_errors import ValidationError, PublicationError
 
 
 class ItemType(ABC):
@@ -43,7 +43,12 @@ class ItemType(ABC):
             raise TypeError("the published value must be a boolean.")
         
 
-    @abstractmethod
+    def __str__(self):
+        if self.validate():
+            return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " Published: " + str(self._published))
+        else:
+            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
+
     def validate(self):
         return(True)
 
@@ -57,8 +62,17 @@ class XdAdapterType(ItemType):
     """
 
     def __init__(self):
+        super().__init__()                
         self._value = None
-        self._published = False
+        self._mcuid = None
+        self.label = 'Empty XdAdapter'
+
+    @property
+    def mcuid(self):
+        """
+        The unique identifier of the component.
+        """
+        return self._mcuid
 
     @property
     def value(self):
@@ -74,6 +88,8 @@ class XdAdapterType(ItemType):
                 if isinstance(v, XdAnyType) and self._value == None:
                     self._value = v
                     self._value.adapter = True
+                    self._mcuid = self._value.acuid 
+                    self.label = 'XdAdapter for ' + self.value.label
                     self._published = True  # automatically publish the adapter when an item is added
                 else:
                     raise ValueError("the value must be a XdAnyType subtype. A XdAdapter can only contain one XdType.")
@@ -91,11 +107,7 @@ class XdAdapterType(ItemType):
         else:
             return(True)
 
-    def __str__(self):
-        if not self.validate():
-            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
-        return(self.__class__.__name__ + ', ID: ' + self.value.acuid + ' contains ' + str(self.value))
-
+ 
     def getModel(self):
         """
         Return a XML Schema stub for the adapter.
@@ -109,8 +121,8 @@ class XdAdapterType(ItemType):
         indent = 2
         padding = ('').rjust(indent)
         xdstr = ''
-        xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.value.acuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.value.acuid + '"/>\n'
-        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.value.acuid + '">\n'
+        xdstr += padding.rjust(indent) + '\n<xs:element name="ms-' + self.mcuid + '" substitutionGroup="s3m:Items" type="s3m:mc-' + self.mcuid + '"/>\n'
+        xdstr += padding.rjust(indent) + '<xs:complexType name="mc-' + self.mcuid + '">\n'
         xdstr += padding.rjust(indent + 2) + '<xs:complexContent>\n'
         xdstr += padding.rjust(indent + 4) + '<xs:restriction base="s3m:XdAdapterType">\n'
         xdstr += padding.rjust(indent + 6) + '<xs:sequence>\n'
@@ -136,9 +148,9 @@ class ClusterType(ItemType):
         """
         The semantic label (name of the model) is required.
         """
-        self._published = False        
+        super().__init__()        
         self._mcuid = cuid()  # model cuid
-        self._label = ''
+        self._label = label
         self._items = []
         self._docs = ''
         self._definition_url = ''
@@ -237,9 +249,12 @@ class ClusterType(ItemType):
     def items(self, v):
         if not self.published:
             if isinstance(v, ItemType):
-                self._items.append(v)
+                if v.published:
+                    self._items.append(v)
+                else:
+                    raise PublicationError("The item " + v.label + " must first be published.")
             else:
-                if isinstance(v, XdAnyType):
+                if isinstance(v, (XdAnyType, ClusterType)):
                     raise TypeError("XdType items in a ClusterType must be wrapped in an XdAdapterType.")
                 else:
                     raise TypeError("items in a ClusterType must be of type ItemType.")
@@ -261,10 +276,6 @@ class ClusterType(ItemType):
         else:
             return(True)
 
-    def __str__(self):
-        if not self.validate():
-            raise ValidationError(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid + " is not valid.")
-        return(self.__class__.__name__ + ' : ' + self.label + ', ID: ' + self.mcuid)
 
     def getModel(self):
         """
