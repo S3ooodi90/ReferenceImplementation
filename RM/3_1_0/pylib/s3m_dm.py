@@ -499,6 +499,10 @@ class DMType(object):
         """
         Validation called before exporting code or execution of the __str__ method.
         """
+        # set the environment variable for the catalog
+        
+        # XML_CATALOG_FILES
+        
         return(True)
 
     def exportDM(self):

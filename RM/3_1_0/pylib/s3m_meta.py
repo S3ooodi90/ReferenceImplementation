@@ -85,7 +85,7 @@ class MetaCommon(ABC):
         Example
         --------
 
-        ('committer', [1,1]) will set the committer value (Attestation) to be required.
+        ('committer', [1,1]) will set the committer value (AttestationType) to be required.
 
 
         NOTES
