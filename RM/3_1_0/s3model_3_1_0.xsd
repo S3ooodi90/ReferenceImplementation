@@ -273,14 +273,14 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="0" name="link" type="xs:anyURI">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">A dereferenceable (or not) URL to another CMC or just the dm-{uuid}.</xs:documentation>
+              <xs:documentation xml:lang="en-us">A dereferenceable (or not) URL to another CMC or other model like entity.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdLinkType/link">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdLinkType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
                   <rdfs:label xml:lang="en-us">link</rdfs:label>                  
                   <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-                  <rdfs:comment xml:lang="en-us">A dereferenceable (or not) URL to another CMC or just the dm-{uuid}.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">A dereferenceable (or not) URL to another CMC or other model like entity.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -363,14 +363,14 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdstring-language" type="xs:language">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Optional indicator of the localised language in which this data-type is written. Only required when the language used here is different from the enclosing Data Model.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Optional indicator of the localised language in which this data-type is written. Used when the language used here is different from the enclosing Data Model.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringTypexdstring-language">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#language"/>
                   <rdfs:label xml:lang="en-us">xdstring-language</rdfs:label>                  
                   <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#language"/>                  
-                  <rdfs:comment xml:lang="en-us">Optional indicator of the localised language in which this data-type is written. Only required when the language used here is different from the enclosing Data Model.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Optional indicator of the localised language in which this data-type is written. Used when the language used here is different from the enclosing Data Model.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -889,14 +889,14 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="1" name="xdcount-units" type="s3m:XdStringType">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">The name or type of the items counted. Examples are cigarettes, drinks, pregnancies, episodes, etc. May or may not come from a standard terminology.</xs:documentation>
+              <xs:documentation xml:lang="en-us">The name or type of the items counted. Examples are cigarettes, drinks, pregnancies, episodes, widgets, etc. May or may not come from a standard terminology.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType/xdcount-units">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdCountType"/>
                   <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
                   <rdfs:label xml:lang="en-us">xdcount-units</rdfs:label>                  
                   <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>                  
-                  <rdfs:comment xml:lang="en-us">The name or type of the items counted. Examples are cigarettes, drinks, pregnancies, episodes, etc. May or may not come from a standard terminology.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">The name or type of the items counted. Examples are cigarettes, drinks, pregnancies, episodes, widgets, etc. May or may not come from a standard terminology.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -935,28 +935,28 @@
         <xs:sequence>
           <xs:element maxOccurs="1" minOccurs="0" name="xdquantity-value" type="xs:decimal">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Numeric value of the quantity.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Numeric decimal value of the quantity.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantityType/xdquantity-value">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantityType"/>
                   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
                   <rdfs:label xml:lang="en-us">xdquantity-value</rdfs:label>                  
                   <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>                  
-                  <rdfs:comment xml:lang="en-us">Numeric value of the quantity.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Numeric decimal value of the quantity.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="1" name="xdquantity-units" type="s3m:XdStringType">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">The name or type of the quantity. Examples are "kg/m2", “mmHg", "ms-1", "km/h". May or may not come from a standard terminology.</xs:documentation>
+              <xs:documentation xml:lang="en-us">The name or type of the quantity. Examples are "kg", “mmHg", "ms-1", "km/h". Should come from a standard terminology.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantityType/xdquantity-units">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdQuantityType"/>
                   <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
                   <rdfs:label xml:lang="en-us">xdquantity-units</rdfs:label>                  
                   <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>                  
-                  <rdfs:comment xml:lang="en-us">The name or type of the quantity. Examples are "kg/m2", “mmHg", "ms-1", "km/h". May or may not come from a standard terminology.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">The name or type of the quantity. Examples are "kg", “mmHg", "ms-1", "km/h". Should come from a standard terminology.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1009,14 +1009,14 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="xdfloat-units" type="s3m:XdStringType">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">The name or type of the float value.</xs:documentation>
+              <xs:documentation xml:lang="en-us">The name or type of the float value. May or may not come from a standardized vocabulary.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFloatType/xdfloat-units">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdFloatType"/>
                   <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
                   <rdfs:label xml:lang="en-us">xdfloat-units</rdfs:label>                  
                   <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>                  
-                  <rdfs:comment xml:lang="en-us">The name or type of the float value.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">The name or type of the float value. May or may not come from a standardized vocabulary.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1202,7 +1202,7 @@
 
   <xs:complexType name="XdIntervalType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are
+      <xs:documentation xml:lang="en-us">Generic type defining an interval (i.e. range) of comparable types. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are
         primarily used in defining reference ranges.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType">
@@ -1210,7 +1210,7 @@
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">XdIntervalType</rdfs:label>
           <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>          
-          <rdfs:comment xml:lang="en-us">Generic type defining an interval (i.e. range) of a comparable type. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are
+          <rdfs:comment xml:lang="en-us">Generic type defining an interval (i.e. range) of comparable types. An interval is a contiguous subrange of a comparable base type. Used to define intervals of dates, times, quantities, etc. Whose datatypes are the same and are ordered. In S3Model, they are
             primarily used in defining reference ranges.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
@@ -1304,14 +1304,14 @@
           </xs:element>
           <xs:element maxOccurs="1" minOccurs="0" name="interval-units" type="s3m:InvlUnits">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">Defines the the units for this Interval.</xs:documentation>
+              <xs:documentation xml:lang="en-us">Defines an optional units for this Interval.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType/interval-units">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdIntervalType"/>
                   <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#IntervalUnits"/>
                   <rdfs:label xml:lang="en-us">interval-units</rdfs:label>                  
                   <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#IntervalUnits"/>                  
-                  <rdfs:comment xml:lang="en-us">Defines the the units for this Interval.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">Defines an optional units for this Interval.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -1376,7 +1376,7 @@
 
   <xs:complexType name="ReferenceRangeType">
     <xs:annotation>
-      <xs:documentation xml:lang="en-us">Defines a named range to be associated with any ORDERED datum. Each such range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc.
+      <xs:documentation xml:lang="en-us">Defines a named range to be associated with any ORDERED datatype. Each such range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc.
         ranges that are constrained by an interval.</xs:documentation>
       <xs:appinfo>
         <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ReferenceRangeType">
@@ -1384,7 +1384,7 @@
           <rdfs:subClassOf rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAnyType"/>
           <rdfs:label xml:lang="en-us">ReferenceRangeType</rdfs:label>
           <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model/CMC"/>          
-          <rdfs:comment xml:lang="en-us">Defines a named range to be associated with any ORDERED datum. Each such range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc.
+          <rdfs:comment xml:lang="en-us">Defines a named range to be associated with any ORDERED datatype. Each such range is sensitive to the context, e.g. sex, age, location, and any other factor which affects ranges. May be used to represent high, low, normal, therapeutic, dangerous, critical, etc.
             ranges that are constrained by an interval.</rdfs:comment>
         </rdf:Description>
       </xs:appinfo>
@@ -1606,14 +1606,14 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="party-details" type="s3m:ClusterType">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us">Structural details about the party.</xs:documentation>
+          <xs:documentation xml:lang="en-us">A structured element for details about the party.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType/party-details">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType"/>
               <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ClusterType"/>
               <rdfs:label xml:lang="en-us">party-details</rdfs:label>                  
               <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdClusterType"/>                  
-              <rdfs:comment xml:lang="en-us">Structural details about the party.</rdfs:comment>
+              <rdfs:comment xml:lang="en-us">A structured element for details about the party.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -1787,28 +1787,28 @@
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="performer" type="s3m:PartyType">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us">The id and possibly demographic system link of the party participating in the activity.</xs:documentation>
+          <xs:documentation xml:lang="en-us">The id and possibly demographic system link of the party that represents the primary provider of services in the activity.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ParticipationType/performer">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ParticipationType"/>
               <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType"/>
               <rdfs:label xml:lang="en-us">performer</rdfs:label>                  
               <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#PartyType"/>                  
-              <rdfs:comment xml:lang="en-us">The id and possibly demographic system link of the party participating in the activity.</rdfs:comment>
+              <rdfs:comment xml:lang="en-us">The id and possibly demographic system link of the party that represents the primary provider of services in the activity.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="function" type="s3m:XdStringType">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us">The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.</xs:documentation>
+          <xs:documentation xml:lang="en-us">The function of the performer in this participation. In some applications this might be called a Role.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ParticipationType/function">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ParticipationType"/>
               <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>
               <rdfs:label xml:lang="en-us">function</rdfs:label>                  
               <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdStringType"/>                  
-              <rdfs:comment xml:lang="en-us">The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.</rdfs:comment>
+              <rdfs:comment xml:lang="en-us">The function(s) of the performer in this participation (note that a given party might participate in more than one way in a particular activity). In some applications this might be called a Role.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
@@ -2518,14 +2518,14 @@
           </xs:element>
           <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Items">
             <xs:annotation>
-              <xs:documentation xml:lang="en-us">List of Item types.</xs:documentation>
+              <xs:documentation xml:lang="en-us">List of ItemTypes which may be XdAdapterTypes and/or ClusterTypes.</xs:documentation>
               <xs:appinfo>
                 <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ClusterType/Items">
                   <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ClusterType"/>
                   <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ItemType"/>
                   <rdfs:label xml:lang="en-us">items</rdfs:label>                  
                   <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#ItemType"/>                  
-                  <rdfs:comment xml:lang="en-us">List of Item types.</rdfs:comment>
+                  <rdfs:comment xml:lang="en-us">List of ItemTypes which may be XdAdapterTypes and/or ClusterTypes.</rdfs:comment>
                 </rdf:Description>
               </xs:appinfo>
             </xs:annotation>
@@ -2776,14 +2776,14 @@
       </xs:element>      
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="s3m:Audit">
         <xs:annotation>
-          <xs:documentation xml:lang="en-us">Audit trail from the system of original commit of information forming the conten, or from a conversion gateway which has synthesised this node.</xs:documentation>
+          <xs:documentation xml:lang="en-us">List of audits from the system of original commit of information forming the content, or from a conversion gateway which has processed this data.</xs:documentation>
           <xs:appinfo>
             <rdf:Description rdf:about="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType/audit">
               <rdfs:domain rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#DMType"/>
               <rdfs:range rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#AuditType"/>
               <rdfs:label xml:lang="en-us">audits</rdfs:label>                  
               <rdf:type rdf:resource="https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd#XdAuditType"/>                  
-              <rdfs:comment xml:lang="en-us">Audit trail from the system of original commit of information forming the content, or from a conversion gateway which has synthesised this node.</rdfs:comment>
+              <rdfs:comment xml:lang="en-us">List of audits from the system of original commit of information forming the content, or from a conversion gateway which has processed this data.</rdfs:comment>
             </rdf:Description>
           </xs:appinfo>
         </xs:annotation>
