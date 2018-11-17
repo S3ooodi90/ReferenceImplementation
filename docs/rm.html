@@ -26,27 +26,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Shareable, Structured, Semantic Model" href="index.html"/>
-        <link rel="next" title="Linked Data Modeling" href="linked_data.html"/>
-        <link rel="prev" title="Abstract Model" href="abstract_model.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Linked Data Modeling" href="linked_data.html" />
+    <link rel="prev" title="Abstract Model" href="abstract_model.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -63,7 +55,7 @@
 
           
             
-            <img src="_static/SmallLogo.png" class="logo" />
+            <img src="_static/SmallLogo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -138,7 +130,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#xdcounttype">XdCountType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdquantitytype">XdQuantityType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdfloattype">XdFloatType</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xdratiotype">XdRatioType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdtemporaltype">XdTemporalType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xdintervaltype">XdIntervalType</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#invltype">InvlType</a></li>
@@ -172,7 +163,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#rm-simpletypes">RM simpleTypes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#magnitudestatus">MagnitudeStatus</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#typeofratio">TypeOfRatio</a></li>
 </ul>
 </li>
 </ul>
@@ -197,7 +187,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">S3Model</a>
@@ -205,9 +195,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -287,24 +278,24 @@ The dateTime is specified in the following form “YYYY-MM-DDThh:mm:ss” where:
 <li>ss indicates the second</li>
 </ul>
 <p>The following is an example of a dateTime declaration in a schema:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;startdate&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:dateTime&quot;</span><span class="o">/&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;startdate&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:dateTime&quot;</span><span class="o">/&gt;</span>
 </pre></div>
 </div>
 <p>An element in your document might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><em>Time Zones</em></p>
 <p>To specify a time zone, you can either enter a dateTime in UTC time by adding a “Z” behind the time - like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>or you can specify an offset from the UTC time by adding a positive or negative time behind the time - like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span> <span class="ow">or</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span> <span class="ow">or</span>
 <span class="o">&lt;</span><span class="n">startdate</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span><span class="n">T09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">startdate</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -319,7 +310,7 @@ The dateTime is specified in the following form “YYYY-MM-DDThh:mm:ss” where:
 <li>DD indicates the day</li>
 </ul>
 <p>An element in an XML Document  might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">24</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">24</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -333,24 +324,24 @@ The time is specified in the following form “hh:mm:ss” where:</p>
 <li>ss indicates the second</li>
 </ul>
 <p>The following is an example of a time declaration in a schema:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;start&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:time&quot;</span><span class="o">/&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;start&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:time&quot;</span><span class="o">/&gt;</span>
 </pre></div>
 </div>
 <p>An element in your document might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">05</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><em>Time Zones</em></p>
 <p>To specify a time zone, you can either enter a time in UTC time by adding a “Z” behind the time - like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>or you can specify an offset from the UTC time by adding a positive or negative time behind the time - like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>  <span class="ow">or</span>  <span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">-</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>  <span class="ow">or</span>  <span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">10</span><span class="o">+</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -369,26 +360,26 @@ The time interval is specified in the following form “PnYnMnDTnHnMnS” where:
 <li>nS indicates the number of seconds</li>
 </ul>
 <p>The following is an example of a duration declaration in a schema:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;period&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:duration&quot;</span><span class="o">/&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;period&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:duration&quot;</span><span class="o">/&gt;</span>
 </pre></div>
 </div>
 <p>An element in your document might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of five years.
 Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of five years, two months, and 10 days.
 Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10DT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">P5Y2M10DT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of five years, two months, 10 days, and 15 hours.
 Or it might look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">PT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="n">PT15H</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of 15 hours.</p>
@@ -396,7 +387,7 @@ Or it might look like this:</p>
 <div class="section" id="negative-duration">
 <h4>Negative Duration<a class="headerlink" href="#negative-duration" title="Permalink to this headline">¶</a></h4>
 <p>To specify a negative duration, enter a minus sign before the P:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;-</span><span class="n">P10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;-</span><span class="n">P10D</span><span class="o">&lt;/</span><span class="n">period</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The example above indicates a period of minus 10 days.</p>
@@ -634,20 +625,6 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Quantified type representing specific quantities as a magnitude as a float value and optional units.</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="xdratiotype">
-<h4>XdRatioType<a class="headerlink" href="#xdratiotype" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="rm/s3model_3_1_0_xsd_Complex_Type_s3m_XdRatioType.html#XdRatioType">XdRatioType Schema</a></p>
-<p><strong>Derived from:</strong> <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> by extension</p>
-<p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong></p>
-<p>Models a ratio of values, i.e. where the numerator and denominator are both pure numbers (float). Should not be used to represent things like blood pressure which are often written using a forward slash (‘/’) character, giving the misleading impression that the item is a ratio, when in fact it is a structured value. Similarly, visual acuity, often written as (e.g.) “20/20” in clinical notes is not a ratio but an ordinal (which includes non-numeric symbols like CF = count fingers etc). Should not be used for formulations.</p>
-<ul class="simple">
-<li>The <em>ratio-type</em> element is used to specify a category of ratio. The optiona are ratio, proportion and rate.</li>
-<li>Elements are available for the <em>numerator</em>, <em>denominator</em>, and <em>xdratio-value</em>.</li>
-<li>Addtionaly there is an optional <em>???-units</em> element for each of the three elements <em>numerator</em>, <em>denominator</em>, and <em>xdratio-value</em>.</li>
-</ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="xdtemporaltype">
@@ -942,7 +919,7 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 <p><strong>Abstract:</strong> False</p>
 <p><strong>Description:</strong></p>
 <p>Optional status of magnitude with values:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">equal</span><span class="o">*</span> <span class="p">:</span> <span class="n">magnitude</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">point</span> <span class="n">value</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">equal</span><span class="o">*</span> <span class="p">:</span> <span class="n">magnitude</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">point</span> <span class="n">value</span>
 
 <span class="o">*</span><span class="n">less_than</span><span class="o">*</span> <span class="p">:</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="n">the</span> <span class="n">magnitude</span>
 
@@ -957,29 +934,13 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 </div>
 <p>These enumerations are used in the <em>magnitude-status</em> element of the <a class="reference internal" href="#xdquantifiedtype">XdQuantifiedType</a> subtypes.</p>
 </div>
-<hr class="docutils" />
-<div class="section" id="typeofratio">
-<h4>TypeOfRatio<a class="headerlink" href="#typeofratio" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="rm/s3model_3_1_0_xsd_Simple_Type_s3m_TypeOfRatio.html#TypeOfRatio">TypeOfRatio Schema</a></p>
-<p><strong>Derived from:</strong> xs:string</p>
-<p><strong>Abstract:</strong> False</p>
-<p><strong>Description:</strong></p>
-<p>Indicates the semantics of a type of ratio. Used in the <em>ratio-type</em> element of <a class="reference internal" href="#xdratiotype">XdRatioType</a></p>
-<ul class="simple">
-<li><em>ratio</em> = a relationship between two numbers.</li>
-<li><em>proportion</em> = a relationship between two numbers where there is a bi-univocal relationship between the numerator and the denominator (the numerator is contained in the denominator)</li>
-<li><em>rate</em> = a relationship between two numbers where there is not a bi-univocal relationship between the numerator and the denominator (the numerator is not contained in the denominator)</li>
-</ul>
-</div>
 </div>
 </div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -997,11 +958,11 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2009 - 2018, Data Insights, Inc. https://datainsights.tech  .
+        &copy; Copyright 2009 - 2018, Data Insights, Inc. https://datainsights.tech  
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1016,35 +977,24 @@ in an ordered list. This can serve as the root component for arbitrarily complex
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

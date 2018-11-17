@@ -26,27 +26,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Shareable, Structured, Semantic Model" href="index.html"/>
-        <link rel="next" title="S3Model Data Analysis" href="data_analysis.html"/>
-        <link rel="prev" title="S3Model as a Component of an Enterprise Architecture" href="S3Model_and_EA.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="S3Model Data Analysis" href="data_analysis.html" />
+    <link rel="prev" title="S3Model as a Component of an Enterprise Architecture" href="S3Model_and_EA.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -63,7 +55,7 @@
 
           
             
-            <img src="_static/SmallLogo.png" class="logo" />
+            <img src="_static/SmallLogo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -137,7 +129,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">S3Model</a>
@@ -145,9 +137,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -228,14 +221,14 @@ The governance of DMs is the responsibility of the modeler and publishing organi
 <li><p class="first">Consist of complexTypes that only use the <em>restriction</em> element of complexTypes with a <em>base</em> attribute from the associated reference model</p>
 </li>
 <li><p class="first">use <a class="reference external" href="https://github.com/ericelliott/cuid">CUIDs</a> for complexType names, with the prefix of, ‘mc-‘. Example <a class="footnote-reference" href="#f2" id="id2">[2]</a></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mc-cjffhejvj002pf3l30ddom8lg&#39;</span> <span class="n">xml</span><span class="p">:</span><span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mc-cjffhejvj002pf3l30ddom8lg&#39;</span> <span class="n">xml</span><span class="p">:</span><span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">publish a global element for each complexType where a substitutionGroup is required <a class="footnote-reference" href="#f3" id="id3">[3]</a>. The element <strong>MUST</strong> be defined using the same CUID as the complexType with the ‘mc-‘ prefix replaced with ‘ms-‘.</p>
 </li>
 <li><p class="first">Include the reference model schema from www.S3Model.org using the appropriately defined namespace. Example for release 3.0.0 and later releases, S3Model uses the namespace definition, xmlns:s3m=”https://www.s3model.com/ns/s3m/” <a class="footnote-reference" href="#f4" id="id4">[4]</a></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">use</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">substitution</span> <span class="n">group</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">as</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">example</span><span class="p">::</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">use</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">substitution</span> <span class="n">group</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">as</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">example</span><span class="p">::</span>
 </pre></div>
 </div>
 <blockquote>
@@ -275,13 +268,13 @@ The design of DMs separates the model structure from the domain semantics of a c
 <p>If you are not familiar with RDF, you may want to read more at <a class="reference external" href="https://www.linkeddatatools.com/">LinkedDataTools</a> or directly from the <a class="reference external" href="https://www.w3.org/TR/rdf11-primer/">W3C Specifications</a>.</p>
 <p>The world of data exchange is composed of two primary players; <em>data providers</em> and <em>data consumers</em>. Whether those two parties are people or software applications, they require this knowledge to turn <em>data</em> into useful <em>information</em>. We discussed approaches to transferring this information in the <strong>Semantic Models vs. Semantic Markup</strong> section of <em>Modeling Concepts</em>.</p>
 <p>Adding the semantics to the model allows all of the meaning of the data to be in one known location. Each data instance has a pointer to its parent DM as part of the instance header. Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xsi</span><span class="p">:</span><span class="n">schemaLocation</span><span class="o">=</span><span class="s2">&quot;https://www.s3model.com/ns/s3m/  https://dmgen.s3model.com/dmlib/dm-cjff70cac04bdlzl3b3vacoow.xsd&quot;</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xsi</span><span class="p">:</span><span class="n">schemaLocation</span><span class="o">=</span><span class="s2">&quot;https://www.s3model.com/ns/s3m/  https://dmgen.s3model.com/dmlib/dm-cjff70cac04bdlzl3b3vacoow.xsd&quot;</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>This example from a data instance says that the schema in the namespace <em>https://www.s3model.com/ns/s3m/</em> is located on the DM-Gen and is named <em>dm-cjff70cac04bdlzl3b3vacoow.xsd</em>. Typically DMs are stored locally, and an XML Catalog is used to resolve these locations.</p>
 <p>The first part of the semantics describes the model itself using the DCMI metadata elements. See the example above in Figure 2.</p>
 <p>Taking a <em>simplistic</em> example DM (the sequence of appearance of the complexTypes is not important) we can see a PCM with a XdCountType restriction:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mc-cjffhejvj002pf3l30ddom8lg&#39;</span> <span class="n">xml</span><span class="p">:</span><span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mc-cjffhejvj002pf3l30ddom8lg&#39;</span> <span class="n">xml</span><span class="p">:</span><span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">annotation</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">documentation</span><span class="o">&gt;</span>
     <span class="n">Count</span> <span class="n">of</span> <span class="n">some</span> <span class="n">thing</span> <span class="n">to</span> <span class="n">be</span> <span class="n">counted</span><span class="o">.</span>
@@ -333,7 +326,7 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
 <p>So now we have three statements about the single subject called <em>s3m:mc-cjffhejvj002pf3l30ddom8lg</em>. We know it is a subtype of the S3Model XdCountType that defined in the S3Model Reference Model (RM) schema that is included (via xs:include) in this DM.</p>
 <p>So now we have some machine-processable semantics as well as some documentation. All of this information is available from the shareable model. Also, note that there is the <em>label</em> element. When a modeler defines an RMC, they give it a name as a human-readable string. This name also appears in the data instance, and even though the XML element is a CUID, this readable text is immediately below it in each data instance and describes what the modeler defined for the name. The rdfs:label and the label <strong>SHOULD</strong> be the same string.</p>
 <p>Example from the instance data:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">s3m</span><span class="p">:</span><span class="n">ms</span><span class="o">-</span><span class="n">cjffhejvj002pf3l30ddom8lg</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">s3m</span><span class="p">:</span><span class="n">ms</span><span class="o">-</span><span class="n">cjffhejvj002pf3l30ddom8lg</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Test</span> <span class="n">Count</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">magnitude</span><span class="o">-</span><span class="n">status</span><span class="o">&gt;</span><span class="n">equal</span><span class="o">&lt;/</span><span class="n">magnitude</span><span class="o">-</span><span class="n">status</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">error</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&lt;/</span><span class="n">error</span><span class="o">&gt;</span>
@@ -355,7 +348,7 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
 <p>Remember that the XML and RDF/XML syntaxes are used because they are robust. They are the official definitions for the models and the data because the tools are available for validating the syntax and the semantics.</p>
 <p>Because S3Model XML data has a <em>particular structure</em> it is quite easy to perform lossless conversion to and from JSON. So you can send and receive JSON data. The points in your data chain that require validated data can be converted back to XML for validation.</p>
 <p>So (a snippet) like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">s3m</span><span class="p">:</span><span class="n">ms</span><span class="o">-</span><span class="n">cjffhejxh002rf3l385lubyaa</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">s3m</span><span class="p">:</span><span class="n">ms</span><span class="o">-</span><span class="n">cjffhejxh002rf3l385lubyaa</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Length</span> <span class="n">quantity</span> <span class="c1">#1&lt;/label&gt;</span>
   <span class="o">&lt;</span><span class="n">magnitude</span><span class="o">-</span><span class="n">status</span><span class="o">&gt;</span><span class="n">equal</span><span class="o">&lt;/</span><span class="n">magnitude</span><span class="o">-</span><span class="n">status</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">error</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&lt;/</span><span class="n">error</span><span class="o">&gt;</span>
@@ -369,7 +362,7 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
 </pre></div>
 </div>
 <p>can be converted to:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;https://www.s3model.com/ns/s3m/:ms-cjffhejxh002rf3l385lubyaa&quot;</span><span class="p">:</span> <span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;https://www.s3model.com/ns/s3m/:ms-cjffhejxh002rf3l385lubyaa&quot;</span><span class="p">:</span> <span class="p">{</span>
   <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Length quantity #1&quot;</span><span class="p">,</span>
   <span class="s2">&quot;magnitude-status&quot;</span><span class="p">:</span> <span class="s2">&quot;equal&quot;</span><span class="p">,</span>
   <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
@@ -418,9 +411,7 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -438,11 +429,11 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2009 - 2018, Data Insights, Inc. https://datainsights.tech  .
+        &copy; Copyright 2009 - 2018, Data Insights, Inc. https://datainsights.tech  
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -457,35 +448,24 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
