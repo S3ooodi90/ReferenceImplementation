@@ -2,8 +2,12 @@
 The Reference Implementation - Reference Model
 ==============================================
 
-S3Model may be implemented in most (any?) programming or data definition language. This reference implementation provided here is in XML Schema due to the ubiquitous nature of XML Schema and the compatibility with RDF/XML. Virtually all programming and data analysis languages can manipulate and validate XML content.
+S3Model may be implemented in most (any?) programming or data definition language. 
+This reference implementation provided here is in XML Schema due to the ubiquitous 
+nature of XML and the compatibility with RDF/XML. 
+Virtually all programming and data analysis languages can manipulate and validate XML content.
 
+For futher information about available serialization formats see `this comparison chart <https://en.wikipedia.org/wiki/Comparison_of_data_serialization_formats>`_. 
 
 **Note:**  Any discrepancies between this document and the XML Schema implementation, as documented by the link below, is to be resolved by the XML Schema RM. The automatically generated XML Schema documentation is available at the link below.
 

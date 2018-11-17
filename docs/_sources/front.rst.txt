@@ -32,7 +32,7 @@ Please report all issues `here. <https://github.com/DataInsightsInc/S3Model_publ
 
 Purpose & Scope
 ---------------
-*Keep everything as simple as possible; but no simpler. – Albert Einstein*
+*Keep everything as simple as possible; but no simpler. - Albert Einstein*
 
 The purpose of the S3Model project is to provide a free and openly available specification for implementation of a data-centric, model first system for information exchange.
 
