@@ -1246,7 +1246,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="1" name="lower-included" type="xs:boolean">
+          <xs:element maxOccurs="1" minOccurs="1" name="lower-included" type="xs:boolean" default="true">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Is the lower value of the interval inclusive?</xs:documentation>
               <xs:appinfo>
@@ -1260,7 +1260,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="1" name="upper-included" type="xs:boolean">
+          <xs:element maxOccurs="1" minOccurs="1" name="upper-included" type="xs:boolean" default="true">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Is the upper value of the interval inclusive?</xs:documentation>
               <xs:appinfo>
@@ -1274,7 +1274,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="1" name="lower-bounded" type="xs:boolean">
+          <xs:element maxOccurs="1" minOccurs="1" name="lower-bounded" type="xs:boolean" default="true">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Is the lower value of the interval bounded?</xs:documentation>
               <xs:appinfo>
@@ -1288,7 +1288,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="1" name="upper-bounded" type="xs:boolean">
+          <xs:element maxOccurs="1" minOccurs="1" name="upper-bounded" type="xs:boolean" default="true">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">Is the upper value of the interval bounded?</xs:documentation>
               <xs:appinfo>
@@ -1420,7 +1420,7 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element maxOccurs="1" minOccurs="1" name="is-normal" type="xs:boolean">
+          <xs:element maxOccurs="1" minOccurs="1" name="is-normal" type="xs:boolean" default="false">
             <xs:annotation>
               <xs:documentation xml:lang="en-us">True if this reference range defines values that are considered to be normal. In the context of the value in the definition element.</xs:documentation>
               <xs:appinfo>
