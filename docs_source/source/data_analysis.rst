@@ -8,7 +8,7 @@ In many cases `XQuery <https://en.wikibooks.org/wiki/XQuery>`_ is a natural choi
 
 The popular `R <https://cran.r-project.org/>`_ programming language is specifically designed for data analysis and supports XML data via an `XML package <https://cran.r-project.org/web/packages/XML/index.html>`_ using the commonly used `libxml2 library <https://xmlsoft.org/>`_ used by most of the other languages. Libxml2 includes complete XPath, Xpointer and Xinclude implementations. There is also a companion library called `libxslt <https://xmlsoft.org/XSLT/>`_ based on libxml2 that is used to provide support for `XML transformations <https://www.w3.org/TR/xslt>`_
 
-The DM-Gen provides example R code, automatically generated for each DM as an R project for use in `R Studio <https://www.rstudio.com/>`_ or at the R command line.
+A emerging open source project, `Semantic Analytics Stack <http://sansa-stack.net/>`_ (SANSA) is implementing *Algorithms for Distributed Data Processing for Large-scale RDF Knowledge Graphs*. 
 
 Semantic Models vs. Semantic Markup
 -----------------------------------
