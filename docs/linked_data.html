@@ -100,13 +100,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#syntactic-modeling">Syntactic Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#semantic-modeling">Semantic Modeling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#s3model-semantics">S3Model Semantics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#top-level">Top-Level</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-properties">Other Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#s3model-semantics">S3Model Semantics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#object-properties">Object Properties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#datatype-properties">Datatype Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#annotation-properties">Annotation Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#context-processing">Context processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#linked-data-tools">Linked Data Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annotation-properties">Annotation Properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linked-data-tools">Linked Data Tools</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
@@ -184,9 +187,9 @@
 <div class="section" id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>Initial approaches to building ontologies for S3Model used the XML Schema to OWL approach that has been published several times in the academic literature. However, it was learned over these attempts that this is a single level mindset and approach.  It simply does not express the richness of S3Model. The results of those approaches represent the reference implementation of S3Model and not the overall concept.</p>
-<p>When we began S3Model in 2009, we intended to use the OWL language as the basis on which to build the concepts. However, the Open World Assumption conflicts with constraint-based modeling at the S3Model core.</p>
-<p>As the Linked Data environment matures, graph-based technologies are becoming mainstream for data discovery and analysis. By using both XML Schema (to model the structural and syntactic needs) and RDF (to model semantics) we create the best of all worlds towards <strong>computable semantic interoperability</strong>.</p>
-<p>In this document, when we talk about S3Model, we use the term <em>S3Model</em>. When we talk about modeling concepts in an area of interest, we use the term <em>domain</em>.</p>
+<p>When we began S3Model in 2009, we intended to use the OWL language as the basis on which to build the concepts. This is the same approach attempted or currently being attempted by other interoperability projects. However, the Open World Assumption conflicts with constraint-based modeling at the S3Model core.</p>
+<p>As the Linked Data environment matures, graph-based technologies are becoming mainstream for data discovery and analysis. By using a combination of XML Schema (to model the structural and syntactic needs) and RDF (to model semantics) we create the best of all worlds towards <strong>computable semantic interoperability</strong>.</p>
+<p>In this document, when we talk about S3Model, we use the term <em>S3Model</em> or <em>S3M</em>. When we talk about modeling concepts in an area of interest, we use the term <em>domain</em>.</p>
 </div>
 <div class="section" id="syntactic-modeling">
 <h2>Syntactic Modeling<a class="headerlink" href="#syntactic-modeling" title="Permalink to this headline">¶</a></h2>
@@ -204,10 +207,9 @@
 </div>
 <div class="section" id="s3model-semantics">
 <h2>S3Model Semantics<a class="headerlink" href="#s3model-semantics" title="Permalink to this headline">¶</a></h2>
-<p>These are the entities defined in <a class="reference external" href="https://www.S3Model.org/ns/S3Model/S3Model.rdf">S3Model.rdf</a></p>
-</div>
-<div class="section" id="top-level">
-<h2>Top-Level<a class="headerlink" href="#top-level" title="Permalink to this headline">¶</a></h2>
+<p>These are the entities defined in the core ontology <a class="reference external" href="http://datainsights.tech/S3Model/owl/">s3model.owl</a></p>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul>
 <li><p class="first">S3Model</p>
@@ -246,8 +248,9 @@
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="other-properties">
-<h2>Other Properties<a class="headerlink" href="#other-properties" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="object-properties">
+<h2>Object Properties<a class="headerlink" href="#object-properties" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li>isS3Modelobjprop<ul>
@@ -264,7 +267,7 @@
 </div>
 <div class="section" id="datatype-properties">
 <h2>Datatype Properties<a class="headerlink" href="#datatype-properties" title="Permalink to this headline">¶</a></h2>
-<p>Some tools (e.g. Protégé) do not support the full range of XML Schema datatypes directly. We defined these in S3Model.rdf as well.</p>
+<p>Some tools do not support the full range of XML Schema datatypes directly. We defined these in the ontotlogy as well.</p>
 <blockquote>
 <div><ul class="simple">
 <li>duration</li>
@@ -279,15 +282,12 @@
 <div class="section" id="annotation-properties">
 <h2>Annotation Properties<a class="headerlink" href="#annotation-properties" title="Permalink to this headline">¶</a></h2>
 <p>The most widely used (at this writing) metadata definitions come from the Dublin Core Metadata Initiative (DCMI) terms. However, the definitions for these do not meet the requirements for some reasoners. We have defined our metadata properties and related them to other standards.</p>
-</div>
-<div class="section" id="context-processing">
-<h2>Context processing<a class="headerlink" href="#context-processing" title="Permalink to this headline">¶</a></h2>
-<p>Refer to the JSON-LD-API <a class="reference external" href="https://www.w3.org/TR/json-ld-api/#context-processing-algorithms">context processing</a> specifications to understand how the S3Model.jsonld, S3Model50.jsonld and the DM jsonld work together.</p>
-<p>For setting your JSON-LD processor for the correct location of context files, see this <a class="reference external" href="https://stackoverflow.com/questions/32047434/json-ld-external-context-redirect/32105641">StackExchange</a> discussion. The options for compliant processors is discussed in the <a class="reference external" href="https://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type">JSON-LD Specs</a></p>
-</div>
 <div class="section" id="linked-data-tools">
-<h2>Linked Data Tools<a class="headerlink" href="#linked-data-tools" title="Permalink to this headline">¶</a></h2>
+<h3>Linked Data Tools<a class="headerlink" href="#linked-data-tools" title="Permalink to this headline">¶</a></h3>
 <p>To reduce the learning curve for working with S3Model data in your Linked Data environment, we have included a few simple Python scripts to get you started. See the utils/README.md for details.</p>
+<p>The open source tool <a class="reference external" href="https://datainsights.tech/Kunteksto/index.html">Kunteksto</a> is used to transform flat CSV data in semantically enriched linked data.</p>
+<p>The Python implementation is the foundation of the <a class="reference external" href="https://datainsights.tech/training">training materials</a> and also available as an <a class="reference external" href="https://pypi.org/project/S3MPython/">open source library</a>.</p>
+</div>
 </div>
 </div>
 

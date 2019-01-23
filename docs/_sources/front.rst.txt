@@ -34,11 +34,17 @@ Purpose & Scope
 ---------------
 *Keep everything as simple as possible; but no simpler. - Albert Einstein*
 
-The purpose of the S3Model project is to provide a free and openly available specification for implementation of a data-centric, model first system for information exchange.
+The purpose of the S3Model project is to provide a free and openly available specification for 
+implementation of a model first system for information exchange.
 
-The S3Model specifications are designed to provide computable semantic interoperability that is entirely independent of any implementation specific contexts. Therefore workflow, security, user access, and data persistence are all outside the scope of S3Model.
+The S3Model specifications are designed to provide computable semantic interoperability that is 
+entirely independent of any implementation specific contexts. Therefore workflow, security, 
+user access, and data persistence are all outside the scope of S3Model. However, S3Model does provide
+a facility for managing workflow and user access within the data instances. 
 
-Data Insights, Inc. has a growing number of implementation projects and tools that demonstrate this approach and enables interoperability across many contexts and domains. 
+Data Insights, Inc. has a growing number of implementation projects and tools that demonstrate 
+this approach and enables interoperability across many contexts and domains. 
+`Online courses are also available <http://datainsights.tech/training>`_. 
 
 Conformance
 -----------
@@ -64,7 +70,8 @@ These specifications;
 Availability
 ------------
 
-The S3Model specifications, reference implementation, and tools are available from `Data Insights, Inc. <https://www.datainsights.tech>`_ 
+The S3Model specifications, reference implementation, and tools are available from 
+`Data Insights, Inc. <https://www.datainsights.tech>`_ 
 
 .. raw:: html
 
