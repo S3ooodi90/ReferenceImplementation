@@ -19,34 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Linked Data Modeling" href="linked_data.html" />
     <link rel="prev" title="Abstract Model" href="abstract_model.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -273,13 +275,13 @@ Virtually all programming and data analysis languages can manipulate and validat
 <p>The dateTime data type is used to specify a date and a time.
 The dateTime is specified in the following form “YYYY-MM-DDThh:mm:ss” where:</p>
 <ul class="simple">
-<li>YYYY indicates the year</li>
-<li>MM indicates the month</li>
-<li>DD indicates the day</li>
-<li>T indicates the start of the required time section</li>
-<li>hh indicates the hour</li>
-<li>mm indicates the minute</li>
-<li>ss indicates the second</li>
+<li><p>YYYY indicates the year</p></li>
+<li><p>MM indicates the month</p></li>
+<li><p>DD indicates the day</p></li>
+<li><p>T indicates the start of the required time section</p></li>
+<li><p>hh indicates the hour</p></li>
+<li><p>mm indicates the minute</p></li>
+<li><p>ss indicates the second</p></li>
 </ul>
 <p>The following is an example of a dateTime declaration in a schema:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;startdate&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:dateTime&quot;</span><span class="o">/&gt;</span>
@@ -309,9 +311,9 @@ The dateTime is specified in the following form “YYYY-MM-DDThh:mm:ss” where:
 <p>The date data type is used to specify a date.</p>
 <p>The date is specified in the following form “YYYY-MM-DD” where:</p>
 <ul class="simple">
-<li>YYYY indicates the year</li>
-<li>MM indicates the month</li>
-<li>DD indicates the day</li>
+<li><p>YYYY indicates the year</p></li>
+<li><p>MM indicates the month</p></li>
+<li><p>DD indicates the day</p></li>
 </ul>
 <p>An element in an XML Document  might look like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">start</span><span class="o">&gt;</span><span class="mi">2002</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">24</span><span class="o">&lt;/</span><span class="n">start</span><span class="o">&gt;</span>
@@ -323,9 +325,9 @@ The dateTime is specified in the following form “YYYY-MM-DDThh:mm:ss” where:
 <p>The time data type is used to specify a time.
 The time is specified in the following form “hh:mm:ss” where:</p>
 <ul class="simple">
-<li>hh indicates the hour</li>
-<li>mm indicates the minute</li>
-<li>ss indicates the second</li>
+<li><p>hh indicates the hour</p></li>
+<li><p>mm indicates the minute</p></li>
+<li><p>ss indicates the second</p></li>
 </ul>
 <p>The following is an example of a time declaration in a schema:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;start&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:time&quot;</span><span class="o">/&gt;</span>
@@ -354,14 +356,14 @@ The time is specified in the following form “hh:mm:ss” where:</p>
 <p>The duration data type is used to specify a time interval.
 The time interval is specified in the following form “PnYnMnDTnHnMnS” where:</p>
 <ul class="simple">
-<li>P indicates the period (required)</li>
-<li>nY indicates the number of years</li>
-<li>nM indicates the number of months</li>
-<li>nD indicates the number of days</li>
-<li>T indicates the start of a time section (required if you are going to specify hours, minutes, or seconds)</li>
-<li>nH indicates the number of hours</li>
-<li>nM indicates the number of minutes</li>
-<li>nS indicates the number of seconds</li>
+<li><p>P indicates the period (required)</p></li>
+<li><p>nY indicates the number of years</p></li>
+<li><p>nM indicates the number of months</p></li>
+<li><p>nD indicates the number of days</p></li>
+<li><p>T indicates the start of a time section (required if you are going to specify hours, minutes, or seconds)</p></li>
+<li><p>nH indicates the number of hours</p></li>
+<li><p>nM indicates the number of minutes</p></li>
+<li><p>nS indicates the number of seconds</p></li>
 </ul>
 <p>The following is an example of a duration declaration in a schema:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;period&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:duration&quot;</span><span class="o">/&gt;</span>
@@ -400,11 +402,11 @@ Or it might look like this:</p>
 <h4>Partial Date Types<a class="headerlink" href="#partial-date-types" title="Permalink to this headline">¶</a></h4>
 <p>Support for partial dates is essential to avoid poor data quality. In order to provide for partial dates and times the following types are assumed to be available in the language or in a library.</p>
 <ul class="simple">
-<li>Day – provide on the day of the month, 1 – 31</li>
-<li>Month – provide only the month of the year, 1 – 12</li>
-<li>Year – provide on the year,  CCYY</li>
-<li>MonthDay – provide only the Month and the Day (no year)</li>
-<li>YearMonth – provide only the Year and the Month (no day)</li>
+<li><p>Day – provide on the day of the month, 1 – 31</p></li>
+<li><p>Month – provide only the month of the year, 1 – 12</p></li>
+<li><p>Year – provide on the year,  CCYY</p></li>
+<li><p>MonthDay – provide only the Month and the Day (no year)</p></li>
+<li><p>YearMonth – provide only the Year and the Month (no day)</p></li>
 </ul>
 </div>
 <div class="section" id="real">
@@ -431,42 +433,42 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <p><strong>Description:</strong></p>
 <p>This is the root, encapsulating node of a Data Model. The data model wraps the definitions for metadata about the model and it contains the metadata about the data.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <em>data content</em> is modeled as a document composed of the subtypes of <a class="reference internal" href="#xdanytype">XdAnyType</a> with the structure based on the <a class="reference internal" href="#itemtype">ItemType</a> subtypes.</p>
+<p class="admonition-title">Note</p>
+<p>The <em>data content</em> is modeled as a document composed of the subtypes of <a class="reference internal" href="#xdanytype">XdAnyType</a> with the structure based on the <a class="reference internal" href="#itemtype">ItemType</a> subtypes.</p>
 </div>
 <p>The data content is generally quite flat and consistent when compared to other approaches. This aids the ability to perform queries and explore the data by separating the structure of the document from the semantics of any given concept.</p>
 <p><strong>Model metadata</strong> is information about the creation and usage of the data model. It is based on <a class="reference external" href="http://dublincore.org/">Dublin Core</a> definitons and includes:</p>
 <ul class="simple">
-<li><em>title</em> <a class="reference external" href="http://purl.org/dc/terms/title">A name given to the resource</a>.</li>
-<li><em>creator</em> <a class="reference external" href="http://purl.org/dc/terms/creator">An entity primarily responsible for making the resource</a>.</li>
-<li><em>subject</em> <a class="reference external" href="http://purl.org/dc/terms/subject">The topic of the resource</a>.</li>
-<li><em>rights</em> <a class="reference external" href="http://purl.org/dc/terms/rights">Information about rights held in and over the resource</a>.</li>
-<li><em>relation</em> <a class="reference external" href="http://purl.org/dc/terms/relation">A related resource</a>.</li>
-<li><em>coverage</em> <a class="reference external" href="http://purl.org/dc/terms/coverage">The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant</a>.</li>
-<li><em>type</em> <a class="reference external" href="http://purl.org/dc/terms/type">The nature or genre of the resource</a>.</li>
-<li><em>identifier</em> <a class="reference external" href="http://purl.org/dc/terms/identifier">An unambiguous reference to the resource within a given context</a>.</li>
-<li><em>description</em> <a class="reference external" href="http://purl.org/dc/terms/description">An account of the resource</a>.</li>
-<li><em>publisher</em> <a class="reference external" href="http://purl.org/dc/terms/publisher">An entity responsible for making the resource available</a>.</li>
-<li><em>date</em> <a class="reference external" href="http://purl.org/dc/terms/date">A point or period of time associated with an event in the lifecycle of the resource</a>. Here the date indicates date of publication.</li>
-<li><em>format</em> <a class="reference external" href="http://purl.org/dc/terms/format">The file format, physical medium, or dimensions of the resource</a>.</li>
-<li><em>language</em> <a class="reference external" href="http://purl.org/dc/terms/language">A language of the resource</a>.</li>
+<li><p><em>title</em> <a class="reference external" href="http://purl.org/dc/terms/title">A name given to the resource</a>.</p></li>
+<li><p><em>creator</em> <a class="reference external" href="http://purl.org/dc/terms/creator">An entity primarily responsible for making the resource</a>.</p></li>
+<li><p><em>subject</em> <a class="reference external" href="http://purl.org/dc/terms/subject">The topic of the resource</a>.</p></li>
+<li><p><em>rights</em> <a class="reference external" href="http://purl.org/dc/terms/rights">Information about rights held in and over the resource</a>.</p></li>
+<li><p><em>relation</em> <a class="reference external" href="http://purl.org/dc/terms/relation">A related resource</a>.</p></li>
+<li><p><em>coverage</em> <a class="reference external" href="http://purl.org/dc/terms/coverage">The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant</a>.</p></li>
+<li><p><em>type</em> <a class="reference external" href="http://purl.org/dc/terms/type">The nature or genre of the resource</a>.</p></li>
+<li><p><em>identifier</em> <a class="reference external" href="http://purl.org/dc/terms/identifier">An unambiguous reference to the resource within a given context</a>.</p></li>
+<li><p><em>description</em> <a class="reference external" href="http://purl.org/dc/terms/description">An account of the resource</a>.</p></li>
+<li><p><em>publisher</em> <a class="reference external" href="http://purl.org/dc/terms/publisher">An entity responsible for making the resource available</a>.</p></li>
+<li><p><em>date</em> <a class="reference external" href="http://purl.org/dc/terms/date">A point or period of time associated with an event in the lifecycle of the resource</a>. Here the date indicates date of publication.</p></li>
+<li><p><em>format</em> <a class="reference external" href="http://purl.org/dc/terms/format">The file format, physical medium, or dimensions of the resource</a>.</p></li>
+<li><p><em>language</em> <a class="reference external" href="http://purl.org/dc/terms/language">A language of the resource</a>.</p></li>
 </ul>
 <p>The precise structure and content of <strong>Data Metadata</strong> is designed by the data modeler within a generic framework of components. This data metadata informs data consumers about what the data means. The many contextual aspects of the existence and life-cycle of the data may be recorded.</p>
 <p>The components are:</p>
 <ul class="simple">
-<li>An audit system based on the <a class="reference internal" href="#audittype">AuditType</a></li>
-<li>An attestation system based on the <a class="reference internal" href="#attestationtype">AttestationType</a></li>
-<li>The <em>subject</em> (person, role, organization, etc.) of the data activity based on the <a class="reference internal" href="#partytype">PartyType</a></li>
-<li>The <em>provider</em> (person, role, organization, etc.) of the activity based on the <a class="reference internal" href="#partytype">PartyType</a></li>
-<li>Other <em>participants</em> (persons, roles, organizations, etc.) of the activity based on the <a class="reference internal" href="#participationtype">ParticipationType</a></li>
-<li>A link to a protocol, policy or guideline used to outline or define the structure of the data based on <a class="reference internal" href="#xdstringtype">XdStringType</a></li>
-<li>A link to a workflow engine or vocabulary based on <a class="reference internal" href="#xdlinktype">XdLinkType</a></li>
-<li>A <em>current-state</em> element to contain the current state of the data based on the workflow engine or vocabulary as a string value</li>
-<li>A <em>label</em> string value element as a descriptive title for the model</li>
-<li>A <em>dm-encoding</em> element used to record the character set encoding of the data. The default is <em>utf-8</em></li>
-<li>A <em>dm-language</em> element to indicate the primary langauge of the data.</li>
-<li>An <em>acs</em> element to point to an external Access Control System such as a controlled vocabulary. This vocabulary informs the values available for the <em>act</em> element in all <a class="reference internal" href="#xdanytype">XdAnyType</a> subtypes.</li>
-<li>Optional external links based on <a class="reference internal" href="#xdlinktype">XdLinkType</a> may also be defined to expand information regarding the purpose, usage and relationships of this data.</li>
+<li><p>An audit system based on the <a class="reference internal" href="#audittype">AuditType</a></p></li>
+<li><p>An attestation system based on the <a class="reference internal" href="#attestationtype">AttestationType</a></p></li>
+<li><p>The <em>subject</em> (person, role, organization, etc.) of the data activity based on the <a class="reference internal" href="#partytype">PartyType</a></p></li>
+<li><p>The <em>provider</em> (person, role, organization, etc.) of the activity based on the <a class="reference internal" href="#partytype">PartyType</a></p></li>
+<li><p>Other <em>participants</em> (persons, roles, organizations, etc.) of the activity based on the <a class="reference internal" href="#participationtype">ParticipationType</a></p></li>
+<li><p>A link to a protocol, policy or guideline used to outline or define the structure of the data based on <a class="reference internal" href="#xdstringtype">XdStringType</a></p></li>
+<li><p>A link to a workflow engine or vocabulary based on <a class="reference internal" href="#xdlinktype">XdLinkType</a></p></li>
+<li><p>A <em>current-state</em> element to contain the current state of the data based on the workflow engine or vocabulary as a string value</p></li>
+<li><p>A <em>label</em> string value element as a descriptive title for the model</p></li>
+<li><p>A <em>dm-encoding</em> element used to record the character set encoding of the data. The default is <em>utf-8</em></p></li>
+<li><p>A <em>dm-language</em> element to indicate the primary langauge of the data.</p></li>
+<li><p>An <em>acs</em> element to point to an external Access Control System such as a controlled vocabulary. This vocabulary informs the values available for the <em>act</em> element in all <a class="reference internal" href="#xdanytype">XdAnyType</a> subtypes.</p></li>
+<li><p>Optional external links based on <a class="reference internal" href="#xdlinktype">XdLinkType</a> may also be defined to expand information regarding the purpose, usage and relationships of this data.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -476,18 +478,17 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <p><strong>Derived from:</strong>  n/a</p>
 <p><strong>Abstract:</strong> True</p>
 <p><strong>Description:</strong></p>
-<dl class="docutils">
-<dt>This datatype serves as the common ancestor of all eXtended data-types (Xd*) in S3Model. This eXtended Datatype provides the components for;</dt>
-<dd><ul class="first last simple">
-<li>a <em>label</em> element with a language tag to provide a natural language meaningful name</li>
-<li>an <em>act</em> (access control tag) element to provide a means of testing for access control levels at the granularity of the data item</li>
-<li>one or more Exceptional Value Types (aka. NullFlavors) to add information regarding why a value may not validate with the data model schema but may still be useful data</li>
-<li>a <em>vtb</em> (valid time begin) element to indicate a datetime when this data starts to be valid</li>
-<li>a <em>vte</em> (valid time end) element to indicate a datetime when this data ceases to be valid</li>
-<li>a <em>tr</em> (time recorded) element to indicate a datetime when this data is initially recorded</li>
-<li>a <em>modified</em> element to indicate a datetime when this data was modified</li>
-<li>a <em>latitude</em> element to record a decimal latitude value in the range of 90.000000 to -90.000000 of where the data originated</li>
-<li>a <em>longitude</em> element to record a decimal longitude value in the range of 180.000000 to -180.000000 of where the data originated</li>
+<dl class="simple">
+<dt>This datatype serves as the common ancestor of all eXtended data-types (Xd*) in S3Model. This eXtended Datatype provides the components for;</dt><dd><ul class="simple">
+<li><p>a <em>label</em> element with a language tag to provide a natural language meaningful name</p></li>
+<li><p>an <em>act</em> (access control tag) element to provide a means of testing for access control levels at the granularity of the data item</p></li>
+<li><p>one or more Exceptional Value Types (aka. NullFlavors) to add information regarding why a value may not validate with the data model schema but may still be useful data</p></li>
+<li><p>a <em>vtb</em> (valid time begin) element to indicate a datetime when this data starts to be valid</p></li>
+<li><p>a <em>vte</em> (valid time end) element to indicate a datetime when this data ceases to be valid</p></li>
+<li><p>a <em>tr</em> (time recorded) element to indicate a datetime when this data is initially recorded</p></li>
+<li><p>a <em>modified</em> element to indicate a datetime when this data was modified</p></li>
+<li><p>a <em>latitude</em> element to record a decimal latitude value in the range of 90.000000 to -90.000000 of where the data originated</p></li>
+<li><p>a <em>longitude</em> element to record a decimal longitude value in the range of 180.000000 to -180.000000 of where the data originated</p></li>
 </ul>
 </dd>
 </dl>
@@ -537,20 +538,20 @@ Note: The maximum number of decimal digits you can specify is 18.</p>
 <p>A type to use for encapsulated content such as files for images, audio and other media types with a defined MIME type. This type provides a choice of embedding the file content encoded in base64 or using a URL to point to the content.</p>
 <p>The following elements provide metadata information about the content:</p>
 <ul class="simple">
-<li><em>size</em> is an integer that represents the unencoded content in bytes</li>
-<li><em>encoding</em> is a string value from the <a class="reference external" href="http://www.iana.org/assignments/character-sets">IANA character set table</a>. Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.</li>
-<li><em>xdfile-language</em> is an optional language code from <a class="reference external" href="https://www.ietf.org/rfc/rfc3066.txt">RFC 3066</a>. It is used to indicate the language of the content.</li>
-<li><em>formalism</em> contains the name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: ‘ATL’, ‘MOLA’, ‘QVT’, ‘GDL’, ‘GLIF’, or other domain-specific language parser.</li>
-<li><em>media-type</em> optionally contains the MIME type from the <a class="reference external" href="http://www.iana.org/assignments/media-types/media-types.xhtml">IANA registered types</a></li>
-<li><em>compression-type</em> optionally contains the compression/archiving mime-type. If this element does not exist, then it means there is no compression/archiving. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_archive_formats">Common mime-types for compression/archiving</a>.</li>
-<li><em>hash-result</em> optionally contains a hash function result of the <em>media-content</em>. There must be a corresponding <em>hash-function</em> type listed for this to have any meaning. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">Candidate list</a></li>
-<li><em>hash-function</em> contains the hash function used to compute the content for <em>hash-result</em>. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">Candidate list</a>.</li>
-<li><em>alt-txt</em> optionally contains the text to display in place of multimedia display or execution.</li>
+<li><p><em>size</em> is an integer that represents the unencoded content in bytes</p></li>
+<li><p><em>encoding</em> is a string value from the <a class="reference external" href="http://www.iana.org/assignments/character-sets">IANA character set table</a>. Unicode is the default assumption in S3Model, with UTF-8 being the assumed encoding. This element allows for variations from these assumptions.</p></li>
+<li><p><em>xdfile-language</em> is an optional language code from <a class="reference external" href="https://www.ietf.org/rfc/rfc3066.txt">RFC 3066</a>. It is used to indicate the language of the content.</p></li>
+<li><p><em>formalism</em> contains the name of the formalism or syntax used to inform an application regarding a candidate parser to use on the content. Examples might include: ‘ATL’, ‘MOLA’, ‘QVT’, ‘GDL’, ‘GLIF’, or other domain-specific language parser.</p></li>
+<li><p><em>media-type</em> optionally contains the MIME type from the <a class="reference external" href="http://www.iana.org/assignments/media-types/media-types.xhtml">IANA registered types</a></p></li>
+<li><p><em>compression-type</em> optionally contains the compression/archiving mime-type. If this element does not exist, then it means there is no compression/archiving. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_archive_formats">Common mime-types for compression/archiving</a>.</p></li>
+<li><p><em>hash-result</em> optionally contains a hash function result of the <em>media-content</em>. There must be a corresponding <em>hash-function</em> type listed for this to have any meaning. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">Candidate list</a></p></li>
+<li><p><em>hash-function</em> contains the hash function used to compute the content for <em>hash-result</em>. <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_hash_functions#Cryptographic_hash_functions">Candidate list</a>.</p></li>
+<li><p><em>alt-txt</em> optionally contains the text to display in place of multimedia display or execution.</p></li>
 </ul>
 <p>These two elements have a binary choice relationship. One and only one of them will appear in the model.</p>
 <ul class="simple">
-<li><em>uri</em> contains a URI reference to electronic information stored outside the record as a file, database entry or other persistence methods when the content is supplied as a reference.</li>
-<li><em>media-content</em> contains the file contents encoded using the base64Bianry algorithm.</li>
+<li><p><em>uri</em> contains a URI reference to electronic information stored outside the record as a file, database entry or other persistence methods when the content is supplied as a reference.</p></li>
+<li><p><em>media-content</em> contains the file contents encoded using the base64Bianry algorithm.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -573,21 +574,21 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <p><strong>Description:</strong></p>
 <p>Models rankings and scores, e.g., pain, Apgar values, educational level, and the Likert Scale where there is;</p>
 <ul class="simple">
-<li>implied ordering,</li>
-<li>no implication that the distance between each value is constant, and</li>
-<li>the total number of values is finite.</li>
+<li><p>implied ordering,</p></li>
+<li><p>no implication that the distance between each value is constant, and</p></li>
+<li><p>the total number of values is finite.</p></li>
 </ul>
 <p>Note that the term ‘ordinal’ in mathematics means natural numbers only. In this case, any decimal is allowed since negative, and zero values are used by medical and other professionals for centering values around a neutral point. Also, decimal values are sometimes used such as 0.5 or .25</p>
 <p>Examples of sets of ordinal values are;</p>
 <ul class="simple">
-<li>-3, -2, -1, 0, 1, 2, 3 – reflex response values</li>
-<li>0, 1, 2 – Apgar values</li>
+<li><p>-3, -2, -1, 0, 1, 2, 3 – reflex response values</p></li>
+<li><p>0, 1, 2 – Apgar values</p></li>
 </ul>
 <p>Also used for recording any clinical or other data which is customarily recorded using symbolic values. Examples;</p>
 <ul class="simple">
-<li>the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;</li>
-<li>for non-haemolysed blood {neg, trace, moderate};</li>
-<li>for haemolysed blood {neg, trace, small, moderate, large}.</li>
+<li><p>the results on a urinalysis strip, e.g. {neg, trace, +, ++, +++} are used for leukocytes, protein, nitrites etc;</p></li>
+<li><p>for non-haemolysed blood {neg, trace, moderate};</p></li>
+<li><p>for haemolysed blood {neg, trace, small, moderate, large}.</p></li>
 </ul>
 <p>Elements <em>ordinal</em> and <em>symbol</em> MUST have the same number of enumerations in the <a class="reference external" href="abstract_model.html#rmc">RMC</a>.</p>
 </div>
@@ -640,15 +641,15 @@ This type includes facilities for an optional list of ReferenceRanges for this v
 <p>This type defines the concept of dates and times. It must be constrained in an <a class="reference external" href="abstract_model.html#rmc">RMC</a> to be one or more of the below elements.</p>
 <p>This type gives the modeler the ability to allow full or partial dates at runtime. Each of the elements may be required, prohibited or allowed.</p>
 <ul class="simple">
-<li><em>xdtemporal-date</em> represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For values that do not have a timezone, the top-open intervals disjointly cover the timeline, one per day. For values with a time zone, the intervals begin at every minute and therefore overlap</li>
-<li><em>xdtemporal-time</em> represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</li>
-<li><em>xdtemporal-datetime</em> represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical</li>
-<li><em>xdtemporal-day</em> represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)&lt;/xs:documentation&gt;</li>
-<li><em>xdtemporal-month</em> represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. This type is used, for example, to say what month annual Thanksgiving celebrations fall in different countries (–11 in the United States, –10 in Canada, and possibly other months in other countries).</li>
-<li><em>xdtemporal-year</em> represents Gregorian calendar years.</li>
-<li><em>xdtemporal-year-month</em> represents Gregorian calendar years.</li>
-<li><em>xdtemporal-month-day</em> represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</li>
-<li><em>xdtemporal-duration</em> represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, “15 days” (whose most common lexical representation in duration is “‘P15D’”) is a duration value; “15 days beginning 12 July 1995” and “15 days ending 12 July 1995” are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs and can be the result of subtracting dateTime values.</li>
+<li><p><em>xdtemporal-date</em> represents top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day, up to but not including the beginning moment of the next day). For values that do not have a timezone, the top-open intervals disjointly cover the timeline, one per day. For values with a time zone, the intervals begin at every minute and therefore overlap</p></li>
+<li><p><em>xdtemporal-time</em> represents instants of time that recur at the same point in each calendar day, or that occur in some arbitrary calendar day.</p></li>
+<li><p><em>xdtemporal-datetime</em> represents instants of time, optionally marked with a particular time zone offset. Values representing the same instant but having different time zone offsets are equal but not identical</p></li>
+<li><p><em>xdtemporal-day</em> represents whole days within an arbitrary month—days that recur at the same point in each (Gregorian) month. This datatype is used to represent a specific day of the month. To indicate, for example, that an employee gets a paycheck on the 15th of each month. (Obviously, days beyond 28 cannot occur in all months; they are nonetheless permitted, up to 31.)&lt;/xs:documentation&gt;</p></li>
+<li><p><em>xdtemporal-month</em> represents whole (Gregorian) months within an arbitrary year—months that recur at the same point in each year. This type is used, for example, to say what month annual Thanksgiving celebrations fall in different countries (–11 in the United States, –10 in Canada, and possibly other months in other countries).</p></li>
+<li><p><em>xdtemporal-year</em> represents Gregorian calendar years.</p></li>
+<li><p><em>xdtemporal-year-month</em> represents Gregorian calendar years.</p></li>
+<li><p><em>xdtemporal-month-day</em> represents whole calendar days that recur at the same point in each calendar year, or that occur in some arbitrary calendar year. (Obviously, days beyond 28 cannot occur in all Februaries; 29 is nonetheless permitted.)</p></li>
+<li><p><em>xdtemporal-duration</em> represents durations of time. The concept of duration being captured is drawn from those of [ISO 8601], specifically durations without fixed endpoints. For example, “15 days” (whose most common lexical representation in duration is “‘P15D’”) is a duration value; “15 days beginning 12 July 1995” and “15 days ending 12 July 1995” are not duration values. This datatype can provide addition and subtraction operations between duration values and between duration/dateTime value pairs and can be the result of subtracting dateTime values.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -953,7 +954,7 @@ in an ordered list. This can serve as the root component for arbitrarily complex
         <a href="linked_data.html" class="btn btn-neutral float-right" title="Linked Data Modeling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="abstract_model.html" class="btn btn-neutral" title="Abstract Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="abstract_model.html" class="btn btn-neutral float-left" title="Abstract Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -979,25 +980,16 @@ in an ordered list. This can serve as the root component for arbitrarily complex
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

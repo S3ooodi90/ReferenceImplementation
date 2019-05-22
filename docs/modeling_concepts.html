@@ -19,34 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Abstract Model" href="abstract_model.html" />
     <link rel="prev" title="Value Proposition" href="value_prop.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -187,8 +189,8 @@
 <p>The real advantage to using the S3Model approach to information modeling is that it provides for a wide variety of applications to be developed based on the fundamental datatypes defined in the reference model. By having domain experts model the components and generate the DMs, they can then be shared across multiple applications so that the structure and semantics of the data are not locked into one specific software application, but can be exchanged among many different software applications. <strong>This approach provides the real foundation for artificial general intelligence (AGI) to move forward instead of being isolated in each instance of implementation as it is today.</strong></p>
 <p>To demonstrate the differences between the S3Model approach and the typical data model design approach we use two common metaphors. Here we are assuming the reference implementation based on XML Schema.</p>
 <ol class="arabic simple">
-<li>The first is for the data model approach to developing software. This approach is where a set of database definitions are created based on a requirements statement representing an information model. An application is then designed to support all of the functionality required to input, manipulate and output this data as information, all built around the data model. This approach is akin to a jigsaw puzzle (the software application) where the shape of the pieces are the syntax, and the design and colors are the semantics of the information represented in the aggregation of data components described by the model. This process produces an application that, like the jigsaw puzzle, can provide for pieces (information) to be exchanged only between exact copies of the same jigsaw puzzle. If you were to try to put the puzzle pieces from one jigsaw puzzle into a different jigsaw puzzle, you might find that a puzzle piece has the same shape (syntax) but the picture on the puzzle piece (semantics) will not be the same. Even though they both belong to the same domain of jigsaw puzzles, you can see that getting a piece from one jigsaw puzzle to correctly fit into another is going to require manipulation of the underlying syntax (shape) and semantics (picture) of the puzzle piece. This approach can be extended to the relationship that the jigsaw puzzle has a defined limit of its four sides. It cannot, reasonably, be extended to incorporate new pieces (concepts) discovered after the initial design.</li>
-<li>The multi-level, linked data approach used in S3Model is akin to creating models (applications) using the popular toy blocks made by Lego and other companies. If you compare a box of these interlocking blocks to the reference model and the instructions to creating a specific toy model (software application), where these instructions present a concept constraint (implemented as a DM in S3Model). You can see that the same blocks can be used to represent multiple toy models without any change to the physical shape, size or color of each block. Now we can see that when new concepts are created, they can be represented as instructions for building a new toy model using the same fundamental building blocks that the original software applications used.</li>
+<li><p>The first is for the data model approach to developing software. This approach is where a set of database definitions are created based on a requirements statement representing an information model. An application is then designed to support all of the functionality required to input, manipulate and output this data as information, all built around the data model. This approach is akin to a jigsaw puzzle (the software application) where the shape of the pieces are the syntax, and the design and colors are the semantics of the information represented in the aggregation of data components described by the model. This process produces an application that, like the jigsaw puzzle, can provide for pieces (information) to be exchanged only between exact copies of the same jigsaw puzzle. If you were to try to put the puzzle pieces from one jigsaw puzzle into a different jigsaw puzzle, you might find that a puzzle piece has the same shape (syntax) but the picture on the puzzle piece (semantics) will not be the same. Even though they both belong to the same domain of jigsaw puzzles, you can see that getting a piece from one jigsaw puzzle to correctly fit into another is going to require manipulation of the underlying syntax (shape) and semantics (picture) of the puzzle piece. This approach can be extended to the relationship that the jigsaw puzzle has a defined limit of its four sides. It cannot, reasonably, be extended to incorporate new pieces (concepts) discovered after the initial design.</p></li>
+<li><p>The multi-level, linked data approach used in S3Model is akin to creating models (applications) using the popular toy blocks made by Lego and other companies. If you compare a box of these interlocking blocks to the reference model and the instructions to creating a specific toy model (software application), where these instructions present a concept constraint (implemented as a DM in S3Model). You can see that the same blocks can be used to represent multiple toy models without any change to the physical shape, size or color of each block. Now we can see that when new concepts are created, they can be represented as instructions for building a new toy model using the same fundamental building blocks that the original software applications used.</p></li>
 </ol>
 <p>So, the various applications are now part of a more extensive infrastructure or ecosystem of interoperability. Any software application that understands the reference model can now interpret the meaning conveyed in constraint definitions.</p>
 <div class="section" id="constraint-definitions">
@@ -242,7 +244,7 @@
         <a href="abstract_model.html" class="btn btn-neutral float-right" title="Abstract Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="value_prop.html" class="btn btn-neutral" title="Value Proposition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="value_prop.html" class="btn btn-neutral float-left" title="Value Proposition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -268,25 +270,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

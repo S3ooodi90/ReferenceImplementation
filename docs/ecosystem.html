@@ -19,34 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="S3Model Data Analysis" href="data_analysis.html" />
     <link rel="prev" title="S3Model as a Component of an Enterprise Architecture" href="S3Model_and_EA.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -202,7 +204,7 @@
 <h2>Bottom-Up vs. Top-Down<a class="headerlink" href="#bottom-up-vs-top-down" title="Permalink to this headline">¶</a></h2>
 <p>Now we are at the point where the S3Model eco-system is in contrast to the top-down approach used by other multi-level modeling specifications and the Standards Development Organization (SDO) approach.</p>
 <p><em>In the real world</em>; we know that there can never be complete consensus across the healthcare spectrum of domains, cultures, and languages; concerning the details of a specific concept. Therefore the idea of a <em>maximal data model</em>, though idealistically valid, is realistically unattainable. Several years of participation in, and observation of, these attempts to build consensus has led to the development of the <a class="reference external" href="https://github.com/S3Model/specs/wiki/Cavalini-Cook-Conjecture-&amp;-Theory">Cavalini-Cook Theory</a> . <strong>The probability of reaching consensus among biomedical experts tends to zero with the increase of the number of concepts considered, and the number of experts included in the consensus panel.</strong></p>
-<p>In S3Model, participants at any level are encouraged to create domain knowledge models that <em>fit their needs</em>. The RM has no domain-specific semantic context in it to get in the way. This approach allows the design of concept structures as the modeler sees fit for current purpose. The Cluster complexType allows for any data structure <a class="footnote-reference" href="#f1" id="id1">[1]</a> to be built to match implementation needs. There is no inherent idea of a specific application in the RM. This approach provides an opportunity for development of small, purpose-specific apps such as mobile or portable device software as well.</p>
+<p>In S3Model, participants at any level are encouraged to create domain knowledge models that <em>fit their needs</em>. The RM has no domain-specific semantic context in it to get in the way. This approach allows the design of concept structures as the modeler sees fit for current purpose. The Cluster complexType allows for any data structure <a class="footnote-reference brackets" href="#f1" id="id1">1</a> to be built to match implementation needs. There is no inherent idea of a specific application in the RM. This approach provides an opportunity for development of small, purpose-specific apps such as mobile or portable device software as well.</p>
 </div>
 <div class="section" id="how-many-dms">
 <h2>How Many DMs?<a class="headerlink" href="#how-many-dms" title="Permalink to this headline">¶</a></h2>
@@ -216,18 +218,15 @@ The governance of DMs is the responsibility of the modeler and publishing organi
 <div class="section" id="a-valid-dm-must">
 <h2>A Valid DM Must:<a class="headerlink" href="#a-valid-dm-must" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Be a valid XML Schema as determined by widely available parser/validators such as <a class="reference external" href="https://xerces.apache.org/xerces2-j/faq-xs.html#faq-2">Xerces</a> or <a class="reference external" href="https://www.saxonica.com/documentation/schema-processing/">Saxon</a></p>
-</li>
-<li><p class="first">Consist of complexTypes that only use the <em>restriction</em> element of complexTypes with a <em>base</em> attribute from the associated reference model</p>
-</li>
-<li><p class="first">use <a class="reference external" href="https://github.com/ericelliott/cuid">CUIDs</a> for complexType names, with the prefix of, ‘mc-‘. Example <a class="footnote-reference" href="#f2" id="id2">[2]</a></p>
+<li><p>Be a valid XML Schema as determined by widely available parser/validators such as <a class="reference external" href="https://xerces.apache.org/xerces2-j/faq-xs.html#faq-2">Xerces</a> or <a class="reference external" href="https://www.saxonica.com/documentation/schema-processing/">Saxon</a></p></li>
+<li><p>Consist of complexTypes that only use the <em>restriction</em> element of complexTypes with a <em>base</em> attribute from the associated reference model</p></li>
+<li><p>use <a class="reference external" href="https://github.com/ericelliott/cuid">CUIDs</a> for complexType names, with the prefix of, ‘mc-‘. Example <a class="footnote-reference brackets" href="#f2" id="id2">2</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mc-cjffhejvj002pf3l30ddom8lg&#39;</span> <span class="n">xml</span><span class="p">:</span><span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">publish a global element for each complexType where a substitutionGroup is required <a class="footnote-reference" href="#f3" id="id3">[3]</a>. The element <strong>MUST</strong> be defined using the same CUID as the complexType with the ‘mc-‘ prefix replaced with ‘ms-‘.</p>
-</li>
-<li><p class="first">Include the reference model schema from www.S3Model.org using the appropriately defined namespace. Example for release 3.0.0 and later releases, S3Model uses the namespace definition, xmlns:s3m=”https://www.s3model.com/ns/s3m/” <a class="footnote-reference" href="#f4" id="id4">[4]</a></p>
+<li><p>publish a global element for each complexType where a substitutionGroup is required <a class="footnote-reference brackets" href="#f3" id="id3">3</a>. The element <strong>MUST</strong> be defined using the same CUID as the complexType with the ‘mc-‘ prefix replaced with ‘ms-‘.</p></li>
+<li><p>Include the reference model schema from www.S3Model.org using the appropriately defined namespace. Example for release 3.0.0 and later releases, S3Model uses the namespace definition, xmlns:s3m=”https://www.s3model.com/ns/s3m/” <a class="footnote-reference brackets" href="#f4" id="id4">4</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">use</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">substitution</span> <span class="n">group</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">as</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">example</span><span class="p">::</span>
 </pre></div>
 </div>
@@ -235,8 +234,8 @@ The governance of DMs is the responsibility of the modeler and publishing organi
 <div><p>&lt;xs:element name=”ms-cjffhel02003rf3l37e9k3suc” substitutionGroup=”s3m:Audit” type=”s3m:mc-cjffhel02003rf3l37e9k3suc”/&gt;</p>
 </div></blockquote>
 <ul class="simple">
-<li>define the required namespaces used in the DM as in Figure 1.</li>
-<li>identify the minimum <a class="reference external" href="https://dublincore.org/">DCMI</a> metadata items as shown in Figure 2.</li>
+<li><p>define the required namespaces used in the DM as in Figure 1.</p></li>
+<li><p>identify the minimum <a class="reference external" href="https://dublincore.org/">DCMI</a> metadata items as shown in Figure 2.</p></li>
 </ul>
 </li>
 </ul>
@@ -248,8 +247,8 @@ The governance of DMs is the responsibility of the modeler and publishing organi
 <div class="section" id="a-valid-dm-must-not">
 <h2>A Valid DM Must Not:<a class="headerlink" href="#a-valid-dm-must-not" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Contain any other language processing instructions required for validating instance data. For example; Schematron rules. While Schematron can be a valuable tool in some processing environments, it is considered implementation specific and not part of the S3Model interoperability framework.</li>
-<li>Import or include any XML Schema document other than its parent S3Model reference model schema.</li>
+<li><p>Contain any other language processing instructions required for validating instance data. For example; Schematron rules. While Schematron can be a valuable tool in some processing environments, it is considered implementation specific and not part of the S3Model interoperability framework.</p></li>
+<li><p>Import or include any XML Schema document other than its parent S3Model reference model schema.</p></li>
 </ul>
 </div>
 <div class="section" id="dm-functionality">
@@ -381,30 +380,20 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
 <p>For more in-depth details on using S3Model in various scenarios, you should refer to the <a class="reference external" href="https://github.com/S3Model">GitHub repository</a>. Specifically <a class="reference external" href="https://github.com/S3Model/S3Model_semantics_extractor">this project</a>, as well as the <a class="reference external" href="https://github.com/S3Model/mxic">MXIC demo</a> and the <a class="reference external" href="https://github.com/S3Model/MAPLE">MAPLE demo</a> These all use older versions of S3Model (formerly MLHIM) but the concepts,  are the same for any release.</p>
 <p>Two projects that may be of particular interest is <a class="reference external" href="https://github.com/S3Model/ichi2015_fhir_semantics">adding semantics to FHIR models</a> and <a class="reference external" href="https://github.com/S3Model/hl7v2_semantics">adding semantics to HL7v2 messages</a>. The latter project was subject of an MSc Thesis.</p>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Used here to mean trees, lists, tables, and similar structures.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="f2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>The language attribute is optional.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="f3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Substitution groups are required where the base type allows multiple elements and where the base type allows an abstract element.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="f4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Some previous releases had a specific namespace for the RM and each DM. The namespace was changed to a single namespace for all of the S3Model 2.x and later versions to improve query and processing interoperability.</td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Used here to mean trees, lists, tables, and similar structures.</p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>The language attribute is optional.</p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Substitution groups are required where the base type allows multiple elements and where the base type allows an abstract element.</p>
+</dd>
+<dt class="label" id="f4"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Some previous releases had a specific namespace for the RM and each DM. The namespace was changed to a single namespace for all of the S3Model 2.x and later versions to improve query and processing interoperability.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -420,7 +409,7 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
         <a href="data_analysis.html" class="btn btn-neutral float-right" title="S3Model Data Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="S3Model_and_EA.html" class="btn btn-neutral" title="S3Model as a Component of an Enterprise Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="S3Model_and_EA.html" class="btn btn-neutral float-left" title="S3Model as a Component of an Enterprise Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -446,25 +435,16 @@ The rdf:resource attribute points to a resource on the S3Model website. It is ju
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
