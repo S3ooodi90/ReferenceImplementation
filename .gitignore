@@ -24,3 +24,6 @@ s3m.wpu
 .Rproj.user
 S3Model.sublime-project
 S3Model.sublime-workspace
+
+# editor
+.vscode/
