@@ -1,4 +1,7 @@
 # S3Model
+
+[![Build Status](https://travis-ci.com/DataInsightsInc/S3Model.svg?branch=master)](https://travis-ci.com/DataInsightsInc/S3Model)
+
 Shareable-Structured-Semantic Model (S3Model)
 See the Documentation 'https://github.com/DataInsightsInc/S3Model/docs/index.html'
 
