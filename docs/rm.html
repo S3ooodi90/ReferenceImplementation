@@ -92,7 +92,10 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="front.html">Documentation Overview</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The Reference Implementation - Reference Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#distribution-layout">Distribution Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distribution-layout">Distribution Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Additional Tools</a></li>
@@ -172,7 +175,18 @@
 <p>The directory tree contains several files and directories.</p>
 <img alt="_images/DistributionDirectoryTree.png" src="_images/DistributionDirectoryTree.png" />
 <p>The <em>scripts</em> directory content is described in the <strong>Additional Tools</strong> section.</p>
-<p>The <em>RM</em> (reference model) directory contains one or more versioned subdirectories where the actual XML Schema and associated files are located. This directory also contains the S3Model ontology file <em>s3model.owl</em>.</p>
+<ul class="simple">
+<li><p>The <em>RM</em> (reference model) directory contains one or more versioned subdirectories where the actual XML Schema and associated files are located. This directory also contains the S3Model ontology file <em>s3model.owl</em>.</p></li>
+<li><p>The <em>3_1_0</em> directory is the only versioned reference model in this distribution. Previous versions were removed. This directory contains the XML Schema, <em>s3model_3_1_0.xsd</em> which is the reference implementation of the S3Model specifications. It also contains the <em>s3model_3_1_0.rdf</em> file of the triples that were extracted from the XML Schema using the rm_semantics_extractor.py tool. The file <em>s3model_3_1_0.xsl</em> can be used to help visualize <em>s3model_3_1_0.xsd</em> in a browser and <em>dm-desciption.xsl</em> can be used to visualize data model schemas as html pages.</p></li>
+<li><p>s3model_3_1_0.xsd is the schema that is required by all S3Model Data Models using the xs:include.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xs:include</span> <span class="na">schemaLocation=</span><span class="s">&quot;https://www.s3model.com/ns/s3m/s3model_3_1_0.xsd&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>The examples directory contains some simplistic versions of a data model schema and example RDF extract and instance documents.</p>
+</div>
 </div>
 </div>
 
