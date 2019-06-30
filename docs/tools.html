@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Eclipse Ecore &mdash; Shareable, Structured, Semantic Model</title>
+  <title>Additional Tools &mdash; Shareable, Structured, Semantic Model</title>
   
 
   
@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,8 +37,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Glossary" href="glossary.html" />
-    <link rel="prev" title="S3Model Data Analysis" href="data_analysis.html" /> 
+    <link rel="next" title="Support, Publications &amp; Social Media" href="support.html" />
+    <link rel="prev" title="The Reference Implementation - Reference Model" href="rm.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,20 +90,18 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="front.html">S3Model Documentation Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="governance.html">Governance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="executive_summary.html">Executive Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="value_prop.html">Value Proposition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modeling_concepts.html">Modeling Concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="abstract_model.html">Abstract Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="front.html">Documentation Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rm.html">The Reference Implementation - Reference Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linked_data.html">Linked Data Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="S3Model_and_EA.html">S3Model as a Component of an Enterprise Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ecosystem.html">The S3Model Eco-System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">S3Model Data Analysis</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Eclipse Ecore</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Additional Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-semantics-extractor-py">data_semantics_extractor.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demo-data-gen-py">demo_data_gen.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dm-semantics-extractor-py">dm_semantics_extractor.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rm-semantics-extractor-py">rm_semantics_extractor.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-tools">Using the tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support, Publications &amp; Social Media</a></li>
 </ul>
 
@@ -149,13 +148,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Eclipse Ecore</li>
+      <li>Additional Tools</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/ecore.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/tools.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -168,13 +167,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="eclipse-ecore">
-<h1>Eclipse Ecore<a class="headerlink" href="#eclipse-ecore" title="Permalink to this headline">¶</a></h1>
-<p>There is now an Eclipse Ecore model included in the documentation.
-If people find this technology useful, then please expand on it. I have minimal experience with Eclipse.</p>
-<p>I could use some help making this more useful.  Maybe you can even generate a Java code base from it? Perhaps you can edit DM models in it? Maybe you can generate Python code?  I have no idea …</p>
-<p>Everything should be there.</p>
-<p>If you can help with using this Ecore model to ‘do something’ then please let me know.</p>
+  <div class="section" id="additional-tools">
+<h1>Additional Tools<a class="headerlink" href="#additional-tools" title="Permalink to this headline">¶</a></h1>
+<p>The reference implementation also provides a few simple tools in Python that can be used to manipulate and analyze the refernce model implementation and support files such as the ontology and RDF output.</p>
+<p>You will find them in the <em>scripts</em> subdirectory of the versioned RM. Ex: <em>RM/3_1_0/scripts</em>.</p>
+<div class="section" id="data-semantics-extractor-py">
+<h2>data_semantics_extractor.py<a class="headerlink" href="#data-semantics-extractor-py" title="Permalink to this headline">¶</a></h2>
+<p>Extracts S3Model 3.1.0 (and later) data and creates RDF triples in RDF/XML
+This script must be executed after the dm_semantics_extractor.py script.</p>
+</div>
+<div class="section" id="demo-data-gen-py">
+<h2>demo_data_gen.py<a class="headerlink" href="#demo-data-gen-py" title="Permalink to this headline">¶</a></h2>
+<p>Can be used to create multiple copies of DM based data files to use for examples or stress testing your RDF store.
+Pass the number of copies per example on the commandline.</p>
+</div>
+<div class="section" id="dm-semantics-extractor-py">
+<h2>dm_semantics_extractor.py<a class="headerlink" href="#dm-semantics-extractor-py" title="Permalink to this headline">¶</a></h2>
+<p>Extracts the semantics from S3Model DMs in the directory passed on the commandline and creates RDF triples in RDF/XML format. It reuses the filename and replaces
+‘.xml’ with ‘.rdf’</p>
+</div>
+<div class="section" id="rm-semantics-extractor-py">
+<h2>rm_semantics_extractor.py<a class="headerlink" href="#rm-semantics-extractor-py" title="Permalink to this headline">¶</a></h2>
+<p>Extracts the semantics from S3Model RM and creates RDF triples in RDF/XML named the same as the input file with a .rdf extension in place of the .xsd extension.</p>
+<div class="section" id="using-the-tools">
+<h3>Using the tools<a class="headerlink" href="#using-the-tools" title="Permalink to this headline">¶</a></h3>
+<p>You need to install the requirements in a virtual environment before using these tools.</p>
+</div>
+</div>
 </div>
 
 
@@ -185,10 +204,10 @@ If people find this technology useful, then please expand on it. I have minimal 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="support.html" class="btn btn-neutral float-right" title="Support, Publications &amp; Social Media" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="data_analysis.html" class="btn btn-neutral float-left" title="S3Model Data Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="rm.html" class="btn btn-neutral float-left" title="The Reference Implementation - Reference Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
