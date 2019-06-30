@@ -5,10 +5,8 @@
 *.zip
 *.sh
 
-*-checkpoint.ipynb
-
-mindmaps/*
-RM/3_1_0/notebooks/dmlib/*
+# Protege catalog file
+catalog-v001.xml
 
 #Sphinx
 build/

@@ -22,7 +22,9 @@ The directory tree contains several files and directories.
 
 .. image:: _static/DistributionDirectoryTree.png
 
+The *scripts* directory content is described in the **Additional Tools** section.
 
+The *RM* (reference model) directory contains one or more versioned subdirectories where the actual XML Schema and associated files are located. This directory also contains the S3Model ontology file *s3model.owl*.
 
 
 
