@@ -51,8 +51,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'S3Model'
-copyright = '2009 - 2018, Data Insights, Inc. https://datainsights.tech  '
+project = 'Reference Implementation'
+copyright = '2009 - 2019, Data Insights, Inc. https://datainsights.tech  '
 author = 'Timothy W. Cook'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -127,10 +127,10 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = 'Shareable, Structured, Semantic Model'
+html_title = 'S3Model Reference Implementation'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = 'S3Model'
+html_short_title = 'S3M XSD'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
