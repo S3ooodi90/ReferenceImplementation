@@ -40,7 +40,7 @@ Extracts the semantics from S3Model RM and creates RDF triples in RDF/XML named 
 
 
 Using the tools
-===============
+---------------
 
 You need to install the requirements in a virtual environment before using these tools. If you do not already have a favorite approach to Python virtual environments then the best way is to use `Anaconda <https://www.anaconda.com/>`_. Download and install a distribution for your operating system.
 
