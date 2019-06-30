@@ -95,5 +95,4 @@ dependencies:
     - update==0.0.1
     - urllib3==1.25.3
     - validator-collection==1.2.0
-prefix: /home/tim/anaconda3/envs/S3Model
 
