@@ -1,8 +1,9 @@
-MLHIM-to-S3M
+
+Steps to take: MLHIM-to-S3M
 
 1. Create a new restore DB from ccdgen
 2. $python manage.py flush (current DMGEN 's3m' directory using 'source activate S3Model' env)
-3. $python dmgen/utils/mlhimTOs3m.py 
+3. $python dmgen/utils/mlhimTOs3m.py
 4. $python manage.py dumpdata --output DMGEN.json
 5. $python manage.py flush
 6. $python manage.py loaddata DMGEN.json
@@ -10,7 +11,7 @@ MLHIM-to-S3M
 8. $python manage.py runserver
 
 --------------
-Login as tom and change the admin pw to admin, login as admin.
+Login as tim and change the admin pw to admin, login as admin.
 Edit the Namespaces to change mlhim to s3m http://www.s3model.com/ns/s3m/
 Edit the permissions for Modelers and Supervisors groups.
 Delete unused users and modelers objects.
@@ -39,4 +40,4 @@ Attestations
 Entrys
 
 Switch to a normal modeler instead of admin to make filtering work correctly.
-Then create the Test DMs and Generate them. Validate the DMs and instances. 
+Then create the Test DMs and Generate them. Validate the DMs and instances.

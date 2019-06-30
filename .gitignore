@@ -13,17 +13,6 @@ RM/3_1_0/notebooks/dmlib/*
 #Sphinx
 build/
 
-stub.xml
-stub.xsd
-stub.json
-
-# project files
-*.xpr
-s3m.wpr
-s3m.wpu
-.Rproj.user
-S3Model.sublime-project
-S3Model.sublime-workspace
 
 # editor
 .vscode/
